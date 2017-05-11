@@ -25,6 +25,6 @@ public class EntitiesLT
 	
 	private static void reg(Class<? extends Entity> entityClass, String name, int eggPrimary, int eggSecondary)
 	{
-		EntityRegistry.registerModEntity(new ResourceLocation(LTInfo.MOD_ID, name), entityClass, name, id++, LostThaumaturgy.instance, 64, 1, true, eggPrimary, eggSecondary);
+		EntityRegistry.registerModEntity(new ResourceLocation(LTInfo.MOD_ID, name), entityClass, LTInfo.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true, eggPrimary, eggSecondary);
 	}
 }
