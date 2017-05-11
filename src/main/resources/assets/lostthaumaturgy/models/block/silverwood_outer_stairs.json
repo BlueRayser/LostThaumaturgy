@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "lostthaumaturgy:blocks/silverwood_planks",
+        "top": "lostthaumaturgy:blocks/silverwood_planks",
+        "side": "lostthaumaturgy:blocks/silverwood_planks"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "up": "lostthaumaturgy:blocks/silverwood_log_top",
+        "down": "lostthaumaturgy:blocks/silverwood_log_top",
+        "east": "lostthaumaturgy:blocks/silverwood_log",
+        "west": "lostthaumaturgy:blocks/silverwood_log",
+        "south": "lostthaumaturgy:blocks/silverwood_log",
+        "north": "lostthaumaturgy:blocks/silverwood_log",
+        "particle": "lostthaumaturgy:blocks/silverwood_log_top"
+    }
+}

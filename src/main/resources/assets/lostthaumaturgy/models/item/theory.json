@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "lostthaumaturgy:items/research/theory",
+		"layer1": "lostthaumaturgy:items/research/theory_overlay"
+	}
+}

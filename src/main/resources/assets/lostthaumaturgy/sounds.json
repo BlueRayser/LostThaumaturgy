@@ -1,0 +1,8 @@
+{
+    "bubbling" : { "sounds": ["lostthaumaturgy:bubbling"] },
+	"infuser" : { "sounds": ["lostthaumaturgy:infuser"] },
+	"roots": { "sounds": ["lostthaumaturgy:roots"] },
+	"fizz": { "sounds": ["lostthaumaturgy:fizz"] },
+	"creaking": { "sounds": ["lostthaumaturgy:creaking1","lostthaumaturgy:creaking2"] },
+	"discover": { "sounds": ["lostthaumaturgy:discover"] }
+}

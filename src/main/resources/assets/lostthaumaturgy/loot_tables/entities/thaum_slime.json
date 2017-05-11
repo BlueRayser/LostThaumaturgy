@@ -1,0 +1,141 @@
+{
+    "pools": [
+        {
+            "rolls": 2,
+			"name": "viscrystal",
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "lostthaumaturgy:multi_material",
+                    "weight": 1,
+                    "functions": [
+						{
+							"function": "set_data",
+							"data": 4
+						},
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        },
+                        {
+                            "function": "looting_enchant",
+                            "count": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "conditions": [
+                {
+                    "condition": "killed_by_player"
+                },
+                {
+                    "condition": "random_chance_with_looting",
+                    "chance": 0.025,
+                    "looting_multiplier": 0.01
+                }
+            ],
+            "rolls": 1,
+			"name": "artifacts",
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "lostthaumaturgy:multi_material",
+                    "weight": 1,
+                    "functions": [
+						{
+							"function": "set_data",
+							"data": 16
+						},
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                },
+				{
+                    "type": "item",
+                    "name": "lostthaumaturgy:multi_material",
+                    "weight": 1,
+                    "functions": [
+						{
+							"function": "set_data",
+							"data": 17
+						},
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                },
+				{
+                    "type": "item",
+                    "name": "lostthaumaturgy:multi_material",
+                    "weight": 1,
+                    "functions": [
+						{
+							"function": "set_data",
+							"data": 18
+						},
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                },
+				{
+                    "type": "item",
+                    "name": "lostthaumaturgy:multi_material",
+                    "weight": 1,
+                    "functions": [
+						{
+							"function": "set_data",
+							"data": 19
+						},
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                },
+				{
+                    "type": "item",
+                    "name": "lostthaumaturgy:multi_material",
+                    "weight": 1,
+                    "functions": [
+						{
+							"function": "set_data",
+							"data": 20
+						},
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

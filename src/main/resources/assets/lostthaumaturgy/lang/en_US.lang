@@ -1,0 +1,79 @@
+
+itemGroup.lostthaumaturgy=Lost Thaumaturgy
+itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Discoveries
+
+tile.lostthaumaturgy:crucible.name=Crucible
+tile.lostthaumaturgy:conduit.name=Vis Conduit
+tile.lostthaumaturgy:vis_tank.name=Vis Storage Tank
+tile.lostthaumaturgy:reinforced_vis_tank.name=Thaumium Reinforced Tank
+tile.lostthaumaturgy:silverwood_vis_tank.name=Silverwood Vis Tank
+tile.lostthaumaturgy:vis_pump.name=Vis Pump
+tile.lostthaumaturgy:infuser.name=Thaumic Infuser
+tile.lostthaumaturgy:vis_filter.name=Vis Filter
+tile.lostthaumaturgy:vis_valve.name=Vis Valve
+tile.lostthaumaturgy:bellows.name=[WIP] Arcane Bellows
+tile.lostthaumaturgy:crystal_ore_vaporous.name=Vaporous Crystal Ore
+tile.lostthaumaturgy:crystal_ore_aqueus.name=Aqueous Crystal Ore
+tile.lostthaumaturgy:crystal_ore_earthen.name=Earthen Crystal Ore
+tile.lostthaumaturgy:crystal_ore_fiery.name=Fiery Crystal Ore
+tile.lostthaumaturgy:crystal_ore_vis.name=Vis Crystal Ore
+tile.lostthaumaturgy:crystal_ore_tainted.name=Tainted Crystal Ore
+tile.lostthaumaturgy:cinnabar_ore.name=Cinnabar Ore
+tile.lostthaumaturgy:vis_purifier.name=Vis Purifier
+tile.lostthaumaturgy:advanced_vis_valve.name=Advanced Vis Valve
+tile.lostthaumaturgy:shimmerleaf.name=Shimmerleaf
+tile.lostthaumaturgy:cinderpearl.name=Cinderpearl
+tile.lostthaumaturgy:silverwood_leaves.name=Silverwood Leaves
+tile.lostthaumaturgy:silverwood_log.name=Silverwood Log
+tile.lostthaumaturgy:silverwood_planks.name=Silverwood Planks
+tile.lostthaumaturgy:silverwood_stairs.name=Silverwood Stairs
+
+
+
+item.lostthaumaturgy:vaporous_crystal.name=Vaporous Crystal
+item.lostthaumaturgy:aqueous_crystal.name=Aqueous Crystal
+item.lostthaumaturgy:earthen_crystal.name=Earthen Crystal
+item.lostthaumaturgy:fiery_crystal.name=Fiery Crystal
+item.lostthaumaturgy:vis_crystal.name=Vis Crystal
+item.lostthaumaturgy:tainted_crystal.name=Tainted Crystal
+item.lostthaumaturgy:depleted_crystal.name=Depleted Crystal
+item.lostthaumaturgy:enchanted_wood.name=Enchanted Wood
+item.lostthaumaturgy:enchanted_silverwood.name=Enchanted Silverwood
+item.lostthaumaturgy:cinderpearl_pod.name=Cinderpearl Pod
+item.lostthaumaturgy:zombie_brains.name=Zombie Brains
+item.lostthaumaturgy:quicksilver.name=Quicksilver
+item.lostthaumaturgy:thaumium_ingot.name=Thaumium Ingot
+item.lostthaumaturgy:enchanted_fabric.name=Enchanted Fabric
+item.lostthaumaturgy:animated_piston.name=Animated Piston
+item.lostthaumaturgy:alumentum.name=Alumentum
+item.lostthaumaturgy:ancient_pottery.name=Ancient Pottery
+item.lostthaumaturgy:ancient_pottery.tooltip0=Common Artifact
+item.lostthaumaturgy:tarnished_chalice.name=Tarnished Chalice
+item.lostthaumaturgy:tarnished_chalice.tooltip0=Common Artifact
+item.lostthaumaturgy:worn_statuette.name=Worn Statuette
+item.lostthaumaturgy:worn_statuette.tooltip0=Uncommon Artifact
+item.lostthaumaturgy:ancient_weapon.name=Ancient Weapon
+item.lostthaumaturgy:ancient_weapon.tooltip0=Uncommon Artifact
+item.lostthaumaturgy:ancient_seal.name=Ancient Seal
+item.lostthaumaturgy:ancient_seal.tooltip0=Rare Artifact
+item.lostthaumaturgy:ancient_stone_tablet.name=Ancient Stone Tablet
+item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Exceptional Artifact
+
+item.lostthaumaturgy:goggles_revealing.name=Goggles of Revealing
+item.lostthaumaturgy:crystalline_bell.name=Crystalline Bell
+
+item.lostthaumaturgy:fragment.name=Fragment
+item.lostthaumaturgy:fragment.tooltip0=Difficulty: &difficulty
+
+item.lostthaumaturgy:theory.name=Theory
+item.lostthaumaturgy:theory.tooltip0=Difficulty: &difficulty
+
+item.lostthaumaturgy:discovery.name=Discovery
+
+
+
+research.lostthaumaturgy:reinforced_vis_tank.title=Reinforced Vis Tank
+
+research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
+
+research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
