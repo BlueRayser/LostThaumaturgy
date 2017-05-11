@@ -1,8 +1,15 @@
 package com.pengu.lostthaumaturgy.intr.hc.rts;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.mrdimka.hammercore.recipeAPI.types.IRecipeType;
+import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.match.MatcherItemStack;
+import com.pengu.lostthaumaturgy.api.match.MatcherOreDict;
 import com.pengu.lostthaumaturgy.intr.hc.rts.RecipeTypeCrucible.CrucibleRecipe;
 
 public class RecipeTypeCrucible implements IRecipeType<CrucibleRecipe>
@@ -10,6 +17,24 @@ public class RecipeTypeCrucible implements IRecipeType<CrucibleRecipe>
 	@Override
 	public void addRecipe(CrucibleRecipe recipe)
 	{
+		try
+		{
+			String key = recipe.object;
+			
+			if(key.contains(":"))
+			{
+				String item = key.substring(0, key.lastIndexOf(":"));
+				int meta = Integer.parseInt(key.substring(key.lastIndexOf(":") + 1));
+				Item i = Item.REGISTRY.getObject(new ResourceLocation(item));
+				if(meta < 0) meta = OreDictionary.WILDCARD_VALUE;
+				
+				RecipesCrucible.registerNewSmelting(new MatcherItemStack(new ItemStack(i, 1, meta)), recipe.value);
+			}else
+				RecipesCrucible.registerNewSmelting(new MatcherOreDict(key), recipe.value);
+		} catch(Throwable er)
+		{
+			er.printStackTrace();
+		}
 	}
 	
 	@Override
