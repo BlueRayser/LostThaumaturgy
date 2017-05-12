@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -12,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -188,9 +190,27 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 	}
 	
 	@Override
+	protected SoundEvent getDeathSound()
+	{
+		return SoundEvents.ENTITY_SLIME_DEATH;
+	}
+	
+	@Override
+	protected SoundEvent getFallSound(int heightIn)
+	{
+		return SoundEvents.ENTITY_SLIME_SQUISH;
+	}
+	
+	@Override
+	protected SoundEvent getHurtSound()
+	{
+		return SoundEvents.ENTITY_SLIME_HURT;
+	}
+	
+	@Override
 	protected ResourceLocation getLootTable()
 	{
-	    return LOOT_TABLE;
+		return LOOT_TABLE;
 	}
 	
 	@Override

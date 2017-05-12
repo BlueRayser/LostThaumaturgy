@@ -37,6 +37,11 @@ public class TESRInfuser extends TESR<TileInfuser>
 	@Override
 	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
 		renderModel(te, x, y, z);
 		
 		boolean active = te != null && te.getCookProgressScaled(8) > 0F;

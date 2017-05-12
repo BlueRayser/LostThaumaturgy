@@ -15,28 +15,38 @@ public class TESRBellows extends TESR<TileBellows>
 {
 	public static final TESRBellows INSTANCE = new TESRBellows();
 	private ModelBellows model = new ModelBellows();
-	private ResourceLocation texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/bellows.png");
+	private static final ResourceLocation bellow_texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/bellows.png");
+	private ResourceLocation curr_texture = bellow_texture;
 	
 	@Override
 	public void renderTileEntityAt(TileBellows te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
+		curr_texture = bellow_texture;
 		renderEntityAt(te, x, y, z, te.scale);
+		if(destroyStage != null)
+		{
+			curr_texture = destroyStage;
+			renderEntityAt(te, x, y, z, te.scale);
+			curr_texture = bellow_texture;
+		}
 	}
 	
 	@Override
 	public void renderItem(ItemStack item)
 	{
+		curr_texture = bellow_texture;
 		renderEntityAt(null, 0, 0, 0, 1);
 	}
 	
 	private void translateFromOrientation(double x, double y, double z, int orientation)
 	{
 		GL11.glTranslated((x + .5F), (y - .5F), (z + .5F));
-		if(orientation == 0)
+		
+		if(orientation == 1)
 			GL11.glRotatef(180, 0, 1, 0);
-		else if(orientation == 1)
+		else if(orientation == 2)
 			GL11.glRotatef(90, 0, 1, 0);
-		else if(orientation != 2 && orientation == 3)
+		else if(orientation == 3)
 			GL11.glRotatef(270, 0, 1, 0);
 	}
 	
@@ -48,7 +58,7 @@ public class TESRBellows extends TESR<TileBellows>
 		normalize.captureState();
 		
 		float tscale = .125F + scale * .875F;
-		bindTexture(texture);
+		bindTexture(curr_texture);
 		
 		blend.on();
 		normalize.on();

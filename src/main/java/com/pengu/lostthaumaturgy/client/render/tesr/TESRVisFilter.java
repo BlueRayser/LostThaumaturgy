@@ -38,6 +38,11 @@ public class TESRVisFilter extends TESR<TileVisFilter>
 	@Override
 	public void renderTileEntityAt(TileVisFilter te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
 		render(x, y, z, te);
 	}
 	

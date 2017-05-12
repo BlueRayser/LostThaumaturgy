@@ -36,6 +36,12 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 	public void renderTileEntityAt(TileAdvancedVisValve te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
 		super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
+		
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
 		renderValve(true, te.setting, x, y, z);
 	}
 	

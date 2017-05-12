@@ -30,13 +30,10 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 		if(gettingPower())
 			return false;
 		
-		TileEntity te = world.getTileEntity(pos.offset(EnumFacing.VALUES[(orientation + 2) % EnumFacing.VALUES.length]));
+		TileEntity te = world.getTileEntity(pos.offset(EnumFacing.VALUES[(orientation + 2) % EnumFacing.VALUES.length].getOpposite()));
 		if(te != null && (te instanceof TileCrucible ||
 		// te instanceof TileArcaneFurnace ||
-		te instanceof TileConduit
-		// te instanceof TileConduitPump && !this.gettingPower() ||
-		// te instanceof TileConduitTank && !this.gettingPower()
-		))
+		        te instanceof TileConduit || te instanceof TileVisPump && !this.gettingPower() || te instanceof TileVisTank && !this.gettingPower()))
 		{
 			return true;
 		}
@@ -88,7 +85,7 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 	@Override
 	public boolean getConnectable(EnumFacing face)
 	{
-		return face.ordinal() == orientation + 2;
+		return face.getOpposite().ordinal() == orientation + 2;
 	}
 	
 	@Override

@@ -52,6 +52,11 @@ public class TESRVisTank extends TESR<TileVisTank>
 		
 		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 		
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
 		GLRenderState blend = GLRenderState.BLEND;
 		for(int i = 0; i < (destroyStage != null && destroyProgress > 0F ? 2 : 1); ++i)
 		{
