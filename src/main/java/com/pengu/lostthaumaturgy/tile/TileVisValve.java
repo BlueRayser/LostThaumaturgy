@@ -26,23 +26,23 @@ public class TileVisValve extends TileConduit
 		if(world.isRemote)
 			return;
 		
-		if(this.prevdisplayPure != this.displayPure || this.prevdisplayTaint != this.displayTaint)
+		if(prevdisplayPure != displayPure || prevdisplayTaint != displayTaint)
 		{
 			sync();
-			this.prevdisplayPure = this.displayPure;
-			this.prevdisplayTaint = this.displayTaint;
+			prevdisplayPure = displayPure;
+			prevdisplayTaint = displayTaint;
 		}
 		
-		this.calculateSuction();
+		calculateSuction();
 		
-		if(!this.open)
+		if(!open)
 		{
-			this.setSuction(0);
+			setSuction(0);
 		}
 		
-		if(this.getSuction(null) > 0)
+		if(getSuction(null) > 0)
 		{
-			this.equalizeWithNeighbours();
+			equalizeWithNeighbours();
 		}
 		
 		if(displayPure != pureVis || displayTaint != taintedVis)
@@ -51,23 +51,23 @@ public class TileVisValve extends TileConduit
 			displayTaint = taintedVis;
 		}
 		
-		if(this.displayTaint + this.displayPure < 0.1f)
+		if(displayTaint + displayPure < 0.1f)
 		{
-			this.displayTaint = 0.0f;
-			this.displayPure = 0.0f;
+			displayTaint = 0.0f;
+			displayPure = 0.0f;
 		}
 		
-		if(this.gettingPower())
+		if(gettingPower())
 		{
-			this.prevPower = true;
-			this.open = false;
+			prevPower = true;
+			open = false;
 			sync();
 		}
 		
-		if(!this.gettingPower() && this.prevPower)
+		if(!gettingPower() && prevPower)
 		{
-			this.open = true;
-			this.prevPower = false;
+			open = true;
+			prevPower = false;
 			sync();
 		}
 	}
