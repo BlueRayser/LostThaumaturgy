@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,11 +27,13 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTConfigs;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
-public class BlockOreCrystal extends BlockContainer implements ITileBlock<TileCrystalOre>
+public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCrystalOre>, ITileEntityProvider
 {
 	protected IGetter<ItemStack> crystal;
 	protected boolean goodVibesOnGrowth = false;
@@ -287,4 +290,10 @@ public class BlockOreCrystal extends BlockContainer implements ITileBlock<TileCr
 	{
 		return false;
 	}
+
+	@Override
+    public String getParticleSprite(World world, BlockPos pos)
+    {
+	    return LTInfo.MOD_ID + ":blocks/crystal";
+    }
 }

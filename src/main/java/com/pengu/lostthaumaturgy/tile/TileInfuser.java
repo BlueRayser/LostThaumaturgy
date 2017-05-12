@@ -37,13 +37,14 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	public InventoryNonTile infuserItemStacks = new InventoryNonTile(8);
 	public float infuserCookTime = 0.0f;
 	public float currentItemCookCost;
-	public int angle = -1;
+	public double angle = -1;
 	public float sucked = 0.0f;
 	protected int soundDelay = 0;
 	public int boost = 0;
 	protected byte[] upgrades = new byte[] { -1 };
 	int boostDelay = 20;
 	public UUID initiator = null;
+	public int entry;
 	
 	public boolean canSpawnParticle = true;
 	
@@ -67,21 +68,25 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	
 	public void readNBT(NBTTagCompound nbt)
 	{
+		super.readNBT(nbt);
 		infuserItemStacks.readFromNBT(nbt.getCompoundTag("Items"));
 		this.infuserCookTime = nbt.getFloat("CookTime");
 		this.currentItemCookCost = nbt.getFloat("CookCost");
 		this.upgrades = nbt.getByteArray("Upgrades");
+		entry = nbt.getInteger("Entry");
 		sucked = nbt.getFloat("Sucked");
 	}
 	
 	public void writeNBT(NBTTagCompound nbt)
 	{
+		super.writeNBT(nbt);
 		nbt.setFloat("CookTime", this.infuserCookTime);
 		nbt.setFloat("CookCost", this.currentItemCookCost);
 		nbt.setByteArray("Upgrades", this.upgrades);
 		NBTTagCompound items = new NBTTagCompound();
 		infuserItemStacks.writeToNBT(items);
 		nbt.setTag("Items", items);
+		nbt.setInteger("Entry", entry);
 		nbt.setFloat("Sucked", sucked);
 	}
 	
@@ -110,7 +115,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		{
 			--this.soundDelay;
 		}
-		this.angle = (int) (this.infuserCookTime / this.currentItemCookCost * 360.0f);
+		this.angle = this.infuserCookTime / this.currentItemCookCost * 360F;
 		if(world.isRemote)
 			return;
 		boolean flag1 = false;
@@ -268,7 +273,15 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 			isal.add(is);
 		}
 		if(isal.size() > 0)
-			return RecipesInfuser.getInfusingResult(isal.toArray(), this);
+		{
+			Object[] items = isal.toArray();
+			entry = RecipesInfuser.findEntry(items, this);
+			return RecipesInfuser.getInfusingResult(items, this);
+		}else if(entry != -1)
+		{
+			entry = -1;
+			sync();
+		}
 		return ItemStack.EMPTY;
 	}
 	

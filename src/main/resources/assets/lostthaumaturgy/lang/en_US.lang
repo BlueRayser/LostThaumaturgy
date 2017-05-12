@@ -4,6 +4,9 @@ itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Discoveries
 
 tile.lostthaumaturgy:crucible.name=Crucible
 tile.lostthaumaturgy:conduit.name=Vis Conduit
+tile.lostthaumaturgy:pressurized_conduit.name=Pressurized Conduit
+tile.lostthaumaturgy:pressurized_conduit.tooltip0=Emits redstone signal
+tile.lostthaumaturgy:pressurized_conduit.tooltip1=if there is any suction
 tile.lostthaumaturgy:vis_tank.name=Vis Storage Tank
 tile.lostthaumaturgy:reinforced_vis_tank.name=Thaumium Reinforced Tank
 tile.lostthaumaturgy:silverwood_vis_tank.name=Silverwood Vis Tank
@@ -11,7 +14,7 @@ tile.lostthaumaturgy:vis_pump.name=Vis Pump
 tile.lostthaumaturgy:infuser.name=Thaumic Infuser
 tile.lostthaumaturgy:vis_filter.name=Vis Filter
 tile.lostthaumaturgy:vis_valve.name=Vis Valve
-tile.lostthaumaturgy:bellows.name=[WIP] Arcane Bellows
+tile.lostthaumaturgy:bellows.name=Arcane Bellows
 tile.lostthaumaturgy:crystal_ore_vaporous.name=Vaporous Crystal Ore
 tile.lostthaumaturgy:crystal_ore_aqueus.name=Aqueous Crystal Ore
 tile.lostthaumaturgy:crystal_ore_earthen.name=Earthen Crystal Ore
@@ -77,3 +80,5 @@ research.lostthaumaturgy:reinforced_vis_tank.title=Reinforced Vis Tank
 research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
 
 research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
+
+research.lostthaumaturgy:pressurized_conduit.title=Pressurized Conduit

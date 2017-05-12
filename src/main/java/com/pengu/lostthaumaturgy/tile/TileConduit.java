@@ -34,20 +34,25 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 	{
 		if(hitboxes == null || hitboxes.length == 0) rebake();
 		
-		if(world.isRemote)
-		{
-			if(ticksExisted % 20 == 0) rebake();
-			return;
-		}
+		if(ticksExisted % 20 == 0) rebake();
+		if(world.isRemote) return;
 		
+		int suction1 = visSuction, suction2 = taintSuction;
 		calculateSuction();
 		if(getSuction(null) > 0) equalizeWithNeighbours();
+		
+		boolean sync = false;
+		
+		if(suction1 != visSuction || suction2 != taintSuction)
+		{
+			sync = true;
+		}
 		
 		if(prevdisplayPure != displayPure || prevdisplayTaint != displayTaint)
 		{
 			prevdisplayPure = displayPure;
 			prevdisplayTaint = displayTaint;
-			sync();
+			sync = true;
 		}
 		
 		if(displayPure != pureVis || displayTaint != taintedVis)
@@ -61,6 +66,8 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 			displayTaint = 0F;
 			displayPure = 0F;
 		}
+		
+		if(sync) sync();
 	}
 	
 	public void rebake()
@@ -135,6 +142,8 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		taintedVis = nbt.getFloat("TaintedVis");
 		displayPure = nbt.getFloat("DisplayPure");
 		displayTaint = nbt.getFloat("DisplayTaint");
+		visSuction = nbt.getInteger("VisSuction");
+		taintSuction = nbt.getInteger("TaintSuction");
 	}
 	
 	public void writeNBT(NBTTagCompound nbt)
@@ -143,6 +152,8 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		nbt.setFloat("TaintedVis", taintedVis);
 		nbt.setFloat("DisplayPure", displayPure);
 		nbt.setFloat("DisplayTaint", displayTaint);
+		nbt.setInteger("VisSuction", visSuction);
+		nbt.setInteger("TaintSuction", taintSuction);
 	}
 	
 	@Override

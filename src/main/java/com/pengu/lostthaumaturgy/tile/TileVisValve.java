@@ -1,5 +1,9 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.mrdimka.hammercore.vec.Cuboid6;
+
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileVisValve extends TileConduit
@@ -8,8 +12,17 @@ public class TileVisValve extends TileConduit
 	private boolean prevPower;
 	
 	@Override
+	public void rebake()
+	{
+		super.rebake();
+		hitboxes = ArrayUtils.add(hitboxes, new Cuboid6(3.5 / 16, 3.5 / 16, 3.5 / 16, 12.5 / 16, 12.5 / 16, 12.5 / 16));
+	}
+	
+	@Override
 	public void tick()
 	{
+		if(ticksExisted % 20 == 0) rebake();
+		
 		if(world.isRemote)
 			return;
 		

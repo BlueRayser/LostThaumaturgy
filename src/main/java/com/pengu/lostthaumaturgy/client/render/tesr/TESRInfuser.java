@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,7 +32,18 @@ public class TESRInfuser extends TESR<TileInfuser>
 	@Override
 	public void renderItem(ItemStack item)
 	{
-		renderModel(null, 0, 0, 0);
+		double rotation = 0;
+		boolean active = false;
+		
+		NBTTagCompound nbt = getNBTFromItemStack(item);
+		
+		if(nbt != null && nbt.getFloat("CookCost") > 0 && nbt.getFloat("CookTime") > 0)
+		{
+			rotation = nbt.getFloat("CookTime") / nbt.getFloat("CookCost") * 360F;
+			active = true;
+		}
+		
+		renderModel(null, 0, 0, 0, rotation, active);
 	}
 	
 	@Override
@@ -42,9 +54,12 @@ public class TESRInfuser extends TESR<TileInfuser>
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
-		renderModel(te, x, y, z);
+		double rotation = te.angle;
+		boolean active = te.getCookProgressScaled(8) > 0F;
+		if(!active) rotation = 0;
 		
-		boolean active = te != null && te.getCookProgressScaled(8) > 0F;
+		renderModel(te, x, y, z, rotation, active);
+		
 		if(active && te.canSpawnParticle && te.sucked > 0F && te.getWorld().rand.nextFloat() < te.sucked)
 		{
 			te.canSpawnParticle = false; //ensure that if player pauses the game we don't spawn thousands of particles
@@ -60,7 +75,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 	private final ResourceLocation pillars = new ResourceLocation(LTInfo.MOD_ID, "textures/models/infuser.png");
 	private final ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
 	
-	private void renderModel(TileInfuser tile, double x, double y, double z)
+	private void renderModel(TileInfuser tile, double x, double y, double z, double angle, boolean active)
 	{
 		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 		int bright = getBrightnessForRB(tile, rb);
@@ -114,9 +129,6 @@ public class TESRInfuser extends TESR<TileInfuser>
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 		
-		double rotation = tile != null ? tile.angle : (System.currentTimeMillis() % 36000L) / 100D;
-		boolean active = tile != null && tile.getCookProgressScaled(8) > 0F;
-		if(!active) rotation = tile != null ? rotation : 0;
 		double activeRed = 1;
 		double activeGreen = .5;
 		double activeBlue = 1;
@@ -137,7 +149,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 		GL11.glScaled(.85, .85, .85);
 		
 		GL11.glTranslated(.59, .59, 0);
-		GL11.glRotated(rotation, 0, 0, 1);
+		GL11.glRotated(angle, 0, 0, 1);
 		GL11.glTranslated(-.5, -.5, 0);
 		
 		GL11.glScaled(1 / 256D, 1 / 256D, 1 / 256D);

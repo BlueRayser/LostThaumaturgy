@@ -11,6 +11,7 @@ import com.pengu.lostthaumaturgy.block.BlockCrucible;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockPlant;
+import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
@@ -30,6 +31,7 @@ public class BlocksLT
 	public static final Block //
 	        CRUCIBLE = new BlockCrucible(), //
 	        CONDUIT = new BlockConduit(), //
+	        PRESSURIZED_CONDUIT = new BlockPressurizedConduit(), //
 	        VIS_TANK = new BlockVisTank(), //
 	        VIS_TANK_REINFORCED = new BlockReinforcedVisTank(), //
 	        VIS_TANK_SILVERWOOD = new BlockSilverwoodVisTank(), //

@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.block;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,9 +16,11 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.gui.GuiManager;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
-public class BlockInfuser extends BlockContainer implements ITileBlock<TileInfuser>
+public class BlockInfuser extends BlockRendered implements ITileBlock<TileInfuser>, ITileEntityProvider
 {
 	public BlockInfuser()
 	{
@@ -33,7 +36,7 @@ public class BlockInfuser extends BlockContainer implements ITileBlock<TileInfus
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		GuiManager.openGui(playerIn, WorldUtil.cast(worldIn.getTileEntity(pos), TileInfuser.class));
-	    return true;
+		return true;
 	}
 	
 	@Override
@@ -51,31 +54,38 @@ public class BlockInfuser extends BlockContainer implements ITileBlock<TileInfus
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
-	    return false;
+		return false;
 	}
 	
 	public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 	
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
-	    return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
 	{
-	    return false;
+		return false;
 	}
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileInfuser infuser = WorldUtil.cast(worldIn.getTileEntity(pos), TileInfuser.class);
-		if(infuser != null) infuser.infuserItemStacks.drop(worldIn, pos);
-	    super.breakBlock(worldIn, pos, state);
+		if(infuser != null)
+			infuser.infuserItemStacks.drop(worldIn, pos);
+		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return LTInfo.MOD_ID + ":blocks/infuser_side_connected";
 	}
 }

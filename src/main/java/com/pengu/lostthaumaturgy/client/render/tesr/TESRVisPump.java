@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.Constants.NBT;
 
 import org.lwjgl.opengl.GL11;
 
@@ -27,12 +28,12 @@ public class TESRVisPump extends TESR<TileVisPump>
 		else
 			bindTexture(pump);
 		
-		renderEntityAt(te, x, y, z, 0);
+		renderEntityAt(te, x, y, z, te.ticksExisted);
 		
 		if(destroyStage != null)
 		{
 			bindTexture(destroyStage);
-			renderEntityAt(te, x, y, z, 0);
+			renderEntityAt(te, x, y, z, te.ticksExisted);
 		}
 	}
 	
@@ -59,14 +60,16 @@ public class TESRVisPump extends TESR<TileVisPump>
 	public void renderItem(ItemStack item)
 	{
 		bindTexture(this.pump);
-		renderEntityAt(null, 0, 0, 0, item.getCount() > 0 ? item.hashCode() : 0);
+		int frames = item.getCount() > 0 ? item.hashCode() : 0;
+		frames += Minecraft.getSystemTime() / 50D % 32;
+		if(item.getTagCompound() != null && item.getTagCompound().hasKey("frames", NBT.TAG_INT)) frames = item.getTagCompound().getInteger("frames");
+		renderEntityAt(null, 0, 0, 0, frames);
 	}
 	
-	public void renderEntityAt(TileVisPump pump, double x, double y, double z, int additional)
+	public void renderEntityAt(TileVisPump pump, double x, double y, double z, double count)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		
-		double count = ((pump != null ? pump.ticksExisted : (Minecraft.getSystemTime() / 50D % 32)) + additional);
 		double bob = Math.abs(Math.sin(count / 10F));
 		
 		GLRenderState blend = GLRenderState.BLEND;

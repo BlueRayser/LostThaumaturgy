@@ -4,10 +4,9 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,35 +14,35 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.api.mhb.BlockTraceable;
 import com.mrdimka.hammercore.api.mhb.ICubeManager;
-import com.mrdimka.hammercore.api.mhb.IRayCubeGetter;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.vec.Cuboid6;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
+import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 
-public class BlockConduit extends BlockTraceableRendered implements ITileEntityProvider, ITileBlock<TileConduit>, ICubeManager
+public class BlockPressurizedConduit extends BlockTraceableRendered implements ITileEntityProvider, ITileBlock<TilePressurizedConduit>, ICubeManager
 {
-	public BlockConduit()
+	public BlockPressurizedConduit()
 	{
 		super(Material.WOOD);
 		setSoundType(SoundType.WOOD);
-		setUnlocalizedName("conduit");
+		setUnlocalizedName("pressurized_conduit");
 		setHardness(.2F);
 		setResistance(4F);
 	}
 	
 	@Override
-	public Class<TileConduit> getTileClass()
+	public Class<TilePressurizedConduit> getTileClass()
 	{
-		return TileConduit.class;
+		return TilePressurizedConduit.class;
 	}
 	
 	@Override
-	public TileConduit createNewTileEntity(World worldIn, int meta)
+	public TilePressurizedConduit createNewTileEntity(World worldIn, int meta)
 	{
-		return new TileConduit();
+		return new TilePressurizedConduit();
 	}
 	
 	@Override
@@ -107,8 +106,26 @@ public class BlockConduit extends BlockTraceableRendered implements ITileEntityP
 	}
 	
 	@Override
-	public String getParticleSprite(World world, BlockPos pos)
+	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
 	{
-		return LTInfo.MOD_ID + ":blocks/vis_conduit";
+		return true;
 	}
+	
+	@Override
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		TilePressurizedConduit conduit = WorldUtil.cast(blockAccess.getTileEntity(pos), TilePressurizedConduit.class);
+		
+		if(conduit != null)
+			return conduit.getSuction(null);
+		
+		return 0;
+	}
+
+	@Override
+    public String getParticleSprite(World world, BlockPos pos)
+    {
+		TilePressurizedConduit conduit = WorldUtil.cast(world.getTileEntity(pos), TilePressurizedConduit.class);
+	    return LTInfo.MOD_ID + ":blocks/pressurized_conduit_" + (conduit != null && conduit.getSuction(null) > 0 ? "on" : "off");
+    }
 }

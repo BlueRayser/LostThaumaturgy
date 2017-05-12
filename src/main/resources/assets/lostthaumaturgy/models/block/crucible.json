@@ -42,6 +42,12 @@
 		"vis_valve_on": "lostthaumaturgy:blocks/vis_valve_on",
 		"advanced_vis_valve_off": "lostthaumaturgy:blocks/advanced_vis_valve_off",
 		"advanced_vis_valve_vis": "lostthaumaturgy:blocks/advanced_vis_valve_vis",
-		"advanced_vis_valve_taint": "lostthaumaturgy:blocks/advanced_vis_valve_taint"
+		"advanced_vis_valve_taint": "lostthaumaturgy:blocks/advanced_vis_valve_taint",
+        "pressurized_conduit_off": "lostthaumaturgy:blocks/pressurized_conduit_off",
+        "pressurized_conduit_on": "lostthaumaturgy:blocks/pressurized_conduit_on",
+        "bellows": "lostthaumaturgy:blocks/bellows",
+		"crystal": "lostthaumaturgy:blocks/crystal",
+		"vis_pump_on": "lostthaumaturgy:blocks/vis_pump_on",
+		"vis_pump_off": "lostthaumaturgy:blocks/vis_pump_off"
 	}
 }

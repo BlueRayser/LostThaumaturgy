@@ -3,6 +3,8 @@ package com.pengu.lostthaumaturgy.block;
 import java.util.HashMap;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,13 +21,16 @@ import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.tile.TileBellows;
 
-public class BlockBellows extends BlockContainer implements ITileBlock<TileBellows>
+public class BlockBellows extends BlockRendered implements ITileBlock<TileBellows>, ITileEntityProvider
 {
 	public BlockBellows()
 	{
-		super(Material.IRON);
+		super(Material.WOOD);
+		setSoundType(SoundType.WOOD);
 		setUnlocalizedName("bellows");
 		setHardness(2F);
 	}
@@ -108,5 +113,11 @@ public class BlockBellows extends BlockContainer implements ITileBlock<TileBello
 		bellows.sync();
 		
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return LTInfo.MOD_ID + ":blocks/bellows";
 	}
 }

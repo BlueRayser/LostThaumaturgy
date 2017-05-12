@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.block;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -11,19 +10,23 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.ITileBlock;
+import com.mrdimka.hammercore.api.mhb.ICubeManager;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.vec.Cuboid6;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
-import com.pengu.lostthaumaturgy.tile.TileVisValve;
+import com.pengu.lostthaumaturgy.tile.TileConduit;
 
-public class BlockAdvancedVisValve extends BlockContainer implements ITileEntityProvider, ITileBlock<TileAdvancedVisValve>
+public class BlockAdvancedVisValve extends BlockTraceableRendered implements ITileEntityProvider, ITileBlock<TileAdvancedVisValve>, ICubeManager
 {
 	public BlockAdvancedVisValve()
 	{
@@ -82,14 +85,6 @@ public class BlockAdvancedVisValve extends BlockContainer implements ITileEntity
 		super.breakBlock(worldIn, pos, state);
 	}
 	
-	public static final AxisAlignedBB VALVE_AABB = new AxisAlignedBB(3.5 / 16, 3.5 / 16, 3.5 / 16, 12.5 / 16, 12.5 / 16, 12.5 / 16);
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return VALVE_AABB;
-	}
-	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -100,9 +95,35 @@ public class BlockAdvancedVisValve extends BlockContainer implements ITileEntity
 				HammerCore.audioProxy.playSoundAt(worldIn, "block.lever.click", pos, 1F, tile.setting == 2 ? .4F : .6F, SoundCategory.PLAYERS);
 			tile.prevSetting = tile.setting;
 			tile.setting = (tile.setting + 1) % 3;
-			tile.sync(); //sync to others
+			tile.tick();
+			tile.sync(); // sync to others
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public Cuboid6[] getCuboids(World world, BlockPos pos, IBlockState state)
+	{
+		TileConduit conduit = WorldUtil.cast(world.getTileEntity(pos), TileConduit.class);
+		if(conduit != null)
+		{
+			if(conduit.hitboxes == null || conduit.hitboxes.length == 0)
+				conduit.rebake();
+			return conduit.hitboxes;
+		}
+		
+		double bp = 6 / 16D;
+		double ep = 10 / 16D;
+		return new Cuboid6[] { new Cuboid6(bp, bp, bp, ep, ep, ep) };
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		int open = 0;
+		TileAdvancedVisValve tile = WorldUtil.cast(world.getTileEntity(pos), TileAdvancedVisValve.class);
+		if(tile != null) open = tile.setting;
+		return LTInfo.MOD_ID + ":blocks/advanced_vis_valve_" + (open == 0 ? "off" : open == 2 ? "taint" : "vis");
 	}
 }

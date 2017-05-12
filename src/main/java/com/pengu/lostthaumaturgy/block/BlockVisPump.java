@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.block;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,10 +15,12 @@ import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 
-public class BlockVisPump extends BlockContainer implements ITileBlock<TileVisPump>
+public class BlockVisPump extends BlockRendered implements ITileBlock<TileVisPump>, ITileEntityProvider
 {
 	public BlockVisPump()
 	{
@@ -51,37 +54,48 @@ public class BlockVisPump extends BlockContainer implements ITileBlock<TileVisPu
 		}
 		
 		pump.orientation = EnumFacing.getDirectionFromEntityLiving(pos, placer);
-		if(placer.isSneaking()) pump.orientation = pump.orientation.getOpposite();
-		if(!worldIn.isRemote) pump.sync();
+		if(placer.isSneaking())
+			pump.orientation = pump.orientation.getOpposite();
+		if(!worldIn.isRemote)
+			pump.sync();
 	}
 	
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
-	    return false;
+		return false;
 	}
 	
 	public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 	
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
-	    return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
 	{
-	    return false;
+		return false;
 	}
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		AuraTicker.spillTaint(worldIn, pos);
-	    super.breakBlock(worldIn, pos, state);
+		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		boolean working = true;
+		TileVisPump pump = WorldUtil.cast(world.getTileEntity(pos), TileVisPump.class);
+		if(pump != null) working = !pump.gettingPower();
+		return LTInfo.MOD_ID + ":blocks/vis_pump_o" + (working ? "n" : "ff");
 	}
 }

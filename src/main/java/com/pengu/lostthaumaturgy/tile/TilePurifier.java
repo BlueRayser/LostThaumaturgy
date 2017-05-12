@@ -63,6 +63,7 @@ public class TilePurifier extends TileConduit
 	
 	public void addTooltipToGoggles(List<String> tooltip)
 	{
-		tooltip.add("Purifying " + format.format(taintedVis) + " T");
+		if(taintedVis > 0.1)
+			tooltip.add("Purifying " + format.format(taintedVis) + " T");
 	}
 }

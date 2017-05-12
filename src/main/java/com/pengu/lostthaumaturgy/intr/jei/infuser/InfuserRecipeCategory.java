@@ -7,13 +7,15 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
+import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapper>
 {
@@ -70,10 +72,26 @@ public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapp
 		int[] xs = { 68, 16, 120, 38, 98, 68 };
 		int[] ys = { 7, 98, 98, 51, 51, 102 };
 		
-		for(int i = 0; i < Math.min(recipe.recipe.components.length, xs.length); ++i)
+		int inputCount = Math.min(recipe.recipe.components.length, xs.length);
+		for(int i = 0; i < inputCount; ++i)
 		{
 			items.init(2 + i, true, xs[i], ys[i]);
 			items.set(2 + i, recipe.recipe.components[i]);
+		}
+		
+		int start = 2 + inputCount;
+		
+		if(recipe.recipe.predicate instanceof ResearchPredicate)
+		{
+			ResearchPredicate pred = (ResearchPredicate) recipe.recipe.predicate;
+			ItemStack[] stacks = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+			int xStart = 69 - stacks.length / 2;
+			for(int i = 0; i < stacks.length; ++i)
+			{
+				items.init(start + i, false, xStart + i * 16, 32);
+				items.set(start + i, stacks[i]);
+			}
+			start += stacks.length;
 		}
     }
 }

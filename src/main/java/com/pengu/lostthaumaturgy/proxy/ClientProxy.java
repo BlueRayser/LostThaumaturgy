@@ -23,6 +23,7 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
+import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
@@ -32,6 +33,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisFilter;
@@ -50,6 +52,7 @@ import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
+import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
@@ -86,13 +89,19 @@ public class ClientProxy extends CommonProxy
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalOre.class, TESRCrystal.INSTANCE);
 		for(BlockOreCrystal ore : BlockOreCrystal.crystals)
+		{
+			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new ColorBlockOreCrystal(), ore);
 			ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(ore), TESRCrystal.INSTANCE);
+		}
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrucible.class, TESRCrucible.INSTANCE);
 		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.CRUCIBLE), TESRCrucible.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileConduit.class, TESRConduit.INSTANCE);
 		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.CONDUIT), TESRConduit.INSTANCE);
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TilePressurizedConduit.class, TESRPressurizedConduit.INSTANCE);
+		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.PRESSURIZED_CONDUIT), TESRPressurizedConduit.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVisTank.class, TESRVisTank.INSTANCE);
 		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_TANK), TESRVisTank.INSTANCE);

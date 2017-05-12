@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.block.silverwood;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -12,10 +13,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 
-public class BlockSilverwoodVisTank extends BlockContainer implements ITileBlock<TileSilverwoodVisTank>
+public class BlockSilverwoodVisTank extends BlockRendered implements ITileBlock<TileSilverwoodVisTank>, ITileEntityProvider
 {
 	public BlockSilverwoodVisTank()
 	{
@@ -80,5 +83,11 @@ public class BlockSilverwoodVisTank extends BlockContainer implements ITileBlock
 	{
 		AuraTicker.spillTaint(worldIn, pos);
 		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return LTInfo.MOD_ID + ":blocks/silverwood_vis_tank/top";
 	}
 }

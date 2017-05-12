@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -24,11 +25,13 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 
-public class BlockCrucible extends BlockContainer implements ITileBlock<TileCrucible>
+public class BlockCrucible extends BlockRendered implements ITileBlock<TileCrucible>, ITileEntityProvider
 {
 	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
@@ -140,7 +143,7 @@ public class BlockCrucible extends BlockContainer implements ITileBlock<TileCruc
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-//		if(rand.nextInt(4) != 0) return;
+		// if(rand.nextInt(4) != 0) return;
 		
 		ParticleManager mgr = Minecraft.getMinecraft().effectRenderer;
 		
@@ -154,5 +157,11 @@ public class BlockCrucible extends BlockContainer implements ITileBlock<TileCruc
 			
 			mgr.addEffect(flame.setScale(0.1F));
 		}
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return LTInfo.MOD_ID + ":blocks/crucible_side_connected";
 	}
 }

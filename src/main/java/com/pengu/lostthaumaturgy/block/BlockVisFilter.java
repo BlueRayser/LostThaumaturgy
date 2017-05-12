@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.block;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,11 +14,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 
-public class BlockVisFilter extends BlockContainer implements ITileBlock<TileVisFilter>
+public class BlockVisFilter extends BlockRendered implements ITileBlock<TileVisFilter>, ITileEntityProvider
 {
 	public BlockVisFilter()
 	{
@@ -77,5 +80,11 @@ public class BlockVisFilter extends BlockContainer implements ITileBlock<TileVis
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return FILTER_AABB;
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return LTInfo.MOD_ID + ":blocks/vis_filter_side_disconnected";
 	}
 }

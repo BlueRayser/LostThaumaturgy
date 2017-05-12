@@ -178,7 +178,12 @@ public class RecipesInfuser
 		}
 	}
 	
-	private static int findEntry(Object[] components, IInfuser infuser)
+	public static Predicate<IInfuser> getPredicate(int entry)
+	{
+		return conditions.get(entry);
+	}
+	
+	public static int findEntry(Object[] components, IInfuser infuser)
 	{
 		block0: for(int a = 0; a < componentList.size(); ++a)
 		{
@@ -216,6 +221,7 @@ public class RecipesInfuser
 	{
 		public final ItemStack result;
 		public final ItemStack[] components;
+		public final Predicate<IInfuser> predicate;
 		public final int cost;
 		public final int depletedShards;
 		
@@ -224,6 +230,7 @@ public class RecipesInfuser
 			if(darkList.get(id) == Boolean.TRUE)
 				throw new RuntimeException("Unable to compile dark infuser recipe!");
 			result = resultList.get(id);
+			predicate = conditions.get(id);
 			components = componentList.get(id);
 			cost = costList.get(id);
 			

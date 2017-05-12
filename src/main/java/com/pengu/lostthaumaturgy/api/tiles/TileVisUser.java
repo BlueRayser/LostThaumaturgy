@@ -47,9 +47,7 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 			{
 				float sucked = Math.min(amount - gatheredVis, ic.getPureVis());
 				if(sucked < 0.001f)
-				{
 					sucked = 0.0f;
-				}
 				gatheredVis += sucked;
 				ic.setPureVis(ic.getPureVis() - sucked);
 			}
@@ -73,9 +71,7 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 			{
 				float sucked = Math.min(amount - gatheredVis, ic.getTaintedVis());
 				if(sucked < 0.001f)
-				{
 					sucked = 0.0f;
-				}
 				gatheredVis += sucked;
 				ic.setTaintedVis(ic.getTaintedVis() - sucked);
 			}
@@ -169,6 +165,8 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 	@Override
 	public void setSuction(int suction)
 	{
+		if(visSuction != suction || taintSuction != suction)
+			sync();
 		this.visSuction = suction;
 		this.taintSuction = suction;
 	}
@@ -182,10 +180,14 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 	@Override
     public void writeNBT(NBTTagCompound nbt)
     {
+		nbt.setInteger("VisSuction", visSuction);
+		nbt.setInteger("TaintSuction", taintSuction);
     }
 
 	@Override
     public void readNBT(NBTTagCompound nbt)
     {
+		visSuction = nbt.getInteger("VisSuction");
+		taintSuction = nbt.getInteger("TaintSuction");
     }
 }

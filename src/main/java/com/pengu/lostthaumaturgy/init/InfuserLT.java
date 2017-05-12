@@ -61,6 +61,7 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.VIS_TANK_REINFORCED), 75, RecipesInfuser.createPredicateFromResearches(ResearchesLT.REINFORCED_VIS_TANK), new ItemStack(BlocksLT.VIS_TANK_SILVERWOOD), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.ALUMENTUM.stack(), 9, new ItemStack(Items.REDSTONE), new ItemStack(Items.COAL));
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.CRYSTALLINE_BELL), 150, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRYSTALLINE_BELL), new ItemStack(Items.DIAMOND), new ItemStack(Blocks.GLASS));
+		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.PRESSURIZED_CONDUIT), 20, RecipesInfuser.createPredicateFromResearches(ResearchesLT.PRESSURIZED_COUNDUIT), new ItemStack(Items.DIAMOND), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack());
 	}
 	
 	public static void registerDarkInfuser()

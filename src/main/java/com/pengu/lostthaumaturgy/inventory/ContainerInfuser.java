@@ -83,7 +83,7 @@ public class ContainerInfuser extends Container
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			if(i < 8 ? !mergeItemStack(itemstack1, 8, 35, true) : (i >= 8 && i <= 35 ? !mergeItemStack(itemstack1, 0, 6, false) : (i > 35 && i <= 44 ? !mergeItemStack(itemstack1, 8, 35, false) : !mergeItemStack(itemstack1, 8, 44, false))))
+			if(i < 8 ? !mergeItemStack(itemstack1, 8, 35, true) : (i >= 8 && i <= 43 ? !mergeItemStack(itemstack1, 0, 6, false) : (i > 35 && i <= 44 ? !mergeItemStack(itemstack1, 8, 35, false) : !mergeItemStack(itemstack1, 8, 44, false))))
 				return ItemStack.EMPTY;
 			if(!itemstack1.isEmpty())
 				slot.onSlotChanged();

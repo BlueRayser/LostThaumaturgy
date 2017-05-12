@@ -1,9 +1,13 @@
 package com.pengu.lostthaumaturgy.custom.research;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemRecord;
+import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Predicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
+import com.pengu.lostthaumaturgy.items.ItemResearch;
+import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class ResearchPredicate implements Predicate<IInfuser>
 {
@@ -13,6 +17,13 @@ public class ResearchPredicate implements Predicate<IInfuser>
     {
 		this.researches = researches;
     }
+	
+	public ItemStack[] getResearchItems(EnumResearchItemType type)
+	{
+		ItemStack[] stacks = new ItemStack[researches.length];
+		for(int i = 0; i < stacks.length; ++i) stacks[i] = ItemResearch.create(researches[i], type);
+		return stacks;
+	}
 	
 	@Override
 	public boolean apply(IInfuser input)

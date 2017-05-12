@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
@@ -24,6 +25,7 @@ import com.pengu.lostthaumaturgy.init.InfuserLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
+import com.pengu.lostthaumaturgy.intr.waila.WailaLTProvider;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
@@ -69,6 +71,8 @@ public class LostThaumaturgy
 		
 		GameRegistry.registerWorldGenerator(new WorldGenCrystals(), 0);
 		GameRegistry.registerWorldGenerator(new WorldGenSilverwood(), 4);
+		
+		FMLInterModComms.sendMessage("waila", "register", WailaLTProvider.class.getName() + ".register");
 	}
 	
 	@EventHandler

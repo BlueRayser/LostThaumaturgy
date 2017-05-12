@@ -58,6 +58,21 @@ processResources {
     }
 }
 
+task srcJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+artifacts {
+    archives deobfJar
+    archives srcJar
+}
+
 curseforge {
 	apiKey = System.env.CURSEFORGE_API_KEY
 	project {
@@ -69,6 +84,12 @@ curseforge {
 		mainArtifact(jar) {
 		  displayName = "[${config.minecraft_version}] Lost Thaumaturgy - ${config.mod_version}"
 		}
+		addArtifact(deobfJar) {
+          displayName = "[${config.minecraft_version}] Lost Thaumaturgy (Deobfuscated) - ${config.mod_version}"
+        }
+        addArtifact(srcJar) {
+          displayName = "[${config.minecraft_version}] Lost Thaumaturgy (Sources) - ${config.mod_version}"
+        }
 		relations {
             requiredLibrary 'Hammer-Core'
         }

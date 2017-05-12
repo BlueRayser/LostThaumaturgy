@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.Constants.NBT;
 
 import org.lwjgl.opengl.GL11;
 
@@ -38,7 +39,10 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 		float green = ((block.getCrystalColor() >> 8) & 0xFF) / 255F;
 		float blue = ((block.getCrystalColor() >> 0) & 0xFF) / 255F;
 		
-		rand.setSeed(item.hashCode());
+		if(item.getTagCompound() != null && item.getTagCompound().hasKey("hash", NBT.TAG_LONG))
+			rand.setSeed(item.getTagCompound().getLong("hash"));
+		else
+			rand.setSeed(item.hashCode());
 		
 		mc.getTextureManager().bindTexture(crystal);
 		

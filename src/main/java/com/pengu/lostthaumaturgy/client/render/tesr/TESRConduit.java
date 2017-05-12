@@ -25,6 +25,7 @@ import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
+import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 
@@ -369,7 +370,9 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 				if(!tc.apply(f) || !tc.getConnectable(f) || te == null || !(te instanceof IConnection)) continue;
 				IConnection ic2 = (IConnection) te;
 				
-				if(tc.getSuction(null) < ic2.getSuction(pos) + 1)
+				TileVisUser user = WorldUtil.cast(ic2, TileVisUser.class);
+				
+				if(tc.getSuction(null) == ic2.getSuction(pos) + 1 || tc.getSuction(null) == ic2.getSuction(pos) - 1 || (user != null && user.getSuction(user.getPos()) >= tc.getSuction(null)))
 				{
 					if(f == EnumFacing.UP) rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);
 	    			if(f == EnumFacing.DOWN) rb.setRenderBounds(wq2 + hfill, (w1 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, (6 + w1) / 16D, 1 - wq2 - hfill);
