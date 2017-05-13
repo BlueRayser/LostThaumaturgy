@@ -6,6 +6,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.lostthaumaturgy.api.tiles.IBellowBoostable;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 
 public class TileBellows extends TileSyncableTickable implements IConnection
@@ -14,10 +15,21 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 	boolean direction = false;
 	boolean firstrun = true;
 	public int orientation = 0;
+	public final int forceSuction;
+	
+	public TileBellows(int baseSuction)
+    {
+		forceSuction = baseSuction;
+    }
+	
+	public TileBellows()
+    {
+	    this(10);
+    }
 	
 	public boolean isBoosting(TileEntity te)
 	{
-		return this.isBoosting() && te.getPos().equals(pos.offset(EnumFacing.VALUES[(orientation + 2) % EnumFacing.VALUES.length]));
+		return this.isBoosting() && te.getPos().equals(pos.offset(EnumFacing.VALUES[(orientation + 2) % EnumFacing.VALUES.length].getOpposite()));
 	}
 	
 	protected boolean gettingPower()
@@ -30,13 +42,14 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 		if(gettingPower())
 			return false;
 		
-		TileEntity te = world.getTileEntity(pos.offset(EnumFacing.VALUES[(orientation + 2) % EnumFacing.VALUES.length].getOpposite()));
+		EnumFacing baseFace = EnumFacing.VALUES[(orientation + 2) % EnumFacing.VALUES.length];
+		TileEntity te = world.getTileEntity(pos.offset(baseFace.getOpposite()));
+		if(te instanceof IBellowBoostable && ((IBellowBoostable) te).canBeBoosted(baseFace))
+			return true;
 		if(te != null && (te instanceof TileCrucible ||
 		// te instanceof TileArcaneFurnace ||
 		        te instanceof TileConduit || te instanceof TileVisPump && !this.gettingPower() || te instanceof TileVisTank && !this.gettingPower()))
-		{
 			return true;
-		}
 		return false;
 	}
 	
@@ -164,6 +177,6 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 	@Override
 	public int getSuction(BlockPos loc)
 	{
-		return this.gettingPower() ? 0 : 10;
+		return this.gettingPower() ? 0 : forceSuction;
 	}
 }

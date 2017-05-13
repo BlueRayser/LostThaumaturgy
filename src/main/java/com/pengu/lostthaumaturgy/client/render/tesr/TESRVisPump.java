@@ -14,14 +14,14 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelPump;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 
-public class TESRVisPump extends TESR<TileVisPump>
+public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 {
 	public static final TESRVisPump INSTANCE = new TESRVisPump();
 	private ModelPump model = new ModelPump();
-	private ResourceLocation pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump.png"), pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_off.png");
+	protected ResourceLocation pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump.png"), pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_off.png");
 	
 	@Override
-	public void renderTileEntityAt(TileVisPump te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
 		if(te.gettingPower())
 			bindTexture(pump_off);
@@ -63,6 +63,7 @@ public class TESRVisPump extends TESR<TileVisPump>
 		int frames = item.getCount() > 0 ? item.hashCode() : 0;
 		frames += Minecraft.getSystemTime() / 50D % 32;
 		if(item.getTagCompound() != null && item.getTagCompound().hasKey("frames", NBT.TAG_INT)) frames = item.getTagCompound().getInteger("frames");
+		if(item.getTagCompound() != null && item.getTagCompound().hasKey("enabled", NBT.TAG_BYTE) && !item.getTagCompound().getBoolean("enabled")) bindTexture(this.pump_off);
 		renderEntityAt(null, 0, 0, 0, frames);
 	}
 	

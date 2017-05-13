@@ -1,7 +1,6 @@
 package com.pengu.lostthaumaturgy.tile;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.item.EntityItem;
@@ -21,10 +20,8 @@ import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
-import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
-import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp1;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class TileCrucible extends TileSyncableTickable implements IConnection

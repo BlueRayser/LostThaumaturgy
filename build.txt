@@ -1,5 +1,5 @@
 forge_version=1.11.2-13.20.0.2230
-mod_version=2b
+mod_version=4b
 hammercore_version=1.6.0
 
 release_type=beta

@@ -48,6 +48,14 @@ public class Research
 	    return this;
     }
 	
+	protected ItemStack researchStack = ItemStack.EMPTY;
+	
+	public Research setRequiredObtainStack(ItemStack stack)
+	{
+		researchStack = stack;
+		return this;
+	}
+	
 	public final boolean isCompleted(EntityPlayer player)
 	{
 		return ResearchSystem.isResearchCompleted(player, this);
@@ -67,8 +75,9 @@ public class Research
 	 * Used for special researches like Brain-in-a-jar to only be researchable
 	 * via Zombie Brains
 	 */
-	public boolean canObtainFrom(ItemStack baseStack, ItemStack boostStack1, ItemStack boostStack2, EntityPlayer initiator)
+	public boolean canObtainFrom(ItemStack baseStack, EntityPlayer initiator)
 	{
+		if(!researchStack.isEmpty() && !baseStack.equals(researchStack)) return false;
 		return true;
 	}
 }

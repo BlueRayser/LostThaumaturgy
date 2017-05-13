@@ -16,6 +16,7 @@ import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
 import com.pengu.lostthaumaturgy.block.BlockVisPump;
+import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
 import com.pengu.lostthaumaturgy.block.BlockVisTank;
 import com.pengu.lostthaumaturgy.block.BlockVisValve;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
@@ -36,6 +37,7 @@ public class BlocksLT
 	        VIS_TANK_REINFORCED = new BlockReinforcedVisTank(), //
 	        VIS_TANK_SILVERWOOD = new BlockSilverwoodVisTank(), //
 	        VIS_PUMP = new BlockVisPump(), //
+	        THAUMIUM_VIS_PUMP = new BlockVisPumpThaumium(), //
 	        INFUSER = new BlockInfuser(), //
 	        VIS_FILTER = new BlockVisFilter(), //
 	        BELLOWS = new BlockBellows(), //
@@ -49,6 +51,7 @@ public class BlocksLT
 	
 	public static final Block //
 	        SHIMMERLEAF = new BlockPlant("shimmerleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
+	        TAINTEDLEAF = new BlockPlant("taintedleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
 	        CINDERPEARL = new BlockCinderpearl();
 	
 	public static final Block //

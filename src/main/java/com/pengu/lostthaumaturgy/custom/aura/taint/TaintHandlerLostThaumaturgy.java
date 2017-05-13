@@ -21,14 +21,11 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		IBlockState state = world.getBlockState(pos);
 		
 		if(state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT)
-		{
 			return true;
-		}
-		
+		if(state.getBlock() == BlocksLT.SHIMMERLEAF)
+			return true;
 		if(state.getBlock() instanceof BlockOreCrystal)
-		{
 			return true;
-		}
 		
 	    return false;
     }
@@ -42,6 +39,12 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT)
 		{
 			world.setBlockState(pos, Blocks.DIRT.getStateFromMeta(1));
+			return true;
+		}
+		
+		if(state.getBlock() == BlocksLT.SHIMMERLEAF)
+		{
+			world.setBlockState(pos, BlocksLT.TAINTEDLEAF.getDefaultState());
 			return true;
 		}
 		
@@ -103,6 +106,8 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		
 		if(state.getBlock() == BlocksLT.CRYSTAL_ORE_TAINTED)
 			return true;
+		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
+			return true;
 		if(state.getBlock() == Blocks.DIRT && Blocks.DIRT.getMetaFromState(state) == 1)
 			return true;
 		
@@ -120,6 +125,9 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		
 		if(state.getBlock() == Blocks.DIRT && Blocks.DIRT.getMetaFromState(state) == 1)
 			world.setBlockState(pos, world.isAirBlock(pos.up()) ? Blocks.GRASS.getDefaultState() : Blocks.DIRT.getDefaultState());
+		
+		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
+			world.setBlockState(pos, BlocksLT.SHIMMERLEAF.getDefaultState());
 		
 		// int k3 = world.a(x, y, z);
 		// int m3 = world.e(x, y, z);

@@ -38,6 +38,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisFilter;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPump;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisValve;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
@@ -57,6 +58,7 @@ import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
+import com.pengu.lostthaumaturgy.tile.TileVisPumpThaumium;
 import com.pengu.lostthaumaturgy.tile.TileVisTank;
 import com.pengu.lostthaumaturgy.tile.TileVisValve;
 
@@ -114,6 +116,9 @@ public class ClientProxy extends CommonProxy
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVisPump.class, TESRVisPump.INSTANCE);
 		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_PUMP), TESRVisPump.INSTANCE);
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileVisPumpThaumium.class, TESRVisPumpThaumium.INSTANCE);
+		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.THAUMIUM_VIS_PUMP), TESRVisPumpThaumium.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileInfuser.class, TESRInfuser.INSTANCE);
 		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.INFUSER), TESRInfuser.INSTANCE);

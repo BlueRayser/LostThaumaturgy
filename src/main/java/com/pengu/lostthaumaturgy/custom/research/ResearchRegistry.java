@@ -46,7 +46,7 @@ public class ResearchRegistry
 	}
 	
 	@Nullable
-	public static Research chooseRandomUnresearched(ItemStack baseStack, ItemStack boostStack1, ItemStack boostStack2, EntityPlayer initiator, int attempts)
+	public static Research chooseRandomUnresearched(ItemStack baseStack, EntityPlayer initiator, int attempts)
 	{
 		ArrayList<Research> newResearches = new ArrayList<>(researches);
 		newResearches.removeIf(new Predicate<Research>()
@@ -58,11 +58,11 @@ public class ResearchRegistry
 			}
 		});
 		
-		do
+		if(!newResearches.isEmpty()) do
 		{
 			Research r = newResearches.get(initiator.getRNG().nextInt(newResearches.size()));
 			float gen = initiator.getRNG().nextInt(100000) / 1000F;
-			if(gen < r.failChance || !r.canObtainFrom(baseStack, boostStack1, boostStack2, initiator))
+			if(gen < r.failChance || !r.canObtainFrom(baseStack, initiator))
 				continue;
 			return r;
 		} while(attempts-- > 0);

@@ -48,6 +48,8 @@
         "bellows": "lostthaumaturgy:blocks/bellows",
 		"crystal": "lostthaumaturgy:blocks/crystal",
 		"vis_pump_on": "lostthaumaturgy:blocks/vis_pump_on",
-		"vis_pump_off": "lostthaumaturgy:blocks/vis_pump_off"
+		"vis_pump_off": "lostthaumaturgy:blocks/vis_pump_off",
+		"thaumium_pump_off": "lostthaumaturgy:blocks/thaumium_pump_off",
+		"thaumium_pump_on": "lostthaumaturgy:blocks/thaumium_pump_on"
 	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.nbt.NBTTagLong;
@@ -84,10 +85,11 @@ public class WailaLTProvider implements IWailaDataProvider
 					stack.setTagInfo("hash", new NBTTagLong(ore.getWorld().getSeed() + (ore.getWorld().provider.getDimension() + 2) + ore.getPos().toLong() + ((BlockOreCrystal) block).getCrystalColor()));
 				} else
 				
-				if(block == BlocksLT.VIS_PUMP && acc.getTileEntity() instanceof TileVisPump)
+				if(acc.getTileEntity() instanceof TileVisPump)
 				{
 					TileVisPump pump = (TileVisPump) acc.getTileEntity();
 					stack.setTagInfo("frames", new NBTTagInt(pump.ticksExisted));
+					stack.setTagInfo("enabled", new NBTTagByte((byte) (!pump.gettingPower() ? 1 : 0)));
 				}
 				
 				stack.removeSubCompound("display");

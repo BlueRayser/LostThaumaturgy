@@ -32,6 +32,7 @@ public abstract class BlockRendered extends Block
 		super(material, color);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	public abstract String getParticleSprite(World world, BlockPos pos);
 	
 	@SideOnly(Side.CLIENT)
@@ -40,11 +41,11 @@ public abstract class BlockRendered extends Block
 		IBlockState state = world.getBlockState(pos).getActualState(world, pos);
 		int i = 4;
 		
-		for(int j = 0; j < 4; ++j)
+		for(int j = 0; j < i; ++j)
 		{
-			for(int k = 0; k < 4; ++k)
+			for(int k = 0; k < i; ++k)
 			{
-				for(int l = 0; l < 4; ++l)
+				for(int l = 0; l < i; ++l)
 				{
 					double d0 = ((double) j + 0.5D) / 4.0D;
 					double d1 = ((double) k + 0.5D) / 4.0D;

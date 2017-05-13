@@ -12,7 +12,8 @@ public class ResearchesLT
 	        SILVERWOOD_VIS_TANK = new Research(LTInfo.MOD_ID + ":silverwood_vis_tank", 25).setColor(0xBBBBBB), //
 	        REINFORCED_VIS_TANK = new Research(LTInfo.MOD_ID + ":reinforced_vis_tank", 30).setColor(0x911CFF), //
 	        CRYSTALLINE_BELL = new Research(LTInfo.MOD_ID + ":crystalline_bell", 75).setColor(0xAFFFFF), //
-	        PRESSURIZED_COUNDUIT = new Research(LTInfo.MOD_ID + ":pressurized_conduit", 50)
+	        PRESSURIZED_COUNDUIT = new Research(LTInfo.MOD_ID + ":pressurized_conduit", 50),
+	        THAUMIUM_VIS_PUMP = new Research(LTInfo.MOD_ID + ":thaumium_vis_pump", 80).setColor(0xC14CFF)
 	        ;
 	
 	public static void registerResearches()

@@ -3,7 +3,6 @@ package com.pengu.lostthaumaturgy.block;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumBlockRenderType;
@@ -21,6 +21,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.ITileBlock;
@@ -48,14 +50,7 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	}
 	
 	@Override
-	public BlockCrucible setUnlocalizedName(String name)
-	{
-		super.setUnlocalizedName(name);
-		return this;
-	}
-	
-	@Override
-	public TileCrucible createNewTileEntity(World worldIn, int meta)
+	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		TileCrucible tc = new TileCrucible();
 		tc.setTier(500, .5F, .25F);
@@ -140,6 +135,7 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 		super.breakBlock(worldIn, pos, state);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{

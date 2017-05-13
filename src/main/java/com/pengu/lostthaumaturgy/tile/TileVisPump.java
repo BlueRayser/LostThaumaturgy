@@ -15,6 +15,7 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 	public float taintedVis = 0.0f;
 	public float maxVis = 4.0f;
 	float fillAmount = 1.0f;
+	protected int baseSuction = 20;
 	public EnumFacing orientation = EnumFacing.NORTH;
 	
 	public void tick()
@@ -154,15 +155,15 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 		if(loc == null) loc = pos.offset(orientation);
 		if(this.gettingPower()) return 0;
 		int bellows = 0;
-//		for(int dir = 0; dir < 4; ++dir)
-//		{
-//			EnumFacing face = EnumFacing.VALUES[2 + dir];
-//			TileEntity te = WorldUtil.cast(world.getTileEntity(loc), to);
-//			if(te == null || !(te instanceof TileBellows) || !((TileBellows) te).isBoosting(this))
-//				continue;
-//			++bellows;
-//		}
-		if(loc.equals(pos.offset(orientation))) return 20 + bellows * 10;
+		for(int dir = 0; dir < 4; ++dir)
+		{
+			EnumFacing face = EnumFacing.VALUES[2 + dir];
+			TileBellows te = WorldUtil.cast(world.getTileEntity(pos.offset(face)), TileBellows.class);
+			if(te == null || !((TileBellows) te).isBoosting(this))
+				continue;
+			bellows += te.forceSuction;
+		}
+		if(loc.equals(pos.offset(orientation))) return baseSuction + bellows;
 		return 0;
 	}
 	
