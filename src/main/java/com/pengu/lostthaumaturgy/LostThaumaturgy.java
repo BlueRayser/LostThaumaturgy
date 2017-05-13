@@ -25,7 +25,6 @@ import com.pengu.lostthaumaturgy.init.InfuserLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
-import com.pengu.lostthaumaturgy.intr.waila.WailaLTProvider;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
@@ -72,7 +71,7 @@ public class LostThaumaturgy
 		GameRegistry.registerWorldGenerator(new WorldGenCrystals(), 0);
 		GameRegistry.registerWorldGenerator(new WorldGenSilverwood(), 4);
 		
-		FMLInterModComms.sendMessage("waila", "register", WailaLTProvider.class.getName() + ".register");
+		FMLInterModComms.sendMessage("waila", "register", "com.pengu.lostthaumaturgy.intr.waila.WailaLTProvider.register");
 	}
 	
 	@EventHandler

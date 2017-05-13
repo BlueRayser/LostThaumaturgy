@@ -34,7 +34,6 @@ public abstract class BlockRendered extends Block
 	
 	public abstract String getParticleSprite(World world, BlockPos pos);
 	
-	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager)
 	{
@@ -57,7 +56,6 @@ public abstract class BlockRendered extends Block
 		return true;
 	}
 	
-	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager)
 	{
@@ -95,7 +93,6 @@ public abstract class BlockRendered extends Block
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
 	public boolean addLandingEffects(IBlockState state, WorldServer worldObj, BlockPos blockPosition, IBlockState iblockstate, EntityLivingBase entity, int numberOfParticles)
 	{
 		return true;
