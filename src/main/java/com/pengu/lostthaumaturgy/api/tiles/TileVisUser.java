@@ -89,7 +89,7 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 	@Override
 	public boolean getConnectable(EnumFacing face)
 	{
-		return false;
+		return true;
 	}
 	
 	@Override

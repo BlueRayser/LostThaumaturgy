@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.custom.research;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -48,7 +49,7 @@ public class ResearchRegistry
 	@Nullable
 	public static Research chooseRandomUnresearched(ItemStack baseStack, EntityPlayer initiator, int attempts)
 	{
-		ArrayList<Research> newResearches = new ArrayList<>(researches);
+		ArrayList<Research> newResearches = new ArrayList<>(new HashSet<>(researches));
 		newResearches.removeIf(new Predicate<Research>()
 		{
 			@Override

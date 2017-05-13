@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.AxisAlignedBB;
 
 import com.pengu.lostthaumaturgy.block.BlockAdvancedVisValve;
+import com.pengu.lostthaumaturgy.block.BlockAuxiliumTable;
 import com.pengu.lostthaumaturgy.block.BlockBellows;
 import com.pengu.lostthaumaturgy.block.BlockCinnabarOre;
 import com.pengu.lostthaumaturgy.block.BlockConduit;
@@ -14,6 +15,7 @@ import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
+import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
 import com.pengu.lostthaumaturgy.block.BlockVisPump;
 import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
@@ -43,7 +45,9 @@ public class BlocksLT
 	        BELLOWS = new BlockBellows(), //
 	        VIS_PURIFIER = new BlockPurifier(), //
 	        VIS_VALVE = new BlockVisValve(), //
-	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve();
+	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve(), //
+	        STUDIUM_TABLE = new BlockStudiumTable(), //
+	        AUXILIUM_TABLE = new BlockAuxiliumTable();
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //

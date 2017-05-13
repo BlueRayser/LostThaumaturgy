@@ -28,6 +28,7 @@ import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRAdvancedVisValve;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRAuxiliumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRBellows;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
@@ -36,6 +37,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRStudiumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisFilter;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPump;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
@@ -48,6 +50,7 @@ import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
+import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.tile.TileBellows;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
@@ -56,6 +59,7 @@ import com.pengu.lostthaumaturgy.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
+import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 import com.pengu.lostthaumaturgy.tile.TileVisPumpThaumium;
@@ -134,6 +138,12 @@ public class ClientProxy extends CommonProxy
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBellows.class, TESRBellows.INSTANCE);
 		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.BELLOWS), TESRBellows.INSTANCE);
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileStudiumTable.class, TESRStudiumTable.INSTANCE);
+		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.STUDIUM_TABLE), TESRStudiumTable.INSTANCE);
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileAuxiliumTable.class, TESRAuxiliumTable.INSTANCE);
+		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.AUXILIUM_TABLE), TESRAuxiliumTable.INSTANCE);
 	}
 	
 	@Nonnull

@@ -25,6 +25,8 @@ tile.lostthaumaturgy:crystal_ore_tainted.name=Tainted Crystal Ore
 tile.lostthaumaturgy:cinnabar_ore.name=Cinnabar Ore
 tile.lostthaumaturgy:vis_purifier.name=Vis Purifier
 tile.lostthaumaturgy:advanced_vis_valve.name=Advanced Vis Valve
+tile.lostthaumaturgy:studium_table.name=Studium Table
+tile.lostthaumaturgy:auxilium_table.name=Auxilium Table
 tile.lostthaumaturgy:shimmerleaf.name=Shimmerleaf
 tile.lostthaumaturgy:taintedleaf.name=Taintedleaf
 tile.lostthaumaturgy:cinderpearl.name=Cinderpearl
@@ -63,17 +65,18 @@ item.lostthaumaturgy:ancient_seal.name=Ancient Seal
 item.lostthaumaturgy:ancient_seal.tooltip0=Rare Artifact
 item.lostthaumaturgy:ancient_stone_tablet.name=Ancient Stone Tablet
 item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Exceptional Artifact
-
 item.lostthaumaturgy:goggles_revealing.name=Goggles of Revealing
 item.lostthaumaturgy:crystalline_bell.name=Crystalline Bell
-
 item.lostthaumaturgy:fragment.name=Fragment
 item.lostthaumaturgy:fragment.tooltip0=Difficulty: &difficulty
-
 item.lostthaumaturgy:theory.name=Theory
 item.lostthaumaturgy:theory.tooltip0=Difficulty: &difficulty
-
 item.lostthaumaturgy:discovery.name=Discovery
+
+
+
+entity.lostthaumaturgy:smart_zombie.name=Smart Zombie
+entity.lostthaumaturgy:tslime.name=Thaum Slime
 
 
 
@@ -84,3 +87,5 @@ research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
 research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
 
 research.lostthaumaturgy:pressurized_conduit.title=Pressurized Conduit
+
+research.lostthaumaturgy:thaumium_vis_pump.title=Thaumium Vis Pump

@@ -2,11 +2,11 @@ package com.pengu.lostthaumaturgy.client.fx;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
@@ -120,15 +120,23 @@ public class FXWisp extends Particle
 		}
 	}
 	
-	public FXWisp(World world, double d, double d1, double d2, double x, double y, double z, float partialTicks, int type)
+	public FXWisp(World world, double x, double y, double z, double tx, double ty, double tz, float partialTicks, int type)
 	{
-		this(world, d, d1, d2, partialTicks, type);
-		double dx = x - this.posX;
-		double dy2 = y - this.posY;
-		double dz = z - this.posZ;
+		this(world, x, y, z, partialTicks, type);
+		double dx = tx - this.posX;
+		double dy2 = ty - this.posY;
+		double dz = tz - this.posZ;
 		this.motionX = dx / (double) particleMaxAge;
 		this.motionY = dy2 / (double) particleMaxAge;
 		this.motionZ = dz / (double) particleMaxAge;
+	}
+	
+	public FXWisp setColor(int color)
+	{
+		particleRed = ((color >> 16) & 255) / 255F;
+		particleGreen = ((color >> 8) & 255) / 255F;
+		particleBlue = ((color >> 0) & 255) / 255F;
+		return this;
 	}
 	
 	private static final ResourceLocation p_large = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/p_large.png");
@@ -231,7 +239,7 @@ public class FXWisp extends Particle
 		prevPosZ = posZ;
 		
 		if(particleAge == 0 && tinkle && rand.nextInt(3) == 0)
-			HammerCore.audioProxy.playSoundAt(world, "entity.experience_orb.pickup", posX, posY, posZ, .02F, 0.5f * ((rand.nextFloat() - rand.nextFloat()) * 0.6f + 2.0f), SoundCategory.AMBIENT);
+			world.playSound(posX, posY, posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.AMBIENT, .003F, .7F * ((rand.nextFloat() - rand.nextFloat()) * 0.6f + 2.0f), false);
 		
 		if(particleAge++ >= particleMaxAge)
 			setExpired();

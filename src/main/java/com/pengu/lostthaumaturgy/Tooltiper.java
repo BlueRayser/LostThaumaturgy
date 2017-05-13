@@ -22,7 +22,8 @@ public class Tooltiper
 		{
 			float value = RecipesCrucible.getSmeltingValue(stack);
 			
-			if(value > 0) tooltip.add("[LT] Crucible Smelting Value: " + value + " Vis.");
+			if(value > 0)
+				tooltip.add("[LT] Crucible Smelting Value: " + value + " Vis.");
 		}
 	}
 }

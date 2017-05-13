@@ -72,8 +72,8 @@ public class TESRInfuser extends TESR<TileInfuser>
         }
 	}
 	
-	private final ResourceLocation pillars = new ResourceLocation(LTInfo.MOD_ID, "textures/models/infuser.png");
-	private final ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
+	protected ResourceLocation pillars = new ResourceLocation(LTInfo.MOD_ID, "textures/models/infuser.png");
+	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
 	
 	private void renderModel(TileInfuser tile, double x, double y, double z, double angle, boolean active)
 	{
@@ -119,7 +119,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 		
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + .5, y + 1.5, z + .5);
-		mc.getTextureManager().bindTexture(pillars);
+		bindTexture(pillars);
 		GL11.glPushMatrix();
 		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		GL11.glPushMatrix();

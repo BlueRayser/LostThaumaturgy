@@ -12,6 +12,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -29,6 +30,7 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
+import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
@@ -174,10 +176,28 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		if(rand.nextInt(9) != 0)
 			return;
 		
-		// FXSparkle ef2 = new FXSparkle(worldIn, (float) pos.getX() +
-		// rand.nextFloat(), (float) pos.getY() + rand.nextFloat(), (float)
-		// pos.getZ() + rand.nextFloat(), 1.0f, md2, 3);
-		// ModLoader.getMinecraftInstance().j.a((rt) ef2);
+		double x1 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
+		double y1 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
+		double z1 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
+		
+		double x2 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * 2;
+		double y2 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * 2;
+		double z2 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * 2;
+		
+		if(!goodVibesOnGrowth)
+		{
+			x2 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
+			y2 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
+			z2 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
+			x1 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * 6;
+			y1 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * 6;
+			z1 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * 6;
+		}
+		
+		FXWisp wisp = new FXWisp(worldIn, x1, y1, z1, x2, y2, z2, .5F, 5);
+		wisp.tinkle = true;
+		wisp.setColor(getCrystalColor());
+		Minecraft.getMinecraft().effectRenderer.addEffect(wisp);
 	}
 	
 	private final HashMap<String, Short> crystalAmts = new HashMap<>();

@@ -50,6 +50,12 @@
 		"vis_pump_on": "lostthaumaturgy:blocks/vis_pump_on",
 		"vis_pump_off": "lostthaumaturgy:blocks/vis_pump_off",
 		"thaumium_pump_off": "lostthaumaturgy:blocks/thaumium_pump_off",
-		"thaumium_pump_on": "lostthaumaturgy:blocks/thaumium_pump_on"
+		"thaumium_pump_on": "lostthaumaturgy:blocks/thaumium_pump_on",
+		"studium_table/top": "lostthaumaturgy:blocks/studium_table/top",
+		"studium_table/side": "lostthaumaturgy:blocks/studium_table/side",
+		"studium_table/bottom": "lostthaumaturgy:blocks/studium_table/bottom",
+		"auxilium_table/top": "lostthaumaturgy:blocks/auxilium_table/top",
+		"auxilium_table/side": "lostthaumaturgy:blocks/auxilium_table/side",
+		"auxilium_table/bottom": "lostthaumaturgy:blocks/auxilium_table/bottom"
 	}
 }

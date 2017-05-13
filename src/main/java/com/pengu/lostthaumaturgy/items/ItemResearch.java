@@ -51,7 +51,7 @@ public class ItemResearch extends MultiVariantItem implements ITooltipInjector
 		if(playerIn.capabilities.isCreativeMode)
 		{
 			Research r = getFromStack(playerIn.getHeldItem(handIn));
-			if(!r.isCompleted(playerIn))
+			if(!r.isCompleted(playerIn) && getType(playerIn.getHeldItem(handIn)) == EnumResearchItemType.DISCOVERY)
 			{
 				if(!worldIn.isRemote)
 				{
