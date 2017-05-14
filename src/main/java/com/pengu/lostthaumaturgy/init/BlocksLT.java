@@ -16,6 +16,7 @@ import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
 import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
+import com.pengu.lostthaumaturgy.block.BlockThaumiumBellows;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
 import com.pengu.lostthaumaturgy.block.BlockVisPump;
 import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
@@ -43,6 +44,7 @@ public class BlocksLT
 	        INFUSER = new BlockInfuser(), //
 	        VIS_FILTER = new BlockVisFilter(), //
 	        BELLOWS = new BlockBellows(), //
+	        THAIUMIUM_BELLOWS = new BlockThaumiumBellows(), //
 	        VIS_PURIFIER = new BlockPurifier(), //
 	        VIS_VALVE = new BlockVisValve(), //
 	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve(), //

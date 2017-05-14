@@ -7,4 +7,5 @@ public class CommonProxy
 	public void updateClientAuraChunk(SIAuraChunk chunk) {}
 	public void preInit() {}
 	public void init() {}
+	public boolean shadersSupported() { return false; };
 }

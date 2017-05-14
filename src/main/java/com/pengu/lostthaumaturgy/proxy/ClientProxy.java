@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -18,6 +20,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
+import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
@@ -38,6 +41,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRStudiumTable;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRThaumiumBellows;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisFilter;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPump;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
@@ -60,6 +64,7 @@ import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
+import com.pengu.lostthaumaturgy.tile.TileThaumiumBellows;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 import com.pengu.lostthaumaturgy.tile.TileVisPumpThaumium;
@@ -100,50 +105,28 @@ public class ClientProxy extends CommonProxy
 			ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(ore), TESRCrystal.INSTANCE);
 		}
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCrucible.class, TESRCrucible.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.CRUCIBLE), TESRCrucible.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileConduit.class, TESRConduit.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.CONDUIT), TESRConduit.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TilePressurizedConduit.class, TESRPressurizedConduit.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.PRESSURIZED_CONDUIT), TESRPressurizedConduit.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileVisTank.class, TESRVisTank.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_TANK), TESRVisTank.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileReinforcedVisTank.class, TESRReinforcedVisTank.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_TANK_REINFORCED), TESRReinforcedVisTank.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileSilverwoodVisTank.class, TESRSilverwoodVisTank.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_TANK_SILVERWOOD), TESRSilverwoodVisTank.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileVisPump.class, TESRVisPump.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_PUMP), TESRVisPump.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileVisPumpThaumium.class, TESRVisPumpThaumium.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.THAUMIUM_VIS_PUMP), TESRVisPumpThaumium.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileInfuser.class, TESRInfuser.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.INFUSER), TESRInfuser.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileVisFilter.class, TESRVisFilter.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_FILTER), TESRVisFilter.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileVisValve.class, TESRVisValve.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.VIS_VALVE), TESRVisValve.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileAdvancedVisValve.class, TESRAdvancedVisValve.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.ADVANCED_VIS_VALVE), TESRAdvancedVisValve.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileBellows.class, TESRBellows.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.BELLOWS), TESRBellows.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileStudiumTable.class, TESRStudiumTable.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.STUDIUM_TABLE), TESRStudiumTable.INSTANCE);
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileAuxiliumTable.class, TESRAuxiliumTable.INSTANCE);
-		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(BlocksLT.AUXILIUM_TABLE), TESRAuxiliumTable.INSTANCE);
+		registerRender(TileCrucible.class, BlocksLT.CRUCIBLE, TESRCrucible.INSTANCE);
+		registerRender(TileConduit.class, BlocksLT.CONDUIT, TESRConduit.INSTANCE);
+		registerRender(TilePressurizedConduit.class, BlocksLT.PRESSURIZED_CONDUIT, TESRPressurizedConduit.INSTANCE);
+		registerRender(TileVisTank.class, BlocksLT.VIS_TANK, TESRVisTank.INSTANCE);
+		registerRender(TileReinforcedVisTank.class, BlocksLT.VIS_TANK_REINFORCED, TESRReinforcedVisTank.INSTANCE);
+		registerRender(TileSilverwoodVisTank.class, BlocksLT.VIS_TANK_SILVERWOOD, TESRSilverwoodVisTank.INSTANCE);
+		registerRender(TileVisPump.class, BlocksLT.VIS_PUMP, TESRVisPump.INSTANCE);
+		registerRender(TileVisPumpThaumium.class, BlocksLT.THAUMIUM_VIS_PUMP, TESRVisPumpThaumium.INSTANCE);
+		registerRender(TileInfuser.class, BlocksLT.INFUSER, TESRInfuser.INSTANCE);
+		registerRender(TileVisFilter.class, BlocksLT.VIS_FILTER, TESRVisFilter.INSTANCE);
+		registerRender(TileVisValve.class, BlocksLT.VIS_VALVE, TESRVisValve.INSTANCE);
+		registerRender(TileAdvancedVisValve.class, BlocksLT.ADVANCED_VIS_VALVE, TESRAdvancedVisValve.INSTANCE);
+		registerRender(TileBellows.class, BlocksLT.BELLOWS, TESRBellows.INSTANCE);
+		registerRender(TileThaumiumBellows.class, BlocksLT.THAIUMIUM_BELLOWS, TESRThaumiumBellows.INSTANCE);
+		registerRender(TileStudiumTable.class, BlocksLT.STUDIUM_TABLE, TESRStudiumTable.INSTANCE);
+		registerRender(TileAuxiliumTable.class, BlocksLT.AUXILIUM_TABLE, TESRAuxiliumTable.INSTANCE);
+	}
+	
+	private <T extends TileEntity> void registerRender(Class<T> tileEntityClass, Block block, TESR<? super T> specialRenderer)
+	{
+		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);
+		ItemRenderingHandler.INSTANCE.bindItemRender(Item.getItemFromBlock(block), specialRenderer);
 	}
 	
 	@Nonnull

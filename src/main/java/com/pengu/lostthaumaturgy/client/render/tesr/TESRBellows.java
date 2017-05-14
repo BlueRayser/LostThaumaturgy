@@ -15,7 +15,7 @@ public class TESRBellows extends TESR<TileBellows>
 {
 	public static final TESRBellows INSTANCE = new TESRBellows();
 	private ModelBellows model = new ModelBellows();
-	private static final ResourceLocation bellow_texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/bellows.png");
+	protected ResourceLocation bellow_texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/bellows.png");
 	private ResourceLocation curr_texture = bellow_texture;
 	
 	@Override

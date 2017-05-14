@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -126,6 +127,12 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		EnumFacing orientation = EnumFacing.VALUES[ore.orientation % EnumFacing.VALUES.length].getOpposite();
 		if(!isSafe(ore.getWorld(), pos, orientation))
 			ore.getWorld().destroyBlock(pos, true);
+	}
+	
+	@Override
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+	{
+		onNeighborChange(worldIn, pos, fromPos);
 	}
 	
 	@Override
@@ -312,10 +319,10 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	{
 		return false;
 	}
-
+	
 	@Override
-    public String getParticleSprite(World world, BlockPos pos)
-    {
-	    return LTInfo.MOD_ID + ":blocks/crystal";
-    }
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return LTInfo.MOD_ID + ":blocks/crystal";
+	}
 }

@@ -23,6 +23,7 @@ import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
+import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileVisTank;
 
@@ -120,12 +121,31 @@ public class TESRVisTank extends TESR<TileVisTank>
 				
 				rb.renderFaceZNeg(x, y, z, sprite, 1, 1, 1, bright);
 				rb.renderFaceZPos(x, y, z, sprite, 1, 1, 1, bright);
+			}
+			
+			if(te != null)
+				TESRConduit.drawPipeConnection(x, y, z, vis_conduit, 1, 1, 1, bright, 5D, te);
+			
+			tess.draw();
+			
+			float wx = 0;
+			float w1 = 1.0625F / 16F;
+			
+			if(te != null)
+			{
+				IBlockState a = te.getWorld().getBlockState(te.getPos());
+				IBlockState b = te.getWorld().getBlockState(te.getPos().up());
+				IBlockState c = te.getWorld().getBlockState(te.getPos().down());
 				
-				float wx = 0;
-				float w1 = 1.0625F / 16F;
+				boolean up = a.equals(b);
+				boolean down = a.equals(c);
+				
+				TileVisTank topTank = WorldUtil.cast(te.getWorld().getTileEntity(te.getPos().up()), TileVisTank.class);
 				
 				if(te.pureVis + te.taintedVis > .1F)
 				{
+					tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
+					
 					float hfill = (te.pureVis + te.taintedVis) / te.getMaxVis();
 					float d = Math.min(1F, te.taintedVis / (te.taintedVis + te.pureVis));
 					int f = 20 + (int) (d * 210);
@@ -142,13 +162,10 @@ public class TESRVisTank extends TESR<TileVisTank>
 					rb.renderFaceYNeg(x, y, z, vis, f, f, f, bright);
 					rb.renderFaceZNeg(x, y, z, vis, f, f, f, bright);
 					rb.renderFaceZPos(x, y, z, vis, f, f, f, bright);
+					
+					LiquidVisRenderer.finishDrawWithShaders(tess, 1 - d);
 				}
 			}
-			
-			if(te != null)
-				TESRConduit.drawPipeConnection(x, y, z, vis_conduit, 1, 1, 1, bright, 5D, te);
-			
-			tess.draw();
 		}
 	}
 	
@@ -192,10 +209,12 @@ public class TESRVisTank extends TESR<TileVisTank>
 		float wx = 0;
 		float w1 = 2.0625F / 16F;
 		
+		float b = 1;
+		
 		if(pureVis + taintedVis > .1F)
 		{
 			float hfill = (1F - wx * 2F) * ((pureVis + taintedVis) / maxVis);
-			float d = Math.min(1F, taintedVis / (taintedVis + pureVis));
+			float d = b = Math.min(1F, taintedVis / (taintedVis + pureVis));
 			int f = 20 + (int) (d * 210);
 			
 			boolean filled = pureVis + taintedVis >= maxVis;
@@ -210,7 +229,7 @@ public class TESRVisTank extends TESR<TileVisTank>
 			rb.renderFaceZPos(x, y, z, vis, f, f, f, bright);
 		}
 		
-		tess.draw();
+		LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 		
 		blend.reset();
 	}

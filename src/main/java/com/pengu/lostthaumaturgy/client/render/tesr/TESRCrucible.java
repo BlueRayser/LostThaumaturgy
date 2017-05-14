@@ -18,6 +18,7 @@ import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 
@@ -106,6 +107,8 @@ public class TESRCrucible extends TESR<TileCrucible>
 				rb.renderFaceYPos(x, y, z, base, 1, 1, 1, bright);
 				rb.renderFaceYNeg(x, y, z, base, 1, 1, 1, bright);
 				
+				tess.draw();
+				
 				if(te != null)
 				{
 					float b = Math.min(1.0f, te.taintedVis / (te.taintedVis + te.pureVis));
@@ -119,28 +122,31 @@ public class TESRCrucible extends TESR<TileCrucible>
 					
 					if(level > .001F)
 					{
+						tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
+						
 						double s0 = .015D / 16D;
 						double s1 = 1 - s0;
 						
 						rb.setRenderBounds(s0, 4D / 16D, s0, s1, 4D / 16D + level, s1);
 						
 						rb.renderFaceYPos(x, y, z, vis, rgb, rgb, rgb, bright);
+						
+						if(DestroyStageTexture.getAsSprite(destroyProgress) == vis) tess.draw();
+						else LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 					}
 					
-					if(tvis > te.maxVis)
-					{
-						double off1 = -.001D / 16D;
-						double off2 = 1 - off1;
-						rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
-						
-						rb.renderFaceXNeg(x, y, z, spill, rgb, rgb, rgb, bright);
-						rb.renderFaceXPos(x, y, z, spill, rgb, rgb, rgb, bright);
-						rb.renderFaceZNeg(x, y, z, spill, rgb, rgb, rgb, bright);
-						rb.renderFaceZPos(x, y, z, spill, rgb, rgb, rgb, bright);
-					}
+//					if(tvis > te.maxVis)
+//					{
+//						double off1 = -.001D / 16D;
+//						double off2 = 1 - off1;
+//						rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
+//						
+//						rb.renderFaceXNeg(x, y, z, spill, rgb, rgb, rgb, bright);
+//						rb.renderFaceXPos(x, y, z, spill, rgb, rgb, rgb, bright);
+//						rb.renderFaceZNeg(x, y, z, spill, rgb, rgb, rgb, bright);
+//						rb.renderFaceZPos(x, y, z, spill, rgb, rgb, rgb, bright);
+//					}
 				}
-				
-				tess.draw();
 				
 				blend.reset();
 			}
@@ -211,19 +217,19 @@ public class TESRCrucible extends TESR<TileCrucible>
             rb.renderFaceYPos(0, 0, 0, vis, rgb, rgb, rgb, bright);
         }
         
-        if(tvis > maxVis)
-        {
-        	double off1 = -.001D / 16D;
-        	double off2 = 1 - off1;
-        	rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
-        	
-        	rb.renderFaceXNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
-			rb.renderFaceXPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
-			rb.renderFaceZNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
-			rb.renderFaceZPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
-        }
+//        if(tvis > maxVis)
+//        {
+//        	double off1 = -.001D / 16D;
+//        	double off2 = 1 - off1;
+//        	rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
+//        	
+//        	rb.renderFaceXNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
+//			rb.renderFaceXPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
+//			rb.renderFaceZNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
+//			rb.renderFaceZPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
+//        }
 		
-		tess.draw();
+		LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 		
 		blend.reset();
 	}

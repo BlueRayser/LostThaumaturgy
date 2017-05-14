@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -82,7 +83,8 @@ public class LostThaumaturgy
 	}
 	
 	@EventHandler
-	public void serverStop(FMLServerStoppingEvent evt)
+	public void serverStop(FMLServerStoppedEvent evt)
 	{
+		AuraTicker.AuraHM.clear();
 	}
 }

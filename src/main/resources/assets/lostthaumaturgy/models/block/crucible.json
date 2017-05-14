@@ -46,6 +46,7 @@
         "pressurized_conduit_off": "lostthaumaturgy:blocks/pressurized_conduit_off",
         "pressurized_conduit_on": "lostthaumaturgy:blocks/pressurized_conduit_on",
         "bellows": "lostthaumaturgy:blocks/bellows",
+		"thaumium_bellows": "lostthaumaturgy:blocks/thaumium_bellows",
 		"crystal": "lostthaumaturgy:blocks/crystal",
 		"vis_pump_on": "lostthaumaturgy:blocks/vis_pump_on",
 		"vis_pump_off": "lostthaumaturgy:blocks/vis_pump_off",

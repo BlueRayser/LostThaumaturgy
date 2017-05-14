@@ -26,6 +26,7 @@ import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
+import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 
@@ -84,12 +85,14 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		
 		float w4 = 0.25f;
         float w6 = 0.375f;
-        float wq2 = 0.38125f;
-        float w1 = 0.0625f;
+        float wq2 = 0.38025f;
+        float w1 = 0.0025f;
 		
+        float b = 0;
+        
 		if(displayPure + displayTaint >= .05F)
 		{
-			float b = Math.min(1.0f, displayTaint / (displayTaint + displayPure));
+			b = Math.min(1.0f, displayTaint / (displayTaint + displayPure));
 			float total = Math.min(displayPure + displayTaint, maxVis - 0.1F);
 			float hfill = (1.0f - wq2 * 2.0f) * (total / maxVis);
 			int c = 20 + (int)(b * 210.0f);
@@ -123,7 +126,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 			rb.renderFaceZPos(x, y, z, vis, c, c, c, bright);
 		}
 		
-		tess.draw();
+		LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 		
 		blend.reset();
 	}
@@ -357,9 +360,10 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
         float wq2 = 0.38125f;
         float w1 = 0.0625f;
 		
+        float b = 1;
 		if(tc.displayPure + tc.displayTaint >= .05F)
 		{
-			float b = Math.min(1.0f, tc.displayTaint / (tc.displayTaint + tc.displayPure));
+			b = Math.min(1.0f, tc.displayTaint / (tc.displayTaint + tc.displayPure));
 			float total = Math.min(tc.displayPure + tc.displayTaint, tc.maxVis - 0.1F);
 			float hfill = (1.0f - wq2 * 2.0f) * (total / tc.maxVis);
 			int c = 20 + (int)(b * 210.0f);
@@ -400,7 +404,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 			rb.renderFaceZPos(x, y, z, vis, c, c, c, bright);
 		}
 		
-		tess.draw();
+		LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 		
 		blend.reset();
 	}

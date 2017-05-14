@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.inventory.ContainerAuxiliumTable;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
@@ -58,11 +59,18 @@ public class GuiAuxiliumTable extends GuiContainer
 		
 		GlStateManager.enableBlend();
 		
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-		mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		double fill = table.visConsumed;
-		RenderUtil.drawTexturedModalRect(guiLeft + 43, guiTop + 65 - Math.min(fill, 16), vis, 16, Math.min(fill, 16));
-		if(fill > 16)
-			RenderUtil.drawTexturedModalRect(guiLeft + 43, guiTop + 65 - fill, vis, 16, fill - 16);
+		double fill = MathHelper.clip(table.visConsumed, 0, 32);
+		if(LiquidVisRenderer.useShaders())
+		{
+			LiquidVisRenderer.renderIntoGui(guiLeft + 43, guiTop + 65 - fill, 16, fill, 1);
+		}else
+		{
+			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+			mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+			
+			RenderUtil.drawTexturedModalRect(guiLeft + 43, guiTop + 65 - Math.min(fill, 16), vis, 16, Math.min(fill, 16));
+			if(fill > 16)
+				RenderUtil.drawTexturedModalRect(guiLeft + 43, guiTop + 65 - fill, vis, 16, fill - 16);
+		}
 	}
 }
