@@ -21,6 +21,7 @@ import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.raytracer.RayTracer;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.client.gui.GuiStudiumTable;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
@@ -53,7 +54,7 @@ public class TileStudiumTable extends TileSyncableTickable
 			}
 		});
 		
-		lastBoost = getBoost();
+		lastBoost = getBoost() + RecipesCrucible.getSmeltingValue(inventory.getStackInSlot(1));
 		boolean spawn = world.rand.nextInt(40) == 0;
 		
 		if(player != null && !inventory.getStackInSlot(0).isEmpty() && canOutput())
@@ -72,7 +73,7 @@ public class TileStudiumTable extends TileSyncableTickable
 			{
 				researchProgress = 0;
 				
-				Research r = ResearchRegistry.chooseRandomUnresearched(inventory.getStackInSlot(0), player, Math.round(lastBoost) + 4);
+				Research r = ResearchRegistry.chooseRandomUnresearched(inventory.getStackInSlot(0), player, Math.round(lastBoost) + 1);
 				
 				if(r != null && r.failChance >= world.rand.nextFloat() * 100) r = null;
 				
