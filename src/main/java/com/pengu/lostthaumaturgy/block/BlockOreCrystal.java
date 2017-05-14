@@ -24,6 +24,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
@@ -170,7 +172,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		}
 	}
 	
-	@Override
+	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		if(rand.nextInt(9) != 0)
@@ -189,9 +191,9 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 			x2 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
 			y2 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
 			z2 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3;
-			x1 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * 6;
-			y1 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * 6;
-			z1 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * 6;
+			x1 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * 5;
+			y1 = pos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * 5;
+			z1 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * 5;
 		}
 		
 		FXWisp wisp = new FXWisp(worldIn, x1, y1, z1, x2, y2, z2, .5F, 5);
