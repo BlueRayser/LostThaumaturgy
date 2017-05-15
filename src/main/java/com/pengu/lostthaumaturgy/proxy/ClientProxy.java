@@ -13,12 +13,18 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
+import com.mrdimka.hammercore.HammerCore;
+import com.mrdimka.hammercore.bookAPI.Book;
+import com.mrdimka.hammercore.bookAPI.BookCategory;
+import com.mrdimka.hammercore.bookAPI.BookEntry;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
@@ -48,6 +54,10 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisValve;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.research.ResearchRegisterEvent;
+import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
+import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
+import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
@@ -118,9 +128,41 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileVisValve.class, BlocksLT.VIS_VALVE, TESRVisValve.INSTANCE);
 		registerRender(TileAdvancedVisValve.class, BlocksLT.ADVANCED_VIS_VALVE, TESRAdvancedVisValve.INSTANCE);
 		registerRender(TileBellows.class, BlocksLT.BELLOWS, TESRBellows.INSTANCE);
-		registerRender(TileThaumiumBellows.class, BlocksLT.THAIUMIUM_BELLOWS, TESRThaumiumBellows.INSTANCE);
+		registerRender(TileThaumiumBellows.class, BlocksLT.THAUMIUM_BELLOWS, TESRThaumiumBellows.INSTANCE);
 		registerRender(TileStudiumTable.class, BlocksLT.STUDIUM_TABLE, TESRStudiumTable.INSTANCE);
 		registerRender(TileAuxiliumTable.class, BlocksLT.AUXILIUM_TABLE, TESRAuxiliumTable.INSTANCE);
+		
+		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
+	}
+	
+	@Override
+	public Side getProxySide()
+	{
+		return Side.CLIENT;
+	}
+	
+	@Override
+	public <T> T passThroughIfClient(T object)
+	{
+		return object;
+	}
+	
+	@Override
+	public <T> T createAndPassThroughIfClient(String clazz)
+	{
+		try
+		{
+			return (T) Class.forName(clazz).newInstance();
+		}
+		catch(Throwable err) {}
+		
+		return null;
+	}
+	
+	@Override
+	public <T> T createAndDispatchThrough(String clientClass, String serverClass)
+	{
+	    return createAndPassThroughIfClient(clientClass);
 	}
 	
 	private <T extends TileEntity> void registerRender(Class<T> tileEntityClass, Block block, TESR<? super T> specialRenderer)
@@ -137,6 +179,32 @@ public class ClientProxy extends CommonProxy
 		if(s == null)
 			s = m.getAtlasSprite(path);
 		return s != null ? s : m.getMissingSprite();
+	}
+	
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void registerResearch(ResearchRegisterEvent.OnClient evt)
+	{
+		BookThaumonomicon tm = BookThaumonomicon.instance;
+		CategoryThaumonomicon tc = null;
+		for(BookCategory cat : tm.categories)
+			if(cat instanceof CategoryThaumonomicon && cat.categoryId.equals(evt.research.category))
+				tc = (CategoryThaumonomicon) cat;
+		if(tc == null) tc = new CategoryThaumonomicon(evt.research.category);
+		new EntryThaumonomicon(tc, evt.research.uid, "research." + evt.research.uid + ".title", evt.research);
+		evt.research.pageHandler.reload();
+	}
+	
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void reloadTextrues(TextureStitchEvent evt)
+	{
+		BookThaumonomicon tm = BookThaumonomicon.instance;
+		for(BookCategory cat : tm.categories)
+			for(BookEntry ent : cat.entries)
+				if(ent instanceof EntryThaumonomicon)
+				{
+					EntryThaumonomicon m = (EntryThaumonomicon) ent;
+					m.res.getPageHandler().reload();
+				}
 	}
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)

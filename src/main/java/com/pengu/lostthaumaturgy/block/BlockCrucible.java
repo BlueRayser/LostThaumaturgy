@@ -6,8 +6,6 @@ import java.util.Random;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
@@ -31,6 +29,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 
 public class BlockCrucible extends BlockRendered implements ITileBlock<TileCrucible>, ITileEntityProvider
@@ -141,8 +140,6 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	{
 		// if(rand.nextInt(4) != 0) return;
 		
-		ParticleManager mgr = Minecraft.getMinecraft().effectRenderer;
-		
 		for(int i = 0; i < rand.nextInt(4); ++i)
 		{
 			double x = pos.getX() + .2 + rand.nextDouble() * .6;
@@ -151,7 +148,7 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 			
 			FXGreenFlame flame = new FXGreenFlame(worldIn, x, y, z, 0, 0, 0);
 			
-			mgr.addEffect(flame.setScale(0.1F));
+			ClientProxy.queueParticle(flame.setScale(0.1F));
 		}
 	}
 	

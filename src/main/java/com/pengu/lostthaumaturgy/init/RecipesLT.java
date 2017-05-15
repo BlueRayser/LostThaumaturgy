@@ -34,6 +34,7 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlocksLT.SILVERWOOD_STAIRS, 4), "p  ", "pp ", "ppp", 'p', BlocksLT.SILVERWOOD_PLANKS).setMirrored(true));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(Items.BLAZE_POWDER, EnumMultiMaterialType.CINDERPEARL_POD.stack()));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlocksLT.SILVERWOOD_PLANKS, 4), BlocksLT.SILVERWOOD_LOG));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMONOMICON, "fff", "fbf", "fff", 'f', new ItemStack(ItemsLT.DISCOVERY), 'b', Items.BOOK));
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
 	}

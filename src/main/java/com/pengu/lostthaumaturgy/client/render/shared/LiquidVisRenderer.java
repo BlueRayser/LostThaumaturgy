@@ -22,6 +22,12 @@ public class LiquidVisRenderer
 	public static ShaderProgram visShader;
 	public static LiquidVisOperation operation;
 	
+	public static float getVisSaturation(float taintedVis, float pureVis)
+	{
+		if(taintedVis + pureVis <= 0.001F) return 1;
+		return Math.min(1, taintedVis / (taintedVis + pureVis));
+	}
+	
 	public static void reloadShader()
 	{
 		try

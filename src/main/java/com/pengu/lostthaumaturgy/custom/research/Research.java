@@ -6,6 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.block.BlockOreCrystal.IGetter;
+import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
+
 public class Research
 {
 	protected final SecureRandom random = new SecureRandom();
@@ -13,11 +17,33 @@ public class Research
 	public final String uid;
 	protected int color;
 	
+	public final String category;
+	public ResearchPageHandler pageHandler;
+	
+	public static final String //
+	        CATEGORY_BASICS = "basics", //
+	        CATEGORY_THAUMATURGY = "thaumaturgy", //
+	        CATEGORY_LOST_KNOWLEDGE = "lost_knowledge", //
+	        CATEGORY_ELDRITCH = "eldritch", //
+	        CATEGORY_UNDEFINED = "undefined";
+	
 	public Research(String uid, float failChance)
+	{
+		this(uid, failChance, "undefined");
+	}
+	
+	public Research(String uid, float failChance, String category)
 	{
 		this.uid = uid;
 		this.failChance = failChance;
 		color = uid.hashCode();
+		this.category = category;
+		pageHandler = new ResearchPageHandler(this);
+	}
+	
+	public ResearchPageHandler getPageHandler()
+	{
+		return LostThaumaturgy.proxy.passThroughIfClient(pageHandler);
 	}
 	
 	public String sucessToString()
@@ -43,10 +69,10 @@ public class Research
 	}
 	
 	public Research setColor(int color)
-    {
-	    this.color = color;
-	    return this;
-    }
+	{
+		this.color = color;
+		return this;
+	}
 	
 	protected ItemStack researchStack = ItemStack.EMPTY;
 	
@@ -77,7 +103,8 @@ public class Research
 	 */
 	public boolean canObtainFrom(ItemStack baseStack, EntityPlayer initiator)
 	{
-		if(!researchStack.isEmpty() && !baseStack.equals(researchStack)) return false;
+		if(!researchStack.isEmpty() && !baseStack.equals(researchStack))
+			return false;
 		return true;
 	}
 }

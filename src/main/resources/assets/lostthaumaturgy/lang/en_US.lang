@@ -68,6 +68,8 @@ item.lostthaumaturgy:ancient_stone_tablet.name=Ancient Stone Tablet
 item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Exceptional Artifact
 item.lostthaumaturgy:goggles_revealing.name=Goggles of Revealing
 item.lostthaumaturgy:crystalline_bell.name=Crystalline Bell
+item.lostthaumaturgy:thaumonomicon.name=Thaumonomicon
+item.lostthaumaturgy:thaumonomicon.tooltip0=Thaumonomicon stores all required information you need
 item.lostthaumaturgy:fragment.name=Fragment
 item.lostthaumaturgy:fragment.tooltip0=Difficulty: &difficulty
 item.lostthaumaturgy:theory.name=Theory
@@ -82,13 +84,26 @@ entity.lostthaumaturgy:tslime.name=Thaum Slime
 
 
 research.lostthaumaturgy:reinforced_vis_tank.title=Reinforced Vis Tank
+research.lostthaumaturgy:reinforced_vis_tank.desc=Researching more properties of silverwood and thaumium, you discovered Reinforced Vis Tank. It is an improvement for silverwood vis tank and stores up to 1000 vis.
 
 research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
+research.lostthaumaturgy:crystalline_bell.desc=Sometimes gathering crystals is a problem, because you can not really harvesting without destroying the crystal itself. Not anymore! Crystalline Bell is a magical tool that does exactly what's been a problem earlier.
 
 research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
+research.lostthaumaturgy:silverwood_vis_tank.desc=Researching some properties of silverwood, you discovered the fact that is is resistant to taint. You thought that upgrading your vis storage tank is worth it. And it is! Silverwood Vis Tank is a good improvement to your old vis tank. It doesn't explode on taint overload and stores up to 750 vis.
 
 research.lostthaumaturgy:pressurized_conduit.title=Pressurized Conduit
+research.lostthaumaturgy:pressurized_conduit.desc=You wanted to trigger some redstone while your machines create suction. Pressurized Conduit is your attempt to do it.
 
 research.lostthaumaturgy:thaumium_vis_pump.title=Thaumium Vis Pump
+research.lostthaumaturgy:thaumium_vis_pump.desc=Thaumium Vis Pump is a good attempt to upgrade your Vis Pump. It transports vis over greater distances, up to 50 blocks!
 
-research.lostthaumaturgy:en_US.lang.title=Thaumium Reinforced Bellows
+research.lostthaumaturgy:thaumium_bellows.title=Thaumium Bellows
+research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows are good to upgrade some of your machines. Thaumium Reinforced Bellows improves the suction up to 25, from 10.
+
+
+bookapi.lostthaumaturgy:thaumonomicon:basics=Basics
+bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Thaumaturgy
+bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Lost Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch
+bookapi.lostthaumaturgy:thaumonomicon:undefined=???

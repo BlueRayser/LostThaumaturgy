@@ -8,7 +8,6 @@ import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -36,6 +35,7 @@ import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCrystalOre>, ITileEntityProvider
@@ -47,6 +47,22 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	public static interface IGetter<T>
 	{
 		T get();
+	}
+	
+	public static class Getter<T> implements IGetter<T>
+	{
+		public T inst;
+		
+		public Getter(T i)
+        {
+			inst = i;
+        }
+		
+		@Override
+		public T get()
+		{
+		    return inst;
+		}
 	}
 	
 	/** Used to register and perform rendering. DO NOT MODIFY THIS SET! */
@@ -206,7 +222,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		FXWisp wisp = new FXWisp(worldIn, x1, y1, z1, x2, y2, z2, .5F, 5);
 		wisp.tinkle = true;
 		wisp.setColor(getCrystalColor());
-		Minecraft.getMinecraft().effectRenderer.addEffect(wisp);
+		ClientProxy.queueParticle(wisp);
 	}
 	
 	private final HashMap<String, Short> crystalAmts = new HashMap<>();

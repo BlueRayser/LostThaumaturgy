@@ -44,7 +44,7 @@ public class BlocksLT
 	        INFUSER = new BlockInfuser(), //
 	        VIS_FILTER = new BlockVisFilter(), //
 	        BELLOWS = new BlockBellows(), //
-	        THAIUMIUM_BELLOWS = new BlockThaumiumBellows(), //
+	        THAUMIUM_BELLOWS = new BlockThaumiumBellows(), //
 	        VIS_PURIFIER = new BlockPurifier(), //
 	        VIS_VALVE = new BlockVisValve(), //
 	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve(), //

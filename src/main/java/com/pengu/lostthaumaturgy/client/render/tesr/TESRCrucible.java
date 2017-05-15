@@ -111,7 +111,7 @@ public class TESRCrucible extends TESR<TileCrucible>
 				
 				if(te != null)
 				{
-					float b = Math.min(1.0f, te.taintedVis / (te.taintedVis + te.pureVis));
+					float b = LiquidVisRenderer.getVisSaturation(te.taintedVis, te.pureVis);
 					int rgb = 20 + (int) (b * 210);
 					
 					float tvis = te.pureVis + te.taintedVis;
@@ -131,21 +131,21 @@ public class TESRCrucible extends TESR<TileCrucible>
 						
 						rb.renderFaceYPos(x, y, z, vis, rgb, rgb, rgb, bright);
 						
+						if(tvis > te.maxVis && !LiquidVisRenderer.useShaders())
+						{
+							double off1 = -.001D / 16D;
+							double off2 = 1 - off1;
+							rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
+							
+							rb.renderFaceXNeg(x, y, z, spill, rgb, rgb, rgb, bright);
+							rb.renderFaceXPos(x, y, z, spill, rgb, rgb, rgb, bright);
+							rb.renderFaceZNeg(x, y, z, spill, rgb, rgb, rgb, bright);
+							rb.renderFaceZPos(x, y, z, spill, rgb, rgb, rgb, bright);
+						}
+						
 						if(DestroyStageTexture.getAsSprite(destroyProgress) == vis) tess.draw();
 						else LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 					}
-					
-//					if(tvis > te.maxVis)
-//					{
-//						double off1 = -.001D / 16D;
-//						double off2 = 1 - off1;
-//						rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
-//						
-//						rb.renderFaceXNeg(x, y, z, spill, rgb, rgb, rgb, bright);
-//						rb.renderFaceXPos(x, y, z, spill, rgb, rgb, rgb, bright);
-//						rb.renderFaceZNeg(x, y, z, spill, rgb, rgb, rgb, bright);
-//						rb.renderFaceZPos(x, y, z, spill, rgb, rgb, rgb, bright);
-//					}
 				}
 				
 				blend.reset();
@@ -199,7 +199,7 @@ public class TESRCrucible extends TESR<TileCrucible>
 		float taintedVis = nbt.getFloat("TaintedVis");
 		float maxVis = nbt.getFloat("MaxVis");
 		
-		float b = Math.min(1.0f, taintedVis / (taintedVis + pureVis));
+		float b = LiquidVisRenderer.getVisSaturation(taintedVis, pureVis);
 		int rgb = 20 + (int) (b * 210);
 		
 		float tvis = pureVis + taintedVis;
@@ -217,17 +217,17 @@ public class TESRCrucible extends TESR<TileCrucible>
             rb.renderFaceYPos(0, 0, 0, vis, rgb, rgb, rgb, bright);
         }
         
-//        if(tvis > maxVis)
-//        {
-//        	double off1 = -.001D / 16D;
-//        	double off2 = 1 - off1;
-//        	rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
-//        	
-//        	rb.renderFaceXNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
-//			rb.renderFaceXPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
-//			rb.renderFaceZNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
-//			rb.renderFaceZPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
-//        }
+        if(tvis > maxVis && !LiquidVisRenderer.useShaders())
+        {
+        	double off1 = -.001D / 16D;
+        	double off2 = 1 - off1;
+        	rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
+        	
+        	rb.renderFaceXNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
+			rb.renderFaceXPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
+			rb.renderFaceZNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
+			rb.renderFaceZPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
+        }
 		
 		LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 		

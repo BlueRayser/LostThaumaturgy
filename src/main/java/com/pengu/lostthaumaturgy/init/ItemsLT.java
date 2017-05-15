@@ -6,6 +6,7 @@ import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
+import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
 
 public class ItemsLT
 {
@@ -13,5 +14,6 @@ public class ItemsLT
 	public static final ItemGogglesRevealing GOGGLES_OF_REVEALING = new ItemGogglesRevealing();
 	public static final Item //
 	        CRYSTALLINE_BELL = new ItemCrystallineBell(), //
-	        DISCOVERY = new ItemResearch();
+	        DISCOVERY = new ItemResearch(), //
+	        THAUMONOMICON = new ItemThaumonomicon();
 }

@@ -7,12 +7,15 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class ResearchRegistry
 {
@@ -23,7 +26,8 @@ public class ResearchRegistry
 		for(Research r : researches)
 			if(r.uid.equals(research.uid))
 				return;
-		researches.add(research);
+		if(!MinecraftForge.EVENT_BUS.post(LostThaumaturgy.proxy.getProxySide() == Side.CLIENT ? new ResearchRegisterEvent.OnClient(research) : new ResearchRegisterEvent(research)))
+			researches.add(research);
 	}
 	
 	@Nullable
