@@ -2,15 +2,15 @@ package com.pengu.lostthaumaturgy.block.silverwood;
 
 import java.util.Random;
 
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
-
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 
 public class BlockSilverwoodLog extends BlockLog
 {
@@ -48,15 +48,11 @@ public class BlockSilverwoodLog extends BlockLog
 			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 			if(ac != null)
 			{
-				if(ac.badVibes > 0) ac.badVibes--;
-				else ac.goodVibes++;
+				if(ac.badVibes > 0)
+					ac.badVibes--;
+				else
+					ac.goodVibes++;
 			}
 		}
-	}
-	
-	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{
-		super.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
 }

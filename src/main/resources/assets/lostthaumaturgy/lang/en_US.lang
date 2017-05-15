@@ -16,7 +16,7 @@ tile.lostthaumaturgy:infuser.name=Thaumic Infuser
 tile.lostthaumaturgy:vis_filter.name=Vis Filter
 tile.lostthaumaturgy:vis_valve.name=Vis Valve
 tile.lostthaumaturgy:bellows.name=Arcane Bellows
-tile.lostthaumaturgy:thaumium_bellows.name=Thaumium Arcane Bellows
+tile.lostthaumaturgy:thaumium_bellows.name=Thaumium Reinforced Bellows
 tile.lostthaumaturgy:crystal_ore_vaporous.name=Vaporous Crystal Ore
 tile.lostthaumaturgy:crystal_ore_aqueus.name=Aqueous Crystal Ore
 tile.lostthaumaturgy:crystal_ore_earthen.name=Earthen Crystal Ore
@@ -90,3 +90,5 @@ research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
 research.lostthaumaturgy:pressurized_conduit.title=Pressurized Conduit
 
 research.lostthaumaturgy:thaumium_vis_pump.title=Thaumium Vis Pump
+
+research.lostthaumaturgy:en_US.lang.title=Thaumium Reinforced Bellows

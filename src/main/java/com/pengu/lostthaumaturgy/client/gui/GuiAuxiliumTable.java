@@ -1,5 +1,6 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -44,8 +45,13 @@ public class GuiAuxiliumTable extends GuiContainer
 		if(table.lastBoost > 0) fragmentCount = Math.round((27 - table.lastBoost) / 3F);
 		if(fragmentCount == 0) fragmentCount = 1;
 		
-		if(mouseX >= 58 && mouseY >= 38 && mouseX < 58 + 35 && mouseY < 38 + 10)
+		if(mouseX >= 71 && mouseY >= 39 && mouseX < 71 + 35 && mouseY < 39 + 10)
 			drawHoveringText(Arrays.asList("Required Fragment Amount:", fragmentCount + ""), mouseX, mouseY);
+		
+		DecimalFormat format = new DecimalFormat("#0.00");
+		
+		if(mouseX >= 41 && mouseY >= 31 && mouseX < 41 + 19 && mouseY < 31 + 35)
+			drawHoveringText(Arrays.asList("Vis: " + format.format(table.visConsumed) + "/32.0"), mouseX, mouseY);
 	}
 	
 	@Override

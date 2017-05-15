@@ -91,4 +91,12 @@ public class BlockAuxiliumTable extends BlockRendered implements ITileBlock<Tile
 		GuiManager.openGui(playerIn, WorldUtil.cast(worldIn.getTileEntity(pos), TileSyncable.class));
 		return true;
 	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		TileAuxiliumTable tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileAuxiliumTable.class);
+		if(tile != null) tile.inventory.drop(worldIn, pos);
+		super.breakBlock(worldIn, pos, state);
+	}
 }

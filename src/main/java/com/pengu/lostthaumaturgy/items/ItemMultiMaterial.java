@@ -52,6 +52,7 @@ public class ItemMultiMaterial extends MultiVariantItem
 		OreDictionary.registerOre("treeLeaves", BlocksLT.SILVERWOOD_LEAVES);
 		OreDictionary.registerOre("plankWood", BlocksLT.SILVERWOOD_PLANKS);
 		OreDictionary.registerOre("stairWood", BlocksLT.SILVERWOOD_STAIRS);
+		OreDictionary.registerOre("oreQuicksilver", BlocksLT.CINNABAR_ORE);
 	}
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> l)
@@ -81,7 +82,7 @@ public class ItemMultiMaterial extends MultiVariantItem
 		ENCHANTED_SILVERWOOD,
 		CINDERPEARL_POD,
 		ZOMBIE_BRAINS,
-		QUICKSILVER,
+		QUICKSILVER("gemQuicksilver"),
 		THAUMIUM_INGOT("ingotThaumium"),
 		ENCHANTED_FABRIC,
 		ANIMATED_PISTON,

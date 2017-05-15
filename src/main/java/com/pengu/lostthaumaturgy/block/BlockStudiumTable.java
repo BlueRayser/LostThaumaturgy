@@ -95,4 +95,13 @@ public class BlockStudiumTable extends BlockRendered implements ITileBlock<TileS
 		GuiManager.openGui(playerIn, WorldUtil.cast(worldIn.getTileEntity(pos), TileSyncable.class));
 		return true;
 	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		TileStudiumTable tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileStudiumTable.class);
+		if(tile != null)
+			tile.inventory.drop(worldIn, pos);
+		super.breakBlock(worldIn, pos, state);
+	}
 }

@@ -1,6 +1,8 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -22,15 +24,19 @@ import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
 public class GuiInfuser extends GuiContainer
 {
-	private TileInfuser infuserInventory;
+	private TileInfuser tile;
 	
-	public GuiInfuser(InventoryPlayer inventoryplayer, TileInfuser tileInfuser)
+	public GuiInfuser(InventoryPlayer ip, TileInfuser tile)
 	{
-		super(new ContainerInfuser(inventoryplayer, tileInfuser));
-		this.infuserInventory = tileInfuser;
+		super(new ContainerInfuser(ip, tile));
+		this.tile = tile;
 		xSize = 176;
 		ySize = 240;
 	}
+	
+	private List<String> lastTooltip = new ArrayList<>();
+	private ItemStack[] currentDiscoveries = null;
+	private int currentEntry = -1;
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
@@ -42,24 +48,28 @@ public class GuiInfuser extends GuiContainer
 			mouseX -= guiLeft;
 			mouseY -= guiTop;
 			
-			Predicate<IInfuser> predicate = RecipesInfuser.getPredicate(infuserInventory.entry);
-			
-			if(predicate instanceof ResearchPredicate)
+			if(currentDiscoveries != null)
 			{
-				ResearchPredicate pred = (ResearchPredicate) predicate;
-				ItemStack[] stacks = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
-				int xStart = 80 - stacks.length / 2;
-				for(int i = 0; i < stacks.length; ++i)
+				int xStart = 80 - (currentDiscoveries.length - 1) * 8;
+				
+				for(int i = 0; i < currentDiscoveries.length; ++i)
 				{
 					GL11.glPushMatrix();
 					GL11.glTranslated(0, .5, 0);
-					itemRender.renderItemAndEffectIntoGUI(stacks[i], xStart + i * 16, 36);
+					itemRender.renderItemAndEffectIntoGUI(currentDiscoveries[i], xStart + i * 16, 36);
 					GL11.glPopMatrix();
+					
 					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
-						drawHoveringText(Arrays.asList(ItemResearch.getFromStack(stacks[i]).getTitle()), mouseX, mouseY);
+						lastTooltip.add(ItemResearch.getFromStack(currentDiscoveries[i]).getTitle());
 				}
 			}
 		}catch(Throwable err) {}
+		
+		if(!lastTooltip.isEmpty())
+		{
+			drawHoveringText(lastTooltip, mouseX, mouseY);
+			lastTooltip.clear();
+		}
 	}
 	
 	private ResourceLocation gui_infuser = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_infuser.png");
@@ -67,24 +77,36 @@ public class GuiInfuser extends GuiContainer
 	
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
-		GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+		//Reduce RAM usage, because earlier we ran through this code each render tick. Now we check if the recipe has changed.
+		if(tile.entry != currentEntry)
+		{
+			currentEntry = tile.entry;
+			Predicate<IInfuser> predicate = RecipesInfuser.getPredicate(tile.entry);
+			if(predicate instanceof ResearchPredicate)
+			{
+				ResearchPredicate pred = (ResearchPredicate) predicate;
+				currentDiscoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+			}else currentDiscoveries = null;
+		}
+		
+		GL11.glColor4f(1, 1, 1, 1);
 		mc.getTextureManager().bindTexture(gui_infuser);
 		RenderUtil.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
-		if(this.infuserInventory.isCooking())
+		if(this.tile.isCooking())
 		{
-			float i1 = this.infuserInventory.getCookProgressScaled(46);
+			float i1 = this.tile.getCookProgressScaled(46);
 			RenderUtil.drawTexturedModalRect(guiLeft + 160, guiTop + 151 - i1, 176, 46 - i1, 9, i1);
 		}
 		
-		if(this.infuserInventory.boost > 0)
+		if(this.tile.boost > 0)
 		{
-			float i1 = this.infuserInventory.getBoostScaled();
+			float i1 = this.tile.getBoostScaled();
 			RenderUtil.drawTexturedModalRect(guiLeft + 161, guiTop + 38 - i1, 192, 30 - i1, 7, i1);
 		}
 		
 		mc.getTextureManager().bindTexture(upgrade_icons);
-		if(this.infuserInventory.getUpgrades()[0] >= 0)
-			RenderUtil.drawTexturedModalRect(guiLeft + 8, guiTop + 128, 16 * this.infuserInventory.getUpgrades()[0], 0, 16, 16);
+		if(this.tile.getUpgrades()[0] >= 0)
+			RenderUtil.drawTexturedModalRect(guiLeft + 8, guiTop + 128, 16 * this.tile.getUpgrades()[0], 0, 16, 16);
 	}
 }

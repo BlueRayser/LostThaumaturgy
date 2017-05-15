@@ -85,7 +85,7 @@ public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapp
 		{
 			ResearchPredicate pred = (ResearchPredicate) recipe.recipe.predicate;
 			ItemStack[] stacks = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
-			int xStart = 69 - stacks.length / 2;
+			int xStart = 69 - (stacks.length - 1) * 8;
 			for(int i = 0; i < stacks.length; ++i)
 			{
 				items.init(start + i, false, xStart + i * 16, 32);

@@ -34,6 +34,8 @@ public class TileAuxiliumTable extends TileVisUser
 		
 		setSuction(0);
 		
+		if(world.isRemote) return;
+		
 		int fragmentCount = 9;
 		if(lastBoost > 0)
 			fragmentCount = Math.round((27 - lastBoost) / 3F);
@@ -70,6 +72,15 @@ public class TileAuxiliumTable extends TileVisUser
 				
 				sync();
 			}
+		}else if(visConsumed > 0F)
+		{
+			visConsumed *= 0.99F;
+			if(visConsumed < 0.01F) visConsumed = 0;
+			sync();
+		}else if(progress > 0F)
+		{
+			progress -= 0.01F;
+			sync();
 		}
 		
 		if(lastBoost > 0 && !world.isRemote && spawn)
@@ -97,7 +108,7 @@ public class TileAuxiliumTable extends TileVisUser
 								return;
 							
 							int col = ((BlockOreCrystal) b).getCrystalColor();
-							HCNetwork.manager.sendToAllAround(new PacketFXWispColor(boostPos.getX() + .5, boostPos.getY() + .5, boostPos.getZ() + .5, pos.getX() + .5, pos.getY() + (visConsumed >= 32F ? 1 : .5), pos.getZ() + .5, .4F, col), getSyncPoint(40));
+							HCNetwork.manager.sendToAllAround(new PacketFXWispColor(boostPos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3, boostPos.getY() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3, boostPos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * .3, pos.getX() + .5, pos.getY() + (visConsumed >= 32F ? 1 : .5), pos.getZ() + .5, .4F, col), getSyncPoint(40));
 						}
 					}
 				}

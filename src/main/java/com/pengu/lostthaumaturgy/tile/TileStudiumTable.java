@@ -54,15 +54,21 @@ public class TileStudiumTable extends TileSyncableTickable
 			}
 		});
 		
-		lastBoost = getBoost() + RecipesCrucible.getSmeltingValue(inventory.getStackInSlot(1));
+		float val = RecipesCrucible.getSmeltingValue(inventory.getStackInSlot(0));
+//		val = 1;
+		
+		lastBoost = getBoost() + val;
 		boolean spawn = world.rand.nextInt(40) == 0;
 		
 		if(player != null && !inventory.getStackInSlot(0).isEmpty() && canOutput())
 		{
+			double speed = 2.6 - player.getDistance(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5);
+			
 			ItemStack paper = inventory.getStackInSlot(1);
 			if(researchProgress < 1F && !paper.isEmpty() && paper.getItem() == Items.PAPER)
 			{
-				researchProgress += 0.01F;
+				if(!world.isRemote) researchProgress += speed / 180;
+				sync();
 				if(!spawn)
 					spawn = world.rand.nextInt(3) == 0;
 			}
@@ -75,7 +81,8 @@ public class TileStudiumTable extends TileSyncableTickable
 				
 				Research r = ResearchRegistry.chooseRandomUnresearched(inventory.getStackInSlot(0), player, Math.round(lastBoost) + 1);
 				
-				if(r != null && r.failChance >= world.rand.nextFloat() * 100) r = null;
+				if(r != null && r.failChance / val >= world.rand.nextFloat() * 100) r = null;
+				if(world.rand.nextFloat() * Math.sqrt(Math.sqrt(val) * 2) <= 1.9) r = null;
 				
 				if(!world.isRemote) inventory.getStackInSlot(0).shrink(1);
 				

@@ -37,7 +37,7 @@ public class BlockSilverwoodLeaves extends BlockLeaves
 	@Override
 	public EnumType getWoodType(int meta)
 	{
-		return EnumType.BIRCH;
+		return EnumType.OAK;
 	}
 	
 	protected BlockStateContainer createBlockState()
@@ -71,12 +71,6 @@ public class BlockSilverwoodLeaves extends BlockLeaves
 		}
 		
 		super.randomTick(worldIn, pos, state, random);
-	}
-	
-	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{
-		super.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
 	
 	@Override
