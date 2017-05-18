@@ -35,7 +35,7 @@ public class HudDetector extends Gui
 	
 	public HudDetector()
 	{
-		this.fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+		this.fontRenderer = Minecraft.getMinecraft().fontRenderer;
 	}
 	
 	private static final List<String> tooltip = new ArrayList<>();

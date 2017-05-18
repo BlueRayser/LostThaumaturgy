@@ -91,12 +91,6 @@ public class BlockConduit extends BlockTraceableRendered implements ITileEntityP
 	}
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return true;
-	}
-	
-	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;

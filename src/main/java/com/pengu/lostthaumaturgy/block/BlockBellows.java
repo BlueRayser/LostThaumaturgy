@@ -59,12 +59,6 @@ public class BlockBellows extends BlockRendered implements ITileBlock<TileBellow
 	}
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return true;
-	}
-	
-	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;

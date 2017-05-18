@@ -23,9 +23,9 @@ public class InfuserRecipeWrapper implements IRecipeWrapper
 	@Override
 	public void drawInfo(Minecraft mc, int arg1, int arg2, int arg3, int arg4)
 	{
-		if(recipe.depletedShards > 0) mc.fontRendererObj.drawString("0-" + recipe.depletedShards, 68, 148, 0xFFFFFF, true);
+		if(recipe.depletedShards > 0) mc.fontRenderer.drawString("0-" + recipe.depletedShards, 68, 148, 0xFFFFFF, true);
 		
-		FontRenderer f = mc.fontRendererObj;
+		FontRenderer f = mc.fontRenderer;
 		String s = recipe.cost + " Vis";
 		f.drawString(s, 76 - f.getStringWidth(s) / 2, 86, 0xFFFFFF, true);
 	}

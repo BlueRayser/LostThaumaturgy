@@ -1,6 +1,6 @@
 forge_version=1.11.2-13.20.0.2230
 mod_version=4b
-hammercore_version=1.6.0
+hammercore_version=1.6.1
 
 release_type=beta
 minecraft_version=1.11.2

@@ -62,12 +62,6 @@ public class BlockThaumiumBellows extends BlockRendered implements ITileBlock<Ti
 	}
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return true;
-	}
-	
-	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;

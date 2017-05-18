@@ -72,12 +72,6 @@ public class BlockStudiumTable extends BlockRendered implements ITileBlock<TileS
 	}
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return true;
-	}
-	
-	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;

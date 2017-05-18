@@ -170,7 +170,7 @@ public class AuraTicker
 		Chunk chunk = evt.getChunk();
 		
 		if(!world.isRemote)
-			getAuraChunkFromChunkCoords(world, chunk.xPosition, chunk.zPosition);
+			getAuraChunkFromChunkCoords(world, chunk.x, chunk.z);
 	}
 	
 	@SubscribeEvent
@@ -207,7 +207,7 @@ public class AuraTicker
 	public static SIAuraChunk getAuraChunkFromBlockCoords(World world, BlockPos pos)
 	{
 		Chunk c = world.getChunkFromBlockCoords(pos);
-		return getAuraChunkFromChunkCoords(world, c.xPosition, c.zPosition);
+		return getAuraChunkFromChunkCoords(world, c.x, c.z);
 	}
 	
 	public static SIAuraChunk getAuraChunkFromBlockCoords(World world, int x, int z)
@@ -471,7 +471,7 @@ public class AuraTicker
 			int zz = z + random.nextInt(31) - random.nextInt(31);
 			increaseTaintedPlants(world, xx, world.getHeight(xx, zz), zz);
 			Chunk c = world.getChunkFromBlockCoords(new BlockPos(x, 0, z));
-			SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.xPosition, c.zPosition, world.provider.getDimension()));
+			SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.x, c.z, world.provider.getDimension()));
 			if(ac == null || (float) ac.taint >= (float) auraTaint * 0.8f)
 				continue;
 			ac.taint = (short) ((float) auraTaint * (0.8f + random.nextFloat() * 0.25f));
@@ -557,7 +557,7 @@ public class AuraTicker
 		
 		Chunk c = world.getChunkFromBlockCoords(new BlockPos(x, y, z));
 		short taint = 0;
-		SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.xPosition, c.zPosition, world.provider.getDimension()));
+		SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.x, c.z, world.provider.getDimension()));
 		if(ac != null)
 			taint = ac.taint;
 		for(int xx = -1; xx <= 1; ++xx)
@@ -601,7 +601,7 @@ public class AuraTicker
 		{
 			int at = (int) ic.getTaintedVis();
 			Chunk c = world.getChunkFromBlockCoords(pos);
-			SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.xPosition, c.zPosition, world.provider.getDimension()));
+			SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.x, c.z, world.provider.getDimension()));
 			if(ac != null)
 			{
 				ac.taint = (short) (ac.taint + at);

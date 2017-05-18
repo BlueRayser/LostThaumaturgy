@@ -140,7 +140,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		TileCrystalOre ore = WorldUtil.cast(world.getTileEntity(pos), TileCrystalOre.class);
 		if(ore == null)
 			return;
-		EnumFacing orientation = EnumFacing.VALUES[ore.orientation % EnumFacing.VALUES.length].getOpposite();
+		EnumFacing orientation = EnumFacing.VALUES[ore.orientation.get() % EnumFacing.VALUES.length].getOpposite();
 		if(!isSafe(ore.getWorld(), pos, orientation))
 			ore.getWorld().destroyBlock(pos, true);
 	}
@@ -160,15 +160,15 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		if(ac != null && ore != null)
 		{
-			short q2 = ore.crystals;
+			short q2 = ore.crystals.get();
 			if(!goodVibesOnGrowth)
 			{
 				if(q2 < 5 && ac.badVibes > 0 && random.nextInt(q2 * 75) == 0)
 				{
-					ore.crystals++;
+					ore.crystals.set((short) (ore.crystals.get() + 1));
 				} else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
 				{
-					ore.crystals++;
+					ore.crystals.set((short) (ore.crystals.get() + 1));
 				}
 				if(ac.taint < LTConfigs.auraMax / 10)
 				{
@@ -180,10 +180,10 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 			{
 				if(q2 < 5 && ac.goodVibes > 0 && random.nextInt(q2 * 75) == 0)
 				{
-					ore.crystals++;
+					ore.crystals.set((short) (ore.crystals.get() + 1));
 				} else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
 				{
-					ore.crystals++;
+					ore.crystals.set((short) (ore.crystals.get() + 1));
 				}
 				if(ac.vis < LTConfigs.auraMax / 10)
 				{
@@ -235,7 +235,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		
 		TileCrystalOre ore = WorldUtil.cast(world.getTileEntity(pos), TileCrystalOre.class);
 		if(ore != null)
-			crystals = ore.crystals;
+			crystals = ore.crystals.get();
 		else if(crystalAmts.containsKey(pos.toString()))
 			crystals = crystalAmts.get(pos.toString());
 		
@@ -258,7 +258,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	{
 		TileCrystalOre ore = WorldUtil.cast(worldIn.getTileEntity(pos), TileCrystalOre.class);
 		if(ore != null)
-			crystalAmts.put(pos.toString(), ore.crystals);
+			crystalAmts.put(pos.toString(), ore.crystals.get());
 		super.breakBlock(worldIn, pos, state);
 	}
 	
@@ -289,9 +289,9 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 			
 			Short s = placementMap.remove(pos.toString());
 			if(s != null)
-				tile.orientation = s;
+				tile.orientation.set(s);
 			else
-				tile.orientation = (short) EnumFacing.getDirectionFromEntityLiving(pos, placer).ordinal();
+				tile.orientation.set((short) EnumFacing.getDirectionFromEntityLiving(pos, placer).ordinal());
 			
 			if(tile != null)
 				tile.sync();
@@ -303,7 +303,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	{
 		TileCrystalOre ore = WorldUtil.cast(source.getTileEntity(pos), TileCrystalOre.class);
 		if(ore != null)
-			return aabbs[ore.orientation % aabbs.length];
+			return aabbs[ore.orientation.get() % aabbs.length];
 		return super.getBoundingBox(state, source, pos);
 	}
 	
@@ -316,12 +316,6 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
-	}
-	
-	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return true;
 	}
 	
 	@Override

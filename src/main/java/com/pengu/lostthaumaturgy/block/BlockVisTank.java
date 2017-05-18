@@ -61,12 +61,6 @@ public class BlockVisTank extends BlockRendered implements ITileBlock<TileVisTan
     }
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-    {
-        return true;
-    }
-	
-	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 	    return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;

@@ -64,7 +64,7 @@ public class ResearchPageHandler
 			try
 			{
 				String desc = research.getDesc();
-				String[] pages = TextDivider.divideByLenghtLimit(Minecraft.getMinecraft().fontRendererObj, desc, 120 * 24);
+				String[] pages = TextDivider.divideByLenghtLimit(Minecraft.getMinecraft().fontRenderer, desc, 120 * 24);
 				
 				ResearchPageHandler.this.pages.clear();
 				for(String page : pages)

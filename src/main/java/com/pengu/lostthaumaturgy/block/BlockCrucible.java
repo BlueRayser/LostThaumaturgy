@@ -104,12 +104,6 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	}
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return true;
-	}
-	
-	@Override
 	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
 	{
 		return side.getAxis() != Axis.Y;

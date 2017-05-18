@@ -52,8 +52,8 @@ public class WorldGenCrystals implements IWorldGenerator
 						tco = new TileCrystalOre();
 						world.setTileEntity(pos, tco);
 					}
-					tco.orientation = (short) face;
-					tco.crystals = (short) (1 + world.rand.nextInt(4));
+					tco.orientation.set((short) face);
+					tco.crystals.set((short) (1 + world.rand.nextInt(4)));
 				}
 		
 		if(random.nextInt(1000) < 80 * 13)

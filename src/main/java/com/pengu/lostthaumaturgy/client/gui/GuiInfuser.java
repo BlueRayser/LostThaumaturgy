@@ -41,7 +41,7 @@ public class GuiInfuser extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		fontRendererObj.drawString("Infuser", 8, 5, 4210752);
+		fontRenderer.drawString("Infuser", 8, 5, 4210752);
 		
 		try
 		{

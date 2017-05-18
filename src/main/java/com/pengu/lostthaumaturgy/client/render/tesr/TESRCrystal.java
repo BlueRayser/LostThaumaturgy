@@ -74,12 +74,12 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 		
 		mc.getTextureManager().bindTexture(crystal);
 		
-		drawCrystal(te.orientation, (float) x, (float) y, (float) z, (rand.nextFloat() - rand.nextFloat()) * 5.0f, (rand.nextFloat() - rand.nextFloat()) * 5.0f, 1, rand, red, green, blue);
-		for(int a = 1; a < te.crystals; ++a)
+		drawCrystal(te.orientation.get(), (float) x, (float) y, (float) z, (rand.nextFloat() - rand.nextFloat()) * 5.0f, (rand.nextFloat() - rand.nextFloat()) * 5.0f, 1, rand, red, green, blue);
+		for(int a = 1; a < te.crystals.get(); ++a)
 		{
 			int angle1 = rand.nextInt(45) + 90 * a;
 			int angle2 = 15 + rand.nextInt(15);
-			drawCrystal(te.orientation, (float) x, (float) y, (float) z, angle1, angle2, 1, rand, red, green, blue);
+			drawCrystal(te.orientation.get(), (float) x, (float) y, (float) z, angle1, angle2, 1, rand, red, green, blue);
 		}
 		
 		rand.setSeed(te.getWorld().getSeed() + (te.getWorld().provider.getDimension() + 2) + te.getPos().toLong() + block.getCrystalColor());
@@ -87,12 +87,12 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 		if(destroyStage != null)
 		{
 			mc.getTextureManager().bindTexture(destroyStage);
-			drawCrystal(te.orientation, (float) x, (float) y, (float) z, (rand.nextFloat() - rand.nextFloat()) * 5.0f, (rand.nextFloat() - rand.nextFloat()) * 5.0f, 1, rand, red, green, blue);
-			for(int a = 1; a < te.crystals; ++a)
+			drawCrystal(te.orientation.get(), (float) x, (float) y, (float) z, (rand.nextFloat() - rand.nextFloat()) * 5.0f, (rand.nextFloat() - rand.nextFloat()) * 5.0f, 1, rand, red, green, blue);
+			for(int a = 1; a < te.crystals.get(); ++a)
 			{
 				int angle1 = rand.nextInt(45) + 90 * a;
 				int angle2 = 15 + rand.nextInt(15);
-				drawCrystal(te.orientation, (float) x, (float) y, (float) z, angle1, angle2, 1, rand, red, green, blue);
+				drawCrystal(te.orientation.get(), (float) x, (float) y, (float) z, angle1, angle2, 1, rand, red, green, blue);
 			}
 		}
 	}

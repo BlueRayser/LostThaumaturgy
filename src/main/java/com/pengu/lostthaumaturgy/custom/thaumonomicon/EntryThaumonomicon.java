@@ -60,7 +60,7 @@ public class EntryThaumonomicon extends BookEntry
 			
 			if(!tooltip.isEmpty())
 			{
-				GuiUtils.drawHoveringText(tooltip, mouseX, mouseY, Minecraft.getMinecraft().currentScreen.width, Minecraft.getMinecraft().currentScreen.height, Minecraft.getMinecraft().currentScreen.width, Minecraft.getMinecraft().fontRendererObj);
+				GuiUtils.drawHoveringText(tooltip, mouseX, mouseY, Minecraft.getMinecraft().currentScreen.width, Minecraft.getMinecraft().currentScreen.height, Minecraft.getMinecraft().currentScreen.width, Minecraft.getMinecraft().fontRenderer);
 				tooltip.clear();
 			}
 		}

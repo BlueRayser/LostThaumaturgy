@@ -81,7 +81,7 @@ public class WailaLTProvider implements IWailaDataProvider
 				if(block instanceof BlockOreCrystal && acc.getTileEntity() instanceof TileCrystalOre)
 				{
 					TileCrystalOre ore = (TileCrystalOre) acc.getTileEntity();
-					stack.setCount(ore.crystals);
+					stack.setCount(ore.crystals.get());
 					stack.setTagInfo("hash", new NBTTagLong(ore.getWorld().getSeed() + (ore.getWorld().provider.getDimension() + 2) + ore.getPos().toLong() + ((BlockOreCrystal) block).getCrystalColor()));
 				} else
 				

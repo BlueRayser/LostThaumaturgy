@@ -24,14 +24,14 @@ public class PageText implements IPage
 	@SideOnly(Side.CLIENT)
 	public void render(int mouseX, int mouseY, EntityPlayer player)
 	{
-		if(lines == null) lines = TextDivider.divideByLenghtLimit(Minecraft.getMinecraft().fontRendererObj, text, 238);
+		if(lines == null) lines = TextDivider.divideByLenghtLimit(Minecraft.getMinecraft().fontRenderer, text, 238);
 		int y = 2;
 		for(String ln : lines)
 		{
 			String l = ln;
 //			if() 
 //				l = SymbolsLT.convert(ln);
-			Minecraft.getMinecraft().fontRendererObj.drawString(l, 8, y += 10, 0, false);
+			Minecraft.getMinecraft().fontRenderer.drawString(l, 8, y += 10, 0, false);
 		}
 	}
 	

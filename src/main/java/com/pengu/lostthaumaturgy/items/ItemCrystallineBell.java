@@ -64,12 +64,12 @@ public class ItemCrystallineBell extends Item implements IVisRepairable
 		
 		if(ore != null && block != null)
 		{
-			if(ore.crystals == 1) return EnumActionResult.FAIL;
+			if(ore.crystals.get() == 1) return EnumActionResult.FAIL;
 			
-			if(!worldIn.isRemote) HammerCore.audioProxy.playSoundAt(worldIn, "entity.experience_orb.pickup", pos, .5F, .8f + ore.crystals * .1F, SoundCategory.PLAYERS);
-			ore.crystals--;
+			if(!worldIn.isRemote) HammerCore.audioProxy.playSoundAt(worldIn, "entity.experience_orb.pickup", pos, .5F, .8f + ore.crystals.get() * .1F, SoundCategory.PLAYERS);
+			ore.crystals.set((short) (ore.crystals.get() - 1));
 			
-			if(ore.crystals == 0)
+			if(ore.crystals.get() == 0)
 			{
 				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 				
@@ -92,8 +92,6 @@ public class ItemCrystallineBell extends Item implements IVisRepairable
 			player.getHeldItem(hand).damageItem(1, player);
 			
 			if(!worldIn.isRemote) worldIn.spawnEntity(ent);
-			
-			ore.sync();
 			
 			return EnumActionResult.SUCCESS;
 		}
