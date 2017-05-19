@@ -16,8 +16,13 @@ import com.pengu.lostthaumaturgy.LostThaumaturgy;
 
 public class TileCrystalOre extends TileSyncable
 {
-	public final NetPropertyNumber<Short> orientation = new NetPropertyNumber<Short>(this, (short) 1);
-	public final NetPropertyNumber<Short> crystals = new NetPropertyNumber<Short>(this, (short) 2);
+	public final NetPropertyNumber<Short> orientation;
+	public final NetPropertyNumber<Short> crystals;
+	
+	{
+		orientation = new NetPropertyNumber<Short>(this, (short) 1);
+		crystals = new NetPropertyNumber<Short>(this, (short) 2);
+	}
 	
 	@Override
 	public void writeNBT(NBTTagCompound nbt)

@@ -75,6 +75,10 @@ item.lostthaumaturgy:fragment.tooltip0=Difficulty: &difficulty
 item.lostthaumaturgy:theory.name=Theory
 item.lostthaumaturgy:theory.tooltip0=Difficulty: &difficulty
 item.lostthaumaturgy:discovery.name=Discovery
+item.lostthaumaturgy:thaumium_helmet.name=Thaumium Helmet
+item.lostthaumaturgy:thaumium_chestplate.name=Thaumium Chestplate
+item.lostthaumaturgy:thaumium_leggings.name=Thaumium Leggings
+item.lostthaumaturgy:thaumium_boots.name=Thaumium Boots
 
 
 

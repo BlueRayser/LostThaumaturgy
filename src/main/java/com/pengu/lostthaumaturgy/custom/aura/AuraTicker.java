@@ -44,7 +44,9 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
+import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
+import com.pengu.lostthaumaturgy.net.PacketUpdateClientRD;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
 
@@ -197,10 +199,13 @@ public class AuraTicker
 			Chunk nchunk = player.world.getChunkFromBlockCoords(n);
 			Chunk ochunk = player.world.getChunkFromBlockCoords(o);
 			
-			changedChunks = !nchunk.equals(ochunk);
+			changedChunks = nchunk.x != ochunk.x || nchunk.z != ochunk.z;
 			
-			if(player.ticksExisted % 20 == 0 || changedChunks)
+			if(mp.ticksExisted % 20 == 0 || changedChunks)
+			{
 				HCNetwork.manager.sendTo(new PacketUpdateClientAura(chunk), mp);
+				HCNetwork.manager.sendTo(ResearchSystem.getPacketFor(mp), mp);
+			}
 		}
 	}
 	

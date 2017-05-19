@@ -12,7 +12,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -29,6 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
@@ -43,11 +43,6 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	protected IGetter<ItemStack> crystal;
 	protected boolean goodVibesOnGrowth = false;
 	protected int crystalColor = 0;
-	
-	public static interface IGetter<T>
-	{
-		T get();
-	}
 	
 	public static class Getter<T> implements IGetter<T>
 	{

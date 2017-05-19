@@ -1,5 +1,7 @@
 package com.pengu.lostthaumaturgy.custom.thaumonomicon;
 
+import net.minecraft.util.ResourceLocation;
+
 import com.mrdimka.hammercore.bookAPI.Book;
 import com.pengu.lostthaumaturgy.LTInfo;
 
@@ -10,5 +12,8 @@ public class BookThaumonomicon extends Book
 	private BookThaumonomicon()
     {
 	    super(LTInfo.MOD_ID + ":thaumonomicon");
+	    
+	    customBackground = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/thaumonomicon_gui.png");
+	    customEntryBackground = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/thaumonomicon_entry.png");
     }
 }

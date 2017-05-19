@@ -7,12 +7,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.mrdimka.hammercore.common.items.MultiVariantItem;
+import com.pengu.hammercore.utils.IGetter;
+import com.pengu.hammercore.utils.IRegisterListener;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal.IGetter;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
-public class ItemMultiMaterial extends MultiVariantItem
+public class ItemMultiMaterial extends MultiVariantItem implements IRegisterListener
 {
 	private static ItemMultiMaterial instance;
 	
@@ -30,7 +31,8 @@ public class ItemMultiMaterial extends MultiVariantItem
 		return names;
 	}
 	
-	public void registerOD()
+	@Override
+	public void onRegistered()
 	{
 		EnumMultiMaterialType.VAPOROUS_CRYSTAL.setHasEffect(true);
 		EnumMultiMaterialType.AQUEOUS_CRYSTAL.setHasEffect(true);
@@ -44,9 +46,10 @@ public class ItemMultiMaterial extends MultiVariantItem
 		EnumMultiMaterialType.ENCHANTED_FABRIC.setHasEffect(true);
 		
 		for(EnumMultiMaterialType type : EnumMultiMaterialType.values())
-			if(type.oredict != null) for(String name : type.oredict)
-				if(!name.isEmpty())
-					OreDictionary.registerOre(name, type.stack());
+			if(type.oredict != null)
+				for(String name : type.oredict)
+					if(!name.isEmpty())
+						OreDictionary.registerOre(name, type.stack());
 		
 		OreDictionary.registerOre("logWood", BlocksLT.SILVERWOOD_LOG);
 		OreDictionary.registerOre("treeLeaves", BlocksLT.SILVERWOOD_LEAVES);
@@ -54,6 +57,7 @@ public class ItemMultiMaterial extends MultiVariantItem
 		OreDictionary.registerOre("stairWood", BlocksLT.SILVERWOOD_STAIRS);
 		OreDictionary.registerOre("oreQuicksilver", BlocksLT.CINNABAR_ORE);
 	}
+	
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> l)
 	{
@@ -66,34 +70,33 @@ public class ItemMultiMaterial extends MultiVariantItem
 	public boolean hasEffect(ItemStack stack)
 	{
 		int dmg = stack.getItemDamage();
-	    return EnumMultiMaterialType.values()[dmg % EnumMultiMaterialType.values().length].hasEffect;
+		return EnumMultiMaterialType.values()[dmg % EnumMultiMaterialType.values().length].hasEffect;
 	}
 	
 	public enum EnumMultiMaterialType implements IGetter<ItemStack>
 	{
-		VAPOROUS_CRYSTAL("crystalVis"),
-		AQUEOUS_CRYSTAL("crystalVis"),
-		EARTHEN_CRYSTAL("crystalVis"),
-		FIERY_CRYSTAL("crystalVis"),
-		VIS_CRYSTAL("crystalVis"),
-		TAINTED_CRYSTAL("crystalVis"),
-		DEPLETED_CRYSTAL("crystalDepleted"),
-		ENCHANTED_WOOD,
-		ENCHANTED_SILVERWOOD,
-		CINDERPEARL_POD,
-		ZOMBIE_BRAINS,
-		QUICKSILVER("gemQuicksilver"),
-		THAUMIUM_INGOT("ingotThaumium"),
-		ENCHANTED_FABRIC,
-		ANIMATED_PISTON,
-		ALUMENTUM,
-		ANCIENT_POTTERY,
-		TARNISHED_CHALICE,
-		WORN_STATUETTE,
-		ANCIENT_WEAPON,
-		ANCIENT_SEAL,
-		ANCIENT_STONE_TABLET
-		;
+		VAPOROUS_CRYSTAL("crystalVis"), //
+		AQUEOUS_CRYSTAL("crystalVis"), //
+		EARTHEN_CRYSTAL("crystalVis"), //
+		FIERY_CRYSTAL("crystalVis"), //
+		VIS_CRYSTAL("crystalVis"), //
+		TAINTED_CRYSTAL("crystalVis"), //
+		DEPLETED_CRYSTAL("crystalDepleted"), //
+		ENCHANTED_WOOD, //
+		ENCHANTED_SILVERWOOD, //
+		CINDERPEARL_POD, //
+		ZOMBIE_BRAINS, //
+		QUICKSILVER("gemQuicksilver"), //
+		THAUMIUM_INGOT("ingotThaumium"), //
+		ENCHANTED_FABRIC, //
+		ANIMATED_PISTON, //
+		ALUMENTUM, //
+		ANCIENT_POTTERY, //
+		TARNISHED_CHALICE, //
+		WORN_STATUETTE, //
+		ANCIENT_WEAPON, //
+		ANCIENT_SEAL, //
+		ANCIENT_STONE_TABLET;
 		
 		private final String oredict[];
 		public final String mod;
@@ -166,7 +169,7 @@ public class ItemMultiMaterial extends MultiVariantItem
 		@Override
 		public ItemStack get()
 		{
-		    return stack();
+			return stack();
 		}
 	}
 }

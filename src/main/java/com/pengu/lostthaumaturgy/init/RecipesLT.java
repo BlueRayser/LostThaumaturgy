@@ -35,6 +35,10 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapelessOreRecipe(Items.BLAZE_POWDER, EnumMultiMaterialType.CINDERPEARL_POD.stack()));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlocksLT.SILVERWOOD_PLANKS, 4), BlocksLT.SILVERWOOD_LOG));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMONOMICON, "fff", "fbf", "fff", 'f', new ItemStack(ItemsLT.DISCOVERY), 'b', Items.BOOK));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_HELMET, "ttt", "t t", 't', "ingotThaumium"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_CHESTPLATE, "t t", "ttt", "ttt", 't', "ingotThaumium"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_LEGGINGS, "ttt", "t t", "t t", 't', "ingotThaumium"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_BOOTS, "t t", "t t", 't', "ingotThaumium"));
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
 	}

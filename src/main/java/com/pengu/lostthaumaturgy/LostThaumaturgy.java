@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.mrdimka.hammercore.common.utils.WrappedLog;
@@ -53,8 +52,6 @@ public class LostThaumaturgy
 		SimpleRegistration.registerFieldBlocksFrom(BlocksLT.class, LTInfo.MOD_ID, tab);
 		SimpleRegistration.registerFieldItemsFrom(ItemsLT.class, LTInfo.MOD_ID, tab);
 		ResearchesLT.registerResearches();
-		
-		ItemsLT.MULTI_MATERIAL.registerOD();
 		
 		proxy.preInit();
 	}

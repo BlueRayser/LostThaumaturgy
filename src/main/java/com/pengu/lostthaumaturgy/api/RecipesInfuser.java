@@ -7,11 +7,13 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class RecipesInfuser
 {
@@ -221,6 +223,7 @@ public class RecipesInfuser
 	{
 		public final ItemStack result;
 		public final ItemStack[] components;
+		public final ItemStack[] discoveries;
 		public final Predicate<IInfuser> predicate;
 		public final int cost;
 		public final int depletedShards;
@@ -239,6 +242,12 @@ public class RecipesInfuser
 				if(isCrystal(stack))
 					dep++;
 			depletedShards = dep;
+			
+			if(predicate instanceof ResearchPredicate)
+			{
+				ResearchPredicate pred = (ResearchPredicate) predicate;
+				discoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+			}else discoveries = new ItemStack[0];
 		}
 		
 		public static InfuserRecipe[] present()

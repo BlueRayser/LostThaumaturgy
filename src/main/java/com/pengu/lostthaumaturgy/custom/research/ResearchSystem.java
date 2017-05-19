@@ -11,6 +11,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import com.mrdimka.hammercore.annotations.MCFBus;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.net.PacketUpdateClientRD;
 
 @MCFBus
 public class ResearchSystem
@@ -56,6 +58,11 @@ public class ResearchSystem
 			LostThaumaturgy.LOG.bigWarn("Failed to save data for " + evt.player.getGameProfile().getName() + ": " + err.getMessage());
 			err.printStackTrace();
 		}
+	}
+	
+	public static PacketUpdateClientRD getPacketFor(EntityPlayer player)
+	{
+		return new PacketUpdateClientRD(COMPLETED.get(player.getGameProfile().getId().toString()));
 	}
 	
 	public static void setResearchCompleted(EntityPlayer player, Research res, boolean isCompleted)

@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal.IGetter;
 import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
 
 public class Research

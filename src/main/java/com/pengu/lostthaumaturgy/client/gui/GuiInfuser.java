@@ -81,12 +81,19 @@ public class GuiInfuser extends GuiContainer
 		if(tile.entry != currentEntry)
 		{
 			currentEntry = tile.entry;
-			Predicate<IInfuser> predicate = RecipesInfuser.getPredicate(tile.entry);
-			if(predicate instanceof ResearchPredicate)
+			if(currentEntry == -1)
 			{
-				ResearchPredicate pred = (ResearchPredicate) predicate;
-				currentDiscoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
-			}else currentDiscoveries = null;
+				currentDiscoveries = null;
+			}
+			else
+			{
+				Predicate<IInfuser> predicate = RecipesInfuser.getPredicate(tile.entry);
+				if(predicate instanceof ResearchPredicate)
+				{
+					ResearchPredicate pred = (ResearchPredicate) predicate;
+					currentDiscoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+				}else currentDiscoveries = null;
+			}
 		}
 		
 		GL11.glColor4f(1, 1, 1, 1);
