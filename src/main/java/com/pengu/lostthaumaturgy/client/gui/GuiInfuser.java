@@ -1,22 +1,32 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicate;
+import com.mrdimka.hammercore.bookAPI.BookCategory;
+import com.mrdimka.hammercore.bookAPI.BookEntry;
 import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.mrdimka.hammercore.gui.book.GuiBook;
+import com.mrdimka.hammercore.gui.book.GuiBookCategory;
+import com.mrdimka.hammercore.gui.book.GuiBookEntry;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
+import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
+import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
+import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
+import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
@@ -60,10 +70,15 @@ public class GuiInfuser extends GuiContainer
 					GL11.glPopMatrix();
 					
 					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
+					{
 						lastTooltip.add(ItemResearch.getFromStack(currentDiscoveries[i]).getTitle());
+						lastTooltip.add(I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":click_to_read"));
+					}
 				}
 			}
-		}catch(Throwable err) {}
+		} catch(Throwable err)
+		{
+		}
 		
 		if(!lastTooltip.isEmpty())
 		{
@@ -77,22 +92,23 @@ public class GuiInfuser extends GuiContainer
 	
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
-		//Reduce RAM usage, because earlier we ran through this code each render tick. Now we check if the recipe has changed.
+		// Reduce RAM usage, because earlier we ran through this code each
+		// render tick. Now we check if the recipe has changed.
 		if(tile.entry != currentEntry)
 		{
 			currentEntry = tile.entry;
 			if(currentEntry == -1)
 			{
 				currentDiscoveries = null;
-			}
-			else
+			} else
 			{
 				Predicate<IInfuser> predicate = RecipesInfuser.getPredicate(tile.entry);
 				if(predicate instanceof ResearchPredicate)
 				{
 					ResearchPredicate pred = (ResearchPredicate) predicate;
 					currentDiscoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
-				}else currentDiscoveries = null;
+				} else
+					currentDiscoveries = null;
 			}
 		}
 		
@@ -115,5 +131,43 @@ public class GuiInfuser extends GuiContainer
 		mc.getTextureManager().bindTexture(upgrade_icons);
 		if(this.tile.getUpgrades()[0] >= 0)
 			RenderUtil.drawTexturedModalRect(guiLeft + 8, guiTop + 128, 16 * this.tile.getUpgrades()[0], 0, 16, 16);
+	}
+	
+	@Override
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
+	{
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+		
+		try
+		{
+			mouseX -= guiLeft;
+			mouseY -= guiTop;
+			
+			if(currentDiscoveries != null)
+			{
+				int xStart = 80 - (currentDiscoveries.length - 1) * 8;
+				
+				for(int i = 0; i < currentDiscoveries.length; ++i)
+					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
+					{
+						Research res = ItemResearch.getFromStack(currentDiscoveries[i]);
+						
+						CategoryThaumonomicon tc = null;
+						EntryThaumonomicon te = null;
+						
+						for(BookCategory cat : BookThaumonomicon.instance.categories)
+							if(cat instanceof CategoryThaumonomicon && cat.categoryId.equals(res.category))
+								tc = (CategoryThaumonomicon) cat;
+						
+						for(BookEntry be : tc.entries)
+							if(be.entryId.equals(res.uid) && be instanceof EntryThaumonomicon)
+								te = (EntryThaumonomicon) be;
+						
+						mc.displayGuiScreen(new GuiBookEntry(new GuiBookCategory(new GuiBook(BookThaumonomicon.instance), tc), te));
+					}
+			}
+		} catch(Throwable err)
+		{
+		}
 	}
 }

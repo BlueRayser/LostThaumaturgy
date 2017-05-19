@@ -1,3 +1,7 @@
+/**
+* This shader was created by APengu.
+* Don't copy/steal it without any permission!
+*/
 #version 120
 
 varying vec3 position;

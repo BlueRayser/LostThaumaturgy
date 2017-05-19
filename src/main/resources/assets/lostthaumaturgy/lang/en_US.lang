@@ -91,7 +91,7 @@ research.lostthaumaturgy:reinforced_vis_tank.title=Reinforced Vis Tank
 research.lostthaumaturgy:reinforced_vis_tank.desc=Researching more properties of silverwood and thaumium, you discovered Reinforced Vis Tank. It is an improvement for silverwood vis tank and stores up to 1000 vis.
 
 research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
-research.lostthaumaturgy:crystalline_bell.desc=Sometimes gathering crystals is a problem, because you can not really harvesting without destroying the crystal itself. Not anymore! Crystalline Bell is a magical tool that does exactly what's been a problem earlier.
+research.lostthaumaturgy:crystalline_bell.desc=Sometimes gathering crystals is a problem, because you can not really harvest the crystal without destroying it. Not anymore! Crystalline Bell is a magical tool that does exactly what's been a problem earlier.
 
 research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
 research.lostthaumaturgy:silverwood_vis_tank.desc=Researching some properties of silverwood, you discovered the fact that is is resistant to taint. You thought that upgrading your vis storage tank is worth it. And it is! Silverwood Vis Tank is a good improvement to your old vis tank. It doesn't explode on taint overload and stores up to 750 vis.
