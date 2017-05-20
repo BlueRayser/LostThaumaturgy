@@ -43,6 +43,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRLyingItem;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
@@ -70,6 +71,7 @@ import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
+import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
@@ -131,6 +133,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileThaumiumBellows.class, BlocksLT.THAUMIUM_BELLOWS, TESRThaumiumBellows.INSTANCE);
 		registerRender(TileStudiumTable.class, BlocksLT.STUDIUM_TABLE, TESRStudiumTable.INSTANCE);
 		registerRender(TileAuxiliumTable.class, BlocksLT.AUXILIUM_TABLE, TESRAuxiliumTable.INSTANCE);
+		registerRender(TileLyingItem.class, BlocksLT.LYING_ITEM, TESRLyingItem.INSTANCE);
 		
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
 	}

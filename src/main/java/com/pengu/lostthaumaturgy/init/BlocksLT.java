@@ -9,7 +9,9 @@ import com.pengu.lostthaumaturgy.block.BlockBellows;
 import com.pengu.lostthaumaturgy.block.BlockCinnabarOre;
 import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockCrucible;
+import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
+import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
@@ -49,11 +51,13 @@ public class BlocksLT
 	        VIS_VALVE = new BlockVisValve(), //
 	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve(), //
 	        STUDIUM_TABLE = new BlockStudiumTable(), //
-	        AUXILIUM_TABLE = new BlockAuxiliumTable();
+	        AUXILIUM_TABLE = new BlockAuxiliumTable(), //
+	        CRYSTALLIZER = new BlockCrystallizer();
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //
-	        SILVERWOOD_LOG = new BlockSilverwoodLog();
+	        SILVERWOOD_LOG = new BlockSilverwoodLog(), //
+	        LYING_ITEM = new BlockLyingItem();
 	
 	public static final Block //
 	        SHIMMERLEAF = new BlockPlant("shimmerleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //

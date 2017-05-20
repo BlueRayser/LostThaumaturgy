@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.mrdimka.hammercore.common.utils.WrappedLog;
 import com.mrdimka.hammercore.init.SimpleRegistration;
+import com.mrdimka.hammercore.world.WorldGenRegistry;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.creative.CreativeTabLT;
 import com.pengu.lostthaumaturgy.creative.CreativeTabResearches;
@@ -26,7 +27,9 @@ import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
+import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
+import com.pengu.lostthaumaturgy.worldgen.WorldGenLostArtifacts;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
 
 @Mod(modid = LTInfo.MOD_ID, name = LTInfo.MOD_NAME, version = LTInfo.MOD_VERSION, dependencies = "required-after:hammercore")
@@ -68,6 +71,9 @@ public class LostThaumaturgy
 		
 		GameRegistry.registerWorldGenerator(new WorldGenCrystals(), 0);
 		GameRegistry.registerWorldGenerator(new WorldGenSilverwood(), 4);
+		GameRegistry.registerWorldGenerator(new WorldGenCinderpearl(), 6);
+		
+		WorldGenRegistry.registerFeature(new WorldGenLostArtifacts());
 		
 		FMLInterModComms.sendMessage("waila", "register", "com.pengu.lostthaumaturgy.intr.waila.WailaLTProvider.register");
 	}

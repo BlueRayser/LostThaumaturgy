@@ -2,11 +2,6 @@ package com.pengu.lostthaumaturgy.worldgen;
 
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.init.BlocksLT;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +9,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class WorldGenCinderpearl implements IWorldGenerator
 {
@@ -33,7 +33,7 @@ public class WorldGenCinderpearl implements IWorldGenerator
 					
 					for(int t = 0; t < 25; ++t)
 					{
-						BlockPos gpos = posFromTop(tpos, world, GRASS_OR_DIRT);
+						BlockPos gpos = posFromTop(tpos, world, GRASS_OR_DIRT_OR_SAND);
 						if(gpos != null && world.getBlockState(gpos.up()).getBlock().isReplaceable(world, gpos.up()))
 						{
 							world.setBlockState(gpos.up(), BlocksLT.CINDERPEARL.getDefaultState());
@@ -50,7 +50,7 @@ public class WorldGenCinderpearl implements IWorldGenerator
 		return rand.nextInt(rad) - rand.nextInt(rad);
 	}
 	
-	public static final Predicate<IBlockState> GRASS_OR_DIRT = Predicates.or(Predicates.equalTo(Blocks.GRASS.getDefaultState()), Predicates.equalTo(Blocks.DIRT.getDefaultState()));
+	public static final Predicate<IBlockState> GRASS_OR_DIRT_OR_SAND = Predicates.or(Predicates.equalTo(Blocks.GRASS.getDefaultState()), Predicates.equalTo(Blocks.DIRT.getDefaultState()), Predicates.equalTo(Blocks.SAND.getDefaultState()));
 	
 	private BlockPos posFromTop(BlockPos pos, World world, Predicate<IBlockState> state)
 	{

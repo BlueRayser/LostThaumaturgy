@@ -23,6 +23,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
+import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 
 public class WailaLTProvider implements IWailaDataProvider
@@ -90,6 +91,12 @@ public class WailaLTProvider implements IWailaDataProvider
 					TileVisPump pump = (TileVisPump) acc.getTileEntity();
 					stack.setTagInfo("frames", new NBTTagInt(pump.ticksExisted));
 					stack.setTagInfo("enabled", new NBTTagByte((byte) (!pump.gettingPower() ? 1 : 0)));
+				}
+				
+				if(acc.getTileEntity() instanceof TileLyingItem)
+				{
+					TileLyingItem tile = (TileLyingItem) acc.getTileEntity();
+					return tile.lying.get().copy();
 				}
 				
 				stack.removeSubCompound("display");

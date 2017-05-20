@@ -43,6 +43,7 @@ import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
+import com.pengu.lostthaumaturgy.custom.aura.api.AuraAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
@@ -243,38 +244,40 @@ public class AuraTicker
 		{
 			if(ac2.updated || ac2.dimension != worldObj.provider.getDimension())
 				continue;
+			AuraAttachments.attach(ac2);
 			noupdates = false;
 			ac2.updated = true;
 			ac2.previousVis = ac2.vis;
 			ac2.previousTaint = ac2.taint;
 			if(ac2.goodVibes > 100)
-			{
 				ac2.goodVibes = 100;
-			}
 			if(ac2.badVibes > 100)
-			{
 				ac2.badVibes = 100;
-			}
+			
 			if(ac2.badVibes > 50 && ac2.goodVibes == 0)
 			{
 				ac2.vis = (short) (ac2.vis - 1);
 				ac2.badVibes = (short) (ac2.badVibes - 5);
 			}
+			
 			if(ac2.badVibes > 0 && ac2.goodVibes > 0)
 			{
 				ac2.goodVibes = (short) (ac2.goodVibes - 1);
 				ac2.badVibes = (short) (ac2.badVibes - 1);
 			}
+			
 			if(worldObj.rand.nextInt(100) < ac2.goodVibes && ac2.goodVibes > 0)
 			{
 				ac2.vis = (short) (ac2.vis + 1);
 				ac2.goodVibes = (short) (ac2.goodVibes - Math.max(1, ac2.vis / (LTConfigs.auraMax / 10)));
 			}
+			
 			if(worldObj.rand.nextInt(100) < ac2.badVibes && ac2.badVibes > 0)
 			{
 				ac2.taint = (short) (ac2.taint + 1);
 				ac2.badVibes = (short) (ac2.badVibes - Math.max(1, ac2.taint / (LTConfigs.auraMax / 10)));
 			}
+			
 			for(int a = 0; a < 4; ++a)
 			{
 				int val;

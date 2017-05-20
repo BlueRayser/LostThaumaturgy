@@ -2,14 +2,12 @@ package com.pengu.lostthaumaturgy.custom.research.client;
 
 import java.util.List;
 
-import com.mrdimka.hammercore.client.utils.TextDivider;
-import com.pengu.lostthaumaturgy.util.SymbolsLT;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.mrdimka.hammercore.client.utils.TextDivider;
 
 public class PageText implements IPage
 {
@@ -29,7 +27,7 @@ public class PageText implements IPage
 		for(String ln : lines)
 		{
 			String l = ln;
-//			if() 
+//			if()
 //				l = SymbolsLT.convert(ln);
 			Minecraft.getMinecraft().fontRenderer.drawString(l, 8, y += 10, 0, false);
 		}

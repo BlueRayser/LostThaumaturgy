@@ -154,6 +154,17 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 		}
 	}
 	
+	@Override
+	protected void dropLoot(boolean wasRecentlyHit, int lootingModifier, DamageSource source)
+	{
+	    super.dropLoot(wasRecentlyHit, lootingModifier, source);
+	    
+	    EnumMultiMaterialType[] artifacts = { EnumMultiMaterialType.ANCIENT_POTTERY, EnumMultiMaterialType.TARNISHED_CHALICE, EnumMultiMaterialType.WORN_STATUETTE, EnumMultiMaterialType.ANCIENT_SEAL, EnumMultiMaterialType.ANCIENT_WEAPON };
+	    
+	    if(rand.nextInt(5) == 0 && !world.isRemote)
+	    	entityDropItem(artifacts[rand.nextInt(artifacts.length)].stack(), 0);
+	}
+	
 	public boolean isTainted()
 	{
 		return dataManager.get(IS_TAINTED);

@@ -1,0 +1,126 @@
+package com.pengu.lostthaumaturgy.block;
+
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+import com.mrdimka.hammercore.api.ITileBlock;
+import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.lostthaumaturgy.block.def.BlockRendered;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
+import com.pengu.lostthaumaturgy.tile.TileLyingItem;
+
+public class BlockLyingItem extends BlockRendered implements ITileEntityProvider, ITileBlock<TileLyingItem>
+{
+	public BlockLyingItem()
+	{
+		super(Material.ROCK);
+		setUnlocalizedName("lying_item");
+	}
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	{
+		TileLyingItem item = WorldUtil.cast(world.getTileEntity(pos), TileLyingItem.class);
+		return item != null ? item.lying.get().copy() : ItemStack.EMPTY;
+	}
+	
+	public static void place(World world, BlockPos pos, ItemStack stack)
+	{
+		if(world.isBlockLoaded(pos))
+		{
+			world.setBlockState(pos, BlocksLT.LYING_ITEM.getDefaultState());
+			TileLyingItem tile = WorldUtil.cast(world.getTileEntity(pos), TileLyingItem.class);
+			if(tile == null)
+				world.setTileEntity(pos, tile = new TileLyingItem());
+			tile.lying.set(stack.copy());
+		}
+	}
+	
+	public static final AxisAlignedBB aabb = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		return aabb;
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{
+		if(entityIn instanceof EntityPlayer)
+		{
+			TileLyingItem tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileLyingItem.class);
+			if(tile != null)
+			{
+				try
+				{
+					((EntityPlayer) entityIn).dropItem(tile.lying.get(), true).setNoPickupDelay();
+				} finally
+				{
+					worldIn.setBlockToAir(pos);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	{
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+	
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state)
+	{
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+	}
+	
+	@Override
+	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
+	{
+		return false;
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta)
+	{
+		return new TileLyingItem();
+	}
+	
+	@Override
+	public Class<TileLyingItem> getTileClass()
+	{
+		return TileLyingItem.class;
+	}
+	
+	@Override
+	public String getParticleSprite(World world, BlockPos pos)
+	{
+		return "blocks/andesite";
+	}
+}

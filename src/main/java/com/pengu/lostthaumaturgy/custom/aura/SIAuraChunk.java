@@ -2,12 +2,21 @@ package com.pengu.lostthaumaturgy.custom.aura;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import net.minecraft.nbt.NBTTagByteArray;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.common.util.INBTSerializable;
+
+import com.pengu.hammercore.utils.IndexedMap;
 
 public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompound>
 {
+	public static final String VAR_DISPERSE = "LT_DisperseAura";
+	
+	public final IndexedMap<String, List<byte[]>> data = new IndexedMap<>();
 	public short vis;
 	public short taint;
 	public short previousVis;
@@ -19,6 +28,13 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 	public int z;
 	public boolean updated;
 	public int dimension;
+	
+	public List<byte[]> getVar(String name)
+	{
+		List<byte[]> l = data.get(name);
+		if(l == null) data.put(name, l = new ArrayList<>());
+		return l;
+	}
 	
 	@Override
 	public NBTTagCompound serializeNBT()
@@ -35,6 +51,22 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 		nbt.setInteger("z", z);
 		nbt.setBoolean("updated", updated);
 		nbt.setInteger("dimension", dimension);
+		
+		NBTTagList list = new NBTTagList();
+		
+		for(int i = 0; i < data.size(); ++i)
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			tag.setString("Name", data.getKey(i));
+			NBTTagList l = new NBTTagList();
+			for(byte[] v : data.getValue(i))
+				l.appendTag(new NBTTagByteArray(v));
+			tag.setTag("Vars", l);
+			list.appendTag(tag);
+		}
+		
+		nbt.setTag("Variables", list);
+		
 	    return nbt;
 	}
 	
@@ -52,6 +84,18 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 		z = nbt.getInteger("z");
 		updated = nbt.getBoolean("updated");
 		dimension = nbt.getInteger("dimension");
+		
+		NBTTagList list = nbt.getTagList("Variables", NBT.TAG_COMPOUND);
+		
+		for(int i = 0; i < list.tagCount(); ++i)
+		{
+			NBTTagCompound tag = list.getCompoundTagAt(i);
+			List<byte[]> vars = new ArrayList<>();
+			NBTTagList l = tag.getTagList("Vars", NBT.TAG_BYTE_ARRAY);
+			for(int j = 0; j < l.tagCount(); ++j)
+				vars.add(((NBTTagByteArray) l.get(j)).getByteArray());
+			data.put(tag.getString("Name"), vars);
+		}
 	}
 	
 	@Override
