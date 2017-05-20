@@ -144,30 +144,6 @@ public class ClientProxy extends CommonProxy
 		return Side.CLIENT;
 	}
 	
-	@Override
-	public <T> T passThroughIfClient(T object)
-	{
-		return object;
-	}
-	
-	@Override
-	public <T> T createAndPassThroughIfClient(String clazz)
-	{
-		try
-		{
-			return (T) Class.forName(clazz).newInstance();
-		}
-		catch(Throwable err) {}
-		
-		return null;
-	}
-	
-	@Override
-	public <T> T createAndDispatchThrough(String clientClass, String serverClass)
-	{
-	    return createAndPassThroughIfClient(clientClass);
-	}
-	
 	private <T extends TileEntity> void registerRender(Class<T> tileEntityClass, Block block, TESR<? super T> specialRenderer)
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(tileEntityClass, specialRenderer);

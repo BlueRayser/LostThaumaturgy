@@ -14,6 +14,7 @@ import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 public class TESRLyingItem extends TESR<TileLyingItem>
 {
 	public static final TESRLyingItem INSTANCE = new TESRLyingItem();
+	private static final Random rand = new Random();
 	
 	@Override
 	public void renderTileEntityAt(TileLyingItem te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
@@ -25,7 +26,7 @@ public class TESRLyingItem extends TESR<TileLyingItem>
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + oos, y, z + oos);
 		
-		Random rand = new Random(te.getPos().toLong() + te.lying.get().getItem().getRegistryName().toString().hashCode() - te.lying.get().getItemDamage());
+		rand.setSeed(te.getPos().toLong() + te.lying.get().getItem().getRegistryName().toString().hashCode() - te.lying.get().getItemDamage());
 		
 		GL11.glTranslated(rand.nextFloat() * (1 - oos * 2), 0, rand.nextFloat() * (1 - oos * 2));
 		

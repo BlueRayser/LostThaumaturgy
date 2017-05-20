@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.client.utils.TextDivider;
 import com.pengu.hammercore.utils.IGetter;
-import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 
 /**
@@ -30,7 +30,7 @@ public class ResearchPageHandler
 	
 	public void reload()
 	{
-		Runnable r = LostThaumaturgy.proxy.passThroughIfClient(new Check());
+		Runnable r = HammerCore.pipelineProxy.pipeIfOnGameSide(new Check(), Side.CLIENT);
 		if(r != null)
 			r.run();
 	}
@@ -42,7 +42,7 @@ public class ResearchPageHandler
 		if(at >= pages.size() || at < 0)
 			return null;
 		
-		return LostThaumaturgy.proxy.passThroughIfClient((IPage) pages.get(at));
+		return HammerCore.pipelineProxy.pipeIfOnGameSide((IPage) pages.get(at), Side.CLIENT);
 	}
 	
 	public int pageCount()

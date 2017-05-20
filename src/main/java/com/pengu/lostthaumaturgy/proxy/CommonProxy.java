@@ -23,35 +23,10 @@ public class CommonProxy
 	public boolean shadersSupported()
 	{
 		return false;
-	};
+	}
 	
 	public Side getProxySide()
 	{
 		return Side.SERVER;
-	}
-	
-	@Nullable
-	public <T> T passThroughIfClient(T object)
-	{
-		return null;
-	}
-	
-	@Nullable
-	public <T> T createAndPassThroughIfClient(String clazz)
-	{
-		return null;
-	}
-	
-	@Nullable
-	public <T> T createAndDispatchThrough(String clientClass, String serverClass)
-	{
-		try
-		{
-			return (T) Class.forName(serverClass).newInstance();
-		} catch(Throwable err)
-		{
-		}
-		
-		return null;
 	}
 }

@@ -5,8 +5,9 @@ import java.security.SecureRandom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.relauncher.Side;
 
-import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.mrdimka.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
 
 public class Research
@@ -42,7 +43,7 @@ public class Research
 	
 	public ResearchPageHandler getPageHandler()
 	{
-		return LostThaumaturgy.proxy.passThroughIfClient(pageHandler);
+		return HammerCore.pipelineProxy.pipeIfOnGameSide(pageHandler, Side.CLIENT);
 	}
 	
 	public String sucessToString()

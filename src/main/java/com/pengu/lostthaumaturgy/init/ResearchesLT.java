@@ -3,7 +3,9 @@ package com.pengu.lostthaumaturgy.init;
 import java.lang.reflect.Field;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 
+import com.mrdimka.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal.Getter;
 import com.pengu.lostthaumaturgy.custom.research.Research;
@@ -24,12 +26,15 @@ public class ResearchesLT
 	
 	public static void registerResearches()
 	{
-		SILVERWOOD_VIS_TANK.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.VIS_TANK_SILVERWOOD));
-		REINFORCED_VIS_TANK.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.VIS_TANK_REINFORCED));
-		CRYSTALLINE_BELL.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(ItemsLT.CRYSTALLINE_BELL));
-		PRESSURIZED_COUNDUIT.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.PRESSURIZED_CONDUIT));
-		THAUMIUM_VIS_PUMP.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.THAUMIUM_VIS_PUMP));
-		THAUMIUM_BELLOWS.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.THAUMIUM_BELLOWS));
+		if(HammerCore.pipelineProxy.pipeIfOnGameSide(new Object(), Side.CLIENT) != null)
+		{
+			SILVERWOOD_VIS_TANK.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.VIS_TANK_SILVERWOOD));
+			REINFORCED_VIS_TANK.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.VIS_TANK_REINFORCED));
+			CRYSTALLINE_BELL.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(ItemsLT.CRYSTALLINE_BELL));
+			PRESSURIZED_COUNDUIT.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.PRESSURIZED_CONDUIT));
+			THAUMIUM_VIS_PUMP.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.THAUMIUM_VIS_PUMP));
+			THAUMIUM_BELLOWS.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.THAUMIUM_BELLOWS));
+		}
 		
 		for(Field f : ResearchesLT.class.getDeclaredFields()) if(Research.class.isAssignableFrom(f.getType())) try
 		{
