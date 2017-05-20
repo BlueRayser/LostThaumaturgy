@@ -9,6 +9,7 @@ import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
+import com.pengu.lostthaumaturgy.items.ItemWandOfItemFreeze;
 
 public class ItemsLT
 {
@@ -21,5 +22,6 @@ public class ItemsLT
 	        THAUMIUM_HELMET = new ItemThaumiumArmor(EntityEquipmentSlot.HEAD), //
 	        THAUMIUM_CHESTPLATE = new ItemThaumiumArmor(EntityEquipmentSlot.CHEST), //
 	        THAUMIUM_LEGGINGS = new ItemThaumiumArmor(EntityEquipmentSlot.LEGS), //
-	        THAUMIUM_BOOTS = new ItemThaumiumArmor(EntityEquipmentSlot.FEET);
+	        THAUMIUM_BOOTS = new ItemThaumiumArmor(EntityEquipmentSlot.FEET), //
+	        WAND_ITEM_FREEZE = new ItemWandOfItemFreeze();
 }

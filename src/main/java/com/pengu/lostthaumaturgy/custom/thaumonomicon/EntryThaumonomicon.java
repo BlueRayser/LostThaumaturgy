@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
 import com.mrdimka.hammercore.bookAPI.BookCategory;
 import com.mrdimka.hammercore.bookAPI.BookEntry;
 import com.mrdimka.hammercore.bookAPI.BookPage;
-import com.mrdimka.hammercore.bookAPI.pages.BookPageTextPlain;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.client.ClientResearchData;
 import com.pengu.lostthaumaturgy.custom.research.client.IPage;
-import com.pengu.lostthaumaturgy.custom.research.client.PageText;
 
 public class EntryThaumonomicon extends BookEntry
 {
@@ -33,6 +30,12 @@ public class EntryThaumonomicon extends BookEntry
 	public boolean isDisabled()
 	{
 		return !ClientResearchData.isResearchCompleted(res);
+	}
+	
+	@Override
+	public boolean isHidden()
+	{
+	    return isDisabled();
 	}
 	
 	@Override

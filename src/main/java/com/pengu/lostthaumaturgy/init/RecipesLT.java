@@ -27,6 +27,7 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRYSTAL_ORE_FIERY, "ccc", "ccc", "ccc", 'c', EnumMultiMaterialType.FIERY_CRYSTAL.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRYSTAL_ORE_VIS, "ccc", "ccc", "ccc", 'c', EnumMultiMaterialType.VIS_CRYSTAL.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRYSTAL_ORE_TAINTED, "ccc", "ccc", "ccc", 'c', EnumMultiMaterialType.TAINTED_CRYSTAL.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRYSTAL_ORE_DEPLETED, "ccc", "ccc", "ccc", 'c', EnumMultiMaterialType.DEPLETED_CRYSTAL.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.VIS_FILTER, "wiw", "cac", "wiw", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 'i', "ingotIron", 'c', BlocksLT.CONDUIT, 'a', EnumMultiMaterialType.ALUMENTUM.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.ADVANCED_VIS_VALVE, " v ", "gcg", " t ", 'v', EnumMultiMaterialType.VIS_CRYSTAL.stack(), 't', EnumMultiMaterialType.TAINTED_CRYSTAL.stack(), 'g', "ingotGold", 'c', BlocksLT.VIS_VALVE));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.ADVANCED_VIS_VALVE, " t ", "gcg", " v ", 'v', EnumMultiMaterialType.VIS_CRYSTAL.stack(), 't', EnumMultiMaterialType.TAINTED_CRYSTAL.stack(), 'g', "ingotGold", 'c', BlocksLT.VIS_VALVE));

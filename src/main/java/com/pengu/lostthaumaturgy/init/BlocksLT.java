@@ -10,6 +10,7 @@ import com.pengu.lostthaumaturgy.block.BlockCinnabarOre;
 import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockCrucible;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
+import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
@@ -71,6 +72,7 @@ public class BlocksLT
 	        CRYSTAL_ORE_FIERY = new BlockOreCrystal(EnumMultiMaterialType.FIERY_CRYSTAL, "fiery", true, 0xFF0000), //
 	        CRYSTAL_ORE_VIS = new BlockOreCrystal(EnumMultiMaterialType.VIS_CRYSTAL, "vis", true, 0xAA00FF), //
 	        CRYSTAL_ORE_TAINTED = new BlockOreCrystal(EnumMultiMaterialType.TAINTED_CRYSTAL, "tainted", false, 0x2B134C), //
+	        CRYSTAL_ORE_DEPLETED = new BlockDepletedOreCrystal(), //
 	        CINNABAR_ORE = new BlockCinnabarOre();
 	
 	public static final Block //

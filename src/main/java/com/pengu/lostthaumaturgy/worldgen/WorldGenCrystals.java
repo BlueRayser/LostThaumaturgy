@@ -1,6 +1,8 @@
 package com.pengu.lostthaumaturgy.worldgen;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.function.Predicate;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -17,6 +19,23 @@ import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class WorldGenCrystals implements IWorldGenerator
 {
+	private static final BlockOreCrystal[] ores;
+	
+	static
+	{
+		HashSet<BlockOreCrystal> crystals = new HashSet<BlockOreCrystal>(BlockOreCrystal.crystals);
+		crystals.removeIf(new Predicate<BlockOreCrystal>()
+		{
+			@Override
+			public boolean test(BlockOreCrystal t)
+			{
+				return !t.generatesInWorld;
+			}
+		});
+		
+		ores = crystals.toArray(new BlockOreCrystal[0]);
+	}
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -43,7 +62,6 @@ public class WorldGenCrystals implements IWorldGenerator
 					int face = TileCrystalOre.suggestOrientationForWorldGen(world, pos);
 					if(face == -1)
 						continue;
-					BlockOreCrystal[] ores = BlockOreCrystal.crystals.toArray(new BlockOreCrystal[0]);
 					IBlockState ore = ores[world.rand.nextInt(ores.length)].getDefaultState();
 					world.setBlockState(pos, ore);
 					TileCrystalOre tco = WorldUtil.cast(world.getTileEntity(pos), TileCrystalOre.class);

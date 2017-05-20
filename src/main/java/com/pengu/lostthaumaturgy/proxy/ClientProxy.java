@@ -13,8 +13,8 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -22,9 +22,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.bookAPI.Book;
 import com.mrdimka.hammercore.bookAPI.BookCategory;
 import com.mrdimka.hammercore.bookAPI.BookEntry;
+import com.pengu.hammercore.client.particle.api.ParticleList;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
@@ -32,10 +32,13 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
+import com.pengu.lostthaumaturgy.client.extpart.EPFlyingCrystal;
+import com.pengu.lostthaumaturgy.client.extpart.REPFlyingCrystal;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
+import com.pengu.lostthaumaturgy.client.render.item.RenderItemWandOfItemFreeze;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRAdvancedVisValve;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRAuxiliumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRBellows;
@@ -135,7 +138,11 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileAuxiliumTable.class, BlocksLT.AUXILIUM_TABLE, TESRAuxiliumTable.INSTANCE);
 		registerRender(TileLyingItem.class, BlocksLT.LYING_ITEM, TESRLyingItem.INSTANCE);
 		
+		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_ITEM_FREEZE, new RenderItemWandOfItemFreeze());
+		
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
+		
+		ParticleList.registerRenderer(EPFlyingCrystal.class, new REPFlyingCrystal());
 	}
 	
 	@Override

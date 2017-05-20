@@ -23,6 +23,7 @@ tile.lostthaumaturgy:crystal_ore_earthen.name=Earthen Crystal Ore
 tile.lostthaumaturgy:crystal_ore_fiery.name=Fiery Crystal Ore
 tile.lostthaumaturgy:crystal_ore_vis.name=Vis Crystal Ore
 tile.lostthaumaturgy:crystal_ore_tainted.name=Tainted Crystal Ore
+tile.lostthaumaturgy:crystal_ore_depleted.name=Depleted Crystal Ore
 tile.lostthaumaturgy:cinnabar_ore.name=Cinnabar Ore
 tile.lostthaumaturgy:vis_purifier.name=Vis Purifier
 tile.lostthaumaturgy:advanced_vis_valve.name=Advanced Vis Valve
@@ -79,6 +80,11 @@ item.lostthaumaturgy:thaumium_helmet.name=Thaumium Helmet
 item.lostthaumaturgy:thaumium_chestplate.name=Thaumium Chestplate
 item.lostthaumaturgy:thaumium_leggings.name=Thaumium Leggings
 item.lostthaumaturgy:thaumium_boots.name=Thaumium Boots
+item.lostthaumaturgy:wand_item_freeze.name=Item Freezing Wand
+
+
+
+gui.lostthaumaturgy:click_to_read=Click to Read More
 
 
 

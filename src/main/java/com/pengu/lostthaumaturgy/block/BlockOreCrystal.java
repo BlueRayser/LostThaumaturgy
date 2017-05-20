@@ -43,20 +43,21 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 	protected IGetter<ItemStack> crystal;
 	protected boolean goodVibesOnGrowth = false;
 	protected int crystalColor = 0;
+	public boolean generatesInWorld = true;
 	
 	public static class Getter<T> implements IGetter<T>
 	{
 		public T inst;
 		
 		public Getter(T i)
-        {
+		{
 			inst = i;
-        }
+		}
 		
 		@Override
 		public T get()
 		{
-		    return inst;
+			return inst;
 		}
 	}
 	
@@ -159,32 +160,20 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 			if(!goodVibesOnGrowth)
 			{
 				if(q2 < 5 && ac.badVibes > 0 && random.nextInt(q2 * 75) == 0)
-				{
 					ore.crystals.set((short) (ore.crystals.get() + 1));
-				} else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
-				{
+				else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
 					ore.crystals.set((short) (ore.crystals.get() + 1));
-				}
 				if(ac.taint < LTConfigs.auraMax / 10)
-				{
 					ac.badVibes += random.nextInt(q2);
-				}
-				ore.sync();
 				world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 3);
 			} else
 			{
 				if(q2 < 5 && ac.goodVibes > 0 && random.nextInt(q2 * 75) == 0)
-				{
 					ore.crystals.set((short) (ore.crystals.get() + 1));
-				} else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
-				{
+				else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
 					ore.crystals.set((short) (ore.crystals.get() + 1));
-				}
 				if(ac.vis < LTConfigs.auraMax / 10)
-				{
 					ac.goodVibes += random.nextInt(q2);
-				}
-				ore.sync();
 				world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 3);
 			}
 		}
@@ -287,9 +276,6 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 				tile.orientation.set(s);
 			else
 				tile.orientation.set((short) EnumFacing.getDirectionFromEntityLiving(pos, placer).ordinal());
-			
-			if(tile != null)
-				tile.sync();
 		}
 	}
 	
