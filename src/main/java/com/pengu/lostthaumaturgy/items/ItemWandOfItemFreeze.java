@@ -22,6 +22,7 @@ import com.mrdimka.hammercore.raytracer.RayTracer;
 import com.pengu.hammercore.client.particle.api.common.ExtendedParticleTicker;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.client.extpart.EPFlyingCrystal;
+import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 
 public class ItemWandOfItemFreeze extends Item
 {
@@ -52,7 +53,9 @@ public class ItemWandOfItemFreeze extends Item
 		if(rtl != null)
 			point = new Vec3d(rtl.getBlockPos().offset(rtl.sideHit));
 		
-		List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(point.addVector(-1, -1, -1), point.subtract(-1, -1, -1)));
+		Vec3d min = point.addVector(-1.5, -1.5, -1.5);
+		Vec3d max = point.subtract(-1, -1, -1);
+		List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(min.xCoord, min.yCoord, min.zCoord, max.xCoord, max.yCoord, max.zCoord));
 		if(items.size() > 0)
 		{
 			if(!worldIn.isRemote)
@@ -86,7 +89,9 @@ public class ItemWandOfItemFreeze extends Item
 			
 			if(ticksExisted == 20 && item.world.isAirBlock(item.getPosition()))
 			{
-				BlockLyingItem.place(item.getEntityWorld(), item.getPosition(), item.getEntityItem().copy());
+				TileLyingItem li = BlockLyingItem.place(item.getEntityWorld(), item.getPosition(), item.getEntityItem().copy());
+				if(li != null)
+					li.placedByPlayer.set(true);
 				item.setDead();
 			}
 		}

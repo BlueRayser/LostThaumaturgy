@@ -17,9 +17,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.lostthaumaturgy.api.event.LyingItemPickedUpEvent;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
@@ -39,16 +41,18 @@ public class BlockLyingItem extends BlockRendered implements ITileEntityProvider
 		return item != null ? item.lying.get().copy() : ItemStack.EMPTY;
 	}
 	
-	public static void place(World world, BlockPos pos, ItemStack stack)
+	public static TileLyingItem place(World world, BlockPos pos, ItemStack stack)
 	{
-		if(world.isBlockLoaded(pos))
+		if(world.isBlockLoaded(pos) && world.getBlockState(pos).getBlock().isReplaceable(world, pos))
 		{
 			world.setBlockState(pos, BlocksLT.LYING_ITEM.getDefaultState());
 			TileLyingItem tile = WorldUtil.cast(world.getTileEntity(pos), TileLyingItem.class);
 			if(tile == null)
 				world.setTileEntity(pos, tile = new TileLyingItem());
 			tile.lying.set(stack.copy());
+			return tile;
 		}
+		return null;
 	}
 	
 	public static final AxisAlignedBB aabb = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
@@ -69,7 +73,10 @@ public class BlockLyingItem extends BlockRendered implements ITileEntityProvider
 			{
 				try
 				{
-					((EntityPlayer) entityIn).dropItem(tile.lying.get(), true).setNoPickupDelay();
+					LyingItemPickedUpEvent evt = new LyingItemPickedUpEvent((EntityPlayer) entityIn, pos, tile.lying.get().copy(), tile.placedByPlayer.get() != Boolean.TRUE);
+					if(MinecraftForge.EVENT_BUS.post(evt)) return;
+					
+					((EntityPlayer) entityIn).dropItem(evt.drop, true).setNoPickupDelay();
 				} finally
 				{
 					worldIn.setBlockToAir(pos);
@@ -121,6 +128,6 @@ public class BlockLyingItem extends BlockRendered implements ITileEntityProvider
 	@Override
 	public String getParticleSprite(World world, BlockPos pos)
 	{
-		return "blocks/andesite";
+		return "minecraft:blocks/stone_andesite";
 	}
 }
