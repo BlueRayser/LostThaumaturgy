@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": [
+			{ "model": "lostthaumaturgy:tainted_soil" },
+			{ "model": "lostthaumaturgy:tainted_soil", "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_soil", "x": 180 },
+			{ "model": "lostthaumaturgy:tainted_soil", "x": 270 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 90 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 180 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 270 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 90, "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 90, "x": 180 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 90, "x": 270 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 180, "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 180, "x": 180 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 180, "x": 270 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 270, "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 270, "x": 180 },
+			{ "model": "lostthaumaturgy:tainted_soil", "y": 270, "x": 270 }
+		]
+    }
+}

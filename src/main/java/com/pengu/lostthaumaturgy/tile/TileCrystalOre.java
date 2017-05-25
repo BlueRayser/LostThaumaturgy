@@ -52,10 +52,37 @@ public class TileCrystalOre extends TileSyncable
 		{
 			BlockPos p = pos.offset(facing);
 			IBlockState state = world.getBlockState(p);
-			if(!state.equals(Blocks.STONE.getStateFromMeta(0))) continue;
+			if(!state.equals(Blocks.STONE.getStateFromMeta(0)))
+				continue;
 			fs.add(facing);
 		}
 		
 		return fs.size() > 0 ? fs.get(world.rand.nextInt(fs.size())).getOpposite().ordinal() : -1;
+	}
+	
+	private double renderDistance = 64;
+	private long lastCheck = 0L;
+	
+	@Override
+	public double getMaxRenderDistanceSquared()
+	{
+		if(System.currentTimeMillis() - lastCheck < 0)
+			lastCheck = 0;
+		if(System.currentTimeMillis() - lastCheck >= 1000L)
+		{
+			int solids = 0;
+			for(EnumFacing f : EnumFacing.VALUES)
+			{
+				BlockPos tpos = pos.offset(f);
+				if(!world.isBlockLoaded(tpos))
+					solids++;
+				else if(world.getBlockState(tpos).isSideSolid(world, tpos, f.getOpposite()))
+					solids++;
+			}
+			renderDistance = solids == 6 ? 8 : 64;
+			lastCheck = System.currentTimeMillis();
+		}
+		
+		return renderDistance * renderDistance;
 	}
 }

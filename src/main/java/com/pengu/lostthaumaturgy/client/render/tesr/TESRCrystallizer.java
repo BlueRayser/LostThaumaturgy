@@ -61,8 +61,7 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	{
 		drawBlock(x, y, z, getBrightnessForRB(te, RenderBlocks.forMod(LTInfo.MOD_ID)));
 		
-		float slowdown = 4;
-		float count = (float) (Minecraft.getMinecraft().world.getTotalWorldTime() % ((long)(360L * slowdown)) / slowdown);
+		float count = (te.crystalTime.get() / te.maxTime) * 360F;
 		float bob = 0;
 		float angleS = 45;
 		float angleI = 90;

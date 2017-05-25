@@ -28,6 +28,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 	public BlockTaintedSoil()
 	{
 		super(Material.GROUND);
+		setUnlocalizedName("tainted_soil");
 		setHardness(10F);
 		setResistance(100F);
 	}
@@ -86,12 +87,29 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 	@Override
 	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos)
 	{
+		TileTaintedSoil ttl = WorldUtil.cast(worldIn.getTileEntity(pos), TileTaintedSoil.class);
+		if(ttl != null)
+			try
+			{
+				return ttl.getSnapshot().getReplacedBlock().getBlockHardness(worldIn, pos) * 10F;
+			} catch(Throwable er)
+			{
+			}
 		return super.getBlockHardness(blockState, worldIn, pos);
 	}
 	
 	@Override
 	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, Entity entity)
 	{
+		TileTaintedSoil ttl = WorldUtil.cast(world.getTileEntity(pos), TileTaintedSoil.class);
+		if(ttl != null)
+			try
+			{
+				BlockSnapshot s = ttl.getSnapshot();
+				return s.getReplacedBlock().getBlock().getSoundType(s.getCurrentBlock(), world, pos, entity);
+			} catch(Throwable er)
+			{
+			}
 		return super.getSoundType(state, world, pos, entity);
 	}
 }

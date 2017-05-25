@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"particle": "lostthaumaturgy:blocks/tainted_soil/0",
+		"up": "lostthaumaturgy:blocks/tainted_soil/0",
+		"down": "lostthaumaturgy:blocks/tainted_soil/1",
+		"east": "lostthaumaturgy:blocks/tainted_soil/2",
+		"west": "lostthaumaturgy:blocks/tainted_soil/3",
+		"south": "lostthaumaturgy:blocks/tainted_soil/4",
+		"north": "lostthaumaturgy:blocks/tainted_soil/5"
+	}
+}

@@ -35,7 +35,7 @@ public class NetPropertyNBT<T extends NBTBase> extends NetPropertyAbstract<T>
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
 		if(value != null)
-			nbt.setTag("Val", nbt);
+			nbt.setTag("Val", value);
 	    return nbt;
 	}
 }

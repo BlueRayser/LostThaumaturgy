@@ -18,12 +18,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.BlockSnapshot;
 
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
+import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 
 public class WailaLTProvider implements IWailaDataProvider
@@ -47,6 +49,23 @@ public class WailaLTProvider implements IWailaDataProvider
 	public List<String> getWailaBody(ItemStack arg0, List<String> tooltip, IWailaDataAccessor acc, IWailaConfigHandler arg3)
 	{
 		TileEntity tile = acc.getTileEntity();
+		
+		if(tile instanceof TileTaintedSoil)
+		{
+			TileTaintedSoil soil = (TileTaintedSoil) tile;
+			try
+			{
+				BlockSnapshot s = soil.getSnapshot();
+				Block block = Block.REGISTRY.getObject(s.getRegistryName());
+				
+				tooltip.add("Tainted:");
+				tooltip.add(block.getLocalizedName());
+			}
+			catch(Throwable err)
+			{
+				tooltip.add("Creative Mode placed soil.");
+			}
+		}
 		
 		return tooltip;
 	}
