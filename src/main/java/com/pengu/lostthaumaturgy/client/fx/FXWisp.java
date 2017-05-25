@@ -17,7 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.client.GLRenderState;
 import com.mrdimka.hammercore.client.utils.UtilsFX;
 import com.pengu.lostthaumaturgy.LTInfo;
@@ -136,6 +135,7 @@ public class FXWisp extends Particle
 		particleRed = ((color >> 16) & 255) / 255F;
 		particleGreen = ((color >> 8) & 255) / 255F;
 		particleBlue = ((color >> 0) & 255) / 255F;
+		
 		return this;
 	}
 	
@@ -182,7 +182,7 @@ public class FXWisp extends Particle
 		float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
 		float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
 		float f7 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) partialTicks - interpPosZ);
-		int i = 250;
+		int i = 255;
 		int j = i >> 16 & 65535;
 		int k = i & 65535;
 		Vec3d[] avec3d = new Vec3d[] { new Vec3d((double) (-rotationX * f4 - rotationXY * f4), (double) (-rotationZ * f4), (double) (-rotationYZ * f4 - rotationXZ * f4)), new Vec3d((double) (-rotationX * f4 + rotationXY * f4), (double) (rotationZ * f4), (double) (-rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double) (rotationX * f4 + rotationXY * f4), (double) (rotationZ * f4), (double) (rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double) (rotationX * f4 - rotationXY * f4), (double) (-rotationZ * f4), (double) (rotationYZ * f4 - rotationXZ * f4)) };

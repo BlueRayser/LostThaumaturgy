@@ -1,14 +1,12 @@
 package com.pengu.lostthaumaturgy.client.render.entity.layer;
 
-import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
-import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderSlime;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.monster.EntitySlime;
+
+import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
+import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 
 public class LayerThaumSlimeGel implements LayerRenderer<EntityThaumSlime>
 {

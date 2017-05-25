@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
 
 import com.google.common.base.Predicate;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.mrdimka.hammercore.vec.Cuboid6;
+import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
+import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 
 public class TileConduit extends TileSyncableTickable implements IConnection, Predicate<EnumFacing>
@@ -32,14 +33,18 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 	
 	public void tick()
 	{
-		if(hitboxes == null || hitboxes.length == 0) rebake();
+		if(hitboxes == null || hitboxes.length == 0)
+			rebake();
 		
-		if(ticksExisted % 20 == 0) rebake();
-		if(world.isRemote) return;
+		if(ticksExisted % 20 == 0)
+			rebake();
+		if(world.isRemote)
+			return;
 		
 		int suction1 = visSuction, suction2 = taintSuction;
 		calculateSuction();
-		if(getSuction(null) > 0) equalizeWithNeighbours();
+		if(getSuction(null) > 0)
+			equalizeWithNeighbours();
 		
 		boolean sync = false;
 		
@@ -67,7 +72,8 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 			displayPure = 0F;
 		}
 		
-		if(sync) sync();
+		if(sync)
+			sync();
 	}
 	
 	public void rebake()
@@ -78,15 +84,22 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		List<Cuboid6> cuboids = new ArrayList<>();
 		cuboids.add(new Cuboid6(bp, bp, bp, ep, ep, ep));
 		
-		for(EnumFacing facing : EnumFacing.VALUES) if(apply(facing))
-		{
-			if(facing == EnumFacing.UP) cuboids.add(new Cuboid6(6 / 16D, 10 / 16D, 6 / 16D, 10 / 16D, 1, 10 / 16D));
-			if(facing == EnumFacing.DOWN) cuboids.add(new Cuboid6(6 / 16D, 0, 6 / 16D, 10 / 16D, 6 / 16D, 10 / 16D));
-			if(facing == EnumFacing.EAST) cuboids.add(new Cuboid6(10 / 16D, 6 / 16D, 6 / 16D, 1, 10 / 16D, 10 / 16D));
-			if(facing == EnumFacing.WEST) cuboids.add(new Cuboid6(0, 6 / 16D, 6 / 16D, 6 / 16D, 10 / 16D, 10 / 16D));
-			if(facing == EnumFacing.SOUTH) cuboids.add(new Cuboid6(6 / 16D, 6 / 16D, 10 / 16D, 10 / 16D, 10 / 16D, 1));
-			if(facing == EnumFacing.NORTH) cuboids.add(new Cuboid6(6 / 16D, 6 / 16D, 0, 10 / 16D, 10 / 16D, 6 / 16D));
-		}
+		for(EnumFacing facing : EnumFacing.VALUES)
+			if(apply(facing))
+			{
+				if(facing == EnumFacing.UP)
+					cuboids.add(new Cuboid6(6 / 16D, 10 / 16D, 6 / 16D, 10 / 16D, 1, 10 / 16D));
+				if(facing == EnumFacing.DOWN)
+					cuboids.add(new Cuboid6(6 / 16D, 0, 6 / 16D, 10 / 16D, 6 / 16D, 10 / 16D));
+				if(facing == EnumFacing.EAST)
+					cuboids.add(new Cuboid6(10 / 16D, 6 / 16D, 6 / 16D, 1, 10 / 16D, 10 / 16D));
+				if(facing == EnumFacing.WEST)
+					cuboids.add(new Cuboid6(0, 6 / 16D, 6 / 16D, 6 / 16D, 10 / 16D, 10 / 16D));
+				if(facing == EnumFacing.SOUTH)
+					cuboids.add(new Cuboid6(6 / 16D, 6 / 16D, 10 / 16D, 10 / 16D, 10 / 16D, 1));
+				if(facing == EnumFacing.NORTH)
+					cuboids.add(new Cuboid6(6 / 16D, 6 / 16D, 0, 10 / 16D, 10 / 16D, 6 / 16D));
+			}
 		
 		hitboxes = cuboids.toArray(new Cuboid6[0]);
 	}
@@ -96,12 +109,15 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		setSuction(0);
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
-			TileEntity te = world.getTileEntity(pos.offset(f));
-			if(!getConnectable(f) || te == null || !(te instanceof IConnection)) continue;
-			IConnection ic2 = (IConnection) te;
-			if(getVisSuction(null) < ic2.getVisSuction(pos) - 1) setVisSuction(ic2.getVisSuction(pos) - 1);
-			if(getTaintSuction(null) >= ic2.getTaintSuction(pos) - 1) continue;
-			setTaintSuction(ic2.getTaintSuction(pos) - 1);
+			IConnection ic = ConnectionManager.getConnection(world, pos, f);
+			if(ic == null)
+				continue;
+			
+			if(getVisSuction(null) < ic.getVisSuction(pos) - 1)
+				setVisSuction(ic.getVisSuction(pos) - 1);
+			if(getTaintSuction(null) >= ic.getTaintSuction(pos) - 1)
+				continue;
+			setTaintSuction(ic.getTaintSuction(pos) - 1);
 		}
 	}
 	
@@ -109,12 +125,13 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 	{
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
-			TileEntity te = world.getTileEntity(pos.offset(f));
-			if(!getConnectable(f) || te == null || !(te instanceof IConnection))
+			IConnection ent = ConnectionManager.getConnection(world, pos, f);
+			if(ent == null)
 				continue;
-			IConnection ent = (IConnection) te;
+			
 			if(pureVis + taintedVis >= maxVis || getVisSuction(null) <= ent.getVisSuction(pos) && getTaintSuction(null) <= ent.getTaintSuction(pos))
 				continue;
+			
 			float[] results = new float[] { 0.0f, 0.0f };
 			float qq = Math.min((ent.getPureVis() + ent.getTaintedVis()) / 4.0f, fillAmount);
 			results = ent.subtractVis(Math.min(qq, maxVis - (pureVis + taintedVis)));
@@ -132,7 +149,7 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 			}
 			ent.setTaintedVis(results[1] + ent.getTaintedVis());
 		}
-		pureVis = (float) MathHelper.clip(pureVis,  0F, maxVis);
+		pureVis = (float) MathHelper.clip(pureVis, 0F, maxVis);
 		taintedVis = (float) MathHelper.clip(taintedVis, 0F, maxVis);
 	}
 	
@@ -210,11 +227,16 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		float pureAmount = amount / 2.0f;
 		float taintAmount = amount / 2.0f;
 		float[] result = new float[] { 0.0f, 0.0f };
-		if(amount < 0.001f) return result;
-		if(pureVis < pureAmount) pureAmount = pureVis;
-		if(taintedVis < taintAmount) taintAmount = taintedVis;
-		if(pureAmount < amount / 2.0f && taintAmount == amount / 2.0f) taintAmount = Math.min(amount - pureAmount, taintedVis);
-		else if(taintAmount < amount / 2.0f && pureAmount == amount / 2.0f) pureAmount = Math.min(amount - taintAmount, pureVis);
+		if(amount < 0.001f)
+			return result;
+		if(pureVis < pureAmount)
+			pureAmount = pureVis;
+		if(taintedVis < taintAmount)
+			taintAmount = taintedVis;
+		if(pureAmount < amount / 2.0f && taintAmount == amount / 2.0f)
+			taintAmount = Math.min(amount - pureAmount, taintedVis);
+		else if(taintAmount < amount / 2.0f && pureAmount == amount / 2.0f)
+			pureAmount = Math.min(amount - taintAmount, pureVis);
 		pureVis -= pureAmount;
 		taintedVis -= taintAmount;
 		result[0] = pureAmount;
@@ -260,14 +282,31 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 	}
 	
 	@Override
-    public boolean apply(EnumFacing input)
-    {
+	public boolean apply(EnumFacing input)
+	{
 		BlockPos tpos = pos.offset(input);
 		if(world.isBlockLoaded(tpos))
 		{
-			IConnection c = WorldUtil.cast(world.getTileEntity(tpos), IConnection.class);
-			if(c != null) return getConnectable(input) && c.getConnectable(input.getOpposite());
+			IConnection c = ConnectionManager.getConnection(world, pos, input);
+			if(c != null)
+				return getConnectable(input) && c.getConnectable(input.getOpposite());
 		}
 		return false;
-    }
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return true;
+		return super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return (T) this;
+		return super.getCapability(capability, facing);
+	}
 }

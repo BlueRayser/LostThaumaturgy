@@ -1,14 +1,13 @@
 package com.pengu.lostthaumaturgy.items;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
+
+import com.pengu.lostthaumaturgy.LTInfo;
 
 public class ItemThaumiumArmor extends ItemArmor
 {

@@ -1,8 +1,5 @@
 package com.pengu.lostthaumaturgy.block;
 
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.pengu.lostthaumaturgy.tile.TilePurifier;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -13,10 +10,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumFacing.Axis;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import com.mrdimka.hammercore.api.ITileBlock;
+import com.pengu.lostthaumaturgy.tile.TilePurifier;
 
 public class BlockPurifier extends Block implements ITileEntityProvider, ITileBlock<TilePurifier>
 {

@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.client.extpart;
 
-import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;

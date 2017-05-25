@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.ResourceLocation;
@@ -24,6 +23,7 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
@@ -370,13 +370,12 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 			
 			for(EnumFacing f : EnumFacing.VALUES)
 			{
-				TileEntity te = world.getTileEntity(pos.offset(f));
-				if(!tc.apply(f) || !tc.getConnectable(f) || te == null || !(te instanceof IConnection)) continue;
-				IConnection ic2 = (IConnection) te;
+				IConnection ic = ConnectionManager.getConnection(world, pos, f);
+				if(ic == null) continue;
 				
-				TileVisUser user = WorldUtil.cast(ic2, TileVisUser.class);
+				TileVisUser user = WorldUtil.cast(ic, TileVisUser.class);
 				
-				if(tc.getSuction(null) == ic2.getSuction(pos) + 1 || tc.getSuction(null) == ic2.getSuction(pos) - 1 || (user != null && user.getSuction(user.getPos()) >= tc.getSuction(null)))
+				if(tc.getSuction(null) == ic.getSuction(pos) + 1 || tc.getSuction(null) == ic.getSuction(pos) - 1 || (user != null && user.getSuction(user.getPos()) >= tc.getSuction(null)))
 				{
 					if(f == EnumFacing.UP) rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);
 	    			if(f == EnumFacing.DOWN) rb.setRenderBounds(wq2 + hfill, (w1 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, (6 + w1) / 16D, 1 - wq2 - hfill);

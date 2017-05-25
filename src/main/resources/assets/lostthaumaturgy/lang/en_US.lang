@@ -36,6 +36,8 @@ tile.lostthaumaturgy:silverwood_leaves.name=Silverwood Leaves
 tile.lostthaumaturgy:silverwood_log.name=Silverwood Log
 tile.lostthaumaturgy:silverwood_planks.name=Silverwood Planks
 tile.lostthaumaturgy:silverwood_stairs.name=Silverwood Stairs
+tile.lostthaumaturgy:crystallizer.name=Crystallizer
+tile.lostthaumaturgy:nitor.name=Nitor
 
 
 
@@ -81,6 +83,22 @@ item.lostthaumaturgy:thaumium_chestplate.name=Thaumium Chestplate
 item.lostthaumaturgy:thaumium_leggings.name=Thaumium Leggings
 item.lostthaumaturgy:thaumium_boots.name=Thaumium Boots
 item.lostthaumaturgy:wand_item_freeze.name=Item Freezing Wand
+item.lostthaumaturgy:upgrades/quicksilver_core.name=Quicksilver Core
+item.lostthaumaturgy:upgrades/quicksilver_core.tooltip0=Improves speed
+item.lostthaumaturgy:upgrades/stabilized_singularity.name=Stabilized Singularity
+item.lostthaumaturgy:upgrades/stabilized_singularity.tooltip0=Improves efficiency
+item.lostthaumaturgy:upgrades/harnessed_rage.name=Harnessed Rage
+item.lostthaumaturgy:upgrades/harnessed_rage.tooltip0=Increases aggression and damage
+item.lostthaumaturgy:upgrades/concentrated_evil.name=Concentrated Evil
+item.lostthaumaturgy:upgrades/concentrated_evil.tooltip0=Unlocks functions that involve taint
+item.lostthaumaturgy:upgrades/infinite_saddness.name=Infinite Sadness
+item.lostthaumaturgy:upgrades/infinite_saddness.tooltip0=Upgrades ?
+item.lostthaumaturgy:upgrades/contained_emptiness.name=Contained Emptiness
+item.lostthaumaturgy:upgrades/contained_emptiness.tooltip0=Increases capacity
+item.lostthaumaturgy:upgrades/collected_wisdom.name=Collected Wisdom
+item.lostthaumaturgy:upgrades/collected_wisdom.tooltip0=Increases mystical capacity or knowledge
+item.lostthaumaturgy:wand_reversal.name=Wand of Reversal
+item.lostthaumaturgy:singularity.name=Arcane Singularity
 
 
 
@@ -110,6 +128,15 @@ research.lostthaumaturgy:thaumium_vis_pump.desc=Thaumium Vis Pump is a good atte
 
 research.lostthaumaturgy:thaumium_bellows.title=Thaumium Bellows
 research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows are good to upgrade some of your machines. Thaumium Reinforced Bellows improves the suction up to 25, from 10.
+
+research.lostthaumaturgy:singularity.title=Arcane Singularity
+research.lostthaumaturgy:singularity.desc=Arcane Singularity is a mysterious object that is so dense to actually move entities to itself. Just throw it, but not close to your home!
+
+research.lostthaumaturgy:quicksilver_core.title=Quicksilver Core
+research.lostthaumaturgy:quicksilver_core.desc=Quicksilver Core is an upgrade for some thaumic machines. It improves speed but in most cases increases vis usage.
+
+research.lostthaumaturgy:wand_reversal.title=Wand of Reversal
+research.lostthaumaturgy:wand_reversal.desc=Dismantling upgrades wasn't as easy as it is with Wand of Reversal. Just use it on thaumic machine to dismantle the upgrade.
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Basics

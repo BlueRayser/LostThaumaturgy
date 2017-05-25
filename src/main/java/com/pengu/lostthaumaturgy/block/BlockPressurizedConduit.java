@@ -12,7 +12,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.api.mhb.BlockTraceable;
 import com.mrdimka.hammercore.api.mhb.ICubeManager;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.vec.Cuboid6;

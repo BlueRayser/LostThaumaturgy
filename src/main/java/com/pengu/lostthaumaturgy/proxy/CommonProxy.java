@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.proxy;
 
-import javax.annotation.Nullable;
-
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;

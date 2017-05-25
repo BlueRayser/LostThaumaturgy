@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 

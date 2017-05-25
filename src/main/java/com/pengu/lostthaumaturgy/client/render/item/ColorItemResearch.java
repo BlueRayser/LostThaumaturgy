@@ -1,10 +1,10 @@
 package com.pengu.lostthaumaturgy.client.render.item;
 
-import com.pengu.lostthaumaturgy.custom.research.Research;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
+
+import com.pengu.lostthaumaturgy.custom.research.Research;
+import com.pengu.lostthaumaturgy.items.ItemResearch;
 
 public class ColorItemResearch implements IItemColor
 {

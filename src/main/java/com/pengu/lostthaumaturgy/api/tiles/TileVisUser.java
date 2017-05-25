@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.api.tiles;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
 
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
@@ -190,4 +191,20 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 		visSuction = nbt.getInteger("VisSuction");
 		taintSuction = nbt.getInteger("TaintSuction");
     }
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return true;
+		return super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return (T) this;
+		return super.getCapability(capability, facing);
+	}
 }

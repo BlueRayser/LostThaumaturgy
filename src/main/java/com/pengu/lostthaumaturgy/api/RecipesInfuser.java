@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;

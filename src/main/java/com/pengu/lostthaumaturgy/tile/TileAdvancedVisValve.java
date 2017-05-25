@@ -1,10 +1,10 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.mrdimka.hammercore.vec.Cuboid6;
-
-import net.minecraft.nbt.NBTTagCompound;
 
 public class TileAdvancedVisValve extends TileConduit
 {

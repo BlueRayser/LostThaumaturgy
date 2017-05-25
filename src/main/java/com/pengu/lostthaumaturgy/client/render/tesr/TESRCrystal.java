@@ -125,7 +125,7 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 		}
 	}
 	
-	private void drawCrystal(int ori, float x, float y, float z, float a1, float a2, float shade, Random rand, float red, float green, float blue)
+	public void drawCrystal(int ori, float x, float y, float z, float a1, float a2, float shade, Random rand, float red, float green, float blue)
 	{
 		GLRenderState blend = GLRenderState.BLEND;
 		blend.captureState();

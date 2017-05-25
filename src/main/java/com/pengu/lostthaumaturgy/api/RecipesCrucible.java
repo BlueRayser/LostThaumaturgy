@@ -3,10 +3,8 @@ package com.pengu.lostthaumaturgy.api;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import net.minecraft.item.Item;
@@ -18,14 +16,11 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.mrdimka.hammercore.common.match.item.ItemContainer;
 import com.mrdimka.hammercore.common.match.item.ItemMatchParams;
-import com.mrdimka.hammercore.common.utils.ArrayEntry;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.event.CalculateCrucibleValueByRecipeEvent;
 import com.pengu.lostthaumaturgy.api.event.ReloadRegisteredCrucibleRecipesEvent;

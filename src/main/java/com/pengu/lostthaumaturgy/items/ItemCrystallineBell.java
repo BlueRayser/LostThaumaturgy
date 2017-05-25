@@ -1,5 +1,18 @@
 package com.pengu.lostthaumaturgy.items;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.api.items.IVisRepairable;
@@ -7,20 +20,6 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
-
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Enchantments;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class ItemCrystallineBell extends Item implements IVisRepairable
 {

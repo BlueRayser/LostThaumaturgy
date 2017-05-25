@@ -1,8 +1,8 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-
 import net.minecraft.util.ResourceLocation;
+
+import com.pengu.lostthaumaturgy.LTInfo;
 
 public class TESRThaumiumBellows extends TESRBellows
 {

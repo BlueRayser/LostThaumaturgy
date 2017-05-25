@@ -6,7 +6,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -19,9 +18,7 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.IUpdatable;
 import com.mrdimka.hammercore.raytracer.RayTracer;
-import com.pengu.hammercore.client.particle.api.common.ExtendedParticleTicker;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
-import com.pengu.lostthaumaturgy.client.extpart.EPFlyingCrystal;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 
 public class ItemWandOfItemFreeze extends Item
@@ -37,7 +34,7 @@ public class ItemWandOfItemFreeze extends Item
 	public int getRGBDurabilityForDisplay(ItemStack stack)
 	{
 		float damage = Math.max(0F, (float) (stack.getMaxDamage() - stack.getItemDamage()) / stack.getMaxDamage());
-		int color = 0xE400C4;
+		int color = 0x0043FF;
 		
 		int target = (int) (damage * 255F);
 		target = (target << 16) | (target << 8) | target;

@@ -4,8 +4,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -14,9 +12,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.api.mhb.BlockTraceable;
 import com.mrdimka.hammercore.api.mhb.ICubeManager;
-import com.mrdimka.hammercore.api.mhb.IRayCubeGetter;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.vec.Cuboid6;
 import com.pengu.lostthaumaturgy.LTInfo;

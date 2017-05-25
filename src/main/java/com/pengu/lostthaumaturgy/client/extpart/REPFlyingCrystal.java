@@ -7,12 +7,10 @@ import net.minecraft.util.math.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.hammercore.client.particle.api.ParticleList;
 import com.pengu.hammercore.client.particle.api.ParticleRenderer;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
-import com.pengu.lostthaumaturgy.client.model.ModelWandOfItemFreeze;
 
 public class REPFlyingCrystal extends ParticleRenderer<EPFlyingCrystal>
 {

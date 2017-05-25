@@ -4,5 +4,7 @@
 	"roots": { "sounds": ["lostthaumaturgy:roots"] },
 	"fizz": { "sounds": ["lostthaumaturgy:fizz"] },
 	"creaking": { "sounds": ["lostthaumaturgy:creaking1","lostthaumaturgy:creaking2"] },
-	"discover": { "sounds": ["lostthaumaturgy:discover"] }
+	"discover": { "sounds": ["lostthaumaturgy:discover"] },
+	"upgrade": { "sounds": ["lostthaumaturgy:upgrade"] },
+	"zap": { "sounds": ["lostthaumaturgy:zap1","lostthaumaturgy:zap2"] }
 }

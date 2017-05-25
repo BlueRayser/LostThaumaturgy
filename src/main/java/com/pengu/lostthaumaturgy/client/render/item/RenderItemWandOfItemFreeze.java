@@ -1,15 +1,12 @@
 package com.pengu.lostthaumaturgy.client.render.item;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.GlStateManager.FogMode;
-import net.minecraft.client.renderer.GlStateManager.LogicOp;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+
+import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.render.item.IItemRender;
 import com.pengu.hammercore.color.Color;

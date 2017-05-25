@@ -10,14 +10,11 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.api.mhb.BlockTraceable;
 import com.mrdimka.hammercore.api.mhb.ICubeManager;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.vec.Cuboid6;

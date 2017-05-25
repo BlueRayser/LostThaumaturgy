@@ -13,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
@@ -41,7 +40,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	public float sucked = 0.0f;
 	protected int soundDelay = 0;
 	public int boost = 0;
-	protected byte[] upgrades = new byte[] { -1 };
+	protected int[] upgrades = new int[] { -1 };
 	int boostDelay = 20;
 	public UUID initiator = null;
 	public int entry;
@@ -72,9 +71,12 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		infuserItemStacks.readFromNBT(nbt.getCompoundTag("Items"));
 		this.infuserCookTime = nbt.getFloat("CookTime");
 		this.currentItemCookCost = nbt.getFloat("CookCost");
-		this.upgrades = nbt.getByteArray("Upgrades");
+		this.upgrades = nbt.getIntArray("Upgrades");
 		entry = nbt.getInteger("Entry");
 		sucked = nbt.getFloat("Sucked");
+		
+		if(upgrades.length != 1)
+			upgrades = new int[] { -1 };
 	}
 	
 	public void writeNBT(NBTTagCompound nbt)
@@ -82,7 +84,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		super.writeNBT(nbt);
 		nbt.setFloat("CookTime", this.infuserCookTime);
 		nbt.setFloat("CookCost", this.currentItemCookCost);
-		nbt.setByteArray("Upgrades", this.upgrades);
+		nbt.setIntArray("Upgrades", this.upgrades);
 		NBTTagCompound items = new NBTTagCompound();
 		infuserItemStacks.writeToNBT(items);
 		nbt.setTag("Items", items);
@@ -277,7 +279,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 			Object[] items = isal.toArray();
 			entry = RecipesInfuser.findEntry(items, this);
 			return RecipesInfuser.getInfusingResult(items, this);
-		}else if(entry != -1)
+		} else if(entry != -1)
 		{
 			entry = -1;
 			sync();
@@ -346,24 +348,6 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		return !stack.isEmpty() && stack.getItem() == ItemsLT.MULTI_MATERIAL && (stack.getItemDamage() == EnumMultiMaterialType.AQUEOUS_CRYSTAL.getDamage() || stack.getItemDamage() == EnumMultiMaterialType.EARTHEN_CRYSTAL.getDamage() || stack.getItemDamage() == EnumMultiMaterialType.FIERY_CRYSTAL.getDamage() || stack.getItemDamage() == EnumMultiMaterialType.TAINTED_CRYSTAL.getDamage() || stack.getItemDamage() == EnumMultiMaterialType.VAPOROUS_CRYSTAL.getDamage() || stack.getItemDamage() == EnumMultiMaterialType.VIS_CRYSTAL.getDamage());
 	}
 	
-	public int getStartInventorySide(int side)
-	{
-		if(side == 0 || side == 1)
-		{
-			return 2;
-		}
-		return 0;
-	}
-	
-	public int getSizeInventorySide(int side)
-	{
-		if(side == 0 || side == 1)
-		{
-			return 6;
-		}
-		return 2;
-	}
-	
 	@Override
 	public boolean getConnectable(EnumFacing face)
 	{
@@ -371,58 +355,19 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	}
 	
 	@Override
-	public boolean canAcceptUpgrade(byte upgrade)
+	public boolean canAcceptUpgrade(int upgrade)
 	{
-		if(upgrade != 0 && upgrade != 1)
-		{
+		if(upgrade != ItemsLT.QUICKSILVER_CORE.getUpgradeId() && upgrade != ItemsLT.STABILIZED_SINGULARITY.getUpgradeId())
 			return false;
-		}
-		if(this.hasUpgrade(upgrade))
-		{
+		if(hasUpgrade(upgrade))
 			return false;
-		}
 		return true;
 	}
 	
 	@Override
-	public int getUpgradeLimit()
+	public int[] getUpgrades()
 	{
-		return 1;
-	}
-	
-	@Override
-	public byte[] getUpgrades()
-	{
-		return this.upgrades;
-	}
-	
-	@Override
-	public boolean hasUpgrade(byte upgrade)
-	{
-		if(this.upgrades.length < 1)
-		{
-			return false;
-		}
-		for(int a = 0; a < this.getUpgradeLimit(); ++a)
-		{
-			if(this.upgrades[a] != upgrade)
-				continue;
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public boolean setUpgrade(byte upgrade)
-	{
-		for(int a = 0; a < this.getUpgradeLimit(); ++a)
-		{
-			if(this.upgrades[a] >= 0 || !this.canAcceptUpgrade(upgrade))
-				continue;
-			this.upgrades[a] = upgrade;
-			return true;
-		}
-		return false;
+		return upgrades;
 	}
 	
 	@Override
@@ -475,7 +420,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	@Override
 	public int getInventoryStackLimit()
 	{
-		return infuserItemStacks.getInventoryStackLimit();
+		return 1;
 	}
 	
 	@Override
@@ -538,19 +483,19 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	@Override
 	public int[] getSlotsForFace(EnumFacing side)
 	{
-		return infuserItemStacks.getAllAvaliableSlots();
+		return side == EnumFacing.UP ? new int[0] : infuserItemStacks.getAllAvaliableSlots();
 	}
 	
 	@Override
 	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
 	{
-		return direction.getAxis() != Axis.Y && index > 1 && index < 7;
+		return direction != EnumFacing.UP && index > 1 && index < 7;
 	}
 	
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
 	{
-		return index >= 0 && index < 2;
+		return direction != EnumFacing.UP && index >= 0 && index < 2;
 	}
 	
 	public boolean isConnected(EnumFacing to)

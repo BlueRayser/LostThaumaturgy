@@ -18,8 +18,6 @@ import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
-import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class InfuserRecipeWrapper implements IRecipeWrapper
 {

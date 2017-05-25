@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.block;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

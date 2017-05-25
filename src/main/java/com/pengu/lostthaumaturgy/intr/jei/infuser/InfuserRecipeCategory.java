@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.intr.jei.infuser;
 
-import org.lwjgl.opengl.GL11;
-
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -10,11 +8,11 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.GLRenderState;
+import org.lwjgl.opengl.GL11;
+
 import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;

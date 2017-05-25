@@ -7,9 +7,12 @@ import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
+import com.pengu.lostthaumaturgy.items.ItemSingularity;
 import com.pengu.lostthaumaturgy.items.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
+import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.items.ItemWandOfItemFreeze;
+import com.pengu.lostthaumaturgy.items.ItemWandReversal;
 
 public class ItemsLT
 {
@@ -23,5 +26,15 @@ public class ItemsLT
 	        THAUMIUM_CHESTPLATE = new ItemThaumiumArmor(EntityEquipmentSlot.CHEST), //
 	        THAUMIUM_LEGGINGS = new ItemThaumiumArmor(EntityEquipmentSlot.LEGS), //
 	        THAUMIUM_BOOTS = new ItemThaumiumArmor(EntityEquipmentSlot.FEET), //
-	        WAND_ITEM_FREEZE = new ItemWandOfItemFreeze();
+	        WAND_ITEM_FREEZE = new ItemWandOfItemFreeze(), //
+	        WAND_REVERSAL = new ItemWandReversal(), //
+	        SINGULARITY = new ItemSingularity();
+	public static final ItemUpgrade //
+	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //
+	        STABILIZED_SINGULARITY = new ItemUpgrade("stabilized_singularity"), //
+	        HARNESSED_RAGE = new ItemUpgrade("harnessed_rage"), //
+	        CONCENTRATED_EVIL = new ItemUpgrade("concentrated_evil"), //
+	        INFINITE_SADDNESS = new ItemUpgrade("infinite_saddness"), //
+	        CONTAINED_EMPTINESS = new ItemUpgrade("contained_emptiness"), //
+	        COLLECTED_WISDOM = new ItemUpgrade("collected_wisdom");
 }

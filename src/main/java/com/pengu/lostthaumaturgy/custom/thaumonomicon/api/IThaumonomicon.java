@@ -5,7 +5,6 @@ import javax.annotation.Nonnull;
 import net.minecraft.item.ItemStack;
 
 import com.mrdimka.hammercore.HammerCore;
-import com.pengu.lostthaumaturgy.LostThaumaturgy;
 
 public interface IThaumonomicon
 {

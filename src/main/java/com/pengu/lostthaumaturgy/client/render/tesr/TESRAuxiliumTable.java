@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,17 +8,16 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.client.GLRenderState;
 import com.mrdimka.hammercore.client.utils.RenderBlocks;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
-import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 
 public class TESRAuxiliumTable extends TESR<TileAuxiliumTable>
 {

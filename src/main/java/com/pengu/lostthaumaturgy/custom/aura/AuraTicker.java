@@ -47,7 +47,6 @@ import com.pengu.lostthaumaturgy.custom.aura.api.AuraAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
-import com.pengu.lostthaumaturgy.net.PacketUpdateClientRD;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
 
@@ -208,6 +207,43 @@ public class AuraTicker
 				HCNetwork.manager.sendTo(ResearchSystem.getPacketFor(mp), mp);
 			}
 		}
+	}
+	
+	public static int getCrystalByBiome(World world, BlockPos pos, int darkAmount)
+	{
+		int type;
+		int c0 = 1;
+		int c1 = 1;
+		int c2 = 1;
+		int c3 = 1;
+		int c4 = 1;
+		int c5 = darkAmount;
+		Biome bio = world.getBiome(pos);
+		if(AuraTicker.BIOME_MAGIC.contains(bio))
+			++c0;
+		if(AuraTicker.BIOME_AIR.contains(bio))
+			++c1;
+		if(AuraTicker.BIOME_WATER.contains(bio))
+			++c2;
+		if(AuraTicker.BIOME_EARTH.contains(bio))
+			++c3;
+		if(AuraTicker.BIOME_FIRE.contains(bio))
+			++c4;
+		if(darkAmount > 0 && AuraTicker.BIOME_TAINT.contains(bio))
+			++c5;
+		if((type = world.rand.nextInt(c0 + c1 + c2 + c3 + c4 + c5)) < c0)
+			type = 0;
+		else if(type < c0 + c1)
+			type = 1;
+		else if(type < c0 + c1 + c2)
+			type = 2;
+		else if(type < c0 + c1 + c2 + c3)
+			type = 3;
+		else if(type < c0 + c1 + c2 + c3 + c4)
+			type = 4;
+		else if(type < c0 + c1 + c2 + c3 + c4 + c5)
+			type = 5;
+		return type;
 	}
 	
 	public static SIAuraChunk getAuraChunkFromBlockCoords(World world, BlockPos pos)

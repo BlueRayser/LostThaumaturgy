@@ -39,12 +39,14 @@ import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
 import com.pengu.lostthaumaturgy.client.render.item.RenderItemWandOfItemFreeze;
+import com.pengu.lostthaumaturgy.client.render.item.RenderItemWandReversal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRAdvancedVisValve;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRAuxiliumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRBellows;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRLyingItem;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
@@ -73,6 +75,7 @@ import com.pengu.lostthaumaturgy.tile.TileBellows;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
+import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
@@ -137,8 +140,10 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileStudiumTable.class, BlocksLT.STUDIUM_TABLE, TESRStudiumTable.INSTANCE);
 		registerRender(TileAuxiliumTable.class, BlocksLT.AUXILIUM_TABLE, TESRAuxiliumTable.INSTANCE);
 		registerRender(TileLyingItem.class, BlocksLT.LYING_ITEM, TESRLyingItem.INSTANCE);
+		registerRender(TileCrystallizer.class, BlocksLT.CRYSTALLIZER, TESRCrystallizer.INSTANCE);
 		
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_ITEM_FREEZE, new RenderItemWandOfItemFreeze());
+		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_REVERSAL, new RenderItemWandReversal());
 		
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
 		

@@ -21,8 +21,10 @@ public class ResearchesLT
 	        CRYSTALLINE_BELL = new Research(LTInfo.MOD_ID + ":crystalline_bell", 75, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0xAFFFFF), //
 	        PRESSURIZED_COUNDUIT = new Research(LTInfo.MOD_ID + ":pressurized_conduit", 50, Research.CATEGORY_THAUMATURGY), //
 	        THAUMIUM_VIS_PUMP = new Research(LTInfo.MOD_ID + ":thaumium_vis_pump", 80, Research.CATEGORY_THAUMATURGY).setColor(0xC14CFF), //
-	        THAUMIUM_BELLOWS = new Research(LTInfo.MOD_ID + ":thaumium_bellows", 50, Research.CATEGORY_THAUMATURGY)
-	        ;
+	        THAUMIUM_BELLOWS = new Research(LTInfo.MOD_ID + ":thaumium_bellows", 50, Research.CATEGORY_THAUMATURGY), //
+	        SINGULARITY = new Research(LTInfo.MOD_ID + ":singularity", 35, Research.CATEGORY_LOST_KNOWLEDGE), //
+	        QUICKSILVER_CORE = new Research(LTInfo.MOD_ID + ":quicksilver_core", 35, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0xBEBDEA), //
+	        WAND_REVERSAL = new Research(LTInfo.MOD_ID + ":wand_reversal", 45, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0x7298B3);
 	
 	public static void registerResearches()
 	{
@@ -34,13 +36,20 @@ public class ResearchesLT
 			PRESSURIZED_COUNDUIT.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.PRESSURIZED_CONDUIT));
 			THAUMIUM_VIS_PUMP.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.THAUMIUM_VIS_PUMP));
 			THAUMIUM_BELLOWS.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(BlocksLT.THAUMIUM_BELLOWS));
+			SINGULARITY.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(ItemsLT.SINGULARITY));
+			QUICKSILVER_CORE.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(ItemsLT.QUICKSILVER_CORE));
+			WAND_REVERSAL.getPageHandler().thaumonomiconIcon = new Getter(new ItemStack(ItemsLT.WAND_REVERSAL));
 		}
 		
-		for(Field f : ResearchesLT.class.getDeclaredFields()) if(Research.class.isAssignableFrom(f.getType())) try
-		{
-			Research r = (Research) f.get(null);
-			ResearchRegistry.registerResearch(r);
-		} catch(Throwable er) {}
+		for(Field f : ResearchesLT.class.getDeclaredFields())
+			if(Research.class.isAssignableFrom(f.getType()))
+				try
+				{
+					Research r = (Research) f.get(null);
+					ResearchRegistry.registerResearch(r);
+				} catch(Throwable er)
+				{
+				}
 		
 		IThaumonomicon t = IThaumonomicon.instance;
 		t.setCategoryItemIcon(EnumMultiMaterialType.ANCIENT_SEAL.stack(), Research.CATEGORY_LOST_KNOWLEDGE);

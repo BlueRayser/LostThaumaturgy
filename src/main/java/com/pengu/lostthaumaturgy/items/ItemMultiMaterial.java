@@ -12,6 +12,7 @@ import com.pengu.hammercore.utils.IRegisterListener;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
+import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class ItemMultiMaterial extends MultiVariantItem implements IRegisterListener
 {
@@ -63,7 +64,11 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 	{
 		for(int i = 0; i < this.names.length; ++i)
 			if(EnumMultiMaterialType.values()[i].tab == tab || tab == LostThaumaturgy.tab)
+			{
 				l.add(new ItemStack(item, 1, i));
+				if(i == EnumMultiMaterialType.ALUMENTUM.ordinal())
+					l.add(new ItemStack(BlocksLT.NITOR));
+			}
 	}
 	
 	@Override
@@ -170,6 +175,16 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		public ItemStack get()
 		{
 			return stack();
+		}
+		
+		public boolean isThisItem(ItemStack src)
+		{
+			return src.getItem() == ItemsLT.MULTI_MATERIAL && src.getItemDamage() == getDamage();
+		}
+		
+		public static boolean isCrystal(ItemStack src)
+		{
+			return DEPLETED_CRYSTAL.isThisItem(src) || VAPOROUS_CRYSTAL.isThisItem(src) || AQUEOUS_CRYSTAL.isThisItem(src) || FIERY_CRYSTAL.isThisItem(src) || EARTHEN_CRYSTAL.isThisItem(src) || VIS_CRYSTAL.isThisItem(src) || TAINTED_CRYSTAL.isThisItem(src);
 		}
 	}
 }

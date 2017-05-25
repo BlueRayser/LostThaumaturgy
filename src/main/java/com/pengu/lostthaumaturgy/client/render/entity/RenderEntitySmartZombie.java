@@ -1,14 +1,14 @@
 package com.pengu.lostthaumaturgy.client.render.entity;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderZombie;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 
 public class RenderEntitySmartZombie extends RenderZombie
 {

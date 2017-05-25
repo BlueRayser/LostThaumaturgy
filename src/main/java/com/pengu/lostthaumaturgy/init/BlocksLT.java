@@ -13,12 +13,14 @@ import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
 import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
+import com.pengu.lostthaumaturgy.block.BlockNitor;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
 import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
+import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.block.BlockThaumiumBellows;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
 import com.pengu.lostthaumaturgy.block.BlockVisPump;
@@ -53,7 +55,9 @@ public class BlocksLT
 	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve(), //
 	        STUDIUM_TABLE = new BlockStudiumTable(), //
 	        AUXILIUM_TABLE = new BlockAuxiliumTable(), //
-	        CRYSTALLIZER = new BlockCrystallizer();
+	        CRYSTALLIZER = new BlockCrystallizer(), //
+	        NITOR = new BlockNitor(),
+	        TAINTED_SOIL = new BlockTaintedSoil();
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //

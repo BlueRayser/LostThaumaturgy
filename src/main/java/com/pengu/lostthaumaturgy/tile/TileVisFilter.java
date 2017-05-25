@@ -1,14 +1,14 @@
 package com.pengu.lostthaumaturgy.tile;
 
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
-import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
+
+import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class TileVisFilter extends TileConduit
 {

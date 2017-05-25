@@ -1,10 +1,10 @@
 package com.pengu.lostthaumaturgy.entity;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import com.pengu.lostthaumaturgy.LTInfo;
 
 public class EntitySmartZombie extends EntityZombie
 {

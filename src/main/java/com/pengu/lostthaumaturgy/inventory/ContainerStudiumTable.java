@@ -1,17 +1,14 @@
 package com.pengu.lostthaumaturgy.inventory;
 
-import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+
 import com.pengu.lostthaumaturgy.inventory.slot.SlotCrucible;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotPaper;
 import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotShulkerBox;
-import net.minecraft.item.ItemStack;
 
 public class ContainerStudiumTable extends Container
 {

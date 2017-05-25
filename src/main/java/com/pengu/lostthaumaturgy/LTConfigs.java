@@ -4,6 +4,7 @@ import com.mrdimka.hammercore.cfg.HCModConfigurations;
 import com.mrdimka.hammercore.cfg.IConfigReloadListener;
 import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyBool;
 import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyInt;
+import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyStringList;
 
 @HCModConfigurations(modid = LTInfo.MOD_ID)
 public class LTConfigs implements IConfigReloadListener
@@ -19,4 +20,7 @@ public class LTConfigs implements IConfigReloadListener
 	
 	@ModConfigPropertyBool(category = "Client", name = "Use Shaders", defaultValue = true, comment = "Should we use shaders? This only works if your hardware supports them.")
 	public static boolean client_useShaders;
+	
+	@ModConfigPropertyStringList(category = "Gameplay", name = "Taintable Blocks", comment = "What blocks could get tainted by tainted soil?\nFormatting:\nmodid:blockname\nIf it is from vanilla, you don't have to use minecraft prefix.\nTaint DOES store TileEntity so you can add something like \"furnace\" and it is going to work fine.", defaultValue = { "dirt", "grass", "sand", "gravel", "stone", "cobblestone" }, allowedValues = {})
+	public static String[] taintableBlocks = {};
 }

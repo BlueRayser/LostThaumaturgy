@@ -1,21 +1,16 @@
 package com.pengu.lostthaumaturgy.init;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.mrdimka.hammercore.annotations.MCFBus;
-import com.mrdimka.hammercore.common.match.item.ItemContainer;
-import com.mrdimka.hammercore.common.match.item.ItemMatchParams;
 import com.mrdimka.hammercore.common.utils.IOUtils;
 import com.mrdimka.hammercore.json.JSONObject;
 import com.mrdimka.hammercore.json.JSONTokener;

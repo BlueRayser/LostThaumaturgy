@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 
 public class TileVisPump extends TileSyncableTickable implements IConnection
@@ -20,8 +21,6 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 	
 	public void tick()
 	{
-		TileEntity te = world.isBlockLoaded(pos.offset(orientation)) ? world.getTileEntity(pos.offset(orientation)) : null;
-		
 		if(gettingPower())
 		{
 			ticksExisted--;
@@ -30,10 +29,14 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 		
 		if(world.isRemote) return;
 		
-		if(pureVis + taintedVis < maxVis && te instanceof IConnection && (((IConnection) te).isVisConduit() || ((IConnection) te).isVisSource()))
+		IConnection c = ConnectionManager.getConnection(world, pos, orientation);
+		
+		if(c == null) return;
+		
+		if(pureVis + taintedVis < maxVis && c != null && c.isVisConduit() || c.isVisSource())
 		{
 			float suckamount = Math.min(this.fillAmount, this.maxVis - (this.pureVis + this.taintedVis));
-			float[] yum = ((IConnection) te).subtractVis(suckamount);
+			float[] yum = c.subtractVis(suckamount);
 			this.pureVis += yum[0];
 			this.taintedVis += yum[1];
 		}

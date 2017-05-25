@@ -9,9 +9,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -22,7 +19,6 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileVisTank;

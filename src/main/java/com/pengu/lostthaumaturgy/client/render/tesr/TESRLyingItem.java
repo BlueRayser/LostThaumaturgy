@@ -2,11 +2,11 @@ package com.pengu.lostthaumaturgy.client.render.tesr;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;

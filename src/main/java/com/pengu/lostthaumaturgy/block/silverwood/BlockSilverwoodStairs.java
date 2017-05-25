@@ -1,9 +1,9 @@
 package com.pengu.lostthaumaturgy.block.silverwood;
 
-import com.pengu.lostthaumaturgy.init.BlocksLT;
-
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
+
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class BlockSilverwoodStairs extends BlockStairs
 {

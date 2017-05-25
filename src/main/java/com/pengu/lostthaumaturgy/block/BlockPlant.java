@@ -1,7 +1,6 @@
 package com.pengu.lostthaumaturgy.block;
 
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;

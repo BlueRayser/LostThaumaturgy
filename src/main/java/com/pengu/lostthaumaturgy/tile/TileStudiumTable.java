@@ -12,9 +12,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import com.google.common.base.Predicate;
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;

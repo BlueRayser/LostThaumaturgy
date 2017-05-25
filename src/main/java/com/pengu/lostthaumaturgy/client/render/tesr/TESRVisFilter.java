@@ -1,17 +1,15 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicate;
 import com.mrdimka.hammercore.client.GLRenderState;
@@ -22,7 +20,6 @@ import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
-import com.pengu.lostthaumaturgy.tile.TileVisTank;
 
 public class TESRVisFilter extends TESR<TileVisFilter>
 {
@@ -72,7 +69,7 @@ public class TESRVisFilter extends TESR<TileVisFilter>
 			
 			Tessellator tess = Tessellator.getInstance();
 			
-			int bright = getBrightnessForRB(null, rb);
+			int bright = getBrightnessForRB(WorldUtil.cast(connections, TileVisFilter.class), rb);
 			
 			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);

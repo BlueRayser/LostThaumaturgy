@@ -30,6 +30,7 @@ import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
+import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
 public class GuiInfuser extends GuiContainer
@@ -128,9 +129,15 @@ public class GuiInfuser extends GuiContainer
 			RenderUtil.drawTexturedModalRect(guiLeft + 161, guiTop + 38 - i1, 192, 30 - i1, 7, i1);
 		}
 		
-		mc.getTextureManager().bindTexture(upgrade_icons);
-		if(this.tile.getUpgrades()[0] >= 0)
-			RenderUtil.drawTexturedModalRect(guiLeft + 8, guiTop + 128, 16 * this.tile.getUpgrades()[0], 0, 16, 16);
+		if(tile.getUpgrades()[0] >= 0)
+		{
+			int x = 8;
+			int y = 128;
+			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
+			itemRender.renderItemAndEffectIntoGUI(stack, guiLeft + x, guiTop + y);
+			if(mouseX >= guiLeft + x && mouseX < guiLeft + x + 16 && mouseY >= guiTop + y && mouseY < guiTop + y + 16)
+				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+		}
 	}
 	
 	@Override

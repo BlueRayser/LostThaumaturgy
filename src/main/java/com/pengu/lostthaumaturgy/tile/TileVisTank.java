@@ -3,16 +3,17 @@ package com.pengu.lostthaumaturgy.tile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.EnumFacing.Axis;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
 
 import com.google.common.base.Predicate;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 
@@ -320,5 +321,21 @@ public class TileVisTank extends TileSyncableTickable implements IConnection, Pr
 				return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return true;
+		return super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return (T) this;
+		return super.getCapability(capability, facing);
 	}
 }

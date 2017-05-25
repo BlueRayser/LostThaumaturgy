@@ -12,6 +12,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
@@ -19,6 +20,7 @@ import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
@@ -430,5 +432,21 @@ public class TileCrucible extends TileSyncableTickable implements IConnection
 	public boolean canRenderBreaking()
 	{
 		return true;
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return true;
+		return super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	{
+		if(capability == CapabilityVisConnection.VIS)
+			return (T) this;
+		return super.getCapability(capability, facing);
 	}
 }

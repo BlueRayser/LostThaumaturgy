@@ -2,20 +2,19 @@ package com.pengu.lostthaumaturgy.custom.research;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
-
-import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
+
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.items.ItemResearch;
+import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class ResearchRegistry
 {

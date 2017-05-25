@@ -1,15 +1,12 @@
 package com.pengu.lostthaumaturgy.creative;
 
-import com.mrdimka.hammercore.init.ModItems;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 
 public class CreativeTabResearches extends CreativeTabs
 {

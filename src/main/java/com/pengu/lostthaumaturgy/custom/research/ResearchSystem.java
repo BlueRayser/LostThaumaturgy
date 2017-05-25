@@ -11,7 +11,6 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,7 +18,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
 import com.mrdimka.hammercore.annotations.MCFBus;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientRD;
 

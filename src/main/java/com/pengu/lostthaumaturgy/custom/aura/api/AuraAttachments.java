@@ -1,12 +1,10 @@
 package com.pengu.lostthaumaturgy.custom.aura.api;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.pengu.hammercore.utils.IndexedMap;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 
 public class AuraAttachments

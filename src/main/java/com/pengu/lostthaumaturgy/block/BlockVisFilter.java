@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.block;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,7 +16,6 @@ import com.mrdimka.hammercore.api.ITileBlock;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.init.ResearchesLT;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 
 public class BlockVisFilter extends BlockRendered implements ITileBlock<TileVisFilter>, ITileEntityProvider

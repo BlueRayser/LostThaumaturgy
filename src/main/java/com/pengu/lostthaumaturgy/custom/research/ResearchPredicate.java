@@ -1,7 +1,6 @@
 package com.pengu.lostthaumaturgy.custom.research;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Predicate;

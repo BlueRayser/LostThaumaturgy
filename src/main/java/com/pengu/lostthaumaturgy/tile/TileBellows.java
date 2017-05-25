@@ -3,11 +3,9 @@ package com.pengu.lostthaumaturgy.tile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IBellowBoostable;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 

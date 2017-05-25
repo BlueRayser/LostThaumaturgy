@@ -11,7 +11,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
@@ -22,7 +21,6 @@ import com.mrdimka.hammercore.vec.Cuboid6;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 

@@ -2,10 +2,6 @@ package com.pengu.lostthaumaturgy.worldgen;
 
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.pengu.lostthaumaturgy.init.BlocksLT;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -15,6 +11,10 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.common.IWorldGenerator;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class WorldGenSilverwood extends WorldGenAbstractTree implements IWorldGenerator
 {

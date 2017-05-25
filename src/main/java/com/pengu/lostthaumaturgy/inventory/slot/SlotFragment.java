@@ -1,12 +1,12 @@
 package com.pengu.lostthaumaturgy.inventory.slot;
 
-import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import com.pengu.lostthaumaturgy.init.ItemsLT;
+import com.pengu.lostthaumaturgy.items.ItemResearch;
+import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class SlotFragment extends Slot
 {
