@@ -55,20 +55,34 @@ public class TESRInfuser extends TESR<TileInfuser>
 		
 		double rotation = te.angle;
 		boolean active = te.getCookProgressScaled(8) > 0F;
-		if(!active) rotation = 0;
+		if(!active)
+			rotation = 0;
 		
 		renderModel(te, x, y, z, rotation, active);
 		
 		if(active && te.canSpawnParticle && te.sucked > 0F && te.getWorld().rand.nextFloat() < te.sucked)
 		{
-			te.canSpawnParticle = false; //ensure that if player pauses the game we don't spawn thousands of particles
+			te.canSpawnParticle = false; // ensure that if player pauses the
+										 // game we don't spawn thousands of
+										 // particles
 			
-            float xx = (float)te.getPos().getX() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
-            float yy2 = (float)te.getPos().getY() + 0.9475f;
-            float zz = (float)te.getPos().getZ() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
-            FXWisp ef = new FXWisp(te.getWorld(), xx, yy2, zz, xx, yy2 + te.getWorld().rand.nextFloat(), zz, 0.5f, /*te.i() == 2 ? 5 -- dark infuser*/te.getWorld().rand.nextInt(5));
-            Minecraft.getMinecraft().effectRenderer.addEffect(ef);
-        }
+			float xx = (float) te.getPos().getX() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
+			float yy2 = (float) te.getPos().getY() + 0.9475f;
+			float zz = (float) te.getPos().getZ() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
+			FXWisp ef = new FXWisp(te.getWorld(), xx, yy2, zz, xx, yy2 + te.getWorld().rand.nextFloat(), zz, 0.5f, /* te
+																													 * .
+																													 * i
+																													 * (
+																													 * )
+																													 * ==
+																													 * 2
+																													 * ?
+																													 * 5
+																													 * --
+																													 * dark
+																													 * infuser */te.getWorld().rand.nextInt(5));
+			Minecraft.getMinecraft().effectRenderer.addEffect(ef);
+		}
 	}
 	
 	protected ResourceLocation pillars = new ResourceLocation(LTInfo.MOD_ID, "textures/models/infuser.png");
@@ -153,11 +167,15 @@ public class TESRInfuser extends TESR<TileInfuser>
 		
 		GL11.glScaled(1 / 256D, 1 / 256D, 1 / 256D);
 		
-		if(active) GL11.glBlendFunc(770, 1);
-		else GL11.glBlendFunc(770, 771);
+		if(active)
+			GL11.glBlendFunc(770, 1);
+		else
+			GL11.glBlendFunc(770, 771);
 		
-		if(active) GL11.glColor4d(activeRed, activeGreen, activeBlue, 1);
-		else GL11.glColor4f(0, 0, 0, 1);
+		if(active)
+			GL11.glColor4d(activeRed, activeGreen, activeBlue, 1);
+		else
+			GL11.glColor4f(0, 0, 0, 1);
 		
 		bindTexture(disk);
 		RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);

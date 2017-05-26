@@ -94,7 +94,8 @@ public class BlockVisPump extends BlockRendered implements ITileBlock<TileVisPum
 	{
 		boolean working = true;
 		TileVisPump pump = WorldUtil.cast(world.getTileEntity(pos), TileVisPump.class);
-		if(pump != null) working = !pump.gettingPower();
+		if(pump != null)
+			working = !pump.gettingPower();
 		return LTInfo.MOD_ID + ":blocks/vis_pump_o" + (working ? "n" : "ff");
 	}
 }

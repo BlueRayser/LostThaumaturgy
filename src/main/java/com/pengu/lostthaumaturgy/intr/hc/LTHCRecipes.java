@@ -11,6 +11,6 @@ public class LTHCRecipes implements IRecipePlugin
 	@Override
 	public void registerTypes(IRecipeTypeRegistry reg)
 	{
-		reg.register(new RecipeTypeCrucible());		
+		reg.register(new RecipeTypeCrucible());
 	}
 }

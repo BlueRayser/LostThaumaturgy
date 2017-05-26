@@ -18,7 +18,8 @@ public class TilePurifier extends TileConduit
 	public void tick()
 	{
 		IBlockState state = world.getBlockState(pos);
-		if(state.getBlock() instanceof BlockPurifier) orientation = state.getValue(BlockPurifier.PROPERTY_AXIS);
+		if(state.getBlock() instanceof BlockPurifier)
+			orientation = state.getValue(BlockPurifier.PROPERTY_AXIS);
 		
 		if(world.isRemote)
 			return;

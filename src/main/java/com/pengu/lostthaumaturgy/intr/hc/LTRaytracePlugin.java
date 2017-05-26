@@ -13,11 +13,11 @@ import com.pengu.lostthaumaturgy.init.BlocksLT;
 public class LTRaytracePlugin implements IRayRegistry
 {
 	@Override
-    public void registerCubes(IRayCubeRegistry cube)
-    {
+	public void registerCubes(IRayCubeRegistry cube)
+	{
 		cube.bindBlockCubeManager((BlockConduit) BlocksLT.CONDUIT, (BlockConduit) BlocksLT.CONDUIT);
 		cube.bindBlockCubeManager((BlockVisValve) BlocksLT.VIS_VALVE, (BlockVisValve) BlocksLT.VIS_VALVE);
 		cube.bindBlockCubeManager((BlockAdvancedVisValve) BlocksLT.ADVANCED_VIS_VALVE, (BlockAdvancedVisValve) BlocksLT.ADVANCED_VIS_VALVE);
 		cube.bindBlockCubeManager((BlockPressurizedConduit) BlocksLT.PRESSURIZED_CONDUIT, (BlockPressurizedConduit) BlocksLT.PRESSURIZED_CONDUIT);
-    }
+	}
 }

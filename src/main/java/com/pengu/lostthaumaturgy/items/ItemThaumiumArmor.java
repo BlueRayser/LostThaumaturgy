@@ -16,10 +16,14 @@ public class ItemThaumiumArmor extends ItemArmor
 	public ItemThaumiumArmor(EntityEquipmentSlot equipmentSlotIn)
 	{
 		super(thaumium, 2, equipmentSlotIn);
-		if(equipmentSlotIn == EntityEquipmentSlot.HEAD) setUnlocalizedName("thaumium_helmet");
-		if(equipmentSlotIn == EntityEquipmentSlot.CHEST) setUnlocalizedName("thaumium_chestplate");
-		if(equipmentSlotIn == EntityEquipmentSlot.LEGS) setUnlocalizedName("thaumium_leggings");
-		if(equipmentSlotIn == EntityEquipmentSlot.FEET) setUnlocalizedName("thaumium_boots");
+		if(equipmentSlotIn == EntityEquipmentSlot.HEAD)
+			setUnlocalizedName("thaumium_helmet");
+		if(equipmentSlotIn == EntityEquipmentSlot.CHEST)
+			setUnlocalizedName("thaumium_chestplate");
+		if(equipmentSlotIn == EntityEquipmentSlot.LEGS)
+			setUnlocalizedName("thaumium_leggings");
+		if(equipmentSlotIn == EntityEquipmentSlot.FEET)
+			setUnlocalizedName("thaumium_boots");
 	}
 	
 	@Override

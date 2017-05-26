@@ -13,18 +13,19 @@ public class PacketUpdateClientAura implements IPacket, IPacketListener<PacketUp
 	public SIAuraChunk chunk;
 	
 	public PacketUpdateClientAura(SIAuraChunk chunk)
-    {
+	{
 		this.chunk = chunk;
-    }
+	}
 	
 	public PacketUpdateClientAura()
-    {
-    }
+	{
+	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt)
 	{
-		if(chunk != null) nbt.setTag("Data", chunk.serializeNBT());
+		if(chunk != null)
+			nbt.setTag("Data", chunk.serializeNBT());
 	}
 	
 	@Override
@@ -38,6 +39,6 @@ public class PacketUpdateClientAura implements IPacket, IPacketListener<PacketUp
 	public IPacket onArrived(PacketUpdateClientAura packet, MessageContext context)
 	{
 		LostThaumaturgy.proxy.updateClientAuraChunk(chunk);
-	    return null;
+		return null;
 	}
 }

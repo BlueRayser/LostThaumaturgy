@@ -6,14 +6,14 @@ import com.pengu.lostthaumaturgy.LTInfo;
 public class ItemThaumonomicon extends ItemBook
 {
 	public ItemThaumonomicon()
-    {
-	    setUnlocalizedName("thaumonomicon");
-	    setMaxStackSize(1);
-    }
-
+	{
+		setUnlocalizedName("thaumonomicon");
+		setMaxStackSize(1);
+	}
+	
 	@Override
-    public String getBookId()
-    {
-	    return LTInfo.MOD_ID + ":thaumonomicon";
-    }
+	public String getBookId()
+	{
+		return LTInfo.MOD_ID + ":thaumonomicon";
+	}
 }

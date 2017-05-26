@@ -4,15 +4,11 @@ import java.util.concurrent.Callable;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.Capability.IStorage;
-
-import com.mrdimka.hammercore.energy.IPowerStorage;
-import com.mrdimka.hammercore.energy.PowerStorage;
 
 public class CapabilityVisConnection
 {

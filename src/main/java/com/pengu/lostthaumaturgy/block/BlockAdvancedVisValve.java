@@ -115,7 +115,8 @@ public class BlockAdvancedVisValve extends BlockTraceableRendered implements ITi
 	{
 		int open = 0;
 		TileAdvancedVisValve tile = WorldUtil.cast(world.getTileEntity(pos), TileAdvancedVisValve.class);
-		if(tile != null) open = tile.setting;
+		if(tile != null)
+			open = tile.setting;
 		return LTInfo.MOD_ID + ":blocks/advanced_vis_valve_" + (open == 0 ? "off" : open == 2 ? "taint" : "vis");
 	}
 }

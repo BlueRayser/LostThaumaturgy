@@ -56,8 +56,7 @@ public class BlocksLT
 	        STUDIUM_TABLE = new BlockStudiumTable(), //
 	        AUXILIUM_TABLE = new BlockAuxiliumTable(), //
 	        CRYSTALLIZER = new BlockCrystallizer(), //
-	        NITOR = new BlockNitor(),
-	        TAINTED_SOIL = new BlockTaintedSoil();
+	        NITOR = new BlockNitor(), TAINTED_SOIL = new BlockTaintedSoil();
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //

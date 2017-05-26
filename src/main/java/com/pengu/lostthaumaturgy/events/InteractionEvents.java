@@ -36,11 +36,12 @@ public class InteractionEvents
 			if(item != null && tile != null)
 			{
 				if(!world.isRemote && tile.setUpgrade(ItemUpgrade.idFromItem(item)))
-				{ 
+				{
 					held.shrink(1);
 					HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":upgrade", pos, 1F, .8F + world.rand.nextFloat() * .4F, SoundCategory.PLAYERS);
 					TileSyncable t = WorldUtil.cast(tile, TileSyncable.class);
-					if(t != null) t.sync();
+					if(t != null)
+						t.sync();
 					
 					e.setUseBlock(Result.DENY);
 					e.setUseItem(Result.DENY);
@@ -48,7 +49,7 @@ public class InteractionEvents
 				}
 				
 				e.getEntityPlayer().swingArm(e.getHand());
-			}else if(held.getItem() == ItemsLT.WAND_REVERSAL)
+			} else if(held.getItem() == ItemsLT.WAND_REVERSAL)
 			{
 				if(!world.isRemote && tile != null && tile.dropUpgrade(e.getEntityPlayer()))
 				{
@@ -56,7 +57,8 @@ public class InteractionEvents
 					HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":zap", pos, 1F, .8F + world.rand.nextFloat() * .4F, SoundCategory.PLAYERS);
 					
 					TileSyncable t = WorldUtil.cast(tile, TileSyncable.class);
-					if(t != null) t.sync();
+					if(t != null)
+						t.sync();
 					
 					e.setUseBlock(Result.DENY);
 					e.setUseItem(Result.DENY);

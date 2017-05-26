@@ -148,11 +148,15 @@ public class TESRStudiumTable extends TESR<TileStudiumTable>
 		
 		GL11.glScaled(1 / 256D, 1 / 256D, 1 / 256D);
 		
-		if(active) GL11.glBlendFunc(770, 1);
-		else GL11.glBlendFunc(770, 771);
+		if(active)
+			GL11.glBlendFunc(770, 1);
+		else
+			GL11.glBlendFunc(770, 771);
 		
-		if(active) GL11.glColor4d(activeRed, activeGreen, activeBlue, 1);
-		else GL11.glColor4f(0, 0, 0, 1);
+		if(active)
+			GL11.glColor4d(activeRed, activeGreen, activeBlue, 1);
+		else
+			GL11.glColor4f(0, 0, 0, 1);
 		
 		bindTexture(disk);
 		RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);

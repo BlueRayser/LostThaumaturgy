@@ -34,7 +34,8 @@ public class TileAuxiliumTable extends TileVisUser
 		
 		setSuction(0);
 		
-		if(world.isRemote) return;
+		if(world.isRemote)
+			return;
 		
 		int fragmentCount = 9;
 		if(lastBoost > 0)
@@ -72,12 +73,13 @@ public class TileAuxiliumTable extends TileVisUser
 				
 				sync();
 			}
-		}else if(visConsumed > 0F)
+		} else if(visConsumed > 0F)
 		{
 			visConsumed *= 0.99F;
-			if(visConsumed < 0.01F) visConsumed = 0;
+			if(visConsumed < 0.01F)
+				visConsumed = 0;
 			sync();
-		}else if(progress > 0F)
+		} else if(progress > 0F)
 		{
 			progress -= 0.01F;
 			sync();

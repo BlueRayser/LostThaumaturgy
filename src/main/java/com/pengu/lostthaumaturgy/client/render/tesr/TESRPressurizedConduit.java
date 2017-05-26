@@ -27,7 +27,8 @@ public class TESRPressurizedConduit extends TESRConduit<TilePressurizedConduit>
 	{
 		super.renderItem(item);
 		NBTTagCompound itemNBT = getNBTFromItemStack(item);
-		if(itemNBT == null) renderValve(false, false, 0, 0, 0);
+		if(itemNBT == null)
+			renderValve(false, false, 0, 0, 0);
 	}
 	
 	@Override

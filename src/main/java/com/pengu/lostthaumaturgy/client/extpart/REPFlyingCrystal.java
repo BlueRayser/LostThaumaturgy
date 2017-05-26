@@ -20,7 +20,10 @@ public class REPFlyingCrystal extends ParticleRenderer<EPFlyingCrystal>
 	@Override
 	public void doRender(EPFlyingCrystal particle, double x, double y, double z, float partialTicks)
 	{
-//		System.out.println(particle.motionX.get() + " " + particle.motionY.get() + " " + particle.motionZ.get() + " " + particle.posX.get() + ' ' + particle.posY.get() + " " + particle.posZ.get());
+		// System.out.println(particle.motionX.get() + " " +
+		// particle.motionY.get() + " " + particle.motionZ.get() + " " +
+		// particle.posX.get() + ' ' + particle.posY.get() + " " +
+		// particle.posZ.get());
 		
 		GL11.glPushMatrix();
 		GL11.glTranslated(x - .3, y + 1.8, z);

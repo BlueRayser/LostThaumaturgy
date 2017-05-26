@@ -143,8 +143,10 @@ public class TESRCrucible extends TESR<TileCrucible>
 							rb.renderFaceZPos(x, y, z, spill, rgb, rgb, rgb, bright);
 						}
 						
-						if(DestroyStageTexture.getAsSprite(destroyProgress) == vis) tess.draw();
-						else LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
+						if(DestroyStageTexture.getAsSprite(destroyProgress) == vis)
+							tess.draw();
+						else
+							LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 					}
 				}
 				
@@ -204,30 +206,31 @@ public class TESRCrucible extends TESR<TileCrucible>
 		
 		float tvis = pureVis + taintedVis;
 		float h2 = Math.min(tvis, maxVis);
-        float level = .735F * (h2 / maxVis);
-        if(maxVis < tvis) level = (float) (level + 0.26 / 16D);
-        
-        if(level > 0)
-        {
-        	double s0 = .015D / 16D;
-        	double s1 = 1 - s0;
-        	
-        	rb.setRenderBounds(s0, 4D / 16D, s0, s1, 4D / 16D + level, s1);
-            
-            rb.renderFaceYPos(0, 0, 0, vis, rgb, rgb, rgb, bright);
-        }
-        
-        if(tvis > maxVis && !LiquidVisRenderer.useShaders())
-        {
-        	double off1 = -.001D / 16D;
-        	double off2 = 1 - off1;
-        	rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
-        	
-        	rb.renderFaceXNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
+		float level = .735F * (h2 / maxVis);
+		if(maxVis < tvis)
+			level = (float) (level + 0.26 / 16D);
+		
+		if(level > 0)
+		{
+			double s0 = .015D / 16D;
+			double s1 = 1 - s0;
+			
+			rb.setRenderBounds(s0, 4D / 16D, s0, s1, 4D / 16D + level, s1);
+			
+			rb.renderFaceYPos(0, 0, 0, vis, rgb, rgb, rgb, bright);
+		}
+		
+		if(tvis > maxVis && !LiquidVisRenderer.useShaders())
+		{
+			double off1 = -.001D / 16D;
+			double off2 = 1 - off1;
+			rb.setRenderBounds(off1, 0, off1, off2, 1 + .05 / 16D, off2);
+			
+			rb.renderFaceXNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
 			rb.renderFaceXPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
 			rb.renderFaceZNeg(0, 0, 0, spill, rgb, rgb, rgb, bright);
 			rb.renderFaceZPos(0, 0, 0, spill, rgb, rgb, rgb, bright);
-        }
+		}
 		
 		LiquidVisRenderer.finishDrawWithShaders(tess, 1 - b);
 		

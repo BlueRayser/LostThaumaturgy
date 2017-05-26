@@ -60,8 +60,7 @@ public class WailaLTProvider implements IWailaDataProvider
 				
 				tooltip.add("Tainted:");
 				tooltip.add(block.getLocalizedName());
-			}
-			catch(Throwable err)
+			} catch(Throwable err)
 			{
 				tooltip.add("Creative Mode placed soil.");
 			}

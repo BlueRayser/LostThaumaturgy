@@ -36,12 +36,12 @@ public class AuraAttachments
 		}
 	}
 	
-	private static final ThreadLocal<ByteBuffer> byte4 = ThreadLocal.withInitial(()->
+	private static final ThreadLocal<ByteBuffer> byte4 = ThreadLocal.withInitial(() ->
 	{
 		return ByteBuffer.allocate(4);
 	});
 	
-	private static final ThreadLocal<ByteBuffer> byte8 = ThreadLocal.withInitial(()->
+	private static final ThreadLocal<ByteBuffer> byte8 = ThreadLocal.withInitial(() ->
 	{
 		return ByteBuffer.allocate(8);
 	});

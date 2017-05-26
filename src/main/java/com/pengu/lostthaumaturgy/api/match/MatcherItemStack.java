@@ -24,10 +24,10 @@ public class MatcherItemStack implements IMatcher<ItemStack>
 		}
 		return false;
 	}
-
+	
 	@Override
-    public ItemStack defaultInstance()
-    {
-	    return sample.copy();
-    }
+	public ItemStack defaultInstance()
+	{
+		return sample.copy();
+	}
 }

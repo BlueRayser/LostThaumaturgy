@@ -48,12 +48,12 @@ public class ItemCrystallineBell extends Item implements IVisRepairable
 	{
 		return false;
 	}
-
+	
 	@Override
-    public float visRepairCost(ItemStack stack)
-    {
-	    return .5F;
-    }
+	public float visRepairCost(ItemStack stack)
+	{
+		return .5F;
+	}
 	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
@@ -63,9 +63,11 @@ public class ItemCrystallineBell extends Item implements IVisRepairable
 		
 		if(ore != null && block != null)
 		{
-			if(ore.crystals.get() == 1) return EnumActionResult.FAIL;
+			if(ore.crystals.get() == 1)
+				return EnumActionResult.FAIL;
 			
-			if(!worldIn.isRemote) HammerCore.audioProxy.playSoundAt(worldIn, "entity.experience_orb.pickup", pos, .5F, .8f + ore.crystals.get() * .1F, SoundCategory.PLAYERS);
+			if(!worldIn.isRemote)
+				HammerCore.audioProxy.playSoundAt(worldIn, "entity.experience_orb.pickup", pos, .5F, .8f + ore.crystals.get() * .1F, SoundCategory.PLAYERS);
 			ore.crystals.set((short) (ore.crystals.get() - 1));
 			
 			if(ore.crystals.get() == 0)
@@ -90,11 +92,12 @@ public class ItemCrystallineBell extends Item implements IVisRepairable
 			
 			player.getHeldItem(hand).damageItem(1, player);
 			
-			if(!worldIn.isRemote) worldIn.spawnEntity(ent);
+			if(!worldIn.isRemote)
+				worldIn.spawnEntity(ent);
 			
 			return EnumActionResult.SUCCESS;
 		}
 		
-	    return EnumActionResult.PASS;
+		return EnumActionResult.PASS;
 	}
 }

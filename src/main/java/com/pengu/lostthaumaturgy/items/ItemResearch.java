@@ -42,7 +42,7 @@ public class ItemResearch extends MultiVariantItem implements ITooltipInjector
 	@Override
 	public Item setCreativeTab(CreativeTabs tab)
 	{
-	    return super.setCreativeTab(LostThaumaturgy.tab_researches);
+		return super.setCreativeTab(LostThaumaturgy.tab_researches);
 	}
 	
 	@Override

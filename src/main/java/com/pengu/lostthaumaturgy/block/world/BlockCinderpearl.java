@@ -34,6 +34,6 @@ public class BlockCinderpearl extends BlockPlant
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-	    return state.getBlock() == Blocks.SAND;
+		return state.getBlock() == Blocks.SAND;
 	}
 }

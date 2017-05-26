@@ -39,5 +39,7 @@ public interface IConnection extends ITileHandler
 	
 	int getSuction(BlockPos to);
 	
-	default void addTooltipToGoggles(List<String> tooltip) {};
+	default void addTooltipToGoggles(List<String> tooltip)
+	{
+	};
 }

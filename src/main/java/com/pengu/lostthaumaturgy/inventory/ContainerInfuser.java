@@ -18,7 +18,8 @@ public class ContainerInfuser extends Container
 	
 	public ContainerInfuser(InventoryPlayer inventoryplayer, TileInfuser tileInfuser)
 	{
-		if(tileInfuser.sucked <= 0F) tileInfuser.initiator = inventoryplayer.player.getGameProfile().getId();
+		if(tileInfuser.sucked <= 0F)
+			tileInfuser.initiator = inventoryplayer.player.getGameProfile().getId();
 		
 		infuser = tileInfuser;
 		addSlotToContainer(new Slot(tileInfuser, 2, 80, 11));

@@ -49,14 +49,14 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 	@Override
 	public boolean canRenderFromNbt()
 	{
-	    return true;
+		return true;
 	}
 	
 	@Override
 	public void renderItem(ItemStack item)
 	{
 		renderConduitBase(null, this, 0, 0, 0);
-	    super.renderItem(item);
+		super.renderItem(item);
 	}
 	
 	@Override
@@ -84,29 +84,36 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		float maxVis = 4;
 		
 		float w4 = 0.25f;
-        float w6 = 0.375f;
-        float wq2 = 0.38025f;
-        float w1 = 0.0025f;
+		float w6 = 0.375f;
+		float wq2 = 0.38025f;
+		float w1 = 0.0025f;
 		
-        float b = 0;
-        
+		float b = 0;
+		
 		if(displayPure + displayTaint >= .05F)
 		{
 			b = Math.min(1.0f, displayTaint / (displayTaint + displayPure));
 			float total = Math.min(displayPure + displayTaint, maxVis - 0.1F);
 			float hfill = (1.0f - wq2 * 2.0f) * (total / maxVis);
-			int c = 20 + (int)(b * 210.0f);
+			int c = 20 + (int) (b * 210.0f);
 			
 			for(EnumFacing f : EnumFacing.VALUES)
 			{
-				if(!apply(f)) continue;
+				if(!apply(f))
+					continue;
 				
-				if(f == EnumFacing.UP) rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);
-    			if(f == EnumFacing.DOWN) rb.setRenderBounds(wq2 + hfill, (w1 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, (6 + w1) / 16D, 1 - wq2 - hfill);
-    			if(f == EnumFacing.EAST) rb.setRenderBounds(10 / 16D, (6 + w1) / 16D, (6 + w1) / 16D, 1, wq2 + hfill, (10 - w1) / 16D);
-    			if(f == EnumFacing.WEST) rb.setRenderBounds(0, (6 + w1) / 16D, (6 + w1) / 16D, (6 - w1) / 16D, wq2 + hfill, (10 - w1) / 16D);
-    			if(f == EnumFacing.SOUTH) rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, (10 - w1) / 16D, (10 - w1) / 16D, wq2 + hfill, 1);
-    			if(f == EnumFacing.NORTH) rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, 0, (10 - w1) / 16D, wq2 + hfill, (6 - w1) / 16D);
+				if(f == EnumFacing.UP)
+					rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);
+				if(f == EnumFacing.DOWN)
+					rb.setRenderBounds(wq2 + hfill, (w1 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, (6 + w1) / 16D, 1 - wq2 - hfill);
+				if(f == EnumFacing.EAST)
+					rb.setRenderBounds(10 / 16D, (6 + w1) / 16D, (6 + w1) / 16D, 1, wq2 + hfill, (10 - w1) / 16D);
+				if(f == EnumFacing.WEST)
+					rb.setRenderBounds(0, (6 + w1) / 16D, (6 + w1) / 16D, (6 - w1) / 16D, wq2 + hfill, (10 - w1) / 16D);
+				if(f == EnumFacing.SOUTH)
+					rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, (10 - w1) / 16D, (10 - w1) / 16D, wq2 + hfill, 1);
+				if(f == EnumFacing.NORTH)
+					rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, 0, (10 - w1) / 16D, wq2 + hfill, (6 - w1) / 16D);
 				
 				rb.renderFaceXNeg(x, y, z, vis, c, c, c, bright);
 				rb.renderFaceXPos(x, y, z, vis, c, c, c, bright);
@@ -136,8 +143,10 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		TextureAtlasSprite destroy = te == null ? null : DestroyStageTexture.getAsSprite(destroyProgress);
 		
 		TextureAtlasSprite sprites[] = null;
-		if(destroy != null) sprites = new TextureAtlasSprite[] { destroy, getConduitTexture() };
-		else sprites = new TextureAtlasSprite[] { getConduitTexture() };
+		if(destroy != null)
+			sprites = new TextureAtlasSprite[] { destroy, getConduitTexture() };
+		else
+			sprites = new TextureAtlasSprite[] { getConduitTexture() };
 		
 		GLRenderState blend = GLRenderState.BLEND;
 		
@@ -166,7 +175,8 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 			for(EnumFacing facing : EnumFacing.VALUES)
 				if(conduit.apply(facing))
 				{
-					if(matches == 1) areOpposite = lastMatch.getAxis() == facing.getAxis();
+					if(matches == 1)
+						areOpposite = lastMatch.getAxis() == facing.getAxis();
 					
 					lastMatch = facing;
 					matches++;
@@ -306,21 +316,33 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 				
 				rb.renderFromInside = true;
 				
-				if(!conduit.apply(EnumFacing.WEST)) rb.renderFaceXNeg(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.EAST)) rb.renderFaceXPos(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.DOWN)) rb.renderFaceYNeg(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.UP)) rb.renderFaceYPos(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.NORTH)) rb.renderFaceZNeg(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.SOUTH)) rb.renderFaceZPos(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.WEST))
+					rb.renderFaceXNeg(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.EAST))
+					rb.renderFaceXPos(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.DOWN))
+					rb.renderFaceYNeg(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.UP))
+					rb.renderFaceYPos(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.NORTH))
+					rb.renderFaceZNeg(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.SOUTH))
+					rb.renderFaceZPos(x, y, z, sprite, 1, 1, 1, bright);
 				
 				rb.renderFromInside = false;
 				
-				if(!conduit.apply(EnumFacing.WEST)) rb.renderFaceXNeg(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.EAST)) rb.renderFaceXPos(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.DOWN)) rb.renderFaceYNeg(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.UP)) rb.renderFaceYPos(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.NORTH)) rb.renderFaceZNeg(x, y, z, sprite, 1, 1, 1, bright);
-				if(!conduit.apply(EnumFacing.SOUTH)) rb.renderFaceZPos(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.WEST))
+					rb.renderFaceXNeg(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.EAST))
+					rb.renderFaceXPos(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.DOWN))
+					rb.renderFaceYNeg(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.UP))
+					rb.renderFaceYPos(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.NORTH))
+					rb.renderFaceZNeg(x, y, z, sprite, 1, 1, 1, bright);
+				if(!conduit.apply(EnumFacing.SOUTH))
+					rb.renderFaceZPos(x, y, z, sprite, 1, 1, 1, bright);
 			} else
 			{
 				Axis renderAxis = lastMatch.getAxis();
@@ -356,33 +378,40 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
 		
 		float w4 = 0.25f;
-        float w6 = 0.375f;
-        float wq2 = 0.38125f;
-        float w1 = 0.0625f;
+		float w6 = 0.375f;
+		float wq2 = 0.38125f;
+		float w1 = 0.0625f;
 		
-        float b = 1;
+		float b = 1;
 		if(tc.displayPure + tc.displayTaint >= .05F)
 		{
 			b = Math.min(1.0f, tc.displayTaint / (tc.displayTaint + tc.displayPure));
 			float total = Math.min(tc.displayPure + tc.displayTaint, tc.maxVis - 0.1F);
 			float hfill = (1.0f - wq2 * 2.0f) * (total / tc.maxVis);
-			int c = 20 + (int)(b * 210.0f);
+			int c = 20 + (int) (b * 210.0f);
 			
 			for(EnumFacing f : EnumFacing.VALUES)
 			{
 				IConnection ic = ConnectionManager.getConnection(world, pos, f);
-				if(ic == null) continue;
+				if(ic == null)
+					continue;
 				
 				TileVisUser user = WorldUtil.cast(ic, TileVisUser.class);
 				
 				if(tc.getSuction(null) == ic.getSuction(pos) + 1 || tc.getSuction(null) == ic.getSuction(pos) - 1 || (user != null && user.getSuction(user.getPos()) >= tc.getSuction(null)))
 				{
-					if(f == EnumFacing.UP) rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);
-	    			if(f == EnumFacing.DOWN) rb.setRenderBounds(wq2 + hfill, (w1 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, (6 + w1) / 16D, 1 - wq2 - hfill);
-	    			if(f == EnumFacing.EAST) rb.setRenderBounds(10 / 16D, (6 + w1) / 16D, (6 + w1) / 16D, 1, wq2 + hfill, (10 - w1) / 16D);
-	    			if(f == EnumFacing.WEST) rb.setRenderBounds(0, (6 + w1) / 16D, (6 + w1) / 16D, (6 - w1) / 16D, wq2 + hfill, (10 - w1) / 16D);
-	    			if(f == EnumFacing.SOUTH) rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, (10 - w1) / 16D, (10 - w1) / 16D, wq2 + hfill, 1);
-	    			if(f == EnumFacing.NORTH) rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, 0, (10 - w1) / 16D, wq2 + hfill, (6 - w1) / 16D);
+					if(f == EnumFacing.UP)
+						rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);
+					if(f == EnumFacing.DOWN)
+						rb.setRenderBounds(wq2 + hfill, (w1 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, (6 + w1) / 16D, 1 - wq2 - hfill);
+					if(f == EnumFacing.EAST)
+						rb.setRenderBounds(10 / 16D, (6 + w1) / 16D, (6 + w1) / 16D, 1, wq2 + hfill, (10 - w1) / 16D);
+					if(f == EnumFacing.WEST)
+						rb.setRenderBounds(0, (6 + w1) / 16D, (6 + w1) / 16D, (6 - w1) / 16D, wq2 + hfill, (10 - w1) / 16D);
+					if(f == EnumFacing.SOUTH)
+						rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, (10 - w1) / 16D, (10 - w1) / 16D, wq2 + hfill, 1);
+					if(f == EnumFacing.NORTH)
+						rb.setRenderBounds((6 + w1) / 16D, (6 + w1) / 16D, 0, (10 - w1) / 16D, wq2 + hfill, (6 - w1) / 16D);
 					
 					rb.renderFaceXNeg(x, y, z, vis, c, c, c, bright);
 					rb.renderFaceXPos(x, y, z, vis, c, c, c, bright);
@@ -407,12 +436,12 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		
 		blend.reset();
 	}
-
+	
 	@Override
-    public boolean apply(EnumFacing input)
-    {
-	    return input.getAxis() == Axis.Y;
-    }
+	public boolean apply(EnumFacing input)
+	{
+		return input.getAxis() == Axis.Y;
+	}
 	
 	public static TextureAtlasSprite getConduitTexture()
 	{
@@ -422,27 +451,34 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 	public static void drawPipeConnection(double x, double y, double z, TextureAtlasSprite sprite, float red, float green, float blue, int bright, double length, Predicate<EnumFacing> facings)
 	{
 		float w4 = 0.25f;
-        float w6 = 0.375f;
-        float wq2 = 0.38125f;
-        
-        RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
-        
-        boolean wasRenderingFromInside = rb.renderFromInside;
-        
+		float w6 = 0.375f;
+		float wq2 = 0.38125f;
+		
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		
+		boolean wasRenderingFromInside = rb.renderFromInside;
+		
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
-			if(!facings.apply(f)) continue;
+			if(!facings.apply(f))
+				continue;
 			
 			rb.renderFromInside = false;
 			
 			double off = length;
 			
-			if(f == EnumFacing.DOWN) rb.setRenderBounds(6 / 16D, 0, 6 / 16D, 10 / 16D, (6 - off) / 16D, 10 / 16D);
-			if(f == EnumFacing.UP) rb.setRenderBounds(6 / 16D, (10 + off) / 16, 6 / 16D, 10 / 16D, 1, 10 / 16D);
-			if(f == EnumFacing.EAST) rb.setRenderBounds((10 + off) / 16, 6 / 16D, 6 / 16D, 1, 10 / 16D, 10 / 16D);
-			if(f == EnumFacing.WEST) rb.setRenderBounds(0, 6 / 16D, 6 / 16D, (6 - off) / 16D, 10 / 16D, 10 / 16D);
-			if(f == EnumFacing.SOUTH) rb.setRenderBounds(6 / 16D, 6 / 16D, (10 + off) / 16D, 10 / 16D, 10 / 16D, 1);
-			if(f == EnumFacing.NORTH) rb.setRenderBounds(6 / 16D, 6 / 16D, 0, 10 / 16D, 10 / 16D, (6 - off) / 16D);
+			if(f == EnumFacing.DOWN)
+				rb.setRenderBounds(6 / 16D, 0, 6 / 16D, 10 / 16D, (6 - off) / 16D, 10 / 16D);
+			if(f == EnumFacing.UP)
+				rb.setRenderBounds(6 / 16D, (10 + off) / 16, 6 / 16D, 10 / 16D, 1, 10 / 16D);
+			if(f == EnumFacing.EAST)
+				rb.setRenderBounds((10 + off) / 16, 6 / 16D, 6 / 16D, 1, 10 / 16D, 10 / 16D);
+			if(f == EnumFacing.WEST)
+				rb.setRenderBounds(0, 6 / 16D, 6 / 16D, (6 - off) / 16D, 10 / 16D, 10 / 16D);
+			if(f == EnumFacing.SOUTH)
+				rb.setRenderBounds(6 / 16D, 6 / 16D, (10 + off) / 16D, 10 / 16D, 10 / 16D, 1);
+			if(f == EnumFacing.NORTH)
+				rb.setRenderBounds(6 / 16D, 6 / 16D, 0, 10 / 16D, 10 / 16D, (6 - off) / 16D);
 			
 			rb.renderFromInside = true;
 			

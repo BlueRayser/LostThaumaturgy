@@ -15,20 +15,24 @@ public class MatcherOreDict implements IMatcher<ItemStack>
 	@Override
 	public boolean matches(ItemStack t)
 	{
-		if(t.isEmpty()) return false;
+		if(t.isEmpty())
+			return false;
 		int[] ids = OreDictionary.getOreIDs(t);
-		if(ids != null && ids.length > 0) for(int id : ids)
-		{
-			String od = OreDictionary.getOreName(id);
-			if(od.equals(oredict)) return true;
-		}
+		if(ids != null && ids.length > 0)
+			for(int id : ids)
+			{
+				String od = OreDictionary.getOreName(id);
+				if(od.equals(oredict))
+					return true;
+			}
 		return false;
 	}
-
+	
 	@Override
-    public ItemStack defaultInstance()
-    {
-		for(ItemStack stack : OreDictionary.getOres(oredict)) return stack.copy();
-	    return ItemStack.EMPTY;
-    }
+	public ItemStack defaultInstance()
+	{
+		for(ItemStack stack : OreDictionary.getOres(oredict))
+			return stack.copy();
+		return ItemStack.EMPTY;
+	}
 }

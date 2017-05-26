@@ -4,7 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.BlockSnapshot;
 
 import com.mrdimka.hammercore.tile.TileSyncable;
-import com.pengu.lostthaumaturgy.net.NetPropertyNBT;
+import com.pengu.hammercore.net.utils.NetPropertyNBT;
 
 public class TileTaintedSoil extends TileSyncable
 {
@@ -25,13 +25,15 @@ public class TileTaintedSoil extends TileSyncable
 	public BlockSnapshot getSnapshot()
 	{
 		NBTTagCompound nbt = BLOCK_SNAPSHOT.get();
-		if(nbt != null) return BlockSnapshot.readFromNBT(nbt);
+		if(nbt != null)
+			return BlockSnapshot.readFromNBT(nbt);
 		return null;
 	}
 	
 	public void setSnapshot(BlockSnapshot snapshot)
 	{
-		if(world != null && world.isRemote) return;
+		if(world != null && world.isRemote)
+			return;
 		NBTTagCompound nbt = new NBTTagCompound();
 		snapshot.writeToNBT(nbt);
 		BLOCK_SNAPSHOT.set(nbt);

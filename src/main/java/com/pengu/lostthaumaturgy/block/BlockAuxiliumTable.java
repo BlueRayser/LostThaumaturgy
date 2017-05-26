@@ -90,7 +90,8 @@ public class BlockAuxiliumTable extends BlockRendered implements ITileBlock<Tile
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileAuxiliumTable tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileAuxiliumTable.class);
-		if(tile != null) tile.inventory.drop(worldIn, pos);
+		if(tile != null)
+			tile.inventory.drop(worldIn, pos);
 		super.breakBlock(worldIn, pos, state);
 	}
 }

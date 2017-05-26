@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -130,6 +129,6 @@ public class BlockNitor extends BlockRendered
 	@Override
 	public String getParticleSprite(World world, BlockPos pos)
 	{
-	    return LTInfo.MOD_ID + ":blocks/nitor";
+		return LTInfo.MOD_ID + ":blocks/nitor";
 	}
 }

@@ -43,7 +43,8 @@ public class TileStudiumTable extends TileSyncableTickable
 			{
 				if(input instanceof EntityPlayer)
 				{
-					if(((EntityPlayer) input).noClip) return false;
+					if(((EntityPlayer) input).noClip)
+						return false;
 					RayTraceResult r = RayTracer.retrace((EntityPlayer) input, 2.3);
 					if(r != null && r.typeOfHit == Type.BLOCK && r.getBlockPos().equals(pos))
 						return true;
@@ -53,7 +54,7 @@ public class TileStudiumTable extends TileSyncableTickable
 		});
 		
 		float val = RecipesCrucible.getSmeltingValue(inventory.getStackInSlot(0));
-//		val = 1;
+		// val = 1;
 		
 		lastBoost = getBoost() + val;
 		boolean spawn = world.rand.nextInt(40) == 0;
@@ -65,12 +66,12 @@ public class TileStudiumTable extends TileSyncableTickable
 			ItemStack paper = inventory.getStackInSlot(1);
 			if(researchProgress < 1F && !paper.isEmpty() && paper.getItem() == Items.PAPER)
 			{
-				if(!world.isRemote) researchProgress += speed / 180;
+				if(!world.isRemote)
+					researchProgress += speed / 180;
 				sync();
 				if(!spawn)
 					spawn = world.rand.nextInt(3) == 0;
-			}
-			else if(researchProgress > 0F)
+			} else if(researchProgress > 0F)
 				researchProgress = (float) MathHelper.clip(researchProgress - 0.01F, 0, 1);
 			
 			if(researchProgress >= 1F)
@@ -79,14 +80,18 @@ public class TileStudiumTable extends TileSyncableTickable
 				
 				Research r = ResearchRegistry.chooseRandomUnresearched(inventory.getStackInSlot(0), player, Math.round(lastBoost) + 1);
 				
-				if(r != null && r.failChance / val >= world.rand.nextFloat() * 100) r = null;
-				if(world.rand.nextFloat() * Math.sqrt(Math.sqrt(val) * 2) <= 1.9) r = null;
+				if(r != null && r.failChance / val >= world.rand.nextFloat() * 100)
+					r = null;
+				if(world.rand.nextFloat() * Math.sqrt(Math.sqrt(val) * 2) <= 1.9)
+					r = null;
 				
-				if(!world.isRemote) inventory.getStackInSlot(0).shrink(1);
+				if(!world.isRemote)
+					inventory.getStackInSlot(0).shrink(1);
 				
 				if(r != null)
 				{
-					if(!world.isRemote) paper.shrink(1);
+					if(!world.isRemote)
+						paper.shrink(1);
 					outputFragment(r);
 					sync();
 				}

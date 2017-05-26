@@ -18,14 +18,14 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 	public final int forceSuction;
 	
 	public TileBellows(int baseSuction)
-    {
+	{
 		forceSuction = baseSuction;
-    }
+	}
 	
 	public TileBellows()
-    {
-	    this(10);
-    }
+	{
+		this(10);
+	}
 	
 	public boolean isBoosting(TileEntity te)
 	{

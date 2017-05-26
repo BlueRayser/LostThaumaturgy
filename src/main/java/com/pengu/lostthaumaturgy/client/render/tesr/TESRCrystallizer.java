@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -10,12 +9,12 @@ import org.lwjgl.opengl.GL11;
 import com.mrdimka.hammercore.client.GLRenderState;
 import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
-import com.pengu.lostthaumaturgy.client.sprite.BlockSpriteTextures;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -104,17 +103,19 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	
 	public void drawBlock(double x, double y, double z, int bright)
 	{
-		BlockSpriteTextures.begin();
-		BlockSpriteTextures.setSidedSprites(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/bottom"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/top"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/side"));
-		BlockSpriteTextures.setBrightness(bright);
-		BlockSpriteTextures.setRenderBounds(BlockCrystallizer.CRYSTALLIZER_AABB);
-		BlockSpriteTextures.drawBlock(x, y, z);
-		BlockSpriteTextures.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/inner"));
-		BlockSpriteTextures.enableFaces();
-		BlockSpriteTextures.disableFace(EnumFacing.UP);
-		BlockSpriteTextures.bounds[1] = .1 / 16;
-		RenderBlocks.forMod(LTInfo.MOD_ID).renderFromInside = true;
-		BlockSpriteTextures.drawBlock(x, y, z);
-		BlockSpriteTextures.end();
+		SimpleBlockRendering sr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		
+		sr.begin();
+		sr.setSidedSprites(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/bottom"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/top"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/side"));
+		sr.setBrightness(bright);
+		sr.setRenderBounds(BlockCrystallizer.CRYSTALLIZER_AABB);
+		sr.drawBlock(x, y, z);
+		sr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/inner"));
+		sr.enableFaces();
+		sr.disableFace(EnumFacing.UP);
+		sr.bounds[1] = .1 / 16;
+		sr.rb.renderFromInside = true;
+		sr.drawBlock(x, y, z);
+		sr.end();
 	}
 }

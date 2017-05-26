@@ -14,7 +14,8 @@ public class ColorItemResearch implements IItemColor
 		if(tintIndex == 1)
 		{
 			Research r = ItemResearch.getFromStack(stack);
-			if(r != null) return r.getColor();
+			if(r != null)
+				return r.getColor();
 		}
 		return 0xFFFFFF;
 	}

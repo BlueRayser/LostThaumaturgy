@@ -39,7 +39,8 @@ public class WorldGenLostArtifacts implements IWorldGenFeature
 		{
 			EnumMultiMaterialType[] artifacts = { EnumMultiMaterialType.ANCIENT_POTTERY, EnumMultiMaterialType.TARNISHED_CHALICE, EnumMultiMaterialType.WORN_STATUETTE, EnumMultiMaterialType.ANCIENT_SEAL, EnumMultiMaterialType.ANCIENT_WEAPON };
 			ItemStack stack = artifacts[rand.nextInt(artifacts.length)].stack();
-			if(rand.nextInt(5) == 0) stack = EnumMultiMaterialType.ANCIENT_STONE_TABLET.stack();
+			if(rand.nextInt(5) == 0)
+				stack = EnumMultiMaterialType.ANCIENT_STONE_TABLET.stack();
 			BlockLyingItem.place(world, pos, stack);
 		}
 	}

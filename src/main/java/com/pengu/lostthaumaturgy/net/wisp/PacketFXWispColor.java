@@ -27,18 +27,19 @@ public class PacketFXWispColor implements IPacket, IPacketListener<PacketFXWispC
 		this.tz = tz;
 		this.partialTicks = partialTicks;
 		this.color = color;
-    }
+	}
 	
 	public PacketFXWispColor()
-    {
-    }
-
+	{
+	}
+	
 	@Override
-    public IPacket onArrived(PacketFXWispColor packet, MessageContext context)
-    {
-		if(context.side == Side.CLIENT) summon();
-	    return null;
-    }
+	public IPacket onArrived(PacketFXWispColor packet, MessageContext context)
+	{
+		if(context.side == Side.CLIENT)
+			summon();
+		return null;
+	}
 	
 	@SideOnly(Side.CLIENT)
 	private void summon()
@@ -47,8 +48,8 @@ public class PacketFXWispColor implements IPacket, IPacketListener<PacketFXWispC
 	}
 	
 	@Override
-    public void writeToNBT(NBTTagCompound nbt)
-    {
+	public void writeToNBT(NBTTagCompound nbt)
+	{
 		nbt.setDouble("x", x);
 		nbt.setDouble("y", y);
 		nbt.setDouble("z", z);
@@ -57,11 +58,11 @@ public class PacketFXWispColor implements IPacket, IPacketListener<PacketFXWispC
 		nbt.setDouble("tz", tz);
 		nbt.setFloat("p", partialTicks);
 		nbt.setInteger("color", color);
-    }
-
+	}
+	
 	@Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
+	public void readFromNBT(NBTTagCompound nbt)
+	{
 		x = nbt.getDouble("x");
 		y = nbt.getDouble("y");
 		z = nbt.getDouble("z");
@@ -70,5 +71,5 @@ public class PacketFXWispColor implements IPacket, IPacketListener<PacketFXWispC
 		tz = nbt.getDouble("tz");
 		partialTicks = nbt.getFloat("p");
 		color = nbt.getInteger("color");
-    }
+	}
 }

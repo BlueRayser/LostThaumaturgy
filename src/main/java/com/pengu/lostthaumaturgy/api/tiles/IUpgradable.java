@@ -79,7 +79,8 @@ public interface IUpgradable
 			ent.motionZ = (player.posZ - ent.posZ) * mod;
 			
 			boolean cleared = clearUpgrade(last);
-			if(!world.isRemote && cleared) world.spawnEntity(ent);
+			if(!world.isRemote && cleared)
+				world.spawnEntity(ent);
 			
 			return cleared;
 		}

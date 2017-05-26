@@ -24,7 +24,8 @@ public class LiquidVisRenderer
 	
 	public static float getVisSaturation(float taintedVis, float pureVis)
 	{
-		if(taintedVis + pureVis <= 0.001F) return 1;
+		if(taintedVis + pureVis <= 0.001F)
+			return 1;
 		return Math.min(1, taintedVis / (taintedVis + pureVis));
 	}
 	
@@ -32,14 +33,14 @@ public class LiquidVisRenderer
 	{
 		try
 		{
-			if(visShader != null) visShader.cleanup();
+			if(visShader != null)
+				visShader.cleanup();
 			visShader = new ShaderProgram();
 			visShader.attachFrag("/assets/" + LTInfo.MOD_ID + "/shaders/liquid_vis.fsh");
 			visShader.attachVert("/assets/" + LTInfo.MOD_ID + "/shaders/liquid_vis.vsh");
 			visShader.attachShaderOperation(operation = new LiquidVisOperation(HCShaderPipeline.registerOperation()));
 			visShader.validate();
-		}
-		catch(Throwable err)
+		} catch(Throwable err)
 		{
 			err.printStackTrace();
 		}
@@ -49,7 +50,8 @@ public class LiquidVisRenderer
 	{
 		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
 		
-		if(useShaders() && visShader == null) reloadShader();
+		if(useShaders() && visShader == null)
+			reloadShader();
 		if(useShaders() && visShader != null)
 		{
 			operation.red = (120 + visSaturation * 80) / 255F;
@@ -60,17 +62,19 @@ public class LiquidVisRenderer
 			
 			int loc = visShader.getUniformLoc("alpha");
 			ARBShaderObjects.glUniform1fARB(loc, 0.5F);
-		}else
+		} else
 			Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		
 		RenderUtil.drawTexturedModalRect(xCoord, yCoord, vis, widthIn, heightIn);
 		
-		if(useShaders()) ShaderProgram.unbindShader();
+		if(useShaders())
+			ShaderProgram.unbindShader();
 	}
 	
 	public static void finishDrawWithShaders(Tessellator tess, float visSaturation)
 	{
-		if(useShaders() && visShader == null) reloadShader();
+		if(useShaders() && visShader == null)
+			reloadShader();
 		if(useShaders() && visShader != null)
 		{
 			operation.red = (120 + visSaturation * 80) / 255F;
@@ -86,7 +90,8 @@ public class LiquidVisRenderer
 		GLRenderState.BLEND.on();
 		tess.draw();
 		
-		if(useShaders()) ShaderProgram.unbindShader();
+		if(useShaders())
+			ShaderProgram.unbindShader();
 	}
 	
 	public static class LiquidVisOperation implements IShaderOperation
@@ -97,19 +102,19 @@ public class LiquidVisRenderer
 		public int resWidth, resHeight;
 		
 		public LiquidVisOperation(int op)
-        {
+		{
 			this.op = op;
-        }
+		}
 		
 		@Override
-        public boolean load(ShaderProgram program)
-        {
-	        return true;
-        }
+		public boolean load(ShaderProgram program)
+		{
+			return true;
+		}
 		
 		@Override
-        public void operate(ShaderProgram program)
-        {
+		public void operate(ShaderProgram program)
+		{
 			int loc = program.getUniformLoc("time");
 			ARBShaderObjects.glUniform1fARB(loc, (float) (Minecraft.getMinecraft().world != null ? Minecraft.getMinecraft().world.getTotalWorldTime() / 10D : Minecraft.getSystemTime() / 5000D));
 			
@@ -118,13 +123,13 @@ public class LiquidVisRenderer
 			
 			loc = program.getUniformLoc("resolution");
 			ARBShaderObjects.glUniform2fARB(loc, resWidth, resHeight);
-        }
+		}
 		
 		@Override
-        public int operationID()
-        {
-	        return op;
-        }
+		public int operationID()
+		{
+			return op;
+		}
 		
 		public LiquidVisOperation setColor(int rgb)
 		{

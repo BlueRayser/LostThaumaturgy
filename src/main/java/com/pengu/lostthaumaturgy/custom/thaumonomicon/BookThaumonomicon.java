@@ -10,10 +10,10 @@ public class BookThaumonomicon extends Book
 	public static final BookThaumonomicon instance = new BookThaumonomicon();
 	
 	private BookThaumonomicon()
-    {
-	    super(LTInfo.MOD_ID + ":thaumonomicon");
-	    
-	    customBackground = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/thaumonomicon_gui.png");
-	    customEntryBackground = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/thaumonomicon_entry.png");
-    }
+	{
+		super(LTInfo.MOD_ID + ":thaumonomicon");
+		
+		customBackground = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/thaumonomicon_gui.png");
+		customEntryBackground = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/thaumonomicon_entry.png");
+	}
 }

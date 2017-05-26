@@ -62,8 +62,10 @@ public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 		bindTexture(this.pump);
 		int frames = item.getCount() > 0 ? item.hashCode() : 0;
 		frames += Minecraft.getSystemTime() / 50D % 32;
-		if(item.getTagCompound() != null && item.getTagCompound().hasKey("frames", NBT.TAG_INT)) frames = item.getTagCompound().getInteger("frames");
-		if(item.getTagCompound() != null && item.getTagCompound().hasKey("enabled", NBT.TAG_BYTE) && !item.getTagCompound().getBoolean("enabled")) bindTexture(this.pump_off);
+		if(item.getTagCompound() != null && item.getTagCompound().hasKey("frames", NBT.TAG_INT))
+			frames = item.getTagCompound().getInteger("frames");
+		if(item.getTagCompound() != null && item.getTagCompound().hasKey("enabled", NBT.TAG_BYTE) && !item.getTagCompound().getBoolean("enabled"))
+			bindTexture(this.pump_off);
 		renderEntityAt(null, 0, 0, 0, frames);
 	}
 	

@@ -74,7 +74,8 @@ public class BlockLyingItem extends BlockRendered implements ITileEntityProvider
 				try
 				{
 					LyingItemPickedUpEvent evt = new LyingItemPickedUpEvent((EntityPlayer) entityIn, pos, tile.lying.get().copy(), tile.placedByPlayer.get() != Boolean.TRUE);
-					if(MinecraftForge.EVENT_BUS.post(evt)) return;
+					if(MinecraftForge.EVENT_BUS.post(evt))
+						return;
 					
 					((EntityPlayer) entityIn).dropItem(evt.drop, true).setNoPickupDelay();
 				} finally

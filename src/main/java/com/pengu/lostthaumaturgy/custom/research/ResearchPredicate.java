@@ -13,14 +13,15 @@ public class ResearchPredicate implements Predicate<IInfuser>
 	private final Research[] researches;
 	
 	public ResearchPredicate(Research... researches)
-    {
+	{
 		this.researches = researches;
-    }
+	}
 	
 	public ItemStack[] getResearchItems(EnumResearchItemType type)
 	{
 		ItemStack[] stacks = new ItemStack[researches.length];
-		for(int i = 0; i < stacks.length; ++i) stacks[i] = ItemResearch.create(researches[i], type);
+		for(int i = 0; i < stacks.length; ++i)
+			stacks[i] = ItemResearch.create(researches[i], type);
 		return stacks;
 	}
 	

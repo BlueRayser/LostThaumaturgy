@@ -62,14 +62,15 @@ public class ResearchRegistry
 			}
 		});
 		
-		if(!newResearches.isEmpty()) do
-		{
-			Research r = newResearches.get(initiator.getRNG().nextInt(newResearches.size()));
-			float gen = initiator.getRNG().nextInt(100000) / 1000F;
-			if(gen < r.failChance || !r.canObtainFrom(baseStack, initiator))
-				continue;
-			return r;
-		} while(attempts-- > 0);
+		if(!newResearches.isEmpty())
+			do
+			{
+				Research r = newResearches.get(initiator.getRNG().nextInt(newResearches.size()));
+				float gen = initiator.getRNG().nextInt(100000) / 1000F;
+				if(gen < r.failChance || !r.canObtainFrom(baseStack, initiator))
+					continue;
+				return r;
+			} while(attempts-- > 0);
 		
 		return null;
 	}

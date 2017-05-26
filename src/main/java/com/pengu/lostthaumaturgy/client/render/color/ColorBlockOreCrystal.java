@@ -14,7 +14,8 @@ public class ColorBlockOreCrystal implements IBlockColor
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
 	{
 		BlockOreCrystal ore = WorldUtil.cast(state.getBlock(), BlockOreCrystal.class);
-		if(ore != null) return ore.getCrystalColor();
+		if(ore != null)
+			return ore.getCrystalColor();
 		return 0xFFFFFF;
 	}
 }

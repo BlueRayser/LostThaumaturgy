@@ -32,10 +32,10 @@ public class EPFlyingCrystal extends ExtendedParticle
 		motionY.set(Math.min((posY.get() - ty) * .5D, .05D));
 		motionZ.set(Math.min((posZ.get() - tz) * .5D, .05D));
 		
-//		double v = .9800000190734863;
-//		motionX.set(motionX.get() * v);
-//		motionY.set(motionY.get() * v);
-//		motionZ.set(motionZ.get() * v);
+		// double v = .9800000190734863;
+		// motionX.set(motionX.get() * v);
+		// motionY.set(motionY.get() * v);
+		// motionZ.set(motionZ.get() * v);
 		
 		posX.set(posX.get() + motionX.get());
 		posY.set(posY.get() + motionY.get());
@@ -47,8 +47,8 @@ public class EPFlyingCrystal extends ExtendedParticle
 			return;
 		}
 		
-//		 if(!world.isRemote)
-//			 super.update();
+		// if(!world.isRemote)
+		// super.update();
 	}
 	
 	@Override

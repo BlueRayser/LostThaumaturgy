@@ -42,7 +42,8 @@ public class HudDetector extends Gui
 	
 	public void render(int type, SIAuraChunk aura, boolean isGoggles)
 	{
-		if(aura == null) return;
+		if(aura == null)
+			return;
 		
 		int shift;
 		Minecraft mc = Minecraft.getMinecraft();
@@ -150,7 +151,8 @@ public class HudDetector extends Gui
 				}
 			}
 		}
-		if(!ttke) GL11.glDisable((int) 32826);
+		if(!ttke)
+			GL11.glDisable((int) 32826);
 		GLRenderState.BLEND.reset();
 		GlStateManager.enableBlend();
 		

@@ -114,11 +114,11 @@ public class BlockPressurizedConduit extends BlockTraceableRendered implements I
 		
 		return 0;
 	}
-
+	
 	@Override
-    public String getParticleSprite(World world, BlockPos pos)
-    {
+	public String getParticleSprite(World world, BlockPos pos)
+	{
 		TilePressurizedConduit conduit = WorldUtil.cast(world.getTileEntity(pos), TilePressurizedConduit.class);
-	    return LTInfo.MOD_ID + ":blocks/pressurized_conduit_" + (conduit != null && conduit.getSuction(null) > 0 ? "on" : "off");
-    }
+		return LTInfo.MOD_ID + ":blocks/pressurized_conduit_" + (conduit != null && conduit.getSuction(null) > 0 ? "on" : "off");
+	}
 }

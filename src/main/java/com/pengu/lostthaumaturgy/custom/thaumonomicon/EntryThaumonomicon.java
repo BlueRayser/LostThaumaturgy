@@ -35,7 +35,7 @@ public class EntryThaumonomicon extends BookEntry
 	@Override
 	public boolean isHidden()
 	{
-	    return isDisabled();
+		return isDisabled();
 	}
 	
 	@Override

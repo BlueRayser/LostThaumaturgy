@@ -102,7 +102,7 @@ public class TESRVisFilter extends TESR<TileVisFilter>
 				rb.renderFaceXPos(x, y, z, connections.apply(EnumFacing.EAST) ? side_connected : side_disconnected, 1, 1, 1, bright);
 				rb.renderFaceZNeg(x, y, z, connections.apply(EnumFacing.NORTH) ? side_connected : side_disconnected, 1, 1, 1, bright);
 				rb.renderFaceZPos(x, y, z, connections.apply(EnumFacing.SOUTH) ? side_connected : side_disconnected, 1, 1, 1, bright);
-			}else
+			} else
 			{
 				rb.renderFaceXNeg(x, y, z, side_disconnected, 1, 1, 1, bright);
 				rb.renderFaceXPos(x, y, z, side_disconnected, 1, 1, 1, bright);

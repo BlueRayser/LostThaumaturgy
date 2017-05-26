@@ -24,9 +24,9 @@ public class InfuserRecipeWrapper implements IRecipeWrapper
 	public final InfuserRecipe recipe;
 	
 	public InfuserRecipeWrapper(InfuserRecipe recipe)
-    {
+	{
 		this.recipe = recipe;
-    }
+	}
 	
 	private static final ResourceLocation symbol = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
 	
@@ -64,7 +64,8 @@ public class InfuserRecipeWrapper implements IRecipeWrapper
 		GL11.glPushMatrix();
 		GL11.glTranslated(156.5, 20, 0);
 		GL11.glScaled(.8, .8, 1);
-		if(recipe.depletedShards > 0) mc.fontRenderer.drawString("0-" + recipe.depletedShards, 0, 0, 0xFFFFFF, true);
+		if(recipe.depletedShards > 0)
+			mc.fontRenderer.drawString("0-" + recipe.depletedShards, 0, 0, 0xFFFFFF, true);
 		GL11.glPopMatrix();
 		
 		GL11.glPushMatrix();

@@ -27,18 +27,19 @@ public class PacketFXWisp_AuraTicker_spillTaint implements IPacket, IPacketListe
 		this.tz = tz;
 		this.partialTicks = partialTicks;
 		this.type = type;
-    }
+	}
 	
 	public PacketFXWisp_AuraTicker_spillTaint()
-    {
-    }
-
+	{
+	}
+	
 	@Override
-    public IPacket onArrived(PacketFXWisp_AuraTicker_spillTaint packet, MessageContext context)
-    {
-		if(context.side == Side.CLIENT) summon();
-	    return null;
-    }
+	public IPacket onArrived(PacketFXWisp_AuraTicker_spillTaint packet, MessageContext context)
+	{
+		if(context.side == Side.CLIENT)
+			summon();
+		return null;
+	}
 	
 	@SideOnly(Side.CLIENT)
 	private void summon()
@@ -49,8 +50,8 @@ public class PacketFXWisp_AuraTicker_spillTaint implements IPacket, IPacketListe
 	}
 	
 	@Override
-    public void writeToNBT(NBTTagCompound nbt)
-    {
+	public void writeToNBT(NBTTagCompound nbt)
+	{
 		nbt.setDouble("x", x);
 		nbt.setDouble("y", y);
 		nbt.setDouble("z", z);
@@ -59,11 +60,11 @@ public class PacketFXWisp_AuraTicker_spillTaint implements IPacket, IPacketListe
 		nbt.setDouble("tz", tz);
 		nbt.setFloat("p", partialTicks);
 		nbt.setInteger("type", type);
-    }
-
+	}
+	
 	@Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
+	public void readFromNBT(NBTTagCompound nbt)
+	{
 		x = nbt.getDouble("x");
 		y = nbt.getDouble("y");
 		z = nbt.getDouble("z");
@@ -72,5 +73,5 @@ public class PacketFXWisp_AuraTicker_spillTaint implements IPacket, IPacketListe
 		tz = nbt.getDouble("tz");
 		partialTicks = nbt.getFloat("p");
 		type = nbt.getInteger("type");
-    }
+	}
 }

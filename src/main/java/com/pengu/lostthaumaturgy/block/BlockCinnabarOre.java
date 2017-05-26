@@ -7,12 +7,12 @@ import net.minecraft.block.material.Material;
 public class BlockCinnabarOre extends Block
 {
 	public BlockCinnabarOre()
-    {
+	{
 		super(Material.ROCK);
 		setUnlocalizedName("cinnabar_ore");
 		setSoundType(SoundType.STONE);
 		setHardness(1.5F);
 		setHarvestLevel("pickaxe", 2);
 		setResistance(5);
-    }
+	}
 }

@@ -60,7 +60,8 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser)) return ItemStack.EMPTY;
+			if(infuser == null || !conditions.get(entry).apply(infuser))
+				return ItemStack.EMPTY;
 			ItemStack res = (ItemStack) resultList.get(entry);
 			if(!darkList.get(entry).booleanValue())
 				return res;
@@ -76,7 +77,8 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser)) return ItemStack.EMPTY;
+			if(infuser == null || !conditions.get(entry).apply(infuser))
+				return ItemStack.EMPTY;
 			ItemStack res = (ItemStack) resultList.get(entry);
 			if(darkList.get(entry) == isdark)
 				return res;
@@ -152,7 +154,8 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser)) return 0;
+			if(infuser == null || !conditions.get(entry).apply(infuser))
+				return 0;
 			int res = (Integer) costList.get(entry);
 			if(darkList.get(entry) == isdark)
 				return res;
@@ -168,7 +171,8 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser)) return 0;
+			if(infuser == null || !conditions.get(entry).apply(infuser))
+				return 0;
 			int res = (Integer) costList.get(entry);
 			if(!((Boolean) darkList.get(entry)).booleanValue())
 				return res;
@@ -188,7 +192,8 @@ public class RecipesInfuser
 	{
 		block0: for(int a = 0; a < componentList.size(); ++a)
 		{
-			if(infuser == null || !conditions.get(a).apply(infuser)) continue;
+			if(infuser == null || !conditions.get(a).apply(infuser))
+				continue;
 			
 			ItemStack[] cl = (ItemStack[]) componentList.get(a);
 			ArrayList<Integer> exclude = new ArrayList<Integer>();
@@ -246,7 +251,8 @@ public class RecipesInfuser
 			{
 				ResearchPredicate pred = (ResearchPredicate) predicate;
 				discoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
-			}else discoveries = new ItemStack[0];
+			} else
+				discoveries = new ItemStack[0];
 		}
 		
 		public static InfuserRecipe[] present()

@@ -177,20 +177,20 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 	{
 		return Math.max(this.visSuction, this.taintSuction);
 	}
-
+	
 	@Override
-    public void writeNBT(NBTTagCompound nbt)
-    {
+	public void writeNBT(NBTTagCompound nbt)
+	{
 		nbt.setInteger("VisSuction", visSuction);
 		nbt.setInteger("TaintSuction", taintSuction);
-    }
-
+	}
+	
 	@Override
-    public void readNBT(NBTTagCompound nbt)
-    {
+	public void readNBT(NBTTagCompound nbt)
+	{
 		visSuction = nbt.getInteger("VisSuction");
 		taintSuction = nbt.getInteger("TaintSuction");
-    }
+	}
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)

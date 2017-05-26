@@ -26,13 +26,14 @@ public class PacketUpdateClientRD implements IPacket, IPacketListener<PacketUpda
 	}
 	
 	public PacketUpdateClientRD()
-    {
-    }
+	{
+	}
 	
 	@Override
 	public IPacket onArrived(PacketUpdateClientRD packet, MessageContext context)
 	{
-		if(context.side == Side.CLIENT) ClientResearchData.fromNBT(packet.nbt);
+		if(context.side == Side.CLIENT)
+			ClientResearchData.fromNBT(packet.nbt);
 		return null;
 	}
 	

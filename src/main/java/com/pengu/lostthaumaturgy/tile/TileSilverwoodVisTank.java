@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.tile;
 
-
 public class TileSilverwoodVisTank extends TileVisTank
 {
 	{

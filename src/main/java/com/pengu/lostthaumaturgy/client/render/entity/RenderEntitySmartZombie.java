@@ -16,9 +16,9 @@ public class RenderEntitySmartZombie extends RenderZombie
 	private static final ResourceLocation SMART_ZOMBIE_TEXTURES = new ResourceLocation(LTInfo.MOD_ID, "textures/entity/smart_zombie.png");
 	
 	public RenderEntitySmartZombie(RenderManager renderManagerIn)
-    {
-	    super(renderManagerIn);
-    }
+	{
+		super(renderManagerIn);
+	}
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityZombie entity)
@@ -31,7 +31,7 @@ public class RenderEntitySmartZombie extends RenderZombie
 		@Override
 		public Render<? super EntitySmartZombie> createRenderFor(RenderManager manager)
 		{
-		    return new RenderEntitySmartZombie(manager);
+			return new RenderEntitySmartZombie(manager);
 		}
 	}
 }

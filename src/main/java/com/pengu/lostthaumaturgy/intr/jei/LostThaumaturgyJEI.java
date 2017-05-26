@@ -36,12 +36,14 @@ public class LostThaumaturgyJEI implements IModPlugin
 		reg.addRecipeCategoryCraftingItem(new ItemStack(BlocksLT.INFUSER), JEIConstans.INFUSER);
 		reg.addRecipeClickArea(GuiInfuser.class, 160, 105, 9, 47, JEIConstans.INFUSER);
 		
-		//register infuser recipes
+		// register infuser recipes
 		InfuserRecipe[] normal = RecipesInfuser.InfuserRecipe.present();
-		if(normal.length > 0) reg.addRecipes(Arrays.asList(normal));
+		if(normal.length > 0)
+			reg.addRecipes(Arrays.asList(normal));
 		
 		DarkInfuserRecipe[] dark = RecipesInfuser.DarkInfuserRecipe.present();
-		if(dark.length > 0) reg.addRecipes(Arrays.asList(dark));
+		if(dark.length > 0)
+			reg.addRecipes(Arrays.asList(dark));
 	}
 	
 	@Override

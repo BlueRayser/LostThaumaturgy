@@ -180,7 +180,8 @@ public class ClientProxy extends CommonProxy
 		for(BookCategory cat : tm.categories)
 			if(cat instanceof CategoryThaumonomicon && cat.categoryId.equals(evt.research.category))
 				tc = (CategoryThaumonomicon) cat;
-		if(tc == null) tc = new CategoryThaumonomicon(evt.research.category);
+		if(tc == null)
+			tc = new CategoryThaumonomicon(evt.research.category);
 		new EntryThaumonomicon(tc, evt.research.uid, "research." + evt.research.uid + ".title", evt.research);
 		evt.research.pageHandler.reload();
 	}

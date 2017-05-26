@@ -66,8 +66,10 @@ public class ResearchSystem
 	public static void setResearchCompleted(EntityPlayer player, Research res, boolean isCompleted)
 	{
 		HashSet<String> researches = COMPLETED.get(player.getGameProfile().getId().toString());
-		if(isCompleted) researches.add(res.uid);
-		else researches.remove(res.uid);
+		if(isCompleted)
+			researches.add(res.uid);
+		else
+			researches.remove(res.uid);
 	}
 	
 	public static boolean isResearchCompleted(EntityPlayer player, Research res)

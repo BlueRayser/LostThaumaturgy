@@ -37,7 +37,8 @@ public class ResearchPageHandler
 	
 	public IPage getPage(int at)
 	{
-		if(pages.size() == 0) reload();
+		if(pages.size() == 0)
+			reload();
 		
 		if(at >= pages.size() || at < 0)
 			return null;

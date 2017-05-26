@@ -41,8 +41,10 @@ public class GuiAuxiliumTable extends GuiContainer
 		mouseY -= guiTop;
 		
 		int fragmentCount = 9;
-		if(table.lastBoost > 0) fragmentCount = Math.round((27 - table.lastBoost) / 3F);
-		if(fragmentCount == 0) fragmentCount = 1;
+		if(table.lastBoost > 0)
+			fragmentCount = Math.round((27 - table.lastBoost) / 3F);
+		if(fragmentCount == 0)
+			fragmentCount = 1;
 		
 		if(mouseX >= 71 && mouseY >= 39 && mouseX < 71 + 35 && mouseY < 39 + 10)
 			drawHoveringText(Arrays.asList("Required Fragment Amount:", fragmentCount + ""), mouseX, mouseY);
@@ -68,7 +70,7 @@ public class GuiAuxiliumTable extends GuiContainer
 		if(LiquidVisRenderer.useShaders())
 		{
 			LiquidVisRenderer.renderIntoGui(guiLeft + 43, guiTop + 65 - fill, 16, fill, 1);
-		}else
+		} else
 		{
 			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
 			mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);

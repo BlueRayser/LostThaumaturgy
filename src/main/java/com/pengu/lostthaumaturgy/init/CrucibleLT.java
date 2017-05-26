@@ -159,10 +159,11 @@ public class CrucibleLT
 						String item = key.substring(0, key.lastIndexOf(":"));
 						int meta = Integer.parseInt(key.substring(key.lastIndexOf(":") + 1));
 						Item i = Item.REGISTRY.getObject(new ResourceLocation(item));
-						if(meta < 0) meta = OreDictionary.WILDCARD_VALUE;
+						if(meta < 0)
+							meta = OreDictionary.WILDCARD_VALUE;
 						
 						RecipesCrucible.registerNewSmelting(new MatcherItemStack(new ItemStack(i, 1, meta)), (float) obj.getDouble(key));
-					}else
+					} else
 						RecipesCrucible.registerNewSmelting(new MatcherOreDict(key), (float) obj.getDouble(key));
 				} catch(Throwable er)
 				{

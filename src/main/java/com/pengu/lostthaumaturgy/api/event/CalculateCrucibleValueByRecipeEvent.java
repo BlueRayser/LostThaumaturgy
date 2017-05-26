@@ -13,29 +13,29 @@ public class CalculateCrucibleValueByRecipeEvent extends Event
 	private float calculatedValue;
 	
 	public CalculateCrucibleValueByRecipeEvent(ItemStack output, float calculatedValue, IRecipe recipe)
-    {
+	{
 		this.output = output;
 		this.recipe = recipe;
 		this.calculatedValue = calculatedValue;
-    }
+	}
 	
 	public ItemStack getOutput()
-    {
-	    return output.copy();
-    }
+	{
+		return output.copy();
+	}
 	
 	public float getCalculatedValue()
-    {
-	    return calculatedValue;
-    }
+	{
+		return calculatedValue;
+	}
 	
 	public void setCalculatedValue(float calculatedValue)
-    {
-	    this.calculatedValue = calculatedValue;
-    }
+	{
+		this.calculatedValue = calculatedValue;
+	}
 	
 	public IRecipe getRecipe()
-    {
-	    return recipe;
-    }
+	{
+		return recipe;
+	}
 }

@@ -27,7 +27,8 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 	{
 		super.renderItem(item);
 		NBTTagCompound itemNBT = getNBTFromItemStack(item);
-		if(itemNBT == null) renderValve(false, 0, 0, 0, 0);
+		if(itemNBT == null)
+			renderValve(false, 0, 0, 0, 0);
 	}
 	
 	@Override

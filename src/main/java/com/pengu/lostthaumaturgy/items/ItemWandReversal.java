@@ -7,11 +7,11 @@ import net.minecraft.util.math.MathHelper;
 public class ItemWandReversal extends Item
 {
 	public ItemWandReversal()
-    {
+	{
 		setUnlocalizedName("wand_reversal");
 		setMaxStackSize(1);
 		setMaxDamage(200);
-    }
+	}
 	
 	@Override
 	public int getRGBDurabilityForDisplay(ItemStack stack)

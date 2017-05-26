@@ -5,13 +5,13 @@ import com.mrdimka.hammercore.bookAPI.BookCategory;
 public class CategoryThaumonomicon extends BookCategory
 {
 	public CategoryThaumonomicon(String id)
-    {
-	    super(BookThaumonomicon.instance, id);
-    }
+	{
+		super(BookThaumonomicon.instance, id);
+	}
 	
 	@Override
 	public boolean isDisabled()
 	{
-	    return false;
+		return false;
 	}
 }

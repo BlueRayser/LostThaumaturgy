@@ -20,29 +20,30 @@ public class WorldGenCinderpearl implements IWorldGenerator
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if(rand.nextInt(200) < 40) for(int k = 0; k < rand.nextInt(2); ++k)
-		{
-			BlockPos pos = world.getHeight(new BlockPos(chunkX + rand.nextInt(16), 255, chunkZ + rand.nextInt(16)));
-			if(AuraTicker.BIOME_FIREFLOWER.contains(world.getBiome(pos)))
+		if(rand.nextInt(200) < 40)
+			for(int k = 0; k < rand.nextInt(2); ++k)
 			{
-				int flowerCount = rand.nextInt(8);
-				
-				for(int j = 0; j < flowerCount; ++j)
+				BlockPos pos = world.getHeight(new BlockPos(chunkX + rand.nextInt(16), 255, chunkZ + rand.nextInt(16)));
+				if(AuraTicker.BIOME_FIREFLOWER.contains(world.getBiome(pos)))
 				{
-					BlockPos tpos = new BlockPos(pos.getX() + offset(rand, 6), pos.getY() + offset(rand, 6), pos.getZ() + offset(rand, 6));
+					int flowerCount = rand.nextInt(8);
 					
-					for(int t = 0; t < 25; ++t)
+					for(int j = 0; j < flowerCount; ++j)
 					{
-						BlockPos gpos = posFromTop(tpos, world, GRASS_OR_DIRT_OR_SAND);
-						if(gpos != null && world.getBlockState(gpos.up()).getBlock().isReplaceable(world, gpos.up()))
+						BlockPos tpos = new BlockPos(pos.getX() + offset(rand, 6), pos.getY() + offset(rand, 6), pos.getZ() + offset(rand, 6));
+						
+						for(int t = 0; t < 25; ++t)
 						{
-							world.setBlockState(gpos.up(), BlocksLT.CINDERPEARL.getDefaultState());
-							break;
+							BlockPos gpos = posFromTop(tpos, world, GRASS_OR_DIRT_OR_SAND);
+							if(gpos != null && world.getBlockState(gpos.up()).getBlock().isReplaceable(world, gpos.up()))
+							{
+								world.setBlockState(gpos.up(), BlocksLT.CINDERPEARL.getDefaultState());
+								break;
+							}
 						}
 					}
 				}
 			}
-		}
 	}
 	
 	private int offset(Random rand, int rad)

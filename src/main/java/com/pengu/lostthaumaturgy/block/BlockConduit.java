@@ -48,7 +48,7 @@ public class BlockConduit extends BlockTraceableRendered implements ITileEntityP
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
-	    return AABB;
+		return AABB;
 	}
 	
 	@Override

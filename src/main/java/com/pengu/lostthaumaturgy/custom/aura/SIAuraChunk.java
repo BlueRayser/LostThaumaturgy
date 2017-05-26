@@ -32,7 +32,8 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 	public List<byte[]> getVar(String name)
 	{
 		List<byte[]> l = data.get(name);
-		if(l == null) data.put(name, l = new ArrayList<>());
+		if(l == null)
+			data.put(name, l = new ArrayList<>());
 		return l;
 	}
 	
@@ -67,7 +68,7 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 		
 		nbt.setTag("Variables", list);
 		
-	    return nbt;
+		return nbt;
 	}
 	
 	@Override
@@ -105,6 +106,6 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 		list.add(x);
 		list.add(z);
 		list.add(dimension);
-	    return list.hashCode();
+		return list.hashCode();
 	}
 }

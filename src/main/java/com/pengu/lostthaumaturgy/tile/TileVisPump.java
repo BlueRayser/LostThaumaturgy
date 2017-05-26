@@ -1,7 +1,6 @@
 package com.pengu.lostthaumaturgy.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
@@ -27,11 +26,13 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 			return;
 		}
 		
-		if(world.isRemote) return;
+		if(world.isRemote)
+			return;
 		
 		IConnection c = ConnectionManager.getConnection(world, pos, orientation);
 		
-		if(c == null) return;
+		if(c == null)
+			return;
 		
 		if(pureVis + taintedVis < maxVis && c != null && c.isVisConduit() || c.isVisSource())
 		{
@@ -110,13 +111,18 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 		float pureAmount = amount / 2;
 		float taintAmount = amount / 2;
 		float[] result = new float[] { 0, 0 };
-		if(amount < 0.001F) return result;
-		if(this.pureVis < pureAmount) pureAmount = this.pureVis;
-		if(this.taintedVis < taintAmount) taintAmount = this.taintedVis;
+		if(amount < 0.001F)
+			return result;
+		if(this.pureVis < pureAmount)
+			pureAmount = this.pureVis;
+		if(this.taintedVis < taintAmount)
+			taintAmount = this.taintedVis;
 		
-		//Is this block even alive??
-		if(pureAmount < amount / 2 && taintAmount == amount / 2) taintAmount = Math.min(amount - pureAmount, this.taintedVis);
-		else if(taintAmount < amount / 2 && pureAmount == amount / 2) pureAmount = Math.min(amount - taintAmount, this.pureVis);
+		// Is this block even alive??
+		if(pureAmount < amount / 2 && taintAmount == amount / 2)
+			taintAmount = Math.min(amount - pureAmount, this.taintedVis);
+		else if(taintAmount < amount / 2 && pureAmount == amount / 2)
+			pureAmount = Math.min(amount - taintAmount, this.pureVis);
 		
 		this.pureVis -= pureAmount;
 		this.taintedVis -= taintAmount;
@@ -155,8 +161,10 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 	@Override
 	public int getSuction(BlockPos loc)
 	{
-		if(loc == null) loc = pos.offset(orientation);
-		if(this.gettingPower()) return 0;
+		if(loc == null)
+			loc = pos.offset(orientation);
+		if(this.gettingPower())
+			return 0;
 		int bellows = 0;
 		for(int dir = 0; dir < 4; ++dir)
 		{
@@ -166,20 +174,21 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 				continue;
 			bellows += te.forceSuction;
 		}
-		if(loc.equals(pos.offset(orientation))) return baseSuction + bellows;
+		if(loc.equals(pos.offset(orientation)))
+			return baseSuction + bellows;
 		return 0;
 	}
 	
-//	@Override
-//	public boolean rotate()
-//	{
-//		++this.orientation;
-//		if(this.orientation > 5)
-//		{
-//			this.orientation -= 6;
-//		}
-//		return true;
-//	}
+	// @Override
+	// public boolean rotate()
+	// {
+	// ++this.orientation;
+	// if(this.orientation > 5)
+	// {
+	// this.orientation -= 6;
+	// }
+	// return true;
+	// }
 	
 	public boolean gettingPower()
 	{

@@ -9,18 +9,18 @@ public class ResearchRegisterEvent extends Event
 	public final Research research;
 	
 	public ResearchRegisterEvent(Research research)
-    {
+	{
 		this.research = research;
-    }
+	}
 	
 	@Cancelable
 	public static class OnClient extends ResearchRegisterEvent
 	{
-
+		
 		public OnClient(Research research)
-        {
-	        super(research);
-        }
+		{
+			super(research);
+		}
 		
 	}
 }

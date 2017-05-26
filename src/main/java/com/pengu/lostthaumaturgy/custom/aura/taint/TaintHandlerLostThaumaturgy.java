@@ -15,9 +15,10 @@ import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 public class TaintHandlerLostThaumaturgy implements ITaintHandler
 {
 	@Override
-    public boolean canTaintBlock(World world, BlockPos pos)
-    {
-		if(!world.isBlockLoaded(pos)) return false;
+	public boolean canTaintBlock(World world, BlockPos pos)
+	{
+		if(!world.isBlockLoaded(pos))
+			return false;
 		IBlockState state = world.getBlockState(pos);
 		
 		if(BlockTaintedSoil.isTaintable(world, pos))
@@ -28,13 +29,14 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(state.getBlock() instanceof BlockOreCrystal)
 			return true;
 		
-	    return false;
-    }
-
+		return false;
+	}
+	
 	@Override
-    public boolean taintBlock(World world, BlockPos pos)
-    {
-		if(!world.isBlockLoaded(pos)) return false;
+	public boolean taintBlock(World world, BlockPos pos)
+	{
+		if(!world.isBlockLoaded(pos))
+			return false;
 		IBlockState state = world.getBlockState(pos);
 		
 		if(BlockTaintedSoil.isTaintable(world, pos))
@@ -54,13 +56,14 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			world.setBlockState(pos, BlocksLT.CRYSTAL_ORE_TAINTED.getDefaultState());
 		}
 		
-	    return false;
-    }
-
+		return false;
+	}
+	
 	@Override
-    public boolean canCureBlock(World world, BlockPos pos)
-    {
-		if(!world.isBlockLoaded(pos)) return false;
+	public boolean canCureBlock(World world, BlockPos pos)
+	{
+		if(!world.isBlockLoaded(pos))
+			return false;
 		IBlockState state = world.getBlockState(pos);
 		
 		if(state.getBlock() == BlocksLT.CRYSTAL_ORE_TAINTED)
@@ -70,13 +73,14 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
 			return true;
 		
-	    return false;
-    }
-
+		return false;
+	}
+	
 	@Override
-    public boolean cureBlock(World world, BlockPos pos)
-    {
-		if(!world.isBlockLoaded(pos)) return false;
+	public boolean cureBlock(World world, BlockPos pos)
+	{
+		if(!world.isBlockLoaded(pos))
+			return false;
 		IBlockState state = world.getBlockState(pos);
 		
 		if(state.getBlock() == BlocksLT.CRYSTAL_ORE_TAINTED)
@@ -88,12 +92,12 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
 			world.setBlockState(pos, BlocksLT.SHIMMERLEAF.getDefaultState());
 		
-	    return false;
-    }
-
+		return false;
+	}
+	
 	@Override
-    public String handlerId()
-    {
-	    return LTInfo.MOD_ID;
-    }
+	public String handlerId()
+	{
+		return LTInfo.MOD_ID;
+	}
 }

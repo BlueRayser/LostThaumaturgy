@@ -24,18 +24,19 @@ public class PacketFXWisp1 implements IPacket, IPacketListener<PacketFXWisp1, IP
 		this.z = z;
 		this.partialTicks = partialTicks;
 		this.type = type;
-    }
+	}
 	
 	public PacketFXWisp1()
-    {
-    }
-
+	{
+	}
+	
 	@Override
-    public IPacket onArrived(PacketFXWisp1 packet, MessageContext context)
-    {
-		if(context.side == Side.CLIENT) summon();
-	    return null;
-    }
+	public IPacket onArrived(PacketFXWisp1 packet, MessageContext context)
+	{
+		if(context.side == Side.CLIENT)
+			summon();
+		return null;
+	}
 	
 	@SideOnly(Side.CLIENT)
 	private void summon()
@@ -44,22 +45,22 @@ public class PacketFXWisp1 implements IPacket, IPacketListener<PacketFXWisp1, IP
 	}
 	
 	@Override
-    public void writeToNBT(NBTTagCompound nbt)
-    {
+	public void writeToNBT(NBTTagCompound nbt)
+	{
 		nbt.setDouble("x", x);
 		nbt.setDouble("y", y);
 		nbt.setDouble("z", z);
 		nbt.setFloat("p", partialTicks);
 		nbt.setInteger("type", type);
-    }
-
+	}
+	
 	@Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
+	public void readFromNBT(NBTTagCompound nbt)
+	{
 		x = nbt.getDouble("x");
 		y = nbt.getDouble("y");
 		z = nbt.getDouble("z");
 		partialTicks = nbt.getFloat("p");
 		type = nbt.getInteger("type");
-    }
+	}
 }

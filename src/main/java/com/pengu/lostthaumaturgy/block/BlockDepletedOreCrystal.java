@@ -51,28 +51,29 @@ public class BlockDepletedOreCrystal extends BlockOreCrystal
 			world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 3);
 		}
 		
-		for(int i = 0; i < q2; ++i) if(ac != null)
-		{
-			if(ac.vis > ac.taint)
+		for(int i = 0; i < q2; ++i)
+			if(ac != null)
 			{
-				ac.vis--;
-				ac.taint += 2;
-			} else if(ac.vis < ac.taint)
-			{
-				ac.vis++;
-				ac.taint -= 2;
+				if(ac.vis > ac.taint)
+				{
+					ac.vis--;
+					ac.taint += 2;
+				} else if(ac.vis < ac.taint)
+				{
+					ac.vis++;
+					ac.taint -= 2;
+				}
+				
+				if(ac.goodVibes > ac.badVibes)
+				{
+					ac.goodVibes--;
+					ac.badVibes += 2;
+				} else if(ac.goodVibes < ac.badVibes)
+				{
+					ac.goodVibes++;
+					ac.badVibes -= 2;
+				}
 			}
-			
-			if(ac.goodVibes > ac.badVibes)
-			{
-				ac.goodVibes--;
-				ac.badVibes += 2;
-			} else if(ac.goodVibes < ac.badVibes)
-			{
-				ac.goodVibes++;
-				ac.badVibes -= 2;
-			}
-		}
 	}
 	
 	@SideOnly(Side.CLIENT)

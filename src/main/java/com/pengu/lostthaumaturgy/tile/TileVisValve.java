@@ -21,7 +21,8 @@ public class TileVisValve extends TileConduit
 	@Override
 	public void tick()
 	{
-		if(ticksExisted % 20 == 0) rebake();
+		if(ticksExisted % 20 == 0)
+			rebake();
 		
 		if(world.isRemote)
 			return;
