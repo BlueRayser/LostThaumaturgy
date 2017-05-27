@@ -28,7 +28,6 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 
@@ -119,13 +118,6 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
 	{
 		return false;
-	}
-	
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		AuraTicker.spillTaint(worldIn, pos);
-		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@SideOnly(Side.CLIENT)

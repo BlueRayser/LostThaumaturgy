@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"growth=0": { "model": "lostthaumaturgy:tainted_plant_0" },
+		"growth=1": { "model": "lostthaumaturgy:tainted_plant_1" }
+	}
+}

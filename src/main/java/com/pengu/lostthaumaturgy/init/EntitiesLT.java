@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 
@@ -16,6 +17,7 @@ public class EntitiesLT
 	{
 		reg(EntityThaumSlime.class, "tslime", 0xAA00FF, 0x4C2187);
 		reg(EntitySmartZombie.class, "smart_zombie", 0x1F340F, 0xBEB070);
+		reg(EntityCustomSplashPotion.class, "custom_splash_potion");
 		
 		LootTableList.register(EntityThaumSlime.LOOT_TABLE);
 		LootTableList.register(EntitySmartZombie.LOOT_TABLE);
@@ -26,5 +28,10 @@ public class EntitiesLT
 	private static void reg(Class<? extends Entity> entityClass, String name, int eggPrimary, int eggSecondary)
 	{
 		EntityRegistry.registerModEntity(new ResourceLocation(LTInfo.MOD_ID, name), entityClass, LTInfo.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true, eggPrimary, eggSecondary);
+	}
+	
+	private static void reg(Class<? extends Entity> entityClass, String name)
+	{
+		EntityRegistry.registerModEntity(new ResourceLocation(LTInfo.MOD_ID, name), entityClass, LTInfo.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true);
 	}
 }

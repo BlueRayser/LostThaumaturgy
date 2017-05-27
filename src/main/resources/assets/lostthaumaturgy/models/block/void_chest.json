@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"down": "lostthaumaturgy:blocks/void_chest/bottom",
+		"up": "lostthaumaturgy:blocks/void_chest/top",
+		"east": "lostthaumaturgy:blocks/void_chest/side",
+		"west": "lostthaumaturgy:blocks/void_chest/side",
+		"south": "lostthaumaturgy:blocks/void_chest/side",
+		"north": "lostthaumaturgy:blocks/void_chest/side",
+		"particle": "lostthaumaturgy:blocks/void_chest/side"
+	}
+}

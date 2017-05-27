@@ -39,6 +39,10 @@ tile.lostthaumaturgy:silverwood_stairs.name=Silverwood Stairs
 tile.lostthaumaturgy:crystallizer.name=Crystallizer
 tile.lostthaumaturgy:nitor.name=Nitor
 tile.lostthaumaturgy:tainted_soil.name=Tainted Soil
+tile.lostthaumaturgy:eldritch_block.name=Eldritch Stone
+tile.lostthaumaturgy:pengu_cobble_gen.name=Pengu in a CobbleGen
+tile.lostthaumaturgy:void_chest.name=Void Chest
+tile.lostthaumaturgy:generator.name=Thaumic Generator
 
 
 
@@ -100,10 +104,16 @@ item.lostthaumaturgy:upgrades/collected_wisdom.name=Collected Wisdom
 item.lostthaumaturgy:upgrades/collected_wisdom.tooltip0=Increases mystical capacity or knowledge
 item.lostthaumaturgy:wand_reversal.name=Wand of Reversal
 item.lostthaumaturgy:singularity.name=Arcane Singularity
+item.lostthaumaturgy:topaz.name=Topaz
+item.lostthaumaturgy:concentrated_vis.name=Concentrated Vis
+item.lostthaumaturgy:concentrated_taint.name=Concentrated Taint
+item.lostthaumaturgy:potion_purity.name=Potion of Purity
 
 
 
 gui.lostthaumaturgy:click_to_read=Click to Read More
+gui.lostthaumaturgy:upgradable=Upgradable
+gui.lostthaumaturgy:not_upgradable=Not Upgradable
 
 
 
@@ -145,3 +155,6 @@ bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Thaumaturgy
 bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Lost Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
+
+
+chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...

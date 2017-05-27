@@ -4,6 +4,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
+import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
@@ -28,13 +29,14 @@ public class ItemsLT
 	        THAUMIUM_BOOTS = new ItemThaumiumArmor(EntityEquipmentSlot.FEET), //
 	        WAND_ITEM_FREEZE = new ItemWandOfItemFreeze(), //
 	        WAND_REVERSAL = new ItemWandReversal(), //
-	        SINGULARITY = new ItemSingularity();
+	        SINGULARITY = new ItemSingularity(), //
+	        CUSTOM_POTION = new ItemCustomPotion();
 	public static final ItemUpgrade //
 	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //
 	        STABILIZED_SINGULARITY = new ItemUpgrade("stabilized_singularity"), //
 	        HARNESSED_RAGE = new ItemUpgrade("harnessed_rage"), //
 	        CONCENTRATED_EVIL = new ItemUpgrade("concentrated_evil"), //
-	        INFINITE_SADDNESS = new ItemUpgrade("infinite_saddness"), //
+	        INFINITE_SADNESS = new ItemUpgrade("infinite_saddness"), //
 	        CONTAINED_EMPTINESS = new ItemUpgrade("contained_emptiness"), //
 	        COLLECTED_WISDOM = new ItemUpgrade("collected_wisdom");
 }

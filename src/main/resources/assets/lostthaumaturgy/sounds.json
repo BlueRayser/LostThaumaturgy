@@ -6,5 +6,8 @@
 	"creaking": { "sounds": ["lostthaumaturgy:creaking1","lostthaumaturgy:creaking2"] },
 	"discover": { "sounds": ["lostthaumaturgy:discover"] },
 	"upgrade": { "sounds": ["lostthaumaturgy:upgrade"] },
-	"zap": { "sounds": ["lostthaumaturgy:zap1","lostthaumaturgy:zap2"] }
+	"zap": { "sounds": ["lostthaumaturgy:zap1","lostthaumaturgy:zap2"] },
+	"void_chest_open": { "sounds": ["lostthaumaturgy:void_chest_open"] },
+	"void_chest_close": { "sounds": ["lostthaumaturgy:void_chest_close"] },
+	"elecloop": { "sounds": ["lostthaumaturgy:elecloop"] }
 }

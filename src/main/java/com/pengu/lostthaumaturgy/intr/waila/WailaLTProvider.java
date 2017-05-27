@@ -50,7 +50,7 @@ public class WailaLTProvider implements IWailaDataProvider
 	{
 		TileEntity tile = acc.getTileEntity();
 		
-		if(tile instanceof TileTaintedSoil)
+		soil: if(tile instanceof TileTaintedSoil)
 		{
 			TileTaintedSoil soil = (TileTaintedSoil) tile;
 			try
@@ -58,6 +58,7 @@ public class WailaLTProvider implements IWailaDataProvider
 				BlockSnapshot s = soil.getSnapshot();
 				Block block = Block.REGISTRY.getObject(s.getRegistryName());
 				
+				if(tooltip.contains("Tainted:")) break soil;
 				tooltip.add("Tainted:");
 				tooltip.add(block.getLocalizedName());
 			} catch(Throwable err)

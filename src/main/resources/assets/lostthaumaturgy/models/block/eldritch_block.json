@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"particle": "lostthaumaturgy:blocks/eldritch_block/0",
+		"up": "lostthaumaturgy:blocks/eldritch_block/0",
+		"down": "lostthaumaturgy:blocks/eldritch_block/1",
+		"east": "lostthaumaturgy:blocks/eldritch_block/2",
+		"west": "lostthaumaturgy:blocks/eldritch_block/3",
+		"south": "lostthaumaturgy:blocks/eldritch_block/4",
+		"north": "lostthaumaturgy:blocks/eldritch_block/5"
+	}
+}

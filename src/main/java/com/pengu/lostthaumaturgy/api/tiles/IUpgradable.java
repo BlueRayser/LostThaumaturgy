@@ -23,13 +23,22 @@ public interface IUpgradable
 			if(upgrades[a] >= 0 || !canAcceptUpgrade(upgrade))
 				continue;
 			upgrades[a] = upgrade;
+			onUpgradeInstalled(upgrade, a);
 			return true;
 		}
 		
 		return false;
 	}
 	
-	boolean clearUpgrade(int slot);
+	default boolean clearUpgrade(int slot)
+	{
+		if(getUpgrades()[slot] >= 0)
+		{
+			getUpgrades()[slot] = -1;
+			return true;
+		}
+		return false;
+	}
 	
 	boolean canAcceptUpgrade(int type);
 	
@@ -96,5 +105,10 @@ public interface IUpgradable
 	default int getUpgradeLimit()
 	{
 		return getUpgrades().length;
+	}
+	
+	default void onUpgradeInstalled(int id, int slot)
+	{
+		
 	}
 }

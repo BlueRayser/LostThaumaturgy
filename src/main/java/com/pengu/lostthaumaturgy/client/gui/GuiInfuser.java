@@ -86,6 +86,16 @@ public class GuiInfuser extends GuiContainer
 			drawHoveringText(lastTooltip, mouseX, mouseY);
 			lastTooltip.clear();
 		}
+		
+		if(tile.getUpgrades()[0] >= 0)
+		{
+			int x = 8;
+			int y = 128;
+			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
+			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
+			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
+				drawHoveringText(stack.getTooltip(mc.player, false), mouseX - guiLeft, mouseY - guiTop);
+		}
 	}
 	
 	private ResourceLocation gui_infuser = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_infuser.png");
@@ -127,16 +137,6 @@ public class GuiInfuser extends GuiContainer
 		{
 			float i1 = this.tile.getBoostScaled();
 			RenderUtil.drawTexturedModalRect(guiLeft + 161, guiTop + 38 - i1, 192, 30 - i1, 7, i1);
-		}
-		
-		if(tile.getUpgrades()[0] >= 0)
-		{
-			int x = 8;
-			int y = 128;
-			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
-			itemRender.renderItemAndEffectIntoGUI(stack, guiLeft + x, guiTop + y);
-			if(mouseX >= guiLeft + x && mouseX < guiLeft + x + 16 && mouseY >= guiTop + y && mouseY < guiTop + y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
 		}
 	}
 	

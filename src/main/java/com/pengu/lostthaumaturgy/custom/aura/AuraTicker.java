@@ -7,8 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.zip.GZIPInputStream;
@@ -29,6 +31,7 @@ import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
@@ -46,6 +49,8 @@ import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.api.AuraAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
+import com.pengu.lostthaumaturgy.net.PacketReloadCR;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
@@ -162,7 +167,12 @@ public class AuraTicker
 	public void worldTick(WorldTickEvent evt)
 	{
 		if(!evt.world.isRemote)
-			updateAura(evt.world);
+			try
+			{
+				updateAura(evt.world);
+			} catch(ConcurrentModificationException cme)
+			{
+			}
 	}
 	
 	@SubscribeEvent
@@ -180,6 +190,14 @@ public class AuraTicker
 	{
 		if(evt.getWorld().provider.getDimension() == 0)
 			SaveAuraData();
+	}
+	
+	@SubscribeEvent
+	public void playerJoined(PlayerLoggedInEvent evt)
+	{
+		EntityPlayer player = evt.player;
+		if(!player.world.isRemote && player instanceof EntityPlayerMP)
+			HCNetwork.manager.sendTo(new PacketReloadCR(), (EntityPlayerMP) player);
 	}
 	
 	@SubscribeEvent
@@ -262,13 +280,13 @@ public class AuraTicker
 		SIAuraChunk chunk = AuraHM.get(asKey(chunkX, chunkZ, world.provider.getDimension()));
 		if(chunk == null)
 		{
-			GenerateAura(world, world.rand, chunkX, chunkZ);
+			GenerateAura(world, new SecureRandom(), chunkX, chunkZ);
 			return AuraHM.get(asKey(chunkX, chunkZ, world.provider.getDimension()));
 		}
 		return chunk;
 	}
 	
-	public void updateAura(World worldObj)
+	public void updateAura(World worldObj) throws ConcurrentModificationException
 	{
 		if(worldObj.isRemote)
 			return;
@@ -365,8 +383,10 @@ public class AuraTicker
 			ac2.taint = (short) MathHelper.clip((int) ac2.taint, (int) 0, (int) LTConfigs.auraMax);
 			ac2.goodVibes = (short) MathHelper.clip((int) ac2.goodVibes, (int) 0, (int) 100);
 			ac2.badVibes = (short) MathHelper.clip((int) ac2.badVibes, (int) 0, (int) 100);
-			if(ac2.taint > LTConfigs.auraMax / 2)
+			if(shouldBeTainted(ac2))
 				taintifyChunk(worldObj, ac2);
+			else
+				purifyChunk(worldObj, ac2);
 			if(--counter > 0)
 				continue;
 			break;
@@ -380,6 +400,11 @@ public class AuraTicker
 				ac2.updated = false;
 			}
 		}
+	}
+	
+	public static boolean shouldBeTainted(SIAuraChunk ac)
+	{
+		return ac.taint > LTConfigs.auraMax / 2;
 	}
 	
 	public static void GenerateAura(World world, Random random, int x, int z)
@@ -414,16 +439,14 @@ public class AuraTicker
 		short auraStrength = (short) (lower + random.nextInt(upper - lower));
 		short auraTaint = (short) (auraStrength / 3);
 		int n = tchance = LTConfigs.taintSpawn == 2 ? 300 : 2200;
-		if(LTConfigs.taintSpawn > 0 && random.nextInt(tchance) == 0)
+		if(LTConfigs.taintSpawn > 0 && random.nextInt(n) == 0)
 		{
 			auraStrength = (short) ((lower + random.nextInt(upper - lower)) / 2);
 			auraTaint = LTConfigs.taintSpawn == 2 ? (short) ((float) LTConfigs.auraMax * 0.8f + (float) random.nextInt((int) ((float) LTConfigs.auraMax * 0.2f))) : (short) ((float) LTConfigs.auraMax * 0.5f + (float) random.nextInt((int) ((float) LTConfigs.auraMax * 0.2f)));
-			GenerateTaintedArea(world, random, x + 8, z + 8, auraTaint);
+			GenerateTaintedArea(world, random, x - 8, z - 8, auraTaint);
 		}
 		if(extraTaint)
-		{
 			auraTaint = (short) ((double) auraTaint * 1.5);
-		}
 		SIAuraChunk ac = new SIAuraChunk();
 		ac.vis = auraStrength;
 		ac.taint = auraTaint;
@@ -514,10 +537,14 @@ public class AuraTicker
 			int xx = x + random.nextInt(31) - random.nextInt(31);
 			int zz = z + random.nextInt(31) - random.nextInt(31);
 			increaseTaintedPlants(world, xx, world.getHeight(xx, zz), zz);
+			
 			Chunk c = world.getChunkFromBlockCoords(new BlockPos(x, 0, z));
-			SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.x, c.z, world.provider.getDimension()));
+			
+			SIAuraChunk ac = AuraHM.get(asKey(x, z, world.provider.getDimension()));
+			
 			if(ac == null || (float) ac.taint >= (float) auraTaint * 0.8f)
 				continue;
+			
 			ac.taint = (short) ((float) auraTaint * (0.8f + random.nextFloat() * 0.25f));
 		}
 	}
@@ -528,6 +555,16 @@ public class AuraTicker
 		int x = (ac.x << 4) + world.rand.nextInt(16);
 		int y = world.rand.nextInt(world.getHeight(x, z = (ac.z << 4) + world.rand.nextInt(16)) > 0 ? world.getHeight(x, z) : 256);
 		if(increaseTaintedPlants(world, x, y, z))
+			return true;
+		return false;
+	}
+	
+	public static boolean purifyChunk(World world, SIAuraChunk ac)
+	{
+		int z;
+		int x = (ac.x << 4) + world.rand.nextInt(16);
+		int y = world.rand.nextInt(world.getHeight(x, z = (ac.z << 4) + world.rand.nextInt(16)) > 0 ? world.getHeight(x, z) : 256);
+		if(decreaseTaintedPlants(world, x, y, z))
 			return true;
 		return false;
 	}
@@ -550,7 +587,19 @@ public class AuraTicker
 	
 	public static boolean decreaseTaintedPlants(World world, int x, int y, int z)
 	{
-		return TaintRegistry.cureBlock(world, new BlockPos(x, y, z));
+		Chunk c = world.getChunkFromBlockCoords(new BlockPos(x, y, z));
+		for(int xx = -1; xx <= 1; ++xx)
+		{
+			for(int yy = -1; yy <= 1; ++yy)
+			{
+				for(int zz = -1; zz <= 1; ++zz)
+				{
+					BlockPos pos = new BlockPos(x + xx, y + yy, z + zz);
+					TaintRegistry.cureBlock(world, pos);
+				}
+			}
+		}
+		return false;
 	}
 	
 	public static boolean isNear(World world, int x, int y, int z, int range, IBlockState block)
@@ -578,13 +627,12 @@ public class AuraTicker
 			{
 				for(int c = -range; c <= range; ++c)
 				{
-					if(b + y < 0 || b + y >= world.getHeight() || !world.isBlockLoaded(new BlockPos(x + a >> 4, y, z + c >> 4)))
+					BlockPos pos = new BlockPos(x + a, y + b, z + c);
+					if(b + y < 0 || b + y >= world.getHeight() || !world.isBlockLoaded(pos))
 						continue;
 					for(int q = 0; q < states.length; ++q)
-					{
-						if(states[q].equals(world.getBlockState(new BlockPos(x + a, y + b, z + c))))
+						if(states[q].getBlock().equals(world.getBlockState(pos).getBlock()))
 							return true;
-					}
 				}
 			}
 		}
@@ -594,10 +642,8 @@ public class AuraTicker
 	public static boolean increaseTaintedPlants(World world, int x, int y, int z)
 	{
 		// TODO: silverwood and greatwood
-		// if(isNear(world, x, y, z, 3, new IBlockState[] {}))
-		// {
-		// return false;
-		// }
+		if(isNear(world, x, y, z, 3, new IBlockState[] { BlocksLT.SILVERWOOD_LOG.getDefaultState() }))
+			return false;
 		
 		Chunk c = world.getChunkFromBlockCoords(new BlockPos(x, y, z));
 		short taint = 0;
@@ -617,8 +663,9 @@ public class AuraTicker
 						TaintRegistry.taintBlock(world, pos);
 						badSound(world, (float) x + (float) xx, (float) y + (float) yy + 1.0f, (float) z + (float) zz);
 						
-						for(int q = 0; q < 100; ++q)
-							HCNetwork.manager.sendToAllAround(new PacketFXWisp_AuraTicker_taintExplosion((float) x + 0.5f, (float) y + 0.5f, (float) z + 0.5f, (float) x + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()) * 2.0f, (float) y + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()) * 2.0f, (float) z + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()) * 2.0f, 1.0f, 5), new TargetPoint(world.provider.getDimension(), x, y, z, 50));
+						if(world.rand.nextBoolean())
+							for(int q = 0; q < world.rand.nextInt(25); ++q)
+								HCNetwork.manager.sendToAllAround(new PacketFXWisp_AuraTicker_taintExplosion((float) x + 0.5f, (float) y + 0.5f, (float) z + 0.5f, (float) x + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()) * 2.0f, (float) y + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()) * 2.0f, (float) z + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()) * 2.0f, 1.0f, 5), new TargetPoint(world.provider.getDimension(), x, y, z, 50));
 					}
 				}
 			}

@@ -77,6 +77,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		setTickRandomly(true);
 		setLightLevel(2.5F);
 		setHardness(.75F);
+		setLightOpacity(0);
 	}
 	
 	public ItemStack getCrystal()

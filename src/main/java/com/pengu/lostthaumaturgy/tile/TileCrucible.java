@@ -429,12 +429,6 @@ public class TileCrucible extends TileSyncableTickable implements IConnection
 	}
 	
 	@Override
-	public boolean canRenderBreaking()
-	{
-		return true;
-	}
-	
-	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
 	{
 		if(capability == CapabilityVisConnection.VIS)

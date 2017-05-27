@@ -35,7 +35,7 @@ import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenLostArtifacts;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
 
-@Mod(modid = LTInfo.MOD_ID, name = LTInfo.MOD_NAME, version = LTInfo.MOD_VERSION, dependencies = "required-after:hammercore")
+@Mod(modid = LTInfo.MOD_ID, name = LTInfo.MOD_NAME, version = LTInfo.MOD_VERSION, dependencies = "required-after:hammercore", guiFactory = "com.pengu.lostthaumaturgy.client.cfg.GuiFactoryLT")
 public class LostThaumaturgy
 {
 	@Instance

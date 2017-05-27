@@ -1,10 +1,12 @@
 package com.pengu.lostthaumaturgy.events;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -12,9 +14,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.annotations.MCFBus;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.gui.GuiManager;
 import com.mrdimka.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 
@@ -27,6 +33,8 @@ public class InteractionEvents
 		World world = e.getWorld();
 		BlockPos pos = e.getPos();
 		ItemStack held = e.getItemStack();
+		
+		WorldLocation l = new WorldLocation(world, pos);
 		
 		if(!held.isEmpty())
 		{
@@ -47,7 +55,6 @@ public class InteractionEvents
 					e.setUseItem(Result.DENY);
 					e.setCanceled(true);
 				}
-				
 				e.getEntityPlayer().swingArm(e.getHand());
 			} else if(held.getItem() == ItemsLT.WAND_REVERSAL)
 			{
@@ -63,9 +70,25 @@ public class InteractionEvents
 					e.setUseBlock(Result.DENY);
 					e.setUseItem(Result.DENY);
 					e.setCanceled(true);
-					e.getEntityPlayer().swingArm(e.getHand());
 				}
+				e.getEntityPlayer().swingArm(e.getHand());
 			}
 		}
+	}
+	
+	@SubscribeEvent
+	public void blockBroken(BlockEvent.BreakEvent e)
+	{
+		WorldLocation loc = new WorldLocation(e.getWorld(), e.getPos());
+		TileEntity tile = loc.getTile();
+		
+		if(tile instanceof IUpgradable)
+		{
+			IUpgradable upgradable = (IUpgradable) tile;
+			while(upgradable.getInstalledUpgradeCount() > 0)
+				upgradable.dropUpgrade(e.getPlayer());
+		}
+		
+		AuraTicker.spillTaint(e.getWorld(), e.getPos());
 	}
 }

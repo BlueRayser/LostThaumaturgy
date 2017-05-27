@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 
 public class BlockSilverwoodVisTank extends BlockRendered implements ITileBlock<TileSilverwoodVisTank>, ITileEntityProvider
@@ -69,13 +68,6 @@ public class BlockSilverwoodVisTank extends BlockRendered implements ITileBlock<
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
 	{
 		return false;
-	}
-	
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		AuraTicker.spillTaint(worldIn, pos);
-		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override

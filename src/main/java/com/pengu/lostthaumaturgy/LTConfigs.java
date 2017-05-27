@@ -1,5 +1,7 @@
 package com.pengu.lostthaumaturgy;
 
+import net.minecraftforge.common.config.Configuration;
+
 import com.mrdimka.hammercore.cfg.HCModConfigurations;
 import com.mrdimka.hammercore.cfg.IConfigReloadListener;
 import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyBool;
@@ -23,4 +25,12 @@ public class LTConfigs implements IConfigReloadListener
 	
 	@ModConfigPropertyStringList(category = "Gameplay", name = "Taintable Blocks", comment = "What blocks could get tainted by tainted soil?\nFormatting:\nmodid:blockname\nIf it is from vanilla, you don't have to use minecraft prefix.\nTaint DOES store TileEntity so you can add something like \"furnace\" and it is going to work fine.", defaultValue = { "dirt", "grass", "sand", "gravel", "stone", "cobblestone" }, allowedValues = {})
 	public static String[] taintableBlocks = {};
+	
+	public static Configuration cfgs;
+	
+	@Override
+	public void reloadCustom(Configuration cfgs)
+	{
+		LTConfigs.cfgs = cfgs;
+	}
 }

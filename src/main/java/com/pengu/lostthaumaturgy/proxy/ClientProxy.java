@@ -7,11 +7,17 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.RayTraceResult.Type;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -24,17 +30,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.bookAPI.BookCategory;
 import com.mrdimka.hammercore.bookAPI.BookEntry;
-import com.pengu.hammercore.client.particle.api.ParticleList;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.color.Color;
+import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
+import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
-import com.pengu.lostthaumaturgy.client.extpart.EPFlyingCrystal;
-import com.pengu.lostthaumaturgy.client.extpart.REPFlyingCrystal;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
+import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
@@ -47,8 +54,10 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRGenerator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRLyingItem;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRPenguCobbleGen;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
@@ -59,16 +68,19 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPump;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisValve;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRVoidChest;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.custom.research.ResearchRegisterEvent;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
+import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
+import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
 import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.tile.TileBellows;
@@ -76,8 +88,10 @@ import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
+import com.pengu.lostthaumaturgy.tile.TileGenerator;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
+import com.pengu.lostthaumaturgy.tile.TilePenguCobbleGen;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
@@ -88,6 +102,7 @@ import com.pengu.lostthaumaturgy.tile.TileVisPump;
 import com.pengu.lostthaumaturgy.tile.TileVisPumpThaumium;
 import com.pengu.lostthaumaturgy.tile.TileVisTank;
 import com.pengu.lostthaumaturgy.tile.TileVisValve;
+import com.pengu.lostthaumaturgy.tile.TileVoidChest;
 
 public class ClientProxy extends CommonProxy
 {
@@ -102,6 +117,7 @@ public class ClientProxy extends CommonProxy
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityThaumSlime.class, RenderEntityThaumSlime.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntitySmartZombie.class, RenderEntitySmartZombie.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCustomSplashPotion.class, RenderCustomSplashPotion.FACTORY);
 	}
 	
 	private static List<Particle> queue = new ArrayList<>();
@@ -141,13 +157,15 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileAuxiliumTable.class, BlocksLT.AUXILIUM_TABLE, TESRAuxiliumTable.INSTANCE);
 		registerRender(TileLyingItem.class, BlocksLT.LYING_ITEM, TESRLyingItem.INSTANCE);
 		registerRender(TileCrystallizer.class, BlocksLT.CRYSTALLIZER, TESRCrystallizer.INSTANCE);
+		registerRender(TilePenguCobbleGen.class, BlocksLT.PENGU_COBBLEGEN, TESRPenguCobbleGen.INSTANCE);
+		registerRender(TileGenerator.class, BlocksLT.GENERATOR, TESRGenerator.INSTANCE);
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
 		
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_ITEM_FREEZE, new RenderItemWandOfItemFreeze());
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_REVERSAL, new RenderItemWandReversal());
 		
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
-		
-		ParticleList.registerRenderer(EPFlyingCrystal.class, new REPFlyingCrystal());
 	}
 	
 	@Override
@@ -199,20 +217,64 @@ public class ClientProxy extends CommonProxy
 				}
 	}
 	
+	private ItemStack[] handStacks = new ItemStack[2];
+	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void renderHUD(RenderGameOverlayEvent evt)
 	{
 		((BlockSilverwoodLeaves) BlocksLT.SILVERWOOD_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		Minecraft mc = Minecraft.getMinecraft();
 		
 		// Unqueue all particle that pend for spawning
 		while(!queue.isEmpty())
-			Minecraft.getMinecraft().effectRenderer.addEffect(queue.remove(0));
+			mc.effectRenderer.addEffect(queue.remove(0));
 		
 		if(evt.getType() == ElementType.ALL)
 		{
-			IGoggles goggles = ItemGogglesRevealing.getWearing(Minecraft.getMinecraft().player);
+			IGoggles goggles = ItemGogglesRevealing.getWearing(mc.player);
 			if(goggles != null)
 				HudDetector.instance.render(goggles.getRevealType(), ClientSIAuraChunk.getClientChunk(), true);
+		}
+		
+		ScaledResolution sr = new ScaledResolution(mc);
+		int k = sr.getScaledWidth();
+		int l = sr.getScaledHeight();
+		
+		handStacks[0] = mc.player.getHeldItem(EnumHand.MAIN_HAND);
+		handStacks[1] = mc.player.getHeldItem(EnumHand.OFF_HAND);
+		
+		for(ItemStack item : handStacks)
+		{
+			RayTraceResult res = mc.objectMouseOver;
+			if(!item.isEmpty() && item.getItem() == ItemsLT.WAND_REVERSAL && res != null && res.typeOfHit == Type.BLOCK && mc.world.getTileEntity(res.getBlockPos()) instanceof IUpgradable)
+			{
+				IUpgradable tet = (IUpgradable) mc.world.getTileEntity(res.getBlockPos());
+				
+				int last = -1;
+				int[] u = tet.getUpgrades();
+				for(int i = 0; i < u.length; ++i)
+					if(u[i] != -1)
+						last = i;
+				
+				if(last != -1 && u[last] != -1)
+				{
+					ItemUpgrade iu = ItemUpgrade.byId(u[last]);
+					ItemStack stack = new ItemStack(iu);
+					mc.getRenderItem().renderItemAndEffectIntoGUI(stack, k / 2 - 8, l / 2 - 20);
+				}
+			}
+			
+			if(!item.isEmpty() && item.getItem() instanceof ItemUpgrade && res != null && res.typeOfHit == Type.BLOCK && mc.world.getTileEntity(res.getBlockPos()) instanceof IUpgradable)
+			{
+				IUpgradable tet = (IUpgradable) mc.world.getTileEntity(res.getBlockPos());
+				
+				int id = ItemUpgrade.idFromItem((ItemUpgrade) item.getItem());
+				
+				boolean valid = tet.canAcceptUpgrade(id);
+				String s = I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":" + (valid ? "" : "not_") + "upgradable");
+				mc.fontRenderer.drawString(s, (k - mc.fontRenderer.getStringWidth(s)) / 2, l / 2 - 30, valid ? 0x22FF33 : 0xFF2233);
+				Color.glColourRGBA(0xFFFFFFFF);
+			}
 		}
 	}
 }

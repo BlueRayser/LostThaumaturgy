@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 
 public class BlockVisFilter extends BlockRendered implements ITileBlock<TileVisFilter>, ITileEntityProvider
@@ -63,13 +62,6 @@ public class BlockVisFilter extends BlockRendered implements ITileBlock<TileVisF
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
 	{
 		return false;
-	}
-	
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		AuraTicker.spillTaint(worldIn, pos);
-		super.breakBlock(worldIn, pos, state);
 	}
 	
 	public static final AxisAlignedBB FILTER_AABB = new AxisAlignedBB(2D / 16, 0, 2D / 16, 14D / 16, 1, 14D / 16);

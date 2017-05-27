@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.AxisAlignedBB;
 
 import com.pengu.lostthaumaturgy.block.BlockAdvancedVisValve;
@@ -11,15 +12,18 @@ import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockCrucible;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
 import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
+import com.pengu.lostthaumaturgy.block.BlockGenerator;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.block.BlockNitor;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.block.BlockPenguCobbleGen;
 import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
 import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
+import com.pengu.lostthaumaturgy.block.BlockTaintedPlant;
 import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.block.BlockThaumiumBellows;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
@@ -27,6 +31,7 @@ import com.pengu.lostthaumaturgy.block.BlockVisPump;
 import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
 import com.pengu.lostthaumaturgy.block.BlockVisTank;
 import com.pengu.lostthaumaturgy.block.BlockVisValve;
+import com.pengu.lostthaumaturgy.block.BlockVoidChest;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLog;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodPlanks;
@@ -56,17 +61,23 @@ public class BlocksLT
 	        STUDIUM_TABLE = new BlockStudiumTable(), //
 	        AUXILIUM_TABLE = new BlockAuxiliumTable(), //
 	        CRYSTALLIZER = new BlockCrystallizer(), //
-	        NITOR = new BlockNitor(), TAINTED_SOIL = new BlockTaintedSoil();
+	        NITOR = new BlockNitor(), //
+	        TAINTED_SOIL = new BlockTaintedSoil(), //
+	        VOID_CHEST = new BlockVoidChest(), //
+	        PENGU_COBBLEGEN = new BlockPenguCobbleGen(), //
+	        GENERATOR = new BlockGenerator();
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //
 	        SILVERWOOD_LOG = new BlockSilverwoodLog(), //
-	        LYING_ITEM = new BlockLyingItem();
+	        LYING_ITEM = new BlockLyingItem(), //
+	        ELDRITCH_BLOCK = new Block(Material.ROCK).setHardness(1.5F).setUnlocalizedName("eldritch_block").setResistance(Float.POSITIVE_INFINITY);
 	
 	public static final Block //
 	        SHIMMERLEAF = new BlockPlant("shimmerleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
 	        TAINTEDLEAF = new BlockPlant("taintedleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
-	        CINDERPEARL = new BlockCinderpearl();
+	        CINDERPEARL = new BlockCinderpearl(), //
+	        TAINTED_PLANT = new BlockTaintedPlant();
 	
 	public static final Block //
 	        CRYSTAL_ORE_VAPOROUS = new BlockOreCrystal(EnumMultiMaterialType.VAPOROUS_CRYSTAL, "vaporous", true, 0xFFD905), //
@@ -81,4 +92,9 @@ public class BlocksLT
 	public static final Block //
 	        SILVERWOOD_PLANKS = new BlockSilverwoodPlanks(), //
 	        SILVERWOOD_STAIRS = new BlockSilverwoodStairs();
+	
+	static
+	{
+		ELDRITCH_BLOCK.setHarvestLevel("pickaxe", 2);
+	}
 }

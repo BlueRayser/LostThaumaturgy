@@ -101,7 +101,8 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		WORN_STATUETTE, //
 		ANCIENT_WEAPON, //
 		ANCIENT_SEAL, //
-		ANCIENT_STONE_TABLET;
+		ANCIENT_STONE_TABLET, //
+		TOPAZ("gemTopaz");
 		
 		private final String oredict[];
 		public final String mod;

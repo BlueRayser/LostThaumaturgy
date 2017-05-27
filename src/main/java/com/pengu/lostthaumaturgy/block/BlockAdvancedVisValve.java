@@ -20,7 +20,6 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.vec.Cuboid6;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 
@@ -68,13 +67,6 @@ public class BlockAdvancedVisValve extends BlockTraceableRendered implements ITi
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
 	{
 		return false;
-	}
-	
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		AuraTicker.spillTaint(worldIn, pos);
-		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override
