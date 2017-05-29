@@ -43,6 +43,7 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.DUPLICATOR, "gpg", "w w", "gpg", 'g', "ingotGold", 'p', EnumMultiMaterialType.ANIMATED_PISTON.stack(), 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRYSTALLIZER, "123", "456", "787", '1', EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), '2', EnumMultiMaterialType.VIS_CRYSTAL.stack(), '3', EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), '4', EnumMultiMaterialType.EARTHEN_CRYSTAL.stack(), '5', "gemDiamond", '6', EnumMultiMaterialType.FIERY_CRYSTAL.stack(), '7', "ingotGold", '8', "ingotIron"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.GENERATOR, "gwg", "wsw", "gwg", 'g', "paneGlass", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 's', ItemsLT.STABILIZED_SINGULARITY));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.INFUSER_DARK, "oso", "iti", "ooo", 'o', "obsidian", 's', Blocks.STONE_SLAB, 'i', "ingotIron", 't', EnumMultiMaterialType.TAINTED_CRYSTAL.stack()));
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
 	}

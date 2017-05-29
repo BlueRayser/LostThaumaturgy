@@ -84,6 +84,6 @@ public class InfuserLT
 	
 	public static void registerDarkInfuser()
 	{
-		
+		RecipesInfuser.addDarkInfusing(EnumMultiMaterialType.SOUL_FRAGMENT.stack(), 40, new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND));
 	}
 }

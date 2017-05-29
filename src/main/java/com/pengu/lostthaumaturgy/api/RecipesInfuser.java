@@ -32,6 +32,16 @@ public class RecipesInfuser
 		addInfusing(result, cost, craftChecker, false, components);
 	}
 	
+	public static void addDarkInfusing(ItemStack result, int cost, ItemStack... components)
+	{
+		addInfusing(result, cost, true, components);
+	}
+	
+	public static void addDarkInfusing(ItemStack result, int cost, Predicate<IInfuser> craftChecker, ItemStack... components)
+	{
+		addInfusing(result, cost, craftChecker, true, components);
+	}
+	
 	public static Predicate<IInfuser> createPredicateFromResearches(Research... researches)
 	{
 		return new ResearchPredicate(researches);

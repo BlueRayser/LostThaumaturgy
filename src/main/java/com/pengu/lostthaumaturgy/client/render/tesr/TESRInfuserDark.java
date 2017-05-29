@@ -22,9 +22,9 @@ import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
-public class TESRInfuser extends TESR<TileInfuser>
+public class TESRInfuserDark extends TESR<TileInfuser>
 {
-	public static final TESRInfuser INSTANCE = new TESRInfuser();
+	public static final TESRInfuserDark INSTANCE = new TESRInfuserDark();
 	
 	@Override
 	public void renderItem(ItemStack item)
@@ -36,7 +36,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 		
 		if(nbt != null && nbt.getFloat("CookCost") > 0 && nbt.getFloat("CookTime") > 0)
 		{
-			rotation = nbt.getFloat("CookTime") / nbt.getFloat("CookCost") * 360F;
+			rotation = (int) ((nbt.getFloat("CookTime") + nbt.getFloat("CookTimeDark")) / (nbt.getFloat("CookCost") + nbt.getFloat("CookCostDark")) * 360);
 			active = true;
 		}
 		
@@ -46,7 +46,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 	@Override
 	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.color(1F, 1F, 1F, 1F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
@@ -71,12 +71,14 @@ public class TESRInfuser extends TESR<TileInfuser>
 		destroyProgress = 0;
 	}
 	
-	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
+	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/dark_infuser_symbol.png");
 	
 	private void renderModel(TileInfuser tile, double x, double y, double z, double angle, boolean active)
 	{
 		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
 		int bright = getBrightnessForRB(tile, sbr.rb);
+		
+		GlStateManager.disableLighting();
 		
 		Tessellator tess = Tessellator.getInstance();
 		GLRenderState blend = GLRenderState.BLEND;
@@ -86,10 +88,10 @@ public class TESRInfuser extends TESR<TileInfuser>
 		sbr.begin();
 		sbr.setBrightness(bright);
 		
-		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser_side_disconnected");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser_bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser_top");
-		TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser_side_connected");
+		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_side_disconnected");
+		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_top");
+		TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_side_connected");
 		
 		for(int i = 0; i < (destroyProgress > 0 ? 2 : 1); ++i)
 		{

@@ -108,7 +108,8 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		EXTRACT_WARMEST_FIRE, //
 		EXTRACT_DEEPEST_EARTH, //
 		EXTRACT_LIGHTEST_AIR, //
-		EXTRACT_COOLEST_WATER;
+		EXTRACT_COOLEST_WATER, //
+		SOUL_FRAGMENT;
 		
 		private final String oredict[];
 		public final String mod;

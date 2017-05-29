@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
@@ -27,19 +27,20 @@ import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
-import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
+import com.pengu.lostthaumaturgy.inventory.ContainerInfuserDark;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileInfuser;
+import com.pengu.lostthaumaturgy.tile.TileInfuserDark;
 
-public class GuiInfuser extends GuiContainer
+public class GuiInfuserDark extends GuiContainer
 {
-	private TileInfuser tile;
+	public final TileInfuserDark tile;
+	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_dark_infuser.png");
 	
-	public GuiInfuser(InventoryPlayer ip, TileInfuser tile)
+	public GuiInfuserDark(TileInfuserDark tile, EntityPlayer player)
 	{
-		super(new ContainerInfuser(ip, tile));
+		super(new ContainerInfuserDark(tile, player));
 		this.tile = tile;
 		xSize = 176;
 		ySize = 240;
@@ -52,7 +53,7 @@ public class GuiInfuser extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		fontRenderer.drawString("Infuser", 8, 5, 4210752);
+		fontRenderer.drawString("Dark Infuser", 8, 5, 6307936);
 		
 		try
 		{
@@ -98,9 +99,7 @@ public class GuiInfuser extends GuiContainer
 		}
 	}
 	
-	private ResourceLocation gui_infuser = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_infuser.png");
-	private ResourceLocation upgrade_icons = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/upgrade_icons.png");
-	
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		// Reduce RAM usage, because earlier we ran through this code each
@@ -123,21 +122,19 @@ public class GuiInfuser extends GuiContainer
 			}
 		}
 		
-		GL11.glColor4f(1, 1, 1, 1);
-		mc.getTextureManager().bindTexture(gui_infuser);
-		RenderUtil.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		mc.getTextureManager().bindTexture(gui);
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
-		if(this.tile.isCooking())
+		if(tile.isCooking())
 		{
-			float i1 = this.tile.getCookProgressScaled(46);
-			RenderUtil.drawTexturedModalRect(guiLeft + 160, guiTop + 151 - i1, 176, 46 - i1, 9, i1);
+			float i1 = tile.getCookProgressScaled(46);
+			float i2 = tile.infuserCookTimeDark / tile.currentItemCookCostDark * 46F;
+			RenderUtil.drawTexturedModalRect(guiLeft + 158, guiTop + 151 - i1, 176, 46 - i1, 6, i1);
+			RenderUtil.drawTexturedModalRect(guiLeft + 164, guiTop + 151 - i2, 182, 46 - i2, 6, i2);
 		}
 		
-		if(this.tile.boost > 0)
-		{
-			float i1 = this.tile.getBoostScaled();
-			RenderUtil.drawTexturedModalRect(guiLeft + 161, guiTop + 38 - i1, 192, 30 - i1, 7, i1);
-		}
+		int phase = tile.getWorld().getMoonPhase();
+		drawTexturedModalRect(guiLeft + 160, guiTop + 8, 188, phase * 8, 8, 8);
 	}
 	
 	@Override

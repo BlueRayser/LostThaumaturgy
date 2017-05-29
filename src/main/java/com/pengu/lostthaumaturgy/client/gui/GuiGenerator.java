@@ -56,7 +56,7 @@ public class GuiGenerator extends GuiContainer
 		double fill = (tile.storedEnergy / (float) tile.energyMax) * 47;
 		RenderUtil.drawTexturedModalRect(guiLeft + 47, guiTop + 69 - fill, 102, 47 - fill, 9, fill);
 		
-		int phase = tile.getWorld().provider.getMoonPhase(tile.getWorld().getTotalWorldTime());
+		int phase = tile.getWorld().getMoonPhase();
 		drawTexturedModalRect(guiLeft + 71, guiTop + 41, 111, phase * 8, 8, 8);
 	}
 }

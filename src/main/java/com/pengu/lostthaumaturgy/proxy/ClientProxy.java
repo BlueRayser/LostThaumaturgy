@@ -61,6 +61,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRGenerator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuserDark;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRLyingItem;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPenguCobbleGen;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
@@ -97,6 +98,7 @@ import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.tile.TileDuplicator;
 import com.pengu.lostthaumaturgy.tile.TileGenerator;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
+import com.pengu.lostthaumaturgy.tile.TileInfuserDark;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 import com.pengu.lostthaumaturgy.tile.TilePenguCobbleGen;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
@@ -156,6 +158,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileVisPump.class, BlocksLT.VIS_PUMP, TESRVisPump.INSTANCE);
 		registerRender(TileVisPumpThaumium.class, BlocksLT.THAUMIUM_VIS_PUMP, TESRVisPumpThaumium.INSTANCE);
 		registerRender(TileInfuser.class, BlocksLT.INFUSER, TESRInfuser.INSTANCE);
+		registerRender(TileInfuserDark.class, BlocksLT.INFUSER_DARK, TESRInfuserDark.INSTANCE);
 		registerRender(TileVisFilter.class, BlocksLT.VIS_FILTER, TESRVisFilter.INSTANCE);
 		registerRender(TileVisValve.class, BlocksLT.VIS_VALVE, TESRVisValve.INSTANCE);
 		registerRender(TileAdvancedVisValve.class, BlocksLT.ADVANCED_VIS_VALVE, TESRAdvancedVisValve.INSTANCE);
@@ -264,46 +267,46 @@ public class ClientProxy extends CommonProxy
 			IGoggles goggles = ItemGogglesRevealing.getWearing(mc.player);
 			if(goggles != null)
 				HudDetector.instance.render(goggles.getRevealType(), ClientSIAuraChunk.getClientChunk(), true);
-		}
-		
-		ScaledResolution sr = new ScaledResolution(mc);
-		int k = sr.getScaledWidth();
-		int l = sr.getScaledHeight();
-		
-		handStacks[0] = mc.player.getHeldItem(EnumHand.MAIN_HAND);
-		handStacks[1] = mc.player.getHeldItem(EnumHand.OFF_HAND);
-		
-		for(ItemStack item : handStacks)
-		{
-			RayTraceResult res = mc.objectMouseOver;
-			if(!item.isEmpty() && item.getItem() == ItemsLT.WAND_REVERSAL && res != null && res.typeOfHit == Type.BLOCK && mc.world.getTileEntity(res.getBlockPos()) instanceof IUpgradable)
-			{
-				IUpgradable tet = (IUpgradable) mc.world.getTileEntity(res.getBlockPos());
-				
-				int last = -1;
-				int[] u = tet.getUpgrades();
-				for(int i = 0; i < u.length; ++i)
-					if(u[i] != -1)
-						last = i;
-				
-				if(last != -1 && u[last] != -1)
-				{
-					ItemUpgrade iu = ItemUpgrade.byId(u[last]);
-					ItemStack stack = new ItemStack(iu);
-					mc.getRenderItem().renderItemAndEffectIntoGUI(stack, k / 2 - 8, l / 2 - 20);
-				}
-			}
 			
-			if(!item.isEmpty() && item.getItem() instanceof ItemUpgrade && res != null && res.typeOfHit == Type.BLOCK && mc.world.getTileEntity(res.getBlockPos()) instanceof IUpgradable)
+			ScaledResolution sr = new ScaledResolution(mc);
+			int k = sr.getScaledWidth();
+			int l = sr.getScaledHeight();
+			
+			handStacks[0] = mc.player.getHeldItem(EnumHand.MAIN_HAND);
+			handStacks[1] = mc.player.getHeldItem(EnumHand.OFF_HAND);
+			
+			for(ItemStack item : handStacks)
 			{
-				IUpgradable tet = (IUpgradable) mc.world.getTileEntity(res.getBlockPos());
+				RayTraceResult res = mc.objectMouseOver;
+				if(!item.isEmpty() && item.getItem() == ItemsLT.WAND_REVERSAL && res != null && res.typeOfHit == Type.BLOCK && mc.world.getTileEntity(res.getBlockPos()) instanceof IUpgradable)
+				{
+					IUpgradable tet = (IUpgradable) mc.world.getTileEntity(res.getBlockPos());
+					
+					int last = -1;
+					int[] u = tet.getUpgrades();
+					for(int i = 0; i < u.length; ++i)
+						if(u[i] != -1)
+							last = i;
+					
+					if(last != -1 && u[last] != -1)
+					{
+						ItemUpgrade iu = ItemUpgrade.byId(u[last]);
+						ItemStack stack = new ItemStack(iu);
+						mc.getRenderItem().renderItemAndEffectIntoGUI(stack, k / 2 - 8, l / 2 - 20);
+					}
+				}
 				
-				int id = ItemUpgrade.idFromItem((ItemUpgrade) item.getItem());
-				
-				boolean valid = tet.canAcceptUpgrade(id);
-				String s = I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":" + (valid ? "" : "not_") + "upgradable");
-				mc.fontRenderer.drawString(s, (k - mc.fontRenderer.getStringWidth(s)) / 2, l / 2 - 30, valid ? 0x22FF33 : 0xFF2233);
-				Color.glColourRGBA(0xFFFFFFFF);
+				if(!item.isEmpty() && item.getItem() instanceof ItemUpgrade && res != null && res.typeOfHit == Type.BLOCK && mc.world.getTileEntity(res.getBlockPos()) instanceof IUpgradable)
+				{
+					IUpgradable tet = (IUpgradable) mc.world.getTileEntity(res.getBlockPos());
+					
+					int id = ItemUpgrade.idFromItem((ItemUpgrade) item.getItem());
+					
+					boolean valid = tet.canAcceptUpgrade(id);
+					String s = I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":" + (valid ? "" : "not_") + "upgradable");
+					mc.fontRenderer.drawString(s, (k - mc.fontRenderer.getStringWidth(s)) / 2, l / 2 - 30, valid ? 0x22FF33 : 0xFF2233);
+					Color.glColourRGBA(0xFFFFFFFF);
+				}
 			}
 		}
 	}

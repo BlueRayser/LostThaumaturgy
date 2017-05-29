@@ -14,11 +14,13 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
@@ -26,18 +28,21 @@ import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuser;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.net.PacketSmallGreenFlameFX;
 
 public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgradable, IInfuser
 {
 	protected static final ItemStack[] boreItemStacks = null;
 	public InventoryNonTile infuserItemStacks = new InventoryNonTile(8);
-	public float infuserCookTime = 0.0f;
+	public float infuserCookTime = 0;
 	public float currentItemCookCost;
 	public double angle = -1;
-	public float sucked = 0.0f;
+	public float sucked = 0;
 	protected int soundDelay = 0;
 	public int boost = 0;
 	protected int[] upgrades = new int[] { -1 };
@@ -94,7 +99,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	
 	public float getCookProgressScaled(int i)
 	{
-		return this.infuserCookTime / this.currentItemCookCost * (float) i;
+		return infuserCookTime / currentItemCookCost * (float) i;
 	}
 	
 	public float getBoostScaled()
@@ -140,44 +145,33 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":infuser", pos, 0.2F, 1F, SoundCategory.BLOCKS);
 				this.soundDelay = 62;
 				
-				// int auraX = this.j >> 4;
-				// int auraZ = this.l >> 4;
-				// SIAuraChunk ac = (SIAuraChunk)
-				// mod_ThaumCraft.AuraHM.get(Arrays.asList(auraX, auraZ,
-				// Byte.valueOf(ThaumCraftCore.getDimension(this.i))));
-				// if(ac != null) ac.badVibes = (short) (ac.badVibes + 1);
+				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				if(ac != null)
+					ac.badVibes = (short) (ac.badVibes + 1);
 			}
 			
-			if(!this.hasUpgrade((byte) -1))
+			if(!hasUpgrade(-1))
 			{
 				switch(world.rand.nextInt(4))
 				{
 				case 0:
 				{
-					// ThaumCraftCore.createSmallGreenFlameFX(this.i, (float)
-					// this.j + 0.1f, (float) this.k + 1.15f, (float) this.l +
-					// 0.1f);
+					HCNetwork.getManager("particles").sendToAllAround(new PacketSmallGreenFlameFX(new Vec3d(pos).addVector(.1, 1.15, .1)), getSyncPoint(32));
 					break;
 				}
 				case 1:
 				{
-					// ThaumCraftCore.createSmallGreenFlameFX(this.i, (float)
-					// this.j + 0.1f, (float) this.k + 1.15f, (float) this.l +
-					// 0.9f);
+					HCNetwork.getManager("particles").sendToAllAround(new PacketSmallGreenFlameFX(new Vec3d(pos).addVector(.1, 1.15, .9)), getSyncPoint(32));
 					break;
 				}
 				case 2:
 				{
-					// ThaumCraftCore.createSmallGreenFlameFX(this.i, (float)
-					// this.j + 0.9f, (float) this.k + 1.15f, (float) this.l +
-					// 0.1f);
+					HCNetwork.getManager("particles").sendToAllAround(new PacketSmallGreenFlameFX(new Vec3d(pos).addVector(.9, 1.15, .1)), getSyncPoint(32));
 					break;
 				}
 				case 3:
 				{
-					// ThaumCraftCore.createSmallGreenFlameFX(this.i, (float)
-					// this.j + 0.9f, (float) this.k + 1.15f, (float) this.l +
-					// 0.9f);
+					HCNetwork.getManager("particles").sendToAllAround(new PacketSmallGreenFlameFX(new Vec3d(pos).addVector(.9, 1.15, .9)), getSyncPoint(32));
 				}
 				}
 			}
@@ -219,16 +213,12 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		
 		if(this.boostDelay <= 0 || this.boostDelay == 10)
 		{
-			// int auraX = this.j >> 4;
-			// int auraZ = this.l >> 4;
-			// SIAuraChunk ac = (SIAuraChunk)
-			// mod_ThaumCraft.AuraHM.get(Arrays.asList(auraX, auraZ,
-			// Byte.valueOf(ThaumCraftCore.getDimension(this.i))));
-			// if(ac != null && this.boost < 10 && ac.boost > 0)
-			// {
-			// ++this.boost;
-			// ac.boost = (short) (ac.boost - 1);
-			// }
+			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			if(ac != null && this.boost < 10 && ac.boost > 0)
+			{
+				++this.boost;
+				ac.boost = (short) (ac.boost - 1);
+			}
 		}
 		
 		if(this.boostDelay <= 0)

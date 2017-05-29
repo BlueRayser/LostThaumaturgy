@@ -8,7 +8,10 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.mrdimka.hammercore.HammerCore;
+import com.pengu.lostthaumaturgy.block.BlockOreCrystal.Getter;
 import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
+import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class Research
 {
@@ -25,6 +28,7 @@ public class Research
 	        CATEGORY_THAUMATURGY = "thaumaturgy", //
 	        CATEGORY_LOST_KNOWLEDGE = "lost_knowledge", //
 	        CATEGORY_ELDRITCH = "eldritch", //
+	        CATEGORY_FORBIDDEN = "forbidden", //
 	        CATEGORY_UNDEFINED = "undefined";
 	
 	public Research(String uid, float failChance)
@@ -39,6 +43,13 @@ public class Research
 		color = uid.hashCode();
 		this.category = category;
 		pageHandler = new ResearchPageHandler(this);
+	}
+	
+	public Research setIcon(ItemStack stack)
+	{
+		if(HammerCore.pipelineProxy.pipeIfOnGameSide(this, Side.CLIENT) != null)
+			getPageHandler().thaumonomiconIcon = new Getter(stack);
+		return this;
 	}
 	
 	public ResearchPageHandler getPageHandler()

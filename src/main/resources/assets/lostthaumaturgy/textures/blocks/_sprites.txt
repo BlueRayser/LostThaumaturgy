@@ -49,6 +49,10 @@ crucible_side_disconnected
 crucible_spill
 crucible_top
 crystal
+dark_infuser_bottom
+dark_infuser_side_connected
+dark_infuser_side_disconnected
+dark_infuser_top
 fluid_vis
 generator
 infuser_bottom

@@ -13,6 +13,7 @@ tile.lostthaumaturgy:silverwood_vis_tank.name=Silverwood Vis Tank
 tile.lostthaumaturgy:vis_pump.name=Vis Pump
 tile.lostthaumaturgy:thaumium_vis_pump.name=Thaumium Vis Pump
 tile.lostthaumaturgy:infuser.name=Thaumic Infuser
+tile.lostthaumaturgy:dark_infuser.name=Dark Infuser
 tile.lostthaumaturgy:vis_filter.name=Vis Filter
 tile.lostthaumaturgy:vis_valve.name=Vis Valve
 tile.lostthaumaturgy:bellows.name=Arcane Bellows

@@ -70,46 +70,30 @@ public class HudDetector extends Gui
 		if(type == 0 || type == 2 || type >= 3)
 		{
 			if(aura.goodVibes > 0)
-			{
 				RenderUtil.drawTexturedModalRect(k - 34, l - 17, 0, 72, 16, 16);
-			}
 			RenderUtil.drawTexturedModalRect(k - 30, l - 67 + sv, 0 + shift, 0 + sv, 8, 48 - sv);
 			if(type >= 3 && aura.previousVis < aura.vis)
-			{
 				RenderUtil.drawTexturedModalRect(k - 30, l - 48, 72, 0, 8, 8);
-			}
 			if(type >= 3 && aura.previousVis > aura.vis)
-			{
 				RenderUtil.drawTexturedModalRect(k - 30, l - 48, 80, 0, 8, 8);
-			}
 			RenderUtil.drawTexturedModalRect(k - 31, l - 71, 23, 0, 10, 74);
 		}
 		if(type == 1 || type == 2 || type >= 3)
 		{
 			if(aura.badVibes > 0)
-			{
 				RenderUtil.drawTexturedModalRect(k - 19, l - 17, 0, 72, 16, 16);
-			}
 			RenderUtil.drawTexturedModalRect(k - 15, l - 67 + st, 8 + shift, 0 + st, 8, 48 - st);
 			if(type >= 3 && aura.previousTaint < aura.taint)
-			{
 				RenderUtil.drawTexturedModalRect(k - 15, l - 48, 72, 0, 8, 8);
-			}
 			if(type >= 3 && aura.previousTaint > aura.taint)
-			{
 				RenderUtil.drawTexturedModalRect(k - 15, l - 48, 80, 0, 8, 8);
-			}
 			RenderUtil.drawTexturedModalRect(k - 16, l - 71, 39, 0, 10, 74);
 			if(isGoggles)
 			{
 				if(aura.goodVibes > 0)
-				{
 					RenderUtil.drawTexturedModalRect(46, l - 28, 0, 72, 16, 16);
-				}
 				if(aura.badVibes > 0)
-				{
 					RenderUtil.drawTexturedModalRect(46, l - 18, 0, 72, 16, 16);
-				}
 				RenderUtil.drawTexturedModalRect(50, l - 25, 24, 57, 8, 9);
 				RenderUtil.drawTexturedModalRect(50, l - 15, 40, 57, 8, 9);
 				String vis = "" + aura.vis + " V";

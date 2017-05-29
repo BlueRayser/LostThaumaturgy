@@ -15,6 +15,7 @@ import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockDuplicator;
 import com.pengu.lostthaumaturgy.block.BlockGenerator;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
+import com.pengu.lostthaumaturgy.block.BlockInfuserDark;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.block.BlockNitor;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
@@ -54,6 +55,7 @@ public class BlocksLT
 	        VIS_PUMP = new BlockVisPump(), //
 	        THAUMIUM_VIS_PUMP = new BlockVisPumpThaumium(), //
 	        INFUSER = new BlockInfuser(), //
+	        INFUSER_DARK = new BlockInfuserDark(), //
 	        VIS_FILTER = new BlockVisFilter(), //
 	        BELLOWS = new BlockBellows(), //
 	        THAUMIUM_BELLOWS = new BlockThaumiumBellows(), //
