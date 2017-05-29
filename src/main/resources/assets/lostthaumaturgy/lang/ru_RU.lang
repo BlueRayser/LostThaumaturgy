@@ -4,29 +4,51 @@ itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Открытия
 
 tile.lostthaumaturgy:crucible.name=Тигель
 tile.lostthaumaturgy:conduit.name=Вис-канал
+tile.lostthaumaturgy:pressurized_conduit.name=Pressurized Conduit
+tile.lostthaumaturgy:pressurized_conduit.tooltip0=Emits redstone signal
+tile.lostthaumaturgy:pressurized_conduit.tooltip1=if there is any suction
 tile.lostthaumaturgy:vis_tank.name=Вис-резервуар
 tile.lostthaumaturgy:reinforced_vis_tank.name=Усиленный резервуар из таум-металла
 tile.lostthaumaturgy:silverwood_vis_tank.name=Серебродревесный вис-резервуар
 tile.lostthaumaturgy:vis_pump.name=Вис-помпа
+tile.lostthaumaturgy:thaumium_vis_pump.name=Thaumium Vis Pump
 tile.lostthaumaturgy:infuser.name=Таумический наполнитель
+tile.lostthaumaturgy:dark_infuser.name=Dark Infuser
 tile.lostthaumaturgy:vis_filter.name=Вис-фильтр
 tile.lostthaumaturgy:vis_valve.name=Вис-клапан
 tile.lostthaumaturgy:bellows.name=Магические меха
+tile.lostthaumaturgy:thaumium_bellows.name=Thaumium Reinforced Bellows
 tile.lostthaumaturgy:crystal_ore_vaporous.name=Парообразная кристаллическая руда
 tile.lostthaumaturgy:crystal_ore_aqueus.name=Водная кристаллическая руда
 tile.lostthaumaturgy:crystal_ore_earthen.name=Земляная кристаллическая руда
 tile.lostthaumaturgy:crystal_ore_fiery.name=Огненная кристаллическая руда
 tile.lostthaumaturgy:crystal_ore_vis.name=Руда кристалла Вис
 tile.lostthaumaturgy:crystal_ore_tainted.name=Заражённая кристаллическая руда
+tile.lostthaumaturgy:crystal_ore_depleted.name=Depleted Crystal Ore
 tile.lostthaumaturgy:cinnabar_ore.name=Киноварь
 tile.lostthaumaturgy:vis_purifier.name=Вис-очиститель
 tile.lostthaumaturgy:advanced_vis_valve.name=Улучшенный вис-клапан
+tile.lostthaumaturgy:studium_table.name=Studium Table
+tile.lostthaumaturgy:auxilium_table.name=Auxilium Table
 tile.lostthaumaturgy:shimmerleaf.name=Сребролист
+tile.lostthaumaturgy:taintedleaf.name=Taintedleaf
 tile.lostthaumaturgy:cinderpearl.name=Огненный жемчуг
 tile.lostthaumaturgy:silverwood_leaves.name=Серебродревесные листья
 tile.lostthaumaturgy:silverwood_log.name=Серебряное дерево
+tile.lostthaumaturgy:tainted_log.name=Tainted Log
 tile.lostthaumaturgy:silverwood_planks.name=Серебродревесные доски
 tile.lostthaumaturgy:silverwood_stairs.name=Серебродревесные ступеньки
+tile.lostthaumaturgy:crystallizer.name=Crystallizer
+tile.lostthaumaturgy:nitor.name=Nitor
+tile.lostthaumaturgy:tainted_soil.name=Tainted Soil
+tile.lostthaumaturgy:eldritch_block.name=Eldritch Stone
+tile.lostthaumaturgy:pengu_cobble_gen.name=Pengu in a CobbleGen
+tile.lostthaumaturgy:void_chest.name=Void Chest
+tile.lostthaumaturgy:generator.name=Thaumic Generator
+tile.lostthaumaturgy:tainted_plant.name=Tainted Laonri
+tile.lostthaumaturgy:jar_singularity.name=Singularity-in-a-jar
+tile.lostthaumaturgy:duplicator.name=Thaumic Duplicator
+
 
 
 item.lostthaumaturgy:vaporous_crystal.name=Парообразный кристалл
@@ -46,14 +68,118 @@ item.lostthaumaturgy:enchanted_fabric.name=Зачарованная ткань
 item.lostthaumaturgy:animated_piston.name=Оживленный поршень
 item.lostthaumaturgy:alumentum.name=Алюментум
 item.lostthaumaturgy:ancient_pottery.name=Древняя керамика
-item.lostthaumaturgy:ancient_pottery.tooltip0=Обычный артефакт
+item.lostthaumaturgy:ancient_pottery.tooltip0=Обычный потерянный артефакт
 item.lostthaumaturgy:tarnished_chalice.name=Потускневшая чаша
-item.lostthaumaturgy:tarnished_chalice.tooltip0=Обычный артефакт
+item.lostthaumaturgy:tarnished_chalice.tooltip0=Обычный потерянный артефакт
 item.lostthaumaturgy:worn_statuette.name=Изношенная статуэтка
-item.lostthaumaturgy:worn_statuette.tooltip0=Необычный артефакт
+item.lostthaumaturgy:worn_statuette.tooltip0=Необычный потерянный артефакт
 item.lostthaumaturgy:ancient_weapon.name=Древнее оружие
-item.lostthaumaturgy:ancient_weapon.tooltip0=Необычный артефакт
+item.lostthaumaturgy:ancient_weapon.tooltip0=Необычный потерянный артефакт
 item.lostthaumaturgy:ancient_seal.name=Древняя печать
-item.lostthaumaturgy:ancient_seal.tooltip0=Редкий артефакт
+item.lostthaumaturgy:ancient_seal.tooltip0=Редкий потерянный артефакт
 item.lostthaumaturgy:ancient_stone_tablet.name=Древний каменный планшет
-item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Исключительный артефакт
+item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Исключительный потерянный артефакт
+item.lostthaumaturgy:goggles_revealing.name=Goggles of Revealing
+item.lostthaumaturgy:crystalline_bell.name=Crystalline Bell
+item.lostthaumaturgy:thaumonomicon.name=Thaumonomicon
+item.lostthaumaturgy:thaumonomicon.tooltip0=Thaumonomicon stores all required information you need
+item.lostthaumaturgy:fragment.name=Fragment
+item.lostthaumaturgy:fragment.tooltip0=Difficulty: &difficulty
+item.lostthaumaturgy:theory.name=Theory
+item.lostthaumaturgy:theory.tooltip0=Difficulty: &difficulty
+item.lostthaumaturgy:discovery.name=Discovery
+item.lostthaumaturgy:thaumium_helmet.name=Thaumium Helmet
+item.lostthaumaturgy:thaumium_chestplate.name=Thaumium Chestplate
+item.lostthaumaturgy:thaumium_leggings.name=Thaumium Leggings
+item.lostthaumaturgy:thaumium_boots.name=Thaumium Boots
+item.lostthaumaturgy:wand_item_freeze.name=Item Freezing Wand
+item.lostthaumaturgy:upgrades/quicksilver_core.name=Quicksilver Core
+item.lostthaumaturgy:upgrades/quicksilver_core.tooltip0=Improves speed
+item.lostthaumaturgy:upgrades/stabilized_singularity.name=Stabilized Singularity
+item.lostthaumaturgy:upgrades/stabilized_singularity.tooltip0=Improves efficiency
+item.lostthaumaturgy:upgrades/harnessed_rage.name=Harnessed Rage
+item.lostthaumaturgy:upgrades/harnessed_rage.tooltip0=Increases aggression and damage
+item.lostthaumaturgy:upgrades/concentrated_evil.name=Concentrated Evil
+item.lostthaumaturgy:upgrades/concentrated_evil.tooltip0=Unlocks functions that involve taint
+item.lostthaumaturgy:upgrades/infinite_saddness.name=Infinite Sadness
+item.lostthaumaturgy:upgrades/infinite_saddness.tooltip0=Upgrades ?
+item.lostthaumaturgy:upgrades/contained_emptiness.name=Contained Emptiness
+item.lostthaumaturgy:upgrades/contained_emptiness.tooltip0=Increases capacity
+item.lostthaumaturgy:upgrades/collected_wisdom.name=Collected Wisdom
+item.lostthaumaturgy:upgrades/collected_wisdom.tooltip0=Increases mystical capacity or knowledge
+item.lostthaumaturgy:wand_reversal.name=Wand of Reversal
+item.lostthaumaturgy:singularity.name=Arcane Singularity
+item.lostthaumaturgy:topaz.name=Topaz
+item.lostthaumaturgy:concentrated_vis.name=Concentrated Vis
+item.lostthaumaturgy:concentrated_taint.name=Concentrated Taint
+item.lostthaumaturgy:potion_purity.name=Potion of Purity
+item.lostthaumaturgy:extract_purest_magic.name=Extract of Purest Magic
+item.lostthaumaturgy:extract_foulest_taint.name=Extract of Foulest Taint
+item.lostthaumaturgy:extract_warmest_fire.name=Extract of Warmest Fire
+item.lostthaumaturgy:extract_deepest_earth.name=Extract of Deepest Earth
+item.lostthaumaturgy:extract_lightest_air.name=Extract of Lightest Air
+item.lostthaumaturgy:extract_coolest_water.name=Extract of Coolest Water
+item.lostthaumaturgy:soul_fragment.name=Soul Fragment
+item.lostthaumaturgy:congealed_taint.name=Congealed Taint
+
+
+
+gui.lostthaumaturgy:click_to_read=Click to Read More
+gui.lostthaumaturgy:upgradable=Upgradable
+gui.lostthaumaturgy:not_upgradable=Not Upgradable
+
+
+
+entity.lostthaumaturgy:smart_zombie.name=Smart Zombie
+entity.lostthaumaturgy:tslime.name=Thaum Slime
+
+
+
+research.lostthaumaturgy:reinforced_vis_tank.title=Reinforced Vis Tank
+research.lostthaumaturgy:reinforced_vis_tank.desc=Researching more properties of silverwood and thaumium, you discovered Reinforced Vis Tank. It is an improvement for silverwood vis tank and stores up to 1000 vis.
+
+research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
+research.lostthaumaturgy:crystalline_bell.desc=Sometimes gathering crystals is a problem, because you can not really harvest the crystal without destroying it. Not anymore! Crystalline Bell is a magical tool that does exactly what's been a problem earlier.
+
+research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
+research.lostthaumaturgy:silverwood_vis_tank.desc=Researching some properties of silverwood, you discovered the fact that is is resistant to taint. You thought that upgrading your vis storage tank is worth it. And it is! Silverwood Vis Tank is a good improvement to your old vis tank. It doesn't explode on taint overload and stores up to 750 vis.
+
+research.lostthaumaturgy:pressurized_conduit.title=Pressurized Conduit
+research.lostthaumaturgy:pressurized_conduit.desc=You wanted to trigger some redstone while your machines create suction. Pressurized Conduit is your attempt to do it.
+
+research.lostthaumaturgy:thaumium_vis_pump.title=Thaumium Vis Pump
+research.lostthaumaturgy:thaumium_vis_pump.desc=Thaumium Vis Pump is a good attempt to upgrade your Vis Pump. It transports vis over greater distances, up to 50 blocks!
+
+research.lostthaumaturgy:thaumium_bellows.title=Thaumium Bellows
+research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows are good to upgrade some of your machines. Thaumium Reinforced Bellows improves the suction up to 25, from 10.
+
+research.lostthaumaturgy:singularity.title=Arcane Singularity
+research.lostthaumaturgy:singularity.desc=Arcane Singularity is a mysterious object that is so dense to actually move entities to itself. Just throw it, but not close to your home!
+
+research.lostthaumaturgy:quicksilver_core.title=Quicksilver Core
+research.lostthaumaturgy:quicksilver_core.desc=Quicksilver Core is an upgrade for some thaumic machines. It improves speed but in most cases increases vis usage.
+
+research.lostthaumaturgy:wand_reversal.title=Wand of Reversal
+research.lostthaumaturgy:wand_reversal.desc=Dismantling upgrades wasn't as easy as it is with Wand of Reversal. Just use it on thaumic machine to dismantle the upgrade.
+
+research.lostthaumaturgy:concentrated_taint.title=Concentrated Taint
+research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and ways to get it manually you discovered a very dangerous way to obtains the said taint. You have to obtain congealed taint and fill glass bottle with it. You shouldn't make it on normal infuser, however.
+
+research.lostthaumaturgy:potion_purity.title=Potion of Purity
+research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
+
+
+research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
+research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, but couldn't obtain so-required tainted crystal by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your so-desired crystals even easier!
+
+
+bookapi.lostthaumaturgy:thaumonomicon:basics=Basics
+bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Thaumaturgy
+bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Lost Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:forbidden=Forbidden Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:undefined=???
+
+
+chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...
