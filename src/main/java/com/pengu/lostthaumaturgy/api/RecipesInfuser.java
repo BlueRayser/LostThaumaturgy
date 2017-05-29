@@ -285,22 +285,25 @@ public class RecipesInfuser
 	{
 		public final ItemStack result;
 		public final ItemStack[] components;
+		public final ItemStack[] discoveries;
+		public final Predicate<IInfuser> predicate;
 		public final int cost;
-		public final int depletedShards;
 		
 		public DarkInfuserRecipe(int id)
 		{
 			if(darkList.get(id) == Boolean.FALSE)
 				throw new RuntimeException("Unable to compile normal infuser recipe!");
 			result = resultList.get(id).copy();
+			predicate = conditions.get(id);
 			components = componentList.get(id);
 			cost = costList.get(id);
 			
-			int dep = 0;
-			for(ItemStack stack : components)
-				if(isCrystal(stack))
-					dep++;
-			depletedShards = dep;
+			if(predicate instanceof ResearchPredicate)
+			{
+				ResearchPredicate pred = (ResearchPredicate) predicate;
+				discoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+			} else
+				discoveries = new ItemStack[0];
 		}
 		
 		public static DarkInfuserRecipe[] present()

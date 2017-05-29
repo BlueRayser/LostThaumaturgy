@@ -20,11 +20,11 @@ public class LTConfigs implements IConfigReloadListener
 	@ModConfigPropertyInt(category = "Taint", name = "Taint Spawn", comment = "How often tainted chunks spawn at world creation: 0 = none, 1 = default, 2 = common and with high taint levels", defaultValue = 1, min = 0, max = 2)
 	public static int taintSpawn;
 	
+	@ModConfigPropertyStringList(category = "Taint", name = "Taintable Blocks", comment = "What blocks could get tainted by tainted soil?\nFormatting:\nmodid:blockname\nIf it is from vanilla, you don't have to use minecraft prefix.\nTaint DOES store TileEntity so you can add something like \"furnace\" and it is going to work fine.", defaultValue = { "dirt", "grass", "sand", "gravel", "stone", "cobblestone", "coal_ore", "iron_ore", "lapis_ore", "gold_ore", "diamond_ore", "emerald_ore", "redstone_ore", "lit_redstone_ore" }, allowedValues = {})
+	public static String[] taintableBlocks = {};
+	
 	@ModConfigPropertyBool(category = "Client", name = "Use Shaders", defaultValue = true, comment = "Should we use shaders? This only works if your hardware supports them.")
 	public static boolean client_useShaders;
-	
-	@ModConfigPropertyStringList(category = "Gameplay", name = "Taintable Blocks", comment = "What blocks could get tainted by tainted soil?\nFormatting:\nmodid:blockname\nIf it is from vanilla, you don't have to use minecraft prefix.\nTaint DOES store TileEntity so you can add something like \"furnace\" and it is going to work fine.", defaultValue = { "dirt", "grass", "sand", "gravel", "stone", "cobblestone" }, allowedValues = {})
-	public static String[] taintableBlocks = {};
 	
 	public static Configuration cfgs;
 	

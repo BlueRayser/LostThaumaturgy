@@ -12,6 +12,11 @@ duplicator/inner
 duplicator/side
 duplicator/y
 
+monolith/bottom
+monolith/side_d
+monolith/side_u
+monolith/side_ud
+
 reinforced_vis_tank/bottom
 reinforced_vis_tank/side
 reinforced_vis_tank/side_to_bottom

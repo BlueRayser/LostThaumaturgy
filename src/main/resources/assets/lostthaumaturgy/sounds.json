@@ -11,5 +11,6 @@
 	"void_chest_open": { "sounds": ["lostthaumaturgy:void_chest_open"] },
 	"void_chest_close": { "sounds": ["lostthaumaturgy:void_chest_close"] },
 	"elecloop": { "sounds": ["lostthaumaturgy:elecloop"] },
-	"stomp": { "sounds": ["lostthaumaturgy:stomp1","lostthaumaturgy:stomp2"] }
+	"stomp": { "sounds": ["lostthaumaturgy:stomp1","lostthaumaturgy:stomp2"] },
+	"monolith": { "sounds": ["lostthaumaturgy:monolith"] }
 }

@@ -35,6 +35,7 @@ tile.lostthaumaturgy:taintedleaf.name=Taintedleaf
 tile.lostthaumaturgy:cinderpearl.name=Cinderpearl
 tile.lostthaumaturgy:silverwood_leaves.name=Silverwood Leaves
 tile.lostthaumaturgy:silverwood_log.name=Silverwood Log
+tile.lostthaumaturgy:tainted_log.name=Tainted Log
 tile.lostthaumaturgy:silverwood_planks.name=Silverwood Planks
 tile.lostthaumaturgy:silverwood_stairs.name=Silverwood Stairs
 tile.lostthaumaturgy:crystallizer.name=Crystallizer
@@ -163,7 +164,9 @@ research.lostthaumaturgy:wand_reversal.desc=Dismantling upgrades wasn't as easy 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Basics
 bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Thaumaturgy
 bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Lost Knowledge
-bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch
+bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:forbidden=Forbidden Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 

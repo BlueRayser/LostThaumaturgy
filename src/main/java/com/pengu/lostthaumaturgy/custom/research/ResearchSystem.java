@@ -81,9 +81,12 @@ public class ResearchSystem
 	public static File getResearchSaveFile(EntityPlayer player)
 	{
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-		File folder = new File((server.isDedicatedServer() ? "" : "saves" + File.separator) + server.getFolderName(), "pengu-lt.research");
+		File lt = new File((server.isDedicatedServer() ? "" : "saves" + File.separator) + server.getFolderName(), "pengu-lt");
+		if(!lt.isDirectory())
+			lt.mkdir();
+		File folder = new File(lt, "research");
 		if(!folder.isDirectory())
-			folder.mkdirs();
-		return new File(folder, player.getGameProfile().getId() + ".res");
+			folder.mkdir();
+		return new File(folder, player.getGameProfile().getId() + ".lt");
 	}
 }

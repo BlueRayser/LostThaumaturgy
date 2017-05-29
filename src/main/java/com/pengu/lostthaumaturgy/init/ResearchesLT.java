@@ -21,7 +21,10 @@ public class ResearchesLT
 	        THAUMIUM_BELLOWS = new Research(LTInfo.MOD_ID + ":thaumium_bellows", 50, Research.CATEGORY_THAUMATURGY).setIcon(new ItemStack(BlocksLT.THAUMIUM_BELLOWS)), //
 	        SINGULARITY = new Research(LTInfo.MOD_ID + ":singularity", 35, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(ItemsLT.SINGULARITY)), //
 	        QUICKSILVER_CORE = new Research(LTInfo.MOD_ID + ":quicksilver_core", 35, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0xBEBDEA).setIcon(new ItemStack(ItemsLT.QUICKSILVER_CORE)), //
-	        WAND_REVERSAL = new Research(LTInfo.MOD_ID + ":wand_reversal", 45, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0x7298B3).setIcon(new ItemStack(ItemsLT.WAND_REVERSAL));
+	        WAND_REVERSAL = new Research(LTInfo.MOD_ID + ":wand_reversal", 45, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0x7298B3).setIcon(new ItemStack(ItemsLT.WAND_REVERSAL)),
+	        CONCENTRATED_TAINT = new Research(LTInfo.MOD_ID + ":concentrated_taint", 35, Research.CATEGORY_TAINTED).setIcon(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 1)),
+	        POTION_PURITY = new Research(LTInfo.MOD_ID + ":potion_purity", 55, Research.CATEGORY_TAINTED).setIcon(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 2)),
+	        CONCENTRATED_EVIL = new Research(LTInfo.MOD_ID + ":concentrated_evil", 60, Research.CATEGORY_TAINTED).setIcon(new ItemStack(ItemsLT.CONCENTRATED_EVIL));
 	
 	public static void registerResearches()
 	{
@@ -41,6 +44,7 @@ public class ResearchesLT
 		t.setCategoryItemIcon(EnumMultiMaterialType.ZOMBIE_BRAINS.stack(), Research.CATEGORY_ELDRITCH);
 		t.setCategoryItemIcon(EnumMultiMaterialType.THAUMIUM_INGOT.stack(), Research.CATEGORY_THAUMATURGY);
 		t.setCategoryItemIcon(new ItemStack(BlocksLT.INFUSER_DARK), Research.CATEGORY_FORBIDDEN);
+		t.setCategoryItemIcon(EnumMultiMaterialType.CONGEALED_TAINT.stack(), Research.CATEGORY_TAINTED);
 		t.setCategoryItemIcon(EnumMultiMaterialType.DEPLETED_CRYSTAL.stack(), Research.CATEGORY_UNDEFINED);
 	}
 }

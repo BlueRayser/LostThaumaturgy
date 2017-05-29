@@ -1,10 +1,14 @@
 package com.pengu.lostthaumaturgy.events;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -15,12 +19,16 @@ import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.annotations.MCFBus;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.utils.RoundRobinList;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
 @MCFBus
 public class InteractionEvents
@@ -88,5 +96,17 @@ public class InteractionEvents
 		}
 		
 		AuraTicker.spillTaint(e.getWorld(), e.getPos());
+	}
+	
+	@SubscribeEvent
+	public void getTaintedDrops(TaintedSoilEvent.GetDrops evt)
+	{
+		TileTaintedSoil soil = evt.soil;
+		RoundRobinList<ItemStack> stacks = evt.drops;
+		BlockSnapshot s = soil.getSnapshot();
+		IBlockState taintedState = s.getReplacedBlock();
+		Block taintedBlock = taintedState.getBlock();
+		if(taintedBlock instanceof BlockOre && soil.getWorld().rand.nextInt(5) == 0)
+			stacks.add(EnumMultiMaterialType.CONGEALED_TAINT.stack());
 	}
 }

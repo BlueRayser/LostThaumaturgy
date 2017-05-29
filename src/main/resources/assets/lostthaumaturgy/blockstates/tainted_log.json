@@ -1,0 +1,23 @@
+{
+    "variants": {
+        "axis=x": [
+			{ "model": "lostthaumaturgy:tainted_log1", "x": 90, "y": 90 },
+			{ "model": "lostthaumaturgy:tainted_log2", "x": 90, "y": 90 },
+			{ "model": "lostthaumaturgy:tainted_log3", "x": 90, "y": 90 },
+			{ "model": "lostthaumaturgy:tainted_log4", "x": 90, "y": 90 }
+		],
+        "axis=y": [
+			{ "model": "lostthaumaturgy:tainted_log1" },
+			{ "model": "lostthaumaturgy:tainted_log2" },
+			{ "model": "lostthaumaturgy:tainted_log3" },
+			{ "model": "lostthaumaturgy:tainted_log4" }
+		],
+        "axis=z": [
+			{ "model": "lostthaumaturgy:tainted_log1", "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_log2", "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_log3", "x": 90 },
+			{ "model": "lostthaumaturgy:tainted_log4", "x": 90 }
+		],
+        "axis=none": { "model": "lostthaumaturgy:tainted_bark" }
+    }
+}

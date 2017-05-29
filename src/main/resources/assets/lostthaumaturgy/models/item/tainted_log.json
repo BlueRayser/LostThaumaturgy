@@ -1,0 +1,11 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"up": "lostthaumaturgy:blocks/tainted_log_top",
+		"down": "lostthaumaturgy:blocks/tainted_log_top",
+		"east": "lostthaumaturgy:blocks/tainted_log1",
+		"west": "lostthaumaturgy:blocks/tainted_log2",
+		"south": "lostthaumaturgy:blocks/tainted_log3",
+		"north": "lostthaumaturgy:blocks/tainted_log4"
+	}
+}

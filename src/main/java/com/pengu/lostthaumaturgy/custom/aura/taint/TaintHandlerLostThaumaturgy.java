@@ -2,7 +2,10 @@ package com.pengu.lostthaumaturgy.custom.aura.taint;
 
 import java.util.ArrayList;
 
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -13,6 +16,7 @@ import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.block.BlockTaintedLog;
 import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
@@ -44,6 +48,9 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			return true;
 		
 		if(state.getBlock() instanceof BlockOreCrystal)
+			return true;
+		
+		if(state.getBlock() == Blocks.LOG || state.getBlock() == Blocks.LOG2)
 			return true;
 		
 		return false;
@@ -87,6 +94,13 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			}
 		}
 		
+		if(state.getBlock() == Blocks.LOG || state.getBlock() == Blocks.LOG2)
+		{
+			EnumAxis axis = state.getValue(BlockLog.LOG_AXIS);
+			IBlockState nstate = BlocksLT.TAINTED_LOG.getDefaultState().withProperty(BlockLog.LOG_AXIS, axis);
+			world.setBlockState(pos, nstate);
+		}
+		
 		return false;
 	}
 	
@@ -103,7 +117,7 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			return true;
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
 			return true;
-		if(state.getBlock() == BlocksLT.TAINTED_PLANT)
+		if(state.getBlock() == BlocksLT.TAINTED_PLANT || state.getBlock() == BlocksLT.TAINTED_LOG)
 			return true;
 		
 		return false;
@@ -143,7 +157,7 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
 			world.setBlockState(pos, BlocksLT.SHIMMERLEAF.getDefaultState());
 		
-		if(state.getBlock() == BlocksLT.TAINTED_PLANT)
+		if(state.getBlock() == BlocksLT.TAINTED_PLANT || state.getBlock() == BlocksLT.TAINTED_LOG)
 			world.setBlockToAir(pos);
 		
 		return false;

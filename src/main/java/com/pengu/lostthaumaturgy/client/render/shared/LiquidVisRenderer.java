@@ -13,6 +13,7 @@ import com.mrdimka.hammercore.client.renderer.shader.HCShaderPipeline;
 import com.mrdimka.hammercore.client.renderer.shader.IShaderOperation;
 import com.mrdimka.hammercore.client.renderer.shader.ShaderProgram;
 import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -65,7 +66,10 @@ public class LiquidVisRenderer
 		} else
 			Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		
+		int c = 20 + (int) (visSaturation * 210);
+		Color.glColourRGB((c << 16) | (c << 8) | c);
 		RenderUtil.drawTexturedModalRect(xCoord, yCoord, vis, widthIn, heightIn);
+		Color.glColourRGB(0xFFFFFF);
 		
 		if(useShaders())
 			ShaderProgram.unbindShader();

@@ -518,16 +518,19 @@ public class AuraTicker
 		}
 	}
 	
-	public static File getAuraSaveFile() throws Exception
+	private static File getLegacyAuraSaveFile()
 	{
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 		return new File((server.isDedicatedServer() ? "" : "saves" + File.separator) + server.getFolderName(), "pengu-lt.au");
 	}
 	
-	public static File getLegacyAuraSaveFile() throws Exception
+	public static File getAuraSaveFile() throws Exception
 	{
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-		return new File((server.isDedicatedServer() ? "" : "saves" + File.separator) + server.getFolderName(), "pengu-lt.au2");
+		File lt = new File((server.isDedicatedServer() ? "" : "saves" + File.separator) + server.getFolderName(), "pengu-lt");
+		if(!lt.isDirectory())
+			lt.mkdir();
+		return new File(lt, "aura.lt");
 	}
 	
 	public static void GenerateTaintedArea(World world, Random random, int x, int z, short auraTaint)

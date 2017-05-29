@@ -16,7 +16,9 @@ import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuserDark;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuserDark;
+import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.PacketSmallGreenFlameFX;
 
 public class TileInfuserDark extends TileInfuser
@@ -122,14 +124,14 @@ public class TileInfuserDark extends TileInfuser
 			float cost;
 			currentItemCookCost = cost = getCookCost();
 			currentItemCookCostDark = cost;
-			if(hasUpgrade(3))
+			if(hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_EVIL)))
 			{
-				currentItemCookCost /= 2.0f;
-				currentItemCookCostDark /= 2.0f;
+				currentItemCookCost /= 2;
+				currentItemCookCostDark /= 2;
 			} else
 			{
-				currentItemCookCost *= 0.6666667f;
-				currentItemCookCostDark *= 0.33333334f;
+				currentItemCookCost *= .6666667F;
+				currentItemCookCostDark *= .33333334F;
 			}
 			changes++;
 		}

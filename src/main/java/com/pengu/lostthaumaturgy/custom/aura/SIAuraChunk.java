@@ -28,6 +28,8 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 	public int z;
 	public boolean updated;
 	public int dimension;
+	public short monolithVibes;
+	public short monolithVibeCap = 0;
 	
 	public List<byte[]> getVar(String name)
 	{

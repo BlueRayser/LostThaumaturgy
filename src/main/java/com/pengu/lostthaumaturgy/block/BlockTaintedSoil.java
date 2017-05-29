@@ -20,12 +20,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.BlockSnapshot;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTConfigs;
+import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
+import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent.GetDrops;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
@@ -38,7 +41,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 	{
 		super(Material.GROUND);
 		setUnlocalizedName("tainted_soil");
-		setHardness(10F);
+		setHardness(3F);
 		setResistance(100F);
 		setTickRandomly(true);
 	}
@@ -181,10 +184,28 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		return false;
 	}
 	
+	private ThreadLocal<TileTaintedSoil> tts = new ThreadLocal();
+	
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{
+		TileTaintedSoil soil = tts.get();
+		tts.set(null);
+		
+		if(soil != null)
+		{
+			GetDrops e = new TaintedSoilEvent.GetDrops(soil.getWorld(), pos, soil);
+			MinecraftForge.EVENT_BUS.post(e);
+			return e.drops;
+		}
 		return Arrays.asList();
+	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		tts.set(WorldUtil.cast(worldIn.getTileEntity(pos), TileTaintedSoil.class));
+		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override
@@ -194,11 +215,11 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		if(ttl != null)
 			try
 			{
-				return ttl.getSnapshot().getReplacedBlock().getBlockHardness(worldIn, pos) * 10F;
+				return ttl.getSnapshot().getReplacedBlock().getBlockHardness(worldIn, pos);
 			} catch(Throwable er)
 			{
 			}
-		return super.getBlockHardness(blockState, worldIn, pos);
+		return 2F;
 	}
 	
 	@Override

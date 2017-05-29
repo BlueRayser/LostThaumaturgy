@@ -29,6 +29,7 @@ public class Research
 	        CATEGORY_LOST_KNOWLEDGE = "lost_knowledge", //
 	        CATEGORY_ELDRITCH = "eldritch", //
 	        CATEGORY_FORBIDDEN = "forbidden", //
+	        CATEGORY_TAINTED = "tainted", //
 	        CATEGORY_UNDEFINED = "undefined";
 	
 	public Research(String uid, float failChance)

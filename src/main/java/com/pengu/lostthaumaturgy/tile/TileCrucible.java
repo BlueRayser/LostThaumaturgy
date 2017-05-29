@@ -18,6 +18,7 @@ import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
@@ -108,6 +109,8 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 		float totalVis = pureVis + taintedVis;
 		--smeltDelay;
 		--wait;
+		
+		attractSlimeToTile(8, new WorldLocation(world, pos), 3);
 		
 		if(pPure != pureVis || pTaint != taintedVis)
 		{

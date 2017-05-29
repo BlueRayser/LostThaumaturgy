@@ -1,7 +1,6 @@
 package com.pengu.lostthaumaturgy.custom.aura.api;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -24,16 +23,6 @@ public class AuraAttachments
 	{
 		for(int i = 0; i < attachments.length; ++i)
 			attachments[i].handle(chunk);
-	}
-	
-	private static final class AuraAttachmentLT implements IAuraAttachment
-	{
-		@Override
-		public void handle(SIAuraChunk chunk)
-		{
-			List<byte[]> disperse = chunk.getVar(SIAuraChunk.VAR_DISPERSE);
-			disperse.clear();
-		}
 	}
 	
 	private static final ThreadLocal<ByteBuffer> byte4 = ThreadLocal.withInitial(() ->

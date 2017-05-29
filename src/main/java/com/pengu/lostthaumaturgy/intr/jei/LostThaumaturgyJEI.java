@@ -15,7 +15,10 @@ import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.DarkInfuserRecipe;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuser;
+import com.pengu.lostthaumaturgy.client.gui.GuiInfuserDark;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
+import com.pengu.lostthaumaturgy.intr.jei.darkinfuser.DarkInfuserRecipeCategory;
+import com.pengu.lostthaumaturgy.intr.jei.darkinfuser.DarkInfuserRecipeHandler;
 import com.pengu.lostthaumaturgy.intr.jei.infuser.InfuserRecipeCategory;
 import com.pengu.lostthaumaturgy.intr.jei.infuser.InfuserRecipeHandler;
 
@@ -30,11 +33,14 @@ public class LostThaumaturgyJEI implements IModPlugin
 	@Override
 	public void register(IModRegistry reg)
 	{
-		reg.addRecipeCategories(new InfuserRecipeCategory(reg.getJeiHelpers().getGuiHelper()));
-		reg.addRecipeHandlers(new InfuserRecipeHandler());
+		reg.addRecipeCategories(new InfuserRecipeCategory(reg.getJeiHelpers().getGuiHelper()), new DarkInfuserRecipeCategory(reg.getJeiHelpers().getGuiHelper()));
+		reg.addRecipeHandlers(new InfuserRecipeHandler(), new DarkInfuserRecipeHandler());
 		
 		reg.addRecipeCategoryCraftingItem(new ItemStack(BlocksLT.INFUSER), JEIConstans.INFUSER);
+		reg.addRecipeCategoryCraftingItem(new ItemStack(BlocksLT.INFUSER_DARK), JEIConstans.DARK_INFUSER);
+		
 		reg.addRecipeClickArea(GuiInfuser.class, 160, 105, 9, 47, JEIConstans.INFUSER);
+		reg.addRecipeClickArea(GuiInfuserDark.class, 158, 105, 12, 47, JEIConstans.DARK_INFUSER);
 		
 		// register infuser recipes
 		InfuserRecipe[] normal = RecipesInfuser.InfuserRecipe.present();
