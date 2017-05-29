@@ -124,14 +124,14 @@ item.lostthaumaturgy:congealed_taint.name=Congealed Taint
 
 
 
-gui.lostthaumaturgy:click_to_read=Click to Read More
-gui.lostthaumaturgy:upgradable=Upgradable
-gui.lostthaumaturgy:not_upgradable=Not Upgradable
+gui.lostthaumaturgy:click_to_read=Нажмите, чтобы прочитать больше.
+gui.lostthaumaturgy:upgradable=Можно улучшить.
+gui.lostthaumaturgy:not_upgradable=Нет улучшений.
 
 
 
-entity.lostthaumaturgy:smart_zombie.name=Smart Zombie
-entity.lostthaumaturgy:tslime.name=Thaum Slime
+entity.lostthaumaturgy:smart_zombie.name=Умный зомби
+entity.lostthaumaturgy:tslime.name=Таум слизень
 
 
 
