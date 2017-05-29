@@ -20,11 +20,12 @@ public class ContainerAuxiliumTable extends Container
 		addSlotToContainer(new SlotFragment(tile.inventory, 0, 22, 49));
 		addSlotToContainer(new SlotOutput(tile.inventory, 1, 116, 49));
 		
+		for(int j = 0; j < 9; ++j)
+			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 146));
+		
 		for(int i = 0; i < 3; ++i)
 			for(int k = 0; k < 9; ++k)
 				addSlotToContainer(new Slot(player.inventory, k + i * 9 + 9, 8 + k * 18, 88 + i * 18));
-		for(int j = 0; j < 9; ++j)
-			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 146));
 	}
 	
 	@Override
@@ -38,7 +39,7 @@ public class ContainerAuxiliumTable extends Container
 	{
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = getSlot(index);
-		if(slot != null && slot.canBeHovered())
+		if(slot != null)
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();

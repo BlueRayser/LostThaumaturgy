@@ -43,6 +43,9 @@ tile.lostthaumaturgy:eldritch_block.name=Eldritch Stone
 tile.lostthaumaturgy:pengu_cobble_gen.name=Pengu in a CobbleGen
 tile.lostthaumaturgy:void_chest.name=Void Chest
 tile.lostthaumaturgy:generator.name=Thaumic Generator
+tile.lostthaumaturgy:tainted_plant.name=Tainted Laonri
+tile.lostthaumaturgy:jar_singularity.name=Singularity-in-a-jar
+tile.lostthaumaturgy:duplicator.name=Thaumic Duplicator
 
 
 
@@ -108,6 +111,12 @@ item.lostthaumaturgy:topaz.name=Topaz
 item.lostthaumaturgy:concentrated_vis.name=Concentrated Vis
 item.lostthaumaturgy:concentrated_taint.name=Concentrated Taint
 item.lostthaumaturgy:potion_purity.name=Potion of Purity
+item.lostthaumaturgy:extract_purest_magic.name=Extract of Purest Magic
+item.lostthaumaturgy:extract_foulest_taint.name=Extract of Foulest Taint
+item.lostthaumaturgy:extract_warmest_fire.name=Extract of Warmest Fire
+item.lostthaumaturgy:extract_deepest_earth.name=Extract of Deepest Earth
+item.lostthaumaturgy:extract_lightest_air.name=Extract of Lightest Air
+item.lostthaumaturgy:extract_coolest_water.name=Extract of Coolest Water
 
 
 

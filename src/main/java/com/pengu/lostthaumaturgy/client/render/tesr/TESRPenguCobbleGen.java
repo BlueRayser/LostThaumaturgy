@@ -97,7 +97,8 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 			float alpha = rb.renderAlpha;
 			sbr.begin();
 			float progress = 1 - tile.cooldownTimer / (float) tile.cooldownTimerMax;
-			if(tile.timer != -1) progress = 1;
+			if(tile.timer != -1)
+				progress = 1;
 			
 			ItemStack gen = tile.generated.get();
 			sbr.setRenderBounds(0, 0, 0, 1, 1, 1);

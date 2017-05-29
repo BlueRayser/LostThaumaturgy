@@ -1,9 +1,9 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;

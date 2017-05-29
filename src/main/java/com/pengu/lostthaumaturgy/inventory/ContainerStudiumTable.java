@@ -25,11 +25,11 @@ public class ContainerStudiumTable extends Container
 			for(int y = 0; y < 3; ++y)
 				addSlotToContainer(new SlotOutput(table.inventory, 2 + x + y * 3, 116 + x * 18, 32 + y * 18));
 		
+		for(int j = 0; j < 9; ++j)
+			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 146));
 		for(int i = 0; i < 3; ++i)
 			for(int k = 0; k < 9; ++k)
 				addSlotToContainer(new Slot(player.inventory, k + i * 9 + 9, 8 + k * 18, 88 + i * 18));
-		for(int j = 0; j < 9; ++j)
-			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 146));
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public class ContainerStudiumTable extends Container
 	{
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = getSlot(index);
-		if(slot != null && slot.canBeHovered())
+		if(slot != null)
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();

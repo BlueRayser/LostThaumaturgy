@@ -26,12 +26,12 @@ public class ContainerCrystallizer extends Container
 		addSlotToContainer(new SlotOutput(tile, 4, 80, 12));
 		addSlotToContainer(darkSlot = new SlotOutput(tile, 5, 80, 129));
 		
+		for(int i = 0; i < 9; ++i)
+			addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 216));
+		
 		for(int i = 0; i < 3; ++i)
 			for(int k = 0; k < 9; ++k)
 				addSlotToContainer(new Slot(player.inventory, k + i * 9 + 9, 8 + k * 18, 158 + i * 18));
-		
-		for(int i = 0; i < 9; ++i)
-			addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 216));
 	}
 	
 	@Override
@@ -43,6 +43,26 @@ public class ContainerCrystallizer extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
-		return ItemStack.EMPTY;
+		ItemStack itemstack = ItemStack.EMPTY;
+		Slot slot = getSlot(index);
+		if(slot != null)
+		{
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+			
+			if(index >= 0 && index < 7 && !mergeItemStack(itemstack1, 7, inventorySlots.size(), false))
+				return ItemStack.EMPTY;
+			
+			if(index >= 7 && !mergeItemStack(itemstack1, 0, 1, false))
+				return ItemStack.EMPTY;
+			
+			if(!itemstack1.isEmpty())
+				slot.onSlotChanged();
+			if(itemstack1.getCount() != itemstack.getCount())
+				slot.putStack(itemstack1);
+			else
+				return ItemStack.EMPTY;
+		}
+		return itemstack;
 	}
 }

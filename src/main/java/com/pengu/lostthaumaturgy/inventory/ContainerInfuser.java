@@ -32,11 +32,11 @@ public class ContainerInfuser extends Container
 		addSlotToContainer(new SlotOutput(tileInfuser, 0, 80, 72));
 		addSlotToContainer(new SlotOutput(tileInfuser, 1, 80, 135));
 		
+		for(int j = 0; j < 9; ++j)
+			addSlotToContainer(new Slot(inventoryplayer, j, 8 + j * 18, 216));
 		for(int i = 0; i < 3; ++i)
 			for(int k = 0; k < 9; ++k)
 				addSlotToContainer(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 158 + i * 18));
-		for(int j = 0; j < 9; ++j)
-			addSlotToContainer(new Slot(inventoryplayer, j, 8 + j * 18, 216));
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class ContainerInfuser extends Container
 	{
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = getSlot(i);
-		if(slot != null && slot.canBeHovered())
+		if(slot != null)
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();

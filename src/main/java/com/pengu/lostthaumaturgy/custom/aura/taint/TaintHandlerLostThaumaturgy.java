@@ -2,7 +2,6 @@ package com.pengu.lostthaumaturgy.custom.aura.taint;
 
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -60,6 +59,8 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(BlockTaintedSoil.isTaintable(world, pos))
 		{
 			BlockTaintedSoil.placeSoil(world, pos);
+			if(world.rand.nextInt(15) == 0 && world.isAirBlock(pos.up()))
+				world.setBlockState(pos.up(), BlocksLT.TAINTED_PLANT.getStateFromMeta(world.rand.nextInt(2)));
 			return true;
 		}
 		
@@ -102,6 +103,8 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			return true;
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
 			return true;
+		if(state.getBlock() == BlocksLT.TAINTED_PLANT)
+			return true;
 		
 		return false;
 	}
@@ -139,6 +142,9 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		
 		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
 			world.setBlockState(pos, BlocksLT.SHIMMERLEAF.getDefaultState());
+		
+		if(state.getBlock() == BlocksLT.TAINTED_PLANT)
+			world.setBlockToAir(pos);
 		
 		return false;
 	}

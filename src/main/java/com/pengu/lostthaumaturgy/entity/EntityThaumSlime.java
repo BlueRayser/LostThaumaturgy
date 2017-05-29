@@ -170,6 +170,26 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 		return dataManager.get(IS_TAINTED);
 	}
 	
+	public float getPureVis()
+	{
+		return dataManager.get(CURRENT_VIS);
+	}
+	
+	public float getTaintedVis()
+	{
+		return dataManager.get(CURRENT_TAINT);
+	}
+	
+	public void setPureVis(float vis)
+	{
+		dataManager.set(CURRENT_VIS, vis);
+	}
+	
+	public void setTaintedVis(float vis)
+	{
+		dataManager.set(CURRENT_TAINT, vis);
+	}
+	
 	@Override
 	public void onDeath(DamageSource cause)
 	{

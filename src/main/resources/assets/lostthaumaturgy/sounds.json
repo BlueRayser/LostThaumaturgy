@@ -9,5 +9,6 @@
 	"zap": { "sounds": ["lostthaumaturgy:zap1","lostthaumaturgy:zap2"] },
 	"void_chest_open": { "sounds": ["lostthaumaturgy:void_chest_open"] },
 	"void_chest_close": { "sounds": ["lostthaumaturgy:void_chest_close"] },
-	"elecloop": { "sounds": ["lostthaumaturgy:elecloop"] }
+	"elecloop": { "sounds": ["lostthaumaturgy:elecloop"] },
+	"stomp": { "sounds": ["lostthaumaturgy:stomp1","lostthaumaturgy:stomp2"] }
 }

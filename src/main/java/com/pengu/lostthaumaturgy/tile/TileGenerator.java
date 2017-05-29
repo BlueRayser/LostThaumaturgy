@@ -81,6 +81,10 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 				{
 					float add = suck * 150;
 					storedEnergy += Math.round(add);
+					emitPower = true;
+					
+					if(emitPower && world.rand.nextInt(9) == 0)
+						HCNetwork.getManager("particles").sendToAllAround(new PacketSpawnGeneratorZap(fromPos(pos), fromPos(pos)), getSyncPoint(64));
 				}
 			}
 			
@@ -94,17 +98,18 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 					TileEntity tile = l.getTile();
 					if(tile != null)
 					{
+						int limit = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)) ? 800 : 400;
 						if(tile.hasCapability(CapabilityEnergy.ENERGY, f.getOpposite()))
 						{
 							IEnergyStorage storage = tile.getCapability(CapabilityEnergy.ENERGY, f.getOpposite());
 							if(storage.canReceive())
-								emitPower = extractEnergy(storage.receiveEnergy(extractEnergy(400, true), false), false) > 0;
+								emitPower = extractEnergy(storage.receiveEnergy(extractEnergy(limit, true), false), false) > 0;
 							if(emitPower && world.rand.nextInt(9) == 0)
 								HCNetwork.getManager("particles").sendToAllAround(new PacketSpawnGeneratorZap(fromPos(pos), fromPos(l.getPos())), getSyncPoint(64));
 						} else if(tile.hasCapability(CapabilityEJ.ENERGY, f.getOpposite()))
 						{
 							IPowerStorage storage = tile.getCapability(CapabilityEJ.ENERGY, f.getOpposite());
-							emitPower = extractEnergy(storage.receiveEnergy(extractEnergy(400, true), false), false) > 0;
+							emitPower = extractEnergy(storage.receiveEnergy(extractEnergy(limit, true), false), false) > 0;
 							if(emitPower && world.rand.nextInt(9) == 0)
 								HCNetwork.getManager("particles").sendToAllAround(new PacketSpawnGeneratorZap(fromPos(pos), fromPos(l.getPos())), getSyncPoint(64));
 						}
@@ -290,7 +295,8 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 	{
 		if(!reversed)
 			return 0;
-		int receive = Math.min(Math.min(energyMax - incomeEnergy, 100), maxReceive);
+		int limit = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)) ? 200 : 100;
+		int receive = Math.min(Math.min(energyMax - incomeEnergy, limit), maxReceive);
 		if(!simulate)
 		{
 			incomeEnergy += receive;
@@ -305,7 +311,8 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 	{
 		if(reversed)
 			return 0;
-		int extract = Math.min(Math.min(400, storedEnergy), maxExtract);
+		int limit = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)) ? 800 : 400;
+		int extract = Math.min(Math.min(limit, storedEnergy), maxExtract);
 		if(!simulate)
 			storedEnergy -= extract;
 		return extract;

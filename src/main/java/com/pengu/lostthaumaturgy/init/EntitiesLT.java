@@ -1,6 +1,8 @@
 package com.pengu.lostthaumaturgy.init;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -18,6 +20,9 @@ public class EntitiesLT
 		reg(EntityThaumSlime.class, "tslime", 0xAA00FF, 0x4C2187);
 		reg(EntitySmartZombie.class, "smart_zombie", 0x1F340F, 0xBEB070);
 		reg(EntityCustomSplashPotion.class, "custom_splash_potion");
+		
+		EntitySpawnPlacementRegistry.setPlacementType(EntitySmartZombie.class, SpawnPlacementType.ON_GROUND);
+		EntitySpawnPlacementRegistry.setPlacementType(EntityThaumSlime.class, SpawnPlacementType.ON_GROUND);
 		
 		LootTableList.register(EntityThaumSlime.LOOT_TABLE);
 		LootTableList.register(EntitySmartZombie.LOOT_TABLE);

@@ -5,7 +5,9 @@ import java.util.Set;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
@@ -67,7 +69,17 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.THAUMIUM_VIS_PUMP), 75, RecipesInfuser.createPredicateFromResearches(ResearchesLT.THAUMIUM_VIS_PUMP, ResearchesLT.THAUMIUM_BELLOWS), EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), new ItemStack(BlocksLT.VIS_PUMP), new ItemStack(BlocksLT.THAUMIUM_BELLOWS), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.THAUMIUM_BELLOWS), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.THAUMIUM_BELLOWS), EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), new ItemStack(BlocksLT.BELLOWS), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.QUICKSILVER_CORE), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.QUICKSILVER_CORE), new ItemStack(Blocks.STONE_SLAB), EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), EnumMultiMaterialType.QUICKSILVER.stack());
+		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.STABILIZED_SINGULARITY), 50, new ItemStack(Blocks.STONE_SLAB), EnumMultiMaterialType.EARTHEN_CRYSTAL.stack(), new ItemStack(ItemsLT.SINGULARITY));
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.WAND_REVERSAL), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.WAND_REVERSAL), new ItemStack(ItemsLT.SINGULARITY), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(Items.GOLD_INGOT), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), new ItemStack(BlocksLT.CRYSTAL_ORE_VIS));
+		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 2), 25, new ItemStack(Items.GLASS_BOTTLE), new ItemStack(BlocksLT.SILVERWOOD_LEAVES));
+		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.CUSTOM_POTION), 140, new ItemStack(Items.GLASS_BOTTLE), EnumMultiMaterialType.VIS_CRYSTAL.stack());
+		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.COLLECTED_WISDOM), 100, new ItemStack(Blocks.STONE_SLAB), EnumMultiMaterialType.VIS_CRYSTAL.stack(), EnumMultiMaterialType.ZOMBIE_BRAINS.stack());
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.stack(), 250, EnumMultiMaterialType.VIS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_FOULEST_TAINT.stack(), 250, EnumMultiMaterialType.TAINTED_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_WARMEST_FIRE.stack(), 250, EnumMultiMaterialType.FIERY_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_DEEPEST_EARTH.stack(), 250, EnumMultiMaterialType.EARTHEN_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_LIGHTEST_AIR.stack(), 250, EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_COOLEST_WATER.stack(), 250, EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 	}
 	
 	public static void registerDarkInfuser()

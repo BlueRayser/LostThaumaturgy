@@ -1,14 +1,14 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
 import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.mrdimka.hammercore.gui.container.ContainerEmpty;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileGenerator;
-
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 public class GuiGenerator extends GuiContainer
 {

@@ -15,24 +15,24 @@ public class RenderCustomSplashPotion extends RenderSnowball<EntityCustomSplashP
 	public static final Factory FACTORY = new Factory();
 	
 	public RenderCustomSplashPotion(RenderManager renderManagerIn)
-    {
-	    super(renderManagerIn, ItemsLT.CUSTOM_POTION, Minecraft.getMinecraft().getRenderItem());
-    }
+	{
+		super(renderManagerIn, ItemsLT.CUSTOM_POTION, Minecraft.getMinecraft().getRenderItem());
+	}
 	
 	@Override
 	public ItemStack getStackToRender(EntityCustomSplashPotion entityIn)
 	{
 		ItemStack stack = super.getStackToRender(entityIn);
 		stack.setItemDamage(entityIn.getType());
-	    return stack;
+		return stack;
 	}
 	
 	public static final class Factory implements IRenderFactory<EntityCustomSplashPotion>
 	{
 		@Override
-        public Render<? super EntityCustomSplashPotion> createRenderFor(RenderManager manager)
-        {
-	        return new RenderCustomSplashPotion(manager);
-        }
+		public Render<? super EntityCustomSplashPotion> createRenderFor(RenderManager manager)
+		{
+			return new RenderCustomSplashPotion(manager);
+		}
 	}
 }

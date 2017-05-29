@@ -22,11 +22,13 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
+import com.pengu.lostthaumaturgy.api.tiles.IThaumSlimeDrainable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
-public class TileCrucible extends TileSyncableTickable implements IConnection
+public class TileCrucible extends TileSyncableTickable implements IConnection, IThaumSlimeDrainable
 {
 	public int smeltDelay;
 	public float pureVis = 0;
@@ -442,5 +444,42 @@ public class TileCrucible extends TileSyncableTickable implements IConnection
 		if(capability == CapabilityVisConnection.VIS)
 			return (T) this;
 		return super.getCapability(capability, facing);
+	}
+	
+	@Override
+	public void onDrained(EntityThaumSlime slime)
+	{
+		boolean t = slime.isTainted();
+		if(t)
+		{
+			if(taintedVis > 0)
+			{
+				float e = Math.min(taintedVis, .1F);
+				taintedVis -= e;
+				slime.setTaintedVis(slime.getTaintedVis() + e);
+				sync();
+			} else if(pureVis > 0)
+			{
+				float e = Math.min(pureVis, .1F);
+				pureVis -= e;
+				slime.setPureVis(slime.getPureVis() + e);
+				sync();
+			}
+		} else
+		{
+			if(pureVis > 0)
+			{
+				float e = Math.min(pureVis, .1F);
+				pureVis -= e;
+				slime.setPureVis(slime.getPureVis() + e);
+				sync();
+			} else if(taintedVis > 0)
+			{
+				float e = Math.min(taintedVis, .1F);
+				taintedVis -= e;
+				slime.setTaintedVis(slime.getTaintedVis() + e);
+				sync();
+			}
+		}
 	}
 }

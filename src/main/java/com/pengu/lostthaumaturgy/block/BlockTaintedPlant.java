@@ -13,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
@@ -35,12 +34,22 @@ public class BlockTaintedPlant extends BlockPlant
 		if(random.nextInt(4) != 0)
 			return;
 		
-		WorldLocation l = new WorldLocation(worldIn, pos);
-		if(l.getMeta() == 0)
-			l.setMeta(1);
+		if(!canSustainBush(worldIn.getBlockState(pos.down())))
+		{
+			worldIn.setBlockToAir(pos);
+			
+			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+			si.taint += 5 + random.nextInt(20);
+			si.badVibes += 4 + random.nextInt(10);
+			
+			return;
+		}
+		
+		if(getMetaFromState(state) == 0)
+			worldIn.setBlockState(pos, getStateFromMeta(1));
 		else
 		{
-			l.setMeta(0);
+			worldIn.setBlockState(pos, getStateFromMeta(0));
 			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 			si.taint += 5 + random.nextInt(20);
 			si.badVibes += 4 + random.nextInt(10);
@@ -68,7 +77,7 @@ public class BlockTaintedPlant extends BlockPlant
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return getDefaultState().withProperty(GROWTH, meta);
+		return getDefaultState().withProperty(GROWTH, meta % 2);
 	}
 	
 	@Override

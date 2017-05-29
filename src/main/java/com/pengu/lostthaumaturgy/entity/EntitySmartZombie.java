@@ -1,5 +1,6 @@
 package com.pengu.lostthaumaturgy.entity;
 
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -16,10 +17,12 @@ public class EntitySmartZombie extends EntityZombie
 	}
 	
 	@Override
-	public void setChild(boolean childZombie)
+	protected void applyEntityAttributes()
 	{
-		if(!childZombie)
-			super.setChild(childZombie);
+		super.applyEntityAttributes();
+		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(17);
+		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(.23066600417232513);
+		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.5);
 	}
 	
 	@Override

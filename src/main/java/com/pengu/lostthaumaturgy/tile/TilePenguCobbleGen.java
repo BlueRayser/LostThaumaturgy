@@ -52,7 +52,7 @@ public class TilePenguCobbleGen extends TileVisUser implements IInventory, IUpgr
 			ItemStack item = new ItemStack(Items.DIAMOND_PICKAXE);
 			if(!pickaxe.get().isItemEqual(item))
 				pickaxe.set(item);
-		}else
+		} else
 		{
 			speed = 30;
 			cooldownTimerMax = 20;
@@ -250,18 +250,18 @@ public class TilePenguCobbleGen extends TileVisUser implements IInventory, IUpgr
 	{
 		inventory.clear();
 	}
-
+	
 	@Override
-    public int[] getUpgrades()
-    {
-	    return upgrades;
-    }
-
+	public int[] getUpgrades()
+	{
+		return upgrades;
+	}
+	
 	@Override
-    public boolean canAcceptUpgrade(int type)
-    {
+	public boolean canAcceptUpgrade(int type)
+	{
 		if(hasUpgrade(type))
 			return false;
-	    return type == ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE);
-    }
+		return type == ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE);
+	}
 }

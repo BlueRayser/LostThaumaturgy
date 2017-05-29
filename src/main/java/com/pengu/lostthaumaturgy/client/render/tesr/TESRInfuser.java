@@ -63,8 +63,8 @@ public class TESRInfuser extends TESR<TileInfuser>
 		if(active && te.canSpawnParticle && te.sucked > 0F && te.getWorld().rand.nextFloat() < te.sucked)
 		{
 			te.canSpawnParticle = false; // ensure that if player pauses the
-										 // game we don't spawn thousands of
-										 // particles
+			                             // game we don't spawn thousands of
+			                             // particles
 			
 			float xx = (float) te.getPos().getX() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
 			float yy2 = (float) te.getPos().getY() + 0.9475f;

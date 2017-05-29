@@ -50,6 +50,9 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		world.setBlockState(pos, BlocksLT.TAINTED_SOIL.getDefaultState());
 		world.setTileEntity(pos, soil);
 		soil.setSnapshot(snapshot);
+		
+		if(world.rand.nextInt(25) == 0 && world.isAirBlock(pos.up()))
+			world.setBlockState(pos.up(), BlocksLT.TAINTED_PLANT.getDefaultState());
 	}
 	
 	public static void cleanSoil(World world, BlockPos pos)
@@ -64,6 +67,14 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 				si.taint += 3;
 				si.badVibes++;
 			}
+			
+			if(world.getBlockState(pos.up()).getBlock() == BlocksLT.TAINTED_PLANT)
+			{
+				world.setBlockToAir(pos.up());
+				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				si.taint += 5 + world.rand.nextInt(20);
+				si.badVibes += 4 + world.rand.nextInt(10);
+			}
 		}
 	}
 	
@@ -75,6 +86,16 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		
 		if(random.nextInt(25) == 0 && worldIn.isAirBlock(pos.up()))
 			worldIn.setBlockState(pos.up(), BlocksLT.TAINTED_PLANT.getDefaultState());
+		
+		IBlockState up = worldIn.getBlockState(pos.up());
+		
+		if(up.getBlock() == BlocksLT.TAINTED_PLANT && BlocksLT.TAINTED_PLANT.getMetaFromState(up) == 1)
+		{
+			worldIn.setBlockState(pos.up(), BlocksLT.TAINTED_PLANT.getDefaultState());
+			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+			si.taint += 5 + random.nextInt(20);
+			si.badVibes += 4 + random.nextInt(10);
+		}
 		
 		SIAuraChunk a = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 		if(!AuraTicker.shouldBeTainted(a) || random.nextInt(75) == 0)

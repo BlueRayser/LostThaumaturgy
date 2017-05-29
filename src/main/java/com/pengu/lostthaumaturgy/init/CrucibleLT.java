@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.init;
 
-import java.io.InputStream;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -29,6 +27,8 @@ public class CrucibleLT
 	{
 		addCrucibleSmeltings();
 	}
+	
+	public static String json = "";
 	
 	public static void addCrucibleSmeltings()
 	{
@@ -147,8 +147,8 @@ public class CrucibleLT
 			LostThaumaturgy.LOG.info("Loading Crucible Recipe Jsons...");
 			long start = System.currentTimeMillis();
 			
-			InputStream from = LostThaumaturgy.class.getResourceAsStream("/assets/" + LTInfo.MOD_ID + "/crucible.json");
-			JSONObject obj = (JSONObject) new JSONTokener(new String(IOUtils.pipeOut(from))).nextValue();
+			String load = json != null && !json.isEmpty() ? json : new String(IOUtils.pipeOut(LostThaumaturgy.class.getResourceAsStream("/assets/" + LTInfo.MOD_ID + "/crucible.json")));
+			JSONObject obj = (JSONObject) new JSONTokener(load).nextValue();
 			
 			for(String key : obj.keySet())
 			{
@@ -176,5 +176,7 @@ public class CrucibleLT
 		{
 			err.printStackTrace();
 		}
+		
+		json = null;
 	}
 }

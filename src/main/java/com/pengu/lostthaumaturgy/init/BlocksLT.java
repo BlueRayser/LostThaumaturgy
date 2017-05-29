@@ -12,6 +12,7 @@ import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockCrucible;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
 import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
+import com.pengu.lostthaumaturgy.block.BlockDuplicator;
 import com.pengu.lostthaumaturgy.block.BlockGenerator;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
@@ -22,6 +23,7 @@ import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
+import com.pengu.lostthaumaturgy.block.BlockSingularityJar;
 import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
 import com.pengu.lostthaumaturgy.block.BlockTaintedPlant;
 import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
@@ -65,7 +67,9 @@ public class BlocksLT
 	        TAINTED_SOIL = new BlockTaintedSoil(), //
 	        VOID_CHEST = new BlockVoidChest(), //
 	        PENGU_COBBLEGEN = new BlockPenguCobbleGen(), //
-	        GENERATOR = new BlockGenerator();
+	        GENERATOR = new BlockGenerator(), //
+	        SINGULARITY_JAR = new BlockSingularityJar(), //
+	        DUPLICATOR = new BlockDuplicator();
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //

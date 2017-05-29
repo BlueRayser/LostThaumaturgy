@@ -1,7 +1,9 @@
 package com.pengu.lostthaumaturgy.proxy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.annotation.Nonnull;
 
@@ -15,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.text.translation.I18n;
@@ -34,6 +37,7 @@ import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
@@ -54,6 +58,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRGenerator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRLyingItem;
@@ -61,6 +66,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRPenguCobbleGen;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRSingularityJar;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRStudiumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRThaumiumBellows;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisFilter;
@@ -88,6 +94,7 @@ import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
+import com.pengu.lostthaumaturgy.tile.TileDuplicator;
 import com.pengu.lostthaumaturgy.tile.TileGenerator;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
@@ -95,6 +102,7 @@ import com.pengu.lostthaumaturgy.tile.TilePenguCobbleGen;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
+import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 import com.pengu.lostthaumaturgy.tile.TileThaumiumBellows;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
@@ -159,6 +167,8 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileCrystallizer.class, BlocksLT.CRYSTALLIZER, TESRCrystallizer.INSTANCE);
 		registerRender(TilePenguCobbleGen.class, BlocksLT.PENGU_COBBLEGEN, TESRPenguCobbleGen.INSTANCE);
 		registerRender(TileGenerator.class, BlocksLT.GENERATOR, TESRGenerator.INSTANCE);
+		registerRender(TileSingularityJar.class, BlocksLT.SINGULARITY_JAR, TESRSingularityJar.INSTANCE);
+		registerRender(TileDuplicator.class, BlocksLT.DUPLICATOR, TESRDuplicator.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
 		
@@ -207,6 +217,26 @@ public class ClientProxy extends CommonProxy
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void reloadTextrues(TextureStitchEvent evt)
 	{
+		try
+		{
+			int sprite = 0;
+			LostThaumaturgy.LOG.info("Loadeding sprites...");
+			Scanner s = new Scanner(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(LTInfo.MOD_ID, "textures/blocks/_sprites.txt")).getInputStream());
+			while(s.hasNextLine())
+			{
+				String ln = s.nextLine();
+				if(ln.isEmpty())
+					continue;
+				evt.getMap().registerSprite(new ResourceLocation(LTInfo.MOD_ID, "blocks/" + ln));
+				sprite++;
+			}
+			s.close();
+			LostThaumaturgy.LOG.info("Loaded " + sprite + " sprites!");
+		} catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		BookThaumonomicon tm = BookThaumonomicon.instance;
 		for(BookCategory cat : tm.categories)
 			for(BookEntry ent : cat.entries)

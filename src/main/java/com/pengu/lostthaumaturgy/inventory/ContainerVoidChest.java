@@ -23,12 +23,12 @@ public class ContainerVoidChest extends Container
 			for(int k = 0; k < 9; ++k)
 				addSlotToContainer(new Slot(chest, k + i * 9, 8 + k * 18, 9 + i * 18));
 		
+		for(int j = 0; j < 9; ++j)
+			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 216));
+		
 		for(int i = 0; i < 3; ++i)
 			for(int k = 0; k < 9; ++k)
 				addSlotToContainer(new Slot(player.inventory, k + i * 9 + 9, 8 + k * 18, 158 + i * 18));
-		
-		for(int j = 0; j < 9; ++j)
-			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 216));
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public class ContainerVoidChest extends Container
 	{
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = getSlot(index);
-		if(slot != null && slot.canBeHovered())
+		if(slot != null)
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();

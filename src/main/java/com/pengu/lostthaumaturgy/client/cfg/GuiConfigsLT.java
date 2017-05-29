@@ -9,7 +9,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 public class GuiConfigsLT extends HCConfigGui
 {
 	public GuiConfigsLT(GuiScreen prev)
-    {
-	    super(prev, LTConfigs.cfgs, LTInfo.MOD_ID);
-    }
+	{
+		super(prev, LTConfigs.cfgs, LTInfo.MOD_ID);
+	}
 }

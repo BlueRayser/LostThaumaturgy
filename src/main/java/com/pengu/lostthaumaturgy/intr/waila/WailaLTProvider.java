@@ -25,6 +25,7 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
+import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 
@@ -58,13 +59,22 @@ public class WailaLTProvider implements IWailaDataProvider
 				BlockSnapshot s = soil.getSnapshot();
 				Block block = Block.REGISTRY.getObject(s.getRegistryName());
 				
-				if(tooltip.contains("Tainted:")) break soil;
+				if(tooltip.contains("Tainted:"))
+					break soil;
 				tooltip.add("Tainted:");
 				tooltip.add(block.getLocalizedName());
 			} catch(Throwable err)
 			{
 				tooltip.add("Creative Mode placed soil.");
 			}
+		}
+		
+		if(tile instanceof TileSingularityJar)
+		{
+			TileSingularityJar jar = (TileSingularityJar) tile;
+			String l = "XP: " + jar.storedXP.get();
+			if(!tooltip.contains(l))
+				tooltip.add(l);
 		}
 		
 		return tooltip;

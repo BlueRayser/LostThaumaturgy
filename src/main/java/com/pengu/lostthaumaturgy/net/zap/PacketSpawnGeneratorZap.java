@@ -39,8 +39,8 @@ public class PacketSpawnGeneratorZap implements IPacket, IPacketListener<PacketS
 	@SideOnly(Side.CLIENT)
 	public void spawn()
 	{
-		ParticleZap zap = (ParticleZap) HammerCore.particleProxy.spawnZap(Minecraft.getMinecraft().world, start, end, Color.MAGENTA);
-		zap.setMaxAge(6);
+		ParticleZap zap = (ParticleZap) HammerCore.particleProxy.spawnZap(Minecraft.getMinecraft().world, start, end, Color.CYAN);
+		zap.setMaxAge(9);
 	}
 	
 	@Override
