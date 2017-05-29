@@ -110,7 +110,8 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 		--smeltDelay;
 		--wait;
 		
-		attractSlimeToTile(8, new WorldLocation(world, pos), 3);
+		if(!world.isRemote && world.rand.nextInt(40) == 0)
+			attractSlimeToTile(8, new WorldLocation(world, pos), 3);
 		
 		if(pPure != pureVis || pTaint != taintedVis)
 		{

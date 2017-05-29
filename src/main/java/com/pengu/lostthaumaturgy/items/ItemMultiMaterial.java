@@ -46,6 +46,13 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		EnumMultiMaterialType.ENCHANTED_SILVERWOOD.setHasEffect(true);
 		EnumMultiMaterialType.ENCHANTED_FABRIC.setHasEffect(true);
 		
+		EnumMultiMaterialType.EXTRACT_COOLEST_WATER.setHasEffect(true);
+		EnumMultiMaterialType.EXTRACT_DEEPEST_EARTH.setHasEffect(true);
+		EnumMultiMaterialType.EXTRACT_FOULEST_TAINT.setHasEffect(true);
+		EnumMultiMaterialType.EXTRACT_LIGHTEST_AIR.setHasEffect(true);
+		EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.setHasEffect(true);
+		EnumMultiMaterialType.EXTRACT_WARMEST_FIRE.setHasEffect(true);
+		
 		for(EnumMultiMaterialType type : EnumMultiMaterialType.values())
 			if(type.oredict != null)
 				for(String name : type.oredict)
@@ -194,6 +201,11 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		public static boolean isCrystal(ItemStack src)
 		{
 			return DEPLETED_CRYSTAL.isThisItem(src) || VAPOROUS_CRYSTAL.isThisItem(src) || AQUEOUS_CRYSTAL.isThisItem(src) || FIERY_CRYSTAL.isThisItem(src) || EARTHEN_CRYSTAL.isThisItem(src) || VIS_CRYSTAL.isThisItem(src) || TAINTED_CRYSTAL.isThisItem(src);
+		}
+		
+		public static boolean isNormalCrystal(ItemStack src)
+		{
+			return VAPOROUS_CRYSTAL.isThisItem(src) || AQUEOUS_CRYSTAL.isThisItem(src) || FIERY_CRYSTAL.isThisItem(src) || EARTHEN_CRYSTAL.isThisItem(src) || VIS_CRYSTAL.isThisItem(src) || TAINTED_CRYSTAL.isThisItem(src);
 		}
 	}
 }

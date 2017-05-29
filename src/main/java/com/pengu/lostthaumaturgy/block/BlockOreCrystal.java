@@ -61,6 +61,8 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		}
 	}
 	
+	public final String cName;
+	
 	/** Used to register and perform rendering. DO NOT MODIFY THIS SET! */
 	public static final Set<BlockOreCrystal> crystals = new HashSet<>();
 	
@@ -71,6 +73,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		this.crystalColor = crystalColor;
 		this.goodVibesOnGrowth = goodVibesOnGrowth;
 		this.crystal = crystalStack;
+		cName = crystalName;
 		setSoundType(SoundType.GLASS);
 		setHarvestLevel("pickaxe", 1);
 		setUnlocalizedName("crystal_ore_" + crystalName);

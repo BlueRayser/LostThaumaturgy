@@ -24,14 +24,14 @@ public class TileMonolith extends TileSyncableTickable
 	@Override
 	public void tick()
 	{
-		double yOff = getYOffset(0);
-		double yOffNT = getYOffset(1);
+		double yOff = getYOffset(-1);
+		double yOffNT = getYOffset(0);
 		
 		if(yOffNT - yOff > 0)
 		{
-			List<Entity> inBlock = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos).addCoord(0, yOff, 0));
+			List<Entity> inBlock = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos.getX(), pos.getY() + yOff, pos.getZ(), pos.getX() + 1, pos.getY() + 1 + yOff, pos.getZ() + 1));
 			for(Entity e : inBlock)
-				e.move(MoverType.SHULKER, 0, yOffNT - yOff, 0);
+				e.move(MoverType.SHULKER, 0, (yOffNT - yOff) * 3, 0);
 		}
 		
 		if(world.isRemote)

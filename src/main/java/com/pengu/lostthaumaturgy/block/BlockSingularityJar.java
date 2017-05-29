@@ -126,7 +126,7 @@ public class BlockSingularityJar extends BlockRendered implements ITileEntityPro
 		return false;
 	}
 	
-	public static final AxisAlignedBB JAR_AABB = new AxisAlignedBB(1 / 4D, 0, 1 / 4D, 3 / 4D, 1, 3 / 4D);
+	public static final AxisAlignedBB JAR_AABB = new AxisAlignedBB(1 / 8D, 0, 1 / 8D, 7 / 8D, 1, 7 / 8D);
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)

@@ -119,6 +119,8 @@ item.lostthaumaturgy:extract_warmest_fire.name=Extract of Warmest Fire
 item.lostthaumaturgy:extract_deepest_earth.name=Extract of Deepest Earth
 item.lostthaumaturgy:extract_lightest_air.name=Extract of Lightest Air
 item.lostthaumaturgy:extract_coolest_water.name=Extract of Coolest Water
+item.lostthaumaturgy:soul_fragment.name=Soul Fragment
+item.lostthaumaturgy:congealed_taint.name=Congealed Taint
 
 
 
@@ -159,6 +161,16 @@ research.lostthaumaturgy:quicksilver_core.desc=Quicksilver Core is an upgrade fo
 
 research.lostthaumaturgy:wand_reversal.title=Wand of Reversal
 research.lostthaumaturgy:wand_reversal.desc=Dismantling upgrades wasn't as easy as it is with Wand of Reversal. Just use it on thaumic machine to dismantle the upgrade.
+
+research.lostthaumaturgy:concentrated_taint.title=Concentrated Taint
+research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and ways to get it manually you discovered a very dangerous way to obtains the said taint. You have to obtain congealed taint and fill glass bottle with it. You shouldn't make it on normal infuser, however.
+
+research.lostthaumaturgy:potion_purity.title=Potion of Purity
+research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
+
+
+research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
+research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, but couldn't obtain so-required tainted crystal by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your so-desired crystals even easier!
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Basics

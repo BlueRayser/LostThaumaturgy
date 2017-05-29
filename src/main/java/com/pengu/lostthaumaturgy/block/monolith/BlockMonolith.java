@@ -37,7 +37,7 @@ public class BlockMonolith extends BlockRendered implements ITileEntityProvider,
 	{
 		TileMonolith tile = WorldUtil.cast(source.getTileEntity(pos), TileMonolith.class);
 		if(tile != null)
-			return super.getBoundingBox(state, source, pos).addCoord(0, tile.getYOffset(0), 0);
+			return new AxisAlignedBB(0, tile.getYOffset(0), 0, 1, 1 + tile.getYOffset(0), 1);
 		return super.getBoundingBox(state, source, pos);
 	}
 	

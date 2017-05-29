@@ -13,6 +13,7 @@ duplicator/side
 duplicator/y
 
 monolith/bottom
+monolith/crystal_receptacle
 monolith/side_d
 monolith/side_u
 monolith/side_ud
