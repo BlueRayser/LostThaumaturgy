@@ -48,6 +48,7 @@ tile.lostthaumaturgy:generator.name=Таумический генератор
 tile.lostthaumaturgy:tainted_plant.name=Заражённая Лаонри
 tile.lostthaumaturgy:jar_singularity.name=Сингулярность в банке
 tile.lostthaumaturgy:duplicator.name=Таумический дубликатор
+tile.lostthaumaturgy:lt_monolith_opener.name=§dMonolith Generator
 
 
 
@@ -131,7 +132,7 @@ item.lostthaumaturgy:inhuman_skull.tooltip0=Uncommon Forbidden Artifact
 item.lostthaumaturgy:darkened_crystal_eye.name=Darkened Crystal Eye
 item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Uncommon Forbidden Artifact
 item.lostthaumaturgy:knotted_spike.name=Knotted Spike
-item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Rare Forbidden Artifact
+item.lostthaumaturgy:knotted_spike.tooltip0=Rare Forbidden Artifact
 item.lostthaumaturgy:tome_forbidden_knowledge.name=Tome of Forbidden Knowledge
 item.lostthaumaturgy:tome_forbidden_knowledge.tooltip0=Exceptional Forbidden Artifact
 item.lostthaumaturgy:taint_spores.name=Taint Spores
@@ -160,6 +161,13 @@ item.lostthaumaturgy:eldritch_repository.name=Eldritch Repository
 item.lostthaumaturgy:eldritch_repository.tooltip0=Exceptional Eldritch Artifact
 item.lostthaumaturgy:darkness_seed.name=Darkness Seed
 item.lostthaumaturgy:void_ingot.name=Void Ingot
+item.lostthaumaturgy:eldritch_keystone_inert.name=§5Inert Eldritch Keystone
+item.lostthaumaturgy:eldritch_keystone_tlhutlh.name=§dEldritch Keystone: Tlhutlh
+item.lostthaumaturgy:void_helmet.name=Void Helmet
+item.lostthaumaturgy:void_chestplate.name=Void Chestplate
+item.lostthaumaturgy:void_leggings.name=Void Leggings
+item.lostthaumaturgy:void_boots.name=Void Boots
+item.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 
 
 
@@ -171,6 +179,7 @@ gui.lostthaumaturgy:not_upgradable=Нет улучшений.
 
 entity.lostthaumaturgy:smart_zombie.name=Умный зомби
 entity.lostthaumaturgy:tslime.name=Таум слизень
+entity.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 
 
 
@@ -213,6 +222,10 @@ research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, b
 research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Eldritch Keystone: Tlhutlh
 research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse inert keystone with extract of purest magic. You hope that it is going to work...
 
+research.lostthaumaturgy:void_ingot.title=Void Ingot
+research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with so common thaumium ingot. Void Ingot is a very sturdy metal that can repair itself, but not too fast. The only downside to this metal is that it uses some vis from atmosphere to recover.
+
+
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Основы
 bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Тауматургия
@@ -223,4 +236,6 @@ bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
+
 chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...
+chat.lostthaumaturgy:not_my_master=You are not my master!

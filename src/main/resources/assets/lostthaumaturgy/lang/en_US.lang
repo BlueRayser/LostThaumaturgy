@@ -132,7 +132,7 @@ item.lostthaumaturgy:inhuman_skull.tooltip0=Uncommon Forbidden Artifact
 item.lostthaumaturgy:darkened_crystal_eye.name=Darkened Crystal Eye
 item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Uncommon Forbidden Artifact
 item.lostthaumaturgy:knotted_spike.name=Knotted Spike
-item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Rare Forbidden Artifact
+item.lostthaumaturgy:knotted_spike.tooltip0=Rare Forbidden Artifact
 item.lostthaumaturgy:tome_forbidden_knowledge.name=Tome of Forbidden Knowledge
 item.lostthaumaturgy:tome_forbidden_knowledge.tooltip0=Exceptional Forbidden Artifact
 item.lostthaumaturgy:taint_spores.name=Taint Spores
@@ -163,6 +163,11 @@ item.lostthaumaturgy:darkness_seed.name=Darkness Seed
 item.lostthaumaturgy:void_ingot.name=Void Ingot
 item.lostthaumaturgy:eldritch_keystone_inert.name=§5Inert Eldritch Keystone
 item.lostthaumaturgy:eldritch_keystone_tlhutlh.name=§dEldritch Keystone: Tlhutlh
+item.lostthaumaturgy:void_helmet.name=Void Helmet
+item.lostthaumaturgy:void_chestplate.name=Void Chestplate
+item.lostthaumaturgy:void_leggings.name=Void Leggings
+item.lostthaumaturgy:void_boots.name=Void Boots
+item.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 
 
 
@@ -174,6 +179,7 @@ gui.lostthaumaturgy:not_upgradable=Not Upgradable
 
 entity.lostthaumaturgy:smart_zombie.name=Smart Zombie
 entity.lostthaumaturgy:tslime.name=Thaum Slime
+entity.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 
 
 
@@ -220,6 +226,7 @@ research.lostthaumaturgy:void_ingot.title=Void Ingot
 research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with so common thaumium ingot. Void Ingot is a very sturdy metal that can repair itself, but not too fast. The only downside to this metal is that it uses some vis from atmosphere to recover.
 
 
+
 bookapi.lostthaumaturgy:thaumonomicon:basics=Basics
 bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Thaumaturgy
 bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Lost Knowledge
@@ -229,4 +236,6 @@ bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
+
 chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...
+chat.lostthaumaturgy:not_my_master=You are not my master!
