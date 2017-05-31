@@ -1,12 +1,11 @@
-﻿
 itemGroup.lostthaumaturgy=Lost Thaumaturgy
 itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Открытия
 
 tile.lostthaumaturgy:crucible.name=Тигель
 tile.lostthaumaturgy:conduit.name=Вис-канал
-tile.lostthaumaturgy:pressurized_conduit.name=Pressurized Conduit
-tile.lostthaumaturgy:pressurized_conduit.tooltip0=Emits redstone signal
-tile.lostthaumaturgy:pressurized_conduit.tooltip1=if there is any suction
+tile.lostthaumaturgy:pressurized_conduit.name=Герметичный вис-канал
+tile.lostthaumaturgy:pressurized_conduit.tooltip0=Излучает сигнал красного камня
+tile.lostthaumaturgy:pressurized_conduit.tooltip1=если в канале есть давление.
 tile.lostthaumaturgy:vis_tank.name=Вис-резервуар
 tile.lostthaumaturgy:reinforced_vis_tank.name=Усиленный резервуар из таум-металла
 tile.lostthaumaturgy:silverwood_vis_tank.name=Серебродревесный вис-резервуар
@@ -48,6 +47,7 @@ tile.lostthaumaturgy:generator.name=Таумический генератор
 tile.lostthaumaturgy:tainted_plant.name=Заражённая Лаонри
 tile.lostthaumaturgy:jar_singularity.name=Сингулярность в банке
 tile.lostthaumaturgy:duplicator.name=Таумический дубликатор
+tile.lostthaumaturgy:lt_monolith_opener.name=§dMonolith Generator
 
 
 
@@ -97,8 +97,8 @@ item.lostthaumaturgy:upgrades/quicksilver_core.name=Ртутное ядро
 item.lostthaumaturgy:upgrades/quicksilver_core.tooltip0=Улучшает скорость
 item.lostthaumaturgy:upgrades/stabilized_singularity.name=Стабилизированная сингулярность
 item.lostthaumaturgy:upgrades/stabilized_singularity.tooltip0=Улучшает эффективность
-item.lostthaumaturgy:upgrades/harnessed_rage.name=Harnessed Rage
-item.lostthaumaturgy:upgrades/harnessed_rage.tooltip0=Increases aggression and damage
+item.lostthaumaturgy:upgrades/harnessed_rage.name=Запечатанная ярость
+item.lostthaumaturgy:upgrades/harnessed_rage.tooltip0=Увеличивает агрессию и урон.
 item.lostthaumaturgy:upgrades/concentrated_evil.name=Concentrated Evil
 item.lostthaumaturgy:upgrades/concentrated_evil.tooltip0=Unlocks functions that involve taint
 item.lostthaumaturgy:upgrades/infinite_saddness.name=Бесконечная грусть
@@ -107,20 +107,66 @@ item.lostthaumaturgy:upgrades/contained_emptiness.name=Сдержанная пу
 item.lostthaumaturgy:upgrades/contained_emptiness.tooltip0=Улучшает ёмкость
 item.lostthaumaturgy:upgrades/collected_wisdom.name=Собранная мудрость
 item.lostthaumaturgy:upgrades/collected_wisdom.tooltip0=Increases mystical capacity or knowledge
-item.lostthaumaturgy:wand_reversal.name=Wand of Reversal
-item.lostthaumaturgy:singularity.name=Arcane Singularity
+item.lostthaumaturgy:wand_reversal.name=Палочка перестановки
+item.lostthaumaturgy:singularity.name=Таинственная сингулярность
 item.lostthaumaturgy:topaz.name=Топаз
 item.lostthaumaturgy:concentrated_vis.name=Концентрированный вис
-item.lostthaumaturgy:concentrated_taint.name=Concentrated Taint
-item.lostthaumaturgy:potion_purity.name=Potion of Purity
-item.lostthaumaturgy:extract_purest_magic.name=Extract of Purest Magic
-item.lostthaumaturgy:extract_foulest_taint.name=Extract of Foulest Taint
-item.lostthaumaturgy:extract_warmest_fire.name=Extract of Warmest Fire
-item.lostthaumaturgy:extract_deepest_earth.name=Extract of Deepest Earth
-item.lostthaumaturgy:extract_lightest_air.name=Extract of Lightest Air
-item.lostthaumaturgy:extract_coolest_water.name=Extract of Coolest Water
-item.lostthaumaturgy:soul_fragment.name=Soul Fragment
-item.lostthaumaturgy:congealed_taint.name=Congealed Taint
+item.lostthaumaturgy:concentrated_taint.name=Концетрированное заражение
+item.lostthaumaturgy:potion_purity.name=Зелье очищения
+item.lostthaumaturgy:extract_purest_magic.name=Экстракт чистейшей магии
+item.lostthaumaturgy:extract_foulest_taint.name=Экстракт самого отвратительного заражения
+item.lostthaumaturgy:extract_warmest_fire.name=Экстракт самого горячего огня
+item.lostthaumaturgy:extract_deepest_earth.name=Экстракт самой насыщенной земли
+item.lostthaumaturgy:extract_lightest_air.name=Экстракт самого легкого воздуха
+item.lostthaumaturgy:extract_coolest_water.name=Экстракт самой холодной воды
+item.lostthaumaturgy:soul_fragment.name=Фрагмент души
+item.lostthaumaturgy:congealed_taint.name=Сгусток заражения
+item.lostthaumaturgy:rezuli_crystal.name=Краснозуритовый кристалл
+item.lostthaumaturgy:cracked_wisp_shell.name=Потресканная оболочка виспа
+item.lostthaumaturgy:cracked_wisp_shell.tooltip0=Обычный запретный артефакт
+item.lostthaumaturgy:distorted_skull.name=Искаженный череп
+item.lostthaumaturgy:distorted_skull.tooltip0=Обычный запретный артефакт
+item.lostthaumaturgy:inhuman_skull.name=Нечеловеческий череп
+item.lostthaumaturgy:inhuman_skull.tooltip0=Необычный запретный артефакт
+item.lostthaumaturgy:darkened_crystal_eye.name=Темный хрустальный глаз
+item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Необычный запретный артефакт
+item.lostthaumaturgy:knotted_spike.name=Завязанный шип
+item.lostthaumaturgy:knotted_spike.tooltip0=Редкий запретный артефакт
+item.lostthaumaturgy:tome_forbidden_knowledge.name=Том запретных знаний
+item.lostthaumaturgy:tome_forbidden_knowledge.tooltip0=Исключительный запретный артефакт
+item.lostthaumaturgy:taint_spores.name=Заражённые споры
+item.lostthaumaturgy:taint_spores.tooltip0=Обычный заражённый артефакт
+item.lostthaumaturgy:tainted_organ.name=Заражённый орган
+item.lostthaumaturgy:tainted_organ.tooltip0=Обычный заражённый артефакт
+item.lostthaumaturgy:tainted_fruit.name=Заражённый плод
+item.lostthaumaturgy:tainted_fruit.tooltip0=Необычный заражённый артефакт
+item.lostthaumaturgy:tainted_branch.name=Заражённая ветвь
+item.lostthaumaturgy:tainted_branch.tooltip0=Необычный заражённый артефакт
+item.lostthaumaturgy:intact_taintspore_pod.name=Неповреждённый росток спор заражения
+item.lostthaumaturgy:intact_taintspore_pod.tooltip0=Редкий заражённый артефакт
+item.lostthaumaturgy:writhing_taint_tendrils.name=Извивающиеся заражённые щупальца 
+item.lostthaumaturgy:writhing_taint_tendrils.tooltip0=Исключительный заражённый артефакт
+item.lostthaumaturgy:shard_strange_metal.name=Осколок странного металла
+item.lostthaumaturgy:shard_strange_metal.tooltip0=Обычный артефакт древних
+item.lostthaumaturgy:eldritch_mechanism.name=Древний механизм
+item.lostthaumaturgy:eldritch_mechanism.tooltip0=Обычный артефакт древних
+item.lostthaumaturgy:opalescent_eye.name=Переливчатый глаз
+item.lostthaumaturgy:opalescent_eye.tooltip0=Необычный артефакт древних
+item.lostthaumaturgy:disturbing_mirror.name=Искажённое зеркало
+item.lostthaumaturgy:disturbing_mirror.tooltip0=Необычный артефакт древних
+item.lostthaumaturgy:glowing_eldritch_device.name=Светящееся устройство древних
+item.lostthaumaturgy:glowing_eldritch_device.tooltip0=Редкий артефакт древних
+item.lostthaumaturgy:eldritch_repository.name=Хранилище древних
+item.lostthaumaturgy:eldritch_repository.tooltip0=Исключительный артефакт древних
+item.lostthaumaturgy:darkness_seed.name=Семя темноты
+item.lostthaumaturgy:void_ingot.name=Пустотный металл
+item.lostthaumaturgy:eldritch_keystone_inert.name=§5Неактивный ключ древних 
+item.lostthaumaturgy:eldritch_keystone_tlhutlh.name=§dДревнйи ключ: Tlhutlh
+item.lostthaumaturgy:void_helmet.name=Шлем из пустотного металла
+item.lostthaumaturgy:void_chestplate.name=Кираса из пустотного металла
+item.lostthaumaturgy:void_leggings.name=Поножи из пустотного металла
+item.lostthaumaturgy:void_boots.name=Ботинки из пустотного металла
+item.lostthaumaturgy:traveling_trunk.name=Путешествующий багаж
 
 
 
@@ -132,6 +178,7 @@ gui.lostthaumaturgy:not_upgradable=Нет улучшений.
 
 entity.lostthaumaturgy:smart_zombie.name=Умный зомби
 entity.lostthaumaturgy:tslime.name=Таум слизень
+entity.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 
 
 
@@ -168,9 +215,15 @@ research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and 
 research.lostthaumaturgy:potion_purity.title=Potion of Purity
 research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
 
-
 research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
 research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, but couldn't obtain so-required tainted crystal by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your so-desired crystals even easier!
+
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Eldritch Keystone: Tlhutlh
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse inert keystone with extract of purest magic. You hope that it is going to work...
+
+research.lostthaumaturgy:void_ingot.title=Void Ingot
+research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with so common thaumium ingot. Void Ingot is a very sturdy metal that can repair itself, but not too fast. The only downside to this metal is that it uses some vis from atmosphere to recover.
+
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Основы
@@ -182,4 +235,8 @@ bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
+
 chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...
+chat.lostthaumaturgy:not_my_master=You are not my master!
+chat.lostthaumaturgy:trunk_stay=The trunk will remain here.
+chat.lostthaumaturgy:trunk_follow=The trunk will now follow you.
