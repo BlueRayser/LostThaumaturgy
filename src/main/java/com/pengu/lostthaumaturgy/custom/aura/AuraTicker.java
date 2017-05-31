@@ -33,7 +33,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
@@ -42,6 +41,7 @@ import com.mrdimka.hammercore.annotations.MCFBus;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.utils.RoundRobinList;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
@@ -156,11 +156,44 @@ public class AuraTicker
 	public short margin = (short) ((float) LTConfigs.auraMax / 7.5f);
 	
 	public static HashMap<String, SIAuraChunk> AuraHM = new HashMap<>();
+	public static ArrayList<Long> Monoliths = new ArrayList<Long>();
 	
-	@SubscribeEvent
-	public void serverTick(ServerTickEvent evt)
+	public static void addMonolith(BlockPos pos)
 	{
-		
+		pos = new BlockPos(pos.getX(), 0, pos.getZ());
+		Monoliths.add(pos.toLong());
+	}
+	
+	public static double getDistanceSqToClosestMonolith(BlockPos pos)
+	{
+		pos = new BlockPos(pos.getX(), 0, pos.getZ());
+		double d = Double.POSITIVE_INFINITY;
+		for(int i = 0; i < Monoliths.size(); ++i)
+		{
+			BlockPos monolith = BlockPos.fromLong(Monoliths.get(i));
+			double sq = pos.distanceSq(monolith);
+			if(sq < d)
+				d = sq;
+		}
+		return d;
+	}
+	
+	public static BlockPos getClosestMonolithPos(BlockPos pos)
+	{
+		pos = new BlockPos(pos.getX(), 0, pos.getZ());
+		BlockPos closest = null;
+		double d = Double.POSITIVE_INFINITY;
+		for(int i = 0; i < Monoliths.size(); ++i)
+		{
+			BlockPos monolith = BlockPos.fromLong(Monoliths.get(i));
+			double sq = pos.distanceSq(monolith);
+			if(sq < d)
+			{
+				d = sq;
+				closest = monolith;
+			}
+		}
+		return closest;
 	}
 	
 	@SubscribeEvent
@@ -286,18 +319,19 @@ public class AuraTicker
 		return chunk;
 	}
 	
-	public void updateAura(World worldObj) throws ConcurrentModificationException
+	public void updateAura(World world) throws ConcurrentModificationException
 	{
-		if(worldObj.isRemote)
+		if(world.isRemote)
 			return;
 		
 		Collection<SIAuraChunk> c = AuraHM.values();
 		boolean noupdates = true;
-		int counter = AuraHM.size() / 200;
+		int counter = AuraHM.size() / 50;
 		for(SIAuraChunk ac2 : c)
 		{
-			if(ac2.updated || ac2.dimension != worldObj.provider.getDimension())
+			if(ac2.updated || ac2.dimension != world.provider.getDimension() && !world.isBlockLoaded(new BlockPos(ac2.x * 16, 127, ac2.z * 16)))
 				continue;
+			
 			AuraAttachments.attach(ac2);
 			noupdates = false;
 			ac2.updated = true;
@@ -320,13 +354,13 @@ public class AuraTicker
 				ac2.badVibes = (short) (ac2.badVibes - 1);
 			}
 			
-			if(worldObj.rand.nextInt(100) < ac2.goodVibes && ac2.goodVibes > 0)
+			if(world.rand.nextInt(100) < ac2.goodVibes && ac2.goodVibes > 0)
 			{
 				ac2.vis = (short) (ac2.vis + 1);
 				ac2.goodVibes = (short) (ac2.goodVibes - Math.max(1, ac2.vis / (LTConfigs.auraMax / 10)));
 			}
 			
-			if(worldObj.rand.nextInt(100) < ac2.badVibes && ac2.badVibes > 0)
+			if(world.rand.nextInt(100) < ac2.badVibes && ac2.badVibes > 0)
 			{
 				ac2.taint = (short) (ac2.taint + 1);
 				ac2.badVibes = (short) (ac2.badVibes - Math.max(1, ac2.taint / (LTConfigs.auraMax / 10)));
@@ -359,7 +393,7 @@ public class AuraTicker
 					--auraZ;
 				}
 				}
-				SIAuraChunk nc = AuraHM.get(asKey(auraX, auraZ, worldObj.provider.getDimension()));
+				SIAuraChunk nc = AuraHM.get(asKey(auraX, auraZ, world.provider.getDimension()));
 				if(nc == null)
 					continue;
 				if(nc.vis > ac2.vis + this.margin && ac2.vis < LTConfigs.auraMax && nc.vis > 0)
@@ -384,9 +418,9 @@ public class AuraTicker
 			ac2.goodVibes = (short) MathHelper.clip((int) ac2.goodVibes, (int) 0, (int) 100);
 			ac2.badVibes = (short) MathHelper.clip((int) ac2.badVibes, (int) 0, (int) 100);
 			if(shouldBeTainted(ac2))
-				taintifyChunk(worldObj, ac2);
+				taintifyChunk(world, ac2);
 			else
-				purifyChunk(worldObj, ac2);
+				purifyChunk(world, ac2);
 			if(--counter > 0)
 				continue;
 			break;
@@ -395,7 +429,7 @@ public class AuraTicker
 		{
 			for(SIAuraChunk ac2 : c)
 			{
-				if(ac2.dimension != worldObj.provider.getDimension())
+				if(ac2.dimension != world.provider.getDimension())
 					continue;
 				ac2.updated = false;
 			}
@@ -465,6 +499,7 @@ public class AuraTicker
 			GZIPOutputStream gzos = new GZIPOutputStream(fos);
 			ObjectOutputStream out = new ObjectOutputStream(gzos);
 			out.writeObject(AuraHM);
+			out.writeObject(Monoliths);
 			out.flush();
 			out.close();
 		} catch(IOException e)
@@ -488,8 +523,10 @@ public class AuraTicker
 			GZIPInputStream gzis = new GZIPInputStream(fis);
 			ObjectInputStream in = new ObjectInputStream(gzis);
 			HashMap loaded = (HashMap) in.readObject();
+			RoundRobinList monoliths = (RoundRobinList) in.readObject();
 			in.close();
-			AuraHM = loaded;
+			AuraTicker.AuraHM = loaded;
+			AuraTicker.Monoliths = monoliths;
 			LostThaumaturgy.LOG.info("Loaded " + AuraHM.size() + " aura chunks.");
 		} catch(FileNotFoundException e)
 		{
@@ -500,14 +537,10 @@ public class AuraTicker
 				GZIPInputStream gzis = new GZIPInputStream(fis);
 				ObjectInputStream in = new ObjectInputStream(gzis);
 				HashMap loaded = (HashMap) in.readObject();
+				RoundRobinList monoliths = (RoundRobinList) in.readObject();
 				in.close();
-				AuraHM = loaded;
-				Collection<SIAuraChunk> c = AuraHM.values();
-				for(SIAuraChunk ac : c)
-				{
-					ac.vis = (short) (ac.vis / 2);
-					ac.taint = (short) (ac.taint / 2);
-				}
+				AuraTicker.AuraHM = loaded;
+				AuraTicker.Monoliths = monoliths;
 				LostThaumaturgy.LOG.info("Converted " + AuraHM.size() + " legacy auras.");
 			} catch(Exception e2)
 			{

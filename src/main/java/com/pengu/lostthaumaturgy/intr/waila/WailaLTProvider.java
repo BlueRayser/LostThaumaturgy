@@ -29,6 +29,7 @@ import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
+import com.pengu.lostthaumaturgy.tile.monolith.TileExtraRoom;
 import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
 
 public class WailaLTProvider implements IWailaDataProvider
@@ -130,7 +131,7 @@ public class WailaLTProvider implements IWailaDataProvider
 					return tile.lying.get().copy();
 				}
 				
-				if(acc.getTileEntity() instanceof TileMonolith || acc.getTileEntity() instanceof TileCrystalReceptacle)
+				if(acc.getTileEntity() instanceof TileMonolith || acc.getTileEntity() instanceof TileCrystalReceptacle || acc.getTileEntity() instanceof TileExtraRoom)
 					return new ItemStack(BlocksLT.ELDRITCH_BLOCK);
 				
 				stack.removeSubCompound("display");

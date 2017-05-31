@@ -44,6 +44,12 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRYSTALLIZER, "123", "456", "787", '1', EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), '2', EnumMultiMaterialType.VIS_CRYSTAL.stack(), '3', EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), '4', EnumMultiMaterialType.EARTHEN_CRYSTAL.stack(), '5', "gemDiamond", '6', EnumMultiMaterialType.FIERY_CRYSTAL.stack(), '7', "ingotGold", '8', "ingotIron"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.GENERATOR, "gwg", "wsw", "gwg", 'g', "paneGlass", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 's', ItemsLT.STABILIZED_SINGULARITY));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.INFUSER_DARK, "oso", "iti", "ooo", 'o', "obsidian", 's', Blocks.STONE_SLAB, 'i', "ingotIron", 't', EnumMultiMaterialType.TAINTED_CRYSTAL.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.STUDIUM_TABLE, " b ", "rpr", "ppp", 'b', Items.BOOK, 'r', "gemRezuli", 'p', "plankWood"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.AUXILIUM_TABLE, " b ", "rpr", "ppp", 'b', Items.BOOK, 'r', "gemLTTopaz", 'p', "stone"));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlocksLT.ELDRITCH_BLOCK, 4), EnumMultiMaterialType.DARKNESS_SEED.stack(), "stone", "stone", "stone", "stone"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.ELDRITCH_KEYSTONE_INERT.stack(), " g ", "g g", " g ", 'g', EnumMultiMaterialType.ELDRITCH_MECHANISM.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.ELDRITCH_MECHANISM.stack(), " g ", "g g", " g ", 'g', "ingotVoid"));
+
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
 	}

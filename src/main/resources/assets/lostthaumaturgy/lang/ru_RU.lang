@@ -121,6 +121,45 @@ item.lostthaumaturgy:extract_lightest_air.name=Экстракт самого л�
 item.lostthaumaturgy:extract_coolest_water.name=Экстракт самой холодной воды
 item.lostthaumaturgy:soul_fragment.name=Фрагмент души
 item.lostthaumaturgy:congealed_taint.name=Сгусток заражения
+item.lostthaumaturgy:rezuli_crystal.name=Краснозуритовый кристалл
+item.lostthaumaturgy:cracked_wisp_shell.name=Cracked Wisp Shell
+item.lostthaumaturgy:cracked_wisp_shell.tooltip0=Common Forbidden Artifact
+item.lostthaumaturgy:distorted_skull.name=Distorted Skull
+item.lostthaumaturgy:distorted_skull.tooltip0=Common Forbidden Artifact
+item.lostthaumaturgy:inhuman_skull.name=Inhuman Skull
+item.lostthaumaturgy:inhuman_skull.tooltip0=Uncommon Forbidden Artifact
+item.lostthaumaturgy:darkened_crystal_eye.name=Darkened Crystal Eye
+item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Uncommon Forbidden Artifact
+item.lostthaumaturgy:knotted_spike.name=Knotted Spike
+item.lostthaumaturgy:darkened_crystal_eye.tooltip0=Rare Forbidden Artifact
+item.lostthaumaturgy:tome_forbidden_knowledge.name=Tome of Forbidden Knowledge
+item.lostthaumaturgy:tome_forbidden_knowledge.tooltip0=Exceptional Forbidden Artifact
+item.lostthaumaturgy:taint_spores.name=Taint Spores
+item.lostthaumaturgy:taint_spores.tooltip0=Common Tainted Artifact
+item.lostthaumaturgy:tainted_organ.name=Tainted Organ
+item.lostthaumaturgy:tainted_organ.tooltip0=Common Tainted Artifact
+item.lostthaumaturgy:tainted_fruit.name=Tainted Fruit
+item.lostthaumaturgy:tainted_fruit.tooltip0=Uncommon Tainted Artifact
+item.lostthaumaturgy:tainted_branch.name=Tainted Branch
+item.lostthaumaturgy:tainted_branch.tooltip0=Uncommon Tainted Artifact
+item.lostthaumaturgy:intact_taintspore_pod.name=Intact Taintspore Pod
+item.lostthaumaturgy:intact_taintspore_pod.tooltip0=Rare Tainted Artifact
+item.lostthaumaturgy:writhing_taint_tendrils.name=Writhing Taint Tendrils
+item.lostthaumaturgy:writhing_taint_tendrils.tooltip0=Exceptional Tainted Artifact
+item.lostthaumaturgy:shard_strange_metal.name=Shard of Strange Metal
+item.lostthaumaturgy:shard_strange_metal.tooltip0=Common Eldritch Artifact
+item.lostthaumaturgy:eldritch_mechanism.name=Eldritch Mechanism
+item.lostthaumaturgy:eldritch_mechanism.tooltip0=Common Eldritch Artifact
+item.lostthaumaturgy:opalescent_eye.name=Opalescent Eye
+item.lostthaumaturgy:opalescent_eye.tooltip0=Uncommon Eldritch Artifact
+item.lostthaumaturgy:disturbing_mirror.name=Disturbing Mirror
+item.lostthaumaturgy:disturbing_mirror.tooltip0=Uncommon Eldritch Artifact
+item.lostthaumaturgy:glowing_eldritch_device.name=Glowing Eldritch Device
+item.lostthaumaturgy:glowing_eldritch_device.tooltip0=Rare Eldritch Artifact
+item.lostthaumaturgy:eldritch_repository.name=Eldritch Repository
+item.lostthaumaturgy:eldritch_repository.tooltip0=Exceptional Eldritch Artifact
+item.lostthaumaturgy:darkness_seed.name=Darkness Seed
+item.lostthaumaturgy:void_ingot.name=Void Ingot
 
 
 
@@ -168,9 +207,11 @@ research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and 
 research.lostthaumaturgy:potion_purity.title=Potion of Purity
 research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
 
-
 research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
 research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, but couldn't obtain so-required tainted crystal by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your so-desired crystals even easier!
+
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Eldritch Keystone: Tlhutlh
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse inert keystone with extract of purest magic. You hope that it is going to work...
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Основы

@@ -6,12 +6,16 @@ import java.util.Set;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.oredict.OreDictionary;
 
+import com.google.common.base.Predicate;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
+import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.tile.TileInfuserDark;
 
 public class InfuserLT
 {
@@ -80,6 +84,8 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_DEEPEST_EARTH.stack(), 250, EnumMultiMaterialType.EARTHEN_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_LIGHTEST_AIR.stack(), 250, EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_COOLEST_WATER.stack(), 250, EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.REZULI_CRYSTAL.stack(), 13, new ItemStack(Items.REDSTONE), new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()));
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.ELDRITCH_KEYSTONE_TLHUTLH.stack(), 5, EnumMultiMaterialType.ELDRITCH_KEYSTONE_INERT.stack(), EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.stack());
 	}
 	
 	public static void registerDarkInfuser()
@@ -87,5 +93,16 @@ public class InfuserLT
 		RecipesInfuser.addDarkInfusing(EnumMultiMaterialType.SOUL_FRAGMENT.stack(), 60, new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND));
 		RecipesInfuser.addDarkInfusing(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 1), 9, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONCENTRATED_TAINT), new ItemStack(Items.GLASS_BOTTLE), EnumMultiMaterialType.CONGEALED_TAINT.stack());
 		RecipesInfuser.addDarkInfusing(new ItemStack(ItemsLT.CONCENTRATED_EVIL), 75, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONCENTRATED_EVIL), new ItemStack(Blocks.STONE_SLAB), new ItemStack(Blocks.SOUL_SAND), EnumMultiMaterialType.TAINTED_CRYSTAL.stack());
+		RecipesInfuser.addDarkInfusing(EnumMultiMaterialType.VOID_INGOT.stack(), 24, RecipesInfuser.createPredicateFromResearches(ResearchesLT.VOID_INGOT), EnumMultiMaterialType.DARKNESS_SEED.stack(), EnumMultiMaterialType.QUICKSILVER.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
+		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.PENGU_COBBLEGEN), 99, new Predicate<IInfuser>()
+		{
+			@Override
+			public boolean apply(IInfuser input)
+			{
+				if(input instanceof TileInfuserDark)
+					return ((TileInfuserDark) input).getWorld().getMoonPhase() == 0;
+				return true;
+			}
+		}, new ItemStack(Blocks.COBBLESTONE), new ItemStack(Items.IRON_PICKAXE), EnumMultiMaterialType.EXTRACT_COOLEST_WATER.stack(), EnumMultiMaterialType.SOUL_FRAGMENT.stack());
 	}
 }

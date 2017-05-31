@@ -13,5 +13,6 @@
 	"elecloop": { "sounds": ["lostthaumaturgy:elecloop"] },
 	"stomp": { "sounds": ["lostthaumaturgy:stomp1","lostthaumaturgy:stomp2"] },
 	"monolith": { "sounds": ["lostthaumaturgy:monolith"] },
-	"place": { "sounds": ["lostthaumaturgy:place"] }
+	"place": { "sounds": ["lostthaumaturgy:place"] },
+	"rumble": { "sounds": ["lostthaumaturgy:rumble"] }
 }

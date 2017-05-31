@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,7 +42,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 	{
 		super(Material.GROUND);
 		setUnlocalizedName("tainted_soil");
-		setHardness(3F);
+		setHardness(5F);
 		setResistance(100F);
 		setTickRandomly(true);
 	}
@@ -79,6 +80,12 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 				si.badVibes += 4 + world.rand.nextInt(10);
 			}
 		}
+	}
+	
+	@Override
+	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
+	{
+		return true;
 	}
 	
 	@Override

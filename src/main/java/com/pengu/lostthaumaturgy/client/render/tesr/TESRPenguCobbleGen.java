@@ -171,7 +171,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 				break;
 				}
 			}
-		}, true);
+		}, false);
 	}
 	
 	@Override

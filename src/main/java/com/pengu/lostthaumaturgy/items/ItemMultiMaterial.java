@@ -53,6 +53,8 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.setHasEffect(true);
 		EnumMultiMaterialType.EXTRACT_WARMEST_FIRE.setHasEffect(true);
 		
+		EnumMultiMaterialType.REZULI_CRYSTAL.setHasEffect(true);
+		
 		for(EnumMultiMaterialType type : EnumMultiMaterialType.values())
 			if(type.oredict != null)
 				for(String name : type.oredict)
@@ -109,7 +111,27 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		ANCIENT_WEAPON, //
 		ANCIENT_SEAL, //
 		ANCIENT_STONE_TABLET, //
-		TOPAZ("gemTopaz"), //
+		CRACKED_WISP_SHELL, //
+		DISTORTED_SKULL, //
+		INHUMAN_SKULL, //
+		DARKENED_CRYSTAL_EYE, //
+		KNOTTED_SPIKE, //
+		TOME_FORBIDDEN_KNOWLEDGE, //
+		TAINT_SPORES, //
+		TAINTED_ORGAN, //
+		TAINTED_FRUIT, //
+		TAINTED_BRANCH, //
+		INTACT_TAINTSPORE_POD, //
+		WRITHING_TAINT_TENDRILS, //
+		SHARD_STRANGE_METAL, //
+		ELDRITCH_MECHANISM, //
+		OPALESCENT_EYE, //
+		DISTURBING_MIRROR, //
+		GLOWING_ELDRITCH_DEVICE, //
+		ELDRITCH_REPOSITORY, //
+		DARKNESS_SEED, //
+		VOID_INGOT("ingotVoid"), //
+		TOPAZ("gemLTTopaz"), //
 		EXTRACT_PUREST_MAGIC, //
 		EXTRACT_FOULEST_TAINT, //
 		EXTRACT_WARMEST_FIRE, //
@@ -117,7 +139,10 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		EXTRACT_LIGHTEST_AIR, //
 		EXTRACT_COOLEST_WATER, //
 		SOUL_FRAGMENT, //
-		CONGEALED_TAINT;
+		CONGEALED_TAINT, //
+		REZULI_CRYSTAL("gemRezuli"), //
+		ELDRITCH_KEYSTONE_INERT, //
+		ELDRITCH_KEYSTONE_TLHUTLH;
 		
 		private final String oredict[];
 		public final String mod;

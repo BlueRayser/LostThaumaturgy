@@ -78,6 +78,8 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisValve;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVoidChest;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRCrystalReceptacle;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolith;
+import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithExtraRoom;
+import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.custom.research.ResearchRegisterEvent;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
@@ -116,7 +118,9 @@ import com.pengu.lostthaumaturgy.tile.TileVisTank;
 import com.pengu.lostthaumaturgy.tile.TileVisValve;
 import com.pengu.lostthaumaturgy.tile.TileVoidChest;
 import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
+import com.pengu.lostthaumaturgy.tile.monolith.TileExtraRoom;
 import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
+import com.pengu.lostthaumaturgy.tile.monolith.TileMonolithOpener;
 
 public class ClientProxy extends CommonProxy
 {
@@ -178,6 +182,8 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileDuplicator.class, BlocksLT.DUPLICATOR, TESRDuplicator.INSTANCE);
 		registerRender(TileMonolith.class, BlocksLT.MONOLITH, TESRMonolith.INSTANCE);
 		registerRender(TileCrystalReceptacle.class, BlocksLT.MONOLITH_CRYSTAL_RECEPTACLE, TESRCrystalReceptacle.INSTANCE);
+		registerRender(TileMonolithOpener.class, BlocksLT.MONOLITH_OPENER, TESRMonolithOpener.INSTANCE);
+		registerRender(TileExtraRoom.class, BlocksLT.MONOLITH_EXTRA_ROOM, TESRMonolithExtraRoom.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
 		

@@ -47,6 +47,7 @@ import com.pengu.lostthaumaturgy.proxy.CommonProxy;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenLostArtifacts;
+import com.pengu.lostthaumaturgy.worldgen.WorldGenMonoliths;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
 
 @Mod(modid = LTInfo.MOD_ID, name = LTInfo.MOD_NAME, version = LTInfo.MOD_VERSION, dependencies = "required-after:hammercore", guiFactory = "com.pengu.lostthaumaturgy.client.cfg.GuiFactoryLT")
@@ -105,7 +106,7 @@ public class LostThaumaturgy
 		InfuserLT.registerDarkInfuser();
 		
 		ProgressManager.pop(bar);
-		bar = ProgressManager.push("Adding Contents...", 5);
+		bar = ProgressManager.push("Adding Contents...", 6);
 		
 		bar.step("Registering Entities");
 		EntitiesLT.registerEntities();
@@ -122,6 +123,9 @@ public class LostThaumaturgy
 		bar.step("Registering Underground Artifacts WorldGen");
 		WorldGenRegistry.registerFeature(new WorldGenLostArtifacts());
 		
+		bar.step("Registering Monolith WorldGen");
+		WorldGenRegistry.registerFeature(new WorldGenMonoliths());
+		
 		ProgressManager.pop(bar);
 		bar = ProgressManager.push("Sending IMC", 1);
 		
@@ -136,14 +140,14 @@ public class LostThaumaturgy
 		ProgressBar bar = ProgressManager.push("Registering mob spawns", 2);
 		
 		bar.step("Smart Zombie");
-		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1);
+		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 40);
 		bar.step("Thaum Slime");
-		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1);
+		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 80);
 		
 		ProgressManager.pop(bar);
 	}
 	
-	private void makeSpawn(Class<? extends EntityLiving> search, Class<? extends EntityLiving> add, int minGC, int maxGC)
+	private void makeSpawn(Class<? extends EntityLiving> search, Class<? extends EntityLiving> add, int minGC, int maxGC, int weightMult)
 	{
 		Iterator<Biome> biomes = Biome.REGISTRY.iterator();
 		while(biomes.hasNext())
@@ -161,7 +165,7 @@ public class LostThaumaturgy
 					break;
 				}
 			if(contains)
-				spawns.add(new SpawnListEntry(add, weight, minGC, maxGC));
+				spawns.add(new SpawnListEntry(add, weight * weightMult, minGC, maxGC));
 		}
 	}
 	

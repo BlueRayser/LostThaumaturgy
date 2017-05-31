@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 
@@ -18,6 +20,7 @@ import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
@@ -41,7 +44,12 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 	@Override
 	public void renderTileEntityAt(TileCrystalReceptacle te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
-		te.rand.setSeed(te.getPos().toLong() + te.getWorld().getSeed());
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
+		te.rand.setSeed(te.getPos().toLong() + te.getWorld().getSeed() + te.EXPECTED_CRYSTAL.get());
 		
 		boolean goggles = ItemGogglesRevealing.getWearing(mc.player) != null;
 		
@@ -71,6 +79,9 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 		
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
+			if(!BlocksLT.MONOLITH_OPENER.shouldSideBeRendered(te.getWorld().getBlockState(te.getPos()), te.getWorld(), te.getPos(), f))
+				sbr.disableFace(f);
+			
 			if(f == EnumFacing.UP)
 				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/crystal_receptacle"));
 			else
@@ -84,20 +95,33 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 		if(goggles && ore != null && !te.INSERTED.get())
 		{
 			GL11.glPushMatrix();
-			GL11.glTranslated(x + .25, y + 1.25 - Math.sin(te.getWorld().getTotalWorldTime() / 16D) * .1, z + .25);
-			
+			GL11.glTranslated(x + .25, y + 1.09 - Math.sin(te.rand.nextInt(100000) / 2.666667D + te.getWorld().getTotalWorldTime() / 16D) * .05, z + .25);
 			GL11.glScaled(.5, .5, .5);
-			
 			GL11.glTranslated(.5, .5, .5);
-			GL11.glRotated((te.rand.nextDouble() * 360 + te.getWorld().getTotalWorldTime() % 360L) % 360D, 0, 1, 0);
+			GL11.glRotated((te.rand.nextDouble() * 360 + te.getWorld().getTotalWorldTime() % 360L) % 360D + partialTicks, 0, 1, 0);
 			GL11.glTranslated(-.5, -.5, -.5);
-			
 			GL11.glRotated(90, 1, 0, 0);
-			
 			GL11.glScaled(1 / 256D, 1 / 256D, 1 / 256D);
 			bindTexture(textures.get(ore.cName));
 			RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 			GL11.glPopMatrix();
 		}
+	}
+	
+	@Override
+	public void renderItem(ItemStack item)
+	{
+		SimpleBlockRendering sbr = RenderBlocks.getInstance().simpleRenderer;
+		sbr.begin();
+		sbr.setBrightness(getBrightnessForRB(null, sbr.rb));
+		for(EnumFacing f : EnumFacing.VALUES)
+		{
+			if(f == EnumFacing.UP)
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/crystal_receptacle"));
+			else
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
+		}
+		sbr.drawBlock(0, 0, 0);
+		sbr.end();
 	}
 }

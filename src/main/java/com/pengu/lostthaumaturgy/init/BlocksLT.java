@@ -37,7 +37,9 @@ import com.pengu.lostthaumaturgy.block.BlockVisTank;
 import com.pengu.lostthaumaturgy.block.BlockVisValve;
 import com.pengu.lostthaumaturgy.block.BlockVoidChest;
 import com.pengu.lostthaumaturgy.block.monolith.BlockCrystalReceptacle;
+import com.pengu.lostthaumaturgy.block.monolith.BlockExtraRoom;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolith;
+import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLog;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodPlanks;
@@ -83,7 +85,9 @@ public class BlocksLT
 	        LYING_ITEM = new BlockLyingItem(), //
 	        ELDRITCH_BLOCK = new Block(Material.ROCK).setHardness(1.5F).setUnlocalizedName("eldritch_block").setResistance(Float.POSITIVE_INFINITY), //
 	        MONOLITH = new BlockMonolith(),
-	        MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle();
+	        MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle(),
+	        MONOLITH_OPENER = new BlockMonolithOpener(), //
+	        MONOLITH_EXTRA_ROOM = new BlockExtraRoom();
 	
 	public static final Block //
 	        SHIMMERLEAF = new BlockPlant("shimmerleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
@@ -107,6 +111,6 @@ public class BlocksLT
 	
 	static
 	{
-		ELDRITCH_BLOCK.setHarvestLevel("pickaxe", 2);
+		ELDRITCH_BLOCK.setLightLevel(1F).setHarvestLevel("pickaxe", 2);
 	}
 }

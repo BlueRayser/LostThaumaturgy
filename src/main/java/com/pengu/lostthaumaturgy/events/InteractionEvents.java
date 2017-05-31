@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.events;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
@@ -108,5 +109,14 @@ public class InteractionEvents
 		Block taintedBlock = taintedState.getBlock();
 		if(taintedBlock instanceof BlockOre && soil.getWorld().rand.nextInt(5) == 0)
 			stacks.add(EnumMultiMaterialType.CONGEALED_TAINT.stack());
+	}
+	
+	@SubscribeEvent
+	public void getDrops(BlockEvent.HarvestDropsEvent e)
+	{
+		boolean isInTopazRange = e.getPos().getY() >= 16 && e.getPos().getY() <= 24;
+		if(e.getState().getBlock() == Blocks.STONE && Blocks.STONE.getMetaFromState(e.getState()) == 0 && !e.isSilkTouching() && isInTopazRange)
+			if(e.getHarvester().getRNG().nextInt(100) == 0)
+				e.getDrops().add(EnumMultiMaterialType.TOPAZ.stack());
 	}
 }

@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "lostthaumaturgy:blocks/tainted_log0"
+        "all": "lostthaumaturgy:blocks/tainted_log1"
     }
 }

@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -37,6 +38,11 @@ public class TESRGenerator extends TESR<TileGenerator>
 	
 	public void renderBase(TileGenerator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float partialTicks)
 	{
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
 		float time = (float) Math.abs(tile != null ? tile.rotation : stack != null ? Minecraft.getMinecraft().world.getTotalWorldTime() % 360L : 0) % 360F;
 		float f2 = time + (tile != null ? tile.getWorld().isBlockIndirectlyGettingPowered(tile.getPos()) > 0 ? 0 : partialTicks : partialTicks);
 		

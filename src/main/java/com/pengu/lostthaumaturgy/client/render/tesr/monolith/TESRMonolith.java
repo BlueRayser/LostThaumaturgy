@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.client.render.tesr.monolith;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -24,6 +25,11 @@ public class TESRMonolith extends TESR<TileMonolith>
 	@Override
 	public void renderTileEntityAt(TileMonolith te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		
 		boolean up = te.getWorld().getBlockState(te.getPos().up()).getBlock() == BlocksLT.MONOLITH;
 		boolean down = te.getWorld().getBlockState(te.getPos().down()).getBlock() == BlocksLT.MONOLITH;
 		

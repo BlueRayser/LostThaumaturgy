@@ -61,7 +61,7 @@ public class BlockMonolith extends BlockRendered implements ITileEntityProvider,
 	@Override
 	public String getParticleSprite(World world, BlockPos pos)
 	{
-		return LTInfo.MOD_ID + ":monolith/eldritch_block/0";
+		return LTInfo.MOD_ID + ":blocks/eldritch_block/0";
 	}
 	
 	@Override
