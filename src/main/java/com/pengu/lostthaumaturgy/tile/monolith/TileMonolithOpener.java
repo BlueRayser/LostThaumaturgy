@@ -91,6 +91,10 @@ public class TileMonolithOpener extends TileSyncableTickable
 					}
 			}
 			
+			world.setBlockToAir(pos.down(49));
+			world.setBlockToAir(pos.down(50));
+			world.setBlockToAir(pos.down(51));
+			
 			for(int y = -5; y < 1; ++y)
 				for(int x = -6; x < 7; ++x)
 					for(int z = -6; z < 7; ++z)
@@ -124,7 +128,8 @@ public class TileMonolithOpener extends TileSyncableTickable
 			
 			for(EnumFacing f : EnumFacing.VALUES)
 			{
-				if(f.getAxis() == Axis.Y) continue;
+				if(f.getAxis() == Axis.Y)
+					continue;
 				BlockPos p = pos.add(f.getFrontOffsetX() * 6, -53, f.getFrontOffsetZ() * 6);
 				world.setBlockState(p.offset(f), BlocksLT.ELDRITCH_BLOCK.getDefaultState());
 				world.setBlockState(p, BlocksLT.MONOLITH_EXTRA_ROOM.getDefaultState());

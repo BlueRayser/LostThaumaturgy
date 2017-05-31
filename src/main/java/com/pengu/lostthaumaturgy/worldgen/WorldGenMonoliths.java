@@ -13,7 +13,6 @@ import net.minecraft.world.biome.Biome;
 import com.mrdimka.hammercore.world.gen.IWorldGenFeature;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.utils.ChunkUtils;
 
 public class WorldGenMonoliths implements IWorldGenFeature

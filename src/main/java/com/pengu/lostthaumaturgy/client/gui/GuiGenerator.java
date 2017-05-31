@@ -4,6 +4,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.opengl.GL11;
+
 import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.mrdimka.hammercore.gui.container.ContainerEmpty;
 import com.pengu.lostthaumaturgy.LTInfo;
@@ -26,24 +28,25 @@ public class GuiGenerator extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		if(tile.getUpgrades()[0] >= 0)
-		{
-			int x = 19;
-			int y = 25;
-			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
-			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
-			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX - guiLeft, mouseY - guiTop);
-		}
+		mouseX -= guiLeft;
+		mouseY -= guiTop;
 		
 		if(tile.getUpgrades()[1] >= 0)
 		{
 			int x = 19;
 			int y = 47;
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[1]));
-			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX - guiLeft, mouseY - guiTop);
+				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+		}
+		
+		if(tile.getUpgrades()[0] >= 0)
+		{
+			int x = 19;
+			int y = 25;
+			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
+			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
+				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
 		}
 	}
 	
@@ -58,5 +61,24 @@ public class GuiGenerator extends GuiContainer
 		
 		int phase = tile.getWorld().getMoonPhase();
 		drawTexturedModalRect(guiLeft + 71, guiTop + 41, 111, phase * 8, 8, 8);
+		
+		GL11.glPushMatrix();
+		GL11.glTranslated(guiLeft, guiTop, 0);
+		if(tile.getUpgrades()[1] >= 0)
+		{
+			int x = 19;
+			int y = 47;
+			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[1]));
+			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
+		}
+		
+		if(tile.getUpgrades()[0] >= 0)
+		{
+			int x = 19;
+			int y = 25;
+			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
+			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
+		}
+		GL11.glPopMatrix();
 	}
 }

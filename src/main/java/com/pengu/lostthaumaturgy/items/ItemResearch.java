@@ -48,17 +48,15 @@ public class ItemResearch extends MultiVariantItem implements ITooltipInjector
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if(playerIn.capabilities.isCreativeMode)
+		Research r = getFromStack(playerIn.getHeldItem(handIn));
+		if(!r.isCompleted(playerIn) && getType(playerIn.getHeldItem(handIn)) == EnumResearchItemType.DISCOVERY)
 		{
-			Research r = getFromStack(playerIn.getHeldItem(handIn));
-			if(!r.isCompleted(playerIn) && getType(playerIn.getHeldItem(handIn)) == EnumResearchItemType.DISCOVERY)
+			if(!worldIn.isRemote)
 			{
-				if(!worldIn.isRemote)
-				{
-					ResearchSystem.setResearchCompleted(playerIn, r, true);
-					HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":discover", playerIn.getPosition(), .5F, .8F + playerIn.getRNG().nextFloat() * .4F, SoundCategory.PLAYERS);
+				ResearchSystem.setResearchCompleted(playerIn, r, true);
+				HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":discover", playerIn.getPosition(), .5F, .8F + playerIn.getRNG().nextFloat() * .4F, SoundCategory.PLAYERS);
+				if(!playerIn.capabilities.isCreativeMode)
 					playerIn.getHeldItem(handIn).shrink(1);
-				}
 			}
 		}
 		

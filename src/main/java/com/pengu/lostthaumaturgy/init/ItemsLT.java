@@ -12,6 +12,7 @@ import com.pengu.lostthaumaturgy.items.ItemSingularity;
 import com.pengu.lostthaumaturgy.items.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.items.ItemVoidArmor;
 import com.pengu.lostthaumaturgy.items.ItemWandOfItemFreeze;
 import com.pengu.lostthaumaturgy.items.ItemWandReversal;
 
@@ -27,6 +28,10 @@ public class ItemsLT
 	        THAUMIUM_CHESTPLATE = new ItemThaumiumArmor(EntityEquipmentSlot.CHEST), //
 	        THAUMIUM_LEGGINGS = new ItemThaumiumArmor(EntityEquipmentSlot.LEGS), //
 	        THAUMIUM_BOOTS = new ItemThaumiumArmor(EntityEquipmentSlot.FEET), //
+	        VOID_HELMET = new ItemVoidArmor(EntityEquipmentSlot.HEAD), //
+	        VOID_CHESTPLATE = new ItemVoidArmor(EntityEquipmentSlot.CHEST), //
+	        VOID_LEGGINGS = new ItemVoidArmor(EntityEquipmentSlot.LEGS), //
+	        VOID_BOOTS = new ItemVoidArmor(EntityEquipmentSlot.FEET), //
 	        WAND_ITEM_FREEZE = new ItemWandOfItemFreeze(), //
 	        WAND_REVERSAL = new ItemWandReversal(), //
 	        SINGULARITY = new ItemSingularity(), //

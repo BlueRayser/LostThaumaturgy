@@ -8,7 +8,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -32,7 +31,6 @@ import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.net.wisp.PacketAreaWisp;
-import com.pengu.lostthaumaturgy.net.wisp.PacketMonolithWisp;
 import com.pengu.lostthaumaturgy.tile.TileVoidChest;
 import com.pengu.lostthaumaturgy.tile.monolith.TileExtraRoom;
 

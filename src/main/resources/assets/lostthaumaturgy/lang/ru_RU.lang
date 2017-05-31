@@ -239,3 +239,5 @@ bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...
 chat.lostthaumaturgy:not_my_master=You are not my master!
+chat.lostthaumaturgy:trunk_stay=The trunk will remain here.
+chat.lostthaumaturgy:trunk_follow=The trunk will now follow you.

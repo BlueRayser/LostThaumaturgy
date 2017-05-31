@@ -4,7 +4,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
 import com.mrdimka.hammercore.tile.TileSyncable;
-import com.pengu.hammercore.net.utils.NetPropertyIntArray;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
 
 public class TileExtraRoom extends TileSyncable

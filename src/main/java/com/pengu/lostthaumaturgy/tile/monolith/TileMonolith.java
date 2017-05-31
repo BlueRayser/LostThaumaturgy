@@ -9,10 +9,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextFormatting;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.net.HCNetwork;
+import com.mrdimka.hammercore.net.pkt.PacketSpawnZap;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
@@ -64,7 +64,12 @@ public class TileMonolith extends TileSyncableTickable
 			double y2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 3D;
 			double z2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 3D;
 			
-			HammerCore.particleProxy.spawnZap(world, new Vec3d(pos).addVector(x + .5, y + .5 + yOff, z + .5), new Vec3d(pos).addVector(x2 + .5, y2 + .5 + yOff, z2 + .5), new Color(0x310A5E));
+			PacketSpawnZap zap = new PacketSpawnZap();
+			zap.color = new Color(0x310A5E);
+			zap.start = new Vec3d(pos).addVector(x + .5, y + .5 + yOff, z + .5);
+			zap.end = new Vec3d(pos).addVector(x2 + .5, y2 + .5 + yOff, z2 + .5);
+			zap.world = world.provider.getDimension();
+			HCNetwork.manager.sendToAllAround(zap, getSyncPoint(16));
 		}
 		
 		if(si != null && si.badVibes < 25 && world.rand.nextInt(250) == 0)

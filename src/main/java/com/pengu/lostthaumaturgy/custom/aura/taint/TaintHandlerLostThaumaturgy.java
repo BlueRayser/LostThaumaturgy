@@ -16,7 +16,6 @@ import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
-import com.pengu.lostthaumaturgy.block.BlockTaintedLog;
 import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;

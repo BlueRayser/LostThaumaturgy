@@ -1,10 +1,10 @@
 package com.pengu.lostthaumaturgy.api.tiles;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.common.utils.WorldUtil;
@@ -75,12 +75,33 @@ public interface IUpgradable
 		
 		TileEntity asTile = WorldUtil.cast(this, TileEntity.class);
 		
-		if(last != -1 && asTile != null)
+		World world = null;
+		double posX = 0;
+		double posY = 0;
+		double posZ = 0;
+		
+		if(asTile != null)
 		{
-			World world = asTile.getWorld();
-			BlockPos pos = asTile.getPos();
+			world = asTile.getWorld();
+			posX = asTile.getPos().getX() + .5;
+			posY = asTile.getPos().getY() + .5;
+			posZ = asTile.getPos().getZ() + .5;
+		} else
+		{
+			Entity asEntity = WorldUtil.cast(this, Entity.class);
 			
-			EntityItem ent = new EntityItem(world, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, new ItemStack(ItemUpgrade.byId(u[last])));
+			if(asEntity != null)
+			{
+				world = asEntity.world;
+				posX = asEntity.posX;
+				posY = asEntity.posY;
+				posZ = asEntity.posZ;
+			}
+		}
+		
+		if(last != -1 && world != null)
+		{
+			EntityItem ent = new EntityItem(world, posX, posY, posZ, new ItemStack(ItemUpgrade.byId(u[last])));
 			
 			double mod = .10000000149011612;
 			ent.motionX = (player.posX - ent.posX) * mod;

@@ -84,9 +84,7 @@ public class BlocksLT
 	        TAINTED_LOG = new BlockTaintedLog(), //
 	        LYING_ITEM = new BlockLyingItem(), //
 	        ELDRITCH_BLOCK = new Block(Material.ROCK).setHardness(1.5F).setUnlocalizedName("eldritch_block").setResistance(Float.POSITIVE_INFINITY), //
-	        MONOLITH = new BlockMonolith(),
-	        MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle(),
-	        MONOLITH_OPENER = new BlockMonolithOpener(), //
+	        MONOLITH = new BlockMonolith(), MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle(), MONOLITH_OPENER = new BlockMonolithOpener(), //
 	        MONOLITH_EXTRA_ROOM = new BlockExtraRoom();
 	
 	public static final Block //

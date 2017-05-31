@@ -41,6 +41,6 @@ public class ContainerInfuserDark extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
-	    return ItemStack.EMPTY;
+		return ItemStack.EMPTY;
 	}
 }

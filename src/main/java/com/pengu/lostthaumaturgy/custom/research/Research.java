@@ -10,8 +10,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import com.mrdimka.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal.Getter;
 import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
-import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class Research
 {

@@ -21,7 +21,6 @@ import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;

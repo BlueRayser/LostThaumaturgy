@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
 import com.mrdimka.hammercore.net.packetAPI.IPacket;
+import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
 import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 
@@ -19,13 +19,13 @@ public class PacketMonolithWisp implements IPacket, IPacketListener<PacketMonoli
 	public BlockPos pos;
 	
 	public PacketMonolithWisp(BlockPos pos)
-    {
+	{
 		this.pos = pos;
-    }
+	}
 	
 	public PacketMonolithWisp()
-    {
-    }
+	{
+	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt)
@@ -44,7 +44,7 @@ public class PacketMonolithWisp implements IPacket, IPacketListener<PacketMonoli
 	{
 		if(context.side == Side.CLIENT)
 		{
-			new Thread(()->
+			new Thread(() ->
 			{
 				Thread.currentThread().setName("MonolithOpenParticleSpawnThread");
 				try
@@ -56,11 +56,12 @@ public class PacketMonolithWisp implements IPacket, IPacketListener<PacketMonoli
 					packet.client();
 					Thread.sleep(450L);
 					packet.client();
+				} catch(Throwable err)
+				{
 				}
-				catch(Throwable err) {}
 			}).start();
 		}
-	    return null;
+		return null;
 	}
 	
 	@SideOnly(Side.CLIENT)

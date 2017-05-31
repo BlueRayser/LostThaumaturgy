@@ -18,7 +18,6 @@ import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class DarkInfuserRecipeCategory implements IRecipeCategory<DarkInfuserRecipeWrapper>
 {

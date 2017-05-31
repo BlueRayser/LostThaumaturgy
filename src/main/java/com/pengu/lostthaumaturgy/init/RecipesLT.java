@@ -49,7 +49,11 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlocksLT.ELDRITCH_BLOCK, 4), EnumMultiMaterialType.DARKNESS_SEED.stack(), "stone", "stone", "stone", "stone"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.ELDRITCH_KEYSTONE_INERT.stack(), " g ", "g g", " g ", 'g', EnumMultiMaterialType.ELDRITCH_MECHANISM.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.ELDRITCH_MECHANISM.stack(), " g ", "g g", " g ", 'g', "ingotVoid"));
-
+		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.TRAVELING_TRUNK.stack(), "www", "wsw", "www", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 's', EnumMultiMaterialType.SOUL_FRAGMENT.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_HELMET, "ttt", "t t", 't', "ingotVoid"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_CHESTPLATE, "t t", "ttt", "ttt", 't', "ingotVoid"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_LEGGINGS, "ttt", "t t", "t t", 't', "ingotVoid"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_BOOTS, "t t", "t t", 't', "ingotVoid"));
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
 	}

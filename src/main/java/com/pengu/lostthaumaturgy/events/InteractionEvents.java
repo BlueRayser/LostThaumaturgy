@@ -27,8 +27,8 @@ import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
 @MCFBus

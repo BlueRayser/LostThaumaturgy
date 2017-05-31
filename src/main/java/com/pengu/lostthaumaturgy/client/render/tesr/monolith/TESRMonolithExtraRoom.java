@@ -1,10 +1,10 @@
 package com.pengu.lostthaumaturgy.client.render.tesr.monolith;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.client.utils.RenderBlocks;

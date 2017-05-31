@@ -1,13 +1,12 @@
 package com.pengu.lostthaumaturgy.client.render.tesr.monolith;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.client.utils.RenderBlocks;
@@ -46,11 +45,11 @@ public class TESRMonolith extends TESR<TileMonolith>
 		{
 			GL11.glTranslated(.01, .01, .01);
 			GL11.glScaled(.98, 1.1, .98);
-		}else if(!up && down)
+		} else if(!up && down)
 		{
 			GL11.glTranslated(.01, -.11, .01);
 			GL11.glScaled(.98, 1.1, .98);
-		}else
+		} else
 		{
 			GL11.glTranslated(.01, .01, .01);
 			GL11.glScaled(.98, .98, .98);

@@ -21,13 +21,13 @@ public class ItemVoidArmor extends ItemArmor
 	{
 		super(void_material, 2, equipmentSlotIn);
 		if(equipmentSlotIn == EntityEquipmentSlot.HEAD)
-			setUnlocalizedName("thaumium_helmet");
+			setUnlocalizedName("void_helmet");
 		if(equipmentSlotIn == EntityEquipmentSlot.CHEST)
-			setUnlocalizedName("thaumium_chestplate");
+			setUnlocalizedName("void_chestplate");
 		if(equipmentSlotIn == EntityEquipmentSlot.LEGS)
-			setUnlocalizedName("thaumium_leggings");
+			setUnlocalizedName("void_leggings");
 		if(equipmentSlotIn == EntityEquipmentSlot.FEET)
-			setUnlocalizedName("thaumium_boots");
+			setUnlocalizedName("void_boots");
 	}
 	
 	@Override

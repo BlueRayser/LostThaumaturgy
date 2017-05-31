@@ -1,9 +1,15 @@
 package com.pengu.lostthaumaturgy.items;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.mrdimka.hammercore.common.items.MultiVariantItem;
@@ -11,6 +17,7 @@ import com.pengu.hammercore.utils.IGetter;
 import com.pengu.hammercore.utils.IRegisterListener;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
@@ -81,6 +88,22 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 	}
 	
 	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		ItemStack held = player.getHeldItem(hand);
+		if(held.getItemDamage() == EnumMultiMaterialType.TRAVELING_TRUNK.getDamage())
+		{
+			BlockPos sp = pos.offset(facing);
+			if(!worldIn.isRemote)
+				worldIn.spawnEntity(new EntityTravelingTrunk(worldIn, player, sp.getX() + .5, sp.getY(), sp.getZ() + .5));
+			held.shrink(1);
+			player.swingArm(hand);
+			return EnumActionResult.SUCCESS;
+		}
+		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+	}
+	
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		int dmg = stack.getItemDamage();
@@ -142,7 +165,8 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		CONGEALED_TAINT, //
 		REZULI_CRYSTAL("gemRezuli"), //
 		ELDRITCH_KEYSTONE_INERT, //
-		ELDRITCH_KEYSTONE_TLHUTLH;
+		ELDRITCH_KEYSTONE_TLHUTLH, //
+		TRAVELING_TRUNK;
 		
 		private final String oredict[];
 		public final String mod;
