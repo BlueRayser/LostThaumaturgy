@@ -21,11 +21,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.client.GLRenderState;
-import com.pengu.hammercore.client.particle.api.IRenderedParticle;
+import com.pengu.hammercore.client.particle.api.SimpleParticle;
 import com.pengu.lostthaumaturgy.LTInfo;
 
 @SideOnly(Side.CLIENT)
-public class FXWisp extends Particle implements IRenderedParticle
+public class FXWisp extends SimpleParticle
 {
 	public boolean shrink = false;
 	float moteParticleScale;
@@ -145,16 +145,10 @@ public class FXWisp extends Particle implements IRenderedParticle
 	private static final ResourceLocation p_large = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/p_large.png");
 	
 	@Override
-	public void doRenderParticle(double x, double y, double z, float partialTicks)
+	public void doRenderParticle(double x, double y, double z, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
 		EntityPlayer entityIn = Minecraft.getMinecraft().player;
 		ActiveRenderInfo.updateRenderInfo(entityIn, Minecraft.getMinecraft().gameSettings.thirdPersonView == 2);
-		
-		float rotationX = ActiveRenderInfo.getRotationX();
-		float rotationZ = ActiveRenderInfo.getRotationXZ();
-		float rotationYZ = ActiveRenderInfo.getRotationZ();
-		float rotationXY = ActiveRenderInfo.getRotationYZ();
-		float rotationXZ = ActiveRenderInfo.getRotationXY();
 		
 		Particle.interpPosX = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double) partialTicks;
 		Particle.interpPosY = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double) partialTicks;
@@ -232,11 +226,6 @@ public class FXWisp extends Particle implements IRenderedParticle
 		GL11.glDepthMask(true);
 		GL11.glPopMatrix();
 		GL11.glBlendFunc(770, 771);
-	}
-	
-	@Override
-	public void renderParticle(VertexBuffer buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
-	{
 	}
 	
 	// @Override

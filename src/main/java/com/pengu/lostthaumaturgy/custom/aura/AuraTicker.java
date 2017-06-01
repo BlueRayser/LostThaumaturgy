@@ -236,28 +236,32 @@ public class AuraTicker
 	@SubscribeEvent
 	public void playerTick(PlayerTickEvent evt)
 	{
-		EntityPlayer player = evt.player;
-		EntityPlayerMP mp = WorldUtil.cast(player, EntityPlayerMP.class);
-		
-		SIAuraChunk chunk = getAuraChunkFromBlockCoords(player.world, player.getPosition());
-		if(mp != null && !player.world.isRemote && chunk != null)
+		try
 		{
-			boolean changedChunks = false;
+			EntityPlayer player = evt.player;
+			EntityPlayerMP mp = WorldUtil.cast(player, EntityPlayerMP.class);
 			
-			BlockPos n = new BlockPos(player.posX, player.posY, player.posZ);
-			BlockPos o = new BlockPos(player.prevPosX, player.prevPosY, player.prevPosZ);
-			
-			Chunk nchunk = player.world.getChunkFromBlockCoords(n);
-			Chunk ochunk = player.world.getChunkFromBlockCoords(o);
-			
-			changedChunks = nchunk.x != ochunk.x || nchunk.z != ochunk.z;
-			
-			if(mp.ticksExisted % 20 == 0 || changedChunks)
+			SIAuraChunk chunk = getAuraChunkFromBlockCoords(player.world, player.getPosition());
+			if(mp != null && !player.world.isRemote && chunk != null)
 			{
-				HCNetwork.manager.sendTo(new PacketUpdateClientAura(chunk), mp);
-				HCNetwork.manager.sendTo(ResearchSystem.getPacketFor(mp), mp);
+				boolean changedChunks = false;
+				
+				BlockPos n = new BlockPos(player.posX, player.posY, player.posZ);
+				BlockPos o = new BlockPos(player.prevPosX, player.prevPosY, player.prevPosZ);
+				
+				Chunk nchunk = player.world.getChunkFromBlockCoords(n);
+				Chunk ochunk = player.world.getChunkFromBlockCoords(o);
+				
+				changedChunks = nchunk.x != ochunk.x || nchunk.z != ochunk.z;
+				
+				if(mp.ticksExisted % 20 == 0 || changedChunks)
+				{
+					HCNetwork.manager.sendTo(new PacketUpdateClientAura(chunk), mp);
+					HCNetwork.manager.sendTo(ResearchSystem.getPacketFor(mp), mp);
+				}
 			}
 		}
+		catch(Throwable err) {}
 	}
 	
 	public static int getCrystalByBiome(World world, BlockPos pos, int darkAmount)

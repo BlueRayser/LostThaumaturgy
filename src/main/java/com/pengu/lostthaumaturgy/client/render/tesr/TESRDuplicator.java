@@ -66,6 +66,9 @@ public class TESRDuplicator extends TESR<TileDuplicator>
 		GL11.glDisable(3042);
 		GL11.glColor4f(1, 1, 1, 1);
 		
+		if(tile.orientation.get() < 0)
+			return;
+		
 		EnumFacing front = tile != null ? EnumFacing.VALUES[tile.orientation.get()] : EnumFacing.SOUTH;
 		
 		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;

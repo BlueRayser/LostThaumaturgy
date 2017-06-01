@@ -85,7 +85,7 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_LIGHTEST_AIR.stack(), 250, EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_COOLEST_WATER.stack(), 250, EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.REZULI_CRYSTAL.stack(), 13, new ItemStack(Items.REDSTONE), new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()));
-		RecipesInfuser.addInfusing(EnumMultiMaterialType.ELDRITCH_KEYSTONE_TLHUTLH.stack(), 5, EnumMultiMaterialType.ELDRITCH_KEYSTONE_INERT.stack(), EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.stack());
+		RecipesInfuser.addInfusing(EnumMultiMaterialType.ELDRITCH_KEYSTONE_TLHUTLH.stack(), 5, RecipesInfuser.createPredicateFromResearches(ResearchesLT.ELDRITCH_KEYSTONE_TLHUTLH), EnumMultiMaterialType.ELDRITCH_KEYSTONE_INERT.stack(), EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.stack());
 	}
 	
 	public static void registerDarkInfuser()
