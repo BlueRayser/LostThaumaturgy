@@ -231,6 +231,12 @@ research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eld
 research.lostthaumaturgy:void_ingot.title=Void Ingot
 research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with so common thaumium ingot. Void Ingot is a very sturdy metal that can repair itself, but not too fast. The only downside to this metal is that it uses some vis from atmosphere to recover.
 
+research.lostthaumaturgy:totem_dawn.title=Totem of Dawn
+research.lostthaumaturgy:totem_dawn.desc=Nature provides mysterious silverwood trees that keep nearby atmosphere clean. But making it faster and more effective was impossible before. You found a way to purify atmosphere by placing Totem of Dawn.
+
+research.lostthaumaturgy:totem_twilight.title=Twilight Totem
+research.lostthaumaturgy:totem_twilight.desc=Destructing order in the atmosphere is easy: spill some taint onto the ground, use vis filters etc. But creating taint without any manual work wasn't an easy job. Until now. You found a way to taintify atmosphere by placing Twilight Totem.
+
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Основы

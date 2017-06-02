@@ -271,7 +271,23 @@ public class ClientProxy extends CommonProxy
 	public void clientTick(ClientTickEvent evt)
 	{
 		if(Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.getTotalWorldTime() % 40 == 0)
+		{
 			ItemAuraDetector.type = -1;
+			
+			for(ItemStack stack : Minecraft.getMinecraft().player.inventory.mainInventory)
+			{
+				if(stack.getItem() == ItemsLT.AURA_DETECTOR)
+				{
+					int type = stack.getItemDamage();
+					if(type == -1)
+					{
+						int dmg = stack.getItemDamage();
+						type = dmg;
+					}else if(type != 2 && (stack.getItemDamage() == 2 || stack.getItemDamage() + type == 1))
+						type = 2;
+				}
+			}
+		}
 	}
 	
 	private ItemStack[] handStacks = new ItemStack[2];

@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.items.MultiVariantItem;
+import com.mrdimka.hammercore.common.utils.ChatUtil;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
@@ -33,8 +34,19 @@ public class ItemAuraDetector extends MultiVariantItem
 		if(conn != null)
 		{
 			if(!worldIn.isRemote)
-				HammerCore.audioProxy.playSoundAt(worldIn, "entity.experience_orb.pickup", pos, .5F, 1.6F, SoundCategory.PLAYERS);
+				HammerCore.audioProxy.playSoundAt(worldIn, "block.note.pling", pos, .5F, 2F, SoundCategory.PLAYERS);
 			player.swingArm(hand);
+			
+			int type = player.getHeldItem(hand).getItemDamage();
+			boolean taint = type > 0;
+			boolean vis = type == 0 || type == 2;
+			
+			int suction = conn.getSuction(null);
+			int v = Math.round(conn.getPureVis());
+			int t = Math.round(conn.getTaintedVis());
+			
+			if(!worldIn.isRemote)
+				ChatUtil.sendChat(player, "Detected " + (taint ? t + " Taint" : "") + (taint && vis ? " and " : "") + (vis ? v + " Vis" : "") + ".");
 		}
 		return EnumActionResult.FAIL;
 	}
