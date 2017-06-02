@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import com.mrdimka.hammercore.world.gen.IWorldGenFeature;
+import com.pengu.hammercore.utils.ChunkUtils;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.utils.ChunkUtils;
 
 public class WorldGenMonoliths implements IWorldGenFeature
 {
@@ -40,7 +40,7 @@ public class WorldGenMonoliths implements IWorldGenFeature
 	@Override
 	public void generate(World world, BlockPos pos, Random rand)
 	{
-		pos = world.getHeight(ChunkUtils.getChunPos(world.getChunkFromBlockCoords(pos), center)).down();
+		pos = world.getHeight(ChunkUtils.getChunkPos(world.getChunkFromBlockCoords(pos), center)).down();
 		double dist = Math.sqrt(AuraTicker.getDistanceSqToClosestMonolith(pos));
 		if(dist < 300 || pos.getY() < 40 || !world.getBlockState(pos).isSideSolid(world, pos, EnumFacing.UP))
 			return;

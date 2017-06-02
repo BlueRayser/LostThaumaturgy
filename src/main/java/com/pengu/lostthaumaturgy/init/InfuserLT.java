@@ -7,15 +7,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Predicate;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
-import com.pengu.lostthaumaturgy.tile.TileInfuserDark;
 
 public class InfuserLT
 {
@@ -59,7 +61,11 @@ public class InfuserLT
 			RecipesInfuser.addInfusing(EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), 15, crystal.stack(), new ItemStack(BlocksLT.SILVERWOOD_LOG));
 			
 			for(ItemStack stack : OreDictionary.getOres("logWood"))
+			{
+				if(stack.getItem() == Item.getItemFromBlock(BlocksLT.SILVERWOOD_LOG))
+					continue;
 				RecipesInfuser.addInfusing(EnumMultiMaterialType.ENCHANTED_WOOD.stack(4), 15, crystal.stack(), stack);
+			}
 		}
 		
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.ANIMATED_PISTON.stack(), 50, EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), new ItemStack(Items.GOLD_INGOT), new ItemStack(Blocks.PISTON));
@@ -104,8 +110,11 @@ public class InfuserLT
 			@Override
 			public boolean apply(IInfuser input)
 			{
-				if(input instanceof TileInfuserDark)
-					return ((TileInfuserDark) input).getWorld().getMoonPhase() == 0;
+				if(input instanceof TileEntity)
+				{
+					World w = ((TileEntity) input).getWorld();
+					return w.provider.getMoonPhase(w.getWorldTime()) == 0;
+				}
 				return true;
 			}
 		}, new ItemStack(Blocks.COBBLESTONE), new ItemStack(Items.IRON_PICKAXE), EnumMultiMaterialType.EXTRACT_COOLEST_WATER.stack(), EnumMultiMaterialType.SOUL_FRAGMENT.stack());

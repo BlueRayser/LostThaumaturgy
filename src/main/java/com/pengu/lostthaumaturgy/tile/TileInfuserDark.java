@@ -50,7 +50,7 @@ public class TileInfuserDark extends TileInfuser
 		angle = (int) ((infuserCookTime + infuserCookTimeDark) / (currentItemCookCost + currentItemCookCostDark) * 360);
 		if(world.isRemote)
 			return;
-		boost = 3 + Math.abs(world.getMoonPhase() - 4);
+		boost = 3 + Math.abs(world.provider.getMoonPhase(world.getWorldTime()) - 4);
 		boolean flag1 = false;
 		boolean flag = infuserCookTime > 0.0f || infuserCookTimeDark > 0.0f;
 		setSuction(0);

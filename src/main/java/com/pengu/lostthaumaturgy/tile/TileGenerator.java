@@ -74,7 +74,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 				float s;
 				float suck;
 				float mod;
-				int moon = world.getMoonPhase();
+				int moon = world.provider.getMoonPhase(world.getWorldTime());
 				if(hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)))
 					moon += .2F;
 				if((suck = (visperunit = 6.6666666E-4F * (mod = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.STABILIZED_SINGULARITY)) ? .8F : 1)) * Math.min(75 * moon, energyMax - storedEnergy)) > .006666667F && getExactPureVis(s = suck))
