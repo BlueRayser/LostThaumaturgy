@@ -125,7 +125,7 @@ item.lostthaumaturgy:extract_coolest_water.name=Экстракт самой хо
 item.lostthaumaturgy:soul_fragment.name=Фрагмент души
 item.lostthaumaturgy:congealed_taint.name=Сгусток заражения
 item.lostthaumaturgy:rezuli_crystal.name=Краснозуритовый кристалл
-item.lostthaumaturgy:cracked_wisp_shell.name=Потресканная оболочка виспа
+item.lostthaumaturgy:cracked_wisp_shell.name=Потресканная оболочка светлячка
 item.lostthaumaturgy:cracked_wisp_shell.tooltip0=Обычный запретный артефакт
 item.lostthaumaturgy:distorted_skull.name=Искаженный череп
 item.lostthaumaturgy:distorted_skull.tooltip0=Обычный запретный артефакт
@@ -204,38 +204,38 @@ research.lostthaumaturgy:pressurized_conduit.desc=You wanted to trigger some red
 research.lostthaumaturgy:thaumium_vis_pump.title=Thaumium Vis Pump
 research.lostthaumaturgy:thaumium_vis_pump.desc=Thaumium Vis Pump is a good attempt to upgrade your Vis Pump. It transports vis over greater distances, up to 50 blocks!
 
-research.lostthaumaturgy:thaumium_bellows.title=Thaumium Bellows
-research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows are good to upgrade some of your machines. Thaumium Reinforced Bellows improves the suction up to 25, from 10.
+research.lostthaumaturgy:thaumium_bellows.title=Таумиевые меха
+research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows хороши для улучшения некоторых Ваших машин. Меха укреплённые таумием улучшают всасывание до 25, с 10.
 
-research.lostthaumaturgy:singularity.title=Arcane Singularity
-research.lostthaumaturgy:singularity.desc=Arcane Singularity is a mysterious object that is so dense to actually move entities to itself. Just throw it, but not close to your home!
+research.lostthaumaturgy:singularity.title=Таинственная сингулярность
+research.lostthaumaturgy:singularity.desc=Таинственная сингулярность - мистический объект, который настолько плотен, что фактически засасывает сущности в себя. Просто бросьте его, но не близко к Вашему дому!
 
-research.lostthaumaturgy:quicksilver_core.title=Quicksilver Core
-research.lostthaumaturgy:quicksilver_core.desc=Quicksilver Core is an upgrade for some thaumic machines. It improves speed but in most cases increases vis usage.
+research.lostthaumaturgy:quicksilver_core.title=Ртутное ядро
+research.lostthaumaturgy:quicksilver_core.desc=Ртутное ядро - модернизация для некоторых таумических машин. Это улучшает скорость, но в большинстве случаев увеличивает использование вис.
 
-research.lostthaumaturgy:wand_reversal.title=Wand of Reversal
-research.lostthaumaturgy:wand_reversal.desc=Dismantling upgrades wasn't as easy as it is with Wand of Reversal. Just use it on thaumic machine to dismantle the upgrade.
+research.lostthaumaturgy:wand_reversal.title=Палочка перестановки
+research.lostthaumaturgy:wand_reversal.desc=Демонтаж апгрейдов был не таким простым, как с палочкой перестановки. Просто используйте её на таумической машине для демонтажа обновления.
 
-research.lostthaumaturgy:concentrated_taint.title=Concentrated Taint
-research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and ways to get it manually you discovered a very dangerous way to obtains the said taint. You have to obtain congealed taint and fill glass bottle with it. You shouldn't make it on normal infuser, however.
+research.lostthaumaturgy:concentrated_taint.title=Концентрированное заражение
+research.lostthaumaturgy:concentrated_taint.desc=Думая об инфекции и способах получить его вручную Вы обнаружили, что есть очень опасный путь к получению упомянутого заражения. Вы должны получить сгусток заражения и наполнить стеклянную бутылку им. Однако, не должны делать это на стандартном наполнителе.
 
-research.lostthaumaturgy:potion_purity.title=Potion of Purity
-research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
+research.lostthaumaturgy:potion_purity.title=Зелье очищения
+research.lostthaumaturgy:potion_purity.desc=Изучая связанную с заражением природу Вы столкнулись с очень ужасающим фактом: от заражения действительно сложно избавиться. Но Вы не остановились на этом и изобрели новое вещество, упакованное в бутылку. Избавление от заражения по-прежнему является болью, но по крайней мере Вы можете временно избавиться от нее.
 
-research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
+research.lostthaumaturgy:concentrated_evil.title=Концентрированное зло
 research.lostthaumaturgy:concentrated_evil.desc=Сумасшедшие тауматурги любят заражение, но так и не могли получить испорченный кристалл, обработав его в кристаллизаторе. До этого момента! Вы обнаружили очень хорошую модернизацию, которая сможет решить эту и еще множество проблем. Вставка этой модернизации в кристаллизатор добавит дополнительный слот к нему - для испорченных кристаллов. Теперь Вы можете получить Ваши желаемые кристаллы еще легче!
 
-research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Eldritch Keystone: Tlhutlh
-research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse inert keystone with extract of purest magic. You hope that it is going to work...
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Древний ключ: Tlhutlh
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=Грабя один из монолитов древних Вы нашли мистическое отверстие для своего рода ключа... Исследование свойств механизмов древних, Вы сделали неактивный ключ, но замок просто отклоняет его. После большего количества исследований Вы пришли к простому решению: наполнить неактивный ключ экстрактом чистейшей магии. Вы надеетесь, что это будет работать...
 
-research.lostthaumaturgy:void_ingot.title=Void Ingot
-research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with so common thaumium ingot. Void Ingot is a very sturdy metal that can repair itself, but not too fast. The only downside to this metal is that it uses some vis from atmosphere to recover.
+research.lostthaumaturgy:void_ingot.title=Пустотный слиток
+research.lostthaumaturgy:void_ingot.desc=Семя Темноты является странным предметом для семени. У этого есть сильная способность - возвращать форму после деформации. Вы смешали это странное семя с ртутью, и результаты были довольно удивительны: Вы сделали самовосстанавливающее вещество. Единственный недостаток к нему - то, что это испаряется действительно быстро. Вы старались изо всех сил смешать его с обычным таумиевым слитком. Пустотный слиток - очень крепкий металл, который может восстановить себя, но не слишком быстро. Единственный недостаток к этому металлу - то, что он использует некоторое количество вис из атмосферы, чтобы восстановиться.
 
-research.lostthaumaturgy:totem_dawn.title=Totem of Dawn
-research.lostthaumaturgy:totem_dawn.desc=Nature provides mysterious silverwood trees that keep nearby atmosphere clean. But making it faster and more effective was impossible before. You found a way to purify atmosphere by placing Totem of Dawn.
+research.lostthaumaturgy:totem_dawn.title=Тотем рассвета
+research.lostthaumaturgy:totem_dawn.desc=Природа предоставляет таинственные серебряные деревья, которые поддерживают атмосферу поблизости в чистоте. Но прежде сделать это быстрее и эффективнее было невозможно. Вы нашли способ очистить атмосферу, разместив Тотем Рассвета.
 
-research.lostthaumaturgy:totem_twilight.title=Twilight Totem
-research.lostthaumaturgy:totem_twilight.desc=Destructing order in the atmosphere is easy: spill some taint onto the ground, use vis filters etc. But creating taint without any manual work wasn't an easy job. Until now. You found a way to taintify atmosphere by placing Twilight Totem.
+research.lostthaumaturgy:totem_twilight.title=Тотем сумерек
+research.lostthaumaturgy:totem_twilight.desc=Разрушить порядок в атмосфере легко: пролить немного заражения на землю, использовать вис-фильтры и т.д. Но создание заражения без какой-либо ручной работы было непростой задачей. До этих пор. Вы нашли способ заразить атмосферу, поставив Тотем Сумерек.
 
 
 
