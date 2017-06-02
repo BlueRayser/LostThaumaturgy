@@ -39,6 +39,8 @@ public class ResearchSystem
 		{
 			loaded = new HashSet<>();
 		}
+		if(loaded == null)
+			loaded = new HashSet<>();
 		COMPLETED.put(evt.player.getGameProfile().getId().toString(), loaded);
 	}
 	
