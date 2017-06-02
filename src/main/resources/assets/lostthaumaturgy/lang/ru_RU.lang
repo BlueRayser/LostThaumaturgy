@@ -10,7 +10,7 @@ tile.lostthaumaturgy:vis_tank.name=Вис-резервуар
 tile.lostthaumaturgy:reinforced_vis_tank.name=Усиленный резервуар из таум-металла
 tile.lostthaumaturgy:silverwood_vis_tank.name=Серебродревесный вис-резервуар
 tile.lostthaumaturgy:vis_pump.name=Вис-помпа
-tile.lostthaumaturgy:thaumium_vis_pump.name=Таумическая вис-помпа
+tile.lostthaumaturgy:thaumium_vis_pump.name=Таумиевая вис-помпа
 tile.lostthaumaturgy:infuser.name=Таумический наполнитель
 tile.lostthaumaturgy:dark_infuser.name=Тёмный наполнитель
 tile.lostthaumaturgy:vis_filter.name=Вис-фильтр
@@ -78,7 +78,7 @@ item.lostthaumaturgy:ancient_weapon.tooltip0=Необычный потерянн
 item.lostthaumaturgy:ancient_seal.name=Древняя печать
 item.lostthaumaturgy:ancient_seal.tooltip0=Редкий потерянный артефакт.
 item.lostthaumaturgy:ancient_stone_tablet.name=Древний каменный планшет
-item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Исключительный потерянный артефакт/.
+item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Исключительный потерянный артефакт.
 item.lostthaumaturgy:goggles_revealing.name=Очки откровения
 item.lostthaumaturgy:crystalline_bell.name=Кристальный колокольчик
 item.lostthaumaturgy:thaumonomicon.name=Таумономикон
@@ -217,7 +217,7 @@ research.lostthaumaturgy:potion_purity.title=Potion of Purity
 research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
 
 research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
-research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, but couldn't obtain so-required tainted crystal by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your so-desired crystals even easier!
+research.lostthaumaturgy:concentrated_evil.desc=Сумасшедшие тауматурги любят заражение, но так и не могли получить испорченный кристалл, обработав его в кристаллизаторе. До этого момента! Вы обнаружили очень хорошую модернизацию, которая сможет решить эту и еще множество проблем. Вставка этой модернизации в кристаллизатор добавит дополнительный слот к нему - для испорченных кристаллов. Теперь Вы можете получить Ваши желаемые кристаллы еще легче!
 
 research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Eldritch Keystone: Tlhutlh
 research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse inert keystone with extract of purest magic. You hope that it is going to work...
@@ -232,7 +232,7 @@ bookapi.lostthaumaturgy:thaumonomicon:thaumaturgy=Тауматургия
 bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Потерянные знания
 bookapi.lostthaumaturgy:thaumonomicon:eldritch=Древние знания
 bookapi.lostthaumaturgy:thaumonomicon:forbidden=Запретные знания
-bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:tainted=Испорченные знания
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
