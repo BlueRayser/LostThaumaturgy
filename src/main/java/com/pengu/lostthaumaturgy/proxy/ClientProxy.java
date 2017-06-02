@@ -28,6 +28,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.mrdimka.hammercore.HammerCore;
@@ -92,6 +93,7 @@ import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
+import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
@@ -265,6 +267,13 @@ public class ClientProxy extends CommonProxy
 				}
 	}
 	
+	@SubscribeEvent
+	public void clientTick(ClientTickEvent evt)
+	{
+		if(Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.getTotalWorldTime() % 40 == 0)
+			ItemAuraDetector.type = -1;
+	}
+	
 	private ItemStack[] handStacks = new ItemStack[2];
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
@@ -282,6 +291,12 @@ public class ClientProxy extends CommonProxy
 			IGoggles goggles = ItemGogglesRevealing.getWearing(mc.player);
 			if(goggles != null)
 				HudDetector.instance.render(goggles.getRevealType(), ClientSIAuraChunk.getClientChunk(), true);
+			else
+			{
+				int type = ItemAuraDetector.type;
+				if(type >= 0)
+					HudDetector.instance.render(type, ClientSIAuraChunk.getClientChunk(), false);
+			}
 			
 			ScaledResolution sr = new ScaledResolution(mc);
 			int k = sr.getScaledWidth();

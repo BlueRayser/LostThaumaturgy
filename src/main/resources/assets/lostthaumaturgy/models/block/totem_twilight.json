@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "east": "lostthaumaturgy:blocks/totems/twilight/0",
+		"west": "lostthaumaturgy:blocks/totems/twilight/1",
+		"south": "lostthaumaturgy:blocks/totems/twilight/2",
+		"north": "lostthaumaturgy:blocks/totems/twilight/3",
+		"up": "lostthaumaturgy:blocks/totems/twilight/4",
+		"down": "lostthaumaturgy:blocks/totems/twilight/5",
+		"particle": "lostthaumaturgy:blocks/totems/twilight/0"
+    }
+}

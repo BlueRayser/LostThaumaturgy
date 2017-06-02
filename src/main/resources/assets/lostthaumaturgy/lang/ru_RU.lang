@@ -48,6 +48,8 @@ tile.lostthaumaturgy:tainted_plant.name=Заражённая Лаонри
 tile.lostthaumaturgy:jar_singularity.name=Сингулярность в банке
 tile.lostthaumaturgy:duplicator.name=Таум-дубликатор
 tile.lostthaumaturgy:lt_monolith_opener.name=§dГенератор монолита
+tile.lostthaumaturgy:totem_dawn.name=Totem of Dawn
+tile.lostthaumaturgy:totem_twilight.name=Twilight Totem
 
 
 
@@ -168,6 +170,10 @@ item.lostthaumaturgy:void_chestplate.name=Кираса из пустотного
 item.lostthaumaturgy:void_leggings.name=Поножи из пустотного металла
 item.lostthaumaturgy:void_boots.name=Ботинки из пустотного металла
 item.lostthaumaturgy:traveling_trunk.name=Путешествующий багаж
+item.lostthaumaturgy:inert_carpet.name=Inert Carpet
+item.lostthaumaturgy:vis_detector.name=Vis Detector
+item.lostthaumaturgy:taint_detector.name=Taint Detector
+item.lostthaumaturgy:thaumometer.name=Thaumometer
 
 
 

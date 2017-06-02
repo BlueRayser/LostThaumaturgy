@@ -30,6 +30,7 @@ import com.pengu.lostthaumaturgy.block.BlockTaintedLog;
 import com.pengu.lostthaumaturgy.block.BlockTaintedPlant;
 import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.block.BlockThaumiumBellows;
+import com.pengu.lostthaumaturgy.block.BlockTotem;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
 import com.pengu.lostthaumaturgy.block.BlockVisPump;
 import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
@@ -83,6 +84,8 @@ public class BlocksLT
 	        SILVERWOOD_LOG = new BlockSilverwoodLog(), //
 	        TAINTED_LOG = new BlockTaintedLog(), //
 	        LYING_ITEM = new BlockLyingItem(), //
+	        TOTEM_DAWN = new BlockTotem(true), //
+	        TOTEM_TWILIGHT = new BlockTotem(false), //
 	        ELDRITCH_BLOCK = new Block(Material.ROCK).setHardness(1.5F).setUnlocalizedName("eldritch_block").setResistance(Float.POSITIVE_INFINITY), //
 	        MONOLITH = new BlockMonolith(), MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle(), MONOLITH_OPENER = new BlockMonolithOpener(), //
 	        MONOLITH_EXTRA_ROOM = new BlockExtraRoom();

@@ -166,7 +166,8 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		REZULI_CRYSTAL("gemRezuli"), //
 		ELDRITCH_KEYSTONE_INERT, //
 		ELDRITCH_KEYSTONE_TLHUTLH, //
-		TRAVELING_TRUNK;
+		TRAVELING_TRUNK, //
+		INERT_CARPET;
 		
 		private final String oredict[];
 		public final String mod;

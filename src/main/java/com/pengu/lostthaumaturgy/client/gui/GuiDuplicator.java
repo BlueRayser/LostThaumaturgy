@@ -32,6 +32,23 @@ public class GuiDuplicator extends GuiContainer
 	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_duplicator.png");
 	
 	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+	{
+		mouseX -= guiLeft;
+		mouseY -= guiTop;
+		
+		if(tile.getUpgrades()[0] >= 0)
+		{
+			int x = 152;
+			int y = 60;
+			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
+			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
+			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
+				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+		}
+	}
+	
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		mc.getTextureManager().bindTexture(gui);
@@ -51,16 +68,6 @@ public class GuiDuplicator extends GuiContainer
 		
 		Color.glColourRGBA(0xFFFFFFFF);
 		drawTexturedModalRect(guiLeft + 62, guiTop + 48, 176 + (!tile.repeat.get() ? 0 : 10), 0, 10, 10);
-		
-		if(tile.getUpgrades()[0] >= 0)
-		{
-			int x = 152;
-			int y = 60;
-			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
-			itemRender.renderItemAndEffectIntoGUI(stack, guiLeft + x, guiTop + y);
-			if(mouseX >= guiLeft + x && mouseX < guiLeft + x + 16 && mouseY >= guiTop + y && mouseY < guiTop + y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
-		}
 	}
 	
 	@Override

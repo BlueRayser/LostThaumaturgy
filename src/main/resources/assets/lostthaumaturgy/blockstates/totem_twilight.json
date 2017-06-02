@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": [
+			{ "model": "lostthaumaturgy:totem_twilight" },
+			{ "model": "lostthaumaturgy:totem_twilight", "x": 90 },
+			{ "model": "lostthaumaturgy:totem_twilight", "x": 180 },
+			{ "model": "lostthaumaturgy:totem_twilight", "x": 270 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 90 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 180 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 270 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 90, "x": 90 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 90, "x": 180 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 90, "x": 270 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 180, "x": 90 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 180, "x": 180 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 180, "x": 270 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 270, "x": 90 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 270, "x": 180 },
+			{ "model": "lostthaumaturgy:totem_twilight", "y": 270, "x": 270 }
+		]
+    }
+}

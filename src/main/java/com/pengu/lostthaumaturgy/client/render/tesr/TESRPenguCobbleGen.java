@@ -1,5 +1,6 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
+import java.util.Map;
 import java.util.UUID;
 
 import net.minecraft.client.Minecraft;
@@ -7,6 +8,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.client.resources.SkinManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -158,20 +160,21 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 			return;
 		skinLoaded = true;
 		
-		Minecraft.getMinecraft().getSkinManager().loadProfileTextures(profile, new SkinManager.SkinAvailableCallback()
+		ResourceLocation resourcelocation = DefaultPlayerSkin.getDefaultSkinLegacy();
+		
+		Minecraft minecraft = Minecraft.getMinecraft();
+		Map<Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(profile);
+		
+		if(map.containsKey(Type.SKIN))
 		{
-			public void skinAvailable(Type typeIn, ResourceLocation location, MinecraftProfileTexture profileTexture)
-			{
-				switch(typeIn)
-				{
-				case SKIN:
-					penguSkin = location;
-				break;
-				default:
-				break;
-				}
-			}
-		}, false);
+			resourcelocation = minecraft.getSkinManager().loadSkin(map.get(Type.SKIN), Type.SKIN);
+		} else
+		{
+			UUID uuid = EntityPlayer.getUUID(profile);
+			resourcelocation = DefaultPlayerSkin.getDefaultSkin(uuid);
+		}
+		
+		penguSkin = resourcelocation;
 	}
 	
 	@Override

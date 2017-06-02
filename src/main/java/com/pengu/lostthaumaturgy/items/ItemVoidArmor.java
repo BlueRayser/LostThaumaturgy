@@ -15,7 +15,7 @@ import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 
 public class ItemVoidArmor extends ItemArmor
 {
-	public static final ArmorMaterial void_material = EnumHelper.addArmorMaterial(LTInfo.MOD_ID + ":void", LTInfo.MOD_ID + ":textures/armor/void_1.png", 15, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+	public static final ArmorMaterial void_material = EnumHelper.addArmorMaterial(LTInfo.MOD_ID + ":void", LTInfo.MOD_ID + ":textures/armor/void_1.png", 30, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 	
 	public ItemVoidArmor(EntityEquipmentSlot equipmentSlotIn)
 	{

@@ -11,7 +11,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 
 public class ItemThaumiumArmor extends ItemArmor
 {
-	public static final ArmorMaterial thaumium = EnumHelper.addArmorMaterial(LTInfo.MOD_ID + ":thaumium", LTInfo.MOD_ID + ":textures/armor/thaumium_1.png", 15, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+	public static final ArmorMaterial thaumium = EnumHelper.addArmorMaterial(LTInfo.MOD_ID + ":thaumium", LTInfo.MOD_ID + ":textures/armor/thaumium_1.png", 35, new int[] { 4, 6, 7, 4 }, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	
 	public ItemThaumiumArmor(EntityEquipmentSlot equipmentSlotIn)
 	{

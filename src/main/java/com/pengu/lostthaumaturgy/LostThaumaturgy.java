@@ -141,9 +141,9 @@ public class LostThaumaturgy
 		ProgressBar bar = ProgressManager.push("Registering mob spawns", 2);
 		
 		bar.step("Smart Zombie");
-		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 40);
+		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 128);
 		bar.step("Thaum Slime");
-		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 80);
+		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 256);
 		
 		ProgressManager.pop(bar);
 	}

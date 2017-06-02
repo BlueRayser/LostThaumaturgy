@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.init;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 
+import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
@@ -35,7 +36,8 @@ public class ItemsLT
 	        WAND_ITEM_FREEZE = new ItemWandOfItemFreeze(), //
 	        WAND_REVERSAL = new ItemWandReversal(), //
 	        SINGULARITY = new ItemSingularity(), //
-	        CUSTOM_POTION = new ItemCustomPotion();
+	        CUSTOM_POTION = new ItemCustomPotion(), //
+	        AURA_DETECTOR = new ItemAuraDetector();
 	public static final ItemUpgrade //
 	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //
 	        STABILIZED_SINGULARITY = new ItemUpgrade("stabilized_singularity"), //
