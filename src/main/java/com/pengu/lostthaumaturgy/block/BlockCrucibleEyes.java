@@ -31,8 +31,9 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
 
-public class BlockCrucible extends BlockRendered implements ITileBlock<TileCrucible>, ITileEntityProvider
+public class BlockCrucibleEyes extends BlockRendered implements ITileBlock<TileCrucibleEyes>, ITileEntityProvider
 {
 	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
@@ -40,10 +41,10 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 	
-	public BlockCrucible()
+	public BlockCrucibleEyes()
 	{
 		super(Material.IRON);
-		setUnlocalizedName("crucible");
+		setUnlocalizedName("crucible_eyes");
 		setHardness(3);
 		setResistance(17);
 	}
@@ -51,15 +52,13 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		TileCrucible tc = new TileCrucible();
-		tc.setTier(500, .5F, .25F);
-		return tc;
+		return new TileCrucibleEyes();
 	}
 	
 	@Override
-	public Class<TileCrucible> getTileClass()
+	public Class<TileCrucibleEyes> getTileClass()
 	{
-		return TileCrucible.class;
+		return TileCrucibleEyes.class;
 	}
 	
 	@Override
@@ -147,7 +146,29 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	@Override
 	public String getParticleSprite(World world, BlockPos pos)
 	{
-		return LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_connected";
+		TileCrucibleEyes eyes = WorldUtil.cast(world.getTileEntity(pos), TileCrucibleEyes.class);
+		return LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_side_connected_" + (eyes != null && eyes.emitsPower() ? "on" : "off");
+	}
+	
+	@Override
+	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+	{
+		return true;
+	}
+	
+	@Override
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		TileCrucibleEyes eyes = WorldUtil.cast(blockAccess.getTileEntity(pos), TileCrucibleEyes.class);
+		if(eyes != null)
+			return eyes.emitsPower() ? 15 : 0;
+		return 0;
+	}
+	
+	@Override
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		return getStrongPower(blockState, blockAccess, pos, side);
 	}
 	
 	@Override

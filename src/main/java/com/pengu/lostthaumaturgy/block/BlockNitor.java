@@ -23,11 +23,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
-import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
 public class BlockNitor extends BlockRendered
 {
@@ -88,7 +88,7 @@ public class BlockNitor extends BlockRendered
 		b = Math.min(255, b);
 		
 		wisp.setColor(Color.packARGB(r, g, b, 255));
-		ClientProxy.queueParticle(wisp);
+		ParticleProxy_Client.queueParticleSpawn(wisp);
 	}
 	
 	private static final AxisAlignedBB NITOR_AABB = new AxisAlignedBB(6 / 16D, 6 / 16D, 6 / 16D, 10 / 16D, 10 / 16D, 10 / 16D);

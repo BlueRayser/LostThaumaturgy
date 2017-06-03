@@ -21,13 +21,14 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
 
-public class TESRCrucible extends TESR<TileCrucible>
+public class TESRCrucibleEyes extends TESR<TileCrucibleEyes>
 {
-	public static final TESRCrucible INSTANCE = new TESRCrucible();
+	public static final TESRCrucibleEyes INSTANCE = new TESRCrucibleEyes();
 	
 	@Override
-	public void renderTileEntityAt(TileCrucible te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileCrucibleEyes te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
@@ -38,13 +39,14 @@ public class TESRCrucible extends TESR<TileCrucible>
 		{
 			GLRenderState blend = GLRenderState.BLEND;
 			
-			TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_disconnected");
-			TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_bottom");
-			TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_top");
+			String sub = te != null && te.emitsPower() ? "on" : "off";
+			TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_side_disconnected_" + sub);
+			TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_bottom");
+			TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_top");
 			TextureAtlasSprite spill = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucible_spill");
 			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-			TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_inner");
-			TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_connected");
+			TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_inner");
+			TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_side_connected_" + sub);
 			
 			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 			
@@ -180,13 +182,16 @@ public class TESRCrucible extends TESR<TileCrucible>
 		
 		GlStateManager.disableLighting();
 		
-		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_disconnected");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_top");
+		float pureVis = nbt.getFloat("PureVis");
+		float taintedVis = nbt.getFloat("TaintedVis");
+		float maxVis = nbt.getFloat("MaxVis");
+		
+		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_side_disconnected_" + ((pureVis + taintedVis) >= maxVis * .9F ? "on" : "off"));
+		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_top");
 		TextureAtlasSprite spill = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucible_spill");
 		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-		TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_inner");
-		TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_connected");
+		TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_inner");
 		
 		Tessellator tess = Tessellator.getInstance();
 		
@@ -196,10 +201,6 @@ public class TESRCrucible extends TESR<TileCrucible>
 		
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
-		
-		float pureVis = nbt.getFloat("PureVis");
-		float taintedVis = nbt.getFloat("TaintedVis");
-		float maxVis = nbt.getFloat("MaxVis");
 		
 		float b = LiquidVisRenderer.getVisSaturation(taintedVis, pureVis);
 		int rgb = 20 + (int) (b * 210);

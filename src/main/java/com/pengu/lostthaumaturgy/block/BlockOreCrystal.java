@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
@@ -35,7 +36,6 @@ import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
-import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCrystalOre>, ITileEntityProvider
@@ -210,7 +210,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		FXWisp wisp = new FXWisp(worldIn, x1, y1, z1, x2, y2, z2, .5F, 5);
 		wisp.tinkle = true;
 		wisp.setColor(getCrystalColor());
-		ClientProxy.queueParticle(wisp);
+		ParticleProxy_Client.queueParticleSpawn(wisp);
 	}
 	
 	private final HashMap<String, Short> crystalAmts = new HashMap<>();

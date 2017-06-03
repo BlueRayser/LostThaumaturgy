@@ -50,9 +50,9 @@ public class PacketTrunkToggleSit implements IPacket, IPacketListener<PacketTrun
 				{
 					e.stay = !e.stay;
 					context.getServerHandler().player.sendMessage(new TextComponentTranslation("chat." + LTInfo.MOD_ID + ":trunk_" + (e.stay ? "stay" : "follow")));
+					return new PacketSyncTrunk(e);
 				} else
 					context.getServerHandler().player.sendMessage(new TextComponentTranslation("chat." + LTInfo.MOD_ID + ":not_my_master"));
-			return new PacketSyncTrunk(e);
 		}
 		return null;
 	}

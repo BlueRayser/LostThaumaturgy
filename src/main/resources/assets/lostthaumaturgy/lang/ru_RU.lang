@@ -2,6 +2,7 @@ itemGroup.lostthaumaturgy=Lost Thaumaturgy
 itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Открытия
 
 tile.lostthaumaturgy:crucible.name=Тигель
+tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
 tile.lostthaumaturgy:conduit.name=Вис-канал
 tile.lostthaumaturgy:pressurized_conduit.name=Герметичный вис-канал
 tile.lostthaumaturgy:pressurized_conduit.tooltip0=Излучает сигнал красного камня
@@ -236,6 +237,9 @@ research.lostthaumaturgy:totem_dawn.desc=Природа предоставляе
 
 research.lostthaumaturgy:totem_twilight.title=Тотем сумерек
 research.lostthaumaturgy:totem_twilight.desc=Разрушить порядок в атмосфере легко: пролить немного заражения на землю, использовать вис-фильтры и т.д. Но создание заражения без какой-либо ручной работы было непростой задачей. До этих пор. Вы нашли способ заразить атмосферу, поставив Тотем Сумерек.
+
+research.lostthaumaturgy:crucible_eyes.title=Crucible of Eyes
+research.lostthaumaturgy:crucible_eyes.desc=Crucibles are a common way of getting vis. The big downside to them is that they convert nearly half potential vis into taint. You made a simple improvement to a crucible by infusing some redstone and spider eye with a crucible. This crucible converts more potential vis into pure vis, about 60 percent. Also this crucible is a little bit faster and holds a little more vis that it's parent.
 
 
 

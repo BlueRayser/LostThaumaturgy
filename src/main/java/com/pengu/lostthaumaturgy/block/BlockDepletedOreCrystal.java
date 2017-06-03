@@ -12,11 +12,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
-import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class BlockDepletedOreCrystal extends BlockOreCrystal
@@ -103,7 +103,7 @@ public class BlockDepletedOreCrystal extends BlockOreCrystal
 		FXWisp wisp = new FXWisp(worldIn, x1, y1, z1, x2, y2, z2, .5F, 5);
 		wisp.tinkle = true;
 		wisp.setColor(getCrystalColor());
-		ClientProxy.queueParticle(wisp);
+		ParticleProxy_Client.queueParticleSpawn(wisp);
 	}
 	
 	@Override

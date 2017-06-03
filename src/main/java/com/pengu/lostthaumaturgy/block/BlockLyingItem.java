@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -77,7 +78,9 @@ public class BlockLyingItem extends BlockRendered implements ITileEntityProvider
 					if(MinecraftForge.EVENT_BUS.post(evt))
 						return;
 					
-					((EntityPlayer) entityIn).dropItem(evt.drop, true).setNoPickupDelay();
+					EntityItem ei = ((EntityPlayer) entityIn).dropItem(evt.drop, true);
+					if(ei != null)
+						ei.setNoPickupDelay();
 				} finally
 				{
 					worldIn.setBlockToAir(pos);

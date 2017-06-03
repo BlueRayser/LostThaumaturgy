@@ -95,52 +95,7 @@ public class CrucibleLT
 		RecipesCrucible.registerNewSmelting(new ItemStack(Items.GHAST_TEAR), 64);
 		RecipesCrucible.registerNewSmelting(new ItemStack(Items.SPIDER_EYE), 9);
 		RecipesCrucible.registerNewSmelting(new ItemStack(Items.SADDLE), 64);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Items.NETHER_STAR), 250);
-		
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.COBBLESTONE), .1F);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.PLANKS), .5F);
 		RecipesCrucible.registerNewSmelting(new ItemStack(Items.FERMENTED_SPIDER_EYE), 17);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.SAND), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.SANDSTONE), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.DIRT), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.GRASS), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.GLASS), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.ICE), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.GRAVEL), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.STONE), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.WATERLILY), 3);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.WEB), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.NETHER_BRICK), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.STONE), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.STONEBRICK, 1), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.STONEBRICK, 2), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.NETHERRACK), 1);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.SOUL_SAND), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.COAL_ORE), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.WOOL), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.LOG), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.LOG2), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.LEAVES), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.LEAVES2), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.TALLGRASS), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.DEADBUSH), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.CACTUS), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.SAPLING), 2);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.MYCELIUM), 3);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.IRON_ORE), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.YELLOW_FLOWER), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.RED_FLOWER), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.BROWN_MUSHROOM), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.RED_MUSHROOM), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.VINE), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.PUMPKIN), 4);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.REDSTONE_ORE), 16);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.LAPIS_ORE), 9);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.GOLD_ORE), 25);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.OBSIDIAN), 16);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.DIAMOND_ORE), 64);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.DIAMOND_BLOCK), 64 * 9);
-		RecipesCrucible.registerNewSmelting(new ItemStack(Blocks.EMERALD_BLOCK), 128 * 9);
 		
 		try
 		{

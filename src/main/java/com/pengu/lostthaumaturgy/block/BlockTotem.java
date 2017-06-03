@@ -8,9 +8,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
+import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class BlockTotem extends Block
 {
@@ -47,6 +50,7 @@ public class BlockTotem extends Block
 					si.badVibes--;
 				else
 					si.goodVibes++;
+				HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, .8F, 6), new TargetPoint(worldIn.provider.getDimension(), pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, 48));
 			} else
 			{
 				if(si.goodVibes > 0)

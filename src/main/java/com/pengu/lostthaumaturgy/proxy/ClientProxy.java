@@ -1,8 +1,6 @@
 package com.pengu.lostthaumaturgy.proxy;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import javax.annotation.Nonnull;
@@ -10,7 +8,6 @@ import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
@@ -58,6 +55,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRAuxiliumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRBellows;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleEyes;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
@@ -101,6 +99,7 @@ import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.tile.TileBellows;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.tile.TileDuplicator;
@@ -143,13 +142,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTravelingTrunk.class, RenderTravelingTrunk.FACTORY);
 	}
 	
-	private static List<Particle> queue = new ArrayList<>();
-	
-	public static void queueParticle(Particle particle)
-	{
-		queue.add(particle);
-	}
-	
 	@Override
 	public void init()
 	{
@@ -163,6 +155,7 @@ public class ClientProxy extends CommonProxy
 		}
 		
 		registerRender(TileCrucible.class, BlocksLT.CRUCIBLE, TESRCrucible.INSTANCE);
+		registerRender(TileCrucibleEyes.class, BlocksLT.CRUCIBLE_EYES, TESRCrucibleEyes.INSTANCE);
 		registerRender(TileConduit.class, BlocksLT.CONDUIT, TESRConduit.INSTANCE);
 		registerRender(TilePressurizedConduit.class, BlocksLT.PRESSURIZED_CONDUIT, TESRPressurizedConduit.INSTANCE);
 		registerRender(TileVisTank.class, BlocksLT.VIS_TANK, TESRVisTank.INSTANCE);
@@ -283,7 +276,7 @@ public class ClientProxy extends CommonProxy
 					{
 						int dmg = stack.getItemDamage();
 						type = dmg;
-					}else if(type != 2 && (stack.getItemDamage() == 2 || stack.getItemDamage() + type == 1))
+					} else if(type != 2 && (stack.getItemDamage() == 2 || stack.getItemDamage() + type == 1))
 						type = 2;
 				}
 			}
@@ -297,10 +290,6 @@ public class ClientProxy extends CommonProxy
 	{
 		((BlockSilverwoodLeaves) BlocksLT.SILVERWOOD_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		Minecraft mc = Minecraft.getMinecraft();
-		
-		// Unqueue all particle that pend for spawning
-		while(!queue.isEmpty())
-			mc.effectRenderer.addEffect(queue.remove(0));
 		
 		if(evt.getType() == ElementType.ALL)
 		{

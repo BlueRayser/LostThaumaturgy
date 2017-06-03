@@ -23,7 +23,8 @@ public class ResearchesLT
 	        QUICKSILVER_CORE = new Research(LTInfo.MOD_ID + ":quicksilver_core", 35, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0xBEBDEA).setIcon(new ItemStack(ItemsLT.QUICKSILVER_CORE)), //
 	        WAND_REVERSAL = new Research(LTInfo.MOD_ID + ":wand_reversal", 45, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0x7298B3).setIcon(new ItemStack(ItemsLT.WAND_REVERSAL)), CONCENTRATED_TAINT = new Research(LTInfo.MOD_ID + ":concentrated_taint", 35, Research.CATEGORY_TAINTED).setIcon(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 1)), POTION_PURITY = new Research(LTInfo.MOD_ID + ":potion_purity", 55, Research.CATEGORY_TAINTED).setIcon(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 2)), CONCENTRATED_EVIL = new Research(LTInfo.MOD_ID + ":concentrated_evil", 60, Research.CATEGORY_TAINTED).setIcon(new ItemStack(ItemsLT.CONCENTRATED_EVIL)), ELDRITCH_KEYSTONE_TLHUTLH = new Research(LTInfo.MOD_ID + ":eldritch_keystone_tlhutlh", 75, Research.CATEGORY_ELDRITCH).setIcon(EnumMultiMaterialType.ELDRITCH_KEYSTONE_TLHUTLH.stack()), VOID_INGOT = new Research(LTInfo.MOD_ID + ":void_ingot", 60, Research.CATEGORY_ELDRITCH).setIcon(EnumMultiMaterialType.VOID_INGOT.stack()), //
 	        TOTEM_DAWN = new Research(LTInfo.MOD_ID + ":totem_dawn", 40, Research.CATEGORY_TAINTED).setIcon(new ItemStack(BlocksLT.TOTEM_DAWN)), //
-	        TOTEM_TWILIGHT = new Research(LTInfo.MOD_ID + ":totem_twilight", 40, Research.CATEGORY_TAINTED).setIcon(new ItemStack(BlocksLT.TOTEM_TWILIGHT));
+	        TOTEM_TWILIGHT = new Research(LTInfo.MOD_ID + ":totem_twilight", 40, Research.CATEGORY_TAINTED).setIcon(new ItemStack(BlocksLT.TOTEM_TWILIGHT)), //
+	        CRUCIBLE_EYES = new Research(LTInfo.MOD_ID + ":crucible_eyes", 65, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.CRUCIBLE_EYES));
 	
 	public static void registerResearches()
 	{

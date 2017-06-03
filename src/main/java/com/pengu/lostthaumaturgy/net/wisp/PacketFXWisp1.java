@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.net.packetAPI.IPacket;
 import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
-import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
 public class PacketFXWisp1 implements IPacket, IPacketListener<PacketFXWisp1, IPacket>
 {
@@ -41,7 +41,7 @@ public class PacketFXWisp1 implements IPacket, IPacketListener<PacketFXWisp1, IP
 	@SideOnly(Side.CLIENT)
 	private void summon()
 	{
-		ClientProxy.queueParticle(new FXWisp(Minecraft.getMinecraft().world, x, y, z, partialTicks, type));
+		ParticleProxy_Client.queueParticleSpawn(new FXWisp(Minecraft.getMinecraft().world, x, y, z, partialTicks, type));
 	}
 	
 	@Override

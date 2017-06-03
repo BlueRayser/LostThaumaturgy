@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrdimka.hammercore.net.packetAPI.IPacket;
 import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
@@ -45,7 +46,7 @@ public class PacketFXWisp_AuraTicker_taintExplosion implements IPacket, IPacketL
 	private void summon()
 	{
 		FXWisp wisp;
-		ClientProxy.queueParticle(wisp = new FXWisp(Minecraft.getMinecraft().world, x, y, z, partialTicks, type));
+		ParticleProxy_Client.queueParticleSpawn(wisp = new FXWisp(Minecraft.getMinecraft().world, x, y, z, partialTicks, type));
 		wisp.setGravity(.02F);
 		wisp.shrink = true;
 	}

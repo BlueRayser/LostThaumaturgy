@@ -2,6 +2,7 @@ itemGroup.lostthaumaturgy=Lost Thaumaturgy
 itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Discoveries
 
 tile.lostthaumaturgy:crucible.name=Crucible
+tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
 tile.lostthaumaturgy:conduit.name=Vis Conduit
 tile.lostthaumaturgy:pressurized_conduit.name=Pressurized Conduit
 tile.lostthaumaturgy:pressurized_conduit.tooltip0=Emits redstone signal
@@ -236,6 +237,9 @@ research.lostthaumaturgy:totem_dawn.desc=Nature provides mysterious silverwood t
 
 research.lostthaumaturgy:totem_twilight.title=Twilight Totem
 research.lostthaumaturgy:totem_twilight.desc=Destructing order in the atmosphere is easy: spill some taint onto the ground, use vis filters etc. But creating taint without any manual work wasn't an easy job. Until now. You found a way to taintify atmosphere by placing Twilight Totem.
+
+research.lostthaumaturgy:crucible_eyes.title=Crucible of Eyes
+research.lostthaumaturgy:crucible_eyes.desc=Crucibles are a common way of getting vis. The big downside to them is that they convert nearly half potential vis into taint. You made a simple improvement to a crucible by infusing some redstone and spider eye with a crucible. This crucible converts more potential vis into pure vis, about 60 percent. Also this crucible is a little bit faster and holds a little more vis that it's parent.
 
 
 
