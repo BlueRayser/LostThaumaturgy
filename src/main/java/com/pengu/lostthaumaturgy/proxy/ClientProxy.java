@@ -57,6 +57,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRBellows;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleEyes;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleThaumium;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
@@ -102,6 +103,7 @@ import com.pengu.lostthaumaturgy.tile.TileBellows;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleThaumium;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.tile.TileDuplicator;
@@ -159,6 +161,7 @@ public class ClientProxy extends CommonProxy
 		
 		registerRender(TileCrucible.class, BlocksLT.CRUCIBLE, TESRCrucible.INSTANCE);
 		registerRender(TileCrucibleEyes.class, BlocksLT.CRUCIBLE_EYES, TESRCrucibleEyes.INSTANCE);
+		registerRender(TileCrucibleThaumium.class, BlocksLT.CRUCIBLE_THAUMIUM, TESRCrucibleThaumium.INSTANCE);
 		registerRender(TileConduit.class, BlocksLT.CONDUIT, TESRConduit.INSTANCE);
 		registerRender(TilePressurizedConduit.class, BlocksLT.PRESSURIZED_CONDUIT, TESRPressurizedConduit.INSTANCE);
 		registerRender(TileVisTank.class, BlocksLT.VIS_TANK, TESRVisTank.INSTANCE);

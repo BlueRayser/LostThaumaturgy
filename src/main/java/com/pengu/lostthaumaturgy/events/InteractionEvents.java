@@ -1,8 +1,12 @@
 package com.pengu.lostthaumaturgy.events;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -15,6 +19,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.annotations.MCFBus;
@@ -118,5 +123,25 @@ public class InteractionEvents
 		if(e.getState().getBlock() == Blocks.STONE && Blocks.STONE.getMetaFromState(e.getState()) == 0 && !e.isSilkTouching() && isInTopazRange)
 			if(e.getHarvester().getRNG().nextInt(100) == 0)
 				e.getDrops().add(EnumMultiMaterialType.TOPAZ.stack());
+	}
+	
+	private Map<String, Float> walkSpeeds = new HashMap<>();
+	
+	@SubscribeEvent
+	public void playerTick(PlayerTickEvent e)
+	{
+		EntityPlayer player = e.player;
+		String id = player.getGameProfile().getName();
+		
+		if(walkSpeeds.get(id) == null)
+			walkSpeeds.put(id, .1F);
+		
+		float speed = walkSpeeds.get(id);
+		float newSpeed = speed;
+		
+		//TODO: Make player walk faster using some magic =)
+		
+		player.capabilities.walkSpeed = newSpeed;
+		walkSpeeds.put(id, speed);
 	}
 }

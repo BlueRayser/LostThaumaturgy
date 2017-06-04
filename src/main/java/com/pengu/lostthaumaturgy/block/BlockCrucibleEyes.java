@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -48,6 +49,7 @@ public class BlockCrucibleEyes extends BlockRendered implements ITileBlock<TileC
 	public BlockCrucibleEyes()
 	{
 		super(Material.IRON);
+		setSoundType(SoundType.METAL);
 		setUnlocalizedName("crucible_eyes");
 		setHardness(3);
 		setResistance(17);

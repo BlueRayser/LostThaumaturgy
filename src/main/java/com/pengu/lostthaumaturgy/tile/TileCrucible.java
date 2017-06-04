@@ -72,30 +72,6 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 		
 		// switch(t)
 		// {
-		// case 1:
-		// {
-		// this.maxVis = 500.0f;
-		// this.conversion = 0.5f;
-		// this.speed = 0.25f;
-		// this.type = 1;
-		// break;
-		// }
-		// case 2:
-		// {
-		// this.maxVis = 600.0f;
-		// this.conversion = 0.6f;
-		// this.speed = 0.5f;
-		// this.type = 2;
-		// break;
-		// }
-		// case 3:
-		// {
-		// this.maxVis = 750.0f;
-		// this.conversion = 0.7f;
-		// this.speed = 0.75f;
-		// this.type = 3;
-		// break;
-		// }
 		// case 4:
 		// {
 		// this.maxVis = 750.0f;

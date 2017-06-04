@@ -15,8 +15,8 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumFacing.Axis;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -36,8 +36,11 @@ import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
 import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleThaumium;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleThaumium;
 
-public class BlockCrucible extends BlockRendered implements ITileBlock<TileCrucible>, ITileEntityProvider
+public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<TileCrucibleThaumium>, ITileEntityProvider
 {
 	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
@@ -45,11 +48,11 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 	
-	public BlockCrucible()
+	public BlockCrucibleThaumium()
 	{
 		super(Material.IRON);
 		setSoundType(SoundType.METAL);
-		setUnlocalizedName("crucible");
+		setUnlocalizedName("crucible_thaumium");
 		setHardness(3);
 		setResistance(17);
 	}
@@ -57,15 +60,13 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		TileCrucible tc = new TileCrucible();
-		tc.setTier(500, .5F, .25F);
-		return tc;
+		return new TileCrucibleThaumium();
 	}
 	
 	@Override
-	public Class<TileCrucible> getTileClass()
+	public Class<TileCrucibleThaumium> getTileClass()
 	{
-		return TileCrucible.class;
+		return TileCrucibleThaumium.class;
 	}
 	
 	@Override
@@ -91,7 +92,7 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if(entityIn.ticksExisted % 20 == 0 && !(entityIn instanceof EntityItem))
+		if(entityIn.ticksExisted % 10 == 0 && !(entityIn instanceof EntityItem))
 		{
 			if(!worldIn.isRemote)
 			{
@@ -159,7 +160,29 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 	@Override
 	public String getParticleSprite(World world, BlockPos pos)
 	{
-		return LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_connected";
+		TileCrucibleEyes eyes = WorldUtil.cast(world.getTileEntity(pos), TileCrucibleEyes.class);
+		return LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_side_connected_" + (eyes != null && eyes.emitsPower() ? "on" : "off");
+	}
+	
+	@Override
+	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+	{
+		return true;
+	}
+	
+	@Override
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		TileCrucibleEyes eyes = WorldUtil.cast(blockAccess.getTileEntity(pos), TileCrucibleEyes.class);
+		if(eyes != null)
+			return eyes.emitsPower() ? 15 : 0;
+		return 0;
+	}
+	
+	@Override
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		return getStrongPower(blockState, blockAccess, pos, side);
 	}
 	
 	@Override

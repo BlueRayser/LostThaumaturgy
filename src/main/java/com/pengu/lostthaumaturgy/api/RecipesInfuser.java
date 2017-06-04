@@ -215,7 +215,7 @@ public class RecipesInfuser
 					return -1;
 				for(int q = 0; q < cl.length; ++q)
 				{
-					if(exclude.contains(q) || ((ItemStack) cI).getItem() != cl[q].getItem() || ((ItemStack) cI).getItemDamage() != cl[q].getItemDamage() && cl[q].getItemDamage() == -1)
+					if(exclude.contains(q) || !((ItemStack) cI).isItemEqual(cl[q]))
 						continue;
 					--cFound;
 					exclude.add(q);

@@ -11,6 +11,7 @@ import com.pengu.lostthaumaturgy.block.BlockCinnabarOre;
 import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockCrucible;
 import com.pengu.lostthaumaturgy.block.BlockCrucibleEyes;
+import com.pengu.lostthaumaturgy.block.BlockCrucibleThaumium;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
 import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockDuplicator;
@@ -55,6 +56,7 @@ public class BlocksLT
 	public static final Block //
 	        CRUCIBLE = new BlockCrucible(), //
 	        CRUCIBLE_EYES = new BlockCrucibleEyes(), //
+	        CRUCIBLE_THAUMIUM = new BlockCrucibleThaumium(), //
 	        CONDUIT = new BlockConduit(), //
 	        PRESSURIZED_CONDUIT = new BlockPressurizedConduit(), //
 	        VIS_TANK = new BlockVisTank(), //

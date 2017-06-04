@@ -3,6 +3,7 @@ itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Discoveries
 
 tile.lostthaumaturgy:crucible.name=Crucible
 tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
+tile.lostthaumaturgy:crucible_thaumium.name=Thaumium Crucible
 tile.lostthaumaturgy:conduit.name=Vis Conduit
 tile.lostthaumaturgy:pressurized_conduit.name=Pressurized Conduit
 tile.lostthaumaturgy:pressurized_conduit.tooltip0=Emits redstone signal
@@ -240,6 +241,9 @@ research.lostthaumaturgy:totem_twilight.desc=Destructing order in the atmosphere
 
 research.lostthaumaturgy:crucible_eyes.title=Crucible of Eyes
 research.lostthaumaturgy:crucible_eyes.desc=Crucibles are a common way of getting vis. The big downside to them is that they convert nearly half potential vis into taint. You made a simple improvement to a crucible by infusing some redstone and spider eye with a crucible. This crucible converts more potential vis into pure vis, about 60 percent. Also this crucible is a little bit faster and holds a little more vis that it's parent.
+
+research.lostthaumaturgy:crucible_thaumium.title=Thaumium Crucible
+research.lostthaumaturgy:crucible_thaumium.desc=Crucible of Eyes does a good job of getting more vis from objects than regular Crucible. It's time for upgrade! You found a way to improve the efficiency even better, at about 70 percent vis from objects. It's speed and capacity are also improved a bit.
 
 
 

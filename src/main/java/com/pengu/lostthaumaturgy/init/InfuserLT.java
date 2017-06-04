@@ -97,6 +97,7 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.AURA_DETECTOR, 1, 2), 50, new ItemStack(ItemsLT.AURA_DETECTOR, 1, 0), new ItemStack(ItemsLT.AURA_DETECTOR, 1, 1), EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), EnumMultiMaterialType.AQUEOUS_CRYSTAL.stack(), EnumMultiMaterialType.EARTHEN_CRYSTAL.stack(), EnumMultiMaterialType.FIERY_CRYSTAL.stack());
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.TOTEM_DAWN), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.TOTEM_DAWN), new ItemStack(BlocksLT.NITOR), EnumMultiMaterialType.VIS_CRYSTAL.stack(), new ItemStack(BlocksLT.SILVERWOOD_LOG));
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CRUCIBLE_EYES), 25, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_EYES), new ItemStack(BlocksLT.CRUCIBLE), new ItemStack(Items.REDSTONE), new ItemStack(Items.SPIDER_EYE));
+		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CRUCIBLE_THAUMIUM), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_THAUMIUM), new ItemStack(BlocksLT.CRUCIBLE_EYES), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 	}
 	
 	public static void registerDarkInfuser()
