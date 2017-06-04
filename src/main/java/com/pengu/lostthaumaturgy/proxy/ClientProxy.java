@@ -46,6 +46,7 @@ import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
+import com.pengu.lostthaumaturgy.client.render.entity.RenderSingularity;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderTravelingTrunk;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
 import com.pengu.lostthaumaturgy.client.render.item.RenderItemWandOfItemFreeze;
@@ -86,6 +87,7 @@ import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
+import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
@@ -140,6 +142,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySmartZombie.class, RenderEntitySmartZombie.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustomSplashPotion.class, RenderCustomSplashPotion.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTravelingTrunk.class, RenderTravelingTrunk.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntitySingularity.class, RenderSingularity.FACTORY);
 	}
 	
 	@Override

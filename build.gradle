@@ -56,16 +56,29 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+	rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+jar {
+	manifest {
+		attributes 'FMLAT': 'lt_at.cfg'
+	}
 }
 
 task srcJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
     classifier = 'sources'
+	manifest {
+		attributes 'FMLAT': 'lt_at.cfg'
+	}
 }
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
+	manifest {
+		attributes 'FMLAT': 'lt_at.cfg'
+	}
 }
 
 artifacts {

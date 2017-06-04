@@ -10,14 +10,13 @@ import net.minecraftforge.common.util.EnumHelper;
 
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
+import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 
 public class ItemGogglesRevealing extends ItemArmor implements IGoggles
 {
-	public static final ArmorMaterial goggles_material = EnumHelper.addArmorMaterial(LTInfo.MOD_ID + ":goggles", LTInfo.MOD_ID + ":textures/armor/goggles.png", 5, new int[] { 1, 2, 3, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
-	
 	public ItemGogglesRevealing()
 	{
-		super(goggles_material, 2, EntityEquipmentSlot.HEAD);
+		super(ItemMaterialsLT.armor_goggles, 2, EntityEquipmentSlot.HEAD);
 		setUnlocalizedName("goggles_revealing");
 	}
 	

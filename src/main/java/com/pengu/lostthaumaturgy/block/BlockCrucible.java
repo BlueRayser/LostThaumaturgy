@@ -14,10 +14,12 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,10 +28,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
+import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 
 public class BlockCrucible extends BlockRendered implements ITileBlock<TileCrucible>, ITileEntityProvider
@@ -89,7 +93,6 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 		{
 			if(!worldIn.isRemote)
 			{
-				HammerCore.audioProxy.playSoundAt(worldIn, "block.fire.extinguish", pos, .4F, 1.5F, SoundCategory.BLOCKS);
 				TileCrucible tc = WorldUtil.cast(worldIn.getTileEntity(pos), TileCrucible.class);
 				if(tc != null)
 				{
@@ -97,14 +100,21 @@ public class BlockCrucible extends BlockRendered implements ITileBlock<TileCruci
 					if(maxAccept > 0)
 					{
 						if(entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getGameProfile().getName().equals("APengu"))
+						{
 							tc.pureVis += Math.min(maxAccept, 1);
-						else
+							if(worldIn.rand.nextInt(5) == 0)
+								HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":creaking", pos, .4F, 1.5F, SoundCategory.BLOCKS);
+						} else
+						{
 							tc.taintedVis += Math.min(maxAccept, 1);
+							entityIn.attackEntityFrom(DamageSource.IN_WALL, 1F);
+							HammerCore.audioProxy.playSoundAt(worldIn, "block.fire.extinguish", pos, .4F, 1.5F, SoundCategory.BLOCKS);
+						}
 						tc.sync();
+						HCNetwork.manager.sendToAllAround(new PacketParticle(worldIn, EnumParticleTypes.SMOKE_LARGE, new Vec3d(entityIn.posX, entityIn.posY, entityIn.posZ), new Vec3d(0, 0, 0)), tc.getSyncPoint(48));
 					}
 				}
 			}
-			entityIn.attackEntityFrom(DamageSource.IN_WALL, 1F);
 		}
 	}
 	

@@ -14,5 +14,6 @@
 	"stomp": { "sounds": ["lostthaumaturgy:stomp1","lostthaumaturgy:stomp2"] },
 	"monolith": { "sounds": ["lostthaumaturgy:monolith"] },
 	"place": { "sounds": ["lostthaumaturgy:place"] },
-	"rumble": { "sounds": ["lostthaumaturgy:rumble"] }
+	"rumble": { "sounds": ["lostthaumaturgy:rumble"] },
+	"singularity": { "sounds": ["lostthaumaturgy:singularity"] }
 }

@@ -23,7 +23,7 @@ public class InfuserLT
 {
 	public static void registerInfuser()
 	{
-		EnumMultiMaterialType[] crystals = { EnumMultiMaterialType.VAPOROUS_CRYSTAL, EnumMultiMaterialType.AQUEOUS_CRYSTAL, EnumMultiMaterialType.FIERY_CRYSTAL, EnumMultiMaterialType.EARTHEN_CRYSTAL, EnumMultiMaterialType.VIS_CRYSTAL, EnumMultiMaterialType.TAINTED_CRYSTAL };
+		EnumMultiMaterialType[] crystals = { EnumMultiMaterialType.VAPOROUS_CRYSTAL, EnumMultiMaterialType.AQUEOUS_CRYSTAL, EnumMultiMaterialType.FIERY_CRYSTAL, EnumMultiMaterialType.EARTHEN_CRYSTAL, EnumMultiMaterialType.VIS_CRYSTAL };
 		
 		Set<ItemStack> metalToThaumium = new HashSet<>();
 		
