@@ -8,6 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
@@ -19,12 +20,13 @@ import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 
 public class ItemAuraDetector extends MultiVariantItem
 {
-	public static int type;
+	public static int type = -1;
 	
 	public ItemAuraDetector()
 	{
 		super("aura_detector", "vis_detector", "taint_detector", "thaumometer");
 		insertPrefix(LTInfo.MOD_ID + ":");
+		setMaxStackSize(1);
 	}
 	
 	@Override
@@ -33,32 +35,22 @@ public class ItemAuraDetector extends MultiVariantItem
 		IConnection conn = WorldUtil.cast(worldIn.getTileEntity(pos), IConnection.class);
 		if(conn != null)
 		{
-			if(!worldIn.isRemote)
-				HammerCore.audioProxy.playSoundAt(worldIn, "block.note.pling", pos, .5F, 2F, SoundCategory.PLAYERS);
 			player.swingArm(hand);
 			
 			int type = player.getHeldItem(hand).getItemDamage();
-			boolean taint = type > 0;
-			boolean vis = type == 0 || type == 2;
 			
 			int suction = conn.getSuction(null);
 			int v = Math.round(conn.getPureVis());
 			int t = Math.round(conn.getTaintedVis());
 			
 			if(!worldIn.isRemote)
-				ChatUtil.sendChat(player, "Detected " + (taint ? t + " Taint" : "") + (taint && vis ? " and " : "") + (vis ? v + " Vis" : "") + ".");
+			{
+				String[] args = new String[] { "" + (type == 0 ? v : t) };
+				if(type == 2) args = new String[] { "" + t, "" + v };
+				ChatUtil.sendNoSpam(player, new TextComponentTranslation("chat." + names[type], (Object[]) args));
+				HammerCore.audioProxy.playSoundAt(worldIn, "block.note.pling", pos, .5F, 2F, SoundCategory.PLAYERS);
+			}
 		}
 		return EnumActionResult.FAIL;
-	}
-	
-	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
-	{
-		if(type == -1)
-		{
-			int dmg = stack.getItemDamage();
-			type = dmg;
-		}else if(type != 2 && (stack.getItemDamage() == 2 || stack.getItemDamage() + type == 1))
-			type = 2;
 	}
 }

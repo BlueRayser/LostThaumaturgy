@@ -22,15 +22,15 @@ public class ContainerInfuser extends Container
 			tileInfuser.initiator = inventoryplayer.player.getGameProfile().getId();
 		
 		infuser = tileInfuser;
-		addSlotToContainer(new Slot(tileInfuser, 2, 80, 11));
-		addSlotToContainer(new Slot(tileInfuser, 3, 28, 102));
-		addSlotToContainer(new Slot(tileInfuser, 4, 132, 102));
-		addSlotToContainer(new Slot(tileInfuser, 5, 50, 55));
-		addSlotToContainer(new Slot(tileInfuser, 6, 110, 55));
-		addSlotToContainer(new Slot(tileInfuser, 7, 80, 106));
+		addSlotToContainer(new Slot(tileInfuser.infuserItemStacks, 2, 80, 11));
+		addSlotToContainer(new Slot(tileInfuser.infuserItemStacks, 3, 28, 102));
+		addSlotToContainer(new Slot(tileInfuser.infuserItemStacks, 4, 132, 102));
+		addSlotToContainer(new Slot(tileInfuser.infuserItemStacks, 5, 50, 55));
+		addSlotToContainer(new Slot(tileInfuser.infuserItemStacks, 6, 110, 55));
+		addSlotToContainer(new Slot(tileInfuser.infuserItemStacks, 7, 80, 106));
 		
-		addSlotToContainer(new SlotOutput(tileInfuser, 0, 80, 72));
-		addSlotToContainer(new SlotOutput(tileInfuser, 1, 80, 135));
+		addSlotToContainer(new SlotOutput(tileInfuser.infuserItemStacks, 0, 80, 72));
+		addSlotToContainer(new SlotOutput(tileInfuser.infuserItemStacks, 1, 80, 135));
 		
 		for(int j = 0; j < 9; ++j)
 			addSlotToContainer(new Slot(inventoryplayer, j, 8 + j * 18, 216));
@@ -78,7 +78,7 @@ public class ContainerInfuser extends Container
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			if(i < 8 ? !mergeItemStack(itemstack1, 8, 35, true) : (i >= 8 && i <= 43 ? !mergeItemStack(itemstack1, 0, 6, false) : (i > 35 && i <= 44 ? !mergeItemStack(itemstack1, 8, 35, false) : !mergeItemStack(itemstack1, 8, 44, false))))
+			if(i < 8 ? !mergeItemStack(itemstack1, 8, 35, true) : (i >= 8 ? !mergeItemStack(itemstack1, 0, 6, false) : (i > 35 && i <= 44 ? !mergeItemStack(itemstack1, 8, 35, false) : !mergeItemStack(itemstack1, 8, 44, false))))
 				return ItemStack.EMPTY;
 			if(!itemstack1.isEmpty())
 				slot.onSlotChanged();

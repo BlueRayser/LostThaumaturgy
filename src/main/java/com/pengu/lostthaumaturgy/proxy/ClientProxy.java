@@ -269,7 +269,7 @@ public class ClientProxy extends CommonProxy
 	@SubscribeEvent
 	public void clientTick(ClientTickEvent evt)
 	{
-		if(Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.getTotalWorldTime() % 40 == 0)
+		if(Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.getTotalWorldTime() % 5 == 0)
 		{
 			ItemAuraDetector.type = -1;
 			

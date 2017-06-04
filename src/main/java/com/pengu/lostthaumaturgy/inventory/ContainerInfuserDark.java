@@ -19,12 +19,12 @@ public class ContainerInfuserDark extends Container
 		
 		this.tile = tile;
 		
-		addSlotToContainer(new Slot(tile, 1, 80, 16));
-		addSlotToContainer(new Slot(tile, 2, 132, 54));
-		addSlotToContainer(new Slot(tile, 3, 111, 118));
-		addSlotToContainer(new Slot(tile, 4, 48, 118));
-		addSlotToContainer(new Slot(tile, 5, 25, 54));
-		addSlotToContainer(new SlotOutput(tile, 0, 80, 72));
+		addSlotToContainer(new Slot(tile.infuserItemStacks, 1, 80, 16));
+		addSlotToContainer(new Slot(tile.infuserItemStacks, 2, 132, 54));
+		addSlotToContainer(new Slot(tile.infuserItemStacks, 3, 111, 118));
+		addSlotToContainer(new Slot(tile.infuserItemStacks, 4, 48, 118));
+		addSlotToContainer(new Slot(tile.infuserItemStacks, 5, 25, 54));
+		addSlotToContainer(new SlotOutput(tile.infuserItemStacks, 0, 80, 72));
 		for(int j = 0; j < 9; ++j)
 			addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 216));
 		for(int i = 0; i < 3; ++i)
@@ -41,6 +41,23 @@ public class ContainerInfuserDark extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
-		return ItemStack.EMPTY;
+		ItemStack itemstack = ItemStack.EMPTY;
+		Slot slot = getSlot(index);
+		if(slot != null)
+		{
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+			if(index <= 5 && !mergeItemStack(itemstack1, 6, inventorySlots.size(), false))
+				return ItemStack.EMPTY;
+			if(index > 5 && !mergeItemStack(itemstack1, 0, 5, false))
+				return ItemStack.EMPTY;
+			if(!itemstack1.isEmpty())
+				slot.onSlotChanged();
+			if(itemstack1.getCount() != itemstack.getCount())
+				slot.putStack(itemstack1);
+			else
+				return ItemStack.EMPTY;
+		}
+		return itemstack;
 	}
 }

@@ -92,7 +92,7 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 	
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if(entityIn.ticksExisted % 10 == 0 && !(entityIn instanceof EntityItem))
+		if(entityIn.ticksExisted % 5 == 0 && !(entityIn instanceof EntityItem))
 		{
 			if(!worldIn.isRemote)
 			{

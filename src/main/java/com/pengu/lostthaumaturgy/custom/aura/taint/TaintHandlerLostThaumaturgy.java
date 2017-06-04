@@ -110,8 +110,6 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			return false;
 		IBlockState state = world.getBlockState(pos);
 		
-		if(state.getBlock() == BlocksLT.CRYSTAL_ORE_TAINTED)
-			return true;
 		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
 			return true;
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
@@ -128,27 +126,6 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(!world.isBlockLoaded(pos))
 			return false;
 		IBlockState state = world.getBlockState(pos);
-		
-		if(state.getBlock() == BlocksLT.CRYSTAL_ORE_TAINTED)
-		{
-			TileEntity te = world.getTileEntity(pos);
-			NBTTagCompound nbt = new NBTTagCompound();
-			te.writeToNBT(nbt);
-			
-			BlockOreCrystal sel = null;
-			ArrayList<BlockOreCrystal> bls = new ArrayList<>(BlockOreCrystal.crystals);
-			while(sel == null || !sel.generatesInWorld)
-				sel = bls.get(world.rand.nextInt(BlockOreCrystal.crystals.size()));
-			world.setBlockState(pos, sel.getDefaultState());
-			
-			te = world.getTileEntity(pos);
-			if(te != null)
-			{
-				te.readFromNBT(nbt);
-				if(te instanceof TileSyncable)
-					((TileSyncable) te).sync();
-			}
-		}
 		
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
 			BlockTaintedSoil.cleanSoil(world, pos);
