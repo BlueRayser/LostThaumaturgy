@@ -5,10 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.common.utils.ChatUtil;
 import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 
 public class ItemSingularity extends Item
@@ -17,6 +15,12 @@ public class ItemSingularity extends Item
 	{
 		setMaxStackSize(16);
 		setUnlocalizedName("singularity");
+	}
+	
+	@Override
+	public boolean hasEffect(ItemStack stack)
+	{
+		return true;
 	}
 	
 	@Override

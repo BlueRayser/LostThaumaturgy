@@ -424,6 +424,18 @@ public class EntityTravelingTrunk extends EntityAnimal implements IUpgradable
 	}
 	
 	@Override
+	protected boolean canDespawn()
+	{
+		return false;
+	}
+	
+	@Override
+	protected int getExperiencePoints(EntityPlayer player)
+	{
+		return 0;
+	}
+	
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		if(!player.getGameProfile().getId().equals(owner))

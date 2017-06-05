@@ -18,7 +18,7 @@ public class LTConfigs implements IConfigReloadListener
 	@ModConfigPropertyBool(category = "Client", name = "Use Shaders", defaultValue = true, comment = "Should we use shaders? This only works if your hardware supports them.")
 	public static boolean client_useShaders;
 	
-	@ModConfigPropertyInt(category = "Aura", name = "Aura Capacity", comment = "The maximum taint and aura amount. Changing this setting with a world in progress can do funny stuff - you have been warned.", defaultValue = 15000, min = 5000, max = 60000)
+	@ModConfigPropertyInt(category = "Aura", name = "Aura Capacity", comment = "The maximum taint and aura amount. Changing this setting with a world in progress can do funny stuff - you have been warned.", defaultValue = 15000, min = 5000, max = 32000)
 	public static int aura_max;
 	
 	@ModConfigPropertyFloat(category = "Aura", name = "Max Radiation", comment = "The maximal radiation in the chunk.", defaultValue = 12F, min = 7F, max = 10000F)

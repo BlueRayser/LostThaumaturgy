@@ -23,7 +23,7 @@ public class WorldGenCinderpearl implements IWorldGenerator
 		if(rand.nextInt(200) < 40)
 			for(int k = 0; k < rand.nextInt(2); ++k)
 			{
-				BlockPos pos = world.getHeight(new BlockPos(chunkX + rand.nextInt(16), 255, chunkZ + rand.nextInt(16)));
+				BlockPos pos = world.getHeight(new BlockPos(chunkX * 16 + rand.nextInt(16), 255, chunkZ * 16 + rand.nextInt(16)));
 				if(AuraTicker.BIOME_FIREFLOWER.contains(world.getBiome(pos)))
 				{
 					int flowerCount = rand.nextInt(8);

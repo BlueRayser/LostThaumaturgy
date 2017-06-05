@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -215,16 +216,24 @@ public class RecipesInfuser
 					return -1;
 				for(int q = 0; q < cl.length; ++q)
 				{
-					if(exclude.contains(q) || !((ItemStack) cI).isItemEqual(cl[q]))
+					boolean dura = ((ItemStack) cI).isItemEqualIgnoreDurability(cl[q]);
+					
+					if(dura)
+						dura = ((ItemStack) cI).getItemDamage() == cl[q].getItemDamage() || ((ItemStack) cI).getItemDamage() == OreDictionary.WILDCARD_VALUE || cl[q].getItemDamage() == OreDictionary.WILDCARD_VALUE;
+					
+					if(exclude.contains(q) || !dura)
 						continue;
+					
 					--cFound;
 					exclude.add(q);
 					foundsomething = true;
 					break;
 				}
+				
 				if(!foundsomething)
 					continue block0;
 			}
+			
 			if(cFound != 0)
 				continue;
 			return a;

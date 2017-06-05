@@ -42,6 +42,7 @@ import com.pengu.lostthaumaturgy.init.InfuserLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
+import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
@@ -68,7 +69,7 @@ public class LostThaumaturgy
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		ProgressBar bar = ProgressManager.push("Adding Contents...", 5);
+		ProgressBar bar = ProgressManager.push("Adding Contents...", 6);
 		
 		bar.step("Registering Vis Capability");
 		CapabilityVisConnection.register();
@@ -80,6 +81,9 @@ public class LostThaumaturgy
 		
 		bar.step("Registering Items");
 		SimpleRegistration.registerFieldItemsFrom(ItemsLT.class, LTInfo.MOD_ID, tab);
+		
+		bar.step("Adding Sounds");
+		SoundEventsLT.register();
 		
 		bar.step("Registering Researches");
 		ResearchesLT.registerResearches();
@@ -140,9 +144,9 @@ public class LostThaumaturgy
 		ProgressBar bar = ProgressManager.push("Registering mob spawns", 2);
 		
 		bar.step("Smart Zombie");
-		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 128);
+//		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 128);
 		bar.step("Thaum Slime");
-		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 256);
+//		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 256);
 		
 		ProgressManager.pop(bar);
 	}

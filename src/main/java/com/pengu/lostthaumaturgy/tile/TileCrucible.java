@@ -196,7 +196,10 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 						
 						SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 						if(ac != null)
-							ac.badVibes = (short) ((float) ac.badVibes + currentItemCookValue / 10.0f);
+						{
+							ac.badVibes = (short) ((float) ac.badVibes + currentItemCookValue / 10F);
+							ac.radiation += .0001F * currentItemCookValue;
+						}
 						
 						item.shrink(1);
 						sync();

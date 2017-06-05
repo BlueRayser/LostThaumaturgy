@@ -4,6 +4,7 @@ itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Открытия
 tile.lostthaumaturgy:crucible.name=Тигель
 tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
 tile.lostthaumaturgy:crucible_thaumium.name=Thaumium Crucible
+tile.lostthaumaturgy:crucible_void.name=Void Crucible
 tile.lostthaumaturgy:conduit.name=Вис-канал
 tile.lostthaumaturgy:pressurized_conduit.name=Герметичный вис-канал
 tile.lostthaumaturgy:pressurized_conduit.tooltip0=Излучает сигнал красного камня
@@ -177,6 +178,8 @@ item.lostthaumaturgy:vis_detector.name=Vis Detector
 item.lostthaumaturgy:taint_detector.name=Taint Detector
 item.lostthaumaturgy:radiation_detector.name=Radiation Detector
 item.lostthaumaturgy:thaumometer.name=Thaumometer
+item.lostthaumaturgy:mithrillium_ingot.name=§3Mithrillium Ingot
+item.lostthaumaturgy:adaminite_ingot.name=§cAdaminite Ingot
 
 
 
@@ -189,6 +192,7 @@ gui.lostthaumaturgy:not_upgradable=Нет улучшений.
 entity.lostthaumaturgy:smart_zombie.name=Умный зомби
 entity.lostthaumaturgy:tslime.name=Таум слизень
 entity.lostthaumaturgy:traveling_trunk.name=Путешествующий багаж
+entity.lostthaumaturgy:wisp.name=Висп
 
 
 
@@ -245,6 +249,9 @@ research.lostthaumaturgy:crucible_eyes.desc=Crucibles are a common way of gettin
 
 research.lostthaumaturgy:crucible_thaumium.title=Thaumium Crucible
 research.lostthaumaturgy:crucible_thaumium.desc=Crucible of Eyes does a good job of getting more vis from objects than regular Crucible. It's time for upgrade! You found a way to improve the efficiency even better, at about 70 percent vis from objects. It's capacity are also improved a bit and it runs three times faster than normal Crucible.
+
+research.lostthaumaturgy:crucible_void.title=Void Crucible
+research.lostthaumaturgy:crucible_void.desc=Thaumium Crucible is good enough but after reading some discoveries of The Eldritch in the Eldritch Repository you tried to upgrade your Thaumium Crucible even better. Void metal easily infused to the crucible on the dark infuser, using some vis and taint. It holds 1000 vis, it's speed is four times better and it's efficiency is 80 percent.
 
 
 

@@ -22,6 +22,12 @@ public class ItemCustomPotion extends MultiVariantItem
 	}
 	
 	@Override
+	public boolean hasEffect(ItemStack stack)
+	{
+		return true;
+	}
+	
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
 		if(!worldIn.isRemote)

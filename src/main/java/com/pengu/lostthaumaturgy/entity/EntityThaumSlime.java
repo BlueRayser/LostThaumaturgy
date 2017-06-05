@@ -306,4 +306,10 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 			f3 = -f2;
 		return f + f3;
 	}
+	
+	@Override
+	public int getMaxSpawnedInChunk()
+	{
+		return 1;
+	}
 }

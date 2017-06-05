@@ -30,4 +30,10 @@ public class EntitySmartZombie extends EntityZombie
 	{
 		return LOOT_TABLE;
 	}
+	
+	@Override
+	public int getMaxSpawnedInChunk()
+	{
+		return 2;
+	}
 }

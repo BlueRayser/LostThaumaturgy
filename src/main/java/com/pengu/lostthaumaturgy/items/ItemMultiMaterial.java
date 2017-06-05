@@ -167,7 +167,9 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		ELDRITCH_KEYSTONE_INERT, //
 		ELDRITCH_KEYSTONE_TLHUTLH, //
 		TRAVELING_TRUNK, //
-		INERT_CARPET;
+		INERT_CARPET, //
+		MITHRILLIUM_INGOT("ingotMithrillium"), //
+		ADAMINITE_INGOT("ingotAdaminite");
 		
 		private final String oredict[];
 		public final String mod;

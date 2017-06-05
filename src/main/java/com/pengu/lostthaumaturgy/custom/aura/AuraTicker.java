@@ -78,18 +78,6 @@ public class AuraTicker
 	
 	static
 	{
-		// dawnInc = 0;
-		// destDawn = 0;
-		// loadedSpecialTiles = false;
-		// inventory = new short[] { -1, -1, -1, -1, -1 };
-		// carpetMounted = false;
-		// carpetEndurance = 0;
-		// loadedResearch = false;
-		// tomeCategory = 0;
-		// tomeIndex = 0;
-		// loadedAuras = false;
-		// chunkBuffer = 0;
-		
 		// toolMatThaumium = EnumHelper.addToolMaterial((String) "THAUMIUM",
 		// (int) 3, (int) 400, (float) 7.0f, (int) 2, (int) 22);
 		// toolMatVoid = EnumHelper.addToolMaterial((String) "VOID", (int) 3,
@@ -113,7 +101,6 @@ public class AuraTicker
 		BIOME_EXTREMEAURA.add(Biomes.JUNGLE);
 		BIOME_EXTREMEAURA.add(Biomes.JUNGLE_HILLS);
 		BIOME_HIGHAURATAINTED.add(Biomes.SWAMPLAND);
-		// BIOME_MAGIC.add(Biomes.MAXGROUPCOUNT);
 		BIOME_MAGIC.add(Biomes.MUSHROOM_ISLAND);
 		BIOME_MAGIC.add(Biomes.MUSHROOM_ISLAND_SHORE);
 		BIOME_MAGIC.add(Biomes.JUNGLE);
@@ -121,8 +108,6 @@ public class AuraTicker
 		BIOME_AIR.add(Biomes.DESERT);
 		BIOME_AIR.add(Biomes.EXTREME_HILLS);
 		BIOME_AIR.add(Biomes.ICE_MOUNTAINS);
-		// BIOME_AIR.add(Biomes.MAXGROUPCOUNT);
-		// BIOME_WATER.add(Biomes.MINGROUPCOUNT);
 		BIOME_WATER.add(Biomes.FROZEN_OCEAN);
 		BIOME_WATER.add(Biomes.RIVER);
 		BIOME_WATER.add(Biomes.ICE_PLAINS);
@@ -133,6 +118,8 @@ public class AuraTicker
 		BIOME_EARTH.add(Biomes.FOREST);
 		BIOME_EARTH.add(Biomes.ICE_MOUNTAINS);
 		BIOME_EARTH.add(Biomes.JUNGLE);
+		BIOME_EARTH.add(Biomes.PLAINS);
+		BIOME_EARTH.add(Biomes.JUNGLE_EDGE);
 		BIOME_EARTH.add(Biomes.JUNGLE_HILLS);
 		BIOME_FIRE.add(Biomes.DESERT);
 		BIOME_FIRE.add(Biomes.HELL);
@@ -148,7 +135,6 @@ public class AuraTicker
 		BIOME_SILVERWOOD.add(Biomes.JUNGLE_HILLS);
 		BIOME_GREATWOOD.add(Biomes.TAIGA);
 		BIOME_GREATWOOD.add(Biomes.FOREST);
-		// BIOME_GREATWOOD.add(Biomes.MAXGROUPCOUNT);
 		BIOME_FIREFLOWER.add(Biomes.DESERT);
 		BIOME_FIREFLOWER.add(Biomes.MESA);
 		BIOME_FIREFLOWER.add(Biomes.DESERT_HILLS);
@@ -431,7 +417,7 @@ public class AuraTicker
 					nc.taint -= val;
 				}
 				
-				if(world.rand.nextInt(3) == 0)
+				if(world.rand.nextInt(5) == 0)
 					equalizeRadiation(ac2, nc);
 				
 				if(nc.boost <= ac2.boost || nc.boost <= 50 || ac2.boost >= 100)
@@ -441,11 +427,11 @@ public class AuraTicker
 				nc.boost--;
 			}
 			
-			ac2.vis = (short) MathHelper.clip(ac2.vis, 0, LTConfigs.aura_max);
-			ac2.taint = (short) MathHelper.clip(ac2.taint, 0, LTConfigs.aura_max);
-			ac2.goodVibes = (short) MathHelper.clip(ac2.goodVibes, 0, 100);
-			ac2.badVibes = (short) MathHelper.clip(ac2.badVibes, 0, 100);
-			ac2.radiation = (float) MathHelper.clip(ac2.radiation, 0, LTConfigs.aura_radMax);
+			ac2.vis = (short) MathHelper.clip(Math.abs(ac2.vis), 0, LTConfigs.aura_max);
+			ac2.taint = (short) MathHelper.clip(Math.abs(ac2.taint), 0, LTConfigs.aura_max);
+			ac2.goodVibes = (short) MathHelper.clip(Math.abs(ac2.goodVibes), 0, 100);
+			ac2.badVibes = (short) MathHelper.clip(Math.abs(ac2.badVibes), 0, 100);
+			ac2.radiation = (float) MathHelper.clip(Math.abs(ac2.radiation), 0, LTConfigs.aura_radMax);
 			
 			if(shouldBeTainted(ac2))
 				taintifyChunk(world, ac2);
@@ -473,11 +459,11 @@ public class AuraTicker
 					{
 						float eatFact = maxEat / eat;
 						
-						ac2.vis -= visDrain * eatFact * 6.666;
-						ac2.taint += taintAccept * eatFact * 6.666;
+						ac2.vis -= visDrain * eatFact * 66.666;
+						ac2.taint += taintAccept * eatFact * 66.666;
 						ac2.badVibes = 100;
 						
-						ac2.radiation -= .0001F;
+						ac2.radiation -= .1F;
 					}
 				}
 			}

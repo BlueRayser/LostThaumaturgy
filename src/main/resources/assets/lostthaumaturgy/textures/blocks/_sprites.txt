@@ -16,6 +16,13 @@ crucibles/thaumium/crucible_side_connected_on
 crucibles/thaumium/crucible_side_disconnected_off
 crucibles/thaumium/crucible_side_disconnected_on
 crucibles/thaumium/crucible_top
+crucibles/void/crucible_bottom
+crucibles/void/crucible_inner
+crucibles/void/crucible_side_connected_off
+crucibles/void/crucible_side_connected_on
+crucibles/void/crucible_side_disconnected_off
+crucibles/void/crucible_side_disconnected_on
+crucibles/void/crucible_top
 crucibles/crucible_bottom
 crucibles/crucible_inner
 crucibles/crucible_side_connected

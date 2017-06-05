@@ -36,9 +36,10 @@ import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
 import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
-import com.pengu.lostthaumaturgy.tile.TileCrucibleThaumium;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 
-public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<TileCrucibleThaumium>, ITileEntityProvider
+public class BlockCrucibleVoid extends BlockRendered implements ITileBlock<TileCrucibleVoid>, ITileEntityProvider
 {
 	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
@@ -46,11 +47,11 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 	protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 	
-	public BlockCrucibleThaumium()
+	public BlockCrucibleVoid()
 	{
 		super(Material.IRON);
 		setSoundType(SoundType.METAL);
-		setUnlocalizedName("crucible_thaumium");
+		setUnlocalizedName("crucible_void");
 		setHardness(3);
 		setResistance(17);
 	}
@@ -58,13 +59,13 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		return new TileCrucibleThaumium();
+		return new TileCrucibleVoid();
 	}
 	
 	@Override
-	public Class<TileCrucibleThaumium> getTileClass()
+	public Class<TileCrucibleVoid> getTileClass()
 	{
-		return TileCrucibleThaumium.class;
+		return TileCrucibleVoid.class;
 	}
 	
 	@Override
@@ -90,7 +91,7 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 	
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if(entityIn.ticksExisted % 5 == 0 && !(entityIn instanceof EntityItem))
+		if(entityIn.ticksExisted % 3 == 0 && !(entityIn instanceof EntityItem))
 		{
 			if(!worldIn.isRemote)
 			{
@@ -103,7 +104,7 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 						if(entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getGameProfile().getName().equals("APengu"))
 						{
 							tc.pureVis += Math.min(maxAccept, 1);
-							if(worldIn.rand.nextInt(5) == 0)
+							if(worldIn.rand.nextInt(10) == 0)
 								HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":creaking", pos, .4F, 1.5F, SoundCategory.BLOCKS);
 						} else
 						{
@@ -158,8 +159,8 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 	@Override
 	public String getParticleSprite(World world, BlockPos pos)
 	{
-		TileCrucibleThaumium eyes = WorldUtil.cast(world.getTileEntity(pos), TileCrucibleThaumium.class);
-		return LTInfo.MOD_ID + ":blocks/crucibles/thaumium/crucible_side_connected_" + (eyes != null && eyes.emitsPower() ? "on" : "off");
+		TileCrucibleVoid eyes = WorldUtil.cast(world.getTileEntity(pos), TileCrucibleVoid.class);
+		return LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_side_connected_" + (eyes != null && eyes.emitsPower() ? "on" : "off");
 	}
 	
 	@Override
@@ -171,7 +172,7 @@ public class BlockCrucibleThaumium extends BlockRendered implements ITileBlock<T
 	@Override
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
-		TileCrucibleThaumium eyes = WorldUtil.cast(blockAccess.getTileEntity(pos), TileCrucibleThaumium.class);
+		TileCrucibleVoid eyes = WorldUtil.cast(blockAccess.getTileEntity(pos), TileCrucibleVoid.class);
 		if(eyes != null)
 			return eyes.emitsPower() ? 15 : 0;
 		return 0;

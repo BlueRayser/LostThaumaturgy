@@ -50,6 +50,7 @@ public class BlockTotem extends Block
 					si.badVibes--;
 				else
 					si.goodVibes++;
+				si.vis += random.nextInt(4);
 				HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, .8F, 6), new TargetPoint(worldIn.provider.getDimension(), pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, 48));
 			} else
 			{
@@ -57,6 +58,7 @@ public class BlockTotem extends Block
 					si.goodVibes--;
 				else
 					si.badVibes++;
+				si.taint += random.nextInt(4);
 			}
 		}
 	}

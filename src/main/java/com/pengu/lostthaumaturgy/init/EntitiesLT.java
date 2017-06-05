@@ -14,6 +14,7 @@ import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.entity.EntityWisp;
 
 public class EntitiesLT
 {
@@ -24,6 +25,7 @@ public class EntitiesLT
 		reg(EntityCustomSplashPotion.class, "custom_splash_potion");
 		reg(EntityTravelingTrunk.class, "traveling_trunk");
 		reg(EntitySingularity.class, "singularity");
+		reg(EntityWisp.class, "wisp", 0xBD83F7, 0x5A0E57);
 		
 		EntitySpawnPlacementRegistry.setPlacementType(EntitySmartZombie.class, SpawnPlacementType.ON_GROUND);
 		EntitySpawnPlacementRegistry.setPlacementType(EntityThaumSlime.class, SpawnPlacementType.ON_GROUND);

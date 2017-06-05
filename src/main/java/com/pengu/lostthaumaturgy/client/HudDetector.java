@@ -127,7 +127,7 @@ public class HudDetector extends Gui
 			String dvis = "" + aura.vis + " V";
 			String dtaint = "" + aura.taint + " T";
 			
-			this.fontRenderer.drawString(radFormat.format(aura.radiation) + " Rad", 6, l - 34, 0xCCCCEE);
+			this.fontRenderer.drawString(radFormat.format(aura.radiation) + " R", 6, l - 34, 0xCCCCEE);
 			this.fontRenderer.drawString(dvis, 6, l - 24, 15650030);
 			this.fontRenderer.drawString(dtaint, 6, l - 14, 10057625);
 			dvis = "" + aura.goodVibes + "%";

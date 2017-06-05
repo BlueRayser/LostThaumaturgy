@@ -108,7 +108,8 @@ public class InfuserLT
 		RecipesInfuser.addDarkInfusing(new ItemStack(ItemsLT.CONCENTRATED_EVIL), 75, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONCENTRATED_EVIL), new ItemStack(Blocks.STONE_SLAB), new ItemStack(Blocks.SOUL_SAND), EnumMultiMaterialType.TAINTED_CRYSTAL.stack());
 		RecipesInfuser.addDarkInfusing(EnumMultiMaterialType.VOID_INGOT.stack(), 24, RecipesInfuser.createPredicateFromResearches(ResearchesLT.VOID_INGOT), EnumMultiMaterialType.DARKNESS_SEED.stack(), EnumMultiMaterialType.QUICKSILVER.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.TOTEM_TWILIGHT), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.TOTEM_TWILIGHT), EnumMultiMaterialType.ALUMENTUM.stack(), EnumMultiMaterialType.TAINTED_CRYSTAL.stack(), new ItemStack(BlocksLT.TAINTED_LOG));
-		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.PENGU_COBBLEGEN), 99, new Predicate<IInfuser>()
+		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.CRUCIBLE_VOID), 100, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_VOID), new ItemStack(BlocksLT.CRUCIBLE_THAUMIUM), EnumMultiMaterialType.VOID_INGOT.stack(), EnumMultiMaterialType.VOID_INGOT.stack());
+		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.PENGU_COBBLEGEN), 100, new Predicate<IInfuser>()
 		{
 			@Override
 			public boolean apply(IInfuser input)

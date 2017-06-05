@@ -1,9 +1,14 @@
 package com.pengu.lostthaumaturgy.proxy;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.annotation.Nonnull;
+import javax.imageio.ImageIO;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -46,6 +51,7 @@ import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
+import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityWisp;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderSingularity;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderTravelingTrunk;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
@@ -58,6 +64,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucible;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleEyes;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleThaumium;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleVoid;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
@@ -92,9 +99,9 @@ import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
@@ -104,6 +111,7 @@ import com.pengu.lostthaumaturgy.tile.TileConduit;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
 import com.pengu.lostthaumaturgy.tile.TileCrucibleThaumium;
+import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.tile.TileDuplicator;
@@ -145,6 +153,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustomSplashPotion.class, RenderCustomSplashPotion.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTravelingTrunk.class, RenderTravelingTrunk.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntitySingularity.class, RenderSingularity.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, RenderEntityWisp.FACTORY);
 	}
 	
 	@Override
@@ -162,6 +171,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileCrucible.class, BlocksLT.CRUCIBLE, TESRCrucible.INSTANCE);
 		registerRender(TileCrucibleEyes.class, BlocksLT.CRUCIBLE_EYES, TESRCrucibleEyes.INSTANCE);
 		registerRender(TileCrucibleThaumium.class, BlocksLT.CRUCIBLE_THAUMIUM, TESRCrucibleThaumium.INSTANCE);
+		registerRender(TileCrucibleVoid.class, BlocksLT.CRUCIBLE_VOID, TESRCrucibleVoid.INSTANCE);
 		registerRender(TileConduit.class, BlocksLT.CONDUIT, TESRConduit.INSTANCE);
 		registerRender(TilePressurizedConduit.class, BlocksLT.PRESSURIZED_CONDUIT, TESRPressurizedConduit.INSTANCE);
 		registerRender(TileVisTank.class, BlocksLT.VIS_TANK, TESRVisTank.INSTANCE);
@@ -219,6 +229,28 @@ public class ClientProxy extends CommonProxy
 		return s != null ? s : m.getMissingSprite();
 	}
 	
+	private static Map<String, Integer> mapSprites = new HashMap<>();
+	
+	public static int getTexSize(String sprite, int div)
+	{
+		if(mapSprites.get(sprite + ":" + div) != null)
+			return mapSprites.get(sprite + ":" + div).intValue();
+		
+		try
+		{
+			InputStream inputstream = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(sprite)).getInputStream();
+			if(inputstream == null)
+				throw new Exception("Image not found: " + sprite);
+			BufferedImage bi = ImageIO.read(inputstream);
+			int size = bi.getWidth() / div;
+			mapSprites.put(sprite + ":" + div, size);
+			return size;
+		} catch(Exception e)
+		{
+			return 16;
+		}
+	}
+	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void registerResearch(ResearchRegisterEvent.OnClient evt)
 	{
@@ -236,6 +268,8 @@ public class ClientProxy extends CommonProxy
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void reloadTextrues(TextureStitchEvent evt)
 	{
+		mapSprites.clear();
+		
 		try
 		{
 			int sprite = 0;
@@ -275,18 +309,19 @@ public class ClientProxy extends CommonProxy
 		dtaint = false;
 		drad = false;
 		
-		for(ItemStack stack : Minecraft.getMinecraft().player.inventory.mainInventory)
-		{
-			if(stack.getItem() == ItemsLT.AURA_DETECTOR)
+		if(Minecraft.getMinecraft().player != null)
+			for(ItemStack stack : Minecraft.getMinecraft().player.inventory.mainInventory)
 			{
-				if(stack.getItemDamage() == 0 || stack.getItemDamage() == 3)
-					dvis = true;
-				if(stack.getItemDamage() == 1 || stack.getItemDamage() == 3)
-					dtaint = true;
-				if(stack.getItemDamage() == 2 || stack.getItemDamage() == 3)
-					drad = true;
+				if(stack.getItem() == ItemsLT.AURA_DETECTOR)
+				{
+					if(stack.getItemDamage() == 0 || stack.getItemDamage() == 3)
+						dvis = true;
+					if(stack.getItemDamage() == 1 || stack.getItemDamage() == 3)
+						dtaint = true;
+					if(stack.getItemDamage() == 2 || stack.getItemDamage() == 3)
+						drad = true;
+				}
 			}
-		}
 	}
 	
 	private ItemStack[] handStacks = new ItemStack[2];
@@ -304,8 +339,7 @@ public class ClientProxy extends CommonProxy
 			{
 				int t = goggles.getRevealType();
 				HudDetector.instance.render(t == 0 || t == 2 || t == 3, t == 1 || t == 2 || t == 3, t == 2 || t == 3, ClientSIAuraChunk.getClientChunk(), true);
-			}
-			else
+			} else
 			{
 				if(dvis || dtaint || drad)
 					HudDetector.instance.render(dvis, dtaint, drad, ClientSIAuraChunk.getClientChunk(), false);

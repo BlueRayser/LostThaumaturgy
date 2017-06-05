@@ -65,6 +65,8 @@ public class BlockExtraRoom extends BlockRendered implements ITileBlock<TileExtr
 		
 		if(key && !worldIn.isRemote)
 		{
+			playerIn.getHeldItem(hand).shrink(1);
+			
 			EnumFacing f = EnumFacing.VALUES[tile.orientation.get()];
 			BlockPos center = pos.offset(f, 7);
 			
