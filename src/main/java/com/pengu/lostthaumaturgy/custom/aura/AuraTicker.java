@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -41,10 +42,12 @@ import com.mrdimka.hammercore.annotations.MCFBus;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.utils.ChunkUtils;
 import com.pengu.hammercore.utils.RoundRobinList;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.api.event.AuraEvent;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.api.AuraAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
@@ -153,7 +156,7 @@ public class AuraTicker
 		BIOME_FIREFLOWER.add(Biomes.MESA_ROCK);
 	}
 	
-	public short margin = (short) ((float) LTConfigs.auraMax / 7.5f);
+	public short margin = (short) ((float) LTConfigs.aura_max / 7.5f);
 	
 	public static HashMap<String, SIAuraChunk> AuraHM = new HashMap<>();
 	public static ArrayList<Long> Monoliths = new ArrayList<Long>();
@@ -260,8 +263,9 @@ public class AuraTicker
 					HCNetwork.manager.sendTo(ResearchSystem.getPacketFor(mp), mp);
 				}
 			}
+		} catch(Throwable err)
+		{
 		}
-		catch(Throwable err) {}
 	}
 	
 	public static int getCrystalByBiome(World world, BlockPos pos, int darkAmount)
@@ -323,6 +327,11 @@ public class AuraTicker
 		return chunk;
 	}
 	
+	public static SIAuraChunk getAuraChunkFromChunkCoords_NoGen(World world, int chunkX, int chunkZ)
+	{
+		return AuraHM.get(asKey(chunkX, chunkZ, world.provider.getDimension()));
+	}
+	
 	public void updateAura(World world) throws ConcurrentModificationException
 	{
 		if(world.isRemote)
@@ -333,14 +342,19 @@ public class AuraTicker
 		int counter = AuraHM.size() / 50;
 		for(SIAuraChunk ac2 : c)
 		{
-			if(ac2.updated || ac2.dimension != world.provider.getDimension() && !world.isBlockLoaded(new BlockPos(ac2.x * 16, 127, ac2.z * 16)))
+			if(ac2.updated || ac2.dimension != world.provider.getDimension() && !world.isBlockLoaded(ChunkUtils.getChunkPos(ac2.x, ac2.z, 8, 128, 8)))
 				continue;
+			
+			MinecraftForge.EVENT_BUS.post(new AuraEvent.Update(ac2, world));
+			
+			ac2.previousVis = ac2.vis;
+			ac2.previousTaint = ac2.taint;
+			ac2.previousRadiation = ac2.radiation;
 			
 			AuraAttachments.attach(ac2);
 			noupdates = false;
 			ac2.updated = true;
-			ac2.previousVis = ac2.vis;
-			ac2.previousTaint = ac2.taint;
+			
 			if(ac2.goodVibes > 100)
 				ac2.goodVibes = 100;
 			if(ac2.badVibes > 100)
@@ -361,13 +375,13 @@ public class AuraTicker
 			if(world.rand.nextInt(100) < ac2.goodVibes && ac2.goodVibes > 0)
 			{
 				ac2.vis = (short) (ac2.vis + 1);
-				ac2.goodVibes = (short) (ac2.goodVibes - Math.max(1, ac2.vis / (LTConfigs.auraMax / 10)));
+				ac2.goodVibes = (short) (ac2.goodVibes - Math.max(1, ac2.vis / (LTConfigs.aura_max / 10)));
 			}
 			
 			if(world.rand.nextInt(100) < ac2.badVibes && ac2.badVibes > 0)
 			{
 				ac2.taint = (short) (ac2.taint + 1);
-				ac2.badVibes = (short) (ac2.badVibes - Math.max(1, ac2.taint / (LTConfigs.auraMax / 10)));
+				ac2.badVibes = (short) (ac2.badVibes - Math.max(1, ac2.taint / (LTConfigs.aura_max / 10)));
 			}
 			
 			for(int a = 0; a < 4; ++a)
@@ -397,38 +411,83 @@ public class AuraTicker
 					--auraZ;
 				}
 				}
-				SIAuraChunk nc = AuraHM.get(asKey(auraX, auraZ, world.provider.getDimension()));
+				
+				SIAuraChunk nc = getAuraChunkFromChunkCoords_NoGen(world, auraX, auraZ);
+				
 				if(nc == null)
 					continue;
-				if(nc.vis > ac2.vis + this.margin && ac2.vis < LTConfigs.auraMax && nc.vis > 0)
+				
+				if(nc.vis > ac2.vis + this.margin && ac2.vis < LTConfigs.aura_max && nc.vis > 0)
 				{
-					val = (int) Math.max(1.0f, (float) (nc.vis - ac2.vis) / (float) LTConfigs.auraMax * 10.0f);
-					ac2.vis = (short) (ac2.vis + val);
-					nc.vis = (short) (nc.vis - val);
+					val = (int) Math.max(1, (float) (nc.vis - ac2.vis) / (float) LTConfigs.aura_max * 10F);
+					ac2.vis += val;
+					nc.vis -= val;
 				}
-				if((float) nc.taint > (float) ac2.taint + (float) this.margin * 0.75f && ac2.taint < LTConfigs.auraMax && nc.taint > 0)
+				
+				if((float) nc.taint > (float) ac2.taint + (float) this.margin * 0.75f && ac2.taint < LTConfigs.aura_max && nc.taint > 0)
 				{
-					val = (int) Math.max(1.0f, (float) (nc.taint - ac2.taint) / (float) LTConfigs.auraMax * 10.0f);
-					ac2.taint = (short) (ac2.taint + val);
-					nc.taint = (short) (nc.taint - val);
+					val = (int) Math.max(1, (float) (nc.taint - ac2.taint) / (float) LTConfigs.aura_max * 10F);
+					ac2.taint += val;
+					nc.taint -= val;
 				}
+				
+				if(world.rand.nextInt(3) == 0)
+					equalizeRadiation(ac2, nc);
+				
 				if(nc.boost <= ac2.boost || nc.boost <= 50 || ac2.boost >= 100)
 					continue;
-				ac2.boost = (short) (ac2.boost + 1);
-				nc.boost = (short) (nc.boost - 1);
+				
+				ac2.boost++;
+				nc.boost--;
 			}
-			ac2.vis = (short) MathHelper.clip((int) ac2.vis, (int) 0, (int) LTConfigs.auraMax);
-			ac2.taint = (short) MathHelper.clip((int) ac2.taint, (int) 0, (int) LTConfigs.auraMax);
-			ac2.goodVibes = (short) MathHelper.clip((int) ac2.goodVibes, (int) 0, (int) 100);
-			ac2.badVibes = (short) MathHelper.clip((int) ac2.badVibes, (int) 0, (int) 100);
+			
+			ac2.vis = (short) MathHelper.clip(ac2.vis, 0, LTConfigs.aura_max);
+			ac2.taint = (short) MathHelper.clip(ac2.taint, 0, LTConfigs.aura_max);
+			ac2.goodVibes = (short) MathHelper.clip(ac2.goodVibes, 0, 100);
+			ac2.badVibes = (short) MathHelper.clip(ac2.badVibes, 0, 100);
+			ac2.radiation = (float) MathHelper.clip(ac2.radiation, 0, LTConfigs.aura_radMax);
+			
 			if(shouldBeTainted(ac2))
 				taintifyChunk(world, ac2);
 			else
 				purifyChunk(world, ac2);
+			
+			{
+				float rad = ac2.radiation;
+				if(rad - (LTConfigs.aura_radMax / 2F + LTConfigs.aura_radMax / 12F) >= .0001F)
+				{
+					float maxEat = (rad - (LTConfigs.aura_radMax / 2F + LTConfigs.aura_radMax / 12F)) * (1000F / 3F);
+					float eat = 0F;
+					
+					short vibes = ac2.badVibes;
+					short taint = ac2.taint;
+					short vis = ac2.vis;
+					
+					short taintAccept = (short) MathHelper.clip(LTConfigs.aura_max - taint, 0, 100);
+					short visDrain = (short) MathHelper.clip(vis, 0, 100);
+					
+					eat += ((ac2.badVibes = 100) - vibes) * 100;
+					eat += taintAccept + visDrain;
+					
+					if(eat > 0F)
+					{
+						float eatFact = maxEat / eat;
+						
+						ac2.vis -= visDrain * eatFact * 6.666;
+						ac2.taint += taintAccept * eatFact * 6.666;
+						ac2.badVibes = 100;
+						
+						ac2.radiation -= .0001F;
+					}
+				}
+			}
+			
 			if(--counter > 0)
 				continue;
+			
 			break;
 		}
+		
 		if(noupdates && AuraHM.size() > 0)
 		{
 			for(SIAuraChunk ac2 : c)
@@ -440,47 +499,66 @@ public class AuraTicker
 		}
 	}
 	
+	public static void equalizeRadiation(SIAuraChunk a, SIAuraChunk b)
+	{
+		float diff = Math.abs(a.radiation - b.radiation);
+		float maxShare = .0001F;
+		
+		if(diff >= maxShare)
+		{
+			if(a.radiation > b.radiation)
+			{
+				a.radiation -= maxShare;
+				b.radiation += maxShare;
+			} else if(b.radiation > a.radiation)
+			{
+				b.radiation -= maxShare;
+				a.radiation += maxShare;
+			}
+		}
+	}
+	
 	public static boolean shouldBeTainted(SIAuraChunk ac)
 	{
-		return ac.taint > LTConfigs.auraMax / 2;
+		return ac.taint > LTConfigs.aura_max / 2;
 	}
 	
 	public static void GenerateAura(World world, Random random, int x, int z)
 	{
 		int tchance;
-		int upper = LTConfigs.auraMax / 3;
-		int lower = LTConfigs.auraMax / 5;
+		int upper = LTConfigs.aura_max / 3;
+		int lower = LTConfigs.aura_max / 5;
 		boolean extraTaint = false;
 		Biome bio = world.getBiomeProvider().getBiome(new BlockPos(x, 0, z));
 		
 		if(BIOME_LOWAURA.contains(bio))
 		{
-			upper = LTConfigs.auraMax / 8;
-			lower = LTConfigs.auraMax / 20;
+			upper = LTConfigs.aura_max / 8;
+			lower = LTConfigs.aura_max / 20;
 			if(bio == Biomes.HELL)
 				extraTaint = true;
 		} else if(BIOME_HIGHAURA.contains(bio))
 		{
-			upper = (int) ((float) LTConfigs.auraMax * 0.6f);
-			lower = LTConfigs.auraMax / 3;
+			upper = (int) ((float) LTConfigs.aura_max * 0.6f);
+			lower = LTConfigs.aura_max / 3;
 		} else if(BIOME_EXTREMEAURA.contains(bio))
 		{
-			upper = (int) ((float) LTConfigs.auraMax * 0.7f);
-			lower = LTConfigs.auraMax / 2;
+			upper = (int) ((float) LTConfigs.aura_max * 0.7f);
+			lower = LTConfigs.aura_max / 2;
 		} else if(BIOME_HIGHAURATAINTED.contains(bio))
 		{
-			upper = (int) ((float) LTConfigs.auraMax * 0.5f);
-			lower = LTConfigs.auraMax / 3;
+			upper = (int) ((float) LTConfigs.aura_max * 0.5f);
+			lower = LTConfigs.aura_max / 3;
 			extraTaint = true;
 		}
 		
 		short auraStrength = (short) (lower + random.nextInt(upper - lower));
 		short auraTaint = (short) (auraStrength / 3);
-		int n = tchance = LTConfigs.taintSpawn == 2 ? 300 : 2200;
-		if(LTConfigs.taintSpawn > 0 && random.nextInt(n) == 0)
+		int n = tchance = LTConfigs.taint_spawn == 2 ? 300 : 2200;
+		if(LTConfigs.taint_spawn > 0 && random.nextInt(n) == 0)
 		{
 			auraStrength = (short) ((lower + random.nextInt(upper - lower)) / 2);
-			auraTaint = LTConfigs.taintSpawn == 2 ? (short) ((float) LTConfigs.auraMax * 0.8f + (float) random.nextInt((int) ((float) LTConfigs.auraMax * 0.2f))) : (short) ((float) LTConfigs.auraMax * 0.5f + (float) random.nextInt((int) ((float) LTConfigs.auraMax * 0.2f)));
+			auraTaint = LTConfigs.taint_spawn == 2 ? (short) ((float) LTConfigs.aura_max * 0.8f + (float) random.nextInt((int) ((float) LTConfigs.aura_max * 0.2f))) : (short) ((float) LTConfigs.aura_max * 0.5f + (float) random.nextInt((int) ((float) LTConfigs.aura_max * 0.2f)));
 			GenerateTaintedArea(world, random, x - 8, z - 8, auraTaint);
 		}
 		if(extraTaint)
@@ -491,6 +569,8 @@ public class AuraTicker
 		ac.x = x;
 		ac.z = z;
 		ac.dimension = world.provider.getDimension();
+		ac.radiation = LTConfigs.aura_radMax / 2F;
+		MinecraftForge.EVENT_BUS.post(new AuraEvent.Generate(ac, world, random));
 		AddAuraToList(ac);
 	}
 	

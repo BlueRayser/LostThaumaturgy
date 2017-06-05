@@ -266,25 +266,25 @@ public class ClientProxy extends CommonProxy
 				}
 	}
 	
+	public static boolean dvis, dtaint, drad;
+	
 	@SubscribeEvent
 	public void clientTick(ClientTickEvent evt)
 	{
-		if(Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.getTotalWorldTime() % 5 == 0)
+		dvis = false;
+		dtaint = false;
+		drad = false;
+		
+		for(ItemStack stack : Minecraft.getMinecraft().player.inventory.mainInventory)
 		{
-			ItemAuraDetector.type = -1;
-			
-			for(ItemStack stack : Minecraft.getMinecraft().player.inventory.mainInventory)
+			if(stack.getItem() == ItemsLT.AURA_DETECTOR)
 			{
-				if(stack.getItem() == ItemsLT.AURA_DETECTOR)
-				{
-					int type = stack.getItemDamage();
-					if(type == -1)
-					{
-						int dmg = stack.getItemDamage();
-						type = dmg;
-					} else if(type != 2 && (stack.getItemDamage() == 2 || stack.getItemDamage() + type == 1))
-						type = 2;
-				}
+				if(stack.getItemDamage() == 0 || stack.getItemDamage() == 3)
+					dvis = true;
+				if(stack.getItemDamage() == 1 || stack.getItemDamage() == 3)
+					dtaint = true;
+				if(stack.getItemDamage() == 2 || stack.getItemDamage() == 3)
+					drad = true;
 			}
 		}
 	}
@@ -301,12 +301,14 @@ public class ClientProxy extends CommonProxy
 		{
 			IGoggles goggles = ItemGogglesRevealing.getWearing(mc.player);
 			if(goggles != null)
-				HudDetector.instance.render(goggles.getRevealType(), ClientSIAuraChunk.getClientChunk(), true);
+			{
+				int t = goggles.getRevealType();
+				HudDetector.instance.render(t == 0 || t == 2 || t == 3, t == 1 || t == 2 || t == 3, t == 2 || t == 3, ClientSIAuraChunk.getClientChunk(), true);
+			}
 			else
 			{
-				int type = ItemAuraDetector.type;
-				if(type >= 0)
-					HudDetector.instance.render(type, ClientSIAuraChunk.getClientChunk(), false);
+				if(dvis || dtaint || drad)
+					HudDetector.instance.render(dvis, dtaint, drad, ClientSIAuraChunk.getClientChunk(), false);
 			}
 			
 			ScaledResolution sr = new ScaledResolution(mc);

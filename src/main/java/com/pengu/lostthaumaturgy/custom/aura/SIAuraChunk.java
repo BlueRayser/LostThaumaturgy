@@ -30,6 +30,8 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 	public int dimension;
 	public short monolithVibes;
 	public short monolithVibeCap = 0;
+	public float radiation = 6.001F;
+	public float previousRadiation = radiation;
 	
 	public List<byte[]> getVar(String name)
 	{
@@ -54,6 +56,8 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 		nbt.setInteger("z", z);
 		nbt.setBoolean("updated", updated);
 		nbt.setInteger("dimension", dimension);
+		nbt.setFloat("radiation", radiation);
+		nbt.setFloat("previousRadiation", previousRadiation);
 		
 		NBTTagList list = new NBTTagList();
 		
@@ -87,6 +91,8 @@ public class SIAuraChunk implements Serializable, INBTSerializable<NBTTagCompoun
 		z = nbt.getInteger("z");
 		updated = nbt.getBoolean("updated");
 		dimension = nbt.getInteger("dimension");
+		radiation = nbt.getFloat("radiation");
+		previousRadiation = nbt.getFloat("previousRadiation");
 		
 		NBTTagList list = nbt.getTagList("Variables", NBT.TAG_COMPOUND);
 		

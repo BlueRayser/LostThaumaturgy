@@ -167,7 +167,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 					ore.crystals.set((short) (ore.crystals.get() + 1));
 				else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
 					ore.crystals.set((short) (ore.crystals.get() + 1));
-				if(ac.taint < LTConfigs.auraMax / 10)
+				if(ac.taint < LTConfigs.aura_max / 10)
 					ac.badVibes += random.nextInt(q2);
 				world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 3);
 			} else
@@ -176,7 +176,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 					ore.crystals.set((short) (ore.crystals.get() + 1));
 				else if(q2 < 3 && random.nextInt(q2 * 150) == 0)
 					ore.crystals.set((short) (ore.crystals.get() + 1));
-				if(ac.vis < LTConfigs.auraMax / 10)
+				if(ac.vis < LTConfigs.aura_max / 10)
 					ac.goodVibes += random.nextInt(q2);
 				world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 3);
 			}

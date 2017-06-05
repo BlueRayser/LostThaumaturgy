@@ -99,6 +99,9 @@ public class TileDuplicator extends TileVisUser implements IUpgradable
 		{
 			if(ac != null)
 				ac.badVibes = (short) ((float) ac.badVibes + Math.max(1.0f, currentItemCopyCost / 20.0f));
+			
+			ac.radiation += .0004F * currentItemCopyCost / 5F;
+			
 			addProcessedItem();
 			doPress = true;
 			duplicatorCopyTime = 0;

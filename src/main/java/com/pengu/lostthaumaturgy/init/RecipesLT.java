@@ -55,7 +55,7 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_CHESTPLATE, "t t", "ttt", "ttt", 't', "ingotVoid"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_LEGGINGS, "ttt", "t t", "t t", 't', "ingotVoid"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_BOOTS, "t t", "t t", 't', "ingotVoid"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.GOGGLES_OF_REVEALING, "tgt", "lll", 't', new ItemStack(ItemsLT.AURA_DETECTOR, 1, 2), 'g', "ingotGold", 'l', "leather"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.GOGGLES_OF_REVEALING, "tgt", "lll", 't', new ItemStack(ItemsLT.AURA_DETECTOR, 1, 3), 'g', "ingotGold", 'l', "leather"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.INERT_CARPET.stack(), "gfg", "fff", "gfg", 'g', "ingotGold", 'f', EnumMultiMaterialType.ENCHANTED_FABRIC.stack()));
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);

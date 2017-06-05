@@ -93,8 +93,9 @@ public class TileStudiumTable extends TileSyncableTickable
 					if(!world.isRemote)
 						paper.shrink(1);
 					outputFragment(r);
-					sync();
 				}
+				
+				sync();
 			}
 		} else if(researchProgress > 0F)
 			researchProgress = (float) MathHelper.clip(researchProgress - 0.01F, 0, 1);

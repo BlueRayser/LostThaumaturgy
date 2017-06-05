@@ -29,7 +29,7 @@ public class ItemGogglesRevealing extends ItemArmor implements IGoggles
 	@Override
 	public int getRevealType()
 	{
-		return 3;
+		return 2;
 	}
 	
 	@Override

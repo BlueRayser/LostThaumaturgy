@@ -139,8 +139,8 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		Block b = state.getBlock();
 		ResourceLocation reg = b.getRegistryName();
 		
-		if(LTConfigs.taintableBlocks != null)
-			for(String v : LTConfigs.taintableBlocks)
+		if(LTConfigs.taint_taintableBlocks != null)
+			for(String v : LTConfigs.taint_taintableBlocks)
 			{
 				ResourceLocation vr = new ResourceLocation(v);
 				if(vr.equals(reg))

@@ -48,6 +48,8 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 	{
 		super.tick();
 		
+		SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		
 		reversed = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.INFINITE_SADNESS));
 		
 		if(world.isRemote)
@@ -82,6 +84,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 					float add = suck * 150;
 					storedEnergy += Math.round(add);
 					emitPower = true;
+					si.radiation += .000001F;
 					
 					if(emitPower && world.rand.nextInt(9) == 0)
 						HCNetwork.getManager("particles").sendToAllAround(new PacketSpawnGeneratorZap(fromPos(pos), fromPos(pos)), getSyncPoint(64));
@@ -141,6 +144,8 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 						pureVis += gen / 2;
 						taintedVis += gen / 2;
 					}
+					
+					si.radiation += .000002F;
 					
 					emitPower = true;
 					
