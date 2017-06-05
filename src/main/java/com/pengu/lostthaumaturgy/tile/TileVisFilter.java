@@ -6,14 +6,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 
 import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.init.ItemsLT;
+import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
-public class TileVisFilter extends TileConduit
+public class TileVisFilter extends TileConduit implements IUpgradable
 {
 	public short taintedStore;
 	public short stack;
+	public int[] upgrades = { -1 };
 	
 	@Override
 	public void tick()
@@ -104,4 +108,20 @@ public class TileVisFilter extends TileConduit
 	{
 		return face.getAxis() != Axis.Y;
 	}
+
+	@Override
+    public int[] getUpgrades()
+    {
+	    return upgrades;
+    }
+
+	@Override
+    public boolean canAcceptUpgrade(int type)
+    {
+		if(type != ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_PURITY))
+			return false;
+		if(hasUpgrade(type))
+			return false;
+	    return true;
+    }
 }

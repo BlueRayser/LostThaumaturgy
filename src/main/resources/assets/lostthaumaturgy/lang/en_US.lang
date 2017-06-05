@@ -113,6 +113,7 @@ item.lostthaumaturgy:upgrades/contained_emptiness.name=Contained Emptiness
 item.lostthaumaturgy:upgrades/contained_emptiness.tooltip0=Increases capacity
 item.lostthaumaturgy:upgrades/collected_wisdom.name=Collected Wisdom
 item.lostthaumaturgy:upgrades/collected_wisdom.tooltip0=Increases mystical capacity or knowledge
+item.lostthaumaturgy:upgrades/concentrated_purity.name=Concentrated Purity
 item.lostthaumaturgy:wand_reversal.name=Wand of Reversal
 item.lostthaumaturgy:singularity.name=Arcane Singularity
 item.lostthaumaturgy:topaz.name=Topaz

@@ -45,5 +45,6 @@ public class ItemsLT
 	        CONCENTRATED_EVIL = new ItemUpgrade("concentrated_evil"), //
 	        INFINITE_SADNESS = new ItemUpgrade("infinite_saddness"), //
 	        CONTAINED_EMPTINESS = new ItemUpgrade("contained_emptiness"), //
-	        COLLECTED_WISDOM = new ItemUpgrade("collected_wisdom");
+	        COLLECTED_WISDOM = new ItemUpgrade("collected_wisdom"), //
+	        CONCENTRATED_PURITY = new ItemUpgrade("concentrated_purity");
 }
