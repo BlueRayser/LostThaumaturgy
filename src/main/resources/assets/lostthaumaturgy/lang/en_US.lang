@@ -175,6 +175,7 @@ item.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 item.lostthaumaturgy:inert_carpet.name=Inert Carpet
 item.lostthaumaturgy:vis_detector.name=Vis Detector
 item.lostthaumaturgy:taint_detector.name=Taint Detector
+item.lostthaumaturgy:radiation_detector.name=Radiation Detector
 item.lostthaumaturgy:thaumometer.name=Thaumometer
 
 
