@@ -16,6 +16,7 @@ import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 public class TileVisFilter extends TileConduit implements IUpgradable
 {
 	public short taintedStore;
+	public short visStore;
 	public short stack;
 	public int[] upgrades = { -1 };
 	
@@ -34,15 +35,18 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 		
 		calculateSuction();
 		
-		if(taintSuction < 15)
+		if(hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_PURITY)))
 		{
-			setTaintSuction(15);
+			if(visSuction < 15)
+				setVisSuction(15);
+		}else
+		{
+			if(taintSuction < 15)
+				setTaintSuction(15);
 		}
 		
 		if(getSuction(null) > 0)
-		{
 			equalizeWithNeighbours();
-		}
 		
 		if(displayPure != pureVis || displayTaint != taintedVis)
 		{
@@ -50,41 +54,76 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 			displayTaint = taintedVis;
 		}
 		
-		if(displayTaint + displayPure < 0.1f)
+		if(displayTaint + displayPure < .1F)
 		{
 			displayTaint = 0.0f;
 			displayPure = 0.0f;
 		}
 		
-		if(taintedStore < 40 + stack * 4 && taintedVis >= 0.025f)
+		if(hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_PURITY)))
 		{
-			taintedStore = (short) (taintedStore + 1);
-			taintedVis -= .025f;
-			stack = 0;
-			int up = 1;
-			TileEntity te = world.getTileEntity(pos.up(up));
 			
-			while(te != null && te instanceof TileVisFilter && pos.getY() + stack + up < world.getHeight())
+			if(visStore < 40 + stack * 4 && pureVis >= .025F)
 			{
-				stack = (short) (stack + 1);
-				up++;
-				te = world.getTileEntity(pos.up(up));
+				visStore = (short) (visStore + 1);
+				pureVis -= .025f;
+				stack = 0;
+				int up = 1;
+				TileEntity te = world.getTileEntity(pos.up(up));
+				
+				while(te != null && te instanceof TileVisFilter && pos.getY() + stack + up < world.getHeight())
+				{
+					stack = (short) (stack + 1);
+					up++;
+					te = world.getTileEntity(pos.up(up));
+				}
+				
+				if(visStore % 16 == 0)
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp2((float) getPos().getX() + 0.5f, (float) getPos().getY() + stack + .8F, (float) getPos().getZ() + 0.5f, (float) getPos().getX() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), (float) getPos().getY() + 3.0f + (float) stack + world.rand.nextFloat(), (float) getPos().getZ() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), 1.5F, world.rand.nextInt(5)), getSyncPoint(50));
 			}
 			
-			if(taintedStore % 16 == 0)
+			if(visStore > 0 && visStore >= 40 - stack)
 			{
-				PacketFXWisp2 ef = new PacketFXWisp2((float) getPos().getX() + 0.5f, (float) getPos().getY() + stack + .8F, (float) getPos().getZ() + 0.5f, (float) getPos().getX() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), (float) getPos().getY() + 3.0f + (float) stack + world.rand.nextFloat(), (float) getPos().getZ() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), 1.5f, 5);
-				HCNetwork.manager.sendToAllAround(ef, getSyncPoint(50));
+				SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				if(ac != null)
+				{
+					visStore = 0;
+					ac.vis++;
+				}
 			}
-		}
-		
-		if(taintedStore >= 40 + stack * 4)
+			
+		} else
 		{
-			SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
-			if(ac != null)
+			if(taintedStore < 40 + stack * 4 && taintedVis >= .025F)
 			{
-				taintedStore = 0;
-				ac.taint = (short) (ac.taint + 1);
+				taintedStore = (short) (taintedStore + 1);
+				taintedVis -= .025f;
+				stack = 0;
+				int up = 1;
+				TileEntity te = world.getTileEntity(pos.up(up));
+				
+				while(te != null && te instanceof TileVisFilter && pos.getY() + stack + up < world.getHeight())
+				{
+					stack = (short) (stack + 1);
+					up++;
+					te = world.getTileEntity(pos.up(up));
+				}
+				
+				if(taintedStore % 16 == 0)
+				{
+					PacketFXWisp2 ef = new PacketFXWisp2((float) getPos().getX() + 0.5f, (float) getPos().getY() + stack + .8F, (float) getPos().getZ() + 0.5f, (float) getPos().getX() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), (float) getPos().getY() + 3.0f + (float) stack + world.rand.nextFloat(), (float) getPos().getZ() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), 1.5F, 5);
+					HCNetwork.manager.sendToAllAround(ef, getSyncPoint(50));
+				}
+			}
+			
+			if(taintedStore >= 40 + stack * 4)
+			{
+				SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				if(ac != null)
+				{
+					taintedStore = 0;
+					ac.taint++;
+				}
 			}
 		}
 	}
@@ -108,20 +147,20 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 	{
 		return face.getAxis() != Axis.Y;
 	}
-
+	
 	@Override
-    public int[] getUpgrades()
-    {
-	    return upgrades;
-    }
-
+	public int[] getUpgrades()
+	{
+		return upgrades;
+	}
+	
 	@Override
-    public boolean canAcceptUpgrade(int type)
-    {
+	public boolean canAcceptUpgrade(int type)
+	{
 		if(type != ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_PURITY))
 			return false;
 		if(hasUpgrade(type))
 			return false;
-	    return true;
-    }
+		return true;
+	}
 }

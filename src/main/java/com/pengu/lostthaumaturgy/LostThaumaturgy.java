@@ -141,12 +141,14 @@ public class LostThaumaturgy
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent evt)
 	{
-		ProgressBar bar = ProgressManager.push("Registering mob spawns", 2);
+		ProgressBar bar = ProgressManager.push("Registering mob spawns", 3);
 		
 		bar.step("Smart Zombie");
 //		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 128);
 		bar.step("Thaum Slime");
 //		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 256);
+		bar.step("Wisp");
+		
 		
 		ProgressManager.pop(bar);
 	}
