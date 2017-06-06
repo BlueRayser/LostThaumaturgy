@@ -28,7 +28,10 @@ import com.mrdimka.hammercore.common.EnumRotation;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
+import com.pengu.lostthaumaturgy.api.seal.SealCombination;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
+import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITileBlock<TileSeal>
@@ -173,7 +176,34 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 				int[] rgb = stack.getTagCompound().getIntArray("RGB");
 				col = "#" + Integer.toHexString((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 			}
-			tooltip.add(I18n.translateToLocal(getUnlocalizedName() + ".desc").replaceAll("$col", col));
+			tooltip.add(I18n.translateToLocal(getUnlocalizedName() + ".desc").replace("$col", col.toUpperCase()));
 		}
+	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		TileSeal seal = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		if(seal != null)
+		{
+			ItemSealSymbol symbol = WorldUtil.cast(playerIn.getHeldItem(hand).getItem(), ItemSealSymbol.class);
+			boolean isSymbol = symbol != null;
+			
+			if(isSymbol && seal.getSymbol(2) == null)
+			{
+				if(seal.getSymbol(0) == null)
+					seal.setSymbol(0, symbol);
+				else if(seal.getSymbol(1) == null)
+					seal.setSymbol(1, symbol);
+				else
+					seal.setSymbol(2, symbol);
+				playerIn.getHeldItem(hand).shrink(1);
+			}else if(playerIn.getHeldItem(hand).getItem() == ItemsLT.WAND_REVERSAL && seal.getSymbol(0) != null)
+			{
+				
+			}
+//			SealCombination c = seal.combination;
+		}
+		return false;
 	}
 }

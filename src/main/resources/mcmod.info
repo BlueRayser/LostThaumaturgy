@@ -5,7 +5,7 @@
   "description": "This mod adds a lot of content from Thaumcraft 2 and adds plenty of neat and useful magical tools that you may need to use while playing.",
   "authorList": ["APengu"],
   "credits": "Azanor for making Thaumcraft",
-  "logoFile": "",
+  "logoFile": "assets/lostthaumaturgy/textures/logo_mcmod.png",
   "screenshots": [],
   "dependencies": []
 }

@@ -46,18 +46,14 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		if(getSuction(null) > 0)
 			equalizeWithNeighbours();
 		
-		boolean sync = false;
-		
 		if(suction1 != visSuction || suction2 != taintSuction)
-		{
-			sync = true;
-		}
+			sendChangesToNearby();
 		
 		if(prevdisplayPure != displayPure || prevdisplayTaint != displayTaint)
 		{
 			prevdisplayPure = displayPure;
 			prevdisplayTaint = displayTaint;
-			sync = true;
+			sendChangesToNearby();
 		}
 		
 		if(displayPure != pureVis || displayTaint != taintedVis)
@@ -71,9 +67,6 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 			displayTaint = 0F;
 			displayPure = 0F;
 		}
-		
-		if(sync)
-			sync();
 	}
 	
 	public void rebake()
@@ -133,15 +126,12 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 				continue;
 			
 			float[] results = new float[] { 0.0f, 0.0f };
-			float qq = Math.min((ent.getPureVis() + ent.getTaintedVis()) / 4.0f, fillAmount);
+			float qq = Math.min((ent.getPureVis() + ent.getTaintedVis()) / maxVis, fillAmount);
 			results = ent.subtractVis(Math.min(qq, maxVis - (pureVis + taintedVis)));
 			if(getVisSuction(null) > ent.getVisSuction(pos))
-			{
 				pureVis += results[0];
-			} else
-			{
+			else
 				ent.setPureVis(results[0] + ent.getPureVis());
-			}
 			if(getTaintSuction(null) > ent.getTaintSuction(pos))
 			{
 				taintedVis += results[1];

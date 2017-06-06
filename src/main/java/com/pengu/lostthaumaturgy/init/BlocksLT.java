@@ -45,6 +45,7 @@ import com.pengu.lostthaumaturgy.block.monolith.BlockCrystalReceptacle;
 import com.pengu.lostthaumaturgy.block.monolith.BlockExtraRoom;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolith;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
+import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodConduit;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLog;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodPlanks;
@@ -61,6 +62,7 @@ public class BlocksLT
 	        CRUCIBLE_THAUMIUM = new BlockCrucibleThaumium(), //
 	        CRUCIBLE_VOID = new BlockCrucibleVoid(), //
 	        CONDUIT = new BlockConduit(), //
+	        CONDUIT_SILVERWOOD = new BlockSilverwoodConduit(), //
 	        PRESSURIZED_CONDUIT = new BlockPressurizedConduit(), //
 	        VIS_TANK = new BlockVisTank(), //
 	        VIS_TANK_REINFORCED = new BlockReinforcedVisTank(), //

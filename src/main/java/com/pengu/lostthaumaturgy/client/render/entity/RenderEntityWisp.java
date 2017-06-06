@@ -118,6 +118,7 @@ public class RenderEntityWisp extends Render<EntityWisp>
 		tessellator.getBuffer().pos(f11 + f1 * f10 - f4 * f10, f12 - f2 * f10, f13 + f3 * f10 - f5 * f10).tex(x0, x3).endVertex();
 		tessellator.draw();
 		GL11.glDisable(3042);
+		GL11.glBlendFunc(770, 771);
 		GL11.glPopMatrix();
 	}
 	

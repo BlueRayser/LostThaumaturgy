@@ -6,6 +6,7 @@ tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
 tile.lostthaumaturgy:crucible_thaumium.name=Thaumium Crucible
 tile.lostthaumaturgy:crucible_void.name=Void Crucible
 tile.lostthaumaturgy:conduit.name=Vis Conduit
+tile.lostthaumaturgy:silverwood_conduit.name=Silverwood Vis Conduit
 tile.lostthaumaturgy:pressurized_conduit.name=Pressurized Conduit
 tile.lostthaumaturgy:pressurized_conduit.tooltip0=Emits redstone signal
 tile.lostthaumaturgy:pressurized_conduit.tooltip1=if there is any suction
@@ -255,6 +256,9 @@ research.lostthaumaturgy:crucible_thaumium.desc=Crucible of Eyes does a good job
 
 research.lostthaumaturgy:crucible_void.title=Void Crucible
 research.lostthaumaturgy:crucible_void.desc=Thaumium Crucible is good enough but after reading some discoveries of The Eldritch in the Eldritch Repository you tried to upgrade your Thaumium Crucible even better. Void metal easily infused to the crucible on the dark infuser, using some vis and taint. It holds 1000 vis, it's speed is four times better and it's efficiency is 80 percent.
+
+research.lostthaumaturgy:conduit_silverwood.title=Silverwood Vis Conduit
+research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are main way to transport Vis and/or Taint, but sometimes they might not be enough. For example, if you need to transport vis over great distances you might need a better speed for it. It seems like you found a good way to improve vis conduits. Infusing a vis conduit with enchanted silverwood is going to do it.
 
 
 

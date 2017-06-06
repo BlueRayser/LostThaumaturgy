@@ -6,6 +6,7 @@ tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
 tile.lostthaumaturgy:crucible_thaumium.name=Таумиевый тигель
 tile.lostthaumaturgy:crucible_void.name=Пустотный тигель
 tile.lostthaumaturgy:conduit.name=Вис-канал
+tile.lostthaumaturgy:silverwood_conduit.name=Серебродревесный вис-канал
 tile.lostthaumaturgy:pressurized_conduit.name=Герметичный вис-канал
 tile.lostthaumaturgy:pressurized_conduit.tooltip0=Излучает сигнал красного камня
 tile.lostthaumaturgy:pressurized_conduit.tooltip1=если в канале есть давление.
@@ -256,6 +257,9 @@ research.lostthaumaturgy:crucible_thaumium.desc=Crucible of Eyes does a good job
 research.lostthaumaturgy:crucible_void.title=Void Crucible
 research.lostthaumaturgy:crucible_void.desc=Thaumium Crucible is good enough but after reading some discoveries of The Eldritch in the Eldritch Repository you tried to upgrade your Thaumium Crucible even better. Void metal easily infused to the crucible on the dark infuser, using some vis and taint. It holds 1000 vis, it's speed is four times better and it's efficiency is 80 percent.
 
+research.lostthaumaturgy:conduit_silverwood.title=Silverwood Vis Conduit
+research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are main way to transport Vis and/or Taint, but sometimes they might not be enough. For example, if you need to transport vis over great distances you might need a better speed for it. It seems like you found a good way to improve vis conduits. Infusing a vis conduit with enchanted silverwood is going to do it.
+
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Основы
@@ -268,10 +272,10 @@ bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
 
-chat.lostthaumaturgy:generator_sadness=You feel Pengu's sadness caused by Kenijey...
+chat.lostthaumaturgy:generator_sadness=Вы чувствуете грусть Pengu's созданную Kenijey...
 chat.lostthaumaturgy:not_my_master=Ты не мой владелец!
 chat.lostthaumaturgy:trunk_stay=Багаж теперь будет стоять тут.
 chat.lostthaumaturgy:trunk_follow=Теперь багаж идёт за вами.
-chat.lostthaumaturgy:vis_detector=Detected %s Vis.
-chat.lostthaumaturgy:taint_detector=Detected %s Taint.
-chat.lostthaumaturgy:thaumometer=Detected %s Taint and %s Vis.
+chat.lostthaumaturgy:vis_detector=Обнаружено %s Вис.
+chat.lostthaumaturgy:taint_detector=Обнаружено %s Taint.
+chat.lostthaumaturgy:thaumometer=Обнаружено %s Taint и %s Вис.

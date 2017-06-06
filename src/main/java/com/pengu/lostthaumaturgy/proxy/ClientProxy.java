@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.proxy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import javax.imageio.ImageIO;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
@@ -36,6 +38,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.bookAPI.BookCategory;
 import com.mrdimka.hammercore.bookAPI.BookEntry;
+import com.mrdimka.hammercore.client.utils.GLImageManager;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.color.Color;
@@ -125,6 +128,7 @@ import com.pengu.lostthaumaturgy.tile.TilePenguCobbleGen;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
+import com.pengu.lostthaumaturgy.tile.TileSilverwoodConduit;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
@@ -142,10 +146,17 @@ import com.pengu.lostthaumaturgy.tile.monolith.TileMonolithOpener;
 
 public class ClientProxy extends CommonProxy
 {
+	private static int penguSkinId;
+	
 	@Override
 	public void updateClientAuraChunk(SIAuraChunk chunk)
 	{
 		ClientSIAuraChunk.setClientChunk(chunk);
+	}
+	
+	public static void bindPenguSkin()
+	{
+		GlStateManager.bindTexture(penguSkinId);
 	}
 	
 	@Override
@@ -177,6 +188,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileCrucibleThaumium.class, BlocksLT.CRUCIBLE_THAUMIUM, TESRCrucibleThaumium.INSTANCE);
 		registerRender(TileCrucibleVoid.class, BlocksLT.CRUCIBLE_VOID, TESRCrucibleVoid.INSTANCE);
 		registerRender(TileConduit.class, BlocksLT.CONDUIT, TESRConduit.INSTANCE);
+		registerRender(TileSilverwoodConduit.class, BlocksLT.CONDUIT_SILVERWOOD, TESRConduit.INSTANCE);
 		registerRender(TilePressurizedConduit.class, BlocksLT.PRESSURIZED_CONDUIT, TESRPressurizedConduit.INSTANCE);
 		registerRender(TileVisTank.class, BlocksLT.VIS_TANK, TESRVisTank.INSTANCE);
 		registerRender(TileReinforcedVisTank.class, BlocksLT.VIS_TANK_REINFORCED, TESRReinforcedVisTank.INSTANCE);
@@ -210,6 +222,8 @@ public class ClientProxy extends CommonProxy
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_REVERSAL, new RenderItemWandReversal());
 		
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
+		
+		penguSkinId = GlStateManager.generateTexture();
 	}
 	
 	@Override
@@ -295,6 +309,13 @@ public class ClientProxy extends CommonProxy
 			e.printStackTrace();
 		}
 		
+		try
+		{
+			BufferedImage img = ImageIO.read(new URL("https://raw.githubusercontent.com/APengu/HammerCore/1.11.x/skins/APengu.png"));
+			GLImageManager.loadTexture(img, penguSkinId, false);
+		}
+		catch(Throwable err) {}
+		
 		BookThaumonomicon tm = BookThaumonomicon.instance;
 		for(BookCategory cat : tm.categories)
 			for(BookEntry ent : cat.entries)
@@ -310,11 +331,12 @@ public class ClientProxy extends CommonProxy
 	@SubscribeEvent
 	public void clientTick(ClientTickEvent evt)
 	{
-		dvis = false;
-		dtaint = false;
-		drad = false;
-		
-		if(Minecraft.getMinecraft().player != null)
+		if(Minecraft.getMinecraft().player != null && Minecraft.getMinecraft().player.ticksExisted % 10 == 0)
+		{
+			dvis = false;
+			dtaint = false;
+			drad = false;
+			
 			for(ItemStack stack : Minecraft.getMinecraft().player.inventory.mainInventory)
 			{
 				if(stack.getItem() == ItemsLT.AURA_DETECTOR)
@@ -327,6 +349,7 @@ public class ClientProxy extends CommonProxy
 						drad = true;
 				}
 			}
+		}
 	}
 	
 	private ItemStack[] handStacks = new ItemStack[2];
@@ -344,11 +367,8 @@ public class ClientProxy extends CommonProxy
 			{
 				int t = goggles.getRevealType();
 				HudDetector.instance.render(t == 0 || t == 2 || t == 3, t == 1 || t == 2 || t == 3, t == 2 || t == 3, ClientSIAuraChunk.getClientChunk(), true);
-			} else
-			{
-				if(dvis || dtaint || drad)
-					HudDetector.instance.render(dvis, dtaint, drad, ClientSIAuraChunk.getClientChunk(), false);
-			}
+			} else if(dvis || dtaint || drad)
+				HudDetector.instance.render(dvis, dtaint, drad, ClientSIAuraChunk.getClientChunk(), false);
 			
 			ScaledResolution sr = new ScaledResolution(mc);
 			int k = sr.getScaledWidth();

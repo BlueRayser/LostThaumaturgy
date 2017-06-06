@@ -1,14 +1,7 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
-import java.util.Map;
-import java.util.UUID;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.client.resources.SkinManager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -17,9 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.GL11;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import com.mrdimka.hammercore.client.GLRenderState;
 import com.mrdimka.hammercore.client.renderer.shader.ShaderProgram;
 import com.mrdimka.hammercore.client.utils.RenderBlocks;
@@ -70,7 +60,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(0, 0.0F, 1.0F, 0.0F);
 		
-		bindTexture(getSkin());
+		ClientProxy.bindPenguSkin();
 		
 		float rotate = (float) (-85 - Math.sin(tile != null ? tile.ticksExisted / 4F : 0) * 30);
 		
@@ -141,40 +131,6 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 			
 			GL11.glPopMatrix();
 		}
-	}
-	
-	private boolean skinLoaded = false;
-	private final GameProfile profile = new GameProfile(UUID.fromString("bb6884dd-158f-37f3-8f4b-d3c61e90119f"), "APengu");
-	private ResourceLocation penguSkin = null;
-	
-	public ResourceLocation getSkin()
-	{
-		if(!skinLoaded)
-			loadSkin();
-		return penguSkin != null ? penguSkin : DefaultPlayerSkin.getDefaultSkinLegacy();
-	}
-	
-	public void loadSkin()
-	{
-		if(skinLoaded)
-			return;
-		skinLoaded = true;
-		
-		ResourceLocation resourcelocation = DefaultPlayerSkin.getDefaultSkinLegacy();
-		
-		Minecraft minecraft = Minecraft.getMinecraft();
-		Map<Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(profile);
-		
-		if(map.containsKey(Type.SKIN))
-		{
-			resourcelocation = minecraft.getSkinManager().loadSkin(map.get(Type.SKIN), Type.SKIN);
-		} else
-		{
-			UUID uuid = EntityPlayer.getUUID(profile);
-			resourcelocation = DefaultPlayerSkin.getDefaultSkin(uuid);
-		}
-		
-		penguSkin = resourcelocation;
 	}
 	
 	@Override

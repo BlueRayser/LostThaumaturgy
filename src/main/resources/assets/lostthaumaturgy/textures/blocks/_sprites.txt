@@ -90,6 +90,7 @@ nitor
 pengu_cobble_gen
 pressurized_conduit_off
 pressurized_conduit_on
+silverwood_vis_conduit
 thaumium_bellows
 thaumium_pump_off
 thaumium_pump_on
