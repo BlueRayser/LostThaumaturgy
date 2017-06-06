@@ -64,7 +64,7 @@ public class TESRInfuserDark extends TESR<TileInfuser>
 			float xx = (float) te.getPos().getX() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
 			float yy2 = (float) te.getPos().getY() + 0.9475f;
 			float zz = (float) te.getPos().getZ() + 0.5f - (te.getWorld().rand.nextFloat() - te.getWorld().rand.nextFloat()) * 0.35f;
-			FXWisp ef = new FXWisp(te.getWorld(), xx, yy2, zz, xx, yy2 + te.getWorld().rand.nextFloat(), zz, 0.5f, te.getWorld().rand.nextInt(5));
+			FXWisp ef = new FXWisp(te.getWorld(), xx, yy2, zz, xx, yy2 + te.getWorld().rand.nextFloat(), zz, .5F, 5);
 			Minecraft.getMinecraft().effectRenderer.addEffect(ef);
 		}
 		

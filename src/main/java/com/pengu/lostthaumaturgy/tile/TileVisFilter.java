@@ -73,12 +73,12 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 				
 				while(te != null && te instanceof TileVisFilter && pos.getY() + stack + up < world.getHeight())
 				{
-					stack = (short) (stack + 1);
+					stack++;
 					up++;
 					te = world.getTileEntity(pos.up(up));
 				}
 				
-				if(visStore % 16 == 0)
+				if(visStore % 8 == 0)
 					HCNetwork.manager.sendToAllAround(new PacketFXWisp2((float) getPos().getX() + 0.5f, (float) getPos().getY() + stack + .8F, (float) getPos().getZ() + 0.5f, (float) getPos().getX() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), (float) getPos().getY() + 3.0f + (float) stack + world.rand.nextFloat(), (float) getPos().getZ() + 0.5f + (world.rand.nextFloat() - world.rand.nextFloat()), 1.5F, world.rand.nextInt(5)), getSyncPoint(50));
 			}
 			
@@ -104,7 +104,7 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 				
 				while(te != null && te instanceof TileVisFilter && pos.getY() + stack + up < world.getHeight())
 				{
-					stack = (short) (stack + 1);
+					stack++;
 					up++;
 					te = world.getTileEntity(pos.up(up));
 				}

@@ -1,9 +1,12 @@
 package com.pengu.lostthaumaturgy.client.render.tesr;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -54,25 +57,40 @@ public class TESRSingularityJar extends TESR<TileSingularityJar>
 			RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 			bindTexture(singularity);
 			
+			float rot = (float) (System.currentTimeMillis() % 3600D) / 10F;
+			
 			GlStateManager.pushMatrix();
-			GlStateManager.translate(x + .2, y + .2, z + .2);
-			GlStateManager.enableRescaleNormal();
-			
-			GL11.glScaled(.5, .5, .5);
-			GL11.glTranslated(.5, .5, .5);
-			GlStateManager.rotate(-renderManager.playerViewY, 0, 1, 0);
-			GlStateManager.rotate((float) (renderManager.options.thirdPersonView == 2 ? -1 : 1) * renderManager.playerViewX, 1, 0, 0);
-			
+			GlStateManager.translate(x + .5, y + .5, z + .5);
 			GL11.glPushMatrix();
 			
-			GL11.glRotated(System.currentTimeMillis() % 3600L / 10D, 0, 0, 1);
-			GL11.glTranslated(-.5, -.5, -.5);
+			GlStateManager.disableLighting();
+			GLRenderState.BLEND.on();
 			
-			GL11.glScaled(1 / 256D, 1 / 256D, 1 / 256D);
-			RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
-			GL11.glPopMatrix();
+			bindTexture(singularity);
 			
-			GlStateManager.disableRescaleNormal();
+			float f1 = ActiveRenderInfo.getRotationX();
+			float f2 = ActiveRenderInfo.getRotationXZ();
+			float f3 = ActiveRenderInfo.getRotationZ();
+			float f4 = ActiveRenderInfo.getRotationYZ();
+			float f5 = ActiveRenderInfo.getRotationXY();
+			float f10 = .4F;
+			float f11 = 0;
+			float f12 = 0;
+			float f13 = 0;
+			Tessellator tessellator = Tessellator.getInstance();
+			tessellator.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+			
+			int bright = getBrightnessForRB(tile, sbr.rb);
+			float r = 1F, g = 1, b = 1F, a = 1F;
+			
+			tessellator.getBuffer().pos(f11 - f1 * f10 - f4 * f10, f12 - f2 * f10, f13 - f3 * f10 - f5 * f10).tex(0, 1).color(r, g, b, a).endVertex();
+			tessellator.getBuffer().pos(f11 - f1 * f10 + f4 * f10, f12 + f2 * f10, f13 - f3 * f10 + f5 * f10).tex(1, 1).color(r, g, b, a).endVertex();
+			tessellator.getBuffer().pos(f11 + f1 * f10 + f4 * f10, f12 + f2 * f10, f13 + f3 * f10 + f5 * f10).tex(1, 0).color(r, g, b, a).endVertex();
+			tessellator.getBuffer().pos(f11 + f1 * f10 - f4 * f10, f12 - f2 * f10, f13 + f3 * f10 - f5 * f10).tex(0, 0).color(r, g, b, a).endVertex();
+			
+			tessellator.draw();
+			
+			GlStateManager.popMatrix();
 			GlStateManager.popMatrix();
 		}
 		

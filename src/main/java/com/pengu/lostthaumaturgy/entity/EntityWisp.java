@@ -133,8 +133,19 @@ public class EntityWisp extends EntityFlying implements IMob
 		
 		if(rand.nextInt(9) < 5)
 		{
-			ItemStack stack = EnumMultiMaterialType.VAPOROUS_CRYSTAL.get();
-			stack.setItemDamage(getType());
+			EnumMultiMaterialType type = EnumMultiMaterialType.VIS_CRYSTAL;
+			if(getType() == 1)
+				type = EnumMultiMaterialType.VAPOROUS_CRYSTAL;
+			if(getType() == 2)
+				type = EnumMultiMaterialType.AQUEOUS_CRYSTAL;
+			if(getType() == 3)
+				type = EnumMultiMaterialType.EARTHEN_CRYSTAL;
+			if(getType() == 4)
+				type = EnumMultiMaterialType.FIERY_CRYSTAL;
+			if(getType() == 5)
+				type = EnumMultiMaterialType.TAINTED_CRYSTAL;
+			
+			ItemStack stack = type.get();
 			stack.setCount(1 + rand.nextInt(lootingModifier));
 			entityDropItem(stack, 0);
 		} else
@@ -145,32 +156,7 @@ public class EntityWisp extends EntityFlying implements IMob
 	protected void entityInit()
 	{
 		super.entityInit();
-		
-		int type = 0;
-		Biome bid = world.getBiome(getPosition());
-		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
-		
-		if(AuraTicker.BIOME_FIRE.contains(bid) || nearLava())
-		{
-			isImmuneToFire = true;
-			type = 4;
-		}
-		
-		if(AuraTicker.BIOME_EARTH.contains(bid))
-			type = 3;
-		
-		if(AuraTicker.BIOME_WATER.contains(bid) || world.canSnowAt(getPosition(), true) || world.isRaining())
-			type = 2;
-		
-		if(AuraTicker.BIOME_AIR.contains(bid) || world.canSnowAt(getPosition(), true) || world.isRaining())
-			type = 1;
-		
-		if(ac != null && (float) ac.taint > (float) LTConfigs.aura_max * .5)
-			type = 5;
-		else if(ac != null && (float) ac.vis > (float) LTConfigs.aura_max * .5)
-			type = 0;
-		
-		dataManager.register(TYPE, type);
+		dataManager.register(TYPE, 0);
 	}
 	
 	@Override
@@ -178,6 +164,36 @@ public class EntityWisp extends EntityFlying implements IMob
 	{
 		if(!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL)
 			setDead();
+		
+		if(ticksExisted == 1 && !world.isRemote)
+		{
+			int type = 0;
+			
+			Biome bid = world.getBiome(getPosition());
+			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+			
+			if(AuraTicker.BIOME_EARTH.contains(bid))
+				type = 3;
+			
+			if(AuraTicker.BIOME_WATER.contains(bid) || world.canSnowAt(getPosition(), true) || world.isRaining())
+				type = 2;
+			
+			if(AuraTicker.BIOME_AIR.contains(bid) || world.canSnowAt(getPosition(), true) || world.isRaining())
+				type = 1;
+			
+			if(AuraTicker.BIOME_FIRE.contains(bid) || AuraTicker.BIOME_FIREFLOWER.contains(bid) || nearLava())
+			{
+				isImmuneToFire = true;
+				type = 4;
+			}
+			
+			if(ac != null && (float) ac.taint > (float) LTConfigs.aura_max * .5)
+				type = 5;
+			else if(ac != null && (float) ac.vis > (float) LTConfigs.aura_max * .5)
+				type = 0;
+			
+			setType(type);
+		}
 		
 		super.onEntityUpdate();
 		
@@ -240,7 +256,7 @@ public class EntityWisp extends EntityFlying implements IMob
 		
 		--aggroCooldown;
 		
-		if(dataManager.get(TYPE) == 5 && (getAttackTarget() == null || aggroCooldown-- <= 0))
+		if(getType() == 5 && (getAttackTarget() == null || aggroCooldown-- <= 0))
 		{
 			setAttackTarget(world.getClosestPlayer(posX, posY, posZ, 16, new Predicate<Entity>()
 			{
@@ -335,6 +351,9 @@ public class EntityWisp extends EntityFlying implements IMob
 				--attackCounter;
 			}
 		}
+		
+		double d0 = (double) width / 2.0D;
+		this.setEntityBoundingBox(new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double) this.height, this.posZ + d0));
 	}
 	
 	private boolean isCourseTraversable(double d, double d1, double d2, double d3)
@@ -405,9 +424,12 @@ public class EntityWisp extends EntityFlying implements IMob
 				for(int z = -5; z <= 5; ++z)
 				{
 					BlockPos pos = new BlockPos((int) posX + x, (int) posY + y, (int) posZ + z);
-					if((int) posX + y < 0 || world.getBlockState(pos).getBlock() != Blocks.LAVA && world.getBlockState(pos).getBlock() != Blocks.FLOWING_LAVA)
+					
+					if(pos.getY() < 0)
 						continue;
-					return true;
+					
+					if(world.getBlockState(pos).getBlock() == Blocks.LAVA || world.getBlockState(pos).getBlock() == Blocks.FLOWING_LAVA)
+						return true;
 				}
 			}
 		}

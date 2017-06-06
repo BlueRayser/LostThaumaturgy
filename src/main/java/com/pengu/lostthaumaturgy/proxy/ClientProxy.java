@@ -48,6 +48,7 @@ import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
+import com.pengu.lostthaumaturgy.client.render.color.ColorItemSeal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
@@ -75,6 +76,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRLyingItem;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPenguCobbleGen;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRPressurizedConduit;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRReinforcedVisTank;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRSeal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSingularityJar;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRStudiumTable;
@@ -122,6 +124,7 @@ import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 import com.pengu.lostthaumaturgy.tile.TilePenguCobbleGen;
 import com.pengu.lostthaumaturgy.tile.TilePressurizedConduit;
 import com.pengu.lostthaumaturgy.tile.TileReinforcedVisTank;
+import com.pengu.lostthaumaturgy.tile.TileSeal;
 import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
@@ -160,6 +163,7 @@ public class ClientProxy extends CommonProxy
 	public void init()
 	{
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemResearch(), ItemsLT.DISCOVERY);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemSeal(), Item.getItemFromBlock(BlocksLT.SEAL));
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalOre.class, TESRCrystal.INSTANCE);
 		for(BlockOreCrystal ore : BlockOreCrystal.crystals)
@@ -200,6 +204,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileExtraRoom.class, BlocksLT.MONOLITH_EXTRA_ROOM, TESRMonolithExtraRoom.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileSeal.class, TESRSeal.INSTANCE);
 		
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_ITEM_FREEZE, new RenderItemWandOfItemFreeze());
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_REVERSAL, new RenderItemWandReversal());

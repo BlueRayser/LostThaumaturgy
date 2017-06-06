@@ -84,6 +84,7 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 2), 25, RecipesInfuser.createPredicateFromResearches(ResearchesLT.POTION_PURITY), new ItemStack(Items.GLASS_BOTTLE), new ItemStack(BlocksLT.SILVERWOOD_LEAVES));
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.CUSTOM_POTION), 140, new ItemStack(Items.GLASS_BOTTLE), EnumMultiMaterialType.VIS_CRYSTAL.stack());
 		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.COLLECTED_WISDOM), 100, new ItemStack(Blocks.STONE_SLAB), EnumMultiMaterialType.VIS_CRYSTAL.stack(), EnumMultiMaterialType.ZOMBIE_BRAINS.stack());
+		RecipesInfuser.addInfusing(new ItemStack(ItemsLT.CONCENTRATED_PURITY), 50, new ItemStack(Blocks.STONE_SLAB), EnumMultiMaterialType.VIS_CRYSTAL.stack(), EnumMultiMaterialType.REZULI_CRYSTAL.stack());
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_PUREST_MAGIC.stack(), 250, EnumMultiMaterialType.VIS_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_FOULEST_TAINT.stack(), 250, EnumMultiMaterialType.TAINTED_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.EXTRACT_WARMEST_FIRE.stack(), 250, EnumMultiMaterialType.FIERY_CRYSTAL.stack(), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER), new ItemStack(BlocksLT.SHIMMERLEAF));

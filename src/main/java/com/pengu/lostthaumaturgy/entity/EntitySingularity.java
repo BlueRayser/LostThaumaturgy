@@ -30,6 +30,9 @@ import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.net.PacketParticle;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_EntitySingularity_doSuckage;
 
 public class EntitySingularity extends EntityThrowable
@@ -84,7 +87,7 @@ public class EntitySingularity extends EntityThrowable
 		
 		if(fuse == 0)
 			doExplosion();
-		else if(fuse < 0)
+		else if(fuse < 0 && !world.isRemote)
 			doSuckage();
 		
 		if(fuse <= -170)
@@ -173,6 +176,8 @@ public class EntitySingularity extends EntityThrowable
 	
 	public void doSuckage()
 	{
+		HCNetwork.manager.sendToAllAround(new PacketFXWisp_EntitySingularity_doSuckage(posX, posY, posZ, .9F, 5), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 48));
+		
 		Entity entity;
 		int a;
 		int auraSize = 10;
@@ -339,7 +344,7 @@ public class EntitySingularity extends EntityThrowable
 				motionY = -motionY * .25;
 			if(face.getAxis() == Axis.Z)
 				motionZ = -motionZ * .25;
-			fuse /= 1.2;
+			fuse /= 2;
 		}
 	}
 }

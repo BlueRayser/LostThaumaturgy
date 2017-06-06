@@ -73,6 +73,12 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 			float sa = .025F + .0025F * boost + (hasUpgrade(0) ? .025F : 0);
 			sucked = getAvailablePureVis(sa);
 			crystalTime -= sucked;
+			
+			if(sucked > 0)
+			{
+				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				si.radiation += .0005F * sucked;
+			}
 		} else
 			sucked = 0;
 		

@@ -36,6 +36,7 @@ import com.pengu.lostthaumaturgy.creative.CreativeTabResearches;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
+import com.pengu.lostthaumaturgy.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.EntitiesLT;
 import com.pengu.lostthaumaturgy.init.InfuserLT;
@@ -144,16 +145,16 @@ public class LostThaumaturgy
 		ProgressBar bar = ProgressManager.push("Registering mob spawns", 3);
 		
 		bar.step("Smart Zombie");
-//		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 128);
+		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 1);
 		bar.step("Thaum Slime");
-//		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 256);
+		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 1);
 		bar.step("Wisp");
-		
+		makeSpawn(EntityZombie.class, EntityWisp.class, 1, 1, 1);
 		
 		ProgressManager.pop(bar);
 	}
 	
-	private void makeSpawn(Class<? extends EntityLiving> search, Class<? extends EntityLiving> add, int minGC, int maxGC, int weightMult)
+	private void makeSpawn(Class<? extends EntityLiving> search, Class<? extends EntityLiving> add, int minGC, int maxGC, int weight)
 	{
 		Iterator<Biome> biomes = Biome.REGISTRY.iterator();
 		while(biomes.hasNext())
@@ -162,7 +163,6 @@ public class LostThaumaturgy
 			List<SpawnListEntry> spawns = b.getSpawnableList(EnumCreatureType.MONSTER);
 			boolean contains = false;
 			
-			int weight = -1;
 			for(SpawnListEntry sle : spawns)
 				if(search.isAssignableFrom(sle.entityClass))
 				{
@@ -171,7 +171,7 @@ public class LostThaumaturgy
 					break;
 				}
 			if(contains)
-				spawns.add(new SpawnListEntry(add, weight * weightMult, minGC, maxGC));
+				spawns.add(new SpawnListEntry(add, weight, minGC, maxGC));
 		}
 	}
 	

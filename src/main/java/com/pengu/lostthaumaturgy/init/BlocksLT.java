@@ -27,6 +27,7 @@ import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
+import com.pengu.lostthaumaturgy.block.BlockSeal;
 import com.pengu.lostthaumaturgy.block.BlockSingularityJar;
 import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
 import com.pengu.lostthaumaturgy.block.BlockTaintedLog;
@@ -76,6 +77,7 @@ public class BlocksLT
 	        ADVANCED_VIS_VALVE = new BlockAdvancedVisValve(), //
 	        STUDIUM_TABLE = new BlockStudiumTable(), //
 	        AUXILIUM_TABLE = new BlockAuxiliumTable(), //
+	        SEAL = new BlockSeal(), //
 	        CRYSTALLIZER = new BlockCrystallizer(), //
 	        NITOR = new BlockNitor(), //
 	        TAINTED_SOIL = new BlockTaintedSoil(), //

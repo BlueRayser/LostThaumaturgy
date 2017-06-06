@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "lostthaumaturgy:blocks/seal_base",
+		"layer1": "lostthaumaturgy:blocks/seal_inner"
+	}
+}

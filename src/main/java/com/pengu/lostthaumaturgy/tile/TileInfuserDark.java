@@ -45,6 +45,7 @@ public class TileInfuserDark extends TileInfuser
 	@Override
 	public void tick()
 	{
+		canSpawnParticle = true;
 		if(soundDelay > 0)
 			--soundDelay;
 		angle = (int) ((infuserCookTime + infuserCookTimeDark) / (currentItemCookCost + currentItemCookCostDark) * 360);
@@ -99,6 +100,12 @@ public class TileInfuserDark extends TileInfuser
 					HCNetwork.getManager("particles").sendToAllAround(new PacketSmallGreenFlameFX(new Vec3d(pos).addVector(.9, 1.15, .9)), getSyncPoint(32));
 				}
 				}
+			}
+			if(sucked > 0)
+			{
+				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				si.radiation += .0005F * sucked;
+				sync();
 			}
 		} else
 			sucked = 0;

@@ -8,6 +8,10 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.mrdimka.hammercore.common.InterItemStack;
+import com.mrdimka.hammercore.common.match.item.ItemContainer;
+import com.mrdimka.hammercore.common.match.item.ItemMatchParams;
+import com.mrdimka.hammercore.common.utils.ItemStackUtil;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
@@ -212,14 +216,13 @@ public class RecipesInfuser
 			for(Object cI : components)
 			{
 				boolean foundsomething = false;
+				
 				if(cFound == 0)
 					return -1;
+				
 				for(int q = 0; q < cl.length; ++q)
 				{
-					boolean dura = ((ItemStack) cI).isItemEqualIgnoreDurability(cl[q]);
-					
-					if(dura)
-						dura = ((ItemStack) cI).getItemDamage() == cl[q].getItemDamage() || ((ItemStack) cI).getItemDamage() == OreDictionary.WILDCARD_VALUE || cl[q].getItemDamage() == OreDictionary.WILDCARD_VALUE;
+					boolean dura = !((ItemStack) cI).isEmpty() && !cl[q].isEmpty() && ((ItemStack) cI).getItem() == cl[q].getItem() && (((ItemStack) cI).getItemDamage() == cl[q].getItemDamage() || cl[q].getItemDamage() == OreDictionary.WILDCARD_VALUE);
 					
 					if(exclude.contains(q) || !dura)
 						continue;
@@ -236,8 +239,10 @@ public class RecipesInfuser
 			
 			if(cFound != 0)
 				continue;
+			
 			return a;
 		}
+		
 		return -1;
 	}
 	

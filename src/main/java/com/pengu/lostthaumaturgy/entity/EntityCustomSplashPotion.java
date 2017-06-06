@@ -8,9 +8,14 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
+import com.mrdimka.hammercore.math.MathHelper;
+import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
 
 public class EntityCustomSplashPotion extends EntityThrowable
 {
@@ -110,7 +115,31 @@ public class EntityCustomSplashPotion extends EntityThrowable
 						}
 			}
 			
-			world.playEvent(2002, new BlockPos(this), type == 0 ? 0xC548C9 : type == 1 ? 0x6618CC : 0xA3DFDE);
+			int color = type == 0 ? 0xC548C9 : type == 1 ? 0x6618CC : 0xA3DFDE;
+			
+			world.playEvent(2002, new BlockPos(this), color);
+			
+			int parts = 30 + rand.nextInt(40);
+			for(int i = 0; i < parts; ++i)
+			{
+				int r = (color >> 16) & 0xFF;
+				int g = (color >> 8) & 0xFF;
+				int b = (color >> 0) & 0xFF;
+				
+				r = (int) MathHelper.clip(r + rand.nextInt(25) - rand.nextInt(25), 0, 255);
+				g = (int) MathHelper.clip(g + rand.nextInt(25) - rand.nextInt(25), 0, 255);
+				b = (int) MathHelper.clip(b + rand.nextInt(25) - rand.nextInt(25), 0, 255);
+				
+				color = (r << 16) | (g << 8) | b;
+				
+				int type_ = type == 2 ? rand.nextInt(5) : type == 1 ? 5 : 2;
+				
+				if(type == 0)
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp3(posX, posY, posZ, posX + (rand.nextGaussian() - rand.nextGaussian()) * 3D, posY + (rand.nextGaussian() - rand.nextGaussian()) * 3D, posZ + (rand.nextGaussian() - rand.nextGaussian()) * 3D, .9F + rand.nextFloat() * .6F, type_, color), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 48));
+				else
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(posX, posY, posZ, posX + (rand.nextGaussian() - rand.nextGaussian()) * 3D, posY + (rand.nextGaussian() - rand.nextGaussian()) * 3D, posZ + (rand.nextGaussian() - rand.nextGaussian()) * 3D, .9F + rand.nextFloat() * .6F, type_), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 48));
+			}
+			
 			setDead();
 		}
 	}

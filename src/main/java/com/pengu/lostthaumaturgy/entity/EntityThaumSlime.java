@@ -101,11 +101,11 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 			if(entityplayer != null)
 				slimeJumpDelay /= 3;
 			isJumping = true;
-			jump();
 			if(getSlimeSize() > 2)
 				HammerCore.audioProxy.playSoundAt(world, "entity.slime.jump", getPosition(), getSoundVolume(), ((rand.nextFloat() - rand.nextFloat()) * .2F + 1) * .8F, SoundCategory.HOSTILE);
 			moveStrafing = 1 - rand.nextFloat() * 2;
 			moveForward = 1 * getSlimeSize();
+			jump();
 		} else
 		{
 			isJumping = false;

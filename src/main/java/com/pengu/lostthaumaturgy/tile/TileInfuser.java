@@ -139,7 +139,11 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 			this.sucked = this.getAvailablePureVis(sa);
 			this.infuserCookTime += this.sucked;
 			if(sucked > 0)
+			{
+				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				si.radiation += .0002F * sucked;
 				sync();
+			}
 			if(this.soundDelay == 0 && this.sucked >= 0.025f)
 			{
 				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":infuser", pos, 0.2F, 1F, SoundCategory.BLOCKS);
@@ -147,7 +151,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 				
 				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
-					ac.badVibes = (short) (ac.badVibes + 1);
+					ac.badVibes++;
 			}
 			
 			if(!hasUpgrade(-1))
@@ -202,10 +206,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 			sync();
 		}
 		if(flag != this.infuserCookTime > 0.0f)
-		{
 			flag1 = true;
-		}
-		
 		if(flag1)
 		{
 			sync();
@@ -287,7 +288,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		if(!this.infuserItemStacks.getStackInSlot(0).isItemEqual(itemstack))
 			return false;
 		int st = this.infuserItemStacks.getStackInSlot(0).getCount() + itemstack.getCount();
-		if(st <= this.getInventoryStackLimit() && st <= itemstack.getMaxStackSize())
+		if(st <= infuserItemStacks.getInventoryStackLimit() && st <= itemstack.getMaxStackSize())
 			return true;
 		return false;
 	}

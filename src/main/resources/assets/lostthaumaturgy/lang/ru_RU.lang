@@ -53,6 +53,8 @@ tile.lostthaumaturgy:duplicator.name=Таум-дубликатор
 tile.lostthaumaturgy:lt_monolith_opener.name=§dГенератор монолита
 tile.lostthaumaturgy:totem_dawn.name=Totem of Dawn
 tile.lostthaumaturgy:totem_twilight.name=Twilight Totem
+tile.lostthaumaturgy:seal.name=Arcane Seal
+tile.lostthaumaturgy:seal.desc=Цвет: $col
 
 
 

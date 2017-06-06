@@ -77,25 +77,26 @@ public class WorldGenLostArtifacts implements IWorldGenFeature
 	
 	static
 	{
+		DropMaker drop = new DropMaker();
+		
 		EnumMultiMaterialType[] lost_artifacts = { EnumMultiMaterialType.ANCIENT_POTTERY, EnumMultiMaterialType.TARNISHED_CHALICE, EnumMultiMaterialType.WORN_STATUETTE, EnumMultiMaterialType.ANCIENT_SEAL, EnumMultiMaterialType.ANCIENT_WEAPON };
 		for(int i = 0; i < 33; ++i)
 		{
-			DropMaker drop = new DropMaker();
 			for(EnumMultiMaterialType type : lost_artifacts)
 				drop.addCommonItem(type.stack());
-			drop.addRareItem(0, 8, EnumMultiMaterialType.ANCIENT_STONE_TABLET.stack());
-			addDrop(drop);
 		}
 		
 		EnumMultiMaterialType[] forbidden_artifacts = { EnumMultiMaterialType.CRACKED_WISP_SHELL, EnumMultiMaterialType.DISTORTED_SKULL, EnumMultiMaterialType.INHUMAN_SKULL, EnumMultiMaterialType.DARKENED_CRYSTAL_EYE, EnumMultiMaterialType.KNOTTED_SPIKE };
 		for(int i = 0; i < 12; ++i)
 		{
-			DropMaker drop = new DropMaker();
 			for(EnumMultiMaterialType type : forbidden_artifacts)
 				drop.addCommonItem(type.stack());
-			drop.addRareItem(0, 8, EnumMultiMaterialType.TOME_FORBIDDEN_KNOWLEDGE.stack());
-			addDrop(drop);
 		}
+		
+		drop.addRareItem(0, 8, EnumMultiMaterialType.ANCIENT_STONE_TABLET.stack());
+		drop.addRareItem(0, 8, EnumMultiMaterialType.TOME_FORBIDDEN_KNOWLEDGE.stack());
+		
+		addDrop(drop);
 	}
 	
 	public static void addDrop(DropMaker drop)

@@ -2,19 +2,23 @@ package com.pengu.lostthaumaturgy.init;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.RecipeSorter.Category;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.recipe.RecipePaintSeal;
 
 public class RecipesLT
 {
 	public static void registerRecipes()
 	{
+		RecipeSorter.register("paint_seal", RecipePaintSeal.class, Category.SHAPELESS, "");
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.CRUCIBLE, "v", "c", "f", 'v', "crystalVis", 'c', Items.CAULDRON, 'f', Blocks.FURNACE));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.INFUSER, "iti", "ici", "sss", 'i', "ingotIron", 't', new ItemStack(Blocks.STONE_SLAB), 'c', "crystalVis", 's', "stone"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.VIS_TANK, "wgw", "g g", "wgw", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 'g', "paneGlass"));
@@ -57,6 +61,7 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_BOOTS, "t t", "t t", 't', "ingotVoid"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.GOGGLES_OF_REVEALING, "tgt", "lll", 't', new ItemStack(ItemsLT.AURA_DETECTOR, 1, 3), 'g', "ingotGold", 'l', "leather"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.INERT_CARPET.stack(), "gfg", "fff", "gfg", 'g', "ingotGold", 'f', EnumMultiMaterialType.ENCHANTED_FABRIC.stack()));
+		GameRegistry.addRecipe(new RecipePaintSeal());
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
 	}
