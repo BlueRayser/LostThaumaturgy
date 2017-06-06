@@ -6,6 +6,7 @@ public class TileCrucibleEyes extends TileCrucible
 {
 	{
 		setTier(600, .6F, .5F);
+		radMod = 1;
 	}
 	
 	private boolean emited = false;

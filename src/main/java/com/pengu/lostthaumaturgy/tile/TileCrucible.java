@@ -45,6 +45,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 	protected float pTaint;
 	protected int wait;
 	protected boolean updateNextPeriod;
+	protected float radMod = 1.2F;
 	
 	public void readNBT(NBTTagCompound nbt)
 	{
@@ -122,10 +123,10 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 			if(overflowSplit >= 1.0f)
 			{
 				SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
-				if(ac != null && this.taintedVis >= 1.0f)
+				if(ac != null && taintedVis >= 1)
 				{
-					this.taintedVis -= 1.0f;
-					ac.taint = (short) (ac.taint + 1);
+					taintedVis -= 1;
+					ac.taint++;
 					HCNetwork.manager.sendToAllAround(new PacketFXWisp2((float) this.getPos().getX() + this.world.rand.nextFloat(), (float) this.getPos().getY() + 0.8f, (float) this.getPos().getZ() + this.world.rand.nextFloat(), (float) this.getPos().getX() + 0.5f + (this.world.rand.nextFloat() - this.world.rand.nextFloat()), (float) this.getPos().getY() + 3.0f + this.world.rand.nextFloat(), (float) this.getPos().getZ() + 0.5f + (this.world.rand.nextFloat() - this.world.rand.nextFloat()), .5F, 5), getSyncPoint(50));
 				}
 			}
@@ -198,7 +199,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 						if(ac != null)
 						{
 							ac.badVibes = (short) ((float) ac.badVibes + currentItemCookValue / 10F);
-							ac.radiation += .0001F * currentItemCookValue;
+							ac.radiation += .0001F * currentItemCookValue * radMod;
 						}
 						
 						item.shrink(1);

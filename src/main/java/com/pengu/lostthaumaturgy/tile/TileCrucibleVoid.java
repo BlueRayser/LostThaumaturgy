@@ -6,6 +6,7 @@ public class TileCrucibleVoid extends TileCrucible
 {
 	{
 		setTier(1000, .8F, 1);
+		radMod = .5F;
 	}
 	
 	private boolean emited = false;

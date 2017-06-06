@@ -6,6 +6,7 @@ public class TileCrucibleThaumium extends TileCrucible
 {
 	{
 		setTier(750, .7F, .75F);
+		radMod = .75F;
 	}
 	
 	private boolean emited = false;

@@ -141,6 +141,8 @@ public class TileMonolithOpener extends TileSyncableTickable
 			
 			HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":rumble", pos, 4F, 1F, SoundCategory.BLOCKS);
 			HCNetwork.getManager("particles").sendToAllAround(new PacketMonolithWisp(pos), getSyncPoint(48));
+			if(si != null)
+				si.radiation += .25F;
 		}
 	}
 	

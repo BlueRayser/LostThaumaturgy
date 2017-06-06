@@ -417,7 +417,7 @@ public class AuraTicker
 					nc.taint -= val;
 				}
 				
-				if(world.rand.nextInt(5) == 0)
+				if(world.rand.nextInt(8) == 0)
 					equalizeRadiation(ac2, nc);
 				
 				if(nc.boost <= ac2.boost || nc.boost <= 50 || ac2.boost >= 100)
