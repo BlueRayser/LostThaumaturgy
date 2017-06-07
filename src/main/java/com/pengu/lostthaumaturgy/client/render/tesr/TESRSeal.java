@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import com.mrdimka.hammercore.common.EnumRotation;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class TESRSeal extends TESR<TileSeal>
@@ -47,6 +48,9 @@ public class TESRSeal extends TESR<TileSeal>
 	@Override
 	public void renderTileEntityAt(TileSeal te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
+		if(te.getWorld().getBlockState(te.getPos()).getBlock() != BlocksLT.SEAL)
+			return;
+		
 		GL11.glPushMatrix();
 		translateFromOrientation(x, y, z, te.getWorld().getBlockState(te.getPos()).getValue(EnumRotation.EFACING));
 		GL11.glRotated(90, 1, 0, 0);

@@ -367,10 +367,10 @@ public class WorldGenSilverwood extends WorldGenAbstractTree implements IWorldGe
 		this.rand = rand;
 		worldObj = worldIn;
 		long l2 = rand.nextLong();
-		rand.setSeed(l2);
+		this.rand.setSeed(l2);
 		basePos = position;
 		if(heightLimit == 0)
-			heightLimit = 5 + rand.nextInt(heightLimitLimit);
+			heightLimit = 5 + this.rand.nextInt(heightLimitLimit);
 		if(!validTreeLocation())
 			return false;
 		try
@@ -384,11 +384,11 @@ public class WorldGenSilverwood extends WorldGenAbstractTree implements IWorldGe
 		}
 		worldObj = null;
 		
-		int flowerCount = rand.nextInt(8);
+		int flowerCount = this.rand.nextInt(8);
 		
 		for(int i = 0; i < flowerCount; ++i)
 		{
-			BlockPos tpos = new BlockPos(position.getX() + offset(rand, 6), position.getY() + offset(rand, 6), position.getZ() + offset(rand, 6));
+			BlockPos tpos = new BlockPos(position.getX() + offset(this.rand, 6), position.getY() + offset(this.rand, 6), position.getZ() + offset(this.rand, 6));
 			
 			for(int t = 0; t < 25; ++t)
 			{

@@ -42,7 +42,7 @@ public class WorldGenMonoliths implements IWorldGenFeature
 	{
 		pos = world.getHeight(ChunkUtils.getChunkPos(world.getChunkFromBlockCoords(pos), center)).down();
 		double dist = Math.sqrt(AuraTicker.getDistanceSqToClosestMonolith(pos));
-		if(dist < 300 || pos.getY() < 40 || !world.getBlockState(pos).isSideSolid(world, pos, EnumFacing.UP))
+		if(dist < 500 || pos.getY() < 40 || !world.getBlockState(pos).isSideSolid(world, pos, EnumFacing.UP))
 			return;
 		AuraTicker.addMonolith(pos);
 		generateSurroundings(world, rand, pos);

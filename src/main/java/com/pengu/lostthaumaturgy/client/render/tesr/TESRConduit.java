@@ -28,6 +28,7 @@ import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
+import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodConduit;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileConduit;
@@ -45,7 +46,11 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
 		BlockTraceableRendered br = WorldUtil.cast(te.getWorld().getBlockState(te.getPos()).getBlock(), BlockTraceableRendered.class);
-		renderConduitBase(te, te, br != null ? br.getParticleSprite(getWorld(), te.getPos()) : LTInfo.MOD_ID + ":blocks/vis_conduit", x, y, z);
+		String sprite = LTInfo.MOD_ID + ":blocks/vis_conduit";
+		if(br instanceof BlockSilverwoodConduit)
+			sprite = br.getParticleSprite(getWorld(), null);
+		
+		renderConduitBase(te, te, sprite, x, y, z);
 		renderConduitVis(te, x, y, z);
 	}
 	
@@ -60,7 +65,11 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 	{
 		ItemBlock ib = WorldUtil.cast(item.getItem(), ItemBlock.class);
 		BlockTraceableRendered br = WorldUtil.cast(ib.getBlock(), BlockTraceableRendered.class);
-		renderConduitBase(null, this, br != null ? br.getParticleSprite(getWorld(), null) : LTInfo.MOD_ID + ":blocks/vis_conduit", 0, 0, 0);
+		String sprite = LTInfo.MOD_ID + ":blocks/vis_conduit";
+		if(br instanceof BlockSilverwoodConduit)
+			sprite = br.getParticleSprite(getWorld(), null);
+		
+		renderConduitBase(null, this, sprite, 0, 0, 0);
 		super.renderItem(item);
 	}
 	
