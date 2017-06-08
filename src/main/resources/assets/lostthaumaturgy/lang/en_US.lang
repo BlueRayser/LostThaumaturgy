@@ -56,6 +56,7 @@ tile.lostthaumaturgy:totem_dawn.name=Totem of Dawn
 tile.lostthaumaturgy:totem_twilight.name=Twilight Totem
 tile.lostthaumaturgy:seal.name=Arcane Seal
 tile.lostthaumaturgy:seal.desc=Color: $col
+tile.lostthaumaturgy:vis_condenser.name=Vis Condenser
 
 
 

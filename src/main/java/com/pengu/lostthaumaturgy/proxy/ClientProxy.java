@@ -84,6 +84,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRSingularityJar;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRStudiumTable;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRThaumiumBellows;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisCondenser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisFilter;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPump;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
@@ -133,6 +134,7 @@ import com.pengu.lostthaumaturgy.tile.TileSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 import com.pengu.lostthaumaturgy.tile.TileThaumiumBellows;
+import com.pengu.lostthaumaturgy.tile.TileVisCondenser;
 import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
 import com.pengu.lostthaumaturgy.tile.TileVisPumpThaumium;
@@ -214,6 +216,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileCrystalReceptacle.class, BlocksLT.MONOLITH_CRYSTAL_RECEPTACLE, TESRCrystalReceptacle.INSTANCE);
 		registerRender(TileMonolithOpener.class, BlocksLT.MONOLITH_OPENER, TESRMonolithOpener.INSTANCE);
 		registerRender(TileExtraRoom.class, BlocksLT.MONOLITH_EXTRA_ROOM, TESRMonolithExtraRoom.INSTANCE);
+		registerRender(TileVisCondenser.class, BlocksLT.VIS_CONDENSER, TESRVisCondenser.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSeal.class, TESRSeal.INSTANCE);
@@ -313,8 +316,9 @@ public class ClientProxy extends CommonProxy
 		{
 			BufferedImage img = ImageIO.read(new URL("https://raw.githubusercontent.com/APengu/HammerCore/1.11.x/skins/APengu.png"));
 			GLImageManager.loadTexture(img, penguSkinId, false);
+		} catch(Throwable err)
+		{
 		}
-		catch(Throwable err) {}
 		
 		BookThaumonomicon tm = BookThaumonomicon.instance;
 		for(BookCategory cat : tm.categories)

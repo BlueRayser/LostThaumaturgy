@@ -35,6 +35,7 @@ import com.pengu.lostthaumaturgy.block.BlockTaintedPlant;
 import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.block.BlockThaumiumBellows;
 import com.pengu.lostthaumaturgy.block.BlockTotem;
+import com.pengu.lostthaumaturgy.block.BlockVisCondenser;
 import com.pengu.lostthaumaturgy.block.BlockVisFilter;
 import com.pengu.lostthaumaturgy.block.BlockVisPump;
 import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
@@ -68,6 +69,7 @@ public class BlocksLT
 	        VIS_TANK_REINFORCED = new BlockReinforcedVisTank(), //
 	        VIS_TANK_SILVERWOOD = new BlockSilverwoodVisTank(), //
 	        VIS_PUMP = new BlockVisPump(), //
+	        VIS_CONDENSER = new BlockVisCondenser(), //
 	        THAUMIUM_VIS_PUMP = new BlockVisPumpThaumium(), //
 	        INFUSER = new BlockInfuser(), //
 	        INFUSER_DARK = new BlockInfuserDark(), //

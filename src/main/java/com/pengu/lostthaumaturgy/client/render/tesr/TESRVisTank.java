@@ -149,13 +149,13 @@ public class TESRVisTank extends TESR<TileVisTank>
 					boolean filled = te.pureVis + te.taintedVis >= te.getMaxVis() * .9F;
 					boolean topFill = topTank != null && topTank.pureVis + topTank.taintedVis > .1F;
 					
-					rb.setRenderBounds(wx + w1, wx + (down ? 0 : .003F), wx + w1, 1F - 0.003f - w1, wx + hfill - (up ? 0 : .003F), 1F - wx - w1);
+					rb.setRenderBounds(wx + w1, wx + (down ? 0 : .003F), wx + w1, 1F - 0.003f - w1, wx + hfill - (up || !down ? 0 : .003F), 1F - wx - w1);
 					
 					if(!filled || !up || !topFill)
 						rb.renderFaceYPos(x, y, z, vis, f, f, f, bright);
+					rb.renderFaceYNeg(x, y, z, vis, f, f, f, bright);
 					rb.renderFaceXNeg(x, y, z, vis, f, f, f, bright);
 					rb.renderFaceXPos(x, y, z, vis, f, f, f, bright);
-					rb.renderFaceYNeg(x, y, z, vis, f, f, f, bright);
 					rb.renderFaceZNeg(x, y, z, vis, f, f, f, bright);
 					rb.renderFaceZPos(x, y, z, vis, f, f, f, bright);
 					

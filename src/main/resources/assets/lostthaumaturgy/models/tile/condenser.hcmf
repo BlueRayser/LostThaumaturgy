@@ -1,0 +1,22 @@
+{
+textures lostthaumaturgy:blocks/condenser_side1
+texture y+ lostthaumaturgy:blocks/condenser_top
+texture y- lostthaumaturgy:blocks/condenser_top
+bounds 3/16 0 3/16 13/16 1/4 13/16
+draw
+
+bounds 3/16 3/4 3/16 13/16 1 13/16
+draw
+
+textures lostthaumaturgy:blocks/condenser_side3
+texture x- lostthaumaturgy:blocks/condenser_side2
+texture x+ lostthaumaturgy:blocks/condenser_side2
+bounds 0 1/8 6/16 1 7/8 10/16
+draw
+
+textures lostthaumaturgy:blocks/condenser_side3
+texture z- lostthaumaturgy:blocks/condenser_side2
+texture z+ lostthaumaturgy:blocks/condenser_side2
+bounds 6/16 1/8 0 10/16 7/8 1
+draw
+}

@@ -10,14 +10,15 @@ import com.mrdimka.hammercore.net.packetAPI.IPacket;
 import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
 import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
+import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
-public class PacketFXWisp3 implements IPacket, IPacketListener<PacketFXWisp3, IPacket>
+public class PacketFXWisp_TileVisCondenser_tick implements IPacket, IPacketListener<PacketFXWisp_TileVisCondenser_tick, IPacket>
 {
 	double x, y, z, tx, ty, tz;
 	float partialTicks;
-	int type, color;
+	int type;
 	
-	public PacketFXWisp3(double x, double y, double z, double tx, double ty, double tz, float partialTicks, int type, int color)
+	public PacketFXWisp_TileVisCondenser_tick(double x, double y, double z, double tx, double ty, double tz, float partialTicks, int type)
 	{
 		this.x = x;
 		this.y = y;
@@ -27,15 +28,14 @@ public class PacketFXWisp3 implements IPacket, IPacketListener<PacketFXWisp3, IP
 		this.tz = tz;
 		this.partialTicks = partialTicks;
 		this.type = type;
-		this.color = color;
 	}
 	
-	public PacketFXWisp3()
+	public PacketFXWisp_TileVisCondenser_tick()
 	{
 	}
 	
 	@Override
-	public IPacket onArrived(PacketFXWisp3 packet, MessageContext context)
+	public IPacket onArrived(PacketFXWisp_TileVisCondenser_tick packet, MessageContext context)
 	{
 		if(context.side == Side.CLIENT)
 			summon();
@@ -47,7 +47,7 @@ public class PacketFXWisp3 implements IPacket, IPacketListener<PacketFXWisp3, IP
 	{
 		FXWisp wisp;
 		ParticleProxy_Client.queueParticleSpawn(wisp = new FXWisp(Minecraft.getMinecraft().world, x, y, z, tx, ty, tz, partialTicks, type));
-		wisp.setColor(color);
+		wisp.tinkle = true;
 	}
 	
 	@Override
@@ -61,7 +61,6 @@ public class PacketFXWisp3 implements IPacket, IPacketListener<PacketFXWisp3, IP
 		nbt.setDouble("tz", tz);
 		nbt.setFloat("p", partialTicks);
 		nbt.setInteger("type", type);
-		nbt.setInteger("color", color);
 	}
 	
 	@Override
@@ -75,6 +74,5 @@ public class PacketFXWisp3 implements IPacket, IPacketListener<PacketFXWisp3, IP
 		tz = nbt.getDouble("tz");
 		partialTicks = nbt.getFloat("p");
 		type = nbt.getInteger("type");
-		color = nbt.getInteger("color");
 	}
 }

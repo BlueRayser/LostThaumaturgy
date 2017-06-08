@@ -70,10 +70,15 @@ vis_tank/side_to_bottom
 vis_tank/side_to_top
 vis_tank/side_to_top_bottom
 vis_tank/top
+
 advanced_vis_valve_off
 advanced_vis_valve_taint
 advanced_vis_valve_vis
 bellows
+condenser_side1
+condenser_side2
+condenser_side3
+condenser_top
 crystal
 dark_infuser_bottom
 dark_infuser_side_connected
@@ -90,6 +95,7 @@ nitor
 pengu_cobble_gen
 pressurized_conduit_off
 pressurized_conduit_on
+quicksilver_core
 silverwood_vis_conduit
 thaumium_bellows
 thaumium_pump_off
