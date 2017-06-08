@@ -97,7 +97,7 @@ public class ItemVoidCompass extends Item
 			{
 				BlockPos blockpos = PacketUpdateClientAura.closestMonolith;
 				if(blockpos == null)
-					return 0;
+					return p_185092_1_.getTotalWorldTime() / 20D;
 				return Math.atan2((double) blockpos.getZ() - p_185092_2_.posZ, (double) blockpos.getX() - p_185092_2_.posX);
 			}
 		});

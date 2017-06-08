@@ -44,7 +44,6 @@ public class WorldGenMonoliths implements IWorldGenFeature
 		double dist = Math.sqrt(AuraTicker.getDistanceSqToClosestMonolith(pos));
 		if(dist < 500 || pos.getY() < 40 || !world.getBlockState(pos).isSideSolid(world, pos, EnumFacing.UP))
 			return;
-		AuraTicker.addMonolith(pos);
 		generateSurroundings(world, rand, pos);
 		BlockMonolithOpener.buildMonolith(world, pos);
 	}

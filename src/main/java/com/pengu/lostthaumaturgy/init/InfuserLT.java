@@ -101,11 +101,14 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CRUCIBLE_EYES), 25, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_EYES), new ItemStack(BlocksLT.CRUCIBLE), new ItemStack(Items.REDSTONE), new ItemStack(Items.SPIDER_EYE));
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CRUCIBLE_THAUMIUM), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_THAUMIUM), new ItemStack(BlocksLT.CRUCIBLE_EYES), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD, 1), 9, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONDUIT_SILVERWOOD), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack());
+		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD, 2), 18, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONDUIT_SILVERWOOD), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack());
+		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD, 3), 27, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONDUIT_SILVERWOOD), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack());
 	}
 	
 	public static void registerDarkInfuser()
 	{
 		RecipesInfuser.addDarkInfusing(EnumMultiMaterialType.SOUL_FRAGMENT.stack(), 60, new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND), new ItemStack(Blocks.SOUL_SAND));
+		RecipesInfuser.addDarkInfusing(new ItemStack(ItemsLT.VOID_COMPASS), 33, EnumMultiMaterialType.VOID_INGOT.stack(), EnumMultiMaterialType.VOID_INGOT.stack(), EnumMultiMaterialType.VOID_INGOT.stack(), EnumMultiMaterialType.VOID_INGOT.stack(), EnumMultiMaterialType.TAINTED_CRYSTAL.stack());
 		RecipesInfuser.addDarkInfusing(new ItemStack(ItemsLT.CUSTOM_POTION, 1, 1), 9, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONCENTRATED_TAINT), new ItemStack(Items.GLASS_BOTTLE), EnumMultiMaterialType.CONGEALED_TAINT.stack());
 		RecipesInfuser.addDarkInfusing(new ItemStack(ItemsLT.CONCENTRATED_EVIL), 75, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONCENTRATED_EVIL), new ItemStack(Blocks.STONE_SLAB), new ItemStack(Blocks.SOUL_SAND), EnumMultiMaterialType.TAINTED_CRYSTAL.stack());
 		RecipesInfuser.addDarkInfusing(EnumMultiMaterialType.VOID_INGOT.stack(), 24, RecipesInfuser.createPredicateFromResearches(ResearchesLT.VOID_INGOT), EnumMultiMaterialType.DARKNESS_SEED.stack(), EnumMultiMaterialType.QUICKSILVER.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
