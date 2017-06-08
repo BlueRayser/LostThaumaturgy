@@ -142,7 +142,7 @@ public class FXWisp extends SimpleParticle
 		return this;
 	}
 	
-	private static final ResourceLocation p_large = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/p_large.png");
+	static final ResourceLocation p_large = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/p_large.png");
 	
 	@Override
 	public void doRenderParticle(double x, double y, double z, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)

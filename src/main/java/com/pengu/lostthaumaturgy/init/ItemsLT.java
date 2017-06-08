@@ -2,10 +2,12 @@ package com.pengu.lostthaumaturgy.init;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemTool;
 
 import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
+import com.pengu.lostthaumaturgy.items.ItemElementalPickaxe;
 import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
@@ -14,8 +16,10 @@ import com.pengu.lostthaumaturgy.items.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.items.ItemVoidArmor;
+import com.pengu.lostthaumaturgy.items.ItemVoidCompass;
 import com.pengu.lostthaumaturgy.items.ItemWandOfItemFreeze;
 import com.pengu.lostthaumaturgy.items.ItemWandReversal;
+import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeThaumium;
 
 public class ItemsLT
 {
@@ -37,7 +41,11 @@ public class ItemsLT
 	        WAND_REVERSAL = new ItemWandReversal(), //
 	        SINGULARITY = new ItemSingularity(), //
 	        CUSTOM_POTION = new ItemCustomPotion(), //
-	        AURA_DETECTOR = new ItemAuraDetector();
+	        AURA_DETECTOR = new ItemAuraDetector(), //
+	        VOID_COMPASS = new ItemVoidCompass();
+	public static final ItemTool //
+	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //
+	        ELEMENTAL_PICKAXE = new ItemElementalPickaxe();
 	public static final ItemUpgrade //
 	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //
 	        STABILIZED_SINGULARITY = new ItemUpgrade("stabilized_singularity"), //

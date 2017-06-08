@@ -245,7 +245,7 @@ public class AuraTicker
 				
 				if(mp.ticksExisted % 20 == 0 || changedChunks)
 				{
-					HCNetwork.manager.sendTo(new PacketUpdateClientAura(chunk), mp);
+					HCNetwork.manager.sendTo(new PacketUpdateClientAura(chunk, mp), mp);
 					HCNetwork.manager.sendTo(ResearchSystem.getPacketFor(mp), mp);
 				}
 			}

@@ -61,6 +61,9 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.VOID_BOOTS, "t t", "t t", 't', "ingotVoid"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.GOGGLES_OF_REVEALING, "tgt", "lll", 't', new ItemStack(ItemsLT.AURA_DETECTOR, 1, 3), 'g', "ingotGold", 'l', "leather"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.INERT_CARPET.stack(), "gfg", "fff", "gfg", 'g', "ingotGold", 'f', EnumMultiMaterialType.ENCHANTED_FABRIC.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.VIS_CONDENSER, " v ", "ici", "www", 'v', EnumMultiMaterialType.VIS_CRYSTAL.stack(), 'i', "ingotIron", 'c', BlocksLT.CONDUIT, 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_PICKAXE, "ttt", " s ", " s ", 't', "ingotThaumium", 's', "stickWood"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.ELEMENTAL_PICKAXE, "fff", " t ", " w ", 'f', EnumMultiMaterialType.FIERY_CRYSTAL.stack(), 't', ItemsLT.THAUMIUM_PICKAXE, 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()));
 		GameRegistry.addRecipe(new RecipePaintSeal());
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);
