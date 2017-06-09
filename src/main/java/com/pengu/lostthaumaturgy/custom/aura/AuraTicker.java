@@ -328,7 +328,7 @@ public class AuraTicker
 		int counter = AuraHM.size() / 50;
 		for(SIAuraChunk ac2 : c)
 		{
-			if(ac2.updated || ac2.dimension != world.provider.getDimension() && !world.isBlockLoaded(ChunkUtils.getChunkPos(ac2.x, ac2.z, 8, 128, 8)))
+			if(ac2.updated || ac2.dimension != world.provider.getDimension())
 				continue;
 			
 			MinecraftForge.EVENT_BUS.post(new AuraEvent.Update(ac2, world));
@@ -433,10 +433,13 @@ public class AuraTicker
 			ac2.badVibes = (short) MathHelper.clip(Math.abs(ac2.badVibes), 0, 100);
 			ac2.radiation = (float) MathHelper.clip(Math.abs(ac2.radiation), 0, LTConfigs.aura_radMax);
 			
-			if(shouldBeTainted(ac2))
-				taintifyChunk(world, ac2);
-			else
-				purifyChunk(world, ac2);
+			if(world.isBlockLoaded(ChunkUtils.getChunkPos(ac2.x, ac2.z, 8, 127, 8)))
+			{
+				if(shouldBeTainted(ac2))
+					taintifyChunk(world, ac2);
+				else
+					purifyChunk(world, ac2);
+			}
 			
 			{
 				float rad = ac2.radiation;

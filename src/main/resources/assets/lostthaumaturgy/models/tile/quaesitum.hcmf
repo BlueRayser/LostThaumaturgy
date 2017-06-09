@@ -1,0 +1,17 @@
+{
+textures lostthaumaturgy:blocks/quaesitum_side
+texture y- lostthaumaturgy:blocks/quaesitum_bottom
+texture y+ lostthaumaturgy:blocks/quaesitum_bottom
+bounds 2/16 0 2/16 14/16 3/16 14/16
+draw
+
+textures lostthaumaturgy:blocks/quaesitum_side
+bounds 6/16 3/16 6/16 10/16 6/16 10/16
+draw
+
+textures lostthaumaturgy:blocks/quaesitum_side
+texture y- lostthaumaturgy:blocks/quaesitum_bottom
+texture y+ lostthaumaturgy:blocks/quaesitum_top
+bounds 0 7/16 0 1 11/16 1
+draw
+}

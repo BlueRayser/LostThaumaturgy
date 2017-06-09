@@ -84,6 +84,7 @@ dark_infuser_bottom
 dark_infuser_side_connected
 dark_infuser_side_disconnected
 dark_infuser_top
+feather
 fluid_vis
 generator
 infuser_bottom
@@ -95,6 +96,9 @@ nitor
 pengu_cobble_gen
 pressurized_conduit_off
 pressurized_conduit_on
+quaesitum_bottom
+quaesitum_side
+quaesitum_top
 quicksilver_core
 silverwood_vis_conduit
 thaumium_bellows
