@@ -20,6 +20,7 @@ import com.pengu.lostthaumaturgy.block.BlockGenerator;
 import com.pengu.lostthaumaturgy.block.BlockInfuser;
 import com.pengu.lostthaumaturgy.block.BlockInfuserDark;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
+import com.pengu.lostthaumaturgy.block.BlockMetal;
 import com.pengu.lostthaumaturgy.block.BlockNitor;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockPenguCobbleGen;
@@ -100,7 +101,9 @@ public class BlocksLT
 	        TOTEM_TWILIGHT = new BlockTotem(false), //
 	        ELDRITCH_BLOCK = new Block(Material.ROCK).setHardness(1.5F).setUnlocalizedName("eldritch_block").setResistance(Float.POSITIVE_INFINITY), //
 	        MONOLITH = new BlockMonolith(), MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle(), MONOLITH_OPENER = new BlockMonolithOpener(), //
-	        MONOLITH_EXTRA_ROOM = new BlockExtraRoom();
+	        MONOLITH_EXTRA_ROOM = new BlockExtraRoom(), //
+	        THAUMIUM_BLOCK = new BlockMetal().setUnlocalizedName("thaumium_block"), //
+	    	VOID_BLOCK = new BlockMetal().setUnlocalizedName("void_block");
 	
 	public static final Block //
 	        SHIMMERLEAF = new BlockPlant("shimmerleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //

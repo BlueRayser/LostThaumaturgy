@@ -17,6 +17,7 @@ import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.items.ItemVoidArmor;
 import com.pengu.lostthaumaturgy.items.ItemVoidCompass;
+import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.items.ItemWandOfItemFreeze;
 import com.pengu.lostthaumaturgy.items.ItemWandReversal;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeThaumium;
@@ -42,7 +43,8 @@ public class ItemsLT
 	        SINGULARITY = new ItemSingularity(), //
 	        CUSTOM_POTION = new ItemCustomPotion(), //
 	        AURA_DETECTOR = new ItemAuraDetector(), //
-	        VOID_COMPASS = new ItemVoidCompass();
+	        VOID_COMPASS = new ItemVoidCompass(), //
+	        WAND = ItemWand.WAND;
 	public static final ItemTool //
 	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //
 	        ELEMENTAL_PICKAXE = new ItemElementalPickaxe();

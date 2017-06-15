@@ -169,7 +169,12 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		TRAVELING_TRUNK, //
 		INERT_CARPET, //
 		MITHRILLIUM_INGOT("ingotMithrillium"), //
-		ADAMINITE_INGOT("ingotAdaminite");
+		ADAMINITE_INGOT("ingotAdaminite"), //
+		CAP_IRON, //
+		CAP_GOLD, //
+		CAP_THAUMIUM, //
+		CAP_VOID, //
+		ROD_SILVERWOOD;
 		
 		private final String oredict[];
 		public final String mod;

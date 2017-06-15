@@ -150,7 +150,9 @@ public class AuraTicker
 	public static void addMonolith(BlockPos pos)
 	{
 		pos = new BlockPos(pos.getX(), 0, pos.getZ());
-		Monoliths.add(pos.toLong());
+		long p = pos.toLong();
+		if(!Monoliths.contains(p))
+			Monoliths.add(p);
 	}
 	
 	public static double getDistanceSqToClosestMonolith(BlockPos pos)

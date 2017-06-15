@@ -101,8 +101,6 @@ public class InfuserLT
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CRUCIBLE_EYES), 25, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_EYES), new ItemStack(BlocksLT.CRUCIBLE), new ItemStack(Items.REDSTONE), new ItemStack(Items.SPIDER_EYE));
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CRUCIBLE_THAUMIUM), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_THAUMIUM), new ItemStack(BlocksLT.CRUCIBLE_EYES), EnumMultiMaterialType.THAUMIUM_INGOT.stack(), EnumMultiMaterialType.THAUMIUM_INGOT.stack());
 		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD, 1), 9, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONDUIT_SILVERWOOD), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack());
-		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD, 2), 18, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONDUIT_SILVERWOOD), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack());
-		RecipesInfuser.addInfusing(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD, 3), 27, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CONDUIT_SILVERWOOD), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack(), new ItemStack(BlocksLT.CONDUIT), EnumMultiMaterialType.ENCHANTED_SILVERWOOD.stack());
 	}
 	
 	public static void registerDarkInfuser()

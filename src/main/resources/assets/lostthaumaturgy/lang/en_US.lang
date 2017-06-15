@@ -57,6 +57,8 @@ tile.lostthaumaturgy:totem_twilight.name=Twilight Totem
 tile.lostthaumaturgy:seal.name=Arcane Seal
 tile.lostthaumaturgy:seal.desc=Color: $col
 tile.lostthaumaturgy:vis_condenser.name=Vis Condenser
+tile.lostthaumaturgy:void_block.name=Block of Void Metal
+tile.lostthaumaturgy:thaumium_block.name=Block of Thaumium Metal
 
 
 
@@ -187,6 +189,13 @@ item.lostthaumaturgy:mithrillium_ingot.name=§3Mithrillium Ingot
 item.lostthaumaturgy:adaminite_ingot.name=§cAdaminite Ingot
 item.lostthaumaturgy:elemental_pickaxe.name=Pickaxe of the Core
 item.lostthaumaturgy:void_compass.name=Void Compass
+item.lostthaumaturgy:thaumium_pickaxe.name=Thaumium Pickaxe
+item.lostthaumaturgy:wand.name=Wand
+item.lostthaumaturgy:cap_iron.name=Iron Cap
+item.lostthaumaturgy:cap_gold.name=Gold Cap
+item.lostthaumaturgy:cap_thaumium.name=Thaumium Cap
+item.lostthaumaturgy:cap_void.name=Void Cap
+item.lostthaumaturgy:rod_silverwood.name=Silverwood Rod
 
 
 
@@ -272,6 +281,15 @@ bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:forbidden=Forbidden Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
+
+
+
+wand.rod.wood=Wood
+wand.rod.silverwood=Silverwood
+wand.cap.iron=Iron
+wand.cap.gold=Gold
+wand.cap.thaumium=Thaumium
+wand.cap.void=Void Metal
 
 
 

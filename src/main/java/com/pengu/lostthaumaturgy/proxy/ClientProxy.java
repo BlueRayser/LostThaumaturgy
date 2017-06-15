@@ -46,6 +46,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
+import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
@@ -59,6 +60,7 @@ import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityWisp;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderSingularity;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderTravelingTrunk;
 import com.pengu.lostthaumaturgy.client.render.item.ColorItemResearch;
+import com.pengu.lostthaumaturgy.client.render.item.RenderItemWand;
 import com.pengu.lostthaumaturgy.client.render.item.RenderItemWandOfItemFreeze;
 import com.pengu.lostthaumaturgy.client.render.item.RenderItemWandReversal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRAdvancedVisValve;
@@ -223,6 +225,7 @@ public class ClientProxy extends CommonProxy
 		
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_ITEM_FREEZE, new RenderItemWandOfItemFreeze());
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_REVERSAL, new RenderItemWandReversal());
+		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND, new RenderItemWand());
 		
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
 		
@@ -292,10 +295,11 @@ public class ClientProxy extends CommonProxy
 	{
 		mapSprites.clear();
 		
+		LostThaumaturgy.LOG.info("Loading sprites...");
 		try
 		{
+			LostThaumaturgy.LOG.info("  -JSON...");
 			int sprite = 0;
-			LostThaumaturgy.LOG.info("Loadeding sprites...");
 			Scanner s = new Scanner(Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(LTInfo.MOD_ID, "textures/blocks/_sprites.txt")).getInputStream());
 			while(s.hasNextLine())
 			{
@@ -306,11 +310,20 @@ public class ClientProxy extends CommonProxy
 				sprite++;
 			}
 			s.close();
-			LostThaumaturgy.LOG.info("Loaded " + sprite + " sprites!");
+			LostThaumaturgy.LOG.info("   +Loaded " + sprite + " JSON Sprites!");
 		} catch(IOException e)
 		{
 			e.printStackTrace();
 		}
+		LostThaumaturgy.LOG.info("  -Wand:");
+		
+		LostThaumaturgy.LOG.info("    -Caps...");
+		WandRegistry.getCaps().forEach(cap -> evt.getMap().registerSprite(new ResourceLocation(cap.getCapTexture())));
+		LostThaumaturgy.LOG.info("     +Registered " + WandRegistry.getCaps().count() + " Wand Cap Textures");
+		
+		LostThaumaturgy.LOG.info("    -Rods...");
+		WandRegistry.getRods().forEach(rod -> evt.getMap().registerSprite(new ResourceLocation(rod.getRodTexture())));
+		LostThaumaturgy.LOG.info("     +Registered " + WandRegistry.getRods().count() + " Wand Rod Textures");
 		
 		try
 		{

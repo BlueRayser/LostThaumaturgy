@@ -10,6 +10,7 @@ import net.minecraftforge.oredict.RecipeSorter.Category;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.recipe.RecipePaintSeal;
 
@@ -64,6 +65,10 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.VIS_CONDENSER, " v ", "ici", "www", 'v', EnumMultiMaterialType.VIS_CRYSTAL.stack(), 'i', "ingotIron", 'c', BlocksLT.CONDUIT, 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_PICKAXE, "ttt", " s ", " s ", 't', "ingotThaumium", 's', "stickWood"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.ELEMENTAL_PICKAXE, "fff", " t ", " w ", 'f', EnumMultiMaterialType.FIERY_CRYSTAL.stack(), 't', ItemsLT.THAUMIUM_PICKAXE, 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemWand.makeWand(WandsLT.ROD_WOOD, WandsLT.CAP_IRON, WandsLT.CAP_IRON), "  c", " s ", "c  ", 'c', EnumMultiMaterialType.CAP_IRON.stack(), 's', "stickWood"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.CAP_IRON.stack(), "iii", "i i", 'i', "nuggetIron"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.THAUMIUM_BLOCK, "ttt", "ttt", "ttt", 't', "ingotThaumium"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.VOID_BLOCK, "ttt", "ttt", "ttt", 't', "ingotVoid"));
 		GameRegistry.addRecipe(new RecipePaintSeal());
 		
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlocksLT.CINNABAR_ORE), EnumMultiMaterialType.QUICKSILVER.stack(), 0.3F);

@@ -44,6 +44,7 @@ import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
+import com.pengu.lostthaumaturgy.init.WandsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
@@ -70,7 +71,7 @@ public class LostThaumaturgy
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		ProgressBar bar = ProgressManager.push("Adding Contents...", 6);
+		ProgressBar bar = ProgressManager.push("Adding Contents...", 7);
 		
 		bar.step("Registering Vis Capability");
 		CapabilityVisConnection.register();
@@ -91,6 +92,9 @@ public class LostThaumaturgy
 		
 		bar.step("Registering Tesseract API");
 		TileTesseract.registerTesseractCapability(CapabilityVisConnection.VIS, LTInfo.MOD_ID + ":vis", EnumMultiMaterialType.VIS_CRYSTAL.stack());
+		
+		bar.step("Adding wands...");
+		WandsLT.init();
 		
 		ProgressManager.pop(bar);
 	}
