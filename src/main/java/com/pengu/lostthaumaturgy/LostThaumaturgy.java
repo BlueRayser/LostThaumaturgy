@@ -71,32 +71,32 @@ public class LostThaumaturgy
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		ProgressBar bar = ProgressManager.push("Adding Contents...", 7);
+		ProgressBar nahYaEtoDelayou = ProgressManager.push("Adding Contents...", 7);
 		
-		bar.step("Registering Vis Capability");
+		nahYaEtoDelayou.step("Registering Vis Capability");
 		CapabilityVisConnection.register();
 		MinecraftForge.EVENT_BUS.register(proxy);
 		proxy.preInit();
 		
-		bar.step("Registering Blocks");
+		nahYaEtoDelayou.step("Registering Blocks");
 		SimpleRegistration.registerFieldBlocksFrom(BlocksLT.class, LTInfo.MOD_ID, tab);
 		
-		bar.step("Registering Items");
+		nahYaEtoDelayou.step("Registering Items");
 		SimpleRegistration.registerFieldItemsFrom(ItemsLT.class, LTInfo.MOD_ID, tab);
 		
-		bar.step("Adding Sounds");
+		nahYaEtoDelayou.step("Adding Sounds");
 		SoundEventsLT.register();
 		
-		bar.step("Registering Researches");
+		nahYaEtoDelayou.step("Registering Researches");
 		ResearchesLT.registerResearches();
 		
-		bar.step("Registering Tesseract API");
+		nahYaEtoDelayou.step("Registering Tesseract API");
 		TileTesseract.registerTesseractCapability(CapabilityVisConnection.VIS, LTInfo.MOD_ID + ":vis", EnumMultiMaterialType.VIS_CRYSTAL.stack());
 		
-		bar.step("Adding wands...");
+		nahYaEtoDelayou.step("Adding wands...");
 		WandsLT.init();
 		
-		ProgressManager.pop(bar);
+		ProgressManager.pop(nahYaEtoDelayou);
 	}
 	
 	@EventHandler
