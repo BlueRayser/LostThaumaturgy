@@ -1,10 +1,5 @@
 package com.pengu.lostthaumaturgy.client.fx;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
-import com.pengu.hammercore.client.particle.api.IRenderedParticle;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;
@@ -19,7 +14,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class FXGuideWisp extends Particle implements IRenderedParticle
+import org.lwjgl.opengl.GL11;
+
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
+import com.pengu.hammercore.client.particle.api.SimpleParticle;
+
+public class FXGuideWisp extends SimpleParticle
 {
 	boolean source = false;
 	int type1;
@@ -136,11 +136,6 @@ public class FXGuideWisp extends Particle implements IRenderedParticle
 		GL11.glDepthMask(true);
 		GL11.glPopMatrix();
 		GL11.glBlendFunc(770, 771);
-	}
-	
-	@Override
-	public void renderParticle(VertexBuffer buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
-	{
 	}
 	
 	@Override

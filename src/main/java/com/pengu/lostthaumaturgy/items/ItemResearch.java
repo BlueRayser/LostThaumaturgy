@@ -58,8 +58,9 @@ public class ItemResearch extends MultiVariantItem implements ITooltipInjector
 				if(!playerIn.capabilities.isCreativeMode)
 					playerIn.getHeldItem(handIn).shrink(1);
 			}
+		} catch(Throwable err)
+		{ /* fuck */
 		}
-		catch(Throwable err) { /* fuck */ }
 		
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}

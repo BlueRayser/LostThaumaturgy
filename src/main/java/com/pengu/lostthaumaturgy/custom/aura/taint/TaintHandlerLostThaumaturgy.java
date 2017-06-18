@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.custom.aura.taint;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.state.IBlockState;

@@ -6,9 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
+import com.mrdimka.hammercore.tile.ITileDroppable;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
@@ -20,7 +23,7 @@ import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerCrystallizer;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
-public class TileCrystallizer extends TileVisUser implements IUpgradable, ISidedInventory
+public class TileCrystallizer extends TileVisUser implements IUpgradable, ISidedInventory, ITileDroppable
 {
 	public InventoryNonTile inventory = new InventoryNonTile(10);
 	private int[] upgrades = new int[] { -1 };
@@ -312,5 +315,11 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
 	{
 		return !canInsertItem(index, stack, direction);
+	}
+	
+	@Override
+	public void createDrop(EntityPlayer player, World world, BlockPos pos)
+	{
+		inventory.drop(world, pos);
 	}
 }

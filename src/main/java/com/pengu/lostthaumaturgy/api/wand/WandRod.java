@@ -3,6 +3,11 @@ package com.pengu.lostthaumaturgy.api.wand;
 import java.awt.Color;
 import java.util.Random;
 
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
@@ -11,11 +16,6 @@ import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
-
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class WandRod
 {
@@ -35,6 +35,11 @@ public class WandRod
 	public float getRodCapacity()
 	{
 		return 10F;
+	}
+	
+	public int getCraftCost()
+	{
+		return 0;
 	}
 	
 	public String getRodTexture()
@@ -65,17 +70,17 @@ public class WandRod
 			boolean flag1 = false;
 			boolean flag = false;
 			
-			float vis = ItemWand.getVis(wand.getEntityItem());
-			float taint = ItemWand.getTaint(wand.getEntityItem());
+			float vis = ItemWand.getVis(wand.getItem());
+			float taint = ItemWand.getTaint(wand.getItem());
 			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(wand.getEntityWorld(), wand.getPosition());
-			if(vis > taint && si.taint > 0 && taint < ItemWand.getMaxTaint(wand.getEntityItem()))
+			if(vis > taint && si.taint > 0 && taint < ItemWand.getMaxTaint(wand.getItem()))
 			{
-				si.taint -= Math.ceil(ItemWand.addTaint(wand.getEntityItem(), .1F) * 10);
+				si.taint -= Math.ceil(ItemWand.addTaint(wand.getItem(), .1F) * 10);
 				flag = true;
 				flag1 = true;
-			} else if(si.vis > 0 && vis < ItemWand.getMaxVis(wand.getEntityItem()))
+			} else if(si.vis > 0 && vis < ItemWand.getMaxVis(wand.getItem()))
 			{
-				si.vis -= Math.ceil(ItemWand.addVis(wand.getEntityItem(), .1F) * 10);
+				si.vis -= Math.ceil(ItemWand.addVis(wand.getItem(), .1F) * 10);
 				flag = true;
 			}
 			
@@ -106,9 +111,9 @@ public class WandRod
 				Vec3d tpos = wand.getPositionVector();
 				
 				if(!flag1)
-					HCNetwork.manager.sendToAllAround(new PacketFXWisp3(pos.xCoord, pos.yCoord, pos.zCoord, tpos.xCoord, tpos.yCoord, tpos.zCoord, .9F + rand.nextFloat() * .6F, 2, color), new TargetPoint(wand.world.provider.getDimension(), wand.posX, wand.posY, wand.posZ, 48));
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp3(pos.x, pos.y, pos.z, tpos.x, tpos.y, tpos.z, .9F + rand.nextFloat() * .6F, 2, color), new TargetPoint(wand.world.provider.getDimension(), wand.posX, wand.posY, wand.posZ, 48));
 				else
-					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.xCoord, pos.yCoord, pos.zCoord, tpos.xCoord, tpos.yCoord, tpos.zCoord, .9F + rand.nextFloat() * .6F, 5), new TargetPoint(wand.world.provider.getDimension(), wand.posX, wand.posY, wand.posZ, 48));
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.x, pos.y, pos.z, tpos.x, tpos.y, tpos.z, .9F + rand.nextFloat() * .6F, 5), new TargetPoint(wand.world.provider.getDimension(), wand.posX, wand.posY, wand.posZ, 48));
 				
 				if(wand.world.rand.nextInt(30) == 0)
 					HammerCore.particleProxy.spawnZap(wand.world, pos, tpos, new Color(color));

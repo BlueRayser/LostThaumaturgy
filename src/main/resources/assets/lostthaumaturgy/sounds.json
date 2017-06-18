@@ -15,5 +15,6 @@
 	"monolith": { "sounds": ["lostthaumaturgy:monolith"] },
 	"place": { "sounds": ["lostthaumaturgy:place"] },
 	"rumble": { "sounds": ["lostthaumaturgy:rumble"] },
-	"singularity": { "sounds": ["lostthaumaturgy:singularity"] }
+	"singularity": { "sounds": ["lostthaumaturgy:singularity"] },
+	"tinkering": { "sounds": ["lostthaumaturgy:tinkering"] }
 }

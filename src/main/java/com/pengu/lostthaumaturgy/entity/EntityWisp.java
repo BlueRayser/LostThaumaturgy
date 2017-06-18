@@ -35,7 +35,6 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.net.HCNetwork;
-import com.pengu.hammercore.client.particle.def.LightningBoltCommon;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
@@ -365,7 +364,7 @@ public class EntityWisp extends EntityFlying implements IMob
 		int i = 1;
 		while((double) i < d3)
 		{
-			axisalignedbb = axisalignedbb.addCoord(d4, d5, d6);
+			axisalignedbb = axisalignedbb.offset(d4, d5, d6);
 			if(world.getEntitiesInAABBexcluding(this, axisalignedbb, Predicates.alwaysTrue()).size() > 0)
 				return false;
 			++i;
@@ -388,13 +387,9 @@ public class EntityWisp extends EntityFlying implements IMob
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
-		if(source.getEntity() instanceof EntityLivingBase)
+		if(source.getTrueSource() instanceof EntityLivingBase)
 		{
-			setAttackTarget((EntityLivingBase) source.getEntity());
-			aggroCooldown = 200;
-		} else if(source.getSourceOfDamage() instanceof EntityLivingBase)
-		{
-			setAttackTarget((EntityLivingBase) source.getSourceOfDamage());
+			setAttackTarget((EntityLivingBase) source.getTrueSource());
 			aggroCooldown = 200;
 		}
 		

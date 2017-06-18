@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import com.mrdimka.hammercore.api.ITileBlock;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.monolith.TileMonolithOpener;
 
@@ -68,8 +67,6 @@ public class BlockMonolithOpener extends BlockRendered implements ITileEntityPro
 	
 	public static void buildMonolith(World world, BlockPos pos)
 	{
-		AuraTicker.addMonolith(pos);
-		
 		for(int i = -1; i < 2; ++i)
 			for(int j = -1; j < 2; ++j)
 			{

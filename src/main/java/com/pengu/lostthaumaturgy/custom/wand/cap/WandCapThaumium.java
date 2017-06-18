@@ -23,4 +23,10 @@ public class WandCapThaumium extends WandCap
 	{
 		return LTInfo.MOD_ID + ":items/wand/cap_thaumium_mat";
 	}
+	
+	@Override
+	public int getCraftCost()
+	{
+		return 15;
+	}
 }

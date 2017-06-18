@@ -43,7 +43,6 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.ChunkUtils;
-import com.pengu.hammercore.utils.RoundRobinList;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
@@ -61,7 +60,7 @@ import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion
 @MCFBus
 public class AuraTicker
 {
-	private static boolean loadedAuras = false;
+	public static boolean loadedAuras = false;
 	public static ArrayList<Biome> BIOME_MAGIC = new ArrayList();
 	public static ArrayList<Biome> BIOME_AIR = new ArrayList();
 	public static ArrayList<Biome> BIOME_WATER = new ArrayList();
@@ -327,7 +326,7 @@ public class AuraTicker
 		
 		Collection<SIAuraChunk> c = AuraHM.values();
 		boolean noupdates = true;
-		int counter = AuraHM.size() / 50;
+		int counter = AuraHM.size() / 200;
 		for(SIAuraChunk ac2 : c)
 		{
 			if(ac2.updated || ac2.dimension != world.provider.getDimension())
@@ -567,7 +566,6 @@ public class AuraTicker
 	
 	public static void SaveAuraData()
 	{
-		LoadAuraData();
 		try
 		{
 			FileOutputStream fos = new FileOutputStream(getAuraSaveFile().getAbsolutePath());
@@ -598,7 +596,7 @@ public class AuraTicker
 			GZIPInputStream gzis = new GZIPInputStream(fis);
 			ObjectInputStream in = new ObjectInputStream(gzis);
 			HashMap loaded = (HashMap) in.readObject();
-			RoundRobinList monoliths = (RoundRobinList) in.readObject();
+			ArrayList monoliths = (ArrayList) in.readObject();
 			in.close();
 			AuraTicker.AuraHM = loaded;
 			AuraTicker.Monoliths = monoliths;
@@ -612,7 +610,7 @@ public class AuraTicker
 				GZIPInputStream gzis = new GZIPInputStream(fis);
 				ObjectInputStream in = new ObjectInputStream(gzis);
 				HashMap loaded = (HashMap) in.readObject();
-				RoundRobinList monoliths = (RoundRobinList) in.readObject();
+				ArrayList monoliths = (ArrayList) in.readObject();
 				in.close();
 				AuraTicker.AuraHM = loaded;
 				AuraTicker.Monoliths = monoliths;
@@ -801,12 +799,12 @@ public class AuraTicker
 		TileEntity tc = world.getTileEntity(pos);
 		if(tc != null && tc instanceof IConnection && (ic = (IConnection) tc).getTaintedVis() > 0.0f)
 		{
-			int at = (int) ic.getTaintedVis();
+			int at = (int) Math.ceil(ic.getTaintedVis() * 3);
 			Chunk c = world.getChunkFromBlockCoords(pos);
 			SIAuraChunk ac = (SIAuraChunk) AuraHM.get(asKey(c.x, c.z, world.provider.getDimension()));
 			if(ac != null)
 			{
-				ac.taint = (short) (ac.taint + at);
+				ac.taint += at;
 				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":fizz", pos, .2F, 2F - world.rand.nextFloat() * .4F, SoundCategory.AMBIENT);
 				for(int a = 0; a < Math.min(at, 50); ++a)
 				{

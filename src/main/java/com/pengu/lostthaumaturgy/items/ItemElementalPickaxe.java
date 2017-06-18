@@ -113,7 +113,7 @@ public class ItemElementalPickaxe extends ItemPickaxe
 					fy = v.getY() + .5;
 					fz = v.getZ() + .5;
 				}
-				HCNetwork.manager.sendToAllAround(new PacketFXGuideWisp(player.posX + vec3d.xCoord * 0.30000001192092896, player.posY + vec3d.yCoord * 0.30000001192092896, player.posZ + vec3d.zCoord * 0.30000001192092896, fx, fy, fz, .8F, 0), new TargetPoint(world.provider.getDimension(), player.posX, player.posY, player.posZ, 48));
+				HCNetwork.manager.sendToAllAround(new PacketFXGuideWisp(player.posX + vec3d.x * 0.30000001192092896, player.posY + vec3d.y * 0.30000001192092896, player.posZ + vec3d.z * 0.30000001192092896, fx, fy, fz, .8F, 0), new TargetPoint(world.provider.getDimension(), player.posX, player.posY, player.posZ, 48));
 			}
 		}
 		

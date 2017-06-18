@@ -8,10 +8,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.mrdimka.hammercore.common.InterItemStack;
-import com.mrdimka.hammercore.common.match.item.ItemContainer;
-import com.mrdimka.hammercore.common.match.item.ItemMatchParams;
-import com.mrdimka.hammercore.common.utils.ItemStackUtil;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;

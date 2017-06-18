@@ -1,12 +1,12 @@
 package com.pengu.lostthaumaturgy.inventory;
 
-import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
-import com.pengu.lostthaumaturgy.tile.TileVisCondenser;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
+import com.pengu.lostthaumaturgy.tile.TileVisCondenser;
 
 public class ContainerVisCondenser extends Container
 {

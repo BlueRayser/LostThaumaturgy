@@ -36,7 +36,6 @@ import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
 import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
-import com.pengu.lostthaumaturgy.tile.TileCrucibleEyes;
 import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 
 public class BlockCrucibleVoid extends BlockRendered implements ITileBlock<TileCrucibleVoid>, ITileEntityProvider

@@ -103,8 +103,10 @@ public class HudDetector extends Gui
 		{
 			GL11.glPushMatrix();
 			int off = 0;
-			if(!taint) off += 15;
-			if(!vis) off += 15;
+			if(!taint)
+				off += 15;
+			if(!vis)
+				off += 15;
 			GL11.glTranslated(off, 0, 0);
 			RenderUtil.drawTexturedModalRect(k - 45, l - 67 + sr, 79 + (shift / 56) * 9, 23 + sr, 8, 48 - sr);
 			if(vis && taint && aura.previousRadiation < aura.radiation)

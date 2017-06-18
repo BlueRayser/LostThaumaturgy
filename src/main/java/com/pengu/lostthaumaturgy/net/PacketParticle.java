@@ -37,12 +37,12 @@ public class PacketParticle implements IPacket, IPacketListener<PacketParticle, 
 	{
 		nbt.setInteger("p0", particle.ordinal());
 		nbt.setInteger("p1", world);
-		nbt.setDouble("p2", pos.xCoord);
-		nbt.setDouble("p3", pos.yCoord);
-		nbt.setDouble("p4", pos.zCoord);
-		nbt.setDouble("p5", motion.xCoord);
-		nbt.setDouble("p6", motion.yCoord);
-		nbt.setDouble("p7", motion.zCoord);
+		nbt.setDouble("p2", pos.x);
+		nbt.setDouble("p3", pos.y);
+		nbt.setDouble("p4", pos.z);
+		nbt.setDouble("p5", motion.x);
+		nbt.setDouble("p6", motion.y);
+		nbt.setDouble("p7", motion.z);
 		nbt.setIntArray("p8", params);
 	}
 	
@@ -69,6 +69,6 @@ public class PacketParticle implements IPacket, IPacketListener<PacketParticle, 
 	{
 		if(world != Minecraft.getMinecraft().world.provider.getDimension())
 			return;
-		Minecraft.getMinecraft().world.spawnParticle(particle, pos.xCoord, pos.yCoord, pos.zCoord, motion.xCoord, motion.yCoord, motion.zCoord, params);
+		Minecraft.getMinecraft().world.spawnParticle(particle, pos.x, pos.y, pos.z, motion.x, motion.y, motion.z, params);
 	}
 }

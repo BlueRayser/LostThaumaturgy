@@ -1,12 +1,6 @@
 package com.pengu.lostthaumaturgy.items;
 
-import java.text.DecimalFormat;
 import java.util.List;
-
-import com.pengu.lostthaumaturgy.api.wand.EnumCapLocation;
-import com.pengu.lostthaumaturgy.api.wand.WandCap;
-import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
-import com.pengu.lostthaumaturgy.api.wand.WandRod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -20,6 +14,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.api.wand.EnumCapLocation;
+import com.pengu.lostthaumaturgy.api.wand.WandCap;
+import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
+import com.pengu.lostthaumaturgy.api.wand.WandRod;
 
 public class ItemWand extends Item
 {
@@ -40,21 +40,19 @@ public class ItemWand extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
 	{
-		DecimalFormat format = new DecimalFormat("#0.00");
-		
 		String stored = "";
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("PureVis", NBT.TAG_FLOAT))
-			stored += (stored.isEmpty() ? "" : " | ") + TextFormatting.LIGHT_PURPLE + "" + format.format(getVis(stack)) + " Vis" + TextFormatting.RESET;
+			stored += (stored.isEmpty() ? "" : " | ") + TextFormatting.LIGHT_PURPLE + "" + LostThaumaturgy.standartDecimalFormat.format(getVis(stack)) + " Vis" + TextFormatting.RESET;
 		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("TaintedVis", NBT.TAG_FLOAT))
-			stored += (stored.isEmpty() ? "" : " | ") + TextFormatting.DARK_PURPLE + "" + format.format(getTaint(stack)) + " Taint" + TextFormatting.RESET;
+			stored += (stored.isEmpty() ? "" : " | ") + TextFormatting.DARK_PURPLE + "" + LostThaumaturgy.standartDecimalFormat.format(getTaint(stack)) + " Taint" + TextFormatting.RESET;
 		if(!stored.isEmpty())
 			stored = "Stored: " + stored;
 		
 		String cap = "";
 		if(stack.hasTagCompound())
-			cap += (cap.isEmpty() ? "" : " | ") + TextFormatting.LIGHT_PURPLE + "" + format.format(getMaxVis(stack)) + " Vis" + TextFormatting.RESET;
+			cap += (cap.isEmpty() ? "" : " | ") + TextFormatting.LIGHT_PURPLE + "" + LostThaumaturgy.standartDecimalFormat.format(getMaxVis(stack)) + " Vis" + TextFormatting.RESET;
 		if(stack.hasTagCompound())
-			cap += (cap.isEmpty() ? "" : " | ") + TextFormatting.DARK_PURPLE + "" + format.format(getMaxTaint(stack)) + " Taint" + TextFormatting.RESET;
+			cap += (cap.isEmpty() ? "" : " | ") + TextFormatting.DARK_PURPLE + "" + LostThaumaturgy.standartDecimalFormat.format(getMaxTaint(stack)) + " Taint" + TextFormatting.RESET;
 		cap = "Capacity: " + cap;
 		
 		WandRod rod = getRod(stack);
@@ -99,7 +97,7 @@ public class ItemWand extends Item
 	{
 		entityItem.setNoDespawn();
 		
-		ItemStack stack = entityItem.getEntityItem();
+		ItemStack stack = entityItem.getItem();
 		
 		WandRod rod = getRod(stack);
 		WandCap c1 = getCap(stack, EnumCapLocation.UP);

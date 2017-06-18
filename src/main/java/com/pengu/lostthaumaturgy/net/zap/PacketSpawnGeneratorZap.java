@@ -46,12 +46,12 @@ public class PacketSpawnGeneratorZap implements IPacket, IPacketListener<PacketS
 	@Override
 	public void writeToNBT(NBTTagCompound nbt)
 	{
-		nbt.setDouble("sx", start.xCoord);
-		nbt.setDouble("sy", start.yCoord);
-		nbt.setDouble("sz", start.zCoord);
-		nbt.setDouble("ex", end.xCoord);
-		nbt.setDouble("ey", end.yCoord);
-		nbt.setDouble("ez", end.zCoord);
+		nbt.setDouble("sx", start.x);
+		nbt.setDouble("sy", start.y);
+		nbt.setDouble("sz", start.z);
+		nbt.setDouble("ex", end.x);
+		nbt.setDouble("ey", end.y);
+		nbt.setDouble("ez", end.z);
 	}
 	
 	@Override

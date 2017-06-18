@@ -5,7 +5,6 @@ import net.minecraft.item.ItemStack;
 
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class WandRodWood extends WandRod
 {

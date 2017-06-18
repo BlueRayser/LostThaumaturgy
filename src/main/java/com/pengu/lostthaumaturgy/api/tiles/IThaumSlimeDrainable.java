@@ -14,7 +14,7 @@ public interface IThaumSlimeDrainable
 {
 	default void attractSlimeToTile(int rad, WorldLocation location, int maxSlimes)
 	{
-		AxisAlignedBB aabb = new AxisAlignedBB(location.getPos()).expandXyz(rad);
+		AxisAlignedBB aabb = new AxisAlignedBB(location.getPos()).grow(rad);
 		List<EntityThaumSlime> slimes = ListUtils.randomizeList(location.getWorld().getEntitiesWithinAABB(EntityThaumSlime.class, aabb), location.getWorld().rand);
 		for(EntityThaumSlime s : slimes)
 		{

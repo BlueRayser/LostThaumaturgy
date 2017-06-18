@@ -2,8 +2,7 @@ package com.pengu.lostthaumaturgy.api.wand;
 
 public enum EnumCapLocation
 {
-	UP,
-	DOWN;
+	UP, DOWN;
 	
 	public EnumCapLocation opposite()
 	{

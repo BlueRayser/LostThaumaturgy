@@ -13,13 +13,14 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.net.HCNetwork;
+import com.mrdimka.hammercore.tile.ITileDroppable;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.asm.WorldHooks;
-import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.client.gui.GuiVisCondenser;
@@ -32,7 +33,7 @@ import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_TileVisCondenser_tick;
 
-public class TileVisCondenser extends TileSyncableTickable implements IConnection, IUpgradable, ISidedInventory
+public class TileVisCondenser extends TileSyncableTickable implements IConnection, IUpgradable, ISidedInventory, ITileDroppable
 {
 	public float angle;
 	public float speed;
@@ -494,5 +495,11 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
 	{
 		return !canInsertItem(index, stack, direction);
+	}
+	
+	@Override
+	public void createDrop(EntityPlayer player, World world, BlockPos pos)
+	{
+		inventory.drop(world, pos);
 	}
 }

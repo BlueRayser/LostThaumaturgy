@@ -52,7 +52,7 @@ public class ItemWandOfItemFreeze extends Item
 		
 		Vec3d min = point.addVector(-1.5, -1.5, -1.5);
 		Vec3d max = point.subtract(-1, -1, -1);
-		List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(min.xCoord, min.yCoord, min.zCoord, max.xCoord, max.yCoord, max.zCoord));
+		List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(min.x, min.y, min.z, max.x, max.y, max.z));
 		if(items.size() > 0)
 		{
 			if(!worldIn.isRemote)
@@ -86,7 +86,7 @@ public class ItemWandOfItemFreeze extends Item
 			
 			if(ticksExisted == 20 && item.world.isAirBlock(item.getPosition()))
 			{
-				TileLyingItem li = BlockLyingItem.place(item.getEntityWorld(), item.getPosition(), item.getEntityItem().copy());
+				TileLyingItem li = BlockLyingItem.place(item.getEntityWorld(), item.getPosition(), item.getItem().copy());
 				if(li != null)
 					li.placedByPlayer.set(true);
 				item.setDead();

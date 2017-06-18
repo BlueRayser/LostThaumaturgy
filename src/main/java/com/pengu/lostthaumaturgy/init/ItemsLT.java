@@ -8,24 +8,26 @@ import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
 import com.pengu.lostthaumaturgy.items.ItemElementalPickaxe;
-import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemSingularity;
-import com.pengu.lostthaumaturgy.items.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.ItemThaumonomicon;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.items.ItemVoidArmor;
 import com.pengu.lostthaumaturgy.items.ItemVoidCompass;
 import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.items.ItemWandOfItemFreeze;
 import com.pengu.lostthaumaturgy.items.ItemWandReversal;
+import com.pengu.lostthaumaturgy.items.armor.ItemThaumiumArmor;
+import com.pengu.lostthaumaturgy.items.armor.ItemVoidArmor;
+import com.pengu.lostthaumaturgy.items.armor.boots.ItemBootsStriding;
+import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeThaumium;
 
 public class ItemsLT
 {
 	public static final ItemMultiMaterial MULTI_MATERIAL = new ItemMultiMaterial();
 	public static final ItemGogglesRevealing GOGGLES_OF_REVEALING = new ItemGogglesRevealing();
+	public static final ItemBootsStriding BOOTS_STRIDING = new ItemBootsStriding();
 	public static final Item //
 	        CRYSTALLINE_BELL = new ItemCrystallineBell(), //
 	        DISCOVERY = new ItemResearch(), //

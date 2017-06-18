@@ -9,7 +9,7 @@ public class WandCapVoid extends WandCap
 	public WandCapVoid()
 	{
 		super("void");
-		capItem = EnumMultiMaterialType.CAP_THAUMIUM.stack();
+		capItem = EnumMultiMaterialType.CAP_VOID.stack();
 	}
 	
 	@Override
@@ -22,5 +22,11 @@ public class WandCapVoid extends WandCap
 	public String getCapTexture()
 	{
 		return LTInfo.MOD_ID + ":items/wand/cap_void_mat";
+	}
+	
+	@Override
+	public int getCraftCost()
+	{
+		return 30;
 	}
 }

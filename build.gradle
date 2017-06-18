@@ -37,7 +37,7 @@ compileJava {
 minecraft {
     version = "${config.forge_version}"
     runDir = "run"
-    mappings = "snapshot_20170516"
+    mappings = "stable_32"
     makeObfSourceJar = false
 	replace 'required-after:hammercore', "required-after:hammercore@[${config.hammercore_version},)"
     replace '@VERSION@', "${config.mod_version}"

@@ -1,5 +1,6 @@
 package com.pengu.lostthaumaturgy;
 
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,6 +59,8 @@ public class LostThaumaturgy
 {
 	@Instance
 	public static LostThaumaturgy instance;
+	
+	public static DecimalFormat standartDecimalFormat = new DecimalFormat("#0.00");
 	
 	@SidedProxy(clientSide = LTInfo.CLIENT_PROXY, serverSide = LTInfo.SERVER_PROXY)
 	public static CommonProxy proxy;
@@ -190,5 +193,6 @@ public class LostThaumaturgy
 	public void serverStop(FMLServerStoppedEvent evt)
 	{
 		AuraTicker.AuraHM.clear();
+		AuraTicker.loadedAuras = false;
 	}
 }

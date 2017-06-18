@@ -171,6 +171,12 @@ public class EntityTravelingTrunk extends EntityAnimal implements IUpgradable
 		return null;
 	}
 	
+	@Override
+	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
+	{
+		inventory.drop(world, getPosition());
+	}
+	
 	public void eatItems()
 	{
 		if(getHealth() <= 25 && eatDelay == 0)
@@ -206,12 +212,12 @@ public class EntityTravelingTrunk extends EntityAnimal implements IUpgradable
 		
 		for(EntityItem ei : items)
 		{
-			ItemStack leftover = ItemInsertionUtil.putStackInInventoryAllSlots(inventory, ei.getEntityItem().copy(), EnumFacing.UP);
-			boolean changed = InterItemStack.isStackNull(leftover) || !leftover.isItemEqual(ei.getEntityItem());
+			ItemStack leftover = ItemInsertionUtil.putStackInInventoryAllSlots(inventory, ei.getItem().copy(), EnumFacing.UP);
+			boolean changed = InterItemStack.isStackNull(leftover) || !leftover.isItemEqual(ei.getItem());
 			if(InterItemStack.isStackNull(leftover))
 				ei.setDead();
 			else
-				ei.setEntityItemStack(leftover);
+				ei.setItem(leftover);
 			if(changed)
 			{
 				eatDelay += 2 + rand.nextInt(4);

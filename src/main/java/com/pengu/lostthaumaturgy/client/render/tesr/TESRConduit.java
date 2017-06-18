@@ -88,9 +88,9 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		
 		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 		
-		int bright = rb.setLighting(Minecraft.getMinecraft().world, Minecraft.getMinecraft().player.getPosition());
+		int bright = getBrightnessForRB(null, rb);
 		
-		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
 		
 		float displayPure = nbt.getFloat("PureVis");
@@ -411,8 +411,15 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 					continue;
 				
 				TileVisUser user = WorldUtil.cast(ic, TileVisUser.class);
+				TileConduit cond = WorldUtil.cast(ic, TileConduit.class);
 				
-				if(tc.getSuction(null) == ic.getSuction(pos) + 1 || tc.getSuction(null) == ic.getSuction(pos) - 1 || (user != null && user.getSuction(user.getPos()) >= tc.getSuction(null)))
+				if(cond != null && cond.displayPure + cond.displayTaint < .05F)
+					continue;
+				
+				if(user != null && user.getSuction(user.getPos()) < tc.getSuction(null))
+					continue;
+				
+				if(cond == null || Math.abs(tc.getSuction(null) - ic.getSuction(pos)) == 1 || (user != null && (user.getSuction(user.getPos()) >= tc.getSuction(null) || user.isVisSource())))
 				{
 					if(f == EnumFacing.UP)
 						rb.setRenderBounds(wq2 + hfill, (6 + wq2 + hfill) / 16D, wq2 + hfill, 1 - wq2 - hfill, 1 - w1 / 16D, 1 - wq2 - hfill);

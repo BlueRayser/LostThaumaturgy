@@ -39,6 +39,17 @@ duplicator/inner
 duplicator/side
 duplicator/y
 
+infuser/down1
+infuser/down2
+infuser/down3
+infuser/down4
+infuser/side1
+infuser/side2
+infuser/top1
+infuser/top2
+infuser/top3
+infuser/top4
+
 monolith/bottom
 monolith/crystal_receptacle
 monolith/extra_room
@@ -63,13 +74,17 @@ silverwood_vis_tank/top
 studium_table/bottom
 studium_table/side
 studium_table/top
-crucible_spill
+
 vis_tank/bottom
 vis_tank/side
 vis_tank/side_to_bottom
 vis_tank/side_to_top
 vis_tank/side_to_top_bottom
 vis_tank/top
+
+wand_constructor/bottom
+wand_constructor/side
+wand_constructor/top
 
 advanced_vis_valve_off
 advanced_vis_valve_taint
@@ -79,6 +94,7 @@ condenser_side1
 condenser_side2
 condenser_side3
 condenser_top
+crucible_spill
 crystal
 dark_infuser_bottom
 dark_infuser_side_connected

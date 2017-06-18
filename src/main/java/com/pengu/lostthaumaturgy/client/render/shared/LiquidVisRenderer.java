@@ -23,6 +23,12 @@ public class LiquidVisRenderer
 	public static ShaderProgram visShader;
 	public static LiquidVisOperation operation;
 	
+	/** You can change, but you have to do it every frame */
+	public static float alpha = .5F;
+	
+	/** You can change, but you have to do it every frame */
+	public static int resolution = 200;
+	
 	public static float getVisSaturation(float taintedVis, float pureVis)
 	{
 		if(taintedVis + pureVis <= 0.001F)
@@ -58,11 +64,11 @@ public class LiquidVisRenderer
 			operation.red = (120 + visSaturation * 80) / 255F;
 			operation.green = 0;
 			operation.blue = 1;
-			operation.setResolution(200);
+			operation.setResolution(resolution);
 			visShader.freeBindShader();
 			
 			int loc = visShader.getUniformLoc("alpha");
-			ARBShaderObjects.glUniform1fARB(loc, 0.5F);
+			ARBShaderObjects.glUniform1fARB(loc, alpha);
 		} else
 			Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		
@@ -73,6 +79,9 @@ public class LiquidVisRenderer
 		
 		if(useShaders())
 			ShaderProgram.unbindShader();
+		
+		alpha = .5F;
+		resolution = 200;
 	}
 	
 	public static void finishDrawWithShaders(Tessellator tess, float visSaturation)
@@ -84,11 +93,11 @@ public class LiquidVisRenderer
 			operation.red = (120 + visSaturation * 80) / 255F;
 			operation.green = 0;
 			operation.blue = 1;
-			operation.setResolution(200);
+			operation.setResolution(resolution);
 			visShader.freeBindShader();
 			
 			int loc = visShader.getUniformLoc("alpha");
-			ARBShaderObjects.glUniform1fARB(loc, 0.5F);
+			ARBShaderObjects.glUniform1fARB(loc, alpha);
 		}
 		
 		GLRenderState.BLEND.on();
@@ -96,6 +105,9 @@ public class LiquidVisRenderer
 		
 		if(useShaders())
 			ShaderProgram.unbindShader();
+		
+		alpha = .5F;
+		resolution = 200;
 	}
 	
 	public static class LiquidVisOperation implements IShaderOperation

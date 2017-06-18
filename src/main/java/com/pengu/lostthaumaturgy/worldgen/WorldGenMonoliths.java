@@ -45,6 +45,7 @@ public class WorldGenMonoliths implements IWorldGenFeature
 		if(dist < 500 || pos.getY() < 40 || !world.getBlockState(pos).isSideSolid(world, pos, EnumFacing.UP))
 			return;
 		generateSurroundings(world, rand, pos);
+		AuraTicker.addMonolith(pos);
 		BlockMonolithOpener.buildMonolith(world, pos);
 	}
 	

@@ -2,8 +2,6 @@ package com.pengu.lostthaumaturgy.items;
 
 import javax.annotation.Nullable;
 
-import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -16,6 +14,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
 
 public class ItemVoidCompass extends Item
 {
@@ -44,13 +44,13 @@ public class ItemVoidCompass extends Item
 					Entity entity = (Entity) (flag ? entityIn : stack.getItemFrame());
 					
 					if(worldIn == null)
-					{
 						worldIn = entity.world;
-					}
 					
 					double d0;
 					
-					if(worldIn.provider.isSurfaceWorld())
+					BlockPos blockpos = PacketUpdateClientAura.closestMonolith;
+					
+					if(worldIn.provider.isSurfaceWorld() && blockpos != null)
 					{
 						double d1 = flag ? (double) entity.rotationYaw : this.getFrameRotation((EntityItemFrame) entity);
 						d1 = MathHelper.positiveModulo(d1 / 360.0D, 1.0D);

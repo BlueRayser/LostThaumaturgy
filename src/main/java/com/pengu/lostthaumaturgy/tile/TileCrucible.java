@@ -141,7 +141,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 			if(list.size() > 0 && !world.isRemote)
 			{
 				EntityItem entity = list.get(world.rand.nextInt(list.size()));
-				ItemStack item = entity.getEntityItem();
+				ItemStack item = entity.getItem();
 				if(canCook(item))
 				{
 					try
@@ -228,7 +228,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 		} else
 		{
 			for(EntityItem entity : getContents())
-				if(canCook(entity.getEntityItem()))
+				if(canCook(entity.getItem()))
 				{
 					entity.motionX = (world.rand.nextFloat() - world.rand.nextFloat()) * .05F;
 					entity.motionY = -.01F;

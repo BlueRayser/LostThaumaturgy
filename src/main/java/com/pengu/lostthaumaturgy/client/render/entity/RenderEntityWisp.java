@@ -11,8 +11,6 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
 
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.client.render.entity.RenderSingularity.Factory;
-import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 

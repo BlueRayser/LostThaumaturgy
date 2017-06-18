@@ -43,6 +43,9 @@ import com.pengu.lostthaumaturgy.block.BlockVisPumpThaumium;
 import com.pengu.lostthaumaturgy.block.BlockVisTank;
 import com.pengu.lostthaumaturgy.block.BlockVisValve;
 import com.pengu.lostthaumaturgy.block.BlockVoidChest;
+import com.pengu.lostthaumaturgy.block.BlockWandConstructor;
+import com.pengu.lostthaumaturgy.block.infuser.BlockFuser;
+import com.pengu.lostthaumaturgy.block.infuser.BlockInfuserBase;
 import com.pengu.lostthaumaturgy.block.monolith.BlockCrystalReceptacle;
 import com.pengu.lostthaumaturgy.block.monolith.BlockExtraRoom;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolith;
@@ -83,6 +86,7 @@ public class BlocksLT
 	        STUDIUM_TABLE = new BlockStudiumTable(), //
 	        AUXILIUM_TABLE = new BlockAuxiliumTable(), //
 	        SEAL = new BlockSeal(), //
+	        WAND_CONSTRUCTOR = new BlockWandConstructor(), //
 	        CRYSTALLIZER = new BlockCrystallizer(), //
 	        NITOR = new BlockNitor(), //
 	        TAINTED_SOIL = new BlockTaintedSoil(), //
@@ -103,13 +107,15 @@ public class BlocksLT
 	        MONOLITH = new BlockMonolith(), MONOLITH_CRYSTAL_RECEPTACLE = new BlockCrystalReceptacle(), MONOLITH_OPENER = new BlockMonolithOpener(), //
 	        MONOLITH_EXTRA_ROOM = new BlockExtraRoom(), //
 	        THAUMIUM_BLOCK = new BlockMetal().setUnlocalizedName("thaumium_block"), //
-	    	VOID_BLOCK = new BlockMetal().setUnlocalizedName("void_block");
+	        VOID_BLOCK = new BlockMetal().setUnlocalizedName("void_block");
 	
 	public static final Block //
 	        SHIMMERLEAF = new BlockPlant("shimmerleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
 	        TAINTEDLEAF = new BlockPlant("taintedleaf", new AxisAlignedBB(.1, 0, .1, .9, .8, .9)), //
 	        CINDERPEARL = new BlockCinderpearl(), //
-	        TAINTED_PLANT = new BlockTaintedPlant();
+	        TAINTED_PLANT = new BlockTaintedPlant(), //
+	        INFUSER_BASE = new BlockInfuserBase(), //
+	        FUSER_MB = new BlockFuser();
 	
 	public static final Block //
 	        CRYSTAL_ORE_VAPOROUS = new BlockOreCrystal(EnumMultiMaterialType.VAPOROUS_CRYSTAL, "vaporous", true, 0xFFD905), //

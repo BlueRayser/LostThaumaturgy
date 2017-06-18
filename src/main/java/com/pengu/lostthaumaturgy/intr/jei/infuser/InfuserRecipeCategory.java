@@ -78,7 +78,6 @@ public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapp
 	@Override
 	public void drawExtras(Minecraft mc)
 	{
-		
 	}
 	
 	@Override

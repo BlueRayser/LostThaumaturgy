@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.custom.wand.rod;
 
-import net.minecraft.item.ItemStack;
-
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -30,5 +28,11 @@ public class WandRodSilverwood extends WandRod
 	public String getRodTexture()
 	{
 		return LTInfo.MOD_ID + ":items/wand/rod_silverwood_mat";
+	}
+	
+	@Override
+	public int getCraftCost()
+	{
+		return 25;
 	}
 }

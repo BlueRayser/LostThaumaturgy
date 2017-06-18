@@ -30,9 +30,6 @@ import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.net.PacketParticle;
-import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
-import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
-import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_EntitySingularity_doSuckage;
 
 public class EntitySingularity extends EntityThrowable
@@ -294,7 +291,7 @@ public class EntitySingularity extends EntityThrowable
 				continue;
 			if(entity instanceof EntityItem)
 			{
-				int val = (int) RecipesCrucible.getSmeltingValue(((EntityItem) entity).getEntityItem());
+				int val = (int) RecipesCrucible.getSmeltingValue(((EntityItem) entity).getItem());
 				this.currentVis += (float) val;
 				entity.setDead();
 				

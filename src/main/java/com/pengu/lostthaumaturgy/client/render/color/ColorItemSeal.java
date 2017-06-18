@@ -22,6 +22,6 @@ public class ColorItemSeal implements IItemColor
 			return color;
 		}
 		
-	    return 0xFFFFFF;
+		return 0xFFFFFF;
 	}
 }

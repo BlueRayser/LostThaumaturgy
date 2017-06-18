@@ -28,9 +28,9 @@ public class PacketSmallGreenFlameFX implements IPacket, IPacketListener<PacketS
 	@Override
 	public void writeToNBT(NBTTagCompound nbt)
 	{
-		nbt.setDouble("x", pos.xCoord);
-		nbt.setDouble("y", pos.yCoord);
-		nbt.setDouble("z", pos.zCoord);
+		nbt.setDouble("x", pos.x);
+		nbt.setDouble("y", pos.y);
+		nbt.setDouble("z", pos.z);
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class PacketSmallGreenFlameFX implements IPacket, IPacketListener<PacketS
 	public void client()
 	{
 		FXGreenFlame p;
-		ParticleProxy_Client.queueParticleSpawn(p = new FXGreenFlame(Minecraft.getMinecraft().world, pos.xCoord, pos.yCoord, pos.zCoord, 0, 0, 0));
+		ParticleProxy_Client.queueParticleSpawn(p = new FXGreenFlame(Minecraft.getMinecraft().world, pos.x, pos.y, pos.z, 0, 0, 0));
 		p.setScale(.05F);
 	}
 }

@@ -59,6 +59,9 @@ tile.lostthaumaturgy:seal.desc=Color: $col
 tile.lostthaumaturgy:vis_condenser.name=Vis Condenser
 tile.lostthaumaturgy:void_block.name=Block of Void Metal
 tile.lostthaumaturgy:thaumium_block.name=Block of Thaumium Metal
+tile.lostthaumaturgy:infuser_base.name=Arcane Stone Block
+tile.lostthaumaturgy:fuser.name=Arcane Crafter
+tile.lostthaumaturgy:wand_constructor.name=Wand Constructor
 
 
 
@@ -196,6 +199,7 @@ item.lostthaumaturgy:cap_gold.name=Gold Cap
 item.lostthaumaturgy:cap_thaumium.name=Thaumium Cap
 item.lostthaumaturgy:cap_void.name=Void Cap
 item.lostthaumaturgy:rod_silverwood.name=Silverwood Rod
+item.lostthaumaturgy:boots_striding.name=Boots of Striding
 
 
 
@@ -271,6 +275,15 @@ research.lostthaumaturgy:crucible_void.desc=Thaumium Crucible is good enough but
 
 research.lostthaumaturgy:conduit_silverwood.title=Silverwood Vis Conduit
 research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are main way to transport Vis and/or Taint, but sometimes they might not be enough. For example, if you need to transport vis over great distances you might need a better speed for it. It seems like you found a good way to improve vis conduits. Infusing a vis conduit with enchanted silverwood is going to do it.
+
+research.lostthaumaturgy:elemental_pickaxe.title=Pickaxe of the Core
+research.lostthaumaturgy:elemental_pickaxe.desc=Thaumium Pickaxe is tough as iron and has a good potential for enchanting, but mining rare stuff with it isn't that easy. By attaching some fiery crystals and upgrading handle using enchanted wood you made Pickaxe of the Core. It can find you some great treasures, just use it in the cave.
+
+research.lostthaumaturgy:vis_purifier.title=Vis Purifier
+research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes cause an explosion to unprepared tanks. You were previously using Vis Filters to "clean" your tanks, but taintify your atmosphere. You made something similar to vis filters - Vis Purifier. It destroys taint completely given some time.
+
+research.lostthaumaturgy:crystallizer.title=Crystallizer
+research.lostthaumaturgy:crystallizer.desc=Depleted crystals are not really useful and it's better not to make anything with them. You found a good way to get your crystals back! Crystallizer infuses any crystal including depleted with any primal essence.
 
 
 

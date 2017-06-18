@@ -15,16 +15,16 @@ public class SealCombination
 	public final String name;
 	
 	public SealCombination(ItemSealSymbol i, ItemSealSymbol j, ItemSealSymbol k, String name)
-    {
+	{
 		this.name = name;
 		slots[0] = i;
 		slots[1] = j;
 		slots[2] = k;
-    }
+	}
 	
 	/**
-	 * Used to invoke a static method via reflection.
-	 * <br>Format: com.package.RenderClass.methodName
+	 * Used to invoke a static method via reflection. <br>
+	 * Format: com.package.RenderClass.methodName
 	 */
 	public String getRender(TileSeal seal, int index)
 	{
@@ -43,12 +43,9 @@ public class SealCombination
 	
 	public boolean isValid(TileSeal seal)
 	{
-		if(slots[0] != seal.getSymbol(0))
-			return false;
-		if(slots[1] != seal.getSymbol(1))
-			return false;
-		if(slots[2] != seal.getSymbol(2))
-			return false;
+		for(int i = 0; i < 3; ++i)
+			if(slots[i] != seal.getSymbol(i))
+				return false;
 		return true;
 	}
 }

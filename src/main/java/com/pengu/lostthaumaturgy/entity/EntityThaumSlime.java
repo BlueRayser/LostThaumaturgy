@@ -118,7 +118,7 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 			AxisAlignedBB a1 = getEntityBoundingBox();
 			AxisAlignedBB a2 = entityplayer != null ? entityplayer.getEntityBoundingBox() : null;
 			
-			if(a1 != null && a2 != null && a1.intersectsWith(a2))
+			if(a1 != null && a2 != null && a1.intersects(a2))
 			{
 				entityplayer.attackEntityAsMob(this);
 				entityplayer.attackEntityFrom(DamageSource.causeMobDamage(this), getSlimeSize() + 1);
@@ -247,9 +247,9 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
-		if(source.getSourceOfDamage() instanceof EntityLivingBase)
+		if(source.getTrueSource() instanceof EntityLivingBase)
 		{
-			setAttackTarget((EntityLivingBase) source.getSourceOfDamage());
+			setAttackTarget((EntityLivingBase) source.getTrueSource());
 			dataManager.set(ANGER_LEVEL, 300);
 		}
 		return super.attackEntityFrom(source, amount);

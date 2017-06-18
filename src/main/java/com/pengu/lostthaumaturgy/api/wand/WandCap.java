@@ -9,9 +9,9 @@ public class WandCap
 	protected ItemStack capItem = ItemStack.EMPTY;
 	
 	public WandCap(String id)
-    {
+	{
 		this.id = id;
-    }
+	}
 	
 	/**
 	 * Make this value negative to decrease vis/taint usage
@@ -19,6 +19,11 @@ public class WandCap
 	public float getUseCost()
 	{
 		return 10;
+	}
+	
+	public int getCraftCost()
+	{
+		return 0;
 	}
 	
 	public String getCapTexture()

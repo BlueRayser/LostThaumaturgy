@@ -6,19 +6,25 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 import com.mrdimka.hammercore.HammerCore;
@@ -27,10 +33,14 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.utils.RoundRobinList;
 import com.pengu.hammercore.utils.WorldLocation;
+import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
+import com.pengu.lostthaumaturgy.api.items.ISpeedBoots;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.emote.EmoteManager;
+import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -126,11 +136,14 @@ public class InteractionEvents
 	}
 	
 	private Map<String, Float> walkSpeeds = new HashMap<>();
+	private Map<String, Integer> inactive = new HashMap<>();
 	
 	@SubscribeEvent
 	public void playerTick(PlayerTickEvent e)
 	{
 		EntityPlayer player = e.player;
+		if(player.world.isRemote && e.phase == Phase.END)
+			return;
 		String id = player.getGameProfile().getName();
 		
 		if(walkSpeeds.get(id) == null)
@@ -139,9 +152,69 @@ public class InteractionEvents
 		float speed = walkSpeeds.get(id);
 		float newSpeed = speed;
 		
-		//TODO: Make player walk faster using some magic =)
+		ItemStack stack = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+		if(stack.getItem() instanceof ISpeedBoots)
+		{
+			ISpeedBoots boots = (ISpeedBoots) stack.getItem();
+			newSpeed += boots.getWalkBoost(stack);
+			player.stepHeight = player.isSneaking() ? .5F : boots.getStepAssist(stack);
+		} else
+			player.stepHeight = .5F;
 		
 		player.capabilities.walkSpeed = newSpeed;
 		walkSpeeds.put(id, speed);
+		
+		if(LTConfigs.effects_AFK)
+		{
+			int inactive = this.inactive.get(id) != null ? this.inactive.get(id) : 0;
+			if(player.prevDistanceWalkedModified == player.distanceWalkedModified && player.onGround)
+				inactive++;
+			else
+				inactive = 0;
+			this.inactive.put(id, inactive);
+			
+			if(inactive > 20 * 60 && inactive % 50 == 0)
+				EmoteManager.newEmote(player.world, player.getPositionVector().addVector(0, player.height, 0), DefaultEmotes.SLEEPING).setLifespan(5, 4, 5).setColorRGB(player.getRNG().nextFloat(), player.getRNG().nextFloat(), player.getRNG().nextFloat()).build();
+		}
+	}
+	
+	@SubscribeEvent
+	public void livingHurt(LivingHurtEvent evt)
+	{
+		if(evt.getEntityLiving() instanceof EntityPlayer && !evt.getEntity().world.isRemote && LTConfigs.effects_Damage)
+			EmoteManager.newEmote(evt.getEntity().world, evt.getEntity().getPositionVector().addVector(0, evt.getEntity().height, 0), DefaultEmotes.WTF).setLifespan(5, 4, 5).setColorRGB(evt.getEntity().world.rand.nextFloat(), evt.getEntity().world.rand.nextFloat(), evt.getEntity().world.rand.nextFloat()).build();
+	}
+	
+	@SubscribeEvent
+	public void livingJump(LivingJumpEvent evt)
+	{
+		if(evt.getEntity() instanceof EntityLivingBase)
+		{
+			EntityLivingBase base = (EntityLivingBase) evt.getEntity();
+			ItemStack stack = base.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+			if(stack.getItem() instanceof ISpeedBoots)
+			{
+				ISpeedBoots boots = (ISpeedBoots) stack.getItem();
+				evt.getEntity().motionY *= 1F + boots.getJumpMod(stack) * (evt.getEntity().isSneaking() ? .5F : 1F);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void livingFall(LivingFallEvent evt)
+	{
+		if(evt.getEntity() instanceof EntityLivingBase)
+		{
+			EntityLivingBase base = (EntityLivingBase) evt.getEntity();
+			ItemStack stack = base.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+			if(stack.getItem() instanceof ISpeedBoots)
+			{
+				ISpeedBoots boots = (ISpeedBoots) stack.getItem();
+				if(evt.getDistance() >= 5.5)
+					stack.damageItem(1, base);
+				evt.setDamageMultiplier(evt.getDamageMultiplier() / (1 + boots.getJumpMod(stack) * 2));
+				evt.setDistance(evt.getDistance() / (1 + boots.getJumpMod(stack)));
+			}
+		}
 	}
 }

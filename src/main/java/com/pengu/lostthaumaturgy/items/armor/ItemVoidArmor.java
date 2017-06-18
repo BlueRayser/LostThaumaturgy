@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy.items;
+package com.pengu.lostthaumaturgy.items.armor;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

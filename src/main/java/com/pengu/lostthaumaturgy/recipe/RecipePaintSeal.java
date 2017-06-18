@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.recipe;
 
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.passive.EntitySheep;

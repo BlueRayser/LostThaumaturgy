@@ -21,7 +21,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
+import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
 

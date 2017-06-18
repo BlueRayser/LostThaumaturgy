@@ -67,7 +67,7 @@ public class BlockNitor extends BlockRendered
 		double z1 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * .125;
 		
 		double x2 = pos.getX() + .5 + (rand.nextDouble() - rand.nextDouble()) * .5;
-		double y2 = pos.getY() + .5 + rand.nextDouble() * .75;
+		double y2 = pos.getY() + .5 + rand.nextDouble() * .5;
 		double z2 = pos.getZ() + .5 + (rand.nextDouble() - rand.nextDouble()) * .5;
 		
 		FXWisp wisp = new FXWisp(worldIn, x1, y1, z1, x2, y2, z2, 1F, 5);

@@ -10,7 +10,6 @@ import com.mrdimka.hammercore.net.packetAPI.IPacket;
 import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
 import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
-import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
 public class PacketFXWisp2 implements IPacket, IPacketListener<PacketFXWisp2, IPacket>
 {

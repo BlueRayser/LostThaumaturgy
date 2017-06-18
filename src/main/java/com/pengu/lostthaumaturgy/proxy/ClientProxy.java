@@ -33,12 +33,14 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.bookAPI.BookCategory;
 import com.mrdimka.hammercore.bookAPI.BookEntry;
 import com.mrdimka.hammercore.client.utils.GLImageManager;
+import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.color.Color;
@@ -51,6 +53,7 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
+import com.pengu.lostthaumaturgy.client.fx.FXEmote;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.color.ColorItemSeal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
@@ -74,6 +77,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleVoid;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRFuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRGenerator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRInfuserDark;
@@ -93,6 +97,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisPumpThaumium;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisTank;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVisValve;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRVoidChest;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRWandConstructor;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRCrystalReceptacle;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolith;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithExtraRoom;
@@ -102,6 +107,7 @@ import com.pengu.lostthaumaturgy.custom.research.ResearchRegisterEvent;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
+import com.pengu.lostthaumaturgy.emote.EmoteData;
 import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
 import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
@@ -110,8 +116,8 @@ import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 import com.pengu.lostthaumaturgy.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
 import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.tile.TileBellows;
@@ -123,6 +129,7 @@ import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.tile.TileDuplicator;
+import com.pengu.lostthaumaturgy.tile.TileFuser;
 import com.pengu.lostthaumaturgy.tile.TileGenerator;
 import com.pengu.lostthaumaturgy.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.tile.TileInfuserDark;
@@ -143,6 +150,7 @@ import com.pengu.lostthaumaturgy.tile.TileVisPumpThaumium;
 import com.pengu.lostthaumaturgy.tile.TileVisTank;
 import com.pengu.lostthaumaturgy.tile.TileVisValve;
 import com.pengu.lostthaumaturgy.tile.TileVoidChest;
+import com.pengu.lostthaumaturgy.tile.TileWandConstructor;
 import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
 import com.pengu.lostthaumaturgy.tile.monolith.TileExtraRoom;
 import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
@@ -219,6 +227,8 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileMonolithOpener.class, BlocksLT.MONOLITH_OPENER, TESRMonolithOpener.INSTANCE);
 		registerRender(TileExtraRoom.class, BlocksLT.MONOLITH_EXTRA_ROOM, TESRMonolithExtraRoom.INSTANCE);
 		registerRender(TileVisCondenser.class, BlocksLT.VIS_CONDENSER, TESRVisCondenser.INSTANCE);
+		registerRender(TileWandConstructor.class, BlocksLT.WAND_CONSTRUCTOR, TESRWandConstructor.INSTANCE);
+		registerRender(TileFuser.class, BlocksLT.FUSER_MB, TESRFuser.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSeal.class, TESRSeal.INSTANCE);
@@ -230,6 +240,29 @@ public class ClientProxy extends CommonProxy
 		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
 		
 		penguSkinId = GlStateManager.generateTexture();
+		
+		try
+		{
+			BufferedImage img = ImageIO.read(new URL("https://raw.githubusercontent.com/APengu/HammerCore/1.11.x/skins/APengu.png"));
+			GLImageManager.loadTexture(img, penguSkinId, false);
+		} catch(Throwable err)
+		{
+		}
+	}
+	
+	@Override
+	public void spawnEmote(EmoteData data, MessageContext ctx)
+	{
+		if(ctx.side == Side.SERVER)
+		{
+			super.spawnEmote(data, ctx);
+			return;
+		}
+		
+		if(data == null)
+			return;
+		
+		ParticleProxy_Client.queueParticleSpawn(new FXEmote(data));
 	}
 	
 	@Override
@@ -324,14 +357,6 @@ public class ClientProxy extends CommonProxy
 		LostThaumaturgy.LOG.info("    -Rods...");
 		WandRegistry.getRods().forEach(rod -> evt.getMap().registerSprite(new ResourceLocation(rod.getRodTexture())));
 		LostThaumaturgy.LOG.info("     +Registered " + WandRegistry.getRods().count() + " Wand Rod Textures");
-		
-		try
-		{
-			BufferedImage img = ImageIO.read(new URL("https://raw.githubusercontent.com/APengu/HammerCore/1.11.x/skins/APengu.png"));
-			GLImageManager.loadTexture(img, penguSkinId, false);
-		} catch(Throwable err)
-		{
-		}
 		
 		BookThaumonomicon tm = BookThaumonomicon.instance;
 		for(BookCategory cat : tm.categories)

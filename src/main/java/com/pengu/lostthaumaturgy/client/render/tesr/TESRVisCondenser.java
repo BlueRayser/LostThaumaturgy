@@ -16,7 +16,6 @@ import com.pengu.hammercore.client.OpnodeLoader;
 import com.pengu.hammercore.client.model.simple.OpnodeRender;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
-import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
 import com.pengu.lostthaumaturgy.init.ItemsLT;

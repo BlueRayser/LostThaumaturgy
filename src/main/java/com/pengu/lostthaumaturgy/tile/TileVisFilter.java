@@ -39,7 +39,7 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 		{
 			if(visSuction < 15)
 				setVisSuction(15);
-		}else
+		} else
 		{
 			if(taintSuction < 15)
 				setTaintSuction(15);

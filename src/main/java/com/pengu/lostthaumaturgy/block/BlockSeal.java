@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.BlockLever.EnumOrientation;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +28,6 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
-import com.pengu.lostthaumaturgy.api.seal.SealCombination;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
@@ -136,13 +134,6 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 		return Arrays.asList();
 	}
 	
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		WorldUtil.spawnItemStack(worldIn, pos, getDrop(new WorldLocation(worldIn, pos)));
-		super.breakBlock(worldIn, pos, state);
-	}
-	
 	public ItemStack getDrop(WorldLocation loc)
 	{
 		TileSeal seal = loc.getTileOfType(TileSeal.class);
@@ -198,11 +189,11 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 				else
 					seal.setSymbol(2, symbol);
 				playerIn.getHeldItem(hand).shrink(1);
-			}else if(playerIn.getHeldItem(hand).getItem() == ItemsLT.WAND_REVERSAL && seal.getSymbol(0) != null)
+			} else if(playerIn.getHeldItem(hand).getItem() == ItemsLT.WAND_REVERSAL && seal.getSymbol(0) != null)
 			{
 				
 			}
-//			SealCombination c = seal.combination;
+			// SealCombination c = seal.combination;
 		}
 		return false;
 	}

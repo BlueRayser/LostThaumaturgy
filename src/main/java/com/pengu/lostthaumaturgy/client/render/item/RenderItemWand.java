@@ -1,10 +1,10 @@
 package com.pengu.lostthaumaturgy.client.render.item;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+
+import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.render.item.IItemRender;

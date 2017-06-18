@@ -1,11 +1,9 @@
-package com.pengu.lostthaumaturgy.items;
+package com.pengu.lostthaumaturgy.items.armor;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.util.EnumHelper;
 
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;

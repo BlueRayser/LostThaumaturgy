@@ -58,7 +58,7 @@ public class ContainerInfuser extends Container
 			IContainerListener icrafting = listeners.get(i);
 			if((float) lastCookTime == infuser.infuserCookTime)
 				continue;
-			icrafting.sendProgressBarUpdate(this, 0, Math.round(infuser.infuserCookTime));
+			icrafting.sendWindowProperty(this, 0, Math.round(infuser.infuserCookTime));
 		}
 		lastCookTime = Math.round(infuser.infuserCookTime);
 	}

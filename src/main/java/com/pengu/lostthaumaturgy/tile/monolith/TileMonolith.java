@@ -86,8 +86,6 @@ public class TileMonolith extends TileSyncableTickable
 			
 			HCNetwork.getManager("particles").sendToAllAround(new PacketFXWisp2(pos.getX() + .5 + x, pos.getY() + yOff + .5 + y, pos.getZ() + .5 + z, pos.getX() + .5 + x2, pos.getY() + yOff + .5 + y2, pos.getZ() + .5 + z2, 4F, 5), getSyncPoint(48));
 		}
-		
-		AuraTicker.addMonolith(pos);
 	}
 	
 	public double getYOffset(long additionalTicks)

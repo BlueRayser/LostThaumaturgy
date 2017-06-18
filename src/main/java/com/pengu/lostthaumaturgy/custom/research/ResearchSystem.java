@@ -11,6 +11,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
 import com.mrdimka.hammercore.annotations.MCFBus;
+import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientRD;
 
@@ -42,6 +44,9 @@ public class ResearchSystem
 		if(loaded == null)
 			loaded = new HashSet<>();
 		COMPLETED.put(evt.player.getGameProfile().getId().toString(), loaded);
+		LostThaumaturgy.LOG.info("Loaded " + loaded.size() + " Researches for Player " + evt.player.getGameProfile().getName() + "!");
+		if(evt.player instanceof EntityPlayerMP)
+			HCNetwork.manager.sendTo(getPacketFor(evt.player), (EntityPlayerMP) evt.player);
 	}
 	
 	@SubscribeEvent
@@ -68,6 +73,8 @@ public class ResearchSystem
 	public static void setResearchCompleted(EntityPlayer player, Research res, boolean isCompleted)
 	{
 		HashSet<String> researches = COMPLETED.get(player.getGameProfile().getId().toString());
+		if(researches == null)
+			return;
 		if(isCompleted)
 			researches.add(res.uid);
 		else
@@ -76,8 +83,10 @@ public class ResearchSystem
 	
 	public static boolean isResearchCompleted(EntityPlayer player, Research res)
 	{
+		if(res == null)
+			return true;
 		HashSet<String> researches = COMPLETED.get(player.getGameProfile().getId().toString());
-		return researches.contains(res.uid);
+		return researches != null && researches.contains(res.uid);
 	}
 	
 	public static File getResearchSaveFile(EntityPlayer player)

@@ -19,6 +19,12 @@ public class WandCapGold extends WandCap
 	}
 	
 	@Override
+	public int getCraftCost()
+	{
+		return 5;
+	}
+	
+	@Override
 	public String getCapTexture()
 	{
 		return LTInfo.MOD_ID + ":items/wand/cap_gold_mat";

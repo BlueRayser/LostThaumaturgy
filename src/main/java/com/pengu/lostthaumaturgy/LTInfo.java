@@ -17,6 +17,6 @@ public enum LTInfo
 		
 		public static final String //
 		        INFUSER = MOD_ID + ":infuser", //
-		        DARK_INFUSER = MOD_ID + ":dark_infuser";
+		        DARK_INFUSER = MOD_ID + ":dark_infuser", FUSER = MOD_ID + ":fuser";
 	}
 }

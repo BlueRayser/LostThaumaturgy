@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.inventory.ContainerAuxiliumTable;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -49,10 +49,8 @@ public class GuiAuxiliumTable extends GuiContainer
 		if(mouseX >= 71 && mouseY >= 39 && mouseX < 71 + 35 && mouseY < 39 + 10)
 			drawHoveringText(Arrays.asList("Required Fragment Amount:", fragmentCount + ""), mouseX, mouseY);
 		
-		DecimalFormat format = new DecimalFormat("#0.00");
-		
 		if(mouseX >= 41 && mouseY >= 31 && mouseX < 41 + 19 && mouseY < 31 + 35)
-			drawHoveringText(Arrays.asList("Vis: " + format.format(table.visConsumed) + "/32.0"), mouseX, mouseY);
+			drawHoveringText(Arrays.asList("Vis: " + LostThaumaturgy.standartDecimalFormat.format(table.visConsumed) + "/32.0"), mouseX, mouseY);
 	}
 	
 	@Override
