@@ -88,7 +88,7 @@ public class LostThaumaturgy
 		SimpleRegistration.registerFieldItemsFrom(ItemsLT.class, LTInfo.MOD_ID, tab);
 		
 		nahYaEtoDelayou.step("Adding Sounds");
-		SoundEventsLT.register();
+		SimpleRegistration.registerFieldSoundsFrom(SoundEventsLT.class);
 		
 		nahYaEtoDelayou.step("Registering Researches");
 		ResearchesLT.registerResearches();

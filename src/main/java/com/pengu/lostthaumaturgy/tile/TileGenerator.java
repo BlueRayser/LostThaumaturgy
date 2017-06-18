@@ -68,7 +68,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 		
 		boolean emitPower = false;
 		
-		if(!gettingPower())
+		if(loc.getRedstone() <= 0)
 		{
 			if(storedEnergy < energyMax && !reversed)
 			{
