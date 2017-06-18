@@ -12,7 +12,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
@@ -30,7 +29,6 @@ import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerVisCondenser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_TileVisCondenser_tick;
 
 public class TileVisCondenser extends TileSyncableTickable implements IConnection, IUpgradable, ISidedInventory, ITileDroppable
@@ -133,7 +131,7 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 					HCNetwork.manager.sendToAllAround(new PacketFXWisp_TileVisCondenser_tick(pos.getX() + .5 + world.rand.nextFloat() - world.rand.nextFloat(), pos.getY() + 1.5 + world.rand.nextFloat() - world.rand.nextFloat(), (float) pos.getZ() + .5 + world.rand.nextFloat() - world.rand.nextFloat(), pos.getX() + .5, pos.getY() + 1.5, pos.getZ() + .5, .6F, currentType), getSyncPoint(48));
 			}
 			if(degredation < 10F && flag)
-				HCNetwork.manager.sendToAllAround(new PacketParticle(world, EnumParticleTypes.SMOKE_LARGE, new Vec3d(pos.getX() + .5, pos.getY() + 1.3, pos.getZ() + .5), new Vec3d(0, 0, 0)), getSyncPoint(48));
+				HCNetwork.spawnParticle(world, EnumParticleTypes.SMOKE_LARGE, pos.getX() + .5, pos.getY() + 1.3, pos.getZ() + .5, 0, 0, 0);
 			if(degredation <= 0.0f)
 			{
 				if(flag && !inventory.getStackInSlot(1).isEmpty() && inventory.getStackInSlot(1).getItem() == ItemsLT.MULTI_MATERIAL && inventory.getStackInSlot(1).getItemDamage() == EnumMultiMaterialType.DEPLETED_CRYSTAL.getDamage())

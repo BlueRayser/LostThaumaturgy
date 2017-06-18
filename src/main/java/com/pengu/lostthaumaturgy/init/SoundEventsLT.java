@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.init;
 
-import net.minecraft.util.ResourceLocation;
-
 import com.pengu.hammercore.utils.SoundObject;
 import com.pengu.lostthaumaturgy.LTInfo;
 
@@ -24,6 +22,5 @@ public class SoundEventsLT
 	        MONOLITH = new SoundObject(LTInfo.MOD_ID, "monolith"), //
 	        PLACE = new SoundObject(LTInfo.MOD_ID, "place"), //
 	        RUMBLE = new SoundObject(LTInfo.MOD_ID, "rumble"), //
-	        SINGULARITY = new SoundObject(LTInfo.MOD_ID, "singularity"),
-	        TINKERING = new SoundObject(LTInfo.MOD_ID, "tinkering");
+	        SINGULARITY = new SoundObject(LTInfo.MOD_ID, "singularity"), TINKERING = new SoundObject(LTInfo.MOD_ID, "tinkering");
 }

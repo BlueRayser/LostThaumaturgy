@@ -22,7 +22,6 @@ import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
-import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXGuideWisp;
 
 public class ItemElementalPickaxe extends ItemPickaxe
@@ -125,8 +124,8 @@ public class ItemElementalPickaxe extends ItemPickaxe
 		for(int a = 0; a < 6; ++a)
 		{
 			TargetPoint tp = new TargetPoint(worldObj.provider.getDimension(), x, y, z, 48);
-			HCNetwork.manager.sendToAllAround(new PacketParticle(worldObj, EnumParticleTypes.EXPLOSION_NORMAL, new Vec3d(x + worldObj.rand.nextFloat(), y + worldObj.rand.nextFloat(), z + worldObj.rand.nextFloat()), new Vec3d(0, 0, 0)), tp);
-			HCNetwork.manager.sendToAllAround(new PacketParticle(worldObj, EnumParticleTypes.FLAME, new Vec3d(x + worldObj.rand.nextFloat(), y + worldObj.rand.nextFloat(), z + worldObj.rand.nextFloat()), new Vec3d(0, 0, 0)), tp);
+			HCNetwork.spawnParticle(worldObj, EnumParticleTypes.EXPLOSION_NORMAL, x + worldObj.rand.nextFloat(), y + worldObj.rand.nextFloat(), z + worldObj.rand.nextFloat(), 0, 0, 0);
+			HCNetwork.spawnParticle(worldObj, EnumParticleTypes.FLAME, x + worldObj.rand.nextFloat(), y + worldObj.rand.nextFloat(), z + worldObj.rand.nextFloat(), 0, 0, 0);
 		}
 	}
 }

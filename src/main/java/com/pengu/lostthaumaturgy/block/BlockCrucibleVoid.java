@@ -20,7 +20,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,7 +33,6 @@ import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;
-import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.tile.TileCrucible;
 import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 
@@ -112,7 +110,7 @@ public class BlockCrucibleVoid extends BlockRendered implements ITileBlock<TileC
 							HammerCore.audioProxy.playSoundAt(worldIn, "block.fire.extinguish", pos, .4F, 1.5F, SoundCategory.BLOCKS);
 						}
 						tc.sync();
-						HCNetwork.manager.sendToAllAround(new PacketParticle(worldIn, EnumParticleTypes.SMOKE_LARGE, new Vec3d(entityIn.posX, entityIn.posY, entityIn.posZ), new Vec3d(0, 0, 0)), tc.getSyncPoint(48));
+						HCNetwork.spawnParticle(worldIn, EnumParticleTypes.SMOKE_LARGE, entityIn.posX, entityIn.posY, entityIn.posZ, 0, 0, 0);
 					}
 				}
 			}

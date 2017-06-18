@@ -12,7 +12,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.capabilities.Capability;
 
 import com.mrdimka.hammercore.HammerCore;
@@ -28,7 +27,6 @@ import com.pengu.lostthaumaturgy.api.tiles.IThaumSlimeDrainable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
-import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class TileCrucible extends TileSyncableTickable implements IConnection, IThaumSlimeDrainable
@@ -204,7 +202,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 						
 						item.shrink(1);
 						sync();
-						HCNetwork.manager.sendToAllAround(new PacketParticle(world, EnumParticleTypes.SMOKE_LARGE, new Vec3d(entity.posX, entity.posY, entity.posZ), new Vec3d(0, 0, 0)), getSyncPoint(48));
+						HCNetwork.spawnParticle(world, EnumParticleTypes.SMOKE_LARGE, entity.posX, entity.posY, entity.posZ, 0, 0, 0);
 						HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":bubbling", pos, .25F, .9F + world.rand.nextFloat() * .2F, SoundCategory.BLOCKS);
 					}
 				} else

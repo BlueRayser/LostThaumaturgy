@@ -29,7 +29,6 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
-import com.pengu.lostthaumaturgy.net.PacketParticle;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_EntitySingularity_doSuckage;
 
 public class EntitySingularity extends EntityThrowable
@@ -101,7 +100,7 @@ public class EntitySingularity extends EntityThrowable
 		if(!world.isRemote)
 		{
 			HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":singularity", getPosition(), 2F, 1F, SoundCategory.AMBIENT);
-			HCNetwork.manager.sendToAllAround(new PacketParticle(world, EnumParticleTypes.EXPLOSION_LARGE, new Vec3d(explosionX, explosionY, explosionZ), new Vec3d(0, 0, 0)), new TargetPoint(world.provider.getDimension(), explosionX, explosionY, explosionZ, 48));
+			HCNetwork.spawnParticle(world, EnumParticleTypes.EXPLOSION_LARGE, explosionX, explosionY, explosionZ, 0, 0, 0);
 		}
 		
 		float f = 4;
@@ -221,7 +220,7 @@ public class EntitySingularity extends EntityThrowable
 				double d7 = 0.5 / (d6 / (double) 4 + 0.1);
 				
 				if(rand.nextInt(5) == 0)
-					HCNetwork.manager.sendToAllAround(new PacketParticle(world, EnumParticleTypes.SMOKE_NORMAL, new Vec3d(d, d1, d2), new Vec3d(d3 *= -(d7 *= (double) (rand.nextFloat() * rand.nextFloat() + 0.3f)), d4 *= -d7, d5 *= -d7)), new TargetPoint(world.provider.getDimension(), explosionX, explosionY, explosionZ, 48));
+					HCNetwork.spawnParticle(world, EnumParticleTypes.SMOKE_NORMAL, d, d1, d2, d3 *= -(d7 *= (double) (rand.nextFloat() * rand.nextFloat() + 0.3f)), d4 *= -d7, d5 *= -d7);
 				HCNetwork.manager.sendToAllAround(new PacketFXWisp_EntitySingularity_doSuckage(d, d1, d2, .9F, 5), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 48));
 				
 				if(state.getBlock().isAir(state, world, chunkposition) || state.getBlock().getBlockHardness(state, world, chunkposition) == -1)
