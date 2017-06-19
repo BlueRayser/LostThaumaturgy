@@ -2,7 +2,7 @@ itemGroup.lostthaumaturgy=Lost Thaumaturgy
 itemGroup.lostthaumaturgy.researches=Lost Thaumaturgy: Открытия
 
 tile.lostthaumaturgy:crucible.name=Тигель
-tile.lostthaumaturgy:crucible_eyes.name=Crucible of Eyes
+tile.lostthaumaturgy:crucible_eyes.name=Тигель глаз
 tile.lostthaumaturgy:crucible_thaumium.name=Таумиевый тигель
 tile.lostthaumaturgy:crucible_void.name=Пустотный тигель
 tile.lostthaumaturgy:conduit.name=Вис-канал
@@ -52,9 +52,9 @@ tile.lostthaumaturgy:tainted_plant.name=Заражённая Лаонри
 tile.lostthaumaturgy:jar_singularity.name=Сингулярность в банке
 tile.lostthaumaturgy:duplicator.name=Таум-дубликатор
 tile.lostthaumaturgy:lt_monolith_opener.name=§dГенератор монолита
-tile.lostthaumaturgy:totem_dawn.name=Totem of Dawn
-tile.lostthaumaturgy:totem_twilight.name=Twilight Totem
-tile.lostthaumaturgy:seal.name=Arcane Seal
+tile.lostthaumaturgy:totem_dawn.name=Тотем рассвета
+tile.lostthaumaturgy:totem_twilight.name=Тотем сумерек
+tile.lostthaumaturgy:seal.name=Тайная печать
 tile.lostthaumaturgy:seal.desc=Цвет: $col
 tile.lostthaumaturgy:vis_condenser.name=Вис-конденсатор
 
@@ -179,13 +179,13 @@ item.lostthaumaturgy:void_leggings.name=Поножи из пустотного �
 item.lostthaumaturgy:void_boots.name=Ботинки из пустотного металла
 item.lostthaumaturgy:traveling_trunk.name=Путешествующий багаж
 item.lostthaumaturgy:inert_carpet.name=Инертный ковёр
-item.lostthaumaturgy:vis_detector.name=Vis Detector
-item.lostthaumaturgy:taint_detector.name=Taint Detector
-item.lostthaumaturgy:radiation_detector.name=Radiation Detector
+item.lostthaumaturgy:vis_detector.name=Детектор вис
+item.lostthaumaturgy:taint_detector.name=Детектор порчи
+item.lostthaumaturgy:radiation_detector.name=Детектор излучения
 item.lostthaumaturgy:thaumometer.name=Таумометр
 item.lostthaumaturgy:mithrillium_ingot.name=§3Мифрилловый слиток
 item.lostthaumaturgy:adaminite_ingot.name=§cАдаминитовый слиток
-item.lostthaumaturgy:elemental_pickaxe.name=Pickaxe of the Core
+item.lostthaumaturgy:elemental_pickaxe.name=Кирка Огня
 item.lostthaumaturgy:void_compass.name=Пустотный компас
 
 
@@ -280,5 +280,5 @@ chat.lostthaumaturgy:not_my_master=Ты не мой владелец!
 chat.lostthaumaturgy:trunk_stay=Багаж теперь будет стоять тут.
 chat.lostthaumaturgy:trunk_follow=Теперь багаж идёт за вами.
 chat.lostthaumaturgy:vis_detector=Обнаружено %s Вис.
-chat.lostthaumaturgy:taint_detector=Обнаружено %s Taint.
-chat.lostthaumaturgy:thaumometer=Обнаружено %s Taint и %s Вис.
+chat.lostthaumaturgy:taint_detector=Обнаружено %s порчи.
+chat.lostthaumaturgy:thaumometer=Обнаружено %s порчи и %s Вис.
