@@ -62,6 +62,8 @@ tile.lostthaumaturgy:thaumium_block.name=Block of Thaumium Metal
 tile.lostthaumaturgy:infuser_base.name=Arcane Stone Block
 tile.lostthaumaturgy:fuser.name=Arcane Crafter
 tile.lostthaumaturgy:wand_constructor.name=Wand Constructor
+tile.lostthaumaturgy:greatwood_leaves.name=Greatwood Leaves
+tile.lostthaumaturgy:greatwood_log.name=Greatwood Log
 
 
 

@@ -174,6 +174,7 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		CAP_GOLD, //
 		CAP_THAUMIUM, //
 		CAP_VOID, //
+		ROD_GREATWOOD, //
 		ROD_SILVERWOOD;
 		
 		private final String oredict[];

@@ -62,10 +62,12 @@ public class InfuserLT
 			
 			for(ItemStack stack : OreDictionary.getOres("logWood"))
 			{
-				if(stack.getItem() == Item.getItemFromBlock(BlocksLT.SILVERWOOD_LOG))
+				if(stack.getItem() == Item.getItemFromBlock(BlocksLT.SILVERWOOD_LOG) || stack.getItem() == Item.getItemFromBlock(BlocksLT.GREATWOOD_LOG))
 					continue;
 				RecipesInfuser.addInfusing(EnumMultiMaterialType.ENCHANTED_WOOD.stack(4), 15, crystal.stack(), stack);
 			}
+			
+			RecipesInfuser.addInfusing(EnumMultiMaterialType.ENCHANTED_WOOD.stack(5), 15, crystal.stack(), new ItemStack(BlocksLT.GREATWOOD_LOG));
 		}
 		
 		RecipesInfuser.addInfusing(EnumMultiMaterialType.ANIMATED_PISTON.stack(), 50, EnumMultiMaterialType.VAPOROUS_CRYSTAL.stack(), new ItemStack(Items.GOLD_INGOT), new ItemStack(Blocks.PISTON));
