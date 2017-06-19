@@ -50,12 +50,14 @@ import com.pengu.lostthaumaturgy.block.monolith.BlockCrystalReceptacle;
 import com.pengu.lostthaumaturgy.block.monolith.BlockExtraRoom;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolith;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodConduit;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLog;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodPlanks;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodStairs;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodVisTank;
+import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLeaves;
+import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLog;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodConduit;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLog;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodPlanks;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodStairs;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodVisTank;
 import com.pengu.lostthaumaturgy.block.world.BlockCinderpearl;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
@@ -98,7 +100,9 @@ public class BlocksLT
 	
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //
+	        GREATWOOD_LEAVES = new BlockGreatwoodLeaves(), //
 	        SILVERWOOD_LOG = new BlockSilverwoodLog(), //
+	        GREATWOOD_LOG = new BlockGreatwoodLog(), //
 	        TAINTED_LOG = new BlockTaintedLog(), //
 	        LYING_ITEM = new BlockLyingItem(), //
 	        TOTEM_DAWN = new BlockTotem(true), //

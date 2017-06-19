@@ -50,6 +50,7 @@ import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
+import com.pengu.lostthaumaturgy.worldgen.WorldGenGreatwood;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenLostArtifacts;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenMonoliths;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
@@ -118,7 +119,7 @@ public class LostThaumaturgy
 		InfuserLT.registerDarkInfuser();
 		
 		ProgressManager.pop(bar);
-		bar = ProgressManager.push("Adding Contents...", 6);
+		bar = ProgressManager.push("Adding Contents...", 7);
 		
 		bar.step("Registering Entities");
 		EntitiesLT.registerEntities();
@@ -128,6 +129,9 @@ public class LostThaumaturgy
 		
 		bar.step("Registering Silverwood WorldGen");
 		GameRegistry.registerWorldGenerator(new WorldGenSilverwood(), 4);
+		
+		bar.step("Registering Greatwood WorldGen");
+		GameRegistry.registerWorldGenerator(new WorldGenGreatwood(), 8);
 		
 		bar.step("Registering Cinderpearl WorldGen");
 		GameRegistry.registerWorldGenerator(new WorldGenCinderpearl(), 6);

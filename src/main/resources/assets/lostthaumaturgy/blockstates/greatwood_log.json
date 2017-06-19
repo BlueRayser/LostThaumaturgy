@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=x": { "model": "lostthaumaturgy:greatwood_log", "x": 90, "y": 90 },
+        "axis=y": { "model": "lostthaumaturgy:greatwood_log" },
+        "axis=z": { "model": "lostthaumaturgy:greatwood_log", "x": 90 },
+        "axis=none": { "model": "lostthaumaturgy:greatwood_bark" }
+    }
+}

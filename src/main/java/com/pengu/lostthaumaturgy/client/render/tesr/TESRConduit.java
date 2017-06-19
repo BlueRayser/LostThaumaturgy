@@ -28,7 +28,7 @@ import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodConduit;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodConduit;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileConduit;

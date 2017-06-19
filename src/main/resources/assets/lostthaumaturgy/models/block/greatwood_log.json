@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "lostthaumaturgy:blocks/greatwood_log_top",
+        "side": "lostthaumaturgy:blocks/greatwood_log"
+    }
+}

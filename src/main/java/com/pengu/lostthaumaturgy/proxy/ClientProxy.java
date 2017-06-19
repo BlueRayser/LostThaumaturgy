@@ -9,22 +9,30 @@ import java.util.Map;
 import java.util.Scanner;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -50,7 +58,7 @@ import com.pengu.lostthaumaturgy.api.items.IGoggles;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodLeaves;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
 import com.pengu.lostthaumaturgy.client.fx.FXEmote;
@@ -180,6 +188,14 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTravelingTrunk.class, RenderTravelingTrunk.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntitySingularity.class, RenderSingularity.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, RenderEntityWisp.FACTORY);
+		
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
+        {
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+            {
+                return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+            }
+        }, new Block[] { BlocksLT.GREATWOOD_LEAVES });
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import com.pengu.lostthaumaturgy.block.BlockAdvancedVisValve;
 import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockVisValve;
-import com.pengu.lostthaumaturgy.block.silverwood.BlockSilverwoodConduit;
+import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodConduit;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 @RaytracePlugin

@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy.block.silverwood;
+package com.pengu.lostthaumaturgy.block.wood.silverwood;
 
 import java.util.Random;
 

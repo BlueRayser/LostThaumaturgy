@@ -2,16 +2,16 @@ package com.pengu.lostthaumaturgy.worldgen;
 
 import java.util.Random;
 
-import com.pengu.hammercore.utils.ChunkUtils;
-import com.pengu.lostthaumaturgy.worldgen.features.FeatureSilverwood;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class WorldGenSilverwood implements IWorldGenerator
+import com.pengu.hammercore.utils.ChunkUtils;
+import com.pengu.lostthaumaturgy.worldgen.features.FeatureGreatwood;
+
+public class WorldGenGreatwood implements IWorldGenerator
 {
 	/**
 	 * Generate some world's silverwood trees.
@@ -35,7 +35,7 @@ public class WorldGenSilverwood implements IWorldGenerator
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if(random.nextInt(750) < 40)
+		if(random.nextInt(250) < 40)
 			for(int i = 0; i < random.nextInt(2); i++)
 			{
 				BlockPos pos = world.getHeight(ChunkUtils.getChunkPos(chunkX, chunkZ, 8, 255, 8));
@@ -43,8 +43,8 @@ public class WorldGenSilverwood implements IWorldGenerator
 				if(pos.getY() < 40)
 					continue;
 				
-				//Prevent tree bugs
-				if(new FeatureSilverwood().generate(world, random, pos))
+				// Prevent tree bugs
+				if(new FeatureGreatwood().generate(world, random, pos))
 					break;
 			}
 	}

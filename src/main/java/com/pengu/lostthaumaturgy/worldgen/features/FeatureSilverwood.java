@@ -22,7 +22,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 	
 	static final byte[] otherCoordPairs = new byte[] { 2, 0, 0, 1, 2, 1 };
 	Random rand;
-	World worldObj;
+	World world;
 	BlockPos basePos;
 	int heightLimit = 0;
 	int height;
@@ -94,7 +94,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 	
 	void placeLeaves(int i, int j, int k, float f, byte byte0, IBlockState l2)
 	{
-		if(worldObj == null)
+		if(world == null)
 			return;
 		
 		int i1 = (int) ((double) f + 0.618);
@@ -118,18 +118,18 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 				}
 				ai1[byte2] = ai[byte2] + l1;
 				BlockPos bpos = new BlockPos(ai1[0], ai1[1], ai1[2]);
-				if(worldObj.getBlockState(bpos) == null)
+				if(world.getBlockState(bpos) == null)
 				{
 					++l1;
 					continue;
 				}
-				Block i2 = this.worldObj.getBlockState(bpos).getBlock();
+				Block i2 = this.world.getBlockState(bpos).getBlock();
 				if(i2 != Blocks.AIR && i2 != Blocks.LEAVES && i2 != Blocks.LEAVES2)
 				{
 					++l1;
 					continue;
 				}
-				setBlockAndNotifyAdequately(worldObj, bpos, l2);
+				setBlockAndNotifyAdequately(world, bpos, l2);
 				++l1;
 			}
 		}
@@ -200,7 +200,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 			ai3[j] = (int) Math.floor((double) ((double) (ai[j] + k) + 0.5));
 			ai3[byte1] = (int) Math.floor((double) ((double) ai[byte1] + (double) k * d + 0.5));
 			ai3[byte2] = (int) Math.floor((double) ((double) ai[byte2] + (double) k * d1 + 0.5));
-			setBlockAndNotifyAdequately(worldObj, new BlockPos(ai3[0], ai3[1], ai3[2]), i);
+			setBlockAndNotifyAdequately(world, new BlockPos(ai3[0], ai3[1], ai3[2]), i);
 		}
 	}
 	
@@ -292,7 +292,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 			ai3[i] = ai[i] + j;
 			ai3[byte1] = (int) Math.floor((double) ((double) ai[byte1] + (double) j * d));
 			ai3[byte2] = (int) Math.floor((double) ((double) ai[byte2] + (double) j * d1));
-			Block l2 = this.worldObj.getBlockState(new BlockPos(ai3[0], ai3[1], ai3[2])).getBlock();
+			Block l2 = this.world.getBlockState(new BlockPos(ai3[0], ai3[1], ai3[2])).getBlock();
 			if(l2 != Blocks.AIR && l2 != Blocks.LEAVES)
 				break;
 		}
@@ -305,7 +305,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 	{
 		int[] ai = new int[] { this.basePos.getX(), this.basePos.getY(), this.basePos.getZ() };
 		int[] ai1 = new int[] { this.basePos.getX(), this.basePos.getY() + this.heightLimit - 1, this.basePos.getZ() };
-		Block i = this.worldObj.getBlockState(new BlockPos(this.basePos.getX(), this.basePos.getY() - 1, this.basePos.getZ())).getBlock();
+		Block i = this.world.getBlockState(new BlockPos(this.basePos.getX(), this.basePos.getY() - 1, this.basePos.getZ())).getBlock();
 		if(i != Blocks.GRASS && i != Blocks.DIRT)
 			return false;
 		int j = this.checkBlockLine(ai, ai1);
@@ -321,7 +321,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		this.rand = rand;
-		worldObj = worldIn;
+		world = worldIn;
 		long l2 = rand.nextLong();
 		this.rand.setSeed(l2);
 		basePos = position;
@@ -339,7 +339,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 		} catch(Throwable err)
 		{
 		}
-		worldObj = null;
+		world = null;
 		
 		int flowerCount = this.rand.nextInt(8);
 		
