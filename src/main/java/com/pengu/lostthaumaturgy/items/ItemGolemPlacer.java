@@ -20,7 +20,9 @@ import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class ItemGolemPlacer extends MultiVariantItem implements IRegisterListener
 {
-	public ItemGolemPlacer()
+	public static final ItemGolemPlacer PLACER = new ItemGolemPlacer();
+	
+	private ItemGolemPlacer()
 	{
 		super("golem", gen());
 	}
@@ -152,7 +154,7 @@ public class ItemGolemPlacer extends MultiVariantItem implements IRegisterListen
 		
 		public ItemStack stack(int count)
 		{
-			return new ItemStack(ItemsLT.GOLEM_PLACER, count, getDamage());
+			return new ItemStack(PLACER, count, getDamage());
 		}
 		
 		@Override
