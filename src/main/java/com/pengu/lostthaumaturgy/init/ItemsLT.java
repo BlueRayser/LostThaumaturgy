@@ -8,6 +8,7 @@ import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
 import com.pengu.lostthaumaturgy.items.ItemElementalPickaxe;
+import com.pengu.lostthaumaturgy.items.ItemGolemPlacer;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemSingularity;
@@ -46,6 +47,7 @@ public class ItemsLT
 	        CUSTOM_POTION = new ItemCustomPotion(), //
 	        AURA_DETECTOR = new ItemAuraDetector(), //
 	        VOID_COMPASS = new ItemVoidCompass(), //
+	        // GOLEM_PLACER = new ItemGolemPlacer(), //
 	        WAND = ItemWand.WAND;
 	public static final ItemTool //
 	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //

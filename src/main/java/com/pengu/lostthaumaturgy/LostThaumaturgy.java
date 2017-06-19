@@ -75,12 +75,10 @@ public class LostThaumaturgy
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		ProgressBar nahYaEtoDelayou = ProgressManager.push("Adding Contents...", 7);
+		ProgressBar nahYaEtoDelayou = ProgressManager.push("Adding Contents...", 8);
 		
 		nahYaEtoDelayou.step("Registering Vis Capability");
 		CapabilityVisConnection.register();
-		MinecraftForge.EVENT_BUS.register(proxy);
-		proxy.preInit();
 		
 		nahYaEtoDelayou.step("Registering Blocks");
 		SimpleRegistration.registerFieldBlocksFrom(BlocksLT.class, LTInfo.MOD_ID, tab);
@@ -99,6 +97,10 @@ public class LostThaumaturgy
 		
 		nahYaEtoDelayou.step("Adding wands...");
 		WandsLT.init();
+		
+		nahYaEtoDelayou.step("Registering Proxy...");
+		MinecraftForge.EVENT_BUS.register(proxy);
+		proxy.preInit();
 		
 		ProgressManager.pop(nahYaEtoDelayou);
 	}

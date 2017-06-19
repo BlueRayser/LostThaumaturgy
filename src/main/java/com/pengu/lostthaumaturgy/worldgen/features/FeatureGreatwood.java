@@ -2,8 +2,6 @@ package com.pengu.lostthaumaturgy.worldgen.features;
 
 import java.util.Random;
 
-import com.pengu.lostthaumaturgy.init.BlocksLT;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
@@ -14,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class FeatureGreatwood extends WorldGenAbstractTree
 {
@@ -43,13 +43,9 @@ public class FeatureGreatwood extends WorldGenAbstractTree
 		int i;
 		height = (int) ((double) heightLimit * heightAttenuation);
 		if(height >= heightLimit)
-		{
 			height = heightLimit - 1;
-		}
 		if((i = (int) (1.382 + Math.pow(thickness * (double) heightLimit / 13.0, 2.0))) < 1)
-		{
 			i = 1;
-		}
 		int[][] ai = new int[i * heightLimit][4];
 		int j = basePos[1] + heightLimit - leafDistanceLimit;
 		int k = 1;
@@ -120,8 +116,8 @@ public class FeatureGreatwood extends WorldGenAbstractTree
 					continue;
 				}
 				ai1[byte2] = ai[byte2] + l1;
-				IBlockState i2 = world.getBlockState(new BlockPos(ai1[0], ai1[1], ai1[2]));
-				if(i2 != Blocks.AIR && i2 != Blocks.LEAVES && i2 != Blocks.LEAVES2)
+				Block i2 = world.getBlockState(new BlockPos(ai1[0], ai1[1], ai1[2])).getBlock();
+				if(i2 != Blocks.AIR && !(i2 instanceof BlockLeaves))
 				{
 					++l1;
 					continue;
@@ -253,7 +249,7 @@ public class FeatureGreatwood extends WorldGenAbstractTree
 			int k = ai[1] - basePos[1];
 			if(!leafNodeNeedsBase(k))
 				continue;
-			placeBlockLine(ai, ai2, BlocksLT.GREATWOOD_LOG.getDefaultState().withProperty(BlockLog.LOG_AXIS, EnumAxis.Y));
+			placeBlockLine(ai, ai2, BlocksLT.GREATWOOD_LOG.getDefaultState().withProperty(BlockLog.LOG_AXIS, EnumAxis.NONE));
 		}
 	}
 	
@@ -305,13 +301,9 @@ public class FeatureGreatwood extends WorldGenAbstractTree
 			return false;
 		int j = checkBlockLine(ai, ai1);
 		if(j == -1)
-		{
 			return true;
-		}
 		if(j < 6)
-		{
 			return false;
-		}
 		heightLimit = j;
 		return true;
 	}
@@ -342,10 +334,14 @@ public class FeatureGreatwood extends WorldGenAbstractTree
 			for(z = 0; z < trunkSize; ++z)
 				if(!validTreeLocation(x, z))
 					return false;
-		generateLeafNodeList();
-		generateLeaves();
-		generateTrunk();
-		generateLeafNodeBases();
+		try
+		{
+			generateLeafNodeList();
+			generateLeaves();
+			generateTrunk();
+			generateLeafNodeBases();
+		}
+		catch(Throwable err) {}
 		return true;
 	}
 }

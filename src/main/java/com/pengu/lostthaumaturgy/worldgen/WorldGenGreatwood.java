@@ -9,6 +9,8 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import com.pengu.hammercore.utils.ChunkUtils;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.worldgen.features.FeatureGreatwood;
 
 public class WorldGenGreatwood implements IWorldGenerator
@@ -38,14 +40,26 @@ public class WorldGenGreatwood implements IWorldGenerator
 		if(random.nextInt(250) < 40)
 			for(int i = 0; i < random.nextInt(2); i++)
 			{
-				BlockPos pos = world.getHeight(ChunkUtils.getChunkPos(chunkX, chunkZ, 8, 255, 8));
+				SIAuraChunk si = AuraTicker.getAuraChunkFromChunkCoords(world, chunkX, chunkZ);
+				
+				BlockPos pos = world.getHeight(ChunkUtils.getChunkPos(chunkX, chunkZ, random.nextInt(16), 255, random.nextInt(16)));
 				
 				if(pos.getY() < 40)
 					continue;
 				
 				// Prevent tree bugs
 				if(new FeatureGreatwood().generate(world, random, pos))
+				{
+					for(int x = -2; x < 3; ++x)
+						for(int z = -2; z < 3; ++z)
+						{
+							double distance = Math.sqrt(x * x + z * z);
+							si = AuraTicker.getAuraChunkFromChunkCoords(world, chunkX + x, chunkZ + z);
+							if(si != null)
+								si.vis = (short) Math.max(4000 + random.nextInt(500) + random.nextInt(1500) / distance, si.vis);
+						}
 					break;
+				}
 			}
 	}
 }

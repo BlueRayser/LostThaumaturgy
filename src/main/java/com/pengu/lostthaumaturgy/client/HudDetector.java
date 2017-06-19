@@ -44,6 +44,8 @@ public class HudDetector extends Gui
 	
 	public void render(boolean vis, boolean taint, boolean radiation, SIAuraChunk aura, boolean isGoggles)
 	{
+		LTConfigs.updateAura();
+		
 		if(aura == null)
 			return;
 		
@@ -66,9 +68,9 @@ public class HudDetector extends Gui
 		GL11.glColor4f(1, 1, 1, 1);
 		mc.getTextureManager().bindTexture(detector);
 		this.zLevel = -90.0f;
-		double sv = 48F * (LTConfigs.aura_max - aura.vis) / (float) LTConfigs.aura_max;
-		double st = 48F * (LTConfigs.aura_max - aura.taint) / (float) LTConfigs.aura_max;
-		double sr = 48F * (LTConfigs.aura_radMax - aura.radiation) / (float) LTConfigs.aura_radMax;
+		double sv = 48F * (LTConfigs.sync_aura_max - aura.vis) / (float) LTConfigs.sync_aura_max;
+		double st = 48F * (LTConfigs.sync_aura_max - aura.taint) / (float) LTConfigs.sync_aura_max;
+		double sr = 48F * (LTConfigs.sync_aura_rad_max - aura.radiation) / (float) LTConfigs.sync_aura_rad_max;
 		
 		int n = shift = vis && taint && radiation ? 56 : 0;
 		

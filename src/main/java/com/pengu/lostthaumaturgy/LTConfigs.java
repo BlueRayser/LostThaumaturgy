@@ -1,5 +1,7 @@
 package com.pengu.lostthaumaturgy;
 
+import java.util.Objects;
+
 import net.minecraftforge.common.config.Configuration;
 
 import com.mrdimka.hammercore.cfg.HCModConfigurations;
@@ -8,6 +10,8 @@ import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyBool;
 import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyFloat;
 import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyInt;
 import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyStringList;
+import com.pengu.hammercore.var.IVariable;
+import com.pengu.hammercore.var.types.VariableString;
 
 @HCModConfigurations(modid = LTInfo.MOD_ID)
 public class LTConfigs implements IConfigReloadListener
@@ -38,9 +42,29 @@ public class LTConfigs implements IConfigReloadListener
 	
 	public static Configuration cfgs;
 	
+	public static final IVariable<String> var_aura_max_str = new VariableString(LTInfo.MOD_ID + ":aura");
+	public static short sync_aura_max;
+	public static float sync_aura_rad_max;
+	
+	public static void updateAura()
+	{
+		String our = sync_aura_max + "/" + sync_aura_rad_max;
+		if(!Objects.equals(our, var_aura_max_str.get()))
+		{
+			try
+			{
+				String[] ss = var_aura_max_str.get().split("/");
+				sync_aura_max = Short.parseShort(ss[0]);
+				sync_aura_rad_max = Float.parseFloat(ss[1]);
+			}
+			catch(Throwable err) {}
+		}
+	}
+	
 	@Override
 	public void reloadCustom(Configuration cfgs)
 	{
 		LTConfigs.cfgs = cfgs;
+		var_aura_max_str.set(aura_max + "/" + aura_radMax);
 	}
 }

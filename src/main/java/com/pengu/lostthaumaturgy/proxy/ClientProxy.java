@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.annotation.Nonnull;
@@ -18,10 +19,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
@@ -48,6 +50,7 @@ import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.bookAPI.BookCategory;
 import com.mrdimka.hammercore.bookAPI.BookEntry;
 import com.mrdimka.hammercore.client.utils.GLImageManager;
+import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
@@ -58,6 +61,7 @@ import com.pengu.lostthaumaturgy.api.items.IGoggles;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLeaves;
 import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
@@ -65,6 +69,7 @@ import com.pengu.lostthaumaturgy.client.fx.FXEmote;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.color.ColorItemSeal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
+import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityGolem;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntitySmartZombie;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityWisp;
@@ -117,6 +122,7 @@ import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.emote.EmoteData;
 import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
+import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
 import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
@@ -188,14 +194,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTravelingTrunk.class, RenderTravelingTrunk.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntitySingularity.class, RenderSingularity.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, RenderEntityWisp.FACTORY);
-		
-		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
-        {
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
-            {
-                return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
-            }
-        }, new Block[] { BlocksLT.GREATWOOD_LEAVES });
+		RenderingRegistry.registerEntityRenderingHandler(EntityGolemBase.class, RenderEntityGolem.FACTORY);
 	}
 	
 	@Override
@@ -203,6 +202,38 @@ public class ClientProxy extends CommonProxy
 	{
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemResearch(), ItemsLT.DISCOVERY);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemSeal(), Item.getItemFromBlock(BlocksLT.SEAL));
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor()
+        {
+            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            {
+                IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+                return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
+            }
+        }, new Block[] { BlocksLT.GREATWOOD_LEAVES });
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
+        {
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+            {
+            	Random rand = new Random(pos != null ? pos.toLong() : 0L);
+            	int color = worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+            	
+            	int r = (color >> 16) & 0xFF;
+            	int g = (color >> 8) & 0xFF;
+            	int b = (color >> 0) & 0xFF;
+            	
+            	int max = 8;
+            	
+            	r += rand.nextInt(max) - rand.nextInt(max);
+				g += rand.nextInt(max) - rand.nextInt(max);
+				b += rand.nextInt(max) - rand.nextInt(max);
+				
+				r = (int) MathHelper.clip(r, 0, 255);
+				g = (int) MathHelper.clip(g, 0, 255);
+				b = (int) MathHelper.clip(b, 0, 255);
+            	
+                return Color.packARGB(r, g, b, 255);
+            }
+        }, new Block[] { BlocksLT.GREATWOOD_LEAVES });
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalOre.class, TESRCrystal.INSTANCE);
 		for(BlockOreCrystal ore : BlockOreCrystal.crystals)
@@ -416,6 +447,8 @@ public class ClientProxy extends CommonProxy
 	public void renderHUD(RenderGameOverlayEvent evt)
 	{
 		((BlockSilverwoodLeaves) BlocksLT.SILVERWOOD_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		((BlockGreatwoodLeaves) BlocksLT.GREATWOOD_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		
 		Minecraft mc = Minecraft.getMinecraft();
 		
 		if(evt.getType() == ElementType.ALL)

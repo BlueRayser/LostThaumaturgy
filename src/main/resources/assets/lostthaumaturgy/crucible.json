@@ -194,7 +194,9 @@
     "minecraft:dye:15": 4.0,
     
     "lostthaumaturgy:silverwood_log:0": 15.0,
+	"lostthaumaturgy:greatwood_log:0": 5.0,
     "lostthaumaturgy:silverwood_leaves:0": 5.0,
+	"lostthaumaturgy:greatwood_leaves:0": 2.5,
     "lostthaumaturgy:multi_material:6": 15.0,
     "lostthaumaturgy:multi_material:9": 18.0,
     "lostthaumaturgy:multi_material:10": 13.0,

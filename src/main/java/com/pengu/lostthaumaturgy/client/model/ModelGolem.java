@@ -87,29 +87,25 @@ public class ModelGolem extends ModelBase
 		GL11.glPushMatrix();
 		if(this.pass == 2)
 		{
-			GL11.glEnable((int) 3042);
-			GL11.glBlendFunc((int) 770, (int) 771);
+			GL11.glEnable(3042);
+			GL11.glBlendFunc(770, 771);
 		}
-		GL11.glScaled((double) 0.4, (double) 0.4, (double) 0.4);
+		GL11.glScaled(.4, .4, .4);
 		if(en.getGolemTypeForDisplay() == 2)
-		{
-			this.golemHeadSmart.render(par7);
-		} else if(en.getGolemTypeForDisplay() == 3)
-		{
+			golemHeadSmart.render(par7);
+		else if(en.getGolemTypeForDisplay() == 3)
 			this.golemHeadObserver.render(par7);
-		} else
-		{
+		else
 			this.golemHead.render(par7);
-		}
 		short var5 = en.getColor();
 		if(var5 >= 0)
 		{
-//			Color c = new Color(BlockMarkerItem.colors[var5]);
-//			float r = (float) c.getRed() / 255.0f;
-//			float g = (float) c.getGreen() / 255.0f;
-//			float b = (float) c.getBlue() / 255.0f;
-//			GL11.glColor3f((float) r, (float) g, (float) b);
-//			this.golemMarker.render(par7);
+			// Color c = new Color(BlockMarkerItem.colors[var5]);
+			// float r = (float) c.getRed() / 255.0f;
+			// float g = (float) c.getGreen() / 255.0f;
+			// float b = (float) c.getBlue() / 255.0f;
+			// GL11.glColor3f((float) r, (float) g, (float) b);
+			// this.golemMarker.render(par7);
 			GL11.glColor3f((float) 1.0f, (float) 1.0f, (float) 1.0f);
 		}
 		this.golemBody.render(par7);
@@ -132,9 +128,7 @@ public class ModelGolem extends ModelBase
 			this.golemLeftArm.render(par7);
 		}
 		if(this.pass == 2)
-		{
-			GL11.glDisable((int) 3042);
-		}
+			GL11.glDisable(3042);
 		GL11.glScaled((double) 1.0, (double) 1.0, (double) 1.0);
 		GL11.glPopMatrix();
 	}

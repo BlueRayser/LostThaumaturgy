@@ -8,7 +8,7 @@ public class WandRodGreatwood extends WandRod
 {
 	public WandRodGreatwood()
 	{
-		super("silverwood");
+		super("greatwood");
 		rodItem = EnumMultiMaterialType.ROD_GREATWOOD.stack();
 	}
 	

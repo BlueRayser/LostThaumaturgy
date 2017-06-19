@@ -27,7 +27,7 @@ public class LTAI
 		return var19;
 	}
 	
-	public static LTPathEntity getEntityPathToXYZ(Entity ent, int targetX, int targetY, int par4, float par5, boolean par6, boolean par7, boolean par8, boolean par9)
+	public static LTPathEntity getEntityPathToXYZ(Entity ent, int targetX, int targetY, int targetZ, float par5, boolean par6, boolean par7, boolean par8, boolean par9)
 	{
 		ent.world.profiler.startSection("pathfind");
 		int var10 = MathHelper.floor((double) ent.posX);
@@ -41,7 +41,7 @@ public class LTAI
 		int var18 = var11 + var13;
 		int var19 = var12 + var13;
 		ChunkCache var20 = new ChunkCache(ent.world, new BlockPos(var14, var15, var16), new BlockPos(var17, var18, var19), 0);
-		LTPathEntity var21 = new LTPathFinder((IBlockAccess) var20, par6, par7, par8, par9).createEntityPathTo(ent, targetX, targetY, par4, par5);
+		LTPathEntity var21 = new LTPathFinder(var20, par6, par7, par8, par9).createEntityPathTo(ent, targetX, targetY, targetZ, par5);
 		ent.world.profiler.endSection();
 		return var21;
 	}

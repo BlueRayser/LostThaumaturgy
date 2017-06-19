@@ -327,7 +327,7 @@ public class FeatureSilverwood extends WorldGenAbstractTree
 		basePos = position;
 		if(heightLimit == 0)
 			heightLimit = 5 + this.rand.nextInt(heightLimitLimit);
-		trunkSize = 1 + this.rand.nextInt(2);
+		trunkSize = 1;
 		if(!validTreeLocation())
 			return false;
 		try

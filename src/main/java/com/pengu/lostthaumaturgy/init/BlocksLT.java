@@ -52,6 +52,7 @@ import com.pengu.lostthaumaturgy.block.monolith.BlockMonolith;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLeaves;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLog;
+import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodSapling;
 import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodConduit;
 import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLog;
@@ -104,6 +105,7 @@ public class BlocksLT
 	        SILVERWOOD_LOG = new BlockSilverwoodLog(), //
 	        GREATWOOD_LOG = new BlockGreatwoodLog(), //
 	        TAINTED_LOG = new BlockTaintedLog(), //
+	        GREATWOOD_SAPLING = new BlockGreatwoodSapling(), //
 	        LYING_ITEM = new BlockLyingItem(), //
 	        TOTEM_DAWN = new BlockTotem(true), //
 	        TOTEM_TWILIGHT = new BlockTotem(false), //

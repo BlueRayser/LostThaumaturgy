@@ -38,7 +38,7 @@ public class WorldGenSilverwood implements IWorldGenerator
 		if(random.nextInt(750) < 40)
 			for(int i = 0; i < random.nextInt(2); i++)
 			{
-				BlockPos pos = world.getHeight(ChunkUtils.getChunkPos(chunkX, chunkZ, 8, 255, 8));
+				BlockPos pos = world.getHeight(ChunkUtils.getChunkPos(chunkX, chunkZ, random.nextInt(16), 255, random.nextInt(16)));
 				
 				if(pos.getY() < 40)
 					continue;

@@ -1,11 +1,6 @@
 package com.pengu.lostthaumaturgy.custom.golem;
 
-import java.io.IOException;
-
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializer;
 
 import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
 import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
@@ -39,8 +34,8 @@ public abstract class GolemCoreAbstract
 		return type;
 	}
 	
-	protected abstract void writeToNBT(NBTTagCompound nbt);
-	protected abstract void readFromNBT(NBTTagCompound nbt);
+	public abstract void writeToNBT(NBTTagCompound nbt);
+	public abstract void readFromNBT(NBTTagCompound nbt);
 	
 	public final NBTTagCompound writeCoreToNBT(NBTTagCompound nbt)
 	{
@@ -62,23 +57,4 @@ public abstract class GolemCoreAbstract
 			}
 		return null;
 	}
-	
-	public static final DataSerializer<GolemCoreAbstract> SERIALIZER = new DataSerializer<GolemCoreAbstract>()
-	{
-		public void write(PacketBuffer buf, GolemCoreAbstract value)
-		{
-			if(value != null)
-				buf.writeCompoundTag(value.writeCoreToNBT(new NBTTagCompound()));
-		}
-		
-		public GolemCoreAbstract read(PacketBuffer buf) throws IOException
-		{
-			return readCoreFromNBT(buf.readCompoundTag());
-		}
-		
-		public DataParameter<GolemCoreAbstract> createKey(int id)
-		{
-			return new DataParameter(id, this);
-		}
-	};
 }

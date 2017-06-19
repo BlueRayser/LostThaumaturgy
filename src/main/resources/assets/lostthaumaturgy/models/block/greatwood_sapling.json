@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "lostthaumaturgy:blocks/greatwood_sapling"
+	}
+}

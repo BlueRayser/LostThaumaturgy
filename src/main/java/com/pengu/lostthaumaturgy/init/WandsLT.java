@@ -7,6 +7,7 @@ import com.pengu.lostthaumaturgy.custom.wand.cap.WandCapGold;
 import com.pengu.lostthaumaturgy.custom.wand.cap.WandCapIron;
 import com.pengu.lostthaumaturgy.custom.wand.cap.WandCapThaumium;
 import com.pengu.lostthaumaturgy.custom.wand.cap.WandCapVoid;
+import com.pengu.lostthaumaturgy.custom.wand.rod.WandRodGreatwood;
 import com.pengu.lostthaumaturgy.custom.wand.rod.WandRodSilverwood;
 import com.pengu.lostthaumaturgy.custom.wand.rod.WandRodWood;
 
@@ -20,6 +21,7 @@ public class WandsLT
 	
 	public static final WandRod //
 	        ROD_WOOD = new WandRodWood(), //
+	        ROD_GREATWOOD = new WandRodGreatwood(), //
 	        ROD_SILVERWOOD = new WandRodSilverwood();
 	
 	public static void init()
@@ -40,9 +42,11 @@ public class WandsLT
 		WandRegistry.registerCap(CAP_VOID);
 		
 		WandRegistry.registerRod(ROD_WOOD);
+		WandRegistry.registerRod(ROD_GREATWOOD);
 		WandRegistry.registerRod(ROD_SILVERWOOD);
 		
 		WandRegistry.registerCreativeSubitem(ROD_WOOD, CAP_IRON);
+		WandRegistry.registerCreativeSubitem(ROD_GREATWOOD, CAP_GOLD);
 		WandRegistry.registerCreativeSubitem(ROD_SILVERWOOD, CAP_THAUMIUM);
 		WandRegistry.registerCreativeSubitem(ROD_SILVERWOOD, CAP_VOID);
 	}

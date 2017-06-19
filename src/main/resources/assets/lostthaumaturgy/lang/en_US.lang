@@ -64,6 +64,7 @@ tile.lostthaumaturgy:fuser.name=Arcane Crafter
 tile.lostthaumaturgy:wand_constructor.name=Wand Constructor
 tile.lostthaumaturgy:greatwood_leaves.name=Greatwood Leaves
 tile.lostthaumaturgy:greatwood_log.name=Greatwood Log
+tile.lostthaumaturgy:greatwood_sapling.name=Greatwood Sapling
 
 
 
@@ -216,6 +217,7 @@ entity.lostthaumaturgy:smart_zombie.name=Smart Zombie
 entity.lostthaumaturgy:tslime.name=Thaum Slime
 entity.lostthaumaturgy:traveling_trunk.name=Traveling Trunk
 entity.lostthaumaturgy:wisp.name=Wisp
+entity.lostthaumaturgy:golem.name=Golem
 
 
 
@@ -304,6 +306,7 @@ bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
 wand.rod.wood=Wood
+wand.rod.greatwood=Greatwood
 wand.rod.silverwood=Silverwood
 wand.cap.iron=Iron
 wand.cap.gold=Gold

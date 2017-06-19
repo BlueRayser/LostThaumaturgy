@@ -1,5 +1,7 @@
 package com.pengu.lostthaumaturgy.entity;
 
+import java.util.Objects;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
@@ -7,6 +9,8 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -21,7 +25,7 @@ import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.golem.GolemCoreAbstract;
 import com.pengu.lostthaumaturgy.emote.EmoteManager;
-import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
+import com.pengu.lostthaumaturgy.entity.ai.LTPathEntity;
 import com.pengu.lostthaumaturgy.entity.ai.LTPathNavigate;
 
 public class EntityGolemBase extends EntityGolem
@@ -41,13 +45,15 @@ public class EntityGolemBase extends EntityGolem
 	public int action = 0;
 	public int leftArm = 0;
 	public int healing = 0;
+	public GolemCoreAbstract core;
 	
 	private static final DataParameter<String> DISPLAY_DECORATIONS = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
 	private static final DataParameter<String> OWNER = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
 	private static final DataParameter<Integer> COLOR = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.VARINT);
 	private static final DataParameter<ItemStack> CARRIED = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.OPTIONAL_ITEM_STACK);
-	private static final DataParameter<GolemCoreAbstract> CORE = EntityDataManager.createKey(EntityGolemBase.class, GolemCoreAbstract.SERIALIZER);
+	private static final DataParameter<String> CORE = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
+	private static final DataParameter<String> TEXTURE = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
 	
 	public EntityGolemBase(World worldIn)
 	{
@@ -94,7 +100,18 @@ public class EntityGolemBase extends EntityGolem
 		dataManager.register(TYPE, 0);
 		dataManager.register(OWNER, "");
 		dataManager.register(CARRIED, ItemStack.EMPTY);
-		dataManager.register(CORE, null);
+		dataManager.register(CORE, "{}");
+		dataManager.register(TEXTURE, "");
+	}
+	
+	public void setTexture(String tex)
+	{
+		dataManager.set(TEXTURE, tex);
+	}
+	
+	public String getTexture()
+	{
+		return dataManager.get(TEXTURE);
 	}
 	
 	@Override
@@ -122,12 +139,29 @@ public class EntityGolemBase extends EntityGolem
 	
 	public GolemCoreAbstract getCore()
 	{
-		return dataManager.get(CORE);
+		if(dataManager.get(CORE) != null)
+		{
+			String nbt = dataManager.get(CORE);
+			try
+			{
+				GolemCoreAbstract core = GolemCoreAbstract.readCoreFromNBT(JsonToNBT.getTagFromJson(nbt));
+				if(core != null && !Objects.equals(core, this.core) && core.getClass() == this.core.getClass())
+					this.core.readFromNBT(core.writeCoreToNBT(new NBTTagCompound()));
+				else
+					this.core = core;
+			} catch(NBTException e)
+			{
+				e.printStackTrace();
+			}
+			dataManager.set(CORE, null);
+		}
+		return core;
 	}
 	
 	public void setCore(GolemCoreAbstract core)
 	{
-		dataManager.set(CORE, core);
+		dataManager.set(CORE, core.writeCoreToNBT(new NBTTagCompound()) + "");
+		this.core = core;
 	}
 	
 	public void setOwner(String par1Str)
@@ -144,12 +178,46 @@ public class EntityGolemBase extends EntityGolem
 	public void writeEntityToNBT(NBTTagCompound nbt)
 	{
 		super.writeEntityToNBT(nbt);
+		nbt.setTag("Core", core != null ? core.writeCoreToNBT(new NBTTagCompound()) : new NBTTagCompound());
+		nbt.setInteger("HomeX", this.getHomePosition().getX());
+		nbt.setInteger("HomeY", this.getHomePosition().getY());
+		nbt.setInteger("HomeZ", this.getHomePosition().getZ());
+		nbt.setInteger("HomeFacing", this.homeFacing.ordinal());
+		nbt.setShort("Color", this.color);
+		nbt.setShort("GolemType", this.golemType);
+		nbt.setString("Decoration", this.decoration);
+		nbt.setTag("ItemCarried", itemCarried.writeToNBT(new NBTTagCompound()));
+		nbt.setString("Texture", getTexture() == null ? "missing" : getTexture());
+		if(this.getOwnerName() == null)
+			nbt.setString("Owner", "");
+		else
+			nbt.setString("Owner", this.getOwnerName());
 	}
 	
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt)
 	{
 		super.readEntityFromNBT(nbt);
+		core = GolemCoreAbstract.readCoreFromNBT(nbt.getCompoundTag("Core"));
+		int hx = nbt.getInteger("HomeX");
+		int hy = nbt.getInteger("HomeY");
+		int hz = nbt.getInteger("HomeZ");
+		this.homeFacing = EnumFacing.VALUES[nbt.getInteger("HomeFacing")];
+		setHomePosAndDistance(new BlockPos(hx, hy, hz), 32);
+		this.color = nbt.getShort("Color");
+		dataManager.set(COLOR, (int) color);
+		this.golemType = nbt.getShort("GolemType");
+		dataManager.set(TYPE, (int) golemType);
+		this.maxCarried = this.golemType == 4 ? 32 : 16;
+		NBTTagCompound var4 = nbt.getCompoundTag("ItemCarried");
+		itemCarried = new ItemStack(var4);
+		updateCarried();
+		decoration = nbt.getString("Decoration");
+		setTexture(nbt.getString("Texture"));
+		setGolemDecoration();
+		String var2 = nbt.getString("Owner");
+		if(var2.length() > 0)
+			this.setOwner(var2);
 	}
 	
 	public void onLivingUpdate()
@@ -174,7 +242,7 @@ public class EntityGolemBase extends EntityGolem
 				this.heal(1);
 			}
 		}
-		if(!world.isRemote && (this.getDistanceSq((double) this.getHomePosition().getX(), (double) this.getHomePosition().getY(), (double) this.getHomePosition().getZ()) >= 2304.0 || this.isEntityInsideOpaqueBlock()))
+		if(!world.isRemote && (getDistanceSq(getHomePosition()) >= 2304.0 || isEntityInsideOpaqueBlock()))
 		{
 			int var1 = MathHelper.floor((double) this.getHomePosition().getX());
 			int var2 = MathHelper.floor((double) this.getHomePosition().getY());
@@ -187,7 +255,7 @@ public class EntityGolemBase extends EntityGolem
 					{
 						if(!this.world.getBlockState(new BlockPos(var1 + var4, var3 - 1 + var0, var2 + var5)).isSideSolid(world, new BlockPos(var1 + var4, var3 - 1 + var0, var2 + var5), EnumFacing.UP) || world.isBlockNormalCube(new BlockPos(var1 + var4, var3 + var0, var2 + var5), false))
 							continue;
-						this.setLocationAndAngles((double) ((float) (var1 + var4) + 0.5f), (double) var3 + (double) var0, (double) ((float) (var2 + var5) + 0.5f), this.rotationYaw, this.rotationPitch);
+						setLocationAndAngles(var1 + var4 + .5, var3 + var0, var2 + var5 + .5, rotationYaw, rotationPitch);
 						getLTNavigator().clearPathEntity();
 						return;
 					}
@@ -202,6 +270,17 @@ public class EntityGolemBase extends EntityGolem
 			String type = core.getEmote();
 			if(type != null && ticksExisted % 25 == 0)
 				EmoteManager.newEmote(world, getPositionVector().addVector(0, height, 0), type).setColorRGB(0xFFFF00).setLifespan(5, 10, 5).build();
+		}
+		
+		boolean shouldGoHome = true;
+		if(core != null)
+			shouldGoHome = !core.isActive();
+		
+		if(shouldGoHome && getDistanceSq(getHomePosition()) > 8)
+		{
+			BlockPos tp = getHomePosition().offset(homeFacing);
+			if(getLTNavigator().noPath() && !getMoveHelper().isUpdating())
+				getNavigator().setPath(getNavigator().getPathToXYZ(tp.getX() + .5, tp.getY() + .5, tp.getZ() + .5), .4F);
 		}
 	}
 	
@@ -265,7 +344,7 @@ public class EntityGolemBase extends EntityGolem
 	
 	public int getCarrySpace()
 	{
-		if(this.itemCarried == null)
+		if(this.itemCarried.isEmpty())
 			return this.maxCarried;
 		return Math.min(this.maxCarried - this.itemCarried.getCount(), this.itemCarried.getMaxStackSize() - this.itemCarried.getCount());
 	}

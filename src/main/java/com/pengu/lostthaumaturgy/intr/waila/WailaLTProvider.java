@@ -105,7 +105,7 @@ public class WailaLTProvider implements IWailaDataProvider
 			if(block == BlocksLT.VIS_PURIFIER)
 				return new ItemStack(BlocksLT.VIS_PURIFIER);
 			
-			if(block == BlocksLT.SILVERWOOD_LEAVES || block == BlocksLT.SILVERWOOD_LOG || block == BlocksLT.SILVERWOOD_STAIRS)
+			if(block == BlocksLT.SILVERWOOD_LEAVES || block == BlocksLT.SILVERWOOD_LOG || block == BlocksLT.SILVERWOOD_STAIRS || block == BlocksLT.GREATWOOD_LOG || block == BlocksLT.GREATWOOD_LEAVES)
 				return new ItemStack(block);
 			
 			if(acc.getTileEntity() != null)

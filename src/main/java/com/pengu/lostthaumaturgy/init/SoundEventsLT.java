@@ -22,5 +22,6 @@ public class SoundEventsLT
 	        MONOLITH = new SoundObject(LTInfo.MOD_ID, "monolith"), //
 	        PLACE = new SoundObject(LTInfo.MOD_ID, "place"), //
 	        RUMBLE = new SoundObject(LTInfo.MOD_ID, "rumble"), //
-	        SINGULARITY = new SoundObject(LTInfo.MOD_ID, "singularity"), TINKERING = new SoundObject(LTInfo.MOD_ID, "tinkering");
+	        SINGULARITY = new SoundObject(LTInfo.MOD_ID, "singularity"), //
+	        TINKERING = new SoundObject(LTInfo.MOD_ID, "tinkering");
 }

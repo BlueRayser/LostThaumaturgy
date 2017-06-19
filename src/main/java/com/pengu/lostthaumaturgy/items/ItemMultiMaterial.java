@@ -69,6 +69,7 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 						OreDictionary.registerOre(name, type.stack());
 		
 		OreDictionary.registerOre("logWood", BlocksLT.SILVERWOOD_LOG);
+		OreDictionary.registerOre("logWood", BlocksLT.GREATWOOD_LOG);
 		OreDictionary.registerOre("treeLeaves", BlocksLT.SILVERWOOD_LEAVES);
 		OreDictionary.registerOre("plankWood", BlocksLT.SILVERWOOD_PLANKS);
 		OreDictionary.registerOre("stairWood", BlocksLT.SILVERWOOD_STAIRS);
@@ -175,7 +176,8 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		CAP_THAUMIUM, //
 		CAP_VOID, //
 		ROD_GREATWOOD, //
-		ROD_SILVERWOOD;
+		ROD_SILVERWOOD,
+		TALLOW;
 		
 		private final String oredict[];
 		public final String mod;
