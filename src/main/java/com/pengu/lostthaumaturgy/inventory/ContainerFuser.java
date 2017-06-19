@@ -26,7 +26,7 @@ public class ContainerFuser extends Container implements IContainerListener
 		tile.craftingPlayer = player.player;
 		
 		addSlotToContainer(new SlotWand(tile.inventory, 9, 132, 71));
-		addSlotToContainer(output = new SlotFuserOutput(tile.inventory, 10, 132, 38));
+		addSlotToContainer(output = new SlotFuserOutput(tile.inventory, 10, -10000, -10000));
 		
 		for(int i = 0; i < 9; ++i)
 			addSlotToContainer(new Slot(tile.inventory, i, 36 + (i % 3) * 20, 18 + (i / 3) * 20));

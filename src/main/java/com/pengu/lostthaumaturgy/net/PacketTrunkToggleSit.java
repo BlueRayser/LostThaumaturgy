@@ -11,6 +11,8 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.net.packetAPI.IPacket;
 import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.emote.EmoteManager;
+import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 
 public class PacketTrunkToggleSit implements IPacket, IPacketListener<PacketTrunkToggleSit, IPacket>
@@ -50,6 +52,7 @@ public class PacketTrunkToggleSit implements IPacket, IPacketListener<PacketTrun
 				{
 					e.stay = !e.stay;
 					context.getServerHandler().player.sendMessage(new TextComponentTranslation("chat." + LTInfo.MOD_ID + ":trunk_" + (e.stay ? "stay" : "follow")));
+					EmoteManager.newEmote(e.world, e.getPositionVector().addVector(e.world.rand.nextFloat() - e.world.rand.nextFloat(), e.height + .2, e.world.rand.nextFloat() - e.world.rand.nextFloat()), e.stay ? DefaultEmotes.PAUSE : DefaultEmotes.WORKING).setScale(2.5F).setLifespan(5, 20, 15).setColorRGB(e.stay ? 0xFF0000 : 0x00FF00).build();
 					return new PacketSyncTrunk(e);
 				} else
 					context.getServerHandler().player.sendMessage(new TextComponentTranslation("chat." + LTInfo.MOD_ID + ":not_my_master"));

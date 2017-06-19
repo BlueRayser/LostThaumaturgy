@@ -899,4 +899,24 @@ public class AuraTicker
 	{
 		return x + "|" + z + "@" + dim;
 	}
+
+	public static boolean decreaseClosestAura(World world, double posX, double posZ, int i)
+    {
+		SIAuraChunk si = getAuraChunkFromBlockCoords(world, (int) posX, (int) posZ);
+		if(si.vis >= i)
+		{
+			si.vis -= i;
+			return true;
+		}else for(int x = -1; x < 2; ++x)
+			for(int z = -1; z < 2; ++z)
+			{
+				si = getAuraChunkFromBlockCoords(world, (int) posX + x * 16, (int) posZ + z * 16);
+				if(si.vis >= i)
+				{
+					si.vis -= i;
+					return true;
+				}
+			}
+	    return false;
+    }
 }

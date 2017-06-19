@@ -285,6 +285,9 @@ research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes ca
 research.lostthaumaturgy:crystallizer.title=Crystallizer
 research.lostthaumaturgy:crystallizer.desc=Depleted crystals are not really useful and it's better not to make anything with them. You found a good way to get your crystals back! Crystallizer infuses any crystal including depleted with any primal essence.
 
+research.lostthaumaturgy:advanced_vis_valve.title=Advanced Vis Valve
+research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at blocking vis to go through, but they aren't flexible enough. You invented Advanced Vis Valve - more usable version of the valve. It has 3 modes: off, vis-only and taint-only.
+
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Basics

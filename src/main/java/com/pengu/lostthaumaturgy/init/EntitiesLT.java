@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
+import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
 import com.pengu.lostthaumaturgy.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
@@ -25,6 +26,7 @@ public class EntitiesLT
 		reg(EntityCustomSplashPotion.class, "custom_splash_potion");
 		reg(EntityTravelingTrunk.class, "traveling_trunk");
 		reg(EntitySingularity.class, "singularity");
+		reg(EntityGolemBase.class, "golem");
 		reg(EntityWisp.class, "wisp", 0xBD83F7, 0x5A0E57);
 		
 		EntitySpawnPlacementRegistry.setPlacementType(EntitySmartZombie.class, SpawnPlacementType.ON_GROUND);

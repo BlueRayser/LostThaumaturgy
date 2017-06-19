@@ -35,15 +35,20 @@ public class GuiFuser extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		
+		if(isMouseOverSlot(containerFuser.output, mouseX, mouseY))
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslated(128, 34, 0);
+			GlStateManager.disableDepth();
+			drawRect(0, 0, 24, 24, -2130706433);
+			GlStateManager.enableDepth();
+			GL11.glPopMatrix();
+		}
 	}
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
-		containerFuser.output.xPos = -guiLeft - 32;
-		containerFuser.output.yPos = -guiTop - 32;
-		
 		Color.glColourARGB(0xFFFFFFFF);
 		GlStateManager.enableAlpha();
 		GlStateManager.enableBlend();
@@ -69,15 +74,15 @@ public class GuiFuser extends GuiContainer
 				Color.glColourRGB(0xFFFFFF);
 			}
 			
-			zLevel = 100;
-			itemRender.zLevel = 100;
+			itemRender.zLevel = 50;
+			zLevel = 50;
+			
 			GL11.glPushMatrix();
 			GL11.glTranslated(guiLeft + 128, guiTop + 34, 0);
 			GL11.glScaled(1.5D, 1.5D, 1.5D);
 			itemRender.renderItemAndEffectIntoGUI(tile.inventory.outputInv.getStackInSlot(0), 0, 0);
-			GL11.glTranslated(0, 0, 50);
-			drawRect(0, 0, 16, 16, -2130706433);
 			GL11.glPopMatrix();
+			
 			itemRender.zLevel = 0;
 			zLevel = 0;
 		}
@@ -87,7 +92,17 @@ public class GuiFuser extends GuiContainer
 	public boolean isMouseOverSlot(Slot slotIn, int mouseX, int mouseY)
 	{
 		if(slotIn == containerFuser.output)
-			return isPointInRegion(guiLeft + 128, guiTop + 34, 24, 24, mouseX, mouseY);
+		{
+			slotIn.xPos = 132;
+			slotIn.yPos = 38;
+			
+			boolean over = isPointInRegion(slotIn.xPos - 3, slotIn.yPos - 3, 22, 22, mouseX, mouseY);
+			
+			slotIn.xPos = -guiLeft - 32;
+			slotIn.yPos = -guiTop - 32;
+			
+			return over;
+		}
 		return isPointInRegion(slotIn.xPos, slotIn.yPos, 16, 16, mouseX, mouseY);
 	}
 }
