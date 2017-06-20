@@ -1,5 +1,7 @@
 package com.pengu.lostthaumaturgy.entity;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -52,8 +55,22 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 	@Override
 	public void onUpdate()
 	{
-		if(!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL)
+		List<EntityThaumSlime> slimes = world.getEntitiesWithinAABB(EntityThaumSlime.class, getEntityBoundingBox().grow(32));
+		int slimesFound = 0;
+		for(int i = 0; i < slimes.size(); ++i)
+		{
+			EntityThaumSlime slime = slimes.get(i);
+			if(slime != this && !slime.isDead)
+				++slimesFound;
+			if(slimesFound >= 3)
+				break;
+		}
+		
+		if(!world.isRemote && (world.getDifficulty() == EnumDifficulty.PEACEFUL || slimesFound >= 3))
+		{
 			setDead();
+			return;
+		}
 		
 		if(dataManager.get(ANGER_LEVEL) > 0)
 			dataManager.set(ANGER_LEVEL, dataManager.get(ANGER_LEVEL) - 1);
@@ -87,6 +104,9 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 			dataManager.set(CURRENT_TAINT, dataManager.get(CURRENT_TAINT));
 		}
 		
+		if(getAttackTarget() instanceof EntityPlayer && ((EntityPlayer) getAttackTarget()).capabilities.isCreativeMode)
+			setAttackTarget(null);
+		
 		if(dataManager.get(ANGER_LEVEL) > 0 && getAttackTarget() != null && getAttackTarget() != entityplayer && !facingThaum)
 			faceEntity(getAttackTarget(), 10, 20);
 		
@@ -105,6 +125,9 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 				HammerCore.audioProxy.playSoundAt(world, "entity.slime.jump", getPosition(), getSoundVolume(), ((rand.nextFloat() - rand.nextFloat()) * .2F + 1) * .8F, SoundCategory.HOSTILE);
 			moveStrafing = 1 - rand.nextFloat() * 2;
 			moveForward = 1 * getSlimeSize();
+			Vec3d look = getLookVec().add(getPositionVector());
+			motionX = ((look.x - posX) / 5) * (getSlimeSize() * .5);
+			motionZ = ((look.z - posZ) / 5) * (getSlimeSize() * .5);
 			jump();
 		} else
 		{

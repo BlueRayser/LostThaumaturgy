@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.entity;
 
 import java.awt.Color;
+import java.util.List;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -161,8 +162,22 @@ public class EntityWisp extends EntityFlying implements IMob
 	@Override
 	public void onEntityUpdate()
 	{
-		if(!world.isRemote && world.getDifficulty() == EnumDifficulty.PEACEFUL)
+		List<EntityWisp> wisps = world.getEntitiesWithinAABB(EntityWisp.class, getEntityBoundingBox().grow(32));
+		int wispsFound = 0;
+		for(int i = 0; i < wisps.size(); ++i)
+		{
+			EntityWisp wisp = wisps.get(i);
+			if(wisp != this && !wisp.isDead)
+				++wispsFound;
+			if(wispsFound >= 5)
+				break;
+		}
+		
+		if(!world.isRemote && (world.getDifficulty() == EnumDifficulty.PEACEFUL || wispsFound >= 5))
+		{
 			setDead();
+			return;
+		}
 		
 		if(ticksExisted == 1 && !world.isRemote)
 		{
@@ -201,6 +216,9 @@ public class EntityWisp extends EntityFlying implements IMob
 		if(getType() == 4)
 			isImmuneToFire = true;
 		
+		if(world.isRemote)
+			return;
+		
 		HCNetwork.manager.sendToAllAround(new PacketFXWisp1(posX + (double) rand.nextFloat() - (double) rand.nextFloat(), posY + (double) rand.nextFloat() - (double) rand.nextFloat(), posZ + (double) rand.nextFloat() - (double) rand.nextFloat(), .8F, dataManager.get(TYPE)), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 48));
 		
 		prevAttackCounter = attackCounter;
@@ -229,9 +247,9 @@ public class EntityWisp extends EntityFlying implements IMob
 			waypointZ = getAttackTarget().posZ;
 		} else
 		{
-			waypointX = posX;
-			waypointY = posY;
-			waypointZ = posZ;
+			waypointX = posX + (double) ((rand.nextFloat() * 2 - 1) * 2);
+			waypointY = posY + (double) ((rand.nextFloat() * 2 - .25F) * 2);
+			waypointZ = posZ + (double) ((rand.nextFloat() * 2 - 1) * 2);
 		}
 		
 		if(courseChangeCooldown-- <= 0)

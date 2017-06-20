@@ -26,7 +26,7 @@ public class EntitiesLT
 		reg(EntityCustomSplashPotion.class, "custom_splash_potion");
 		reg(EntityTravelingTrunk.class, "traveling_trunk");
 		reg(EntitySingularity.class, "singularity");
-		reg(EntityGolemBase.class, "golem");
+//		reg(EntityGolemBase.class, "golem");
 		reg(EntityWisp.class, "wisp", 0xBD83F7, 0x5A0E57);
 		
 		EntitySpawnPlacementRegistry.setPlacementType(EntitySmartZombie.class, SpawnPlacementType.ON_GROUND);

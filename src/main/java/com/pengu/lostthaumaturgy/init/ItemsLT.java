@@ -7,7 +7,6 @@ import net.minecraft.item.ItemTool;
 import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
-import com.pengu.lostthaumaturgy.items.ItemElementalPickaxe;
 import com.pengu.lostthaumaturgy.items.ItemGolemPlacer;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
@@ -22,6 +21,8 @@ import com.pengu.lostthaumaturgy.items.armor.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.armor.ItemVoidArmor;
 import com.pengu.lostthaumaturgy.items.armor.boots.ItemBootsStriding;
 import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
+import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeThaumium;
+import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeElemental;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeThaumium;
 
 public class ItemsLT
@@ -51,7 +52,8 @@ public class ItemsLT
 	        WAND = ItemWand.WAND;
 	public static final ItemTool //
 	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //
-	        ELEMENTAL_PICKAXE = new ItemElementalPickaxe();
+	        THAUMIUM_AXE = new ItemAxeThaumium(), //
+	        ELEMENTAL_PICKAXE = new ItemPickaxeElemental();
 	public static final ItemUpgrade //
 	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //
 	        STABILIZED_SINGULARITY = new ItemUpgrade("stabilized_singularity"), //

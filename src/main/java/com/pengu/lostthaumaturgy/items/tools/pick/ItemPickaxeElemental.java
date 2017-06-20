@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy.items;
+package com.pengu.lostthaumaturgy.items.tools.pick;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,9 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXGuideWisp;
 
-public class ItemElementalPickaxe extends ItemPickaxe
+public class ItemPickaxeElemental extends ItemPickaxe
 {
-	public ItemElementalPickaxe()
+	public ItemPickaxeElemental()
 	{
 		super(ItemMaterialsLT.tool_elemental);
 		setUnlocalizedName("elemental_pickaxe");

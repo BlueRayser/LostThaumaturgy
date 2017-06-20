@@ -57,6 +57,14 @@ tile.lostthaumaturgy:totem_twilight.name=Тотем сумерек
 tile.lostthaumaturgy:seal.name=Тайная печать
 tile.lostthaumaturgy:seal.desc=Цвет: $col
 tile.lostthaumaturgy:vis_condenser.name=Вис-конденсатор
+tile.lostthaumaturgy:void_block.name=Block of Void Metal
+tile.lostthaumaturgy:thaumium_block.name=Block of Thaumium Metal
+tile.lostthaumaturgy:infuser_base.name=Arcane Stone Block
+tile.lostthaumaturgy:fuser.name=Arcane Crafter
+tile.lostthaumaturgy:wand_constructor.name=Wand Constructor
+tile.lostthaumaturgy:greatwood_leaves.name=Greatwood Leaves
+tile.lostthaumaturgy:greatwood_log.name=Greatwood Log
+tile.lostthaumaturgy:greatwood_sapling.name=Greatwood Sapling
 
 
 
@@ -187,6 +195,16 @@ item.lostthaumaturgy:mithrillium_ingot.name=§3Мифрилловый слито
 item.lostthaumaturgy:adaminite_ingot.name=§cАдаминитовый слиток
 item.lostthaumaturgy:elemental_pickaxe.name=Кирка Огня
 item.lostthaumaturgy:void_compass.name=Пустотный компас
+item.lostthaumaturgy:thaumium_pickaxe.name=Thaumium Pickaxe
+item.lostthaumaturgy:wand.name=Wand
+item.lostthaumaturgy:cap_iron.name=Iron Cap
+item.lostthaumaturgy:cap_gold.name=Gold Cap
+item.lostthaumaturgy:cap_thaumium.name=Thaumium Cap
+item.lostthaumaturgy:cap_void.name=Void Cap
+item.lostthaumaturgy:rod_silverwood.name=Silverwood Rod
+item.lostthaumaturgy:boots_striding.name=Boots of Striding
+item.lostthaumaturgy:rod_greatwood.name=Greatwood Rod
+item.lostthaumaturgy:thaumium_axe.name=Thaumium Axe
 
 
 
@@ -200,6 +218,7 @@ entity.lostthaumaturgy:smart_zombie.name=Умный зомби
 entity.lostthaumaturgy:tslime.name=Таум слизень
 entity.lostthaumaturgy:traveling_trunk.name=Путешествующий багаж
 entity.lostthaumaturgy:wisp.name=Висп
+entity.lostthaumaturgy:golem.name=Голем
 
 
 
@@ -263,6 +282,18 @@ research.lostthaumaturgy:crucible_void.desc=Thaumium Crucible is good enough but
 research.lostthaumaturgy:conduit_silverwood.title=Silverwood Vis Conduit
 research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are main way to transport Vis and/or Taint, but sometimes they might not be enough. For example, if you need to transport vis over great distances you might need a better speed for it. It seems like you found a good way to improve vis conduits. Infusing a vis conduit with enchanted silverwood is going to do it.
 
+research.lostthaumaturgy:elemental_pickaxe.title=Pickaxe of the Core
+research.lostthaumaturgy:elemental_pickaxe.desc=Thaumium Pickaxe is tough as iron and has a good potential for enchanting, but mining rare stuff with it isn't that easy. By attaching some fiery crystals and upgrading handle using enchanted wood you made Pickaxe of the Core. It can find you some great treasures, just use it in the cave.
+
+research.lostthaumaturgy:vis_purifier.title=Vis Purifier
+research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes cause an explosion to unprepared tanks. You were previously using Vis Filters to "clean" your tanks, but taintify your atmosphere. You made something similar to vis filters - Vis Purifier. It destroys taint completely given some time.
+
+research.lostthaumaturgy:crystallizer.title=Crystallizer
+research.lostthaumaturgy:crystallizer.desc=Depleted crystals are not really useful and it's better not to make anything with them. You found a good way to get your crystals back! Crystallizer infuses any crystal including depleted with any primal essence.
+
+research.lostthaumaturgy:advanced_vis_valve.title=Advanced Vis Valve
+research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at blocking vis to go through, but they aren't flexible enough. You invented Advanced Vis Valve - more usable version of the valve. It has 3 modes: off, vis-only and taint-only.
+
 
 
 bookapi.lostthaumaturgy:thaumonomicon:basics=Основы
@@ -272,6 +303,16 @@ bookapi.lostthaumaturgy:thaumonomicon:eldritch=Древние знания
 bookapi.lostthaumaturgy:thaumonomicon:forbidden=Запретные знания
 bookapi.lostthaumaturgy:thaumonomicon:tainted=Испорченные знания
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
+
+
+
+wand.rod.wood=Wood
+wand.rod.greatwood=Greatwood
+wand.rod.silverwood=Silverwood
+wand.cap.iron=Iron
+wand.cap.gold=Gold
+wand.cap.thaumium=Thaumium
+wand.cap.void=Void Metal
 
 
 
