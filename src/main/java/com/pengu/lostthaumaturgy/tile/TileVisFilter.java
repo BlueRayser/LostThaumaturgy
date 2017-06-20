@@ -128,6 +128,7 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 				{
 					taintedStore = 0;
 					ac.taint++;
+					ac.radiation += .0001F;
 				}
 			}
 		}

@@ -43,6 +43,7 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.ChunkUtils;
+import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
@@ -54,6 +55,7 @@ import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.net.PacketReloadCR;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
 
@@ -467,8 +469,21 @@ public class AuraTicker
 						ac2.taint += taintAccept * eatFact * 66.666;
 						ac2.badVibes = 100;
 						
-						ac2.radiation -= .1F;
+						ac2.radiation -= .02F;
 					}
+				}
+			}
+			
+			if(shouldBeTainted(ac2))
+			{
+				int c2 = 12 + world.rand.nextInt(24);
+				for(int i = 0; i < c2; ++i)
+				{
+					int z;
+					int x = (ac2.x << 4) + world.rand.nextInt(16);
+					int y = world.getHeight(x, z = (ac2.z << 4) + world.rand.nextInt(16)) > 0 ? world.getHeight(x, z) : 255;
+					
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(x + world.rand.nextFloat(), y, z + world.rand.nextFloat(), x + world.rand.nextFloat(), y + 2 + world.rand.nextFloat(), z + world.rand.nextFloat(), .8F, 5), new WorldLocation(world, new BlockPos(x, y, z)).getPointWithRad(32));
 				}
 			}
 			
@@ -899,24 +914,25 @@ public class AuraTicker
 	{
 		return x + "|" + z + "@" + dim;
 	}
-
+	
 	public static boolean decreaseClosestAura(World world, double posX, double posZ, int i)
-    {
+	{
 		SIAuraChunk si = getAuraChunkFromBlockCoords(world, (int) posX, (int) posZ);
 		if(si.vis >= i)
 		{
 			si.vis -= i;
 			return true;
-		}else for(int x = -1; x < 2; ++x)
-			for(int z = -1; z < 2; ++z)
-			{
-				si = getAuraChunkFromBlockCoords(world, (int) posX + x * 16, (int) posZ + z * 16);
-				if(si.vis >= i)
+		} else
+			for(int x = -1; x < 2; ++x)
+				for(int z = -1; z < 2; ++z)
 				{
-					si.vis -= i;
-					return true;
+					si = getAuraChunkFromBlockCoords(world, (int) posX + x * 16, (int) posZ + z * 16);
+					if(si.vis >= i)
+					{
+						si.vis -= i;
+						return true;
+					}
 				}
-			}
-	    return false;
-    }
+		return false;
+	}
 }

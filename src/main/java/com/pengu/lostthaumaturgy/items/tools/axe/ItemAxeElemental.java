@@ -7,13 +7,16 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
+import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXBubble;
 import com.pengu.lostthaumaturgy.utils.ListDelta;
 import com.pengu.lostthaumaturgy.utils.WoodHelper;
 
@@ -38,6 +41,12 @@ public class ItemAxeElemental extends ItemAxe
 			{
 				WoodHelper helper = WoodHelper.newHelper(loc, 64);
 				BlockPos woodPos = helper.getFarthest(pos);
+				
+				if(woodPos == null)
+					return true;
+				
+				for(int i = 0; i < 16; ++i)
+					HCNetwork.manager.sendToAllAround(new PacketFXBubble(woodPos.getX() + player.getRNG().nextFloat(), woodPos.getY() + player.getRNG().nextFloat(), woodPos.getZ() + player.getRNG().nextFloat()), loc.getPointWithRad(64));
 				
 				SoundEventsLT.SWING.playAt(new WorldLocation(player.world, woodPos), 1F, 1F, SoundCategory.PLAYERS);
 				

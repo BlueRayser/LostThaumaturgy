@@ -232,8 +232,8 @@ public class EntityWisp extends EntityFlying implements IMob
 			if(d3 < 1 || d3 > 60 || onGround)
 			{
 				waypointX = posX + (double) ((rand.nextFloat() * 2 - 1) * 16);
-				waypointY = posY + (double) ((rand.nextFloat() * 2 - .25F) * 16F);
 				waypointZ = posZ + (double) ((rand.nextFloat() * 2 - 1) * 16);
+				waypointY = world.getHeight((int) waypointX, (int) waypointZ) + (double) (rand.nextFloat() * 12F);
 			}
 		} else if(!canEntityBeSeen(getAttackTarget()))
 		{

@@ -33,11 +33,9 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 	
 	public void tick()
 	{
-		if(hitboxes == null || hitboxes.length == 0)
+		if(ticksExisted % 20 == 0 || hitboxes == null || hitboxes.length == 0)
 			rebake();
 		
-		if(ticksExisted % 20 == 0)
-			rebake();
 		if(world.isRemote)
 			return;
 		
@@ -103,7 +101,7 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
 			IConnection ic = ConnectionManager.getConnection(world, pos, f);
-			if(ic == null)
+			if(ic == null || !getConnectable(f))
 				continue;
 			
 			if(getVisSuction(null) < ic.getVisSuction(pos) - 1)
@@ -119,25 +117,25 @@ public class TileConduit extends TileSyncableTickable implements IConnection, Pr
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
 			IConnection ent = ConnectionManager.getConnection(world, pos, f);
-			if(ent == null)
+			if(ent == null || !getConnectable(f))
 				continue;
 			
-			if(pureVis + taintedVis >= maxVis || getVisSuction(null) <= ent.getVisSuction(pos) && getTaintSuction(null) <= ent.getTaintSuction(pos))
+			if(getVisSuction(null) <= ent.getVisSuction(pos) && getTaintSuction(null) <= ent.getTaintSuction(pos))
 				continue;
 			
 			float[] results = new float[] { 0.0f, 0.0f };
 			float qq = Math.min((ent.getPureVis() + ent.getTaintedVis()) / maxVis, fillAmount);
 			results = ent.subtractVis(Math.min(qq, maxVis - (pureVis + taintedVis)));
+			
 			if(getVisSuction(null) > ent.getVisSuction(pos))
 				pureVis += results[0];
 			else
 				ent.setPureVis(results[0] + ent.getPureVis());
+			
 			if(getTaintSuction(null) > ent.getTaintSuction(pos))
-			{
 				taintedVis += results[1];
-				continue;
-			}
-			ent.setTaintedVis(results[1] + ent.getTaintedVis());
+			else
+				ent.setTaintedVis(results[1] + ent.getTaintedVis());
 		}
 		pureVis = (float) MathHelper.clip(pureVis, 0F, maxVis);
 		taintedVis = (float) MathHelper.clip(taintedVis, 0F, maxVis);

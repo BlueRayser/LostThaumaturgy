@@ -5,12 +5,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.mrdimka.hammercore.tile.IMalfunctionable;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 
-public class TileVisPump extends TileSyncableTickable implements IConnection
+public class TileVisPump extends TileSyncableTickable implements IConnection, IMalfunctionable
 {
+	public int malfunctionTime = 0;
 	public float pureVis = 0.0f;
 	public float taintedVis = 0.0f;
 	public float maxVis = 4.0f;
@@ -20,7 +22,10 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 	
 	public void tick()
 	{
-		if(gettingPower())
+		if(malfunctionTime > 0)
+			malfunctionTime--;
+		
+		if(gettingPower() || malfunctionTime > 0)
 		{
 			ticksExisted--;
 			return;
@@ -31,7 +36,7 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 		
 		IConnection c = ConnectionManager.getConnection(world, pos, orientation);
 		
-		if(c == null)
+		if(c == null || getConnectable(orientation))
 			return;
 		
 		if(pureVis + taintedVis < maxVis && c != null && c.isVisConduit() || c.isVisSource())
@@ -194,4 +199,10 @@ public class TileVisPump extends TileSyncableTickable implements IConnection
 	{
 		return world.isBlockIndirectlyGettingPowered(pos) > 0;
 	}
+
+	@Override
+    public void causeGeneralMalfunction()
+    {
+		malfunctionTime += 40 + getRNG().nextInt(100);
+    }
 }

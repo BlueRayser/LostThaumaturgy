@@ -11,6 +11,7 @@ public class TESRVisPumpThaumium extends TESRVisPump<TileVisPumpThaumium>
 	
 	{
 		pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/thaumium_pump.png");
+		pump_malfunction = new ResourceLocation(LTInfo.MOD_ID, "textures/models/thaumium_pump_malfunction.png");
 		pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/thaumium_pump_off.png");
 	}
 }

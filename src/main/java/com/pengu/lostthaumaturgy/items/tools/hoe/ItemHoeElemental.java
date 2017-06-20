@@ -38,24 +38,29 @@ public class ItemHoeElemental extends ItemHoe
 		if(player.isSneaking())
 			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		
-		cc: for(int left = 0; left < 15; ++left)
+		cc: for(int left = 0; left < 50; ++left)
 		{
 			BlockPos sel = null;
-			int tries = 25;
+			int tries = 45;
 			c2: while(tries > 0)
 			{
 				BlockPos chosen = pos.add(player.getRNG().nextInt(5) - player.getRNG().nextInt(5), 0, player.getRNG().nextInt(5) - player.getRNG().nextInt(5));
 				IBlockState state = worldIn.getBlockState(chosen);
 				
 				if(state.getBlock() == Blocks.GRASS_PATH || state.getBlock() == Blocks.GRASS)
+				{
+					sel = chosen;
 					break;
+				}
 				
 				if(state.getBlock() == Blocks.DIRT)
 					switch((BlockDirt.DirtType) state.getValue(BlockDirt.VARIANT))
 					{
 					case DIRT:
+						sel = chosen;
 					break c2;
 					case COARSE_DIRT:
+						sel = chosen;
 					break c2;
 					default:
 					break;
@@ -89,7 +94,9 @@ public class ItemHoeElemental extends ItemHoe
 			return;
 		EntityPlayer player = (EntityPlayer) entityIn;
 		
-		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("ToTill", NBT.TAG_LIST) && entityIn.ticksExisted % 3 == 0)
+		int tillsSkip = 25;
+		
+		cc: while(stack.hasTagCompound() && stack.getTagCompound().hasKey("ToTill", NBT.TAG_LIST) && tillsSkip-- > 0)
 		{
 			NBTTagList toTill = stack.getTagCompound().getTagList("ToTill", NBT.TAG_LONG);
 			if(toTill.tagCount() > 0)
@@ -132,8 +139,11 @@ public class ItemHoeElemental extends ItemHoe
 								if(!worldIn.isRemote)
 									for(int i = 0; i < 8; ++i)
 										HCNetwork.manager.sendToAllAround(new PacketFXWisp1(pos.getX() + player.getRNG().nextFloat(), pos.getY() + 14 / 16D + player.getRNG().nextFloat() * (1 / 8D), pos.getZ() + player.getRNG().nextFloat(), .8F, 3), new WorldLocation(worldIn, pos).getPointWithRad(48));
-							}
-						}
+								break cc;
+							} else
+								continue cc;
+						} else
+							continue cc;
 					}
 				}
 			}

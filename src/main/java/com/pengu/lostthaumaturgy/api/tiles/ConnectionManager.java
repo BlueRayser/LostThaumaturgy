@@ -14,10 +14,13 @@ public class ConnectionManager
 		TileEntity tile = world.getTileEntity(pos.offset(facing));
 		if(tile != null)
 		{
+			IConnection c = null;
 			if(tile.hasCapability(CapabilityVisConnection.VIS, facing.getOpposite()))
-				return tile.getCapability(CapabilityVisConnection.VIS, facing.getOpposite());
+				c = tile.getCapability(CapabilityVisConnection.VIS, facing.getOpposite());
 			else if(tile instanceof IConnection)
-				return (IConnection) tile;
+				c = (IConnection) tile;
+			if(c != null && c.getConnectable(facing.getOpposite()))
+				return c;
 		}
 		return null;
 	}

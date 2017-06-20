@@ -1,16 +1,21 @@
 package com.pengu.lostthaumaturgy.api.wand;
 
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.Random;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 import com.mrdimka.hammercore.HammerCore;
+import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
+import com.mrdimka.hammercore.tile.IMalfunctionable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.items.ItemWand;
@@ -116,7 +121,20 @@ public class WandRod
 					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.x, pos.y, pos.z, tpos.x, tpos.y, tpos.z, .9F + rand.nextFloat() * .6F, 5), new TargetPoint(wand.world.provider.getDimension(), wand.posX, wand.posY, wand.posZ, 48));
 				
 				if(wand.world.rand.nextInt(30) == 0)
+				{
+					Iterator<BlockPos> positions = BlockPos.getAllInBox(wand.getPosition(), new BlockPos(pos)).iterator();
+					while(positions.hasNext())
+					{
+						BlockPos next = positions.next();
+						IMalfunctionable mal = WorldUtil.cast(wand.world.getTileEntity(next), IMalfunctionable.class);
+						if(mal != null)
+						{
+							mal.causeEntityMalfunction(wand);
+							HammerCore.particleProxy.spawnZap(wand.world, new Vec3d(next.getX() + .5, next.getY() + .5, next.getZ() + .5), tpos, Color.RED);
+						}
+					}
 					HammerCore.particleProxy.spawnZap(wand.world, pos, tpos, new Color(color));
+				}
 			}
 		}
 	}

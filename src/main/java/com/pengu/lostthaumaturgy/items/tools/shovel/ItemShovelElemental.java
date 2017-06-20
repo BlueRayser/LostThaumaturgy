@@ -71,7 +71,7 @@ public class ItemShovelElemental extends ItemSpade
 								if(areaMinedBlocks.contains(state))
 								{
 									List<EntityItem> before = loc.getWorld().getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(p));
-									loc.getWorld().destroyBlock(p, true);
+									loc.getWorld().destroyBlock(p, !player.capabilities.isCreativeMode);
 									List<EntityItem> after = loc.getWorld().getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(p));
 									after.removeAll(before);
 									

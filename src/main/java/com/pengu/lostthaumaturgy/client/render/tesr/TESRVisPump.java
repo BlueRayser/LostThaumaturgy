@@ -18,12 +18,14 @@ public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 {
 	public static final TESRVisPump INSTANCE = new TESRVisPump();
 	private ModelPump model = new ModelPump();
-	protected ResourceLocation pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump.png"), pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_off.png");
+	protected ResourceLocation pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump.png"), pump_malfunction = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_malfunction.png"), pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_off.png");
 	
 	@Override
 	public void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
-		if(te.gettingPower())
+		if(te.malfunctionTime > 0)
+			bindTexture(pump_malfunction);
+		else if(te.gettingPower())
 			bindTexture(pump_off);
 		else
 			bindTexture(pump);

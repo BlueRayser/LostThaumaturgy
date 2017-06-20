@@ -407,7 +407,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 			for(EnumFacing f : EnumFacing.VALUES)
 			{
 				IConnection ic = ConnectionManager.getConnection(world, pos, f);
-				if(ic == null)
+				if(ic == null || !ic.getConnectable(f.getOpposite()))
 					continue;
 				
 				TileVisUser user = WorldUtil.cast(ic, TileVisUser.class);
