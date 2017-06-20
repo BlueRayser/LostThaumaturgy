@@ -21,6 +21,7 @@ public class ResearchesLT
 	        THAUMIUM_BELLOWS = new Research(LTInfo.MOD_ID + ":thaumium_bellows", 50, Research.CATEGORY_THAUMATURGY).setIcon(new ItemStack(BlocksLT.THAUMIUM_BELLOWS)), //
 	        SINGULARITY = new Research(LTInfo.MOD_ID + ":singularity", 35, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(ItemsLT.SINGULARITY)), //
 	        ELEMENTAL_PICKAXE = new Research(LTInfo.MOD_ID + ":elemental_pickaxe", 40, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(ItemsLT.ELEMENTAL_PICKAXE)), //
+	        ELEMENTAL_AXE = new Research(LTInfo.MOD_ID + ":ekemental_axe", 40, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(ItemsLT.ELEMENTAL_AXE)), //
 	        QUICKSILVER_CORE = new Research(LTInfo.MOD_ID + ":quicksilver_core", 35, Research.CATEGORY_LOST_KNOWLEDGE).setColor(0xBEBDEA).setIcon(new ItemStack(ItemsLT.QUICKSILVER_CORE)), //
 	        VIS_PURIFIER = new Research(LTInfo.MOD_ID + ":vis_purifier", 35, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.VIS_PURIFIER)), //
 	        ADVANCED_VIS_VALVE = new Research(LTInfo.MOD_ID + ":advanced_vis_valve", 30, Research.CATEGORY_TAINTED).setIcon(new ItemStack(BlocksLT.ADVANCED_VIS_VALVE)), //

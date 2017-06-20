@@ -7,8 +7,8 @@ import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 public class ItemAxeThaumium extends ItemAxe
 {
 	public ItemAxeThaumium()
-    {
-	    super(ItemMaterialsLT.tool_thaumium);
-	    setUnlocalizedName("thaumium_axe");
-    }
+	{
+		super(ItemMaterialsLT.tool_thaumium, 8, -3.2F);
+		setUnlocalizedName("thaumium_axe");
+	}
 }

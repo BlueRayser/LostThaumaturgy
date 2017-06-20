@@ -16,5 +16,6 @@
 	"place": { "sounds": ["lostthaumaturgy:place"] },
 	"rumble": { "sounds": ["lostthaumaturgy:rumble"] },
 	"singularity": { "sounds": ["lostthaumaturgy:singularity"] },
-	"tinkering": { "sounds": ["lostthaumaturgy:tinkering"] }
+	"tinkering": { "sounds": ["lostthaumaturgy:tinkering"] },
+	"swing": { "sounds": ["lostthaumaturgy:swing1","lostthaumaturgy:swing2"] }
 }

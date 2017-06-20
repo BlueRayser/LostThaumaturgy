@@ -2,12 +2,10 @@ package com.pengu.lostthaumaturgy.init;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemTool;
 
 import com.pengu.lostthaumaturgy.items.ItemAuraDetector;
 import com.pengu.lostthaumaturgy.items.ItemCrystallineBell;
 import com.pengu.lostthaumaturgy.items.ItemCustomPotion;
-import com.pengu.lostthaumaturgy.items.ItemGolemPlacer;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemSingularity;
@@ -21,9 +19,14 @@ import com.pengu.lostthaumaturgy.items.armor.ItemThaumiumArmor;
 import com.pengu.lostthaumaturgy.items.armor.ItemVoidArmor;
 import com.pengu.lostthaumaturgy.items.armor.boots.ItemBootsStriding;
 import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
+import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeElemental;
 import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeThaumium;
+import com.pengu.lostthaumaturgy.items.tools.hoe.ItemHoeThaumium;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeElemental;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeThaumium;
+import com.pengu.lostthaumaturgy.items.tools.shovel.ItemShovelThaumium;
+import com.pengu.lostthaumaturgy.items.tools.swords.ItemSwordElemental;
+import com.pengu.lostthaumaturgy.items.tools.swords.ItemSwordThaumium;
 
 public class ItemsLT
 {
@@ -50,10 +53,15 @@ public class ItemsLT
 	        VOID_COMPASS = new ItemVoidCompass(), //
 	        // GOLEM_PLACER = new ItemGolemPlacer(), //
 	        WAND = ItemWand.WAND;
-	public static final ItemTool //
-	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //
+	public static final Item //
 	        THAUMIUM_AXE = new ItemAxeThaumium(), //
-	        ELEMENTAL_PICKAXE = new ItemPickaxeElemental();
+	        THAUMIUM_HOE = new ItemHoeThaumium(), //
+	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //
+	        THAUMIUM_SHOVEL = new ItemShovelThaumium(), //
+	        THAUMIUM_SWORD = new ItemSwordThaumium(), //
+	        ELEMENTAL_PICKAXE = new ItemPickaxeElemental(), //
+	        ELEMENTAL_AXE = new ItemAxeElemental(), //
+	        ELEMENTAL_SWORD = new ItemSwordElemental();
 	public static final ItemUpgrade //
 	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //
 	        STABILIZED_SINGULARITY = new ItemUpgrade("stabilized_singularity"), //

@@ -54,8 +54,11 @@ public class RecipesLT
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.GOGGLES_OF_REVEALING, "tgt", "lll", 't', new ItemStack(ItemsLT.AURA_DETECTOR, 1, 3), 'g', "ingotGold", 'l', "leather"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.INERT_CARPET.stack(), "gfg", "fff", "gfg", 'g', "ingotGold", 'f', EnumMultiMaterialType.ENCHANTED_FABRIC.stack()));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.VIS_CONDENSER, " v ", "ici", "www", 'v', EnumMultiMaterialType.VIS_CRYSTAL.stack(), 'i', "ingotIron", 'c', BlocksLT.CONDUIT, 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_AXE, "tt", "ts", " s", 't', "ingotThaumium", 's', "stickWood").setMirrored(true));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_HOE, "tt", " s", " s", 't', "ingotThaumium", 's', "stickWood").setMirrored(true));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_PICKAXE, "ttt", " s ", " s ", 't', "ingotThaumium", 's', "stickWood"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_AXE, "tt", "ts ", " s ", 't', "ingotThaumium", 's', "stickWood").setMirrored(true));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_SHOVEL, "t", "s", "s", 't', "ingotThaumium", 's', "stickWood"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemsLT.THAUMIUM_SWORD, "t", "t", "s", 't', "ingotThaumium", 's', "stickWood"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemWand.makeWand(WandsLT.ROD_WOOD, WandsLT.CAP_IRON, WandsLT.CAP_IRON), "  c", " s ", "c  ", 'c', EnumMultiMaterialType.CAP_IRON.stack(), 's', "stickWood"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(EnumMultiMaterialType.CAP_IRON.stack(), "iii", "i i", 'i', "nuggetIron"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(BlocksLT.THAUMIUM_BLOCK, "ttt", "ttt", "ttt", 't', "ingotThaumium"));

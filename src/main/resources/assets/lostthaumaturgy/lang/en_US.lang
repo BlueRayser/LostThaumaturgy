@@ -195,7 +195,11 @@ item.lostthaumaturgy:mithrillium_ingot.name=§3Mithrillium Ingot
 item.lostthaumaturgy:adaminite_ingot.name=§cAdaminite Ingot
 item.lostthaumaturgy:elemental_pickaxe.name=Pickaxe of the Core
 item.lostthaumaturgy:void_compass.name=Void Compass
+item.lostthaumaturgy:thaumium_axe.name=Thaumium Axe
+item.lostthaumaturgy:thaumium_hoe.name=Thaumium Hoe
 item.lostthaumaturgy:thaumium_pickaxe.name=Thaumium Pickaxe
+item.lostthaumaturgy:thaumium_shovel.name=Thaumium Shovel
+item.lostthaumaturgy:thaumium_sword.name=Thaumium Sword
 item.lostthaumaturgy:wand.name=Wand
 item.lostthaumaturgy:cap_iron.name=Iron Cap
 item.lostthaumaturgy:cap_gold.name=Gold Cap
@@ -204,7 +208,8 @@ item.lostthaumaturgy:cap_void.name=Void Cap
 item.lostthaumaturgy:rod_silverwood.name=Silverwood Rod
 item.lostthaumaturgy:boots_striding.name=Boots of Striding
 item.lostthaumaturgy:rod_greatwood.name=Greatwood Rod
-item.lostthaumaturgy:thaumium_axe.name=Thaumium Axe
+item.lostthaumaturgy:elemental_axe.name=Axe of the Stream
+item.lostthaumaturgy:elemental_sword.name=Sword of the Zephyr
 
 
 
@@ -284,6 +289,9 @@ research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are main way to tr
 
 research.lostthaumaturgy:elemental_pickaxe.title=Pickaxe of the Core
 research.lostthaumaturgy:elemental_pickaxe.desc=Thaumium Pickaxe is tough as iron and has a good potential for enchanting, but mining rare stuff with it isn't that easy. By attaching some fiery crystals and upgrading handle using enchanted wood you made Pickaxe of the Core. It can find you some great treasures, just use it in the cave.
+
+research.lostthaumaturgy:elemental_axe.title=Axe of the Stream
+research.lostthaumaturgy:elemental_axe.desc=Chopping down tall trees in this world is a hastle with no gravity. But luckily you found a interesting tool that uses magical streams to chop the highest points of the tree. You called this tool the Axe of the Stream
 
 research.lostthaumaturgy:vis_purifier.title=Vis Purifier
 research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes cause an explosion to unprepared tanks. You were previously using Vis Filters to "clean" your tanks, but taintify your atmosphere. You made something similar to vis filters - Vis Purifier. It destroys taint completely given some time.

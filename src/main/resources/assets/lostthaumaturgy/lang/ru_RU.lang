@@ -195,7 +195,11 @@ item.lostthaumaturgy:mithrillium_ingot.name=§3Мифрилловый слито
 item.lostthaumaturgy:adaminite_ingot.name=§cАдаминитовый слиток
 item.lostthaumaturgy:elemental_pickaxe.name=Кирка Огня
 item.lostthaumaturgy:void_compass.name=Пустотный компас
+item.lostthaumaturgy:thaumium_axe.name=Thaumium Axe
+item.lostthaumaturgy:thaumium_hoe.name=Thaumium Hoe
 item.lostthaumaturgy:thaumium_pickaxe.name=Thaumium Pickaxe
+item.lostthaumaturgy:thaumium_shovel.name=Thaumium Shovel
+item.lostthaumaturgy:thaumium_sword.name=Thaumium Sword
 item.lostthaumaturgy:wand.name=Wand
 item.lostthaumaturgy:cap_iron.name=Iron Cap
 item.lostthaumaturgy:cap_gold.name=Gold Cap
@@ -204,7 +208,8 @@ item.lostthaumaturgy:cap_void.name=Void Cap
 item.lostthaumaturgy:rod_silverwood.name=Silverwood Rod
 item.lostthaumaturgy:boots_striding.name=Boots of Striding
 item.lostthaumaturgy:rod_greatwood.name=Greatwood Rod
-item.lostthaumaturgy:thaumium_axe.name=Thaumium Axe
+item.lostthaumaturgy:elemental_axe.name=Axe of the Stream
+item.lostthaumaturgy:elemental_sword.name=Sword of the Zephyr
 
 
 
@@ -316,7 +321,7 @@ wand.cap.void=Void Metal
 
 
 
-chat.lostthaumaturgy:generator_sadness=Вы чувствуете грусть Pengu's созданную Kenijey...
+chat.lostthaumaturgy:generator_sadness=Вы чувствуете грусть Pengu созданную Kenijey...
 chat.lostthaumaturgy:not_my_master=Ты не мой владелец!
 chat.lostthaumaturgy:trunk_stay=Багаж теперь будет стоять тут.
 chat.lostthaumaturgy:trunk_follow=Теперь багаж идёт за вами.
