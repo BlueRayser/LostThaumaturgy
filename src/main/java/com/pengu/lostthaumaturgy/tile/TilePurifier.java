@@ -2,10 +2,12 @@ package com.pengu.lostthaumaturgy.tile;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
+import net.minecraft.util.math.RayTraceResult;
 
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;

@@ -2,12 +2,14 @@ package com.pengu.lostthaumaturgy.tile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.tile.TileSyncable;
@@ -43,6 +45,13 @@ public class TileCrystalOre extends TileSyncable
 			crystals.set(nbt.getShort("Crystals"));
 			LostThaumaturgy.LOG.warn("TileEntity " + this + " tried to load old NBT Key: \"Crystals\"=" + crystals.get() + ". It is going to be refactored to properties!");
 		}
+	}
+	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		properties.put("facing", EnumFacing.VALUES[orientation.get()]);
+		properties.put("crystals", crystals.get());
 	}
 	
 	public static int suggestOrientationForWorldGen(World world, BlockPos pos)

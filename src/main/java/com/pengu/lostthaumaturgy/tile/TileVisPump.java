@@ -1,8 +1,11 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import java.util.Map;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.tile.IMalfunctionable;
@@ -36,7 +39,7 @@ public class TileVisPump extends TileSyncableTickable implements IConnection, IM
 		
 		IConnection c = ConnectionManager.getConnection(world, pos, orientation);
 		
-		if(c == null || getConnectable(orientation))
+		if(c == null || !getConnectable(orientation))
 			return;
 		
 		if(pureVis + taintedVis < maxVis && c != null && c.isVisConduit() || c.isVisSource())
@@ -48,11 +51,19 @@ public class TileVisPump extends TileSyncableTickable implements IConnection, IM
 		}
 	}
 	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		properties.put("output", orientation.getName());
+		properties.put("input", orientation.getOpposite().getName());
+	}
+	
 	public void readNBT(NBTTagCompound nbttagcompound)
 	{
 		this.pureVis = nbttagcompound.getFloat("PureVis");
 		this.taintedVis = nbttagcompound.getFloat("TaintedVis");
 		this.orientation = EnumFacing.VALUES[nbttagcompound.getByte("Orientation") % EnumFacing.VALUES.length];
+		malfunctionTime = nbttagcompound.getInteger("MalfunctionTime");
 	}
 	
 	public void writeNBT(NBTTagCompound nbttagcompound)
@@ -60,6 +71,7 @@ public class TileVisPump extends TileSyncableTickable implements IConnection, IM
 		nbttagcompound.setFloat("PureVis", this.pureVis);
 		nbttagcompound.setFloat("TaintedVis", this.taintedVis);
 		nbttagcompound.setByte("Orientation", (byte) orientation.ordinal());
+		nbttagcompound.setInteger("MalfunctionTime", malfunctionTime);
 	}
 	
 	@Override
@@ -199,10 +211,10 @@ public class TileVisPump extends TileSyncableTickable implements IConnection, IM
 	{
 		return world.isBlockIndirectlyGettingPowered(pos) > 0;
 	}
-
+	
 	@Override
-    public void causeGeneralMalfunction()
-    {
-		malfunctionTime += 40 + getRNG().nextInt(100);
-    }
+	public void causeGeneralMalfunction()
+	{
+		malfunctionTime = 40 + getRNG().nextInt(100);
+	}
 }

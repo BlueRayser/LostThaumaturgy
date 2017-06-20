@@ -1,9 +1,12 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.RayTraceResult;
 
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
 import com.mrdimka.hammercore.tile.TileSyncable;
@@ -26,6 +29,12 @@ public class TileVoidChest extends TileSyncable implements IInventory
 	public void readNBT(NBTTagCompound nbt)
 	{
 		inventory.readFromNBT(nbt.getCompoundTag("Items"));
+	}
+	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		properties.put("empty", isEmpty());
 	}
 	
 	@Override

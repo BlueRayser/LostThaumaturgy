@@ -121,7 +121,7 @@ public class TileVisTank extends TileSyncableTickable implements IConnection, Pr
 			if(!getConnectable(facing) || te == null || !(te instanceof IConnection))
 				continue;
 			IConnection ent = (IConnection) te;
-			if(te instanceof TileVisTank || stackpureVis + stacktaintedVis >= stackmaxVis || getVisSuction(null) <= ent.getVisSuction(pos) && getTaintSuction(null) <= ent.getTaintSuction(pos))
+			if(!ent.getConnectable(facing.getOpposite()) || te instanceof TileVisTank || stackpureVis + stacktaintedVis >= stackmaxVis || getVisSuction(null) <= ent.getVisSuction(pos) && getTaintSuction(null) <= ent.getTaintSuction(pos))
 				continue;
 			float[] results = new float[] { 0.0f, 0.0f };
 			results = ent.subtractVis(Math.min(fillAmount, stackmaxVis - (stackpureVis + stacktaintedVis)));
@@ -233,8 +233,7 @@ public class TileVisTank extends TileSyncableTickable implements IConnection, Pr
 	@Override
 	public float getMaxVis()
 	{
-		return // 1000.0f -- for reinforced
-		500.0f;
+		return 500.0f;
 	}
 	
 	@Override

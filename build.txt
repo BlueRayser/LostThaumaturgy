@@ -1,6 +1,6 @@
 forge_version=1.11.2-13.20.0.2230
 mod_version=8r
-hammercore_version=1.8.6
+hammercore_version=1.8.9
 
 release_type=release
 minecraft_version=1.11.2

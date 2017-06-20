@@ -1,9 +1,12 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import java.util.Map;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.api.tiles.IBellowBoostable;
@@ -99,6 +102,12 @@ public class TileBellows extends TileSyncableTickable implements IConnection
 	public boolean getConnectable(EnumFacing face)
 	{
 		return face.getOpposite().ordinal() == orientation + 2;
+	}
+	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		properties.put("facing", EnumFacing.VALUES[orientation + 2]);
 	}
 	
 	@Override

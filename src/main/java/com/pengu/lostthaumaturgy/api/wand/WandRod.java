@@ -16,6 +16,7 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.tile.IMalfunctionable;
+import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.items.ItemWand;
@@ -130,6 +131,8 @@ public class WandRod
 						if(mal != null)
 						{
 							mal.causeEntityMalfunction(wand);
+							if(mal instanceof TileSyncable)
+								((TileSyncable) mal).sync();
 							HammerCore.particleProxy.spawnZap(wand.world, new Vec3d(next.getX() + .5, next.getY() + .5, next.getZ() + .5), tpos, Color.RED);
 						}
 					}

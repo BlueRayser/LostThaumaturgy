@@ -10,6 +10,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.collect.Lists;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.api.fuser.recipes.ShapedFuserRecipe;
+import com.pengu.lostthaumaturgy.api.fuser.recipes.ShapelessFuserRecipe;
+import com.pengu.lostthaumaturgy.api.fuser.recipes.TheoryToDiscovery;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
@@ -41,6 +44,8 @@ public class RecipesFuser
 		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.TRAVELING_TRUNK.stack(), "www", "wsw", "www", 'w', EnumMultiMaterialType.ENCHANTED_WOOD, 's', EnumMultiMaterialType.SOUL_FRAGMENT).setVisUsage(25F, 0));
 		addRecipe(new ShapedFuserRecipe(BlocksLT.GENERATOR, "gwg", "wsw", "gwg", 'g', "paneGlass", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 's', ItemsLT.STABILIZED_SINGULARITY).setVisUsage(1.5F, 0));
 		addRecipe(new ShapedFuserRecipe(BlocksLT.ADVANCED_VIS_VALVE, " v ", "gcg", " t ", 'v', EnumMultiMaterialType.VIS_CRYSTAL, 't', EnumMultiMaterialType.TAINTED_CRYSTAL, 'g', "ingotGold", 'c', BlocksLT.VIS_VALVE).setResearch(ResearchesLT.ADVANCED_VIS_VALVE).setVisUsage(4.5F, 0));
+		addRecipe(new ShapedFuserRecipe(BlocksLT.WAND_CONSTRUCTOR, "crc", "sss", " s ", 'c', EnumMultiMaterialType.CAP_IRON, 'r', Items.STICK, 's', BlocksLT.INFUSER_BASE));
+		addRecipe(new TheoryToDiscovery());
 		
 		LostThaumaturgy.LOG.info("Registered " + recipes.size() + " Default Recipes.");
 	}

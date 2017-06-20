@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy.api.fuser;
+package com.pengu.lostthaumaturgy.api.fuser.recipes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,6 +20,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.mrdimka.hammercore.HammerCore;
 import com.pengu.hammercore.utils.IGetter;
+import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
+import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
@@ -184,11 +186,11 @@ public class ShapelessFuserRecipe implements IFuserRecipe
 		{
 			if(wandStack.isEmpty() || !(wandStack.getItem() instanceof ItemWand))
 				return;
-			if(visUsage > 0 && ItemWand.getVis(wandStack) < visUsage)
-				return;
-			if(taintUsage > 0 && ItemWand.getTaint(wandStack) < taintUsage)
-				return;
 			float eff = ItemWand.getVisUsage(wandStack);
+			if(visUsage > 0 && ItemWand.getVis(wandStack) < visUsage * eff)
+				return;
+			if(taintUsage > 0 && ItemWand.getTaint(wandStack) < taintUsage * eff)
+				return;
 			ItemWand.removeVis(wandStack, visUsage * eff);
 			ItemWand.removeTaint(wandStack, taintUsage * eff);
 		}
