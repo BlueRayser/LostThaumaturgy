@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
@@ -18,7 +19,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.mrdimka.hammercore.math.MathHelper;
+import com.mrdimka.hammercore.raytracer.RayTracer;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
@@ -72,17 +74,64 @@ public class ItemSwordElemental extends ItemSword
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		if(!player.isSneaking())
+		ItemStack stack = player.getHeldItem(hand);
+		
+		if(stack.hasTagCompound())
 		{
-			player.getHeldItem(hand).damageItem(1, player);
-			Vec3d target = player.getLookVec().add(player.getPositionVector());
-			
-			player.motionX = (player.posX - target.x) * 2F;
-			player.motionY = (player.posY - target.y) * 2F;
-			player.motionZ = (player.posY - target.y) * 2F;
-			
-			SoundEventsLT.SWING.playAt(new WorldLocation(world, player.getPosition()), 1F, 1F, SoundCategory.PLAYERS);
+			long used = stack.getTagCompound().getLong("LastUsed");
+			if(world.getTotalWorldTime() > used && world.getTotalWorldTime() - 30L < used && !player.onGround)
+				return super.onItemRightClick(world, player, hand);
 		}
+		
+		{
+			if(!stack.hasTagCompound())
+				stack.setTagCompound(new NBTTagCompound());
+			
+			Vec3d begin = RayTracer.getStartVec(player);
+			Vec3d lookVec = player.getLook(1);
+			Vec3d end = begin.addVector(lookVec.x * 32, lookVec.y * 32, lookVec.z * 32);
+			List<Entity> tracedList = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(player.getPosition()).grow(32), t -> t != player && player.canEntityBeSeen(t) && t.canBeCollidedWith() && t.getEntityBoundingBox().calculateIntercept(begin, end) != null);
+			Entity traced = null;
+			for(int i = 0; i < tracedList.size(); ++i)
+				if(traced == null || player.getDistanceSqToEntity(tracedList.get(i)) < player.getDistanceSqToEntity(traced))
+					traced = tracedList.get(i);
+			
+			boolean flag = false;
+			
+			if(traced != null && player.isSneaking())
+			{
+				traced.motionX = ((player.posX - traced.posX) / 32D) * 10F;
+				traced.motionY = ((player.posY - traced.posY) / 32D) * 10F;
+				traced.motionZ = ((player.posZ - traced.posZ) / 32D) * 10F;
+				flag = true;
+			} else if(!player.isSneaking())
+			{
+				Vec3d target = player.getLookVec().add(player.getPositionVector());
+				
+				player.motionX = (target.x - player.posX) * 3F;
+				player.motionY = (target.y - player.posY) * 2F;
+				player.motionZ = (target.z - player.posZ) * 3F;
+				flag = true;
+			}
+			
+			if(flag)
+			{
+				player.getHeldItem(hand).damageItem(1, player);
+				
+				if(!world.isRemote)
+					SoundEventsLT.SWING.playAt(new WorldLocation(world, player.getPosition()), 1F, 1F, SoundCategory.PLAYERS);
+				
+				stack.getTagCompound().setLong("LastUsed", world.getTotalWorldTime());
+			}
+		}
+		
 		return super.onItemRightClick(world, player, hand);
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		if(isSelected)
+			entityIn.fallDistance = 0;
 	}
 }

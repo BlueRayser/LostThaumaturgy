@@ -21,9 +21,11 @@ import com.pengu.lostthaumaturgy.items.armor.boots.ItemBootsStriding;
 import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeElemental;
 import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeThaumium;
+import com.pengu.lostthaumaturgy.items.tools.hoe.ItemHoeElemental;
 import com.pengu.lostthaumaturgy.items.tools.hoe.ItemHoeThaumium;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeElemental;
 import com.pengu.lostthaumaturgy.items.tools.pick.ItemPickaxeThaumium;
+import com.pengu.lostthaumaturgy.items.tools.shovel.ItemShovelElemental;
 import com.pengu.lostthaumaturgy.items.tools.shovel.ItemShovelThaumium;
 import com.pengu.lostthaumaturgy.items.tools.swords.ItemSwordElemental;
 import com.pengu.lostthaumaturgy.items.tools.swords.ItemSwordThaumium;
@@ -59,8 +61,10 @@ public class ItemsLT
 	        THAUMIUM_PICKAXE = new ItemPickaxeThaumium(), //
 	        THAUMIUM_SHOVEL = new ItemShovelThaumium(), //
 	        THAUMIUM_SWORD = new ItemSwordThaumium(), //
-	        ELEMENTAL_PICKAXE = new ItemPickaxeElemental(), //
 	        ELEMENTAL_AXE = new ItemAxeElemental(), //
+	        ELEMENTAL_HOE = new ItemHoeElemental(), //
+	        ELEMENTAL_PICKAXE = new ItemPickaxeElemental(), //
+	        ELEMENTAL_SHOVEL = new ItemShovelElemental(), //
 	        ELEMENTAL_SWORD = new ItemSwordElemental();
 	public static final ItemUpgrade //
 	        QUICKSILVER_CORE = new ItemUpgrade("quicksilver_core"), //

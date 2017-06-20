@@ -210,6 +210,9 @@ item.lostthaumaturgy:boots_striding.name=Boots of Striding
 item.lostthaumaturgy:rod_greatwood.name=Greatwood Rod
 item.lostthaumaturgy:elemental_axe.name=Axe of the Stream
 item.lostthaumaturgy:elemental_sword.name=Sword of the Zephyr
+item.lostthaumaturgy:elemental_shovel.name=Shovel of Renewal
+item.lostthaumaturgy:elemental_hoe.name=Hoe of the Mystic
+item.lostthaumaturgy:tallow.name=Tallow
 
 
 
@@ -292,6 +295,12 @@ research.lostthaumaturgy:elemental_pickaxe.desc=Thaumium Pickaxe is tough as iro
 
 research.lostthaumaturgy:elemental_axe.title=Axe of the Stream
 research.lostthaumaturgy:elemental_axe.desc=Chopping down tall trees in this world is a hastle with no gravity. But luckily you found a interesting tool that uses magical streams to chop the highest points of the tree. You called this tool the Axe of the Stream
+
+research.lostthaumaturgy:elemental_shovel.title=Shovel of Renewal
+research.lostthaumaturgy:elemental_shovel.desc=Digging big areas is a problem with regular shovels. Your researches lead you to something: Shovel of Renewal. While it digs some materials it also can act like bone meal and it cleans taint better than any other tool.
+
+research.lostthaumaturgy:elemental_sword.title=Sword of the Zephyr
+research.lostthaumaturgy:elemental_sword.desc=Your will to fly has come true! Sword of the Zephyr is a magical sword that pushes you when you use it. It also has special ability to target up to five enemies when you attack anybody. While the sword it's in your hand it also nulifies fall damage.
 
 research.lostthaumaturgy:vis_purifier.title=Vis Purifier
 research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes cause an explosion to unprepared tanks. You were previously using Vis Filters to "clean" your tanks, but taintify your atmosphere. You made something similar to vis filters - Vis Purifier. It destroys taint completely given some time.

@@ -28,6 +28,7 @@ import com.mrdimka.hammercore.api.ITileBlock;
 import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTConfigs;
+import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent.GetDrops;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
@@ -36,7 +37,7 @@ import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
-public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITileBlock<TileTaintedSoil>
+public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITileBlock<TileTaintedSoil>, ITaintedBlock
 {
 	public BlockTaintedSoil()
 	{
@@ -222,7 +223,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		if(ttl != null)
 			try
 			{
-				return ttl.getSnapshot().getReplacedBlock().getBlockHardness(worldIn, pos);
+				return ttl.getSnapshot().getReplacedBlock().getBlockHardness(worldIn, pos) * 3F;
 			} catch(Throwable er)
 			{
 			}

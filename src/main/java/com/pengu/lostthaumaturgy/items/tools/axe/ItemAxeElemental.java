@@ -46,8 +46,10 @@ public class ItemAxeElemental extends ItemAxe
 				player.world.destroyBlock(woodPos, true);
 				List<EntityItem> after = player.world.getEntitiesWithinAABB(EntityItem.class, aabb);
 				
-				List<EntityItem> drops = ListDelta.positiveDelta(before, after);
-				for(EntityItem drop : drops)
+				after.removeAll(before);
+				
+//				List<EntityItem> drops = ListDelta.positiveDelta(before, after);
+				for(EntityItem drop : after)
 				{
 					drop.setPositionAndUpdate(player.posX, player.posY, player.posZ);
 					drop.setNoPickupDelay();

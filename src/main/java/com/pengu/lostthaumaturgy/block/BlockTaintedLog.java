@@ -9,10 +9,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 
-public class BlockTaintedLog extends BlockLog
+public class BlockTaintedLog extends BlockLog implements ITaintedBlock
 {
 	public BlockTaintedLog()
 	{

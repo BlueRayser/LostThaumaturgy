@@ -1,17 +1,21 @@
 package com.pengu.lostthaumaturgy.items.tools.pick;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -20,6 +24,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXGuideWisp;
@@ -44,9 +49,45 @@ public class ItemPickaxeElemental extends ItemPickaxe
 	@Override
 	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
 	{
-		if(!player.world.isRemote)
+		if(!player.isSneaking())
 		{
-			
+			AxisAlignedBB bb = new AxisAlignedBB(pos).grow(2);
+			List<EntityItem> before = player.world.getEntitiesWithinAABB(EntityItem.class, bb);
+			player.world.destroyBlock(pos, true);
+			List<EntityItem> after = player.world.getEntitiesWithinAABB(EntityItem.class, bb);
+			after.removeAll(before);
+			for(EntityItem e : after)
+			{
+				ItemStack out = FurnaceRecipes.instance().getSmeltingResult(e.getItem());
+				if(!out.isEmpty())
+				{
+					if(player.isServerWorld())
+					{
+						for(int i = 0; i < 8; ++i)
+							HCNetwork.spawnParticle(e.world, EnumParticleTypes.FLAME, pos.getX() + player.getRNG().nextFloat(), pos.getY() + player.getRNG().nextFloat(), pos.getZ() + player.getRNG().nextFloat(), 0, 0, 0);
+						HammerCore.audioProxy.playSoundAt(player.world, "block.fire.ambient", player.getPosition(), 1F, player.getRNG().nextFloat() * .4F + .8F, SoundCategory.PLAYERS);
+					}
+					
+					out = out.copy();
+					out.setCount(out.getCount() * e.getItem().getCount());
+					
+					List<ItemStack> stacks = new ArrayList<>();
+					while(!out.isEmpty())
+					{
+						int c = out.getCount();
+						int take = Math.min(out.getMaxStackSize(), c);
+						ItemStack i = out.copy();
+						out.shrink(take);
+						i.setCount(take);
+						stacks.add(i);
+					}
+					
+					e.setItem(stacks.remove(0));
+					while(!stacks.isEmpty() && !e.world.isRemote)
+						e.world.spawnEntity(new EntityItem(e.world, e.posX, e.posY, e.posZ, stacks.remove(0)));
+				}
+			}
+			return true;
 		}
 		return false;
 	}

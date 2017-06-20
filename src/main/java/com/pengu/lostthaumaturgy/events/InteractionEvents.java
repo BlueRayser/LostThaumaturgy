@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -43,6 +44,7 @@ import com.pengu.lostthaumaturgy.emote.EmoteManager;
 import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeElemental;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
@@ -206,14 +208,26 @@ public class InteractionEvents
 		if(evt.getEntity() instanceof EntityLivingBase)
 		{
 			EntityLivingBase base = (EntityLivingBase) evt.getEntity();
-			ItemStack stack = base.getItemStackFromSlot(EntityEquipmentSlot.FEET);
-			if(stack.getItem() instanceof ISpeedBoots)
 			{
-				ISpeedBoots boots = (ISpeedBoots) stack.getItem();
-				if(evt.getDistance() >= 5.5)
-					stack.damageItem(1, base);
-				evt.setDamageMultiplier(evt.getDamageMultiplier() / (1 + boots.getJumpMod(stack) * 2));
-				evt.setDistance(evt.getDistance() / (1 + boots.getJumpMod(stack)));
+				ItemStack stack = base.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+				if(stack.getItem() instanceof ISpeedBoots)
+				{
+					ISpeedBoots boots = (ISpeedBoots) stack.getItem();
+					if(evt.getDistance() >= 5.5)
+						stack.damageItem(1, base);
+					evt.setDamageMultiplier(evt.getDamageMultiplier() / (1 + boots.getJumpMod(stack) * 2));
+					evt.setDistance(evt.getDistance() / (1 + boots.getJumpMod(stack)));
+				}
+			}
+			for(EnumHand hand : EnumHand.values())
+			{
+				ItemStack stack = base.getHeldItem(hand);
+				if(!stack.isEmpty() && stack.getItem() instanceof ItemAxeElemental)
+				{
+					evt.setDistance(0);
+					evt.setDamageMultiplier(0);
+					break;
+				}
 			}
 		}
 	}

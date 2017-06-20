@@ -13,11 +13,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
-public class BlockTaintedPlant extends BlockPlant
+public class BlockTaintedPlant extends BlockPlant implements ITaintedBlock
 {
 	public static PropertyInteger GROWTH = PropertyInteger.create("growth", 0, 1);
 	

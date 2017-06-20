@@ -30,6 +30,19 @@ public class PacketFXWisp3 implements IPacket, IPacketListener<PacketFXWisp3, IP
 		this.color = color;
 	}
 	
+	public PacketFXWisp3(double x, double y, double z, float partialTicks, int type, int color)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.tx = x;
+		this.ty = y;
+		this.tz = z;
+		this.partialTicks = partialTicks;
+		this.type = type;
+		this.color = color;
+	}
+	
 	public PacketFXWisp3()
 	{
 	}

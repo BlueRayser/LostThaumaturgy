@@ -77,6 +77,10 @@ public class LostThaumaturgy
 	{
 		ProgressBar nahYaEtoDelayou = ProgressManager.push("Adding Contents...", 8);
 		
+		nahYaEtoDelayou.step("Registering Proxy...");
+		MinecraftForge.EVENT_BUS.register(proxy);
+		proxy.preInit();
+		
 		nahYaEtoDelayou.step("Registering Vis Capability");
 		CapabilityVisConnection.register();
 		
@@ -97,10 +101,6 @@ public class LostThaumaturgy
 		
 		nahYaEtoDelayou.step("Adding wands...");
 		WandsLT.init();
-		
-		nahYaEtoDelayou.step("Registering Proxy...");
-		MinecraftForge.EVENT_BUS.register(proxy);
-		proxy.preInit();
 		
 		ProgressManager.pop(nahYaEtoDelayou);
 	}
