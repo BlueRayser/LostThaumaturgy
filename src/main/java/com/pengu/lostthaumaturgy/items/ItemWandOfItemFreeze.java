@@ -47,7 +47,7 @@ public class ItemWandOfItemFreeze extends Item
 	{
 		RayTraceResult rtl = RayTracer.retrace(playerIn);
 		Vec3d point = RayTracer.getEndVec(playerIn);
-		if(rtl != null)
+		if(rtl != null && rtl.sideHit != null)
 			point = new Vec3d(rtl.getBlockPos().offset(rtl.sideHit));
 		
 		Vec3d min = point.addVector(-1.5, -1.5, -1.5);
