@@ -1,6 +1,8 @@
 package com.pengu.lostthaumaturgy.items;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -25,6 +27,12 @@ public class ItemAuraDetector extends MultiVariantItem
 		super("aura_detector", "vis_detector", "taint_detector", "radiation_detector", "thaumometer");
 		insertPrefix(LTInfo.MOD_ID + ":");
 		setMaxStackSize(1);
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		return EnumRarity.UNCOMMON;
 	}
 	
 	@Override

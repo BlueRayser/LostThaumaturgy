@@ -2,14 +2,14 @@ package com.pengu.lostthaumaturgy.worldgen;
 
 import java.util.Random;
 
-import com.pengu.hammercore.utils.ChunkUtils;
-import com.pengu.lostthaumaturgy.worldgen.features.FeatureSilverwood;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
+
+import com.pengu.hammercore.utils.ChunkUtils;
+import com.pengu.lostthaumaturgy.worldgen.features.FeatureSilverwood;
 
 public class WorldGenSilverwood implements IWorldGenerator
 {
@@ -43,7 +43,7 @@ public class WorldGenSilverwood implements IWorldGenerator
 				if(pos.getY() < 40)
 					continue;
 				
-				//Prevent tree bugs
+				// Prevent tree bugs
 				if(new FeatureSilverwood().generate(world, random, pos))
 					break;
 			}

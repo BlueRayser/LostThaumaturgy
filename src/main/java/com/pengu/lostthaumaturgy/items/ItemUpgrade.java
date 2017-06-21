@@ -1,6 +1,8 @@
 package com.pengu.lostthaumaturgy.items;
 
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import com.pengu.hammercore.utils.IndexedMap;
 
@@ -19,6 +21,12 @@ public class ItemUpgrade extends Item
 		lastType++;
 		
 		upgradeMap.put(getUpgradeId(), this);
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		return EnumRarity.UNCOMMON;
 	}
 	
 	public int getUpgradeId()

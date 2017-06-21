@@ -17,11 +17,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class BlockGreatwoodLeaves extends BlockLeaves
 {
@@ -71,9 +67,9 @@ public class BlockGreatwoodLeaves extends BlockLeaves
 	
 	@Override
 	public int quantityDropped(Random random)
-    {
-        return random.nextInt(200) == 0 ? 1 : 0;
-    }
+	{
+		return random.nextInt(200) == 0 ? 1 : 0;
+	}
 	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)

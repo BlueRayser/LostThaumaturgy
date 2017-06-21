@@ -2,6 +2,7 @@ package com.pengu.lostthaumaturgy.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -37,6 +38,15 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		for(int i = 0; i < names.length; ++i)
 			names[i] = EnumMultiMaterialType.values()[i].mod + ":" + EnumMultiMaterialType.values()[i];
 		return names;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		int dm = stack.getItemDamage();
+		if(dm < EnumMultiMaterialType.values().length)
+			return EnumMultiMaterialType.values()[dm].getRarity();
+		return EnumRarity.COMMON;
 	}
 	
 	@Override
@@ -176,13 +186,56 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		CAP_THAUMIUM, //
 		CAP_VOID, //
 		ROD_GREATWOOD, //
-		ROD_SILVERWOOD,
-		TALLOW;
+		ROD_SILVERWOOD, TALLOW;
 		
 		private final String oredict[];
 		public final String mod;
 		public final CreativeTabs tab;
 		public boolean hasEffect = false;
+		private EnumRarity rarity = EnumRarity.COMMON;
+		
+		static
+		{
+			VAPOROUS_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			AQUEOUS_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			FIERY_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			EARTHEN_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			VIS_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			TAINTED_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			DEPLETED_CRYSTAL.setRarity(EnumRarity.UNCOMMON);
+			ZOMBIE_BRAINS.setRarity(EnumRarity.UNCOMMON);
+			ENCHANTED_SILVERWOOD.setRarity(EnumRarity.UNCOMMON);
+			ENCHANTED_WOOD.setRarity(EnumRarity.UNCOMMON);
+			DARKNESS_SEED.setRarity(EnumRarity.UNCOMMON);
+			VOID_INGOT.setRarity(EnumRarity.UNCOMMON);
+			CONGEALED_TAINT.setRarity(EnumRarity.UNCOMMON);
+			EXTRACT_COOLEST_WATER.setRarity(EnumRarity.RARE);
+			EXTRACT_DEEPEST_EARTH.setRarity(EnumRarity.RARE);
+			EXTRACT_FOULEST_TAINT.setRarity(EnumRarity.RARE);
+			EXTRACT_LIGHTEST_AIR.setRarity(EnumRarity.RARE);
+			EXTRACT_PUREST_MAGIC.setRarity(EnumRarity.RARE);
+			EXTRACT_WARMEST_FIRE.setRarity(EnumRarity.RARE);
+			SOUL_FRAGMENT.setRarity(EnumRarity.UNCOMMON);
+			WORN_STATUETTE.setRarity(EnumRarity.UNCOMMON);
+			ANCIENT_WEAPON.setRarity(EnumRarity.UNCOMMON);
+			INHUMAN_SKULL.setRarity(EnumRarity.UNCOMMON);
+			DARKENED_CRYSTAL_EYE.setRarity(EnumRarity.UNCOMMON);
+			TAINTED_FRUIT.setRarity(EnumRarity.UNCOMMON);
+			TAINTED_BRANCH.setRarity(EnumRarity.UNCOMMON);
+			OPALESCENT_EYE.setRarity(EnumRarity.UNCOMMON);
+			DISTURBING_MIRROR.setRarity(EnumRarity.UNCOMMON);
+			ANCIENT_SEAL.setRarity(EnumRarity.RARE);
+			KNOTTED_SPIKE.setRarity(EnumRarity.RARE);
+			INTACT_TAINTSPORE_POD.setRarity(EnumRarity.RARE);
+			GLOWING_ELDRITCH_DEVICE.setRarity(EnumRarity.RARE);
+			ANCIENT_STONE_TABLET.setRarity(EnumRarity.EPIC);
+			TOME_FORBIDDEN_KNOWLEDGE.setRarity(EnumRarity.EPIC);
+			WRITHING_TAINT_TENDRILS.setRarity(EnumRarity.EPIC);
+			ELDRITCH_REPOSITORY.setRarity(EnumRarity.EPIC);
+			INERT_CARPET.setRarity(EnumRarity.RARE);
+			ELDRITCH_KEYSTONE_INERT.setRarity(EnumRarity.RARE);
+			ELDRITCH_KEYSTONE_TLHUTLH.setRarity(EnumRarity.RARE);
+		}
 		
 		EnumMultiMaterialType()
 		{
@@ -203,6 +256,16 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 			this.oredict = oredict;
 			this.mod = mod;
 			this.tab = tab;
+		}
+		
+		public void setRarity(EnumRarity rarity)
+		{
+			this.rarity = rarity;
+		}
+		
+		public EnumRarity getRarity()
+		{
+			return rarity;
 		}
 		
 		public void setHasEffect(boolean hasEffect)

@@ -15,7 +15,6 @@ import com.pengu.hammercore.utils.IGetter;
 import com.pengu.hammercore.utils.IRegisterListener;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class ItemGolemPlacer extends MultiVariantItem implements IRegisterListener
@@ -70,16 +69,19 @@ public class ItemGolemPlacer extends MultiVariantItem implements IRegisterListen
 	
 	public boolean spawnCreature(World world, double x, double y, double z, EnumFacing side, ItemStack stack, EntityPlayer player)
 	{
-//		EntityGolemBase golem = new EntityGolemBase(world);
-//		golem.setPositionAndUpdate(x + side.getFrontOffsetX(), y + side.getFrontOffsetY(), z + side.getFrontOffsetZ());
-//		golem.setHomePosAndDistance(new BlockPos(x, y, z), 32);
-//		golem.homeFacing = side;
-//		EnumGolemType type = EnumGolemType.values()[stack.getItemDamage()];
-//		golem.setTexture(LTInfo.MOD_ID + ":textures/models/golem_" + type.name().substring(0, type.name().indexOf("_")).toLowerCase() + ".png");
-//		golem.setOwner(player.getGameProfile().getName());
-//		if(!world.isRemote)
-//			world.spawnEntity(golem);
-//		return true;
+		// EntityGolemBase golem = new EntityGolemBase(world);
+		// golem.setPositionAndUpdate(x + side.getFrontOffsetX(), y +
+		// side.getFrontOffsetY(), z + side.getFrontOffsetZ());
+		// golem.setHomePosAndDistance(new BlockPos(x, y, z), 32);
+		// golem.homeFacing = side;
+		// EnumGolemType type = EnumGolemType.values()[stack.getItemDamage()];
+		// golem.setTexture(LTInfo.MOD_ID + ":textures/models/golem_" +
+		// type.name().substring(0, type.name().indexOf("_")).toLowerCase() +
+		// ".png");
+		// golem.setOwner(player.getGameProfile().getName());
+		// if(!world.isRemote)
+		// world.spawnEntity(golem);
+		// return true;
 		return false;
 	}
 	

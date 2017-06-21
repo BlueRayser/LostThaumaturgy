@@ -19,7 +19,9 @@ public abstract class GolemCoreAbstract
 	}
 	
 	public abstract void updateLogic();
+	
 	public abstract boolean isActive();
+	
 	public abstract boolean isThinking();
 	
 	public String getEmote()
@@ -35,6 +37,7 @@ public abstract class GolemCoreAbstract
 	}
 	
 	public abstract void writeToNBT(NBTTagCompound nbt);
+	
 	public abstract void readFromNBT(NBTTagCompound nbt);
 	
 	public final NBTTagCompound writeCoreToNBT(NBTTagCompound nbt)

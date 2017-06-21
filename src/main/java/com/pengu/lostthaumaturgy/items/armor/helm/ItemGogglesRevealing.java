@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.items.armor.helm;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
@@ -34,6 +35,12 @@ public class ItemGogglesRevealing extends ItemArmor implements IGoggles
 	public boolean canReveal(EntityPlayer player)
 	{
 		return true;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		return EnumRarity.RARE;
 	}
 	
 	public static IGoggles getWearing(EntityPlayer player)

@@ -56,8 +56,9 @@ public class LTConfigs implements IConfigReloadListener
 				String[] ss = var_aura_max_str.get().split("/");
 				sync_aura_max = Short.parseShort(ss[0]);
 				sync_aura_rad_max = Float.parseFloat(ss[1]);
+			} catch(Throwable err)
+			{
 			}
-			catch(Throwable err) {}
 		}
 	}
 	

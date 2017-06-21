@@ -12,6 +12,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.api.ITileBlock;
+import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.tile.TileVisTank;
@@ -74,5 +75,20 @@ public class BlockVisTank extends BlockRendered implements ITileBlock<TileVisTan
 	public String getParticleSprite(World world, BlockPos pos)
 	{
 		return LTInfo.MOD_ID + ":blocks/vis_tank/top";
+	}
+	
+	@Override
+	public boolean hasComparatorInputOverride(IBlockState state)
+	{
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
+	{
+		TileVisTank tank = WorldUtil.cast(worldIn.getTileEntity(pos), TileVisTank.class);
+		if(tank != null)
+			return Math.round(((tank.pureVis + tank.taintedVis) / tank.getMaxVis()) * 15F);
+		return 0;
 	}
 }

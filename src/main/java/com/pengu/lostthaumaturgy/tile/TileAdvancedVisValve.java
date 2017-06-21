@@ -1,6 +1,9 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import java.util.Map;
+
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.RayTraceResult;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -17,6 +20,13 @@ public class TileAdvancedVisValve extends TileConduit
 	{
 		super.rebake();
 		hitboxes = ArrayUtils.add(hitboxes, new Cuboid6(3.5 / 16, 3.5 / 16, 3.5 / 16, 12.5 / 16, 12.5 / 16, 12.5 / 16));
+	}
+	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		properties.put("enabled", setting != 0);
+		properties.put("mode", setting == 0 ? "off" : setting == 1 ? "vis" : "taint");
 	}
 	
 	@Override
@@ -77,7 +87,7 @@ public class TileAdvancedVisValve extends TileConduit
 	
 	protected boolean gettingPower()
 	{
-		return world.isBlockIndirectlyGettingPowered(pos) > 0;
+		return loc.getRedstone() > 0;
 	}
 	
 	@Override

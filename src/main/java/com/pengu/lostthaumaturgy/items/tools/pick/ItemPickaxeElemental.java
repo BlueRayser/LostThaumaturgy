@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import com.mrdimka.hammercore.HammerCore;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
-import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXGuideWisp;

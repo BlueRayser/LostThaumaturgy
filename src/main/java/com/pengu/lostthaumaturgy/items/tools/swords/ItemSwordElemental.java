@@ -19,7 +19,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.math.MathHelper;
 import com.mrdimka.hammercore.raytracer.RayTracer;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;

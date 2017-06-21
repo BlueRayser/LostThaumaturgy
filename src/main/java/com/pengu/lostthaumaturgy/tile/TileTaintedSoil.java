@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.tile;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -49,6 +50,7 @@ public class TileTaintedSoil extends TileSyncable
 		NBTTagCompound nbt = new NBTTagCompound();
 		snapshot.writeToNBT(nbt);
 		BLOCK_SNAPSHOT.set(nbt);
+		DROP_CONGEALED_TAINT.set(snapshot.getReplacedBlock().getBlock() instanceof BlockOre);
 	}
 	
 	@Override

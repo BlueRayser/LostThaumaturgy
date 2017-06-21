@@ -44,7 +44,6 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(770, 1);
 		bindTexture(portal2);
-		GL11.glColor4d(1, 1, 1, 1);
 		tessellator.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		VertexBuffer vb = tessellator.getBuffer();
 		// tessellator.a(1.0, 0.5, 1.0, 1.0);
@@ -57,7 +56,6 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 		vb.pos(0.6, 0.0, 0.6).tex(1.0, 0.0).endVertex();
 		vb.pos(0.0, 0.0, 0.6).tex(0.0, 0.0).endVertex();
 		tessellator.draw();
-		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDepthMask(true);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
@@ -78,18 +76,20 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	@Override
 	public void renderTileEntityAt(TileVisCondenser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
 	{
-		this.bob = MathHelper.sin(mc.player.ticksExisted / 10F) * .05F + .05F;
+		this.bob = MathHelper.sin(te.ticksExisted / 10F) * .05F + .05F;
 		
 		if(te.hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)))
 		{
 			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 			SimpleBlockRendering sbr = rb.simpleRenderer;
 			
+			GL11.glDisable(GL11.GL_BLEND);
 			sbr.begin();
 			sbr.setRenderBounds(4 / 16D, 4 / 16D, 4 / 16D, 12 / 16D, 12 / 16D, 12 / 16D);
 			sbr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/quicksilver_core"));
 			sbr.drawBlock(x, y, z);
 			sbr.end();
+			GL11.glEnable(GL11.GL_BLEND);
 		}
 		
 		if(te.degredation > 0)
@@ -194,7 +194,13 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 			GL11.glDisable(3042);
 			GL11.glColor4f(1, 1, 1, 1);
 			if(te.hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.STABILIZED_SINGULARITY)))
+			{
+				if(te.getLocation().getRedstone() > 0)
+					GL11.glColor4d(1, .25, .25, 1);
+				else
+					GL11.glColor4d(1, 1, 1, 1);
 				drawDisk(x, y + 1.1749999523162842 + bob * 6, z, 360 - te.angle);
+			}
 		}
 	}
 }

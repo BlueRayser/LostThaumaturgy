@@ -799,7 +799,7 @@ public class AuraTicker
 	
 	public static void taintExplosion(World w, int x, int y, int z)
 	{
-		w.createExplosion(null, (double) ((float) x + 0.5f), (double) ((float) y + 0.5f), (double) ((float) z + 0.5f), 1.0f, false);
+		w.createExplosion(null, x + 0.5f, y + 0.5f, z + 0.5f, 1.0f, false);
 		for(int xx = x - 2; xx <= x + 2; ++xx)
 			for(int yy = y - 2; yy <= y + 2; ++yy)
 				for(int zz = z - 2; zz <= z + 2; ++zz)

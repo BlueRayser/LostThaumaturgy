@@ -31,6 +31,7 @@ import com.mrdimka.hammercore.common.utils.WrappedLog;
 import com.mrdimka.hammercore.init.SimpleRegistration;
 import com.mrdimka.hammercore.world.WorldGenRegistry;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.creative.CreativeTabLT;
 import com.pengu.lostthaumaturgy.creative.CreativeTabResearches;
@@ -40,6 +41,7 @@ import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.EntitiesLT;
+import com.pengu.lostthaumaturgy.init.FuelHandlerLT;
 import com.pengu.lostthaumaturgy.init.InfuserLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
@@ -75,7 +77,7 @@ public class LostThaumaturgy
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		ProgressBar nahYaEtoDelayou = ProgressManager.push("Adding Contents...", 8);
+		ProgressBar nahYaEtoDelayou = ProgressManager.push("Adding Contents...", 9);
 		
 		nahYaEtoDelayou.step("Registering Proxy...");
 		MinecraftForge.EVENT_BUS.register(proxy);
@@ -99,6 +101,9 @@ public class LostThaumaturgy
 		nahYaEtoDelayou.step("Registering Tesseract API");
 		TileTesseract.registerTesseractCapability(CapabilityVisConnection.VIS, LTInfo.MOD_ID + ":vis", EnumMultiMaterialType.VIS_CRYSTAL.stack());
 		
+		nahYaEtoDelayou.step("Registering Fuel Handler");
+		GameRegistry.registerFuelHandler(new FuelHandlerLT());
+		
 		nahYaEtoDelayou.step("Adding wands...");
 		WandsLT.init();
 		
@@ -121,7 +126,7 @@ public class LostThaumaturgy
 		InfuserLT.registerDarkInfuser();
 		
 		ProgressManager.pop(bar);
-		bar = ProgressManager.push("Adding Contents...", 7);
+		bar = ProgressManager.push("Adding Contents...", 8);
 		
 		bar.step("Registering Entities");
 		EntitiesLT.registerEntities();
@@ -143,6 +148,9 @@ public class LostThaumaturgy
 		
 		bar.step("Registering Monolith WorldGen");
 		WorldGenRegistry.registerFeature(new WorldGenMonoliths());
+		
+		bar.step("Registering Arcane Crafter Recipes...");
+		RecipesFuser.getInstance();
 		
 		ProgressManager.pop(bar);
 		bar = ProgressManager.push("Sending IMC", 1);

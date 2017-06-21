@@ -45,6 +45,12 @@ public class RecipesFuser
 		addRecipe(new ShapedFuserRecipe(BlocksLT.GENERATOR, "gwg", "wsw", "gwg", 'g', "paneGlass", 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack(), 's', ItemsLT.STABILIZED_SINGULARITY).setVisUsage(1.5F, 0));
 		addRecipe(new ShapedFuserRecipe(BlocksLT.ADVANCED_VIS_VALVE, " v ", "gcg", " t ", 'v', EnumMultiMaterialType.VIS_CRYSTAL, 't', EnumMultiMaterialType.TAINTED_CRYSTAL, 'g', "ingotGold", 'c', BlocksLT.VIS_VALVE).setResearch(ResearchesLT.ADVANCED_VIS_VALVE).setVisUsage(4.5F, 0));
 		addRecipe(new ShapedFuserRecipe(BlocksLT.WAND_CONSTRUCTOR, "crc", "sss", " s ", 'c', EnumMultiMaterialType.CAP_IRON, 'r', Items.STICK, 's', BlocksLT.INFUSER_BASE));
+		addRecipe(new ShapedFuserRecipe(BlocksLT.DARKNESS_GENERATOR, " s ", "igi", "bbb", 's', EnumMultiMaterialType.DARKNESS_SEED, 'i', "ingotVoid", 'g', EnumMultiMaterialType.ELDRITCH_MECHANISM, 'b', BlocksLT.ELDRITCH_BLOCK).setVisUsage(50.25F, 25.25F));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.ROD_GREATWOOD.stack(), " r", "r ", 'r', BlocksLT.GREATWOOD_LOG).setVisUsage(12F, 0));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.ROD_SILVERWOOD.stack(), " r", "r ", 'r', BlocksLT.SILVERWOOD_LOG).setVisUsage(55F, 25.5F));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_GOLD.stack(), "nnn", "n n", 'n', "nuggetGold"));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_THAUMIUM.stack(2), "nnn", "n n", 'n', "ingotThaumium").setVisUsage(5, 0));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_VOID.stack(1), "nnn", "n n", 'n', "ingotVoid").setVisUsage(15.5F, 0));
 		addRecipe(new TheoryToDiscovery());
 		
 		LostThaumaturgy.LOG.info("Registered " + recipes.size() + " Default Recipes.");

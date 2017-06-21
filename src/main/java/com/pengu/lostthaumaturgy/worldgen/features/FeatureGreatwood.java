@@ -340,8 +340,9 @@ public class FeatureGreatwood extends WorldGenAbstractTree
 			generateLeaves();
 			generateTrunk();
 			generateLeafNodeBases();
+		} catch(Throwable err)
+		{
 		}
-		catch(Throwable err) {}
 		return true;
 	}
 }

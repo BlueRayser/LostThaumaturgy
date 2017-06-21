@@ -67,21 +67,22 @@ public class TileVisTank extends TileSyncableTickable implements IConnection, Pr
 		
 		if(prevdisplayPure != displayPure || prevdisplayTaint != displayTaint)
 		{
-			sync();
 			prevdisplayPure = displayPure;
 			prevdisplayTaint = displayTaint;
+			sync();
 		}
 		
 		if(displayPure != pureVis || displayTaint != taintedVis)
 		{
 			displayPure = pureVis;
 			displayTaint = taintedVis;
+			sendChangesToNearby();
 		}
 		
-		if(displayTaint + displayPure < 0.1f)
+		if(displayTaint + displayPure < .1F)
 		{
-			displayTaint = 0.0f;
-			displayPure = 0.0f;
+			displayTaint = 0f;
+			displayPure = 0f;
 		}
 	}
 	

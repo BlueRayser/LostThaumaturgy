@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,12 +19,13 @@ import com.mrdimka.hammercore.common.items.ITooltipInjector;
 import com.mrdimka.hammercore.common.items.MultiVariantItem;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.api.items.INotCloneable;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
-public class ItemResearch extends MultiVariantItem implements ITooltipInjector
+public class ItemResearch extends MultiVariantItem implements ITooltipInjector, INotCloneable
 {
 	public ItemResearch()
 	{
@@ -37,6 +39,13 @@ public class ItemResearch extends MultiVariantItem implements ITooltipInjector
 		ResearchRegistry.addAllResearchItems(EnumResearchItemType.DISCOVERY, l);
 		ResearchRegistry.addAllResearchItems(EnumResearchItemType.THEORY, l);
 		ResearchRegistry.addAllResearchItems(EnumResearchItemType.FRAGMENT, l);
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		EnumResearchItemType type = getType(stack);
+		return type == EnumResearchItemType.FRAGMENT ? EnumRarity.UNCOMMON : type == EnumResearchItemType.THEORY ? EnumRarity.RARE : EnumRarity.EPIC;
 	}
 	
 	@Override

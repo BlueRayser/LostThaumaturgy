@@ -1,10 +1,15 @@
 package com.pengu.lostthaumaturgy.tile;
 
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent.NameFormat;
@@ -35,6 +40,33 @@ public class TileFuser extends TileSyncableTickable implements ITileDroppable
 	
 	{
 		bound = new NetPropertyVec3i<BlockPos>(this, pos);
+	}
+	
+	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		EnumFacing face = EnumFacing.NORTH;
+		
+		if(gui != null)
+		{
+			Vec3i vec = pos.subtract(gui.getPos());
+			
+			face = EnumFacing.getFacingFromVector(vec.getX(), 0, vec.getZ());
+			
+			if(vec.getX() == 1 && vec.getZ() == 0)
+				face = EnumFacing.NORTH;
+			
+			if(vec.getX() == 0 && vec.getZ() == 1)
+				face = EnumFacing.SOUTH;
+			
+			if(vec.getX() == 0 && vec.getZ() == 0)
+				face = EnumFacing.WEST;
+			
+			if(vec.getX() == 1 && vec.getZ() == 1)
+				face = EnumFacing.EAST;
+		}
+		
+		properties.put("part", face.getName());
 	}
 	
 	@Override

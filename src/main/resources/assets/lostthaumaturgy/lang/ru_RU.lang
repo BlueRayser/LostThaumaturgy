@@ -65,6 +65,8 @@ tile.lostthaumaturgy:wand_constructor.name=Wand Constructor
 tile.lostthaumaturgy:greatwood_leaves.name=Greatwood Leaves
 tile.lostthaumaturgy:greatwood_log.name=Greatwood Log
 tile.lostthaumaturgy:greatwood_sapling.name=Greatwood Sapling
+tile.lostthaumaturgy:darkness_generator.name=Darkness Generator
+tile.lostthaumaturgy:tainted_leaves.name=Tainted Leaves
 
 
 

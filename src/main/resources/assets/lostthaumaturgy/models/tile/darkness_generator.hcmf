@@ -1,0 +1,18 @@
+{
+texture x- lostthaumaturgy:blocks/darkness_generator_side
+texture x+ lostthaumaturgy:blocks/darkness_generator_side
+texture z- lostthaumaturgy:blocks/darkness_generator_side
+texture z+ lostthaumaturgy:blocks/darkness_generator_side
+texture y+ lostthaumaturgy:blocks/darkness_generator_bottom
+texture y- lostthaumaturgy:blocks/darkness_generator_bottom
+bounds 0 0 0 1 7/16 1
+draw
+
+bounds 3/8 7/16 3/8 5/8 1/2 5/8
+draw
+
+texture y+ lostthaumaturgy:blocks/darkness_generator_top
+texture y- lostthaumaturgy:blocks/darkness_generator_top
+bounds 1/4 1/2 1/4 6/8 1 6/8
+draw
+}

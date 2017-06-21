@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.tile;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
@@ -20,6 +22,7 @@ import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.tile.ITileDroppable;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.asm.WorldHooks;
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.client.gui.GuiVisCondenser;
@@ -65,10 +68,56 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 	}
 	
 	@Override
+	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
+	{
+		String name = "none";
+		
+		switch(currentType)
+		{
+		case 1:
+		{
+			name = "vaporous";
+			break;
+		}
+		case 2:
+		{
+			name = "aqueous";
+			break;
+		}
+		case 3:
+		{
+			name = "earthen";
+			break;
+		}
+		case 4:
+		{
+			name = "fiery";
+			break;
+		}
+		case 5:
+		{
+			name = "tainted";
+			break;
+		}
+		default:
+		{
+			name = "vis";
+			break;
+		}
+		}
+		
+		properties.put("crystal", currentType);
+		properties.put("angle", LostThaumaturgy.standartDecimalFormat.format(angle));
+	}
+	
+	@Override
 	public void tick()
 	{
-		if(world.isBlockIndirectlyGettingPowered(pos) > 0)
+		if(loc.getRedstone() > 0)
+		{
+			--ticksExisted;
 			return;
+		}
 		
 		angle += speed * 5;
 		if(angle > 360)
@@ -109,6 +158,7 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 							ac.vis--;
 							progress = 0;
 							currentVis += 1;
+							ac.radiation += .0002F;
 						}
 					} else if(hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_EVIL)) && ac.taint >= 1)
 					{

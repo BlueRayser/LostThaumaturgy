@@ -11,7 +11,6 @@ import com.mrdimka.hammercore.net.packetAPI.IPacket;
 import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
 import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXBubble;
-import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 
 public class PacketFXBubble implements IPacket, IPacketListener<PacketFXBubble, IPacket>
 {

@@ -165,7 +165,8 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 			if(stack.hasTagCompound())
 			{
 				int[] rgb = stack.getTagCompound().getIntArray("RGB");
-				col = "#" + Integer.toHexString((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
+				if(rgb.length >= 3)
+					col = "#" + Integer.toHexString((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 			}
 			tooltip.add(I18n.translateToLocal(getUnlocalizedName() + ".desc").replace("$col", col.toUpperCase()));
 		}

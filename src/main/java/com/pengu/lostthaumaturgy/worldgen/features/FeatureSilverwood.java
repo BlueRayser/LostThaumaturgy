@@ -2,16 +2,16 @@ package com.pengu.lostthaumaturgy.worldgen.features;
 
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.pengu.lostthaumaturgy.init.BlocksLT;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class FeatureSilverwood extends WorldGenAbstractTree
 {

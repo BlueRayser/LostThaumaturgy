@@ -54,8 +54,8 @@ public class TileVisPump extends TileSyncableTickable implements IConnection, IM
 	@Override
 	public void addProperties(Map<String, Object> properties, RayTraceResult trace)
 	{
-		properties.put("output", orientation.getName());
-		properties.put("input", orientation.getOpposite().getName());
+		properties.put("output", orientation.getOpposite().getName());
+		properties.put("input", orientation.getName());
 	}
 	
 	public void readNBT(NBTTagCompound nbttagcompound)

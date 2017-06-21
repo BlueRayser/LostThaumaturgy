@@ -1,5 +1,6 @@
 package com.pengu.lostthaumaturgy.custom.aura.taint;
 
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.state.IBlockState;
@@ -26,6 +27,9 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(!world.isBlockLoaded(pos))
 			return false;
 		IBlockState state = world.getBlockState(pos);
+		
+		if(state.getBlock() instanceof BlockLeaves && state.getBlock() != BlocksLT.TAINTED_LEAVES)
+			return true;
 		
 		if(BlockTaintedSoil.isTaintable(world, pos))
 		{
@@ -59,6 +63,12 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		if(!world.isBlockLoaded(pos))
 			return false;
 		IBlockState state = world.getBlockState(pos);
+		
+		if(state.getBlock() instanceof BlockLeaves && state.getBlock() != BlocksLT.TAINTED_LEAVES)
+		{
+			world.setBlockState(pos, BlocksLT.TAINTED_LEAVES.getDefaultState());
+			return true;
+		}
 		
 		if(BlockTaintedSoil.isTaintable(world, pos))
 		{
@@ -108,11 +118,9 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 			return false;
 		IBlockState state = world.getBlockState(pos);
 		
-		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
-			return true;
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
 			return true;
-		if(state.getBlock() == BlocksLT.TAINTED_PLANT || state.getBlock() == BlocksLT.TAINTED_LOG)
+		if(state.getBlock() == BlocksLT.TAINTED_PLANT || state.getBlock() == BlocksLT.TAINTED_LOG || state.getBlock() == BlocksLT.TAINTED_LEAVES || state.getBlock() == BlocksLT.TAINTEDLEAF)
 			return true;
 		
 		return false;
@@ -127,11 +135,9 @@ public class TaintHandlerLostThaumaturgy implements ITaintHandler
 		
 		if(world.getTileEntity(pos) instanceof TileTaintedSoil)
 			BlockTaintedSoil.cleanSoil(world, pos);
-		
 		if(state.getBlock() == BlocksLT.TAINTEDLEAF)
 			world.setBlockState(pos, BlocksLT.SHIMMERLEAF.getDefaultState());
-		
-		if(state.getBlock() == BlocksLT.TAINTED_PLANT || state.getBlock() == BlocksLT.TAINTED_LOG)
+		if(state.getBlock() == BlocksLT.TAINTED_PLANT || state.getBlock() == BlocksLT.TAINTED_LOG || state.getBlock() == BlocksLT.TAINTED_LEAVES)
 			world.setBlockToAir(pos);
 		
 		return false;

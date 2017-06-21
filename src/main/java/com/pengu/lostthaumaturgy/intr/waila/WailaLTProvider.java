@@ -102,10 +102,7 @@ public class WailaLTProvider implements IWailaDataProvider
 		Block block = acc.getBlock();
 		if(block != null && block.getRegistryName().getResourceDomain().equals(LTInfo.MOD_ID))
 		{
-			if(block == BlocksLT.VIS_PURIFIER)
-				return new ItemStack(BlocksLT.VIS_PURIFIER);
-			
-			if(block == BlocksLT.SILVERWOOD_LEAVES || block == BlocksLT.SILVERWOOD_LOG || block == BlocksLT.SILVERWOOD_STAIRS || block == BlocksLT.GREATWOOD_LOG || block == BlocksLT.GREATWOOD_LEAVES)
+			if(block == BlocksLT.VIS_PURIFIER || block == BlocksLT.SILVERWOOD_LEAVES || block == BlocksLT.SILVERWOOD_LOG || block == BlocksLT.SILVERWOOD_STAIRS || block == BlocksLT.GREATWOOD_LOG || block == BlocksLT.GREATWOOD_LEAVES || block == BlocksLT.TAINTED_LEAVES || block == BlocksLT.TAINTED_LOG)
 				return new ItemStack(block);
 			
 			if(acc.getTileEntity() != null)

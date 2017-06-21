@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.items;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -21,6 +22,12 @@ public class ItemSingularity extends Item
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		return EnumRarity.UNCOMMON;
 	}
 	
 	@Override

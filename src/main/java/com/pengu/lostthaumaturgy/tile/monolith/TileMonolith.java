@@ -8,11 +8,15 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import com.mrdimka.hammercore.HammerCore;
+import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.net.pkt.PacketSpawnZap;
+import com.mrdimka.hammercore.tile.IMalfunctionable;
+import com.mrdimka.hammercore.tile.TileSyncable;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
@@ -42,12 +46,6 @@ public class TileMonolith extends TileSyncableTickable
 		
 		if(soundDelay > 0)
 			soundDelay--;
-		
-		if(soundDelay == 0 && world.getBlockState(pos.down()).getBlock() != world.getBlockState(pos).getBlock())
-		{
-			HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":monolith", pos, .6F, 1F, SoundCategory.BLOCKS);
-			soundDelay = 450 + world.rand.nextInt(150);
-		}
 		
 		SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		
@@ -85,6 +83,46 @@ public class TileMonolith extends TileSyncableTickable
 			double z2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 5D;
 			
 			HCNetwork.getManager("particles").sendToAllAround(new PacketFXWisp2(pos.getX() + .5 + x, pos.getY() + yOff + .5 + y, pos.getZ() + .5 + z, pos.getX() + .5 + x2, pos.getY() + yOff + .5 + y2, pos.getZ() + .5 + z2, 4F, 5), getSyncPoint(48));
+		}
+		
+		if(soundDelay == 0 || atTickRate(120))
+			for(int x = -5; x < 6; ++x)
+				for(int y = -5; y < 6; ++y)
+					for(int z = -5; z < 6; ++z)
+					{
+						if(x == y && y == z && x == 0)
+							continue;
+						
+						BlockPos pos = this.pos.add(x, y, z);
+						IMalfunctionable mal1 = WorldUtil.cast(world.getTileEntity(pos), IMalfunctionable.class);
+						IMalfunctionable mal2 = WorldUtil.cast(world.getBlockState(pos).getBlock(), IMalfunctionable.class);
+						
+						int to = (int) Math.round(Math.sqrt(x * x + y * y + z * z));
+						if(to < 1 || rand.nextInt(to + 1) == 0)
+						{
+							boolean flag = false;
+							if(mal1 != null)
+							{
+								mal1.causeGeneralMalfunction();
+								if(mal1 instanceof TileSyncable)
+									((TileSyncable) mal1).sync();
+								flag = true;
+							}
+							if(mal2 != null)
+							{
+								mal2.causeGeneralMalfunction();
+								flag = true;
+							}
+							if(flag)
+								HammerCore.particleProxy.spawnZap(world, new Vec3d(pos), new Vec3d(this.pos), new Color(0x310A5E));
+						}
+					}
+		
+		if(soundDelay == 0)
+		{
+			if(world.getBlockState(pos.down()).getBlock() != world.getBlockState(pos).getBlock())
+				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":monolith", pos, .6F, 1F, SoundCategory.BLOCKS);
+			soundDelay = 450 + world.rand.nextInt(150);
 		}
 	}
 	

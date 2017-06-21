@@ -7,7 +7,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,6 @@ import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXBubble;
-import com.pengu.lostthaumaturgy.utils.ListDelta;
 import com.pengu.lostthaumaturgy.utils.WoodHelper;
 
 public class ItemAxeElemental extends ItemAxe
@@ -57,7 +55,8 @@ public class ItemAxeElemental extends ItemAxe
 				
 				after.removeAll(before);
 				
-//				List<EntityItem> drops = ListDelta.positiveDelta(before, after);
+				// List<EntityItem> drops = ListDelta.positiveDelta(before,
+				// after);
 				for(EntityItem drop : after)
 				{
 					drop.setPositionAndUpdate(player.posX, player.posY, player.posZ);

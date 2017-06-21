@@ -61,6 +61,7 @@ import com.pengu.lostthaumaturgy.api.items.IGoggles;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.block.wood.BlockTaintedLeaves;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLeaves;
 import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
@@ -89,6 +90,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleThaumium;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrucibleVoid;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystal;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRCrystallizer;
+import com.pengu.lostthaumaturgy.client.render.tesr.TESRDarknessGenerator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRDuplicator;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRFuser;
 import com.pengu.lostthaumaturgy.client.render.tesr.TESRGenerator;
@@ -142,6 +144,7 @@ import com.pengu.lostthaumaturgy.tile.TileCrucibleThaumium;
 import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
+import com.pengu.lostthaumaturgy.tile.TileDarknessGenerator;
 import com.pengu.lostthaumaturgy.tile.TileDuplicator;
 import com.pengu.lostthaumaturgy.tile.TileFuser;
 import com.pengu.lostthaumaturgy.tile.TileGenerator;
@@ -203,37 +206,37 @@ public class ClientProxy extends CommonProxy
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemResearch(), ItemsLT.DISCOVERY);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemSeal(), Item.getItemFromBlock(BlocksLT.SEAL));
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor()
-        {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
-            {
-                IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
-                return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
-            }
-        }, new Block[] { BlocksLT.GREATWOOD_LEAVES });
+		{
+			public int getColorFromItemstack(ItemStack stack, int tintIndex)
+			{
+				IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+				return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
+			}
+		}, new Block[] { BlocksLT.GREATWOOD_LEAVES });
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
-        {
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
-            {
-            	Random rand = new Random(pos != null ? pos.toLong() : 0L);
-            	int color = worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
-            	
-            	int r = (color >> 16) & 0xFF;
-            	int g = (color >> 8) & 0xFF;
-            	int b = (color >> 0) & 0xFF;
-            	
-            	int max = 8;
-            	
-            	r += rand.nextInt(max) - rand.nextInt(max);
+		{
+			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+			{
+				Random rand = new Random(pos != null ? pos.toLong() : 0L);
+				int color = worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+				
+				int r = (color >> 16) & 0xFF;
+				int g = (color >> 8) & 0xFF;
+				int b = (color >> 0) & 0xFF;
+				
+				int max = 8;
+				
+				r += rand.nextInt(max) - rand.nextInt(max);
 				g += rand.nextInt(max) - rand.nextInt(max);
 				b += rand.nextInt(max) - rand.nextInt(max);
 				
 				r = (int) MathHelper.clip(r, 0, 255);
 				g = (int) MathHelper.clip(g, 0, 255);
 				b = (int) MathHelper.clip(b, 0, 255);
-            	
-                return Color.packARGB(r, g, b, 255);
-            }
-        }, new Block[] { BlocksLT.GREATWOOD_LEAVES });
+				
+				return Color.packARGB(r, g, b, 255);
+			}
+		}, new Block[] { BlocksLT.GREATWOOD_LEAVES });
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalOre.class, TESRCrystal.INSTANCE);
 		for(BlockOreCrystal ore : BlockOreCrystal.crystals)
@@ -276,6 +279,7 @@ public class ClientProxy extends CommonProxy
 		registerRender(TileVisCondenser.class, BlocksLT.VIS_CONDENSER, TESRVisCondenser.INSTANCE);
 		registerRender(TileWandConstructor.class, BlocksLT.WAND_CONSTRUCTOR, TESRWandConstructor.INSTANCE);
 		registerRender(TileFuser.class, BlocksLT.FUSER_MB, TESRFuser.INSTANCE);
+		registerRender(TileDarknessGenerator.class, BlocksLT.DARKNESS_GENERATOR, TESRDarknessGenerator.INSTANCE);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileVoidChest.class, TESRVoidChest.INSTANCE);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSeal.class, TESRSeal.INSTANCE);
@@ -448,6 +452,7 @@ public class ClientProxy extends CommonProxy
 	{
 		((BlockSilverwoodLeaves) BlocksLT.SILVERWOOD_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		((BlockGreatwoodLeaves) BlocksLT.GREATWOOD_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		((BlockTaintedLeaves) BlocksLT.TAINTED_LEAVES).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		
 		Minecraft mc = Minecraft.getMinecraft();
 		

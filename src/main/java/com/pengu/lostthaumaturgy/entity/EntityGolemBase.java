@@ -25,7 +25,6 @@ import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.golem.GolemCoreAbstract;
 import com.pengu.lostthaumaturgy.emote.EmoteManager;
-import com.pengu.lostthaumaturgy.entity.ai.LTPathEntity;
 import com.pengu.lostthaumaturgy.entity.ai.LTPathNavigate;
 
 public class EntityGolemBase extends EntityGolem

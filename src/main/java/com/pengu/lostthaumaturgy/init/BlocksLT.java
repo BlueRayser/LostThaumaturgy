@@ -14,6 +14,7 @@ import com.pengu.lostthaumaturgy.block.BlockCrucibleEyes;
 import com.pengu.lostthaumaturgy.block.BlockCrucibleThaumium;
 import com.pengu.lostthaumaturgy.block.BlockCrucibleVoid;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
+import com.pengu.lostthaumaturgy.block.BlockDarknessGenerator;
 import com.pengu.lostthaumaturgy.block.BlockDepletedOreCrystal;
 import com.pengu.lostthaumaturgy.block.BlockDuplicator;
 import com.pengu.lostthaumaturgy.block.BlockGenerator;
@@ -50,6 +51,7 @@ import com.pengu.lostthaumaturgy.block.monolith.BlockCrystalReceptacle;
 import com.pengu.lostthaumaturgy.block.monolith.BlockExtraRoom;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolith;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
+import com.pengu.lostthaumaturgy.block.wood.BlockTaintedLeaves;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLeaves;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLog;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodSapling;
@@ -91,6 +93,7 @@ public class BlocksLT
 	        SEAL = new BlockSeal(), //
 	        WAND_CONSTRUCTOR = new BlockWandConstructor(), //
 	        CRYSTALLIZER = new BlockCrystallizer(), //
+	        DARKNESS_GENERATOR = new BlockDarknessGenerator(), //
 	        NITOR = new BlockNitor(), //
 	        TAINTED_SOIL = new BlockTaintedSoil(), //
 	        VOID_CHEST = new BlockVoidChest(), //
@@ -102,6 +105,7 @@ public class BlocksLT
 	public static final Block //
 	        SILVERWOOD_LEAVES = new BlockSilverwoodLeaves(), //
 	        GREATWOOD_LEAVES = new BlockGreatwoodLeaves(), //
+	        TAINTED_LEAVES = new BlockTaintedLeaves(), //
 	        SILVERWOOD_LOG = new BlockSilverwoodLog(), //
 	        GREATWOOD_LOG = new BlockGreatwoodLog(), //
 	        TAINTED_LOG = new BlockTaintedLog(), //

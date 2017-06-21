@@ -7,6 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
@@ -60,6 +61,20 @@ public class BlockTotem extends Block
 					si.badVibes++;
 				si.taint += random.nextInt(4);
 			}
+			
+			for(int x = -1; x < 2; ++x)
+				for(int y = -1; y < 2; ++y)
+					for(int z = -1; z < 2; ++z)
+					{
+						int sq = (int) new Vec3d(x, y, z).squareDistanceTo(0, 0, 0);
+						if(sq >= 1 && random.nextInt(sq + 1) == 0)
+						{
+							if(good)
+								AuraTicker.decreaseTaintedPlants(worldIn, x + pos.getX(), y + pos.getY(), z + pos.getZ());
+							else
+								AuraTicker.increaseTaintedPlants(worldIn, x + pos.getX(), y + pos.getY(), z + pos.getZ());
+						}
+					}
 		}
 	}
 }

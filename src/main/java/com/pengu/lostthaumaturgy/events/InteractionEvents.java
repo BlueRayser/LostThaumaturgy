@@ -44,8 +44,8 @@ import com.pengu.lostthaumaturgy.emote.EmoteManager;
 import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
-import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeElemental;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.items.tools.axe.ItemAxeElemental;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
 @MCFBus
@@ -124,7 +124,7 @@ public class InteractionEvents
 		BlockSnapshot s = soil.getSnapshot();
 		IBlockState taintedState = s.getReplacedBlock();
 		Block taintedBlock = taintedState.getBlock();
-		if(taintedBlock instanceof BlockOre && soil.getWorld().rand.nextInt(5) == 0)
+		if(taintedBlock instanceof BlockOre && soil.getWorld().rand.nextBoolean())
 			stacks.add(EnumMultiMaterialType.CONGEALED_TAINT.stack());
 	}
 	

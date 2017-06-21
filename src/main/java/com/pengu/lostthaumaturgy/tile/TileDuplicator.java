@@ -4,8 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 
 import com.mrdimka.hammercore.HammerCore;
@@ -15,6 +17,7 @@ import com.pengu.hammercore.net.utils.NetPropertyBool;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.items.INotCloneable;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiDuplicator;
@@ -27,6 +30,7 @@ import com.pengu.lostthaumaturgy.net.machine.PacketDuplicatorFinish;
 
 public class TileDuplicator extends TileVisUser implements IUpgradable
 {
+	public static NonNullList<ItemStack> DUPLICATOR_BLACKLIST = NonNullList.<ItemStack> create();
 	public final InventoryNonTile inventory = new InventoryNonTile(10);
 	public int[] upgrades = new int[] { -1 };
 	
@@ -170,6 +174,16 @@ public class TileDuplicator extends TileVisUser implements IUpgradable
 	public int getCopyCost()
 	{
 		int tr = 0;
+		
+		for(ItemStack stack : DUPLICATOR_BLACKLIST)
+			if(inventory.getStackInSlot(9).isItemEqual(stack))
+				return 0;
+		
+		if(inventory.getStackInSlot(9).getItem() instanceof INotCloneable)
+			return 0;
+		
+		if(inventory.getStackInSlot(9).getItem() instanceof ItemBlock && ((ItemBlock) inventory.getStackInSlot(9).getItem()).getBlock() instanceof INotCloneable)
+			return 0;
 		
 		if(inventory.getStackInSlot(9).isEmpty() || inventory.getStackInSlot(9).getRarity() != EnumRarity.COMMON)
 			return 0;

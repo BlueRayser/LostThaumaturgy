@@ -18,8 +18,6 @@ import org.lwjgl.opengl.GL11;
 import com.mrdimka.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.particle.api.SimpleParticle;
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.emote.EmoteData;
-import com.pengu.lostthaumaturgy.emote.EmoteManager;
 
 public class FXBubble extends SimpleParticle
 {
@@ -62,7 +60,8 @@ public class FXBubble extends SimpleParticle
 		
 		if(particleAge >= particleMaxAge / 2)
 			particleScale = (particleAlpha = 1 - (particleAge - particleMaxAge / 2F) / (particleMaxAge / 2F)) * this.particleScale;
-//			particleAlpha = 1 - ((particleAge - particleMaxAge / 2F) / ((float) particleMaxAge));
+		// particleAlpha = 1 - ((particleAge - particleMaxAge / 2F) / ((float)
+		// particleMaxAge));
 		
 		/** Bind to the emote texture */
 		Minecraft.getMinecraft().getTextureManager().bindTexture(tex);
