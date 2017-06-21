@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -14,10 +15,13 @@ import java.nio.file.Files;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.client.utils.RenderUtil;
@@ -36,6 +40,9 @@ public class GuiInteractive extends GuiCentered
 	public float avg;
 	public int votes;
 	public boolean canVote;
+	public int lastUpload = -1;
+	public GuiTextField lastUploaded;
+	public String[] log;
 	
 	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_interactive.png");
 	
@@ -44,6 +51,26 @@ public class GuiInteractive extends GuiCentered
 		this.parent = parent;
 		xSize = 202;
 		ySize = 175;
+	}
+	
+	@Override
+	public void onGuiClosed()
+	{
+		super.onGuiClosed();
+		
+		try
+		{
+			File f = new File("config", LTInfo.MOD_ID + ".dat");
+			DataOutputStream dos = new DataOutputStream(new FileOutputStream(f));
+			dos.writeInt(lastUpload);
+			dos.writeInt(log != null ? log.length : 0);
+			if(log != null)
+				for(String l : log)
+					dos.writeUTF(l);
+			dos.close();
+		} catch(Throwable err)
+		{
+		}
 	}
 	
 	@Override
@@ -56,7 +83,23 @@ public class GuiInteractive extends GuiCentered
 		else
 			crashFolder = null;
 		addButton(new GuiButton(0, (int) guiLeft + 5, (int) guiTop + 103, 49, 14, "Send"));
+		addButton(new GuiButton(1, (int) guiLeft + 59, (int) guiTop + 142, 40, 20, "Check"));
+		addButton(new GuiButton(2, (int) guiLeft + 55, (int) guiTop + 103, 60, 14, "Clear Log"));
+		lastUploaded = new GuiTextField(0, fontRenderer, (int) guiLeft + 6, (int) guiTop + 142, 40, 20);
 		new ConnectionEstablishTread().start();
+		try
+		{
+			File f = new File("config", LTInfo.MOD_ID + ".dat");
+			DataInputStream dis = new DataInputStream(new FileInputStream(f));
+			lastUpload = dis.readInt();
+			log = new String[dis.readInt()];
+			for(int i = 0; i < log.length; ++i)
+				log[i] = dis.readUTF();
+			dis.close();
+		} catch(Throwable err)
+		{
+		}
+		selected = -1;
 	}
 	
 	@Override
@@ -129,13 +172,29 @@ public class GuiInteractive extends GuiCentered
 			}
 		}
 		
+		if(log != null)
+			for(int i = 0; i < log.length; ++i)
+			{
+				int j = log.length - i - 1;
+				if(j < 0 || j >= log.length)
+					break;
+				fontRenderer.drawString(log[j], 0, 4 + i * 12, 0xFFFFFF, false);
+			}
+		
 		buttonList.get(0).enabled = selected > -1;
+		
+		if(lastUploaded != null)
+			lastUploaded.drawTextBox();
+		
+		String s = "" + (StatusTread.status == 0 ? TextFormatting.YELLOW + "?" : StatusTread.status == 1 ? TextFormatting.DARK_RED + "Unsolved" : TextFormatting.DARK_GREEN + "Solved");
+		fontRenderer.drawString("Status: " + s, (float) guiLeft + 102, (float) guiTop + 148, 0, false);
 	}
 	
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
-		super.keyTyped(typedChar, keyCode);
+		if(lastUploaded == null || !lastUploaded.textboxKeyTyped(typedChar, keyCode))
+			super.keyTyped(typedChar, keyCode);
 	}
 	
 	@Override
@@ -143,6 +202,9 @@ public class GuiInteractive extends GuiCentered
 	{
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 		boolean so = false;
+		
+		if(lastUploaded != null)
+			lastUploaded.mouseClicked(mouseX, mouseY, mouseButton);
 		
 		if(crashFolder != null)
 		{
@@ -184,13 +246,22 @@ public class GuiInteractive extends GuiCentered
 			so = true;
 		}
 		
-		if(buttonList.get(0).isMouseOver())
+		if(buttonList.get(0).isMouseOver() && buttonList.get(0).enabled)
 		{
 			UploadThread th = new UploadThread();
 			th.selected = this.selected;
 			th.start();
 			selected = -1;
 		}
+		
+		if(buttonList.get(1).isMouseOver())
+		{
+			StatusTread th = new StatusTread(this);
+			th.start();
+		}
+		
+		if(buttonList.get(2).isMouseOver())
+			log = new String[0];
 		
 		if(so)
 			mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1F));
@@ -331,18 +402,73 @@ public class GuiInteractive extends GuiCentered
 				dos.writeInt((int) Files.size(crashFolder[selected].toPath()));
 				FileInputStream fis = new FileInputStream(crashFolder[selected]);
 				dos.write(IOUtils.deflaterCompress(IOUtils.pipeOut(fis)));
+				fis.close();
 				out.flush();
 				DataInputStream dis = new DataInputStream(in);
 				byte[] bytes = new byte[dis.read()];
 				dis.read(bytes);
 				String name = new String(bytes);
-				System.out.println("Stored file " + name);
+				lastUpload = Integer.parseInt(name);
 				s.close();
-				
+				crashFolder[selected].delete();
+				log = ArrayUtils.add(log, "Uploaded. ID: " + lastUpload);
 				connectStatus = 1;
 			} catch(Throwable err)
 			{
 				connectStatus = 2;
+				return;
+			}
+			
+			initGui();
+		}
+	}
+	
+	public static class StatusTread extends Thread
+	{
+		public static int status;
+		public GuiInteractive gui;
+		
+		public StatusTread(GuiInteractive g)
+		{
+			gui = g;
+		}
+		
+		@Override
+		public void run()
+		{
+			setName("LostThaumaturgyStatus" + getName());
+			
+			String remote = "apengu.serveminecraft.net";
+			int port = 5466;
+			
+			try
+			{
+				URL paste = new URL("https://pastebin.com/raw/TD4JFsez");
+				byte[] data = IOUtils.pipeOut(paste.openStream());
+				String[] str = new String(data).replaceAll("\r", "").split("\n");
+				remote = str[0];
+				port = Integer.parseInt(str[1]);
+			} catch(Throwable err)
+			{
+				gui.connectStatus = 2;
+				return;
+			}
+			
+			try
+			{
+				Socket s = new Socket(remote, port);
+				InputStream in = s.getInputStream();
+				OutputStream out = s.getOutputStream();
+				out.write(1);
+				byte[] name = gui.lastUploaded.getText().getBytes();
+				out.write(name.length);
+				out.write(name);
+				out.flush();
+				status = in.read();
+				s.close();
+			} catch(Throwable err)
+			{
+				gui.connectStatus = 2;
 				return;
 			}
 		}
