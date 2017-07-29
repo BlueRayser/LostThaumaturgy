@@ -294,6 +294,11 @@ public class AuraTicker
 		return type;
 	}
 	
+	public static SIAuraChunk getAuraChunkFromBlockCoords(WorldLocation loc)
+	{
+		return getAuraChunkFromBlockCoords(loc.getWorld(), loc.getPos());
+	}
+	
 	public static SIAuraChunk getAuraChunkFromBlockCoords(World world, BlockPos pos)
 	{
 		Chunk c = world.getChunkFromBlockCoords(pos);

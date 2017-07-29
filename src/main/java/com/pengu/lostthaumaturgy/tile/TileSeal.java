@@ -16,6 +16,7 @@ import com.pengu.hammercore.net.utils.NetPropertyItemStack;
 import com.pengu.hammercore.net.utils.NetPropertyString;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
 import com.pengu.lostthaumaturgy.api.seal.SealCombination;
+import com.pengu.lostthaumaturgy.api.seal.SealInstance;
 import com.pengu.lostthaumaturgy.api.seal.SealManager;
 
 public class TileSeal extends TileSyncableTickable implements ITileDroppable
@@ -23,6 +24,8 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 	public final NetPropertyItemStack stack;
 	private final NetPropertyString[] slots = new NetPropertyString[3];
 	public SealCombination combination;
+	public SealInstance instance;
+	public NBTTagCompound optInstNBT;
 	
 	public boolean dirty = false;
 	
@@ -55,31 +58,44 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 	{
 		if(dirty)
 		{
+			SealCombination oldCombo = combination;
 			combination = SealManager.getCombination(this);
+			if(combination != oldCombo)
+				instance = SealManager.makeInstance(this, combination, optInstNBT);
+			optInstNBT = null;
 			dirty = false;
 		}
 		
+		if(instance != null)
+			instance.tick();
+		
 		if(combination != null)
 		{
-			combination.update(this);
 			if(!combination.isValid(this))
 			{
 				combination = null;
 				dirty = true;
 			}
 		} else if(atTickRate(20))
+		{
+			SealCombination oldCombo = combination;
 			combination = SealManager.getCombination(this);
+			if(combination != oldCombo)
+				instance = SealManager.makeInstance(this, combination, null);
+		}
 	}
 	
 	@Override
 	public void writeNBT(NBTTagCompound nbt)
 	{
-		
+		if(instance != null)
+			nbt.setTag("SealInstance", instance.writeToNBT(new NBTTagCompound()));
 	}
 	
 	@Override
 	public void readNBT(NBTTagCompound nbt)
 	{
+		optInstNBT = nbt.getCompoundTag("SealInstance");
 		dirty = true;
 	}
 	

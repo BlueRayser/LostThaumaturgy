@@ -51,6 +51,7 @@ public class RecipesFuser
 		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_GOLD.stack(), "nnn", "n n", 'n', "nuggetGold"));
 		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_THAUMIUM.stack(2), "nnn", "n n", 'n', "ingotThaumium").setVisUsage(5, 0));
 		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_VOID.stack(1), "nnn", "n n", 'n', "ingotVoid").setVisUsage(15.5F, 0));
+		addRecipe(new ShapedFuserRecipe(BlocksLT.REPAIRER, "wiw", "wpw", "wiw", 'w', EnumMultiMaterialType.ENCHANTED_WOOD, 'i', "ingotIron", 'p', EnumMultiMaterialType.ANIMATED_PISTON).setVisUsage(20F, 0).setResearch(ResearchesLT.REPAIRER));
 		addRecipe(new TheoryToDiscovery());
 		
 		LostThaumaturgy.LOG.info("Registered " + recipes.size() + " Default Recipes.");

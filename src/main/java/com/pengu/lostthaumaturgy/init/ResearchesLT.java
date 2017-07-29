@@ -34,7 +34,8 @@ public class ResearchesLT
 	        CRUCIBLE_EYES = new Research(LTInfo.MOD_ID + ":crucible_eyes", 65, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.CRUCIBLE_EYES)), //
 	        CRUCIBLE_THAUMIUM = new Research(LTInfo.MOD_ID + ":crucible_thaumium", 66.6F, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.CRUCIBLE_THAUMIUM)), //
 	        CRUCIBLE_VOID = new Research(LTInfo.MOD_ID + ":crucible_void", 70, Research.CATEGORY_ELDRITCH).setIcon(new ItemStack(BlocksLT.CRUCIBLE_VOID)), //
-	        CONDUIT_SILVERWOOD = new Research(LTInfo.MOD_ID + ":conduit_silverwood", 40, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD));
+	        CONDUIT_SILVERWOOD = new Research(LTInfo.MOD_ID + ":conduit_silverwood", 40, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.CONDUIT_SILVERWOOD)), //
+	        REPAIRER = new Research(LTInfo.MOD_ID + ":repairer", 50, Research.CATEGORY_LOST_KNOWLEDGE).setIcon(new ItemStack(BlocksLT.REPAIRER));
 	
 	public static void registerResearches()
 	{

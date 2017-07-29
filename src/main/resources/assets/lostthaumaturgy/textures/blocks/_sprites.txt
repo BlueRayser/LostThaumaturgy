@@ -119,6 +119,8 @@ quaesitum_bottom
 quaesitum_side
 quaesitum_top
 quicksilver_core
+repairer_side
+repairer_top
 silverwood_vis_conduit
 thaumium_bellows
 thaumium_pump_off

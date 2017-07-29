@@ -1,12 +1,5 @@
 package com.pengu.lostthaumaturgy.api.seal;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class SealCombination
@@ -29,16 +22,6 @@ public class SealCombination
 	public String getRender(TileSeal seal, int index)
 	{
 		return "com.pengu.lostthaumaturgy.client.render.seal.LTSealRenders.renderNone";
-	}
-	
-	public void update(TileSeal seal)
-	{
-		
-	}
-	
-	public boolean onSealActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		return false;
 	}
 	
 	public boolean isValid(TileSeal seal)

@@ -67,6 +67,7 @@ tile.lostthaumaturgy:greatwood_log.name=Greatwood Log
 tile.lostthaumaturgy:greatwood_sapling.name=Greatwood Sapling
 tile.lostthaumaturgy:darkness_generator.name=Darkness Generator
 tile.lostthaumaturgy:tainted_leaves.name=Tainted Leaves
+tile.lostthaumaturgy:repairer.name=Thaumic Restorer
 
 
 
@@ -312,6 +313,9 @@ research.lostthaumaturgy:crystallizer.desc=Depleted crystals are not really usef
 
 research.lostthaumaturgy:advanced_vis_valve.title=Advanced Vis Valve
 research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at blocking vis to go through, but they aren't flexible enough. You invented Advanced Vis Valve - more usable version of the valve. It has 3 modes: off, vis-only and taint-only.
+
+research.lostthaumaturgy:repairer.title=Thaumic Restorer
+research.lostthaumaturgy:repairer.desc=Every tool breaks eventually... Your knowledge allow you to channel vis to reconstuct your tools/weapons. The Thaumic Restorer repairs your weapons, tools, armor and power items using liquid vis, which makes it one of the most essential pieces of thaumic machinery.
 
 
 

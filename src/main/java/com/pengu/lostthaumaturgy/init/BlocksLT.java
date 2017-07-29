@@ -29,6 +29,7 @@ import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;
 import com.pengu.lostthaumaturgy.block.BlockPurifier;
 import com.pengu.lostthaumaturgy.block.BlockReinforcedVisTank;
+import com.pengu.lostthaumaturgy.block.BlockRepairer;
 import com.pengu.lostthaumaturgy.block.BlockSeal;
 import com.pengu.lostthaumaturgy.block.BlockSingularityJar;
 import com.pengu.lostthaumaturgy.block.BlockStudiumTable;
@@ -79,6 +80,7 @@ public class BlocksLT
 	        VIS_TANK_SILVERWOOD = new BlockSilverwoodVisTank(), //
 	        VIS_PUMP = new BlockVisPump(), //
 	        VIS_CONDENSER = new BlockVisCondenser(), //
+	        REPAIRER = new BlockRepairer(), //
 	        THAUMIUM_VIS_PUMP = new BlockVisPumpThaumium(), //
 	        INFUSER = new BlockInfuser(), //
 	        INFUSER_DARK = new BlockInfuserDark(), //

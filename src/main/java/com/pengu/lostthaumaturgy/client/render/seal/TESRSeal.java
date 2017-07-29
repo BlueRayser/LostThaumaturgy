@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy.client.render.tesr;
+package com.pengu.lostthaumaturgy.client.render.seal;
 
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.util.EnumFacing;
@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.mrdimka.hammercore.common.EnumRotation;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
 
@@ -56,9 +57,13 @@ public class TESRSeal extends TESR<TileSeal>
 		GL11.glRotated(90, 1, 0, 0);
 		GL11.glTranslated(0, -2 / 16D, 0);
 		GL11.glScaled(.9, .9, .9);
-		
 		mc.getRenderItem().renderItem(te.stack.get(), TransformType.GROUND);
-		
+		for(int i = 0; i < 3; ++i)
+		{
+			ItemSealSymbol ss = te.getSymbol(i);
+			if(ss != null)
+				ss.renderSymbol(te, 0, 0, 0, partialTicks, i);
+		}
 		GL11.glPopMatrix();
 	}
 }

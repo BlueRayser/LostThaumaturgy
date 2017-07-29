@@ -274,12 +274,12 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyPing" + getName());
 			
-			String remote = "apengu.serveminecraft.net";
+			String remote = "apengu.servegame.com";
 			int port = 5466;
 			
 			try
 			{
-				URL paste = new URL("https://pastebin.com/raw/TD4JFsez");
+				URL paste = new URL("https://pastebin.com/raw/RrAThrsn");
 				byte[] data = IOUtils.pipeOut(paste.openStream());
 				String[] str = new String(data).replaceAll("\r", "").split("\n");
 				remote = str[0];
@@ -322,14 +322,14 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyVote" + getName());
 			
-			String remote = "apengu.serveminecraft.net";
+			String remote = "apengu.servegame.com";
 			int port = 5466;
 			
 			connectStatus = 0;
 			
 			try
 			{
-				URL paste = new URL("https://pastebin.com/raw/TD4JFsez");
+				URL paste = new URL("https://pastebin.com/raw/RrAThrsn");
 				byte[] data = IOUtils.pipeOut(paste.openStream());
 				String[] str = new String(data).replaceAll("\r", "").split("\n");
 				remote = str[0];
@@ -374,14 +374,14 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyUpload" + getName());
 			
-			String remote = "apengu.serveminecraft.net";
+			String remote = "apengu.servegame.com";
 			int port = 5466;
 			
 			connectStatus = 0;
 			
 			try
 			{
-				URL paste = new URL("https://pastebin.com/raw/TD4JFsez");
+				URL paste = new URL("https://pastebin.com/raw/RrAThrsn");
 				byte[] data = IOUtils.pipeOut(paste.openStream());
 				String[] str = new String(data).replaceAll("\r", "").split("\n");
 				remote = str[0];
@@ -438,12 +438,12 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyStatus" + getName());
 			
-			String remote = "apengu.serveminecraft.net";
+			String remote = "apengu.servegame.com";
 			int port = 5466;
 			
 			try
 			{
-				URL paste = new URL("https://pastebin.com/raw/TD4JFsez");
+				URL paste = new URL("https://pastebin.com/raw/RrAThrsn");
 				byte[] data = IOUtils.pipeOut(paste.openStream());
 				String[] str = new String(data).replaceAll("\r", "").split("\n");
 				remote = str[0];

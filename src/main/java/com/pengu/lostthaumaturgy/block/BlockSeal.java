@@ -28,6 +28,7 @@ import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
+import com.pengu.lostthaumaturgy.api.seal.SealInstance;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
@@ -192,9 +193,19 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 				playerIn.getHeldItem(hand).shrink(1);
 			} else if(playerIn.getHeldItem(hand).getItem() == ItemsLT.WAND_REVERSAL && seal.getSymbol(0) != null)
 			{
-				
+				for(int i = 2; i >= 0; --i)
+					if(seal.getSymbol(i) != null)
+						if(seal.getSymbol(i) != null)
+						{
+							ItemStack stack = new ItemStack(seal.getSymbol(i));
+							seal.setSymbol(i, null);
+							WorldUtil.spawnItemStack(worldIn, pos, stack);
+							return true;
+						}
 			}
-			// SealCombination c = seal.combination;
+			SealInstance i = seal.instance;
+			if(i != null)
+				return i.onSealActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 		}
 		return false;
 	}
