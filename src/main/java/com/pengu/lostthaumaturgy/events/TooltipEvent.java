@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy;
+package com.pengu.lostthaumaturgy.events;
 
 import java.util.List;
 
@@ -7,14 +7,13 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.mrdimka.hammercore.annotations.MCFBus;
+import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.wand.WandCap;
 import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
 
-@MCFBus
-public class Tooltiper
+public class TooltipEvent
 {
 	@SubscribeEvent
 	public void addTooltip(ItemTooltipEvent evt)

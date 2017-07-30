@@ -10,16 +10,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
@@ -28,16 +24,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -131,6 +126,7 @@ import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 import com.pengu.lostthaumaturgy.entity.EntityWisp;
+import com.pengu.lostthaumaturgy.events.TooltipEvent;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -202,43 +198,28 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityGolemBase.class, RenderEntityGolem.FACTORY);
 	}
 	
+	public static final ThreadLocal<Random> seedableRandom = ThreadLocal.withInitial(() -> new Random());
+	
 	@Override
 	public void init()
 	{
+		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
+		
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemResearch(), ItemsLT.DISCOVERY);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ColorItemSeal(), Item.getItemFromBlock(BlocksLT.SEAL));
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor()
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> Minecraft.getMinecraft().getBlockColors().colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex), BlocksLT.GREATWOOD_LEAVES);
+		
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) ->
 		{
-			public int getColorFromItemstack(ItemStack stack, int tintIndex)
-			{
-				IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
-				return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
-			}
-		}, new Block[] { BlocksLT.GREATWOOD_LEAVES });
-		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
-		{
-			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
-			{
-				Random rand = new Random(pos != null ? pos.toLong() : 0L);
-				int color = worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
-				
-				int r = (color >> 16) & 0xFF;
-				int g = (color >> 8) & 0xFF;
-				int b = (color >> 0) & 0xFF;
-				
-				int max = 8;
-				
-				r += rand.nextInt(max) - rand.nextInt(max);
-				g += rand.nextInt(max) - rand.nextInt(max);
-				b += rand.nextInt(max) - rand.nextInt(max);
-				
-				r = (int) MathHelper.clip(r, 0, 255);
-				g = (int) MathHelper.clip(g, 0, 255);
-				b = (int) MathHelper.clip(b, 0, 255);
-				
-				return Color.packARGB(r, g, b, 255);
-			}
-		}, new Block[] { BlocksLT.GREATWOOD_LEAVES });
+			Random rand = seedableRandom.get();
+			rand.setSeed(pos != null ? pos.toLong() : 0L);
+			int color = world != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(world, pos) : ColorizerFoliage.getFoliageColorBasic();
+			int r = (color >> 16) & 0xFF;
+			int g = (color >> 8) & 0xFF;
+			int b = (color >> 0) & 0xFF;
+			int max = 8;
+			return Color.packARGB((int) MathHelper.clip(r + rand.nextInt(max) - rand.nextInt(max), 0, 255), (int) MathHelper.clip(g + rand.nextInt(max) - rand.nextInt(max), 0, 255), (int) MathHelper.clip(rand.nextInt(max) - rand.nextInt(max), 0, 255), 255);
+		}, BlocksLT.GREATWOOD_LEAVES);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystalOre.class, TESRCrystal.INSTANCE);
 		for(BlockOreCrystal ore : BlockOreCrystal.crystals)
