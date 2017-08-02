@@ -15,13 +15,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
+import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IThaumSlimeDrainable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
@@ -283,7 +283,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 		BlockPos tpos = pos.offset(to);
 		if(world.isBlockLoaded(tpos))
 		{
-			IConnection c = WorldUtil.cast(world.getTileEntity(tpos), IConnection.class);
+			IConnection c = ConnectionManager.getConnection(loc, to);
 			if(c != null)
 				return c.getConnectable(to.getOpposite());
 		}

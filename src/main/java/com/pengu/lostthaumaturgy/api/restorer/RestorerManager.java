@@ -3,9 +3,7 @@ package com.pengu.lostthaumaturgy.api.restorer;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 import com.pengu.hammercore.utils.IndexedMap;

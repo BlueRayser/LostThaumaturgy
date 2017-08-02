@@ -1,11 +1,11 @@
 package com.pengu.lostthaumaturgy.inventory.slot;
 
-import com.pengu.hammercore.utils.WorldLocation;
-import com.pengu.lostthaumaturgy.api.restorer.RestorerManager;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import com.pengu.hammercore.utils.WorldLocation;
+import com.pengu.lostthaumaturgy.api.restorer.RestorerManager;
 
 public class SlotToRepair extends Slot
 {

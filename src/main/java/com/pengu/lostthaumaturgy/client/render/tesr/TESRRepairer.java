@@ -99,8 +99,6 @@ public class TESRRepairer extends TESR<TileRepairer>
 			sbr.setRenderBounds(9 / 16D, 0, 9 / 16D, 1, 7 / 16D, 1);
 			sbr.drawBlock(x, y, z);
 			
-			
-			
 			sbr.setRenderBounds(0, 9 / 16D, 0, 7 / 16D, 1, 7 / 16D);
 			sbr.drawBlock(x, y, z);
 			

@@ -32,29 +32,19 @@ public class TileVisValve extends TileConduit
 	{
 		if(ticksExisted % 20 == 0)
 			rebake();
-		
 		if(world.isRemote)
 			return;
-		
 		if(prevdisplayPure != displayPure || prevdisplayTaint != displayTaint)
 		{
 			sync();
 			prevdisplayPure = displayPure;
 			prevdisplayTaint = displayTaint;
 		}
-		
 		calculateSuction();
-		
 		if(!open)
-		{
 			setSuction(0);
-		}
-		
 		if(getSuction(null) > 0)
-		{
 			equalizeWithNeighbours();
-		}
-		
 		if(displayPure != pureVis || displayTaint != taintedVis)
 		{
 			displayPure = pureVis;

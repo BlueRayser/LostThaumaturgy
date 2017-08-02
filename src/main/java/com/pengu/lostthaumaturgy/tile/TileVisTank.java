@@ -10,10 +10,10 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import com.google.common.base.Predicate;
 import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
+import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 
@@ -119,9 +119,9 @@ public class TileVisTank extends TileSyncableTickable implements IConnection, Pr
 		for(EnumFacing facing : EnumFacing.VALUES)
 		{
 			TileEntity te = world.getTileEntity(pos.offset(facing));
-			if(!getConnectable(facing) || te == null || !(te instanceof IConnection))
+			IConnection ent = ConnectionManager.getConnection(loc, facing);
+			if(!getConnectable(facing) || ent == null)
 				continue;
-			IConnection ent = (IConnection) te;
 			if(!ent.getConnectable(facing.getOpposite()) || te instanceof TileVisTank || stackpureVis + stacktaintedVis >= stackmaxVis || getVisSuction(null) <= ent.getVisSuction(pos) && getTaintSuction(null) <= ent.getTaintSuction(pos))
 				continue;
 			float[] results = new float[] { 0.0f, 0.0f };
@@ -314,7 +314,7 @@ public class TileVisTank extends TileSyncableTickable implements IConnection, Pr
 		BlockPos tpos = pos.offset(input);
 		if(world.isBlockLoaded(tpos))
 		{
-			IConnection c2 = WorldUtil.cast(world.getTileEntity(tpos), IConnection.class);
+			IConnection c2 = ConnectionManager.getConnection(loc, input);
 			if(c2 instanceof TileVisTank)
 				return false;
 			if(c2 == null || !c2.getConnectable(input.getOpposite()))

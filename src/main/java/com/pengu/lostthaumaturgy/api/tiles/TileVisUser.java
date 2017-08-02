@@ -24,9 +24,8 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 		this.setVisSuction(50);
 		for(EnumFacing facing : EnumFacing.VALUES)
 		{
-			BlockPos loc = pos.offset(facing);
-			IConnection ic;
-			if(!getConnectable(facing) || (ic = WorldUtil.cast(world.getTileEntity(loc), IConnection.class)) == null || !ic.isVisConduit() && !ic.isVisSource() || ic.getPureVis() < amount)
+			IConnection ic = ConnectionManager.getConnection(getLocation(), facing);
+			if(!getConnectable(facing) || (ic == null || !ic.isVisConduit() && !ic.isVisSource() || ic.getPureVis() < amount))
 				continue;
 			ic.setPureVis(ic.getPureVis() - amount);
 			return true;

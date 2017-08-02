@@ -77,12 +77,12 @@ public class ItemsLT
 	        CONTAINED_EMPTINESS = new ItemUpgrade("contained_emptiness"), //
 	        COLLECTED_WISDOM = new ItemUpgrade("collected_wisdom"), //
 	        CONCENTRATED_PURITY = new ItemUpgrade("concentrated_purity");
-//	public static final ItemSealSymbol //
-//	        RUNICESSENCE_MAGIC = new DefaultSealSymbol("runic_essence_magic", 0, 0x8300FD), //
-//	        RUNICESSENCE_AIR = new DefaultSealSymbol("runic_essence_air", 1, 0xE2D978), //
-//	        RUNICESSENCE_WATER = new DefaultSealSymbol("runic_essence_water", 2, 0x335B9B), //
-//	        RUNICESSENCE_EARTH = new DefaultSealSymbol("runic_essence_earth", 3, 0x00C000), //
-//	        RUNICESSENCE_FIRE = new DefaultSealSymbol("runic_essence_fire", 4, 0xB7583E), //
-//	        RUNICESSENCE_DARK = new DefaultSealSymbol("runic_essence_dark", 5, 0x411B6D), //
-//	        RUNICESSENCE_DEPLETED = new DefaultSealSymbol("runic_essence_depleted", 6, 0xE6E6E6);
+	public static final ItemSealSymbol //
+	        RUNICESSENCE_MAGIC = new DefaultSealSymbol("runic_essence_magic", 0, 0x8300FD), //
+	        RUNICESSENCE_AIR = new DefaultSealSymbol("runic_essence_air", 1, 0xE2D978), //
+	        RUNICESSENCE_WATER = new DefaultSealSymbol("runic_essence_water", 2, 0x335B9B), //
+	        RUNICESSENCE_EARTH = new DefaultSealSymbol("runic_essence_earth", 3, 0x00C000), //
+	        RUNICESSENCE_FIRE = new DefaultSealSymbol("runic_essence_fire", 4, 0xB7583E), //
+	        RUNICESSENCE_DARK = new DefaultSealSymbol("runic_essence_dark", 5, 0x411B6D), //
+	        RUNICESSENCE_DEPLETED = new DefaultSealSymbol("runic_essence_depleted", 6, 0xE6E6E6);
 }

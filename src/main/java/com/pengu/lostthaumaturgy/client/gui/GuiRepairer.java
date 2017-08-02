@@ -39,8 +39,9 @@ public class GuiRepairer extends GuiContainer
 				if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
 					drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
 			}
+		} catch(Throwable err)
+		{
 		}
-		catch(Throwable err) {}
 	}
 	
 	@Override

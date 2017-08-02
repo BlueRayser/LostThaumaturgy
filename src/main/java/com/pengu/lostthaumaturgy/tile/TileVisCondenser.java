@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -17,12 +16,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
 import com.mrdimka.hammercore.net.HCNetwork;
 import com.mrdimka.hammercore.tile.ITileDroppable;
 import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.asm.WorldHooks;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.client.gui.GuiVisCondenser;
@@ -267,12 +266,10 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 		ArrayList<IConnection> neighbours = new ArrayList<IConnection>();
 		for(EnumFacing facing : EnumFacing.VALUES)
 		{
-			TileEntity te = world.getTileEntity(pos);
-			IConnection conn = WorldUtil.cast(te, IConnection.class);
-			if(!getConnectable(facing) || (te = (TileEntity) conn) == null || !(te instanceof TileVisCondenser))
+			IConnection conn = ConnectionManager.getConnection(loc, facing);
+			if(!getConnectable(facing) || conn instanceof TileVisCondenser)
 				continue;
-			IConnection ent = (IConnection) te;
-			neighbours.add(ent);
+			neighbours.add(conn);
 		}
 		if(neighbours.size() > 0)
 		{
@@ -280,19 +277,15 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 			float pVis = getPureVis();
 			float tVis = getTaintedVis();
 			for(a = 0; a < neighbours.size(); ++a)
-			{
-				pVis += ((IConnection) neighbours.get(a)).getPureVis();
-			}
+				pVis += neighbours.get(a).getPureVis();
 			for(a = 0; a < neighbours.size(); ++a)
-			{
-				tVis += ((IConnection) neighbours.get(a)).getTaintedVis();
-			}
+				tVis += neighbours.get(a).getTaintedVis();
 			pVis /= (float) (neighbours.size() + 1);
 			tVis /= (float) (neighbours.size() + 1);
 			for(a = 0; a < neighbours.size(); ++a)
 			{
-				((IConnection) neighbours.get(a)).setPureVis(pVis);
-				((IConnection) neighbours.get(a)).setTaintedVis(tVis);
+				neighbours.get(a).setPureVis(pVis);
+				neighbours.get(a).setTaintedVis(tVis);
 			}
 			setPureVis(pVis);
 			setTaintedVis(tVis);
