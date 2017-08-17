@@ -44,7 +44,8 @@ public class PacketFXWisp2 implements IPacket, IPacketListener<PacketFXWisp2, IP
 	@SideOnly(Side.CLIENT)
 	private void summon()
 	{
-		ParticleProxy_Client.queueParticleSpawn(new FXWisp(Minecraft.getMinecraft().world, x, y, z, tx, ty, tz, partialTicks, type));
+		if(Minecraft.getMinecraft().world != null)
+			ParticleProxy_Client.queueParticleSpawn(new FXWisp(Minecraft.getMinecraft().world, x, y, z, tx, ty, tz, partialTicks, type));
 	}
 	
 	@Override

@@ -42,13 +42,14 @@ public class LTSealRenders
 		sbr.drawBlock(0, 0, 0);
 		
 		int mult = index == 2 ? -1 : 1;
+		float speed = .25F;
 		
 		GL11.glPushMatrix();
 		GL11.glTranslated(x - (8 / 16D), y - (6 / 16D), z - (.01 * (index + 1)));
 		GL11.glTranslated(.5, .5, .5);
 		GL11.glRotated(index * 120 * mult, 0, 0, 1);
 		if(rotates)
-			GL11.glRotated(((seal.ticksExisted + partialTicks) % 360D) * mult, 0, 0, 1);
+			GL11.glRotated((((seal.ticksExisted + partialTicks) * speed) % 360D) * mult, 0, 0, 1);
 		GL11.glTranslated(-.5, -.5, -.5);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(tex);
 		Tessellator.getInstance().draw();

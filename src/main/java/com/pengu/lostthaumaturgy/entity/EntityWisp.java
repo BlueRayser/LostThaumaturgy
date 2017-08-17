@@ -291,73 +291,78 @@ public class EntityWisp extends EntityFlying implements IMob
 		
 		if(getAttackTarget() != null && getAttackTarget().getDistanceSqToEntity(this) < attackrange * attackrange)
 		{
-			double d5 = getAttackTarget().posX - posX;
-			double d6 = getAttackTarget().getEntityBoundingBox().maxY + (double) (getAttackTarget().height / 2.0f) - (posY + (double) (height / 2.0f));
-			double d7 = getAttackTarget().posY - posZ;
-			renderYawOffset = rotationYaw = (-(float) Math.atan2(d5, d7)) * 180 / (float) Math.PI;
-			if(canEntityBeSeen(getAttackTarget()))
+			try
 			{
-				++attackCounter;
-				if(attackCounter == 20)
+				double d5 = getAttackTarget().posX - posX;
+				double d6 = getAttackTarget().getEntityBoundingBox().maxY + (double) (getAttackTarget().height / 2.0f) - (posY + (double) (height / 2.0f));
+				double d7 = getAttackTarget().posY - posZ;
+				renderYawOffset = rotationYaw = (-(float) Math.atan2(d5, d7)) * 180 / (float) Math.PI;
+				if(canEntityBeSeen(getAttackTarget()))
 				{
-					HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":zap", posX, posY, posZ, 1F, 1.1F, SoundCategory.HOSTILE);
-					getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 1 + rand.nextFloat() * world.getDifficulty().ordinal());
-					
-					int rgb = 0xFFFFFF;
-					
-					int byte0 = 0;
-					
-					if(world.getDifficulty() != EnumDifficulty.PEACEFUL)
+					++attackCounter;
+					if(attackCounter == 20)
 					{
-						if(world.getDifficulty() == EnumDifficulty.EASY)
-							byte0 = 1;
-						else if(world.getDifficulty() == EnumDifficulty.NORMAL)
-							byte0 = 3;
-						else if(world.getDifficulty() == EnumDifficulty.HARD)
-							byte0 = 6;
+						HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":zap", posX, posY, posZ, 1F, 1.1F, SoundCategory.HOSTILE);
+						getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 1 + rand.nextFloat() * world.getDifficulty().ordinal());
+						
+						int rgb = 0xFFFFFF;
+						
+						int byte0 = 0;
+						
+						if(world.getDifficulty() != EnumDifficulty.PEACEFUL)
+						{
+							if(world.getDifficulty() == EnumDifficulty.EASY)
+								byte0 = 1;
+							else if(world.getDifficulty() == EnumDifficulty.NORMAL)
+								byte0 = 3;
+							else if(world.getDifficulty() == EnumDifficulty.HARD)
+								byte0 = 6;
+						}
+						
+						if(getType() == 0)
+						{
+							rgb = 0x570379;
+							getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.NAUSEA, byte0 * 40));
+						}
+						
+						if(getType() == 1)
+						{
+							rgb = 0xFFCC57;
+						}
+						
+						if(getType() == 2)
+						{
+							rgb = 0xAA9EFF;
+							getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, byte0 * 40));
+						}
+						
+						if(getType() == 3)
+						{
+							rgb = 0x59FF6C;
+							getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.POISON, byte0 * 40));
+						}
+						
+						if(getType() == 4)
+						{
+							rgb = 0xFF5959;
+							getAttackTarget().setFire(2);
+						}
+						
+						if(getType() == 5)
+						{
+							rgb = 0x4E0E8A;
+							getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, byte0 * 40));
+						}
+						
+						HammerCore.particleProxy.spawnZap(world, getPositionVector().addVector(width / 4, height / 4, width / 4), getAttackTarget().getPositionVector(), rgb);
+						attackCounter = -30 + world.rand.nextInt(30);
 					}
-					
-					if(getType() == 0)
-					{
-						rgb = 0x570379;
-						getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.NAUSEA, byte0 * 40));
-					}
-					
-					if(getType() == 1)
-					{
-						rgb = 0xFFCC57;
-					}
-					
-					if(getType() == 2)
-					{
-						rgb = 0xAA9EFF;
-						getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, byte0 * 40));
-					}
-					
-					if(getType() == 3)
-					{
-						rgb = 0x59FF6C;
-						getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.POISON, byte0 * 40));
-					}
-					
-					if(getType() == 4)
-					{
-						rgb = 0xFF5959;
-						getAttackTarget().setFire(2);
-					}
-					
-					if(getType() == 5)
-					{
-						rgb = 0x4E0E8A;
-						getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, byte0 * 40));
-					}
-					
-					HammerCore.particleProxy.spawnZap(world, getPositionVector().addVector(width / 4, height / 4, width / 4), getAttackTarget().getPositionVector(), rgb);
-					attackCounter = -30 + world.rand.nextInt(30);
+				} else if(attackCounter > 0)
+				{
+					--attackCounter;
 				}
-			} else if(attackCounter > 0)
+			} catch(Throwable err)
 			{
-				--attackCounter;
 			}
 		} else
 		{

@@ -135,12 +135,17 @@ public class InteractionEvents
 	@SubscribeEvent
 	public void getDrops(BlockEvent.HarvestDropsEvent e)
 	{
-		Random rand = e.getWorld().rand;
-		
-		boolean isInTopazRange = e.getPos().getY() >= 16 && e.getPos().getY() <= 24;
-		if(e.getState().getBlock() == Blocks.STONE && Blocks.STONE.getMetaFromState(e.getState()) == 0 && !e.isSilkTouching() && isInTopazRange)
-			if(rand.nextInt(75) == 0)
-				e.getDrops().add(EnumMultiMaterialType.TOPAZ.stack());
+		try
+		{
+			Random rand = e.getWorld().rand;
+			
+			boolean isInTopazRange = e.getPos().getY() >= 16 && e.getPos().getY() <= 24;
+			if(e.getState().getBlock() == Blocks.STONE && Blocks.STONE.getMetaFromState(e.getState()) == 0 && !e.isSilkTouching() && isInTopazRange)
+				if(rand.nextInt(75) == 0)
+					e.getDrops().add(EnumMultiMaterialType.TOPAZ.stack());
+		} catch(Throwable err)
+		{
+		}
 	}
 	
 	private Map<String, Float> walkSpeeds = new HashMap<>();
