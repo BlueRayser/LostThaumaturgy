@@ -102,7 +102,7 @@ item.lostthaumaturgy:ancient_stone_tablet.tooltip0=Exceptional Lost Artifact
 item.lostthaumaturgy:goggles_revealing.name=Goggles of Revealing
 item.lostthaumaturgy:crystalline_bell.name=Crystalline Bell
 item.lostthaumaturgy:thaumonomicon.name=Thaumonomicon
-item.lostthaumaturgy:thaumonomicon.tooltip0=Thaumonomicon stores all required information you need
+item.lostthaumaturgy:thaumonomicon.tooltip0=The Thaumonomicon stores all the information you need
 item.lostthaumaturgy:fragment.name=Fragment
 item.lostthaumaturgy:fragment.tooltip0=Difficulty: &difficulty
 item.lostthaumaturgy:theory.name=Theory
@@ -243,67 +243,67 @@ entity.lostthaumaturgy:golem.name=Golem
 
 
 research.lostthaumaturgy:reinforced_vis_tank.title=Reinforced Vis Tank
-research.lostthaumaturgy:reinforced_vis_tank.desc=Researching more properties of silverwood and thaumium, you discovered Reinforced Vis Tank. It is an improvement for silverwood vis tank and stores up to 1000 vis.
+research.lostthaumaturgy:reinforced_vis_tank.desc=Researching more properties of silverwood and thaumium, you discovered Reinforced Vis Tanks. This is an improvement for silverwood vis tank and stores up to 1000 vis.
 
 research.lostthaumaturgy:crystalline_bell.title=Crystalline Bell
-research.lostthaumaturgy:crystalline_bell.desc=Sometimes gathering crystals is a problem, because you can not really harvest the crystal without destroying it. Not anymore! Crystalline Bell is a magical tool that does exactly what's been a problem earlier.
+research.lostthaumaturgy:crystalline_bell.desc=Sometimes gathering crystals is a problem as you can't really harvest them without destroying them. Not anymore! The Crystalline Bell is a magical tool that eradicates the problem.
 
 research.lostthaumaturgy:silverwood_vis_tank.title=Silverwood Vis Tank
-research.lostthaumaturgy:silverwood_vis_tank.desc=Researching some properties of silverwood, you discovered the fact that is is resistant to taint. You thought that upgrading your vis storage tank is worth it. And it is! Silverwood Vis Tank is a good improvement to your old vis tank. It doesn't explode on taint overload and stores up to 750 vis.
+research.lostthaumaturgy:silverwood_vis_tank.desc=Researching some properties of silverwood, you discovered that, in fact, it is resistant to taint. You thought that upgrading your vis storage tank would be worth it. And it is! Silverwood Vis Tanks are a good improvement to your old vis tanks. It doesn't explode when overloaded by taint and stores up to 750 vis.
 
 research.lostthaumaturgy:pressurized_conduit.title=Pressurized Conduit
-research.lostthaumaturgy:pressurized_conduit.desc=You wanted to trigger some redstone while your machines create suction. Pressurized Conduit is your attempt to do it.
+research.lostthaumaturgy:pressurized_conduit.desc=You wanted to trigger some redstone when your machines create suction. Pressurized Conduit are your attempt to do it.
 
 research.lostthaumaturgy:thaumium_vis_pump.title=Thaumium Vis Pump
-research.lostthaumaturgy:thaumium_vis_pump.desc=Thaumium Vis Pump is a good attempt to upgrade your Vis Pump. It transports vis over greater distances, up to 50 blocks!
+research.lostthaumaturgy:thaumium_vis_pump.desc=The Thaumium Vis Pump is a good attempt to upgrade your Vis Pump. It transports vis over greater distances, up to 50 blocks!
 
 research.lostthaumaturgy:thaumium_bellows.title=Thaumium Bellows
-research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows are good to upgrade some of your machines. Thaumium Reinforced Bellows improves the suction up to 25, from 10.
+research.lostthaumaturgy:thaumium_bellows.desc=Arcane Bellows are useful for upgrading some of your machines. Thaumium Reinforced Bellows improve the suction up to 25, from 10.
 
 research.lostthaumaturgy:singularity.title=Arcane Singularity
-research.lostthaumaturgy:singularity.desc=Arcane Singularity is a mysterious object that is so dense to actually move entities to itself. Just throw it, but not close to your home!
+research.lostthaumaturgy:singularity.desc=The Arcane Singularity is a mysterious object that is so dense it actually draws entities towards it. Just throw it, but not close to your home!
 
 research.lostthaumaturgy:quicksilver_core.title=Quicksilver Core
-research.lostthaumaturgy:quicksilver_core.desc=Quicksilver Core is an upgrade for some thaumic machines. It improves speed but in most cases increases vis usage.
+research.lostthaumaturgy:quicksilver_core.desc=The Quicksilver Core is an upgrade for some thaumic machines. It improves speed but in most cases also increases vis usage.
 
 research.lostthaumaturgy:wand_reversal.title=Wand of Reversal
 research.lostthaumaturgy:wand_reversal.desc=Dismantling upgrades wasn't as easy as it is with Wand of Reversal. Just use it on thaumic machine to dismantle the upgrade.
 
 research.lostthaumaturgy:concentrated_taint.title=Concentrated Taint
-research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and ways to get it manually you discovered a very dangerous way to obtains the said taint. You have to obtain congealed taint and fill glass bottle with it. You shouldn't make it on normal infuser, however.
+research.lostthaumaturgy:concentrated_taint.desc=While thinking about taint and ways to obtain it you have discovered a very dangerous way to collect it. You have to obtain congealed taint and fill glass bottle with it. You shouldn't make it on normal infuser, however.
 
 research.lostthaumaturgy:potion_purity.title=Potion of Purity
-research.lostthaumaturgy:potion_purity.desc=Studying taint-related nature you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporary get rid of it.
+research.lostthaumaturgy:potion_purity.desc=Studying taint-related behavior you came across a very terrifying fact: taint is really hard to get rid of. But you didn't stop, and invented a new substance packed in a bottle. Getting rid of taint is still a pain, but at least you can temporarily get rid of it.
 
 research.lostthaumaturgy:concentrated_evil.title=Concentrated Evil
-research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturges love taint, but couldn't obtain so-required tainted crystal by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your so-desired crystals even easier!
+research.lostthaumaturgy:concentrated_evil.desc=Crazy thaumaturgists love taint, But unitl now your could not obtain tainted crystals by processing it in crystallizer. Not anymore! You discovered a very good upgrade to solve that and many more problems. Inserting this upgrade into crystallizer will add extra slot to it - for tainted crystals. Now you can get your much-desired crystals even easier!
 
 research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Eldritch Keystone: Tlhutlh
-research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse inert keystone with extract of purest magic. You hope that it is going to work...
+research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=While looting one of the eldritch monoliths you've found, you saw a mystical hole for some sort of key... Discovering properties of eldritch mechanisms you made an inert keystone, but the lock would just reject it. After more studies you've come to a simple solution: infuse the inert keystone with an extract of purest magic. You hope that it is going to work...
 
 research.lostthaumaturgy:void_ingot.title=Void Ingot
-research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with so common thaumium ingot. Void Ingot is a very sturdy metal that can repair itself, but not too fast. The only downside to this metal is that it uses some vis from atmosphere to recover.
+research.lostthaumaturgy:void_ingot.desc=Seed of Darkness sure is a strange object for a seed. It has a strong ability to retain it's form after it has been deformed. You mixed this weird seed with quicksilver and the results were quite amazing: you made a self-repairing substance. The only downside to it is that it evaporates really quickly. You tried your best to mix it with a common thaumium ingot. Void Ingots are very sturdy but can also repair themselves, but not too fast. The only downside to this metal is that it uses some vis from the atmosphere to recover.
 
 research.lostthaumaturgy:totem_dawn.title=Totem of Dawn
-research.lostthaumaturgy:totem_dawn.desc=Nature provides mysterious silverwood trees that keep nearby atmosphere clean. But making it faster and more effective was impossible before. You found a way to purify atmosphere by placing Totem of Dawn.
+research.lostthaumaturgy:totem_dawn.desc=Nature provides mysterious silverwood trees that keep the nearby atmosphere clean. But making it faster and more effective was impossible before. You found a way to purify the atmosphere by placing a Totem of Dawn.
 
 research.lostthaumaturgy:totem_twilight.title=Twilight Totem
-research.lostthaumaturgy:totem_twilight.desc=Destructing order in the atmosphere is easy: spill some taint onto the ground, use vis filters etc. But creating taint without any manual work wasn't an easy job. Until now. You found a way to taintify atmosphere by placing Twilight Totem.
+research.lostthaumaturgy:totem_twilight.desc=Destroying order in the atmosphere is easy: spill some taint onto the ground, use vis filters etc. But creating taint without any manual work wasn't an easy job. Until now. You found a way to taintify the atmosphere by placing a Twilight Totem.
 
 research.lostthaumaturgy:crucible_eyes.title=Crucible of Eyes
-research.lostthaumaturgy:crucible_eyes.desc=Crucibles are a common way of getting vis. The big downside to them is that they convert nearly half potential vis into taint. You made a simple improvement to a crucible by infusing some redstone and spider eye with a crucible. This crucible converts more potential vis into pure vis, about 60 percent. Also this crucible is a little bit faster and holds a little more vis that it's parent.
+research.lostthaumaturgy:crucible_eyes.desc=Crucibles are a common way of getting vis. The big downside to them is that they convert nearly half potential vis into taint. You made a simple improvement to a crucible by infusing some redstone and spider eye with one. This crucible now converts more potential vis into pure vis, about 60 percent. Also this crucible is a little bit faster and holds a little more vis than it's parent.
 
 research.lostthaumaturgy:crucible_thaumium.title=Thaumium Crucible
-research.lostthaumaturgy:crucible_thaumium.desc=Crucible of Eyes does a good job of getting more vis from objects than regular Crucible. It's time for upgrade! You found a way to improve the efficiency even better, at about 70 percent vis from objects. It's capacity are also improved a bit and it runs three times faster than normal Crucible.
+research.lostthaumaturgy:crucible_thaumium.desc=Crucible of Eyes does a good job of getting more vis from objects than regular Crucible but It's time for upgrade! You found a way to improve the efficiency even more, retaining about 70 percent vis from objects. It's capacity is also improved a bit and it runs three times faster than normal Crucible.
 
 research.lostthaumaturgy:crucible_void.title=Void Crucible
-research.lostthaumaturgy:crucible_void.desc=Thaumium Crucible is good enough but after reading some discoveries of The Eldritch in the Eldritch Repository you tried to upgrade your Thaumium Crucible even better. Void metal easily infused to the crucible on the dark infuser, using some vis and taint. It holds 1000 vis, it's speed is four times better and it's efficiency is 80 percent.
+research.lostthaumaturgy:crucible_void.desc=The Thaumium Crucible is good enough but after reading some discoveries of The Eldritch in the Eldritch Repository you tried to upgrade your Thaumium Crucible even more. Void metal easily infused into the crucible on the dark infuser, using some vis and taint. It holds 1000 vis, it's speed is four times better and it's efficiency is 80 percent.
 
 research.lostthaumaturgy:conduit_silverwood.title=Silverwood Vis Conduit
-research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are main way to transport Vis and/or Taint, but sometimes they might not be enough. For example, if you need to transport vis over great distances you might need a better speed for it. It seems like you found a good way to improve vis conduits. Infusing a vis conduit with enchanted silverwood is going to do it.
+research.lostthaumaturgy:conduit_silverwood.desc=Vis Conduits are the main way to transport Vis and/or Taint, but sometimes that might not be enough. For example, if you need to transport vis over great distances you might need a faster speed for it. It seems like you found a good way to improve vis conduits. Infusing a vis conduit with enchanted silverwood is going to do it.
 
 research.lostthaumaturgy:elemental_pickaxe.title=Pickaxe of the Core
-research.lostthaumaturgy:elemental_pickaxe.desc=Thaumium Pickaxe is tough as iron and has a good potential for enchanting, but mining rare stuff with it isn't that easy. By attaching some fiery crystals and upgrading handle using enchanted wood you made Pickaxe of the Core. It can find you some great treasures, just use it in the cave.
+research.lostthaumaturgy:elemental_pickaxe.desc=The Thaumium Pickaxe is as tough as iron and has a good potential for enchanting, but mining rare stuff with it isn't that easy. By attaching some fiery crystals and upgrading the handle using enchanted wood you made The Pickaxe of the Core. It can find you some great treasures, just use it in a cave.
 
 research.lostthaumaturgy:elemental_axe.title=Axe of the Stream
 research.lostthaumaturgy:elemental_axe.desc=Chopping down tall trees in this world is a hassle with no gravity. But luckily you found a interesting tool that uses magical streams to chop the highest points of the tree. You called this tool the Axe of the Stream
@@ -312,22 +312,22 @@ research.lostthaumaturgy:elemental_shovel.title=Shovel of Renewal
 research.lostthaumaturgy:elemental_shovel.desc=Digging big areas is a problem with regular shovels. Your researches lead you to something: Shovel of Renewal. While it digs some materials it also can act like bone meal and it cleans taint better than any other tool.
 
 research.lostthaumaturgy:elemental_sword.title=Sword of the Zephyr
-research.lostthaumaturgy:elemental_sword.desc=Your will to fly has come true! Sword of the Zephyr is a magical sword that pushes you when you use it. It also has special ability to target up to five enemies when you attack anybody. While the sword it's in your hand it also nulifies fall damage.
+research.lostthaumaturgy:elemental_sword.desc=Your dream to fly has come true! Sword of the Zephyr is a magical sword that pushes you when you use it. It also has a special ability to target up to five enemies when you attack one of them. While the sword is in your hand it also nulifies fall damage.
 
 research.lostthaumaturgy:vis_purifier.title=Vis Purifier
-research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes cause an explosion to unprepared tanks. You were previously using Vis Filters to "clean" your tanks, but taintify your atmosphere. You made something similar to vis filters - Vis Purifier. It destroys taint completely given some time.
+research.lostthaumaturgy:vis_purifier.desc=Taint is useless and can sometimes cause an explosion to unprepared tanks. You were previously using Vis Filters to "clean" your tanks, but it taintified your atmosphere. You made something similar to vis filters - Vis Purifiers. It destroys taint completely given some time.
 
 research.lostthaumaturgy:crystallizer.title=Crystallizer
-research.lostthaumaturgy:crystallizer.desc=Depleted crystals are not really useful and it's better not to make anything with them. You found a good way to get your crystals back! Crystallizer infuses any crystal including depleted with any primal essence.
+research.lostthaumaturgy:crystallizer.desc=Depleted crystals are not all that useful and it's better not to make anything with them. You found a good way to get your crystals back! The Crystallizer infuses any crystals, including depleted ones, with any primal essence.
 
 research.lostthaumaturgy:advanced_vis_valve.title=Advanced Vis Valve
-research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at blocking vis to go through, but they aren't flexible enough. You invented Advanced Vis Valve - more usable version of the valve. It has 3 modes: off, vis-only and taint-only.
+research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at stopping vis going through, but they aren't flexible enough. You have invented Advanced Vis Valve - A more usable version of the valve. It has 3 modes: off, vis-only and taint-only.
 
 research.lostthaumaturgy:repairer.title=Thaumic Restorer
-research.lostthaumaturgy:repairer.desc=Every tool breaks eventually... Your knowledge allow you to channel vis to reconstuct your tools/weapons. The Thaumic Restorer repairs your weapons, tools, armor and power items using liquid vis, which makes it one of the most essential pieces of thaumic machinery.
+research.lostthaumaturgy:repairer.desc=Every tool breaks eventually... Your knowledge has allowed you to channel vis to reconstuct your tools/weapons. The Thaumic Restorer repairs your weapons, tools, armor and power items using liquid vis, Making it one of the most essential pieces of thaumic machinery.
 
 research.lostthaumaturgy:primordial_crystal.title=Primordial Crystal
-research.lostthaumaturgy:primordial_crystal.desc=You found a really strange energy... It looks like a pulsating energy, while your machines emit radiation. It does seem like it forged the universe without anything else... You found a way to absorb this energy and fill a few crystals with it.
+research.lostthaumaturgy:primordial_crystal.desc=You found a really strange energy... It looks like a pulsating energy, while your machines emit radiation. It does seem like it forged in the universe without anything else... You found a way to absorb this energy and fill a few crystals with it.
 
 
 
