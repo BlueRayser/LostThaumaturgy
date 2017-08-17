@@ -1,7 +1,6 @@
 package com.pengu.lostthaumaturgy.api;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,20 +8,11 @@ import java.util.Set;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import com.pengu.hammercore.common.match.item.ItemContainer;
-import com.pengu.hammercore.common.match.item.ItemMatchParams;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.api.event.CalculateCrucibleValueByRecipeEvent;
 import com.pengu.lostthaumaturgy.api.event.ReloadRegisteredCrucibleRecipesEvent;
 import com.pengu.lostthaumaturgy.api.match.IMatcher;
 import com.pengu.lostthaumaturgy.api.match.MatcherItemStack;
@@ -136,54 +126,59 @@ public class RecipesCrucible
 		if(value < 0)
 			value = 0;
 		
-//		for(IRecipe r : CraftingManager.getInstance().getRecipeList())
-//			if(!r.getRecipeOutput().isEmpty() && ItemContainer.create(stack).matches(r.getRecipeOutput(), new ItemMatchParams().setUseNBT(true).setUseDamage(true)))
-//			{
-//				List<ItemStack> inputs = new ArrayList<>();
-//				
-//				if(r instanceof ShapedRecipes)
-//					inputs.addAll(Arrays.asList(((ShapedRecipes) r).recipeItems));
-//				if(r instanceof ShapelessRecipes)
-//					inputs.addAll(((ShapelessRecipes) r).recipeItems);
-//				
-//				if(r instanceof ShapedOreRecipe)
-//				{
-//					Object[] data = ((ShapedOreRecipe) r).getInput();
-//					for(Object o : data)
-//					{
-//						if(o instanceof ItemStack)
-//							inputs.add((ItemStack) o);
-//						if(o instanceof NonNullList && ((NonNullList<ItemStack>) o).size() > 0)
-//							inputs.add(((NonNullList<ItemStack>) o).get(0));
-//					}
-//				}
-//				
-//				if(r instanceof ShapelessOreRecipe)
-//				{
-//					NonNullList<Object> data = ((ShapelessOreRecipe) r).getInput();
-//					for(Object o : data)
-//					{
-//						if(o instanceof ItemStack)
-//							inputs.add((ItemStack) o);
-//						if(o instanceof NonNullList && ((NonNullList<ItemStack>) o).size() > 0)
-//							inputs.add(((NonNullList<ItemStack>) o).get(0));
-//					}
-//				}
-//				
-//				float val = 0;
-//				
-//				for(ItemStack st : inputs)
-//					val += getOrGenerateValue(st, contained);
-//				
-//				if(val == 0)
-//					continue;
-//				
-//				boolean canceled = MinecraftForge.EVENT_BUS.post(new CalculateCrucibleValueByRecipeEvent(stack, val, r));
-//				if(canceled)
-//					continue;
-//				
-//				value = Math.max(value, val);
-//			}
+		// for(IRecipe r : CraftingManager.getInstance().getRecipeList())
+		// if(!r.getRecipeOutput().isEmpty() &&
+		// ItemContainer.create(stack).matches(r.getRecipeOutput(), new
+		// ItemMatchParams().setUseNBT(true).setUseDamage(true)))
+		// {
+		// List<ItemStack> inputs = new ArrayList<>();
+		//
+		// if(r instanceof ShapedRecipes)
+		// inputs.addAll(Arrays.asList(((ShapedRecipes) r).recipeItems));
+		// if(r instanceof ShapelessRecipes)
+		// inputs.addAll(((ShapelessRecipes) r).recipeItems);
+		//
+		// if(r instanceof ShapedOreRecipe)
+		// {
+		// Object[] data = ((ShapedOreRecipe) r).getInput();
+		// for(Object o : data)
+		// {
+		// if(o instanceof ItemStack)
+		// inputs.add((ItemStack) o);
+		// if(o instanceof NonNullList && ((NonNullList<ItemStack>) o).size() >
+		// 0)
+		// inputs.add(((NonNullList<ItemStack>) o).get(0));
+		// }
+		// }
+		//
+		// if(r instanceof ShapelessOreRecipe)
+		// {
+		// NonNullList<Object> data = ((ShapelessOreRecipe) r).getInput();
+		// for(Object o : data)
+		// {
+		// if(o instanceof ItemStack)
+		// inputs.add((ItemStack) o);
+		// if(o instanceof NonNullList && ((NonNullList<ItemStack>) o).size() >
+		// 0)
+		// inputs.add(((NonNullList<ItemStack>) o).get(0));
+		// }
+		// }
+		//
+		// float val = 0;
+		//
+		// for(ItemStack st : inputs)
+		// val += getOrGenerateValue(st, contained);
+		//
+		// if(val == 0)
+		// continue;
+		//
+		// boolean canceled = MinecraftForge.EVENT_BUS.post(new
+		// CalculateCrucibleValueByRecipeEvent(stack, val, r));
+		// if(canceled)
+		// continue;
+		//
+		// value = Math.max(value, val);
+		// }
 		
 		return value;
 	}

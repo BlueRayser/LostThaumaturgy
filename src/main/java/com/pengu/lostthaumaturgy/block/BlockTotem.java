@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 import com.pengu.hammercore.net.HCNetwork;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class BlockTotem extends Block

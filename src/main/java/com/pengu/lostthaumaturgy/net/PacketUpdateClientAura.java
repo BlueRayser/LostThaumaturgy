@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 
 public class PacketUpdateClientAura implements IPacket, IPacketListener<PacketUpdateClientAura, IPacket>
 {

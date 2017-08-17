@@ -132,10 +132,10 @@ public class DarkInfuserRecipeCategory implements IRecipeCategory<DarkInfuserRec
 		
 		start += stacks.length;
 	}
-
+	
 	@Override
-    public String getModName()
-    {
-	    return LTInfo.MOD_NAME;
-    }
+	public String getModName()
+	{
+		return LTInfo.MOD_NAME;
+	}
 }

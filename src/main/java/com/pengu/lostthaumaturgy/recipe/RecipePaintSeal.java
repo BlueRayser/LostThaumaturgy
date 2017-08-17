@@ -29,7 +29,7 @@ public class RecipePaintSeal extends IForgeRegistryEntry.Impl<IRecipe> implement
 	@Override
 	public boolean isHidden()
 	{
-	    return true;
+		return true;
 	}
 	
 	/**

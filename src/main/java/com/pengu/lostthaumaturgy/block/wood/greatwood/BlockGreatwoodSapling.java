@@ -19,10 +19,10 @@ import com.pengu.hammercore.math.MathHelper;
 import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.block.BlockPlant;
-import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
+import com.pengu.lostthaumaturgy.client.ClientAtmosphereChunk;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.worldgen.features.FeatureGreatwood;
 
 public class BlockGreatwoodSapling extends BlockPlant
@@ -64,7 +64,7 @@ public class BlockGreatwoodSapling extends BlockPlant
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		LTConfigs.updateAura();
-		AtmosphereChunk aura = ClientSIAuraChunk.getClientChunk();
+		AtmosphereChunk aura = ClientAtmosphereChunk.getClientChunk();
 		Chunk c = worldIn.getChunkFromBlockCoords(pos);
 		if(aura != null && aura.x == c.x && aura.z == c.z && rand.nextInt(63) == 0)
 		{

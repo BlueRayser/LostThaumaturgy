@@ -7,8 +7,6 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
@@ -32,7 +30,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import com.pengu.hammercore.common.blocks.tesseract.TileTesseract;
 import com.pengu.hammercore.common.utils.WrappedLog;
 import com.pengu.hammercore.init.SimpleRegistration;
-import com.pengu.hammercore.world.WorldGenRegistry;
 import com.pengu.hammercore.world.gen.WorldRetroGen;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
@@ -40,9 +37,6 @@ import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.creative.CreativeTabLT;
 import com.pengu.lostthaumaturgy.creative.CreativeTabResearches;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
-import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
-import com.pengu.lostthaumaturgy.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.EntitiesLT;
 import com.pengu.lostthaumaturgy.init.FuelHandlerLT;
@@ -177,11 +171,11 @@ public class LostThaumaturgy
 		ProgressBar bar = ProgressManager.push("Registering mob spawns", 3);
 		
 		bar.step("Smart Zombie");
-//		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 1);
+		// makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 1);
 		bar.step("Thaum Slime");
-//		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 1);
+		// makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 1);
 		bar.step("Wisp");
-//		makeSpawn(EntityZombie.class, EntityWisp.class, 1, 1, 1);
+		// makeSpawn(EntityZombie.class, EntityWisp.class, 1, 1, 1);
 		
 		ProgressManager.pop(bar);
 	}

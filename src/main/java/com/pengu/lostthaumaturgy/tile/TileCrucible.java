@@ -24,8 +24,8 @@ import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IThaumSlimeDrainable;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 

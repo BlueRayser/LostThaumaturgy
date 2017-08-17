@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.entity;
 
-import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.block.BlockLiquid;
@@ -38,8 +37,8 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;

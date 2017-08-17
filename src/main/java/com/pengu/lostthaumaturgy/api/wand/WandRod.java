@@ -16,8 +16,8 @@ import com.pengu.hammercore.math.MathHelper;
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.tile.IMalfunctionable;
 import com.pengu.hammercore.tile.TileSyncable;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
@@ -75,17 +75,20 @@ public class WandRod
 			boolean flag1 = false;
 			boolean flag = false;
 			
+			float ratio = 5;
+			float speed = .2F;
+			
 			float vis = ItemWand.getVis(wand.getItem());
 			float taint = ItemWand.getTaint(wand.getItem());
 			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(wand.getEntityWorld(), wand.getPosition());
 			if(vis > taint && si.taint > 0 && taint < ItemWand.getMaxTaint(wand.getItem()))
 			{
-				si.taint -= Math.ceil(ItemWand.addTaint(wand.getItem(), .1F) * 10);
+				si.taint -= Math.ceil(ItemWand.addTaint(wand.getItem(), speed) * ratio);
 				flag = true;
 				flag1 = true;
 			} else if(si.vis > 0 && vis < ItemWand.getMaxVis(wand.getItem()))
 			{
-				si.vis -= Math.ceil(ItemWand.addVis(wand.getItem(), .1F) * 10);
+				si.vis -= Math.ceil(ItemWand.addVis(wand.getItem(), speed) * ratio);
 				flag = true;
 			}
 			

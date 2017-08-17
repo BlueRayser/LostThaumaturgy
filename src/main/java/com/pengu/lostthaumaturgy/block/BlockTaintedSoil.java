@@ -31,8 +31,8 @@ import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent.GetDrops;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
@@ -109,7 +109,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		}
 		
 		AtmosphereChunk a = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
-		if(!AuraTicker.shouldBeTainted(a) || random.nextInt(75) == 0)
+		if(!a.isTainted() || random.nextInt(75) == 0)
 		{
 			cleanSoil(worldIn, pos);
 			for(EnumFacing f : EnumFacing.VALUES)
@@ -123,7 +123,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 			}
 		}
 		
-		int c = AuraTicker.shouldBeTainted(a) ? 2 : 5;
+		int c = a.isTainted() ? 2 : 5;
 		if(random.nextInt(c) == 0)
 			for(EnumFacing f : EnumFacing.VALUES)
 			{

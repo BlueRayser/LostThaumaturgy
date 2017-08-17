@@ -24,7 +24,7 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 	@Override
 	public ITextComponent getDisplayName()
 	{
-	    return new TextComponentTranslation(getLocation().getBlock().getUnlocalizedName() + ".name");
+		return new TextComponentTranslation(getLocation().getBlock().getUnlocalizedName() + ".name");
 	}
 	
 	public boolean getExactPureVis(float amount)

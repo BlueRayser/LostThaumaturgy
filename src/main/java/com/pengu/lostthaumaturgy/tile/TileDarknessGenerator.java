@@ -1,7 +1,5 @@
 package com.pengu.lostthaumaturgy.tile;
 
-import java.awt.Color;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

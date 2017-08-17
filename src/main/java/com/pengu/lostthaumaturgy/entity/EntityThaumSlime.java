@@ -25,8 +25,8 @@ import net.minecraft.world.World;
 import com.google.common.base.Predicate;
 import com.pengu.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class EntityThaumSlime extends EntityLiving implements IMob

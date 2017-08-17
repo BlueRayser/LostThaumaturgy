@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,8 +28,8 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_EntitySingularity_doSuckage;
 
 public class EntitySingularity extends EntityThrowable
@@ -238,9 +239,11 @@ public class EntitySingularity extends EntityThrowable
 			IBlockState state = world.getBlockState(pos);
 			
 			if(state.getBlock().getBlockHardness(state, world, pos) < 100 && state.getBlock().getBlockHardness(state, world, pos) != -1)
-				// pb.m[id].a(this.k, lastx, lasty, lastz, this.k.e(lastx,
-				// lasty, lastz), 0.9f, 0);
+			{
+				SoundType type = state.getBlock().getSoundType(state, world, pos, this);
+				world.playSound(jj, kk, ll, type.getBreakSound(), SoundCategory.BLOCKS, type.getVolume(), type.getPitch(), true);
 				world.setBlockState(pos, Blocks.AIR.getDefaultState());
+			}
 		}
 		
 		int xm = (int) Math.floor((double) (posX - (double) auraSize - 1.0));

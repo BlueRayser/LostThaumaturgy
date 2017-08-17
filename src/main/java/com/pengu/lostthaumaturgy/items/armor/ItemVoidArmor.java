@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 
 public class ItemVoidArmor extends ItemArmor

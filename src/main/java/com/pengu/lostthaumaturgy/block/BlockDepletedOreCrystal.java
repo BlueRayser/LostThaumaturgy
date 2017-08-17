@@ -14,8 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 

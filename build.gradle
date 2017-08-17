@@ -25,9 +25,9 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = "${config.mod_version}"
+version = "${config.minecraft_version}-${config.mod_version}"
 group = "com.pengu.lostthaumaturgy"
-archivesBaseName = "LostThaumaturgy-${config.minecraft_version}"
+archivesBaseName = "LostThaumaturgy"
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
@@ -101,7 +101,7 @@ curseforge {
 		changelogType = 'html'
 		changelog = ""
 		releaseType = "${config.release_type}"
-		addGameVersion "1.12.1"
+		addGameVersion "1.12"
 		mainArtifact(jar) {
 		  displayName = "[${config.minecraft_version}] Lost Thaumaturgy - ${config.mod_version}"
 		}

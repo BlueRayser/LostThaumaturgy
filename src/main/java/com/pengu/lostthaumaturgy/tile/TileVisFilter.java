@@ -7,8 +7,8 @@ import net.minecraft.util.EnumFacing.Axis;
 
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;

@@ -443,7 +443,7 @@ public class AuraTicker
 			
 			if(world.isBlockLoaded(ChunkUtils.getChunkPos(ac2.x, ac2.z, 8, 127, 8)))
 			{
-				if(shouldBeTainted(ac2))
+				if(ac2.isTainted())
 					taintifyChunk(world, ac2);
 				else
 					purifyChunk(world, ac2);
@@ -479,7 +479,7 @@ public class AuraTicker
 				}
 			}
 			
-			if(shouldBeTainted(ac2))
+			if(ac2.isTainted())
 			{
 				int c2 = 12 + world.rand.nextInt(24);
 				for(int i = 0; i < c2; ++i)
@@ -526,11 +526,6 @@ public class AuraTicker
 				a.radiation += maxShare;
 			}
 		}
-	}
-	
-	public static boolean shouldBeTainted(AtmosphereChunk ac)
-	{
-		return ac.taint > LTConfigs.aura_max / 2;
 	}
 	
 	public static void GenerateAura(World world, Random random, int x, int z)

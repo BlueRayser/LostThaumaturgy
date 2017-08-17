@@ -34,8 +34,8 @@ import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCrystalOre>, ITileEntityProvider

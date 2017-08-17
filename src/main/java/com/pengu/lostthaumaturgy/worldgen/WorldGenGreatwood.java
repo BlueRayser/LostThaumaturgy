@@ -9,8 +9,8 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import com.pengu.hammercore.utils.ChunkUtils;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.worldgen.features.FeatureGreatwood;
 
 public class WorldGenGreatwood implements IWorldGenerator

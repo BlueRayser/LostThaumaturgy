@@ -59,7 +59,7 @@ import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.block.wood.BlockTaintedLeaves;
 import com.pengu.lostthaumaturgy.block.wood.greatwood.BlockGreatwoodLeaves;
 import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
-import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
+import com.pengu.lostthaumaturgy.client.ClientAtmosphereChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
 import com.pengu.lostthaumaturgy.client.fx.FXEmote;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
@@ -178,7 +178,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void updateClientAuraChunk(AtmosphereChunk chunk)
 	{
-		ClientSIAuraChunk.setClientChunk(chunk);
+		ClientAtmosphereChunk.setClientChunk(chunk);
 	}
 	
 	public static void bindPenguSkin()
@@ -446,9 +446,9 @@ public class ClientProxy extends CommonProxy
 			if(goggles != null)
 			{
 				int t = goggles.getRevealType();
-				HudDetector.instance.render(t == 0 || t == 2 || t == 3, t == 1 || t == 2 || t == 3, t == 2 || t == 3, ClientSIAuraChunk.getClientChunk(), true);
+				HudDetector.instance.render(t == 0 || t == 2 || t == 3, t == 1 || t == 2 || t == 3, t == 2 || t == 3, ClientAtmosphereChunk.getClientChunk(), true);
 			} else if(dvis || dtaint || drad)
-				HudDetector.instance.render(dvis, dtaint, drad, ClientSIAuraChunk.getClientChunk(), false);
+				HudDetector.instance.render(dvis, dtaint, drad, ClientAtmosphereChunk.getClientChunk(), false);
 			
 			ScaledResolution sr = new ScaledResolution(mc);
 			int k = sr.getScaledWidth();

@@ -1,6 +1,5 @@
 package com.pengu.lostthaumaturgy.tile.monolith;
 
-import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -19,8 +18,8 @@ import com.pengu.hammercore.tile.IMalfunctionable;
 import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class TileMonolith extends TileSyncableTickable

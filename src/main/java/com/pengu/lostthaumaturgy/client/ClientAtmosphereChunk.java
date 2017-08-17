@@ -2,13 +2,13 @@ package com.pengu.lostthaumaturgy.client;
 
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
-public class ClientSIAuraChunk
+public class ClientAtmosphereChunk
 {
 	private static AtmosphereChunk client_chunk;
 	
 	public static void setClientChunk(AtmosphereChunk client_chunk)
 	{
-		ClientSIAuraChunk.client_chunk = client_chunk;
+		ClientAtmosphereChunk.client_chunk = client_chunk;
 	}
 	
 	public static AtmosphereChunk getClientChunk()

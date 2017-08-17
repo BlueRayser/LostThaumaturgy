@@ -14,8 +14,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class BlockTaintedPlant extends BlockPlant implements ITaintedBlock
