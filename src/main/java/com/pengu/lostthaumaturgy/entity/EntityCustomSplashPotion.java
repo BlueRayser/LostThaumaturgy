@@ -10,10 +10,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.math.MathHelper;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
 
@@ -77,7 +77,7 @@ public class EntityCustomSplashPotion extends EntityThrowable
 				z = pos.getZ();
 			}
 			
-			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
 			
 			if(type == 0)
 			{

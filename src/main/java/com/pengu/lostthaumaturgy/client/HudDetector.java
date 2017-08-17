@@ -19,12 +19,12 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
 public class HudDetector extends Gui
 {
@@ -42,7 +42,7 @@ public class HudDetector extends Gui
 	public DecimalFormat radFormat = new DecimalFormat("#0.000");
 	private static final List<String> tooltip = new ArrayList<>();
 	
-	public void render(boolean vis, boolean taint, boolean radiation, SIAuraChunk aura, boolean isGoggles)
+	public void render(boolean vis, boolean taint, boolean radiation, AtmosphereChunk aura, boolean isGoggles)
 	{
 		LTConfigs.updateAura();
 		

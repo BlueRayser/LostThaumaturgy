@@ -3,7 +3,7 @@ package com.pengu.lostthaumaturgy.intr.jei.fuser;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-import com.mrdimka.hammercore.common.InterItemStack;
+import com.pengu.hammercore.common.InterItemStack;
 import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
 

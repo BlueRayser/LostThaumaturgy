@@ -5,9 +5,9 @@ import java.util.Random;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.net.utils.NetPropertyBool;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
+import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 

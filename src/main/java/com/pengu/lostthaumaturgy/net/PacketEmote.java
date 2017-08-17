@@ -3,8 +3,8 @@ package com.pengu.lostthaumaturgy.net;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import com.mrdimka.hammercore.net.packetAPI.IPacket;
-import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
+import com.pengu.hammercore.net.packetAPI.IPacket;
+import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.emote.EmoteData;
 

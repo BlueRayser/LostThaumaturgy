@@ -75,4 +75,10 @@ public class FuserRecipeCategory implements IRecipeCategory<FuserRecipeWrapper>
 		items.init(9, false, 120, 16);
 		items.set(9, wrap.recipe.getJEIOutput());
 	}
+
+	@Override
+    public String getModName()
+    {
+	    return LTInfo.MOD_NAME;
+    }
 }

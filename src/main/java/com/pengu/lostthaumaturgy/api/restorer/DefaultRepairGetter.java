@@ -20,7 +20,16 @@ public class DefaultRepairGetter implements ICustomRepairable
 		if(stack.getItem() instanceof ItemTool)
 		{
 			ItemTool tool = (ItemTool) stack.getItem();
-			ToolMaterial mat = tool.getToolMaterial();
+			ToolMaterial mat = ToolMaterial.WOOD;
+			
+			try
+			{
+				mat = ToolMaterial.valueOf(tool.getToolMaterialName());
+			} catch(Throwable err)
+			{
+				err.printStackTrace();
+			}
+			
 			if(mat == ToolMaterial.WOOD)
 				return .5F;
 			if(mat == ToolMaterial.STONE)

@@ -1,0 +1,8 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "ccc", "ccc", "ccc" ],
+    "key": {
+		"c": { "ore": "crystalDepleted", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:crystal_ore_depleted" }
+}

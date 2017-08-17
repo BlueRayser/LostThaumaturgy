@@ -25,11 +25,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXGreenFlame;

@@ -6,9 +6,9 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
-import com.mrdimka.hammercore.bookAPI.BookCategory;
-import com.mrdimka.hammercore.bookAPI.BookEntry;
-import com.mrdimka.hammercore.bookAPI.BookPage;
+import com.pengu.hammercore.bookAPI.BookCategory;
+import com.pengu.hammercore.bookAPI.BookEntry;
+import com.pengu.hammercore.bookAPI.BookPage;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 import com.pengu.lostthaumaturgy.custom.research.client.ClientResearchData;
 import com.pengu.lostthaumaturgy.custom.research.client.IPage;

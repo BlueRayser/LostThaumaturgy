@@ -16,7 +16,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.api.mhb.BlockTraceable;
+import com.pengu.hammercore.api.mhb.BlockTraceable;
 import com.pengu.lostthaumaturgy.client.fx.FXTextureAtlasSpriteDigging;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 

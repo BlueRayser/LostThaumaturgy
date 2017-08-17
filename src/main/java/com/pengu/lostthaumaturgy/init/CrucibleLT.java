@@ -7,10 +7,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.mrdimka.hammercore.annotations.MCFBus;
-import com.mrdimka.hammercore.common.utils.IOUtils;
-import com.mrdimka.hammercore.json.JSONObject;
-import com.mrdimka.hammercore.json.JSONTokener;
+import com.pengu.hammercore.annotations.MCFBus;
+import com.pengu.hammercore.common.utils.IOUtils;
+import com.pengu.hammercore.json.JSONObject;
+import com.pengu.hammercore.json.JSONTokener;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;

@@ -3,9 +3,9 @@ package com.pengu.lostthaumaturgy.client.fx;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.client.particle.api.SimpleParticle;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 
 public class FXGuideWisp extends SimpleParticle
 {
@@ -108,7 +108,7 @@ public class FXGuideWisp extends SimpleParticle
 		GlStateManager.alphaFunc(516, 0.003921569F);
 		
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer buf = tessellator.getBuffer();
+		BufferBuilder buf = tessellator.getBuffer();
 		
 		Entity renderentity = Minecraft.getMinecraft().getRenderViewEntity();
 		int visibleDistance = 100;

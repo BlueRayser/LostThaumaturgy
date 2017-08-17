@@ -10,11 +10,11 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.renderer.shader.ShaderProgram;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.render.shader.ShaderProgram;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelTinyPlayer;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
@@ -28,7 +28,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 	public ModelTinyPlayer player = new ModelTinyPlayer();
 	
 	@Override
-	public void renderBase(TilePenguCobbleGen tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage)
+	public void renderBase(TilePenguCobbleGen tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
 		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
 		RenderBlocks rb = sbr.rb;
@@ -86,7 +86,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 			GL11.glTranslated(x + .25, y + 1 / 8D, z + .075);
 			GL11.glScaled(.5, .5 * ((tile.maxConsume - tile.toConsume) / tile.maxConsume), .5);
 			
-			float alpha = rb.renderAlpha;
+			alpha = rb.renderAlpha;
 			sbr.begin();
 			float progress = 1 - tile.cooldownTimer / (float) tile.cooldownTimerMax;
 			if(tile.timer != -1)
@@ -140,7 +140,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TilePenguCobbleGen te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TilePenguCobbleGen te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		
 	}

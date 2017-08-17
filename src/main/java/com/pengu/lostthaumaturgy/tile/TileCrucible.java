@@ -14,9 +14,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
@@ -25,7 +25,7 @@ import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IThaumSlimeDrainable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
@@ -120,7 +120,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 			
 			if(overflowSplit >= 1.0f)
 			{
-				SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = (AtmosphereChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null && taintedVis >= 1)
 				{
 					taintedVis -= 1;
@@ -193,7 +193,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 						// 0.05f));
 						// }
 						
-						SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+						AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 						if(ac != null)
 						{
 							ac.badVibes = (short) ((float) ac.badVibes + currentItemCookValue / 10F);

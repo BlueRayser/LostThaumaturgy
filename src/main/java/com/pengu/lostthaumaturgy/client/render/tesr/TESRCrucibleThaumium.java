@@ -13,10 +13,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.DestroyStageTexture;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -27,7 +27,7 @@ public class TESRCrucibleThaumium extends TESR<TileCrucibleThaumium>
 	public static final TESRCrucibleThaumium INSTANCE = new TESRCrucibleThaumium();
 	
 	@Override
-	public void renderTileEntityAt(TileCrucibleThaumium te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileCrucibleThaumium te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
@@ -162,7 +162,7 @@ public class TESRCrucibleThaumium extends TESR<TileCrucibleThaumium>
 	@Override
 	public void renderItem(ItemStack item)
 	{
-		renderTileEntityAt(null, 0, 0, 0, 0, null);
+		renderTileEntityAt(null, 0, 0, 0, 0, null, 1);
 		super.renderItem(item);
 	}
 	

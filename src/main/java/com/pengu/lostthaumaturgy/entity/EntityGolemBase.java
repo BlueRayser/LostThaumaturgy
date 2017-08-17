@@ -21,7 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 import com.pengu.lostthaumaturgy.custom.golem.GolemCoreAbstract;
 import com.pengu.lostthaumaturgy.emote.EmoteManager;
@@ -50,7 +50,7 @@ public class EntityGolemBase extends EntityGolem
 	private static final DataParameter<String> OWNER = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
 	private static final DataParameter<Integer> COLOR = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.VARINT);
-	private static final DataParameter<ItemStack> CARRIED = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.OPTIONAL_ITEM_STACK);
+	private static final DataParameter<ItemStack> CARRIED = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.ITEM_STACK);
 	private static final DataParameter<String> CORE = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
 	private static final DataParameter<String> TEXTURE = EntityDataManager.createKey(EntityGolemBase.class, DataSerializers.STRING);
 	

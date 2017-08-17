@@ -23,12 +23,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_EntitySingularity_doSuckage;
 
 public class EntitySingularity extends EntityThrowable
@@ -311,7 +311,7 @@ public class EntitySingularity extends EntityThrowable
 	
 	public void doAfterExplosion()
 	{
-		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
 		
 		if(ac != null)
 		{

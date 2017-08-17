@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.hammercore.net.utils.NetPropertyItemStack;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;

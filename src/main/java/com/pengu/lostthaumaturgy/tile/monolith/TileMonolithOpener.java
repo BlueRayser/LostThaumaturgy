@@ -13,16 +13,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.utils.ListUtils;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.event.FillVoidChestEvent;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.net.wisp.PacketMonolithWisp;
 import com.pengu.lostthaumaturgy.tile.TileVoidChest;
@@ -63,7 +63,7 @@ public class TileMonolithOpener extends TileSyncableTickable
 		
 		if(opened)
 		{
-			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 			if(si != null)
 			{
 				si.badVibes += 105;

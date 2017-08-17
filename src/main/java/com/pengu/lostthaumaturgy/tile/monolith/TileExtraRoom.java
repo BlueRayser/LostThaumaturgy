@@ -3,8 +3,8 @@ package com.pengu.lostthaumaturgy.tile.monolith;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
+import com.pengu.hammercore.tile.TileSyncable;
 
 public class TileExtraRoom extends TileSyncable
 {

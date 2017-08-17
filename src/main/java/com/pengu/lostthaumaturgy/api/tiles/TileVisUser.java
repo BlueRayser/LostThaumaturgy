@@ -3,10 +3,12 @@ package com.pengu.lostthaumaturgy.api.tiles;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.capabilities.Capability;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 
 public class TileVisUser extends TileSyncableTickable implements IConnection
 {
@@ -17,6 +19,12 @@ public class TileVisUser extends TileSyncableTickable implements IConnection
 	public void tick()
 	{
 		setSuction(0);
+	}
+	
+	@Override
+	public ITextComponent getDisplayName()
+	{
+	    return new TextComponentTranslation(getLocation().getBlock().getUnlocalizedName() + ".name");
 	}
 	
 	public boolean getExactPureVis(float amount)

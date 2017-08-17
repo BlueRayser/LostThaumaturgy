@@ -3,7 +3,7 @@ package com.pengu.lostthaumaturgy.client.cfg;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
-import com.mrdimka.hammercore.cfg.gui.HCConfigGui;
+import com.pengu.hammercore.cfg.gui.HCConfigGui;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.gui.GuiInteractive;

@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.mrdimka.hammercore.HammerCore;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
@@ -89,25 +89,6 @@ public class ShapelessFuserRecipe implements IFuserRecipe
 				ret += output;
 				throw new RuntimeException(ret);
 			}
-		}
-	}
-	
-	ShapelessFuserRecipe(ShapelessRecipes recipe, Map<ItemStack, String> replacements)
-	{
-		output = recipe.getRecipeOutput();
-		
-		for(ItemStack ingredient : recipe.recipeItems)
-		{
-			Object finalObj = ingredient;
-			for(Entry<ItemStack, String> replace : replacements.entrySet())
-			{
-				if(OreDictionary.itemMatches(replace.getKey(), ingredient, false))
-				{
-					finalObj = OreDictionary.getOres(replace.getValue());
-					break;
-				}
-			}
-			input.add(finalObj);
 		}
 	}
 	

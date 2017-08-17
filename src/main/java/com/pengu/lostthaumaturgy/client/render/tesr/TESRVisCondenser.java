@@ -2,8 +2,8 @@ package com.pengu.lostthaumaturgy.client.render.tesr;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -11,11 +11,11 @@ import net.minecraft.util.math.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.OpnodeLoader;
 import com.pengu.hammercore.client.model.simple.OpnodeRender;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
@@ -45,7 +45,7 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 		GL11.glBlendFunc(770, 1);
 		bindTexture(portal2);
 		tessellator.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		VertexBuffer vb = tessellator.getBuffer();
+		BufferBuilder vb = tessellator.getBuffer();
 		// tessellator.a(1.0, 0.5, 1.0, 1.0);
 		vb.pos(0, 0, .6).tex(0.0, 1.0).endVertex();
 		vb.pos(0.6, 0.0, 0.6).tex(1.0, 1.0).endVertex();
@@ -63,7 +63,7 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	}
 	
 	@Override
-	public void renderBase(TileVisCondenser tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage)
+	public void renderBase(TileVisCondenser tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
 		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/condenser");
 		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
@@ -74,7 +74,7 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileVisCondenser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileVisCondenser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		this.bob = MathHelper.sin(te.ticksExisted / 10F) * .05F + .05F;
 		

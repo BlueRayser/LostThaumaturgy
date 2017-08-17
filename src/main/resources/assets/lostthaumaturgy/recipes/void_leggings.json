@@ -1,0 +1,8 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "ccc", "c c", "c c" ],
+    "key": {
+		"c": { "ore": "ingotVoid", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:void_leggings" }
+}

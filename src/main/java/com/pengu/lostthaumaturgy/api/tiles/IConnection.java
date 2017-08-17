@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-import com.mrdimka.hammercore.api.handlers.ITileHandler;
+import com.pengu.hammercore.api.handlers.ITileHandler;
 
 public interface IConnection extends ITileHandler
 {

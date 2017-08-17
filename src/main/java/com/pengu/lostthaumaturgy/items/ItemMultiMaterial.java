@@ -9,11 +9,11 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.mrdimka.hammercore.common.items.MultiVariantItem;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.hammercore.utils.IRegisterListener;
 import com.pengu.lostthaumaturgy.LTInfo;
@@ -22,14 +22,25 @@ import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
-public class ItemMultiMaterial extends MultiVariantItem implements IRegisterListener
+public class ItemMultiMaterial extends Item implements IRegisterListener
 {
 	private static ItemMultiMaterial instance;
 	
+	private final String[] names = gen();
+	
 	public ItemMultiMaterial()
 	{
-		super("multi_material", gen());
+		setUnlocalizedName("multi_material");
+		addPropertyOverride(new ResourceLocation("type"), (stack, world, entity) -> stack.getItemDamage());
+		setHasSubtypes(true);
+		setMaxDamage(names.length);
 		instance = this;
+	}
+	
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return "item." + (stack.getItemDamage() < 0 || stack.getItemDamage() >= names.length ? "unnamed" : names[stack.getItemDamage()]);
 	}
 	
 	public static String[] gen()
@@ -87,15 +98,16 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 	}
 	
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> l)
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> l)
 	{
-		for(int i = 0; i < this.names.length; ++i)
-			if(EnumMultiMaterialType.values()[i].tab == tab || tab == LostThaumaturgy.tab)
-			{
-				l.add(new ItemStack(item, 1, i));
-				if(i == EnumMultiMaterialType.ALUMENTUM.ordinal())
-					l.add(new ItemStack(BlocksLT.NITOR));
-			}
+		if(isInCreativeTab(tab))
+			for(int i = 0; i < this.names.length; ++i)
+				if(EnumMultiMaterialType.values()[i].tab == tab || tab == LostThaumaturgy.tab)
+				{
+					l.add(new ItemStack(this, 1, i));
+					if(i == EnumMultiMaterialType.ALUMENTUM.ordinal())
+						l.add(new ItemStack(BlocksLT.NITOR));
+				}
 	}
 	
 	@Override
@@ -121,72 +133,92 @@ public class ItemMultiMaterial extends MultiVariantItem implements IRegisterList
 		return EnumMultiMaterialType.values()[dmg % EnumMultiMaterialType.values().length].hasEffect;
 	}
 	
+	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isRepairable()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isDamageable()
+	{
+		return false;
+	}
+	
 	public enum EnumMultiMaterialType implements IGetter<ItemStack>
 	{
-		VAPOROUS_CRYSTAL("crystalVis"), //
-		AQUEOUS_CRYSTAL("crystalVis"), //
-		EARTHEN_CRYSTAL("crystalVis"), //
-		FIERY_CRYSTAL("crystalVis"), //
-		VIS_CRYSTAL("crystalVis"), //
-		TAINTED_CRYSTAL("crystalVis"), //
-		DEPLETED_CRYSTAL("crystalDepleted"), //
-		ENCHANTED_WOOD, //
-		ENCHANTED_SILVERWOOD, //
-		CINDERPEARL_POD, //
-		ZOMBIE_BRAINS, //
-		QUICKSILVER("gemQuicksilver"), //
-		THAUMIUM_INGOT("ingotThaumium"), //
-		ENCHANTED_FABRIC, //
-		ANIMATED_PISTON, //
-		ALUMENTUM, //
-		ANCIENT_POTTERY, //
-		TARNISHED_CHALICE, //
-		WORN_STATUETTE, //
-		ANCIENT_WEAPON, //
-		ANCIENT_SEAL, //
-		ANCIENT_STONE_TABLET, //
-		CRACKED_WISP_SHELL, //
-		DISTORTED_SKULL, //
-		INHUMAN_SKULL, //
-		DARKENED_CRYSTAL_EYE, //
-		KNOTTED_SPIKE, //
-		TOME_FORBIDDEN_KNOWLEDGE, //
-		TAINT_SPORES, //
-		TAINTED_ORGAN, //
-		TAINTED_FRUIT, //
-		TAINTED_BRANCH, //
-		INTACT_TAINTSPORE_POD, //
-		WRITHING_TAINT_TENDRILS, //
-		SHARD_STRANGE_METAL, //
-		ELDRITCH_MECHANISM, //
-		OPALESCENT_EYE, //
-		DISTURBING_MIRROR, //
-		GLOWING_ELDRITCH_DEVICE, //
-		ELDRITCH_REPOSITORY, //
-		DARKNESS_SEED, //
-		VOID_INGOT("ingotVoid"), //
-		TOPAZ("gemLTTopaz"), //
-		EXTRACT_PUREST_MAGIC, //
-		EXTRACT_FOULEST_TAINT, //
-		EXTRACT_WARMEST_FIRE, //
-		EXTRACT_DEEPEST_EARTH, //
-		EXTRACT_LIGHTEST_AIR, //
-		EXTRACT_COOLEST_WATER, //
-		SOUL_FRAGMENT, //
-		CONGEALED_TAINT, //
-		REZULI_CRYSTAL("gemRezuli"), //
-		ELDRITCH_KEYSTONE_INERT, //
-		ELDRITCH_KEYSTONE_TLHUTLH, //
-		TRAVELING_TRUNK, //
-		INERT_CARPET, //
-		MITHRILLIUM_INGOT("ingotMithrillium"), //
-		ADAMINITE_INGOT("ingotAdaminite"), //
-		CAP_IRON, //
-		CAP_GOLD, //
-		CAP_THAUMIUM, //
-		CAP_VOID, //
-		ROD_GREATWOOD, //
-		ROD_SILVERWOOD, TALLOW;
+		VAPOROUS_CRYSTAL("crystalVis", "crystalVaporous"), // 0
+		AQUEOUS_CRYSTAL("crystalVis", "crystalAqueous"), // 1
+		EARTHEN_CRYSTAL("crystalVis", "crystalEarthen"), // 2
+		FIERY_CRYSTAL("crystalVis", "crystalFiery"), // 3
+		VIS_CRYSTAL("crystalVis", "crystalEnergy"), // 4
+		TAINTED_CRYSTAL("crystalVis", "crystalTainted"), // 5
+		DEPLETED_CRYSTAL("crystalDepleted"), // 6
+		ENCHANTED_WOOD, // 7
+		ENCHANTED_SILVERWOOD, // 8
+		CINDERPEARL_POD, // 9
+		ZOMBIE_BRAINS, // 10
+		QUICKSILVER("gemQuicksilver"), // 11
+		THAUMIUM_INGOT("ingotThaumium"), // 12
+		ENCHANTED_FABRIC, // 13
+		ANIMATED_PISTON, // 14
+		ALUMENTUM, // 15
+		ANCIENT_POTTERY, // 16
+		TARNISHED_CHALICE, // 17
+		WORN_STATUETTE, // 18
+		ANCIENT_WEAPON, // 19
+		ANCIENT_SEAL, // 20
+		ANCIENT_STONE_TABLET, // 21
+		CRACKED_WISP_SHELL, // 22
+		DISTORTED_SKULL, // 23
+		INHUMAN_SKULL, // 24
+		DARKENED_CRYSTAL_EYE, // 25
+		KNOTTED_SPIKE, // 26
+		TOME_FORBIDDEN_KNOWLEDGE, // 27
+		TAINT_SPORES, // 28
+		TAINTED_ORGAN, // 29
+		TAINTED_FRUIT, // 30
+		TAINTED_BRANCH, // 31
+		INTACT_TAINTSPORE_POD, // 32
+		WRITHING_TAINT_TENDRILS, // 33
+		SHARD_STRANGE_METAL, // 34
+		ELDRITCH_MECHANISM, // 35
+		OPALESCENT_EYE, // 36
+		DISTURBING_MIRROR, // 37
+		GLOWING_ELDRITCH_DEVICE, // 38
+		ELDRITCH_REPOSITORY, // 39
+		DARKNESS_SEED, // 40
+		VOID_INGOT("ingotVoid"), // 41
+		TOPAZ("gemLTTopaz"), // 42
+		EXTRACT_PUREST_MAGIC, // 43
+		EXTRACT_FOULEST_TAINT, // 44
+		EXTRACT_WARMEST_FIRE, // 45
+		EXTRACT_DEEPEST_EARTH, // 46
+		EXTRACT_LIGHTEST_AIR, // 47
+		EXTRACT_COOLEST_WATER, // 48
+		SOUL_FRAGMENT, // 49
+		CONGEALED_TAINT, // 50
+		REZULI_CRYSTAL("gemRezuli"), // 51
+		ELDRITCH_KEYSTONE_INERT, // 52
+		ELDRITCH_KEYSTONE_TLHUTLH, // 53
+		TRAVELING_TRUNK, // 54
+		INERT_CARPET, // 55
+		MITHRILLIUM_INGOT("ingotMithrillium"), // 56
+		ADAMINITE_INGOT("ingotAdaminite"), // 57
+		CAP_IRON, // 58
+		CAP_GOLD, // 59
+		CAP_THAUMIUM, // 60
+		CAP_VOID, // 61
+		ROD_GREATWOOD, // 62
+		ROD_SILVERWOOD, // 63
+		TALLOW // 64
+		;
 		
 		private final String oredict[];
 		public final String mod;

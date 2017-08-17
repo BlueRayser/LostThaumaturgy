@@ -6,7 +6,7 @@ import net.minecraft.util.text.translation.I18n;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.mrdimka.hammercore.vec.Cuboid6;
+import com.pengu.hammercore.vec.Cuboid6;
 
 public class TilePressurizedConduit extends TileConduit
 {

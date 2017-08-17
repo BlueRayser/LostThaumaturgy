@@ -14,9 +14,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.common.utils.ArrayEntry;
-import com.mrdimka.hammercore.world.gen.IWorldGenFeature;
+import com.pengu.hammercore.common.utils.ArrayEntry;
 import com.pengu.hammercore.utils.ListUtils;
+import com.pengu.hammercore.world.gen.IWorldGenFeature;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 

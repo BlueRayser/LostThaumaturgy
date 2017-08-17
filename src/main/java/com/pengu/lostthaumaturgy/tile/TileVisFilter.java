@@ -5,10 +5,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
@@ -87,7 +87,7 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 			
 			if(visStore > 0 && visStore > 40 - stack)
 			{
-				SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = (AtmosphereChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 				{
 					visStore = 0;
@@ -123,7 +123,7 @@ public class TileVisFilter extends TileConduit implements IUpgradable
 			
 			if(taintedStore >= 40 + stack * 4)
 			{
-				SIAuraChunk ac = (SIAuraChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = (AtmosphereChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 				{
 					taintedStore = 0;

@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.api.seal;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -27,6 +28,16 @@ public class SealInstance
 	public boolean onSealActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		return false;
+	}
+	
+	public void onEntityCollidedWithSeal(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{
+		
+	}
+	
+	public String getUnlocalizedDescription()
+	{
+		return "lt_seal.unknown";
 	}
 	
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)

@@ -3,5 +3,10 @@
 	"textures": {
 		"layer0": "lostthaumaturgy:items/research/discovery",
 		"layer1": "lostthaumaturgy:items/research/discovery_overlay"
-	}
+	},
+    "overrides": [
+        { "predicate": { "type": 0.0 }, "model": "lostthaumaturgy:item/fragment" },
+		{ "predicate": { "type": 1.0 }, "model": "lostthaumaturgy:item/theory" },
+		{ "predicate": { "type": 2.0 }, "model": "lostthaumaturgy:item/discovery" }
+    ]
 }

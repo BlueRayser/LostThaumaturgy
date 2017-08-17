@@ -1,0 +1,8 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "###", "# #" ],
+    "key": {
+		"#": { "ore": "nuggetIron", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:multi_material", "data": 58 }
+}

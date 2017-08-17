@@ -11,11 +11,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
@@ -41,7 +41,7 @@ public class BlockDepletedOreCrystal extends BlockOreCrystal
 			return;
 		
 		TileCrystalOre ore = WorldUtil.cast(world.getTileEntity(pos), TileCrystalOre.class);
-		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		short q2 = ore.crystals.get();
 		

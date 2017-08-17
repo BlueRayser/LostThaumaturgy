@@ -8,10 +8,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelGear;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -24,7 +24,7 @@ public class TESRRepairer extends TESR<TileRepairer>
 	private ModelGear model = new ModelGear();
 	
 	@Override
-	public void renderBase(TileRepairer tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage)
+	public void renderBase(TileRepairer tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
 		int count = tile != null ? tile.ticksExisted : 0;
 		int angle = 0;

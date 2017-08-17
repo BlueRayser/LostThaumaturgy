@@ -6,8 +6,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.common.EnumRotation;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.common.EnumRotation;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
@@ -16,7 +16,8 @@ public class TESRSeal extends TESR<TileSeal>
 {
 	public static final TESRSeal INSTANCE = new TESRSeal();
 	
-	private void translateFromOrientation(double x, double y, double z, EnumFacing facing)
+	@Override
+	public void translateFromOrientation(double x, double y, double z, EnumFacing facing)
 	{
 		int orientation = facing.ordinal();
 		
@@ -47,16 +48,15 @@ public class TESRSeal extends TESR<TileSeal>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileSeal te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileSeal te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		if(te.getWorld().getBlockState(te.getPos()).getBlock() != BlocksLT.SEAL)
+		if(te.getLocation().getBlock() != BlocksLT.SEAL)
 			return;
 		
 		GL11.glPushMatrix();
-		translateFromOrientation(x, y, z, te.getWorld().getBlockState(te.getPos()).getValue(EnumRotation.EFACING));
+		translateFromOrientation(x, y, z, te.getLocation().getState().getValue(EnumRotation.EFACING));
 		GL11.glRotated(90, 1, 0, 0);
 		GL11.glTranslated(0, -2 / 16D, 0);
-		GL11.glScaled(.9, .9, .9);
 		mc.getRenderItem().renderItem(te.stack.get(), TransformType.GROUND);
 		for(int i = 0; i < 3; ++i)
 		{

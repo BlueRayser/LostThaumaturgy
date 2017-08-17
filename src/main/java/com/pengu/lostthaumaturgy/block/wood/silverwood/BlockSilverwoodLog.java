@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
 public class BlockSilverwoodLog extends BlockLog
 {
@@ -45,7 +45,7 @@ public class BlockSilverwoodLog extends BlockLog
 	{
 		if(!worldIn.isRemote)
 		{
-			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 			if(ac != null)
 			{
 				if(ac.badVibes > 0)

@@ -10,10 +10,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.common.util.BlockSnapshot;
 
-import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.net.utils.NetPropertyAbstract;
 import com.pengu.hammercore.net.utils.NetPropertyBool;
 import com.pengu.hammercore.net.utils.NetPropertyNBT;
+import com.pengu.hammercore.tile.TileSyncable;
 
 public class TileTaintedSoil extends TileSyncable
 {

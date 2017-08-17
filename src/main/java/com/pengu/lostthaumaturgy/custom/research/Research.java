@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.mrdimka.hammercore.HammerCore;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal.Getter;
 import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
 

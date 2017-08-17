@@ -4,13 +4,14 @@ import java.io.IOException;
 
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
 import com.pengu.lostthaumaturgy.inventory.ContainerTravelingTrunk;
@@ -30,6 +31,14 @@ public class GuiTravelingTrunk extends GuiContainer
 	public final ResourceLocation slots = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_trunk_slots.png");
 	
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
+	}
+	
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		fontRenderer.drawString("Trunk", 8, 6, 1052688);
@@ -47,7 +56,7 @@ public class GuiTravelingTrunk extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(trunk.getUpgrades()[1]));
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 		
 		if(trunk.getUpgrades()[0] >= 0)
@@ -57,7 +66,7 @@ public class GuiTravelingTrunk extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(trunk.getUpgrades()[0]));
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 	}
 	

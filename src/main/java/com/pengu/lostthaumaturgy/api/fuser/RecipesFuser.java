@@ -3,9 +3,12 @@ package com.pengu.lostthaumaturgy.api.fuser;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.collect.Lists;
@@ -52,6 +55,11 @@ public class RecipesFuser
 		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_THAUMIUM.stack(2), "nnn", "n n", 'n', "ingotThaumium").setVisUsage(5, 0));
 		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.CAP_VOID.stack(1), "nnn", "n n", 'n', "ingotVoid").setVisUsage(15.5F, 0));
 		addRecipe(new ShapedFuserRecipe(BlocksLT.REPAIRER, "wiw", "wpw", "wiw", 'w', EnumMultiMaterialType.ENCHANTED_WOOD, 'i', "ingotIron", 'p', EnumMultiMaterialType.ANIMATED_PISTON).setVisUsage(20F, 0).setResearch(ResearchesLT.REPAIRER));
+		addRecipe(new ShapedFuserRecipe(BlocksLT.DUPLICATOR, "gpg", "w w", "gpg", 'g', "ingotGold", 'p', EnumMultiMaterialType.ANIMATED_PISTON.stack(), 'w', EnumMultiMaterialType.ENCHANTED_WOOD.stack()).setVisUsage(40, 1));
+		addRecipe(new ShapedFuserRecipe(BlocksLT.INFUSER_DARK, "oso", "iti", "ooo", 'o', "obsidian", 's', Blocks.STONE_SLAB, 'i', "ingotIron", 't', EnumMultiMaterialType.TAINTED_CRYSTAL.stack()).setVisUsage(10, 16));
+		addRecipe(new ShapelessFuserRecipe(new ItemStack(BlocksLT.ELDRITCH_BLOCK, 4), EnumMultiMaterialType.DARKNESS_SEED.stack(), "stone", "stone", "stone", "stone").setVisUsage(4, 4));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.ELDRITCH_KEYSTONE_INERT.stack(), " g ", "g g", " g ", 'g', EnumMultiMaterialType.ELDRITCH_MECHANISM.stack()).setVisUsage(0, 8));
+		addRecipe(new ShapedFuserRecipe(EnumMultiMaterialType.ELDRITCH_MECHANISM.stack(), " g ", "g g", " g ", 'g', "ingotVoid").setVisUsage(0, 6.66F));
 		addRecipe(new TheoryToDiscovery());
 		
 		LostThaumaturgy.LOG.info("Registered " + recipes.size() + " Default Recipes.");
@@ -122,6 +130,8 @@ public class RecipesFuser
 	 */
 	public void addRecipe(IFuserRecipe recipe)
 	{
+		if(Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION))
+			throw new RuntimeException("Unable to register recipes after init phase! Please move your registration code to init!");
 		recipes.add(recipe);
 	}
 	

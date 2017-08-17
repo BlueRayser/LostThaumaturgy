@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.RayTraceResult;
 
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.lostthaumaturgy.client.gui.GuiVoidChest;
 import com.pengu.lostthaumaturgy.inventory.ContainerVoidChest;
 

@@ -12,18 +12,18 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.capabilities.CapabilityEJ;
-import com.mrdimka.hammercore.energy.IPowerStorage;
-import com.mrdimka.hammercore.gui.container.ContainerEmpty;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.capabilities.CapabilityEJ;
+import com.pengu.hammercore.energy.IPowerStorage;
+import com.pengu.hammercore.gui.container.ContainerEmpty;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiGenerator;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.zap.PacketSpawnGeneratorZap;
@@ -48,7 +48,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 	{
 		super.tick();
 		
-		SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		reversed = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.INFINITE_SADNESS));
 		
@@ -161,7 +161,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 		if(genloop == 0 && emitPower)
 		{
 			HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":elecloop", pos, .1F, 1F, SoundCategory.BLOCKS);
-			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 			if(ac != null)
 				ac.badVibes++;
 		}

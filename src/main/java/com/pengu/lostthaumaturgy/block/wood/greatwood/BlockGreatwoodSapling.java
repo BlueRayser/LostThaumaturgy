@@ -14,15 +14,15 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.color.Color;
+import com.pengu.hammercore.math.MathHelper;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.block.BlockPlant;
 import com.pengu.lostthaumaturgy.client.ClientSIAuraChunk;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.worldgen.features.FeatureGreatwood;
 
 public class BlockGreatwoodSapling extends BlockPlant
@@ -50,7 +50,7 @@ public class BlockGreatwoodSapling extends BlockPlant
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		worldIn.setBlockToAir(pos);
-		SIAuraChunk aura = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+		AtmosphereChunk aura = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 		if(rand.nextInt(9) == 0 && aura != null && aura.vis >= LTConfigs.aura_max / 3 && !worldIn.isRemote && new FeatureGreatwood().generate(worldIn, rand, pos))
 			aura.vis -= Math.sqrt(LTConfigs.aura_max / 3);
 		else
@@ -64,7 +64,7 @@ public class BlockGreatwoodSapling extends BlockPlant
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		LTConfigs.updateAura();
-		SIAuraChunk aura = ClientSIAuraChunk.getClientChunk();
+		AtmosphereChunk aura = ClientSIAuraChunk.getClientChunk();
 		Chunk c = worldIn.getChunkFromBlockCoords(pos);
 		if(aura != null && aura.x == c.x && aura.z == c.z && rand.nextInt(63) == 0)
 		{

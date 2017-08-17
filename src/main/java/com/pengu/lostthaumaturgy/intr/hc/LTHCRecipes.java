@@ -1,8 +1,8 @@
 package com.pengu.lostthaumaturgy.intr.hc;
 
-import com.mrdimka.hammercore.recipeAPI.IRecipePlugin;
-import com.mrdimka.hammercore.recipeAPI.RecipePlugin;
-import com.mrdimka.hammercore.recipeAPI.registry.IRecipeTypeRegistry;
+import com.pengu.hammercore.recipeAPI.IRecipePlugin;
+import com.pengu.hammercore.recipeAPI.IRecipeTypeRegistry;
+import com.pengu.hammercore.recipeAPI.RecipePlugin;
 import com.pengu.lostthaumaturgy.intr.hc.rts.RecipeTypeCrucible;
 
 @RecipePlugin

@@ -20,8 +20,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.api.event.LyingItemPickedUpEvent;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
@@ -90,7 +90,7 @@ public class BlockLyingItem extends BlockRendered implements ITileEntityProvider
 	}
 	
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 	}
 	

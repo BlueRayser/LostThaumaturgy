@@ -1,0 +1,9 @@
+{
+    "parent": "item/generated",
+    "overrides": [
+        { "predicate": { "type": 0.0 }, "model": "lostthaumaturgy:item/vis_detector" },
+		{ "predicate": { "type": 1.0 }, "model": "lostthaumaturgy:item/taint_detector" },
+		{ "predicate": { "type": 2.0 }, "model": "lostthaumaturgy:item/radiation_detector" },
+		{ "predicate": { "type": 3.0 }, "model": "lostthaumaturgy:item/thaumometer" }
+    ]
+}

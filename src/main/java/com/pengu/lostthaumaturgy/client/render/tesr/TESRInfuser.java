@@ -11,12 +11,12 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.client.DestroyStageTexture;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -44,7 +44,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();

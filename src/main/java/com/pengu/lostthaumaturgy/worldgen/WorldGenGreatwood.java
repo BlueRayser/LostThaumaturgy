@@ -4,13 +4,13 @@ import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import com.pengu.hammercore.utils.ChunkUtils;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.worldgen.features.FeatureGreatwood;
 
 public class WorldGenGreatwood implements IWorldGenerator
@@ -40,7 +40,7 @@ public class WorldGenGreatwood implements IWorldGenerator
 		if(random.nextInt(250) < 40)
 			for(int i = 0; i < random.nextInt(2); i++)
 			{
-				SIAuraChunk si = AuraTicker.getAuraChunkFromChunkCoords(world, chunkX, chunkZ);
+				AtmosphereChunk si = AuraTicker.getAuraChunkFromChunkCoords(world, chunkX, chunkZ);
 				
 				BlockPos pos = world.getHeight(ChunkUtils.getChunkPos(chunkX, chunkZ, random.nextInt(16), 255, random.nextInt(16)));
 				

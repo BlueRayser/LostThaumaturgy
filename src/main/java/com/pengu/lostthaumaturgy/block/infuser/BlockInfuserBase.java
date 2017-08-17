@@ -12,8 +12,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.items.ItemWand;

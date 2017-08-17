@@ -15,10 +15,10 @@ import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraftforge.common.ForgeHooks;
 
 import com.google.common.base.Predicate;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.raytracer.RayTracer;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.math.MathHelper;
+import com.pengu.hammercore.raytracer.RayTracer;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.client.gui.GuiStudiumTable;
 import com.pengu.lostthaumaturgy.custom.research.Research;

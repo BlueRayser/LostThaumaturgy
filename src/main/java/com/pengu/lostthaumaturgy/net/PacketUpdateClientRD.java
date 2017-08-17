@@ -8,8 +8,8 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.mrdimka.hammercore.net.packetAPI.IPacket;
-import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
+import com.pengu.hammercore.net.packetAPI.IPacket;
+import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.custom.research.client.ClientResearchData;
 
 public class PacketUpdateClientRD implements IPacket, IPacketListener<PacketUpdateClientRD, IPacket>

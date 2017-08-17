@@ -1,6 +1,6 @@
 package com.pengu.lostthaumaturgy.custom.thaumonomicon;
 
-import com.mrdimka.hammercore.bookAPI.BookCategory;
+import com.pengu.hammercore.bookAPI.BookCategory;
 
 public class CategoryThaumonomicon extends BookCategory
 {

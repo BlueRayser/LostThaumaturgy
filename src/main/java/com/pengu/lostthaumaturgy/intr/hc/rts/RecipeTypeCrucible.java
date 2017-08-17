@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.mrdimka.hammercore.recipeAPI.types.IRecipeType;
+import com.pengu.hammercore.recipeAPI.IRecipeType;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.match.MatcherItemStack;
@@ -43,7 +43,7 @@ public class RecipeTypeCrucible implements IRecipeType<CrucibleRecipe>
 	}
 	
 	@Override
-	public CrucibleRecipe createRecipe(NBTTagCompound json) throws com.mrdimka.hammercore.recipeAPI.types.IRecipeType.RecipeParseException
+	public CrucibleRecipe createRecipe(NBTTagCompound json) throws RecipeParseException
 	{
 		CrucibleRecipe r = new CrucibleRecipe();
 		r.object = json.getString("Item");

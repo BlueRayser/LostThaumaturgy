@@ -1,0 +1,8 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "ccc", "c c" ],
+    "key": {
+		"c": { "ore": "ingotThaumium", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:thaumium_helmet" }
+}

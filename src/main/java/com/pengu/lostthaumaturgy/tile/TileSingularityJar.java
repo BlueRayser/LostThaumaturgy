@@ -6,9 +6,9 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.math.MathHelper;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 
 public class TileSingularityJar extends TileSyncableTickable
 {

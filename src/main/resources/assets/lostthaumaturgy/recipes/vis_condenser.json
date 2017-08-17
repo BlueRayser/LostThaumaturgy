@@ -1,0 +1,11 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ " v ", "ici", "www" ],
+    "key": {
+		"v": { "ore": "crystalEnergy", "type": "forge:ore_dict" },
+		"i": { "ore": "ingotIron", "type": "forge:ore_dict" },
+		"c": { "item": "lostthaumaturgy:conduit" },
+		"w": { "item": "lostthaumaturgy:multi_material", "data": 7 }
+    },
+    "result": { "item": "lostthaumaturgy:vis_condenser" }
+}

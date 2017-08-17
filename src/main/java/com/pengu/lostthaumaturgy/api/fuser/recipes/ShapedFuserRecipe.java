@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 
@@ -13,13 +11,12 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.mrdimka.hammercore.HammerCore;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
@@ -154,34 +151,6 @@ public class ShapedFuserRecipe implements IFuserRecipe
 		for(char chr : shape.toCharArray())
 		{
 			input[x++] = itemMap.get(chr);
-		}
-	}
-	
-	ShapedFuserRecipe(ShapedRecipes recipe, Map<ItemStack, String> replacements)
-	{
-		output = recipe.getRecipeOutput();
-		width = recipe.recipeWidth;
-		height = recipe.recipeHeight;
-		
-		input = new Object[recipe.recipeItems.length];
-		
-		for(int i = 0; i < input.length; i++)
-		{
-			ItemStack ingredient = recipe.recipeItems[i];
-			
-			if(ingredient.isEmpty())
-				continue;
-			
-			input[i] = recipe.recipeItems[i];
-			
-			for(Entry<ItemStack, String> replace : replacements.entrySet())
-			{
-				if(OreDictionary.itemMatches(replace.getKey(), ingredient, true))
-				{
-					input[i] = OreDictionary.getOres(replace.getValue());
-					break;
-				}
-			}
 		}
 	}
 	

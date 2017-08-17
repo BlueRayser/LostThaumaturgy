@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelBellows;
@@ -19,7 +19,7 @@ public class TESRBellows extends TESR<TileBellows>
 	private ResourceLocation curr_texture = bellow_texture;
 	
 	@Override
-	public void renderTileEntityAt(TileBellows te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileBellows te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		curr_texture = bellow_texture;
 		renderEntityAt(te, x, y, z, te.scale);

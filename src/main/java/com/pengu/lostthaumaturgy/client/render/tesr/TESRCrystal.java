@@ -10,9 +10,9 @@ import net.minecraftforge.common.util.Constants.NBT;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
@@ -31,7 +31,7 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 		ItemBlock ib = WorldUtil.cast(item.getItem(), ItemBlock.class);
 		if(ib == null)
 			return;
-		BlockOreCrystal block = WorldUtil.cast(ib.block, BlockOreCrystal.class);
+		BlockOreCrystal block = WorldUtil.cast(ib.getBlock(), BlockOreCrystal.class);
 		if(block == null)
 			return;
 		
@@ -60,7 +60,7 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileCrystalOre te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileCrystalOre te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		BlockOreCrystal block = WorldUtil.cast(te.getWorld().getBlockState(te.getPos()).getBlock(), BlockOreCrystal.class);
 		if(block == null)

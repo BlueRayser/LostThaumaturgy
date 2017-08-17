@@ -41,15 +41,15 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.bookAPI.BookCategory;
-import com.mrdimka.hammercore.bookAPI.BookEntry;
-import com.mrdimka.hammercore.client.utils.GLImageManager;
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.bookAPI.BookCategory;
+import com.pengu.hammercore.bookAPI.BookEntry;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.client.utils.GLImageManager;
 import com.pengu.hammercore.color.Color;
+import com.pengu.hammercore.math.MathHelper;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.items.IGoggles;
@@ -113,7 +113,7 @@ import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRCrystalReceptac
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolith;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithExtraRoom;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithOpener;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.custom.research.ResearchRegisterEvent;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
@@ -176,7 +176,7 @@ public class ClientProxy extends CommonProxy
 	private static int penguSkinId;
 	
 	@Override
-	public void updateClientAuraChunk(SIAuraChunk chunk)
+	public void updateClientAuraChunk(AtmosphereChunk chunk)
 	{
 		ClientSIAuraChunk.setClientChunk(chunk);
 	}
@@ -217,7 +217,7 @@ public class ClientProxy extends CommonProxy
 			int r = (color >> 16) & 0xFF;
 			int g = (color >> 8) & 0xFF;
 			int b = (color >> 0) & 0xFF;
-			int max = 8;
+			int max = 16;
 			return Color.packARGB((int) MathHelper.clip(r + rand.nextInt(max) - rand.nextInt(max), 0, 255), (int) MathHelper.clip(g + rand.nextInt(max) - rand.nextInt(max), 0, 255), (int) MathHelper.clip(rand.nextInt(max) - rand.nextInt(max), 0, 255), 255);
 		}, BlocksLT.GREATWOOD_LEAVES);
 		

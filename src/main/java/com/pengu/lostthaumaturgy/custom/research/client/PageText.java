@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.client.utils.TextDivider;
+import com.pengu.hammercore.client.utils.TextDivider;
 
 public class PageText implements IPage
 {

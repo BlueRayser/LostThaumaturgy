@@ -1,0 +1,11 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "iti", "ici", "sss" ],
+    "key": {
+		"i": { "ore": "ingotIron", "type": "forge:ore_dict" },
+		"c": { "ore": "crystalVis", "type": "forge:ore_dict" },
+		"s": { "ore": "stone", "type": "forge:ore_dict" },
+		"t": { "item": "minecraft:stone_slab", "data": 0 }
+    },
+    "result": { "item": "lostthaumaturgy:infuser" }
+}

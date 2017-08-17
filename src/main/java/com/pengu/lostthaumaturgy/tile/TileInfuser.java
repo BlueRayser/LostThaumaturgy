@@ -17,10 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
@@ -29,7 +29,7 @@ import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuser;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -115,6 +115,8 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 	@Override
 	public void tick()
 	{
+		super.tick();
+		
 		canSpawnParticle = true;
 		
 		boolean flag;
@@ -140,7 +142,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 			this.infuserCookTime += this.sucked;
 			if(sucked > 0)
 			{
-				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.radiation += .0002F * sucked;
 				sync();
 			}
@@ -149,7 +151,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":infuser", pos, 0.2F, 1F, SoundCategory.BLOCKS);
 				this.soundDelay = 62;
 				
-				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 					ac.badVibes++;
 			}
@@ -214,7 +216,7 @@ public class TileInfuser extends TileVisUser implements ISidedInventory, IUpgrad
 		
 		if(this.boostDelay <= 0 || this.boostDelay == 10)
 		{
-			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 			if(ac != null && this.boost < 10 && ac.boost > 0)
 			{
 				++this.boost;

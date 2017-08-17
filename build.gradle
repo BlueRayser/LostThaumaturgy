@@ -7,7 +7,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
@@ -27,7 +27,7 @@ configFile.withReader {
 
 version = "${config.mod_version}"
 group = "com.pengu.lostthaumaturgy"
-archivesBaseName = "LostThaumaturgy_${config.minecraft_version}"
+archivesBaseName = "LostThaumaturgy-${config.minecraft_version}"
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
@@ -37,7 +37,7 @@ compileJava {
 minecraft {
     version = "${config.forge_version}"
     runDir = "run"
-    mappings = "stable_32"
+    mappings = "snapshot_20170707"
     makeObfSourceJar = false
 	replace 'required-after:hammercore', "required-after:hammercore@[${config.hammercore_version},)"
     replace '@VERSION@', "${config.mod_version}"
@@ -51,8 +51,7 @@ repositories {
 }
 
 dependencies {
-	deobfCompile "apengu:HammerCore:1.11.2-1.9.3.9:deobf"
-	deobfCompile "apengu:HammerMicroblocks:1.11.2-2b:deobf"
+	deobfCompile "apengu:HammerCore:1.12-1.9.4.0:deobf"
 }
 
 processResources {
@@ -102,7 +101,7 @@ curseforge {
 		changelogType = 'html'
 		changelog = ""
 		releaseType = "${config.release_type}"
-		addGameVersion "${config.minecraft_version}"
+		addGameVersion "1.12.1"
 		mainArtifact(jar) {
 		  displayName = "[${config.minecraft_version}] Lost Thaumaturgy - ${config.mod_version}"
 		}

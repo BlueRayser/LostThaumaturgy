@@ -6,10 +6,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.client.model.ModelDuplicator;
@@ -23,7 +23,7 @@ public class TESRDuplicator extends TESR<TileDuplicator>
 	public final ResourceLocation texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/duplicator.png");
 	
 	@Override
-	public void renderBase(TileDuplicator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage)
+	public void renderBase(TileDuplicator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
 		float dist = .04372F;
 		

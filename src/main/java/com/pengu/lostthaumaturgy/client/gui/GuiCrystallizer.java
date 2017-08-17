@@ -1,11 +1,12 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerCrystallizer;
@@ -29,6 +30,15 @@ public class GuiCrystallizer extends GuiContainer
 		ySize = 240;
 	}
 	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		renderHoveredToolTip(mouseX, mouseY);
+	}
+	
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		boolean evil = tile.hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.CONCENTRATED_EVIL));
@@ -61,7 +71,7 @@ public class GuiCrystallizer extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
 			itemRender.renderItemAndEffectIntoGUI(stack, guiLeft + x, guiTop + y);
 			if(mouseX >= guiLeft + x && mouseX < guiLeft + x + 16 && mouseY >= guiTop + y && mouseY < guiTop + y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 	}
 }

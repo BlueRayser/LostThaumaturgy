@@ -8,14 +8,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuserDark;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuserDark;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -45,6 +45,7 @@ public class TileInfuserDark extends TileInfuser
 	@Override
 	public void tick()
 	{
+		super.tick();
 		canSpawnParticle = true;
 		if(soundDelay > 0)
 			--soundDelay;
@@ -72,7 +73,7 @@ public class TileInfuserDark extends TileInfuser
 			{
 				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":dark_infuser", pos, .2F, 1F, SoundCategory.BLOCKS);
 				soundDelay = 62;
-				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 					ac.badVibes = (short) (ac.badVibes + 2);
 			}
@@ -103,7 +104,7 @@ public class TileInfuserDark extends TileInfuser
 			}
 			if(sucked > 0)
 			{
-				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.radiation += .0005F * sucked;
 				sync();
 			}

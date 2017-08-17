@@ -17,12 +17,12 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.mrdimka.hammercore.common.utils.ChatUtil;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.tile.ITileDroppable;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.common.utils.ChatUtil;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.net.utils.NetPropertyVec3i;
+import com.pengu.hammercore.tile.ITileDroppable;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;

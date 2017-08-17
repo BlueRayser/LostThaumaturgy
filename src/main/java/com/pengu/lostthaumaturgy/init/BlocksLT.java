@@ -131,7 +131,7 @@ public class BlocksLT
 	
 	public static final Block //
 	        CRYSTAL_ORE_VAPOROUS = new BlockOreCrystal(EnumMultiMaterialType.VAPOROUS_CRYSTAL, "vaporous", true, 0xFFD905), //
-	        CRYSTAL_ORE_AQUEOUS = new BlockOreCrystal(EnumMultiMaterialType.AQUEOUS_CRYSTAL, "aqueus", true, 0x0043FF), //
+	        CRYSTAL_ORE_AQUEOUS = new BlockOreCrystal(EnumMultiMaterialType.AQUEOUS_CRYSTAL, "aqueous", true, 0x0043FF), //
 	        CRYSTAL_ORE_EARTHEN = new BlockOreCrystal(EnumMultiMaterialType.EARTHEN_CRYSTAL, "earthen", true, 0x00FF00), //
 	        CRYSTAL_ORE_FIERY = new BlockOreCrystal(EnumMultiMaterialType.FIERY_CRYSTAL, "fiery", true, 0xFF0000), //
 	        CRYSTAL_ORE_VIS = new BlockOreCrystal(EnumMultiMaterialType.VIS_CRYSTAL, "vis", true, 0xAA00FF), //

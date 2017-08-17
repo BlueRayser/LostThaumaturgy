@@ -9,9 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 import com.google.common.base.Predicate;
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
-import com.mrdimka.hammercore.vec.Cuboid6;
+import com.pengu.hammercore.math.MathHelper;
+import com.pengu.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.vec.Cuboid6;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;

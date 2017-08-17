@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
-import com.mrdimka.hammercore.math.MathHelper;
+import com.pengu.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.math.MathHelper;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
@@ -51,6 +51,14 @@ public class GuiAuxiliumTable extends GuiContainer
 		
 		if(mouseX >= 41 && mouseY >= 31 && mouseX < 41 + 19 && mouseY < 31 + 35)
 			drawHoveringText(Arrays.asList("Vis: " + LostThaumaturgy.standartDecimalFormat.format(table.visConsumed) + "/32.0"), mouseX, mouseY);
+	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
 	}
 	
 	@Override

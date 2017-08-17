@@ -17,7 +17,7 @@ public class TESRLyingItem extends TESR<TileLyingItem>
 	private static final Random rand = new Random();
 	
 	@Override
-	public void renderTileEntityAt(TileLyingItem te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileLyingItem te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		ItemStack stack = te.lying.get();
 		

@@ -8,7 +8,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelPump;
@@ -21,7 +21,7 @@ public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 	protected ResourceLocation pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump.png"), pump_malfunction = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_malfunction.png"), pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_off.png");
 	
 	@Override
-	public void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		if(te.malfunctionTime > 0)
 			bindTexture(pump_malfunction);

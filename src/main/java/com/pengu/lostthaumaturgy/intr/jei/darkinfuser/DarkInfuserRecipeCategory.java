@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
@@ -132,4 +132,10 @@ public class DarkInfuserRecipeCategory implements IRecipeCategory<DarkInfuserRec
 		
 		start += stacks.length;
 	}
+
+	@Override
+    public String getModName()
+    {
+	    return LTInfo.MOD_NAME;
+    }
 }

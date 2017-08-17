@@ -7,9 +7,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.net.packetAPI.IPacket;
-import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
+import com.pengu.hammercore.net.packetAPI.IPacket;
+import com.pengu.hammercore.net.packetAPI.IPacketListener;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.lostthaumaturgy.client.fx.FXBubble;
 
 public class PacketFXBubble implements IPacket, IPacketListener<PacketFXBubble, IPacket>

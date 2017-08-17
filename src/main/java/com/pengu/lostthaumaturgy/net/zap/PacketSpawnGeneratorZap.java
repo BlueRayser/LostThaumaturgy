@@ -9,10 +9,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.net.packetAPI.IPacket;
-import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
-import com.pengu.hammercore.client.particle.def.ParticleZap;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.net.packetAPI.IPacket;
+import com.pengu.hammercore.net.packetAPI.IPacketListener;
 
 public class PacketSpawnGeneratorZap implements IPacket, IPacketListener<PacketSpawnGeneratorZap, IPacket>
 {
@@ -39,8 +38,7 @@ public class PacketSpawnGeneratorZap implements IPacket, IPacketListener<PacketS
 	@SideOnly(Side.CLIENT)
 	public void spawn()
 	{
-		ParticleZap zap = (ParticleZap) HammerCore.particleProxy.spawnZap(Minecraft.getMinecraft().world, start, end, Color.CYAN);
-		zap.setMaxAge(9);
+		HammerCore.particleProxy.spawnSlowZap(Minecraft.getMinecraft().world, start, end, Color.CYAN.getRGB(), 20, .15F);
 	}
 	
 	@Override

@@ -15,9 +15,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.api.IUpdatable;
-import com.mrdimka.hammercore.raytracer.RayTracer;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.api.IUpdatable;
+import com.pengu.hammercore.raytracer.RayTracer;
 import com.pengu.lostthaumaturgy.block.BlockLyingItem;
 import com.pengu.lostthaumaturgy.tile.TileLyingItem;
 

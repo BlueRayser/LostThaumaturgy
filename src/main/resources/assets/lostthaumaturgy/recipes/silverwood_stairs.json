@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "minecraft:wooden_stairs",
+	"pattern": [ "#  ", "## ", "###" ],
+	"key": {
+		"#": { "item": "lostthaumaturgy:silverwood_planks" }
+	},
+	"result": { "item": "lostthaumaturgy:silverwood_stairs", "count": 4 }
+}

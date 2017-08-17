@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.net.packetAPI.IPacket;
-import com.mrdimka.hammercore.net.packetAPI.IPacketListener;
+import com.pengu.hammercore.net.packetAPI.IPacket;
+import com.pengu.hammercore.net.packetAPI.IPacketListener;
 
 public class PacketSyncEntity implements IPacket, IPacketListener<PacketSyncEntity, IPacket>
 {

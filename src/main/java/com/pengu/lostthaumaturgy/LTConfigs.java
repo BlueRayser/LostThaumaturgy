@@ -4,12 +4,12 @@ import java.util.Objects;
 
 import net.minecraftforge.common.config.Configuration;
 
-import com.mrdimka.hammercore.cfg.HCModConfigurations;
-import com.mrdimka.hammercore.cfg.IConfigReloadListener;
-import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyBool;
-import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyFloat;
-import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyInt;
-import com.mrdimka.hammercore.cfg.fields.ModConfigPropertyStringList;
+import com.pengu.hammercore.cfg.HCModConfigurations;
+import com.pengu.hammercore.cfg.IConfigReloadListener;
+import com.pengu.hammercore.cfg.fields.ModConfigPropertyBool;
+import com.pengu.hammercore.cfg.fields.ModConfigPropertyFloat;
+import com.pengu.hammercore.cfg.fields.ModConfigPropertyInt;
+import com.pengu.hammercore.cfg.fields.ModConfigPropertyStringList;
 import com.pengu.hammercore.var.IVariable;
 import com.pengu.hammercore.var.types.VariableString;
 

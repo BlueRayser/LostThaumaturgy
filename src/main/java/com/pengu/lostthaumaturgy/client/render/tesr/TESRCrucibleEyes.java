@@ -13,10 +13,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.DestroyStageTexture;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -27,7 +27,7 @@ public class TESRCrucibleEyes extends TESR<TileCrucibleEyes>
 	public static final TESRCrucibleEyes INSTANCE = new TESRCrucibleEyes();
 	
 	@Override
-	public void renderTileEntityAt(TileCrucibleEyes te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileCrucibleEyes te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
@@ -162,7 +162,7 @@ public class TESRCrucibleEyes extends TESR<TileCrucibleEyes>
 	@Override
 	public void renderItem(ItemStack item)
 	{
-		renderTileEntityAt(null, 0, 0, 0, 0, null);
+		renderTileEntityAt(null, 0, 0, 0, 0, null, 0);
 		super.renderItem(item);
 	}
 	

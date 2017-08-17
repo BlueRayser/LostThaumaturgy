@@ -6,10 +6,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -20,7 +20,7 @@ public class TESRMonolithExtraRoom extends TESR<TileExtraRoom>
 	public static final TESRMonolithExtraRoom INSTANCE = new TESRMonolithExtraRoom();
 	
 	@Override
-	public void renderTileEntityAt(TileExtraRoom te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileExtraRoom te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + .01, y + .01, z + .01);

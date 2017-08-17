@@ -9,9 +9,11 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -24,12 +26,14 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import com.mrdimka.hammercore.common.blocks.tesseract.TileTesseract;
-import com.mrdimka.hammercore.common.utils.WrappedLog;
-import com.mrdimka.hammercore.init.SimpleRegistration;
-import com.mrdimka.hammercore.world.WorldGenRegistry;
+import com.pengu.hammercore.common.blocks.tesseract.TileTesseract;
+import com.pengu.hammercore.common.utils.WrappedLog;
+import com.pengu.hammercore.init.SimpleRegistration;
+import com.pengu.hammercore.world.WorldGenRegistry;
+import com.pengu.hammercore.world.gen.WorldRetroGen;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
@@ -46,10 +50,13 @@ import com.pengu.lostthaumaturgy.init.InfuserLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.RecipesLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
+import com.pengu.lostthaumaturgy.init.SealsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 import com.pengu.lostthaumaturgy.init.WandsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
+import com.pengu.lostthaumaturgy.recipe.RecipePaintSeal;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
 import com.pengu.lostthaumaturgy.worldgen.WorldGenGreatwood;
@@ -81,6 +88,7 @@ public class LostThaumaturgy
 		
 		nahYaEtoDelayou.step("Registering Proxy...");
 		MinecraftForge.EVENT_BUS.register(proxy);
+		MinecraftForge.EVENT_BUS.register(instance);
 		proxy.preInit();
 		
 		nahYaEtoDelayou.step("Registering Vis Capability");
@@ -113,7 +121,7 @@ public class LostThaumaturgy
 	@EventHandler
 	public void init(FMLInitializationEvent evt)
 	{
-		ProgressBar bar = ProgressManager.push("Adding Recipes...", 3);
+		ProgressBar bar = ProgressManager.push("Adding Recipes...", 4);
 		
 		bar.step("Registering Crafting");
 		RecipesLT.registerRecipes();
@@ -125,6 +133,9 @@ public class LostThaumaturgy
 		bar.step("Registering Dark Infuser");
 		InfuserLT.registerDarkInfuser();
 		
+		bar.step("Registering Seals");
+		SealsLT.init();
+		
 		ProgressManager.pop(bar);
 		bar = ProgressManager.push("Adding Contents...", 8);
 		
@@ -132,22 +143,22 @@ public class LostThaumaturgy
 		EntitiesLT.registerEntities();
 		
 		bar.step("Registering Crystal WorldGen");
-		GameRegistry.registerWorldGenerator(new WorldGenCrystals(), 0);
+		WorldRetroGen.addWorldGenerator(new WorldGenCrystals());
 		
 		bar.step("Registering Silverwood WorldGen");
-		GameRegistry.registerWorldGenerator(new WorldGenSilverwood(), 4);
+		WorldRetroGen.addWorldGenerator(new WorldGenSilverwood());
 		
 		bar.step("Registering Greatwood WorldGen");
-		GameRegistry.registerWorldGenerator(new WorldGenGreatwood(), 8);
+		WorldRetroGen.addWorldGenerator(new WorldGenGreatwood());
 		
 		bar.step("Registering Cinderpearl WorldGen");
-		GameRegistry.registerWorldGenerator(new WorldGenCinderpearl(), 6);
+		WorldRetroGen.addWorldGenerator(new WorldGenCinderpearl());
 		
 		bar.step("Registering Underground Artifacts WorldGen");
-		WorldGenRegistry.registerFeature(new WorldGenLostArtifacts());
+		WorldRetroGen.addWorldFeature(new WorldGenLostArtifacts());
 		
 		bar.step("Registering Monolith WorldGen");
-		WorldGenRegistry.registerFeature(new WorldGenMonoliths());
+		WorldRetroGen.addWorldFeature(new WorldGenMonoliths());
 		
 		bar.step("Registering Arcane Crafter Recipes...");
 		RecipesFuser.getInstance();
@@ -166,13 +177,20 @@ public class LostThaumaturgy
 		ProgressBar bar = ProgressManager.push("Registering mob spawns", 3);
 		
 		bar.step("Smart Zombie");
-		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 1);
+//		makeSpawn(EntityZombie.class, EntitySmartZombie.class, 1, 1, 1);
 		bar.step("Thaum Slime");
-		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 1);
+//		makeSpawn(EntitySkeleton.class, EntityThaumSlime.class, 1, 1, 1);
 		bar.step("Wisp");
-		makeSpawn(EntityZombie.class, EntityWisp.class, 1, 1, 1);
+//		makeSpawn(EntityZombie.class, EntityWisp.class, 1, 1, 1);
 		
 		ProgressManager.pop(bar);
+	}
+	
+	@SubscribeEvent
+	public void addSpecialRecipes(RegistryEvent.Register<IRecipe> reg)
+	{
+		reg.getRegistry().register(SimpleRegistration.parseShapedRecipe(ItemWand.makeWand(WandsLT.ROD_WOOD, WandsLT.CAP_IRON, WandsLT.CAP_IRON), "  c", " s ", "c  ", 'c', EnumMultiMaterialType.CAP_IRON.stack(), 's', "stickWood").setRegistryName(LTInfo.MOD_ID, "wand_casting"));
+		reg.getRegistry().register(new RecipePaintSeal());
 	}
 	
 	private void makeSpawn(Class<? extends EntityLiving> search, Class<? extends EntityLiving> add, int minGC, int maxGC, int weight)
@@ -191,6 +209,7 @@ public class LostThaumaturgy
 					contains = true;
 					break;
 				}
+			
 			if(contains)
 				spawns.add(new SpawnListEntry(add, weight, minGC, maxGC));
 		}

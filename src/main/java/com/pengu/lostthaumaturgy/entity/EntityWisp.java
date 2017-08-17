@@ -34,12 +34,12 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -83,7 +83,7 @@ public class EntityWisp extends EntityFlying implements IMob
 	}
 	
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource murder)
 	{
 		return SoundEventsLT.FIZZ.sound;
 	}
@@ -184,7 +184,7 @@ public class EntityWisp extends EntityFlying implements IMob
 			int type = 0;
 			
 			Biome bid = world.getBiome(getPosition());
-			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
 			
 			if(AuraTicker.BIOME_EARTH.contains(bid))
 				type = 3;
@@ -353,7 +353,7 @@ public class EntityWisp extends EntityFlying implements IMob
 						getAttackTarget().addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, byte0 * 40));
 					}
 					
-					HammerCore.particleProxy.spawnZap(world, getPositionVector().addVector(width / 4, height / 4, width / 4), getAttackTarget().getPositionVector(), new Color(rgb));
+					HammerCore.particleProxy.spawnZap(world, getPositionVector().addVector(width / 4, height / 4, width / 4), getAttackTarget().getPositionVector(), rgb);
 					attackCounter = -30 + world.rand.nextInt(30);
 				}
 			} else if(attackCounter > 0)

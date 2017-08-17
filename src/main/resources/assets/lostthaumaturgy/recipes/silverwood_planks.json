@@ -1,0 +1,8 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ "#" ],
+	"key": {
+		"#": { "item": "lostthaumaturgy:silverwood_log", "data": 0 }
+	},
+	"result": { "item": "lostthaumaturgy:silverwood_planks", "count": 4 }
+}

@@ -1,0 +1,9 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "gfg", "fff", "gfg" ],
+    "key": {
+		"g": { "ore": "ingotGold", "type": "forge:ore_dict" },
+		"f": { "item": "lostthaumaturgy:multi_material", "data": 13 }
+    },
+    "result": { "item": "lostthaumaturgy:multi_material", "data": 55 }
+}

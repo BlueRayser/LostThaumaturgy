@@ -6,10 +6,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
@@ -51,12 +51,40 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	@Override
 	public void renderItem(ItemStack item)
 	{
-		drawBlock(0, 0, 0, getBrightnessForRB(null, RenderBlocks.forMod(LTInfo.MOD_ID)));
+		double x = 0, y = 0, z = 0;
+		
+		drawBlock(x, y, z, getBrightnessForRB(null, RenderBlocks.forMod(LTInfo.MOD_ID)));
+		
+		float count = item.hashCode() / 360F;
+		float bob = 0;
+		float angleS = 45;
+		float angleI = 90;
+		
+		angleS += (count % 360);
+		bob = count / 5F * .15F + .15F;
+		
+		bindTexture(crystal);
+		
+		Color.glColourRGB(((BlockOreCrystal) BlocksLT.CRYSTAL_ORE_VIS).getCrystalColor());
+		drawCrystal(x + .5, y + .25, z + .5, angleS, 0, 1 - bob);
+		
+		Color.glColourRGB(((BlockOreCrystal) BlocksLT.CRYSTAL_ORE_VAPOROUS).getCrystalColor());
+		drawCrystal(x + .5, y + .25, z + .5, angleS, 25, 1 - bob);
+		
+		Color.glColourRGB(((BlockOreCrystal) BlocksLT.CRYSTAL_ORE_AQUEOUS).getCrystalColor());
+		drawCrystal(x + .5, y + .25, z + .5, angleS += angleI, 25, 1 - bob);
+		
+		Color.glColourRGB(((BlockOreCrystal) BlocksLT.CRYSTAL_ORE_EARTHEN).getCrystalColor());
+		drawCrystal(x + .5, y + .25, z + .5, angleS += angleI, 25, 1 - bob);
+		
+		Color.glColourRGB(((BlockOreCrystal) BlocksLT.CRYSTAL_ORE_FIERY).getCrystalColor());
+		drawCrystal(x + .5, y + .25, z + .5, angleS += angleI, 25, 1 - bob);
+		
 		super.renderItem(item);
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileCrystallizer te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileCrystallizer te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		drawBlock(x, y, z, getBrightnessForRB(te, RenderBlocks.forMod(LTInfo.MOD_ID)));
 		
@@ -109,7 +137,9 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 		sr.setSidedSprites(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/bottom"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/top"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/side"));
 		sr.setBrightness(bright);
 		sr.setRenderBounds(BlockCrystallizer.CRYSTALLIZER_AABB);
+		sr.rb.renderFromInside = false;
 		sr.drawBlock(x, y, z);
+		sr.setRenderBounds(BlockCrystallizer.CRYSTALLIZER_AABB.shrink(.01));
 		sr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/inner"));
 		sr.enableFaces();
 		sr.disableFace(EnumFacing.UP);

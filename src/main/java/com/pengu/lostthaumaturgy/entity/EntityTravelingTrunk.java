@@ -28,16 +28,16 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.InterItemStack;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.common.utils.ItemInsertionUtil;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.InterItemStack;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.common.utils.ItemInsertionUtil;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerTravelingTrunk;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -266,7 +266,7 @@ public class EntityTravelingTrunk extends EntityAnimal implements IUpgradable
 						showHeartsOrSmokeFX(false);
 						setAttackTarget(null);
 						angerLevel = 0;
-						SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+						AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
 						if(si != null)
 							si.badVibes += 5;
 						break tp;
@@ -332,8 +332,8 @@ public class EntityTravelingTrunk extends EntityAnimal implements IUpgradable
 				jumpMovementFactor = .03F + (hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)) ? .01F : 0);
 				
 				double div = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)) ? .4 : .2;
-				motionX = com.mrdimka.hammercore.math.MathHelper.clip((entityplayer.posX - posX) / 16D, -div, div);
-				motionZ = com.mrdimka.hammercore.math.MathHelper.clip((entityplayer.posZ - posZ) / 16D, -div, div);
+				motionX = com.pengu.hammercore.math.MathHelper.clip((entityplayer.posX - posX) / 16D, -div, div);
+				motionZ = com.pengu.hammercore.math.MathHelper.clip((entityplayer.posZ - posZ) / 16D, -div, div);
 				
 				jump();
 				

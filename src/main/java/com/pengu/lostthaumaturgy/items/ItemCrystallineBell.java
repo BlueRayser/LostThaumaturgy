@@ -13,12 +13,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.api.items.IVisRepairable;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class ItemCrystallineBell extends Item implements IVisRepairable
@@ -72,7 +72,7 @@ public class ItemCrystallineBell extends Item implements IVisRepairable
 			
 			if(ore.crystals.get() == 0)
 			{
-				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+				AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 				
 				if(ac != null)
 				{

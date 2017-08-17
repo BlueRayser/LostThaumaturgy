@@ -14,6 +14,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,10 +30,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.annotations.MCFBus;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.annotations.MCFBus;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.utils.AdvancementUtils;
 import com.pengu.hammercore.utils.RoundRobinList;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTConfigs;
@@ -41,6 +43,7 @@ import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
 import com.pengu.lostthaumaturgy.api.items.ISpeedBoots;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.emote.EmoteManager;
 import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
@@ -150,6 +153,15 @@ public class InteractionEvents
 		if(player.world.isRemote && e.phase == Phase.END)
 			return;
 		String id = player.getGameProfile().getName();
+		
+		AtmosphereChunk chunk = AuraTicker.getAuraChunkFromBlockCoords(player.world, player.getPosition());
+		
+		if(!player.world.isRemote && chunk.isTainted())
+		{
+			ResourceLocation loc = new ResourceLocation(LTInfo.MOD_ID, "aura/atmosphere_problems");
+			if(!AdvancementUtils.isAdvancementCompleted(loc, player))
+				AdvancementUtils.completeAdvancement(loc, player);
+		}
 		
 		if(walkSpeeds.get(id) == null)
 			walkSpeeds.put(id, .1F);

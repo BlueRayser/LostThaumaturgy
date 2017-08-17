@@ -5,8 +5,8 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.mrdimka.hammercore.annotations.MCFBus;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.annotations.MCFBus;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
 
 @MCFBus

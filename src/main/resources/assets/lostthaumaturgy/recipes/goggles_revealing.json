@@ -1,0 +1,10 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "tgt", "lll" ],
+    "key": {
+		"t": { "item": "lostthaumaturgy:aura_detector", "data": 3 },
+		"g": { "ore": "ingotGold", "type": "forge:ore_dict" },
+		"l": { "ore": "leather", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:goggles_revealing" }
+}

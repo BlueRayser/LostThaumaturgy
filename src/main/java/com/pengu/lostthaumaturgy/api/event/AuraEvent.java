@@ -5,14 +5,14 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
 public class AuraEvent extends Event
 {
-	public final SIAuraChunk si;
+	public final AtmosphereChunk si;
 	public final World world;
 	
-	public AuraEvent(SIAuraChunk si, World world)
+	public AuraEvent(AtmosphereChunk si, World world)
 	{
 		this.si = si;
 		this.world = world;
@@ -22,7 +22,7 @@ public class AuraEvent extends Event
 	{
 		public final Random rand;
 		
-		public Generate(SIAuraChunk si, World world, Random rand)
+		public Generate(AtmosphereChunk si, World world, Random rand)
 		{
 			super(si, world);
 			this.rand = rand;
@@ -31,7 +31,7 @@ public class AuraEvent extends Event
 	
 	public static class Update extends AuraEvent
 	{
-		public Update(SIAuraChunk si, World world)
+		public Update(AtmosphereChunk si, World world)
 		{
 			super(si, world);
 		}

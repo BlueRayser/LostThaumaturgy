@@ -1,8 +1,8 @@
 package com.pengu.lostthaumaturgy.intr.hc;
 
-import com.mrdimka.hammercore.api.mhb.IRayCubeRegistry;
-import com.mrdimka.hammercore.api.mhb.IRayRegistry;
-import com.mrdimka.hammercore.api.mhb.RaytracePlugin;
+import com.pengu.hammercore.api.mhb.IRayCubeRegistry;
+import com.pengu.hammercore.api.mhb.IRayRegistry;
+import com.pengu.hammercore.api.mhb.RaytracePlugin;
 import com.pengu.lostthaumaturgy.block.BlockAdvancedVisValve;
 import com.pengu.lostthaumaturgy.block.BlockConduit;
 import com.pengu.lostthaumaturgy.block.BlockPressurizedConduit;

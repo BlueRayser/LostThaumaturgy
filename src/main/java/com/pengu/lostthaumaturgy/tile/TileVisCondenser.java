@@ -15,18 +15,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.tile.ITileDroppable;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
 import com.pengu.hammercore.asm.WorldHooks;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.tile.ITileDroppable;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.client.gui.GuiVisCondenser;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerVisCondenser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -147,7 +147,7 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 				progress += speed * moon;
 			if(progress >= (hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.STABILIZED_SINGULARITY)) ? 20 : 25) && currentVis <= maxVis - 1 && currentTaint <= maxVis - 1 && currentType >= 0)
 			{
-				SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 				{
 					if(currentType != 5)
@@ -267,7 +267,7 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 		for(EnumFacing facing : EnumFacing.VALUES)
 		{
 			IConnection conn = ConnectionManager.getConnection(loc, facing);
-			if(!getConnectable(facing) || conn instanceof TileVisCondenser)
+			if(conn == null || !getConnectable(facing) || conn instanceof TileVisCondenser)
 				continue;
 			neighbours.add(conn);
 		}

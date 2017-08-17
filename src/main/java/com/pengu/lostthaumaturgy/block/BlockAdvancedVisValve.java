@@ -13,11 +13,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.api.mhb.ICubeManager;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.vec.Cuboid6;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.api.mhb.ICubeManager;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.vec.Cuboid6;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;

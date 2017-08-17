@@ -16,8 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
@@ -42,7 +42,7 @@ public class BlockMonolith extends BlockRendered implements ITileEntityProvider,
 	}
 	
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 	}
 	

@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 import com.google.common.base.Predicate;
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;

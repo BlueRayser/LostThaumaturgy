@@ -1,0 +1,26 @@
+{
+	"display": {
+		"icon": {
+			"item": "lostthaumaturgy:vis_condenser"
+		},
+		"title": {
+			"translate": "advancement.lostthaumaturgy:aura/makeVisCondenser"
+		},
+		"description": {
+			"translate": "advancement.lostthaumaturgy:aura/makeVisCondenser.desc"
+		}
+	},
+	"parent": "lostthaumaturgy:aura/root",
+	"criteria": {
+		"craft": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "lostthaumaturgy:vis_condenser"
+					}
+				]
+			}
+		}
+	}
+}

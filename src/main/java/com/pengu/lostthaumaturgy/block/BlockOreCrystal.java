@@ -26,16 +26,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.proxy.ParticleProxy_Client;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.proxy.ParticleProxy_Client;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
 
 public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCrystalOre>, ITileEntityProvider
@@ -157,7 +157,7 @@ public class BlockOreCrystal extends BlockRendered implements ITileBlock<TileCry
 		if(world.isRemote)
 			return;
 		TileCrystalOre ore = WorldUtil.cast(world.getTileEntity(pos), TileCrystalOre.class);
-		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		if(ac != null && ore != null)
 		{
 			short q2 = ore.crystals.get();

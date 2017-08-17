@@ -10,9 +10,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.net.utils.NetPropertyBool;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
 import com.pengu.lostthaumaturgy.LTInfo;
@@ -22,7 +22,7 @@ import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiDuplicator;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerDuplicator;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -58,7 +58,7 @@ public class TileDuplicator extends TileVisUser implements IUpgradable
 	public void tick()
 	{
 		forbid = false;
-		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		boolean flag;
 		

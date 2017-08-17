@@ -12,10 +12,10 @@ import net.minecraft.util.math.Vec3i;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
@@ -27,7 +27,7 @@ public class TESRFuser extends TESR<TileFuser>
 	public static final TESRFuser INSTANCE = new TESRFuser();
 	
 	@Override
-	public void renderTileEntityAt(TileFuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileFuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		TileFuser main = te.gui;
 		if(main == null)

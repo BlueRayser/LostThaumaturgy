@@ -1,24 +1,63 @@
 package com.pengu.lostthaumaturgy.items;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.items.MultiVariantItem;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
 
-public class ItemCustomPotion extends MultiVariantItem
+public class ItemCustomPotion extends Item
 {
+	public final String[] names = { "concentrated_vis", "concentrated_taint", "potion_purity" };
+	
 	public ItemCustomPotion()
 	{
-		super("custom_potion", "concentrated_vis", "concentrated_taint", "potion_purity");
-		insertPrefix(LTInfo.MOD_ID + ":");
+		setUnlocalizedName("custom_potion");
+		setHasSubtypes(true);
 		setMaxStackSize(16);
+		addPropertyOverride(new ResourceLocation("type"), (stack, world, entity) -> stack.getItemDamage());
+		setMaxDamage(names.length);
+	}
+	
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return "item." + LTInfo.MOD_ID + ":" + (stack.getItemDamage() < 0 || stack.getItemDamage() >= names.length ? "unnamed" : names[stack.getItemDamage()]);
+	}
+	
+	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isRepairable()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isDamageable()
+	{
+		return false;
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+	{
+		if(isInCreativeTab(tab))
+			for(int i = 0; i < names.length; ++i)
+				items.add(new ItemStack(this, 1, i));
 	}
 	
 	@Override

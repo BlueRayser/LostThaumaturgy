@@ -11,11 +11,11 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
@@ -42,7 +42,7 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileCrystalReceptacle te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileCrystalReceptacle te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();

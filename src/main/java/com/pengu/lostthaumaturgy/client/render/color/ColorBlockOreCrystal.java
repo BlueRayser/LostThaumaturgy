@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 
 public class ColorBlockOreCrystal implements IBlockColor

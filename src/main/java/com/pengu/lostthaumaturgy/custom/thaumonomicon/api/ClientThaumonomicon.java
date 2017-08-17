@@ -2,7 +2,7 @@ package com.pengu.lostthaumaturgy.custom.thaumonomicon.api;
 
 import net.minecraft.item.ItemStack;
 
-import com.mrdimka.hammercore.bookAPI.BookCategory;
+import com.pengu.hammercore.bookAPI.BookCategory;
 import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
 
 public class ClientThaumonomicon implements IThaumonomicon

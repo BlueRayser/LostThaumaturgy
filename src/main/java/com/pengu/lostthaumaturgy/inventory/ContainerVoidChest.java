@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.tile.TileVoidChest;
 

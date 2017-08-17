@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.ListUtils;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;

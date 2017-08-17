@@ -2,7 +2,7 @@ package com.pengu.lostthaumaturgy.custom.thaumonomicon;
 
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.bookAPI.Book;
+import com.pengu.hammercore.bookAPI.Book;
 import com.pengu.lostthaumaturgy.LTInfo;
 
 public class BookThaumonomicon extends Book

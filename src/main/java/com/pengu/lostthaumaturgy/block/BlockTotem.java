@@ -11,9 +11,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class BlockTotem extends Block
@@ -41,7 +41,7 @@ public class BlockTotem extends Block
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random random)
 	{
-		SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+		AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 		
 		if(si != null)
 		{

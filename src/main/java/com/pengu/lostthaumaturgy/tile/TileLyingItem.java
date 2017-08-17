@@ -3,10 +3,10 @@ package com.pengu.lostthaumaturgy.tile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.net.utils.NetPropertyAbstract;
 import com.pengu.hammercore.net.utils.NetPropertyBool;
 import com.pengu.hammercore.net.utils.NetPropertyItemStack;
+import com.pengu.hammercore.tile.TileSyncable;
 
 public class TileLyingItem extends TileSyncable
 {

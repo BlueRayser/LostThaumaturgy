@@ -1,0 +1,9 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "###", "#B#", "###" ],
+    "key": {
+		"#": { "item": "lostthaumaturgy:discovery", "data": 0 },
+		"B": { "item": "minecraft:book" }
+    },
+    "result": { "item": "lostthaumaturgy:void_block" }
+}

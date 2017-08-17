@@ -18,15 +18,15 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.raytracer.RayTracer;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.raytracer.RayTracer;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 
 public class ItemSwordElemental extends ItemSword
 {
-	public Color zapColor = new Color(0x6D00F1);
+	public int zapColor = 0x6D00F1;
 	
 	public ItemSwordElemental()
 	{
@@ -49,7 +49,7 @@ public class ItemSwordElemental extends ItemSword
 		return false;
 	}
 	
-	private void hitEntity(Vec3d zapStart, Entity ent, List<Entity> hit, int maxHit, EntityPlayer player, Color color)
+	private void hitEntity(Vec3d zapStart, Entity ent, List<Entity> hit, int maxHit, EntityPlayer player, int color)
 	{
 		if(hit.size() < maxHit)
 		{
@@ -57,7 +57,7 @@ public class ItemSwordElemental extends ItemSword
 			
 			if(ent instanceof EntityLivingBase && ((EntityLivingBase) ent).attackable() && ((EntityLivingBase) ent).hurtTime <= 0)
 			{
-				HammerCore.particleProxy.spawnZap(player.world, zapStart, pos, color);
+				HammerCore.particleProxy.spawnSlowZap(player.world, zapStart, pos, color, 10, .25F);
 				ent.attackEntityFrom(DamageSource.causePlayerDamage(player), 6 + player.getRNG().nextFloat() * 2F);
 				hit.add(ent);
 			}

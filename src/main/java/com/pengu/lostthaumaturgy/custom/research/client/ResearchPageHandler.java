@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.client.utils.TextDivider;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.client.utils.TextDivider;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.custom.research.Research;
 

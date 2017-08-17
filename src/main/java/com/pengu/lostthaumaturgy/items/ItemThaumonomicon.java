@@ -3,7 +3,7 @@ package com.pengu.lostthaumaturgy.items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-import com.mrdimka.hammercore.bookAPI.ItemBook;
+import com.pengu.hammercore.bookAPI.ItemBook;
 import com.pengu.lostthaumaturgy.LTInfo;
 
 public class ItemThaumonomicon extends ItemBook

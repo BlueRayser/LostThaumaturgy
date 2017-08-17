@@ -1,11 +1,12 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.inventory.ContainerVisCondenser;
@@ -26,6 +27,14 @@ public class GuiVisCondenser extends GuiContainer
 	}
 	
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
+	}
+	
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		mouseX -= guiLeft;
@@ -38,7 +47,7 @@ public class GuiVisCondenser extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[1]));
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 		
 		if(tile.getUpgrades()[0] >= 0)
@@ -48,7 +57,7 @@ public class GuiVisCondenser extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 	}
 	

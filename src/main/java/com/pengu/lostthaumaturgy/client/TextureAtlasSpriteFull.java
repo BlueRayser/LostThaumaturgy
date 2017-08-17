@@ -9,29 +9,36 @@ public class TextureAtlasSpriteFull extends TextureAtlasSprite
 	protected TextureAtlasSpriteFull(String spriteName)
 	{
 		super(spriteName);
+		width = 256;
+		height = 256;
+		initSprite(256, 256, 0, 0, false);
 	}
 	
 	@Override
 	public float getMinU()
 	{
-		return 0;
+		width = 256;
+		height = 256;
+		initSprite(256, 256, 0, 0, false);
+		
+		return super.getMinU();
 	}
 	
 	@Override
 	public float getMinV()
 	{
-		return 0;
+		return super.getMinV();
 	}
 	
 	@Override
 	public float getMaxU()
 	{
-		return 1;
+		return super.getMaxU();
 	}
 	
 	@Override
 	public float getMaxV()
 	{
-		return 1;
+		return super.getMaxV();
 	}
 }

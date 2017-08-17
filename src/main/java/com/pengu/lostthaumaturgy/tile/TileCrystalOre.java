@@ -12,8 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
+import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 
 public class TileCrystalOre extends TileSyncable

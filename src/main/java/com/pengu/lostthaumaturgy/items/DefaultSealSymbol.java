@@ -23,7 +23,7 @@ public class DefaultSealSymbol extends ItemSealSymbol
 	@Override
 	public boolean doesRotate(TileSeal seal, int index)
 	{
-		return index == 2;
+		return index == 2 || (getUnlocalizedName().contains("runic_essence_air") && index == 1);
 	}
 	
 	@Override

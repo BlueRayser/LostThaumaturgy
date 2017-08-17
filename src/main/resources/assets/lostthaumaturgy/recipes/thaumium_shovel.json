@@ -1,0 +1,9 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "t", "s", "s" ],
+    "key": {
+		"t": { "ore": "ingotThaumium", "type": "forge:ore_dict" },
+		"s": { "ore": "stickWood", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:thaumium_shovel" }
+}

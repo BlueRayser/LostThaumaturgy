@@ -1,0 +1,22 @@
+{
+	"display": {
+		"icon": {
+			"item": "lostthaumaturgy:multi_material",
+			"data": 30
+		},
+		"title": {
+			"translate": "advancement.lostthaumaturgy:aura/findTaintedLand"
+		},
+		"description": {
+			"translate": "advancement.lostthaumaturgy:aura/findTaintedLand.desc"
+		}
+	},
+	"parent": "lostthaumaturgy:aura/vis_filter",
+	"criteria": {
+		"impossible": {
+			"trigger": "minecraft:impossible",
+			"conditions": {
+			}
+		}
+	}
+}

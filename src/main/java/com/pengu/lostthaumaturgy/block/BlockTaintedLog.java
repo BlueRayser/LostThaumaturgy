@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
 public class BlockTaintedLog extends BlockLog implements ITaintedBlock
 {
@@ -46,7 +46,7 @@ public class BlockTaintedLog extends BlockLog implements ITaintedBlock
 	{
 		if(!worldIn.isRemote)
 		{
-			SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 			if(ac != null)
 			{
 				if(ac.goodVibes > 0)

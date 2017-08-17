@@ -7,9 +7,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.tile.IMalfunctionable;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.tile.IMalfunctionable;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 

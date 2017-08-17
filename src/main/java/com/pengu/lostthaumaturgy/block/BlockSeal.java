@@ -7,6 +7,8 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,16 +17,21 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.EnumRotation;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.EnumRotation;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
@@ -158,9 +165,10 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced)
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag advanced)
 	{
-		if(advanced)
+		if(advanced.isAdvanced())
 		{
 			String col = "#FFFFFF";
 			if(stack.hasTagCompound())
@@ -177,7 +185,7 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		TileSeal seal = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
-		if(seal != null)
+		if(seal != null && !worldIn.isRemote)
 		{
 			ItemSealSymbol symbol = WorldUtil.cast(playerIn.getHeldItem(hand).getItem(), ItemSealSymbol.class);
 			boolean isSymbol = symbol != null;
@@ -191,6 +199,9 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 				else
 					seal.setSymbol(2, symbol);
 				playerIn.getHeldItem(hand).shrink(1);
+				HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":rune_set", pos, .5F, 1F, SoundCategory.BLOCKS);
+				HCNetwork.swingArm(playerIn, hand);
+				return false;
 			} else if(playerIn.getHeldItem(hand).getItem() == ItemsLT.WAND_REVERSAL && seal.getSymbol(0) != null)
 			{
 				for(int i = 2; i >= 0; --i)
@@ -199,14 +210,31 @@ public class BlockSeal extends BlockRendered implements ITileEntityProvider, ITi
 						{
 							ItemStack stack = new ItemStack(seal.getSymbol(i));
 							seal.setSymbol(i, null);
-							WorldUtil.spawnItemStack(worldIn, pos, stack);
-							return true;
+							
+							if(worldIn.rand.nextInt(100) > 10)
+								WorldUtil.spawnItemStack(worldIn, pos, stack);
+							else
+								HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":fizz", pos, .5F, 1F, SoundCategory.BLOCKS);
+							
+							HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":zap", pos, .5F, 1F, SoundCategory.BLOCKS);
+							HCNetwork.swingArm(playerIn, hand);
+							
+							return false;
 						}
 			}
 			SealInstance i = seal.instance;
-			if(i != null)
-				return i.onSealActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+			if(i != null && i.onSealActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ))
+				HCNetwork.swingArm(playerIn, hand);
 		}
 		return false;
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{
+		TileSeal tile = WorldUtil.cast(worldIn.getTileEntity(pos), TileSeal.class);
+		if(tile != null && tile.instance != null)
+			tile.instance.onEntityCollidedWithSeal(worldIn, pos, state, entityIn);
+		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
 	}
 }

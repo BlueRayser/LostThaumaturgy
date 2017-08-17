@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -13,12 +14,12 @@ import net.minecraft.util.text.translation.I18n;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicate;
-import com.mrdimka.hammercore.bookAPI.BookCategory;
-import com.mrdimka.hammercore.bookAPI.BookEntry;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
-import com.mrdimka.hammercore.gui.book.GuiBook;
-import com.mrdimka.hammercore.gui.book.GuiBookCategory;
-import com.mrdimka.hammercore.gui.book.GuiBookEntry;
+import com.pengu.hammercore.bookAPI.BookCategory;
+import com.pengu.hammercore.bookAPI.BookEntry;
+import com.pengu.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.gui.book.GuiBook;
+import com.pengu.hammercore.gui.book.GuiBookCategory;
+import com.pengu.hammercore.gui.book.GuiBookEntry;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
@@ -49,6 +50,14 @@ public class GuiInfuserDark extends GuiContainer
 	private List<String> lastTooltip = new ArrayList<>();
 	private ItemStack[] currentDiscoveries = null;
 	private int currentEntry = -1;
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
+	}
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
@@ -95,7 +104,7 @@ public class GuiInfuserDark extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 	}
 	

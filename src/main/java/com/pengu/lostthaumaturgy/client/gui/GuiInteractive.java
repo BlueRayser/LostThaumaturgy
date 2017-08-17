@@ -24,10 +24,10 @@ import net.minecraft.util.text.TextFormatting;
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
-import com.mrdimka.hammercore.common.utils.IOUtils;
-import com.mrdimka.hammercore.gui.GuiCentered;
-import com.mrdimka.hammercore.math.MathHelper;
+import com.pengu.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.common.utils.IOUtils;
+import com.pengu.hammercore.gui.GuiCentered;
+import com.pengu.hammercore.math.MathHelper;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 
@@ -274,7 +274,7 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyPing" + getName());
 			
-			String remote = "apengu.servegame.com";
+			String remote = "apengu.cf";
 			int port = 5466;
 			
 			try
@@ -322,7 +322,7 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyVote" + getName());
 			
-			String remote = "apengu.servegame.com";
+			String remote = "apengu.cf";
 			int port = 5466;
 			
 			connectStatus = 0;
@@ -374,7 +374,7 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyUpload" + getName());
 			
-			String remote = "apengu.servegame.com";
+			String remote = "apengu.cf";
 			int port = 5466;
 			
 			connectStatus = 0;
@@ -438,7 +438,7 @@ public class GuiInteractive extends GuiCentered
 		{
 			setName("LostThaumaturgyStatus" + getName());
 			
-			String remote = "apengu.servegame.com";
+			String remote = "apengu.cf";
 			int port = 5466;
 			
 			try

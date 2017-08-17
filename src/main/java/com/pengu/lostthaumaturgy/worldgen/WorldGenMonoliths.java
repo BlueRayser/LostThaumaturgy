@@ -10,8 +10,8 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-import com.mrdimka.hammercore.world.gen.IWorldGenFeature;
 import com.pengu.hammercore.utils.ChunkUtils;
+import com.pengu.hammercore.world.gen.IWorldGenFeature;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
 

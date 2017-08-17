@@ -11,14 +11,27 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import com.google.common.collect.Lists;
+import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
-public class RecipePaintSeal implements IRecipe
+public class RecipePaintSeal extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
 {
+	{
+		setRegistryName(new ResourceLocation(LTInfo.MOD_ID, "seal_paint"));
+	}
+	
+	@Override
+	public boolean isHidden()
+	{
+	    return true;
+	}
+	
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
@@ -154,5 +167,11 @@ public class RecipePaintSeal implements IRecipe
 		}
 		
 		return nonnulllist;
+	}
+	
+	@Override
+	public boolean canFit(int width, int height)
+	{
+		return width * height > 1;
 	}
 }

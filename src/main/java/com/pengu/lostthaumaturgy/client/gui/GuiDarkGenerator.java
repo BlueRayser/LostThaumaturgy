@@ -4,7 +4,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.inventory.ContainerDarkGenerator;
 import com.pengu.lostthaumaturgy.tile.TileDarknessGenerator;
@@ -18,6 +18,14 @@ public class GuiDarkGenerator extends GuiContainer
 	{
 		super(new ContainerDarkGenerator(tile, player));
 		this.tile = tile;
+	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
 	}
 	
 	@Override

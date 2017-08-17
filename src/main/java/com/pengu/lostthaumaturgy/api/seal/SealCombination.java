@@ -5,11 +5,9 @@ import com.pengu.lostthaumaturgy.tile.TileSeal;
 public class SealCombination
 {
 	public final ItemSealSymbol[] slots = new ItemSealSymbol[3];
-	public final String name;
 	
-	public SealCombination(ItemSealSymbol i, ItemSealSymbol j, ItemSealSymbol k, String name)
+	public SealCombination(ItemSealSymbol i, ItemSealSymbol j, ItemSealSymbol k)
 	{
-		this.name = name;
 		slots[0] = i;
 		slots[1] = j;
 		slots[2] = k;

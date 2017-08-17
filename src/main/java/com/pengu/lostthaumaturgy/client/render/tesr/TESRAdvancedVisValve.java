@@ -12,8 +12,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
+import com.pengu.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
@@ -32,9 +32,9 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileAdvancedVisValve te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileAdvancedVisValve te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
+		super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage, alpha);
 		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();

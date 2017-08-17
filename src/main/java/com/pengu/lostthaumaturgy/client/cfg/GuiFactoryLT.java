@@ -18,19 +18,19 @@ public class GuiFactoryLT implements IModGuiFactory
 	}
 	
 	@Override
-	public Class<? extends GuiScreen> mainConfigGuiClass()
+	public GuiScreen createConfigGui(GuiScreen parentScreen)
 	{
-		return GuiConfigsLT.class;
+		return new GuiConfigsLT(parentScreen);
+	}
+	
+	@Override
+	public boolean hasConfigGui()
+	{
+		return true;
 	}
 	
 	@Override
 	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories()
-	{
-		return null;
-	}
-	
-	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
 	{
 		return null;
 	}

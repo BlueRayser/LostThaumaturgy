@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.texture.TextureMap;
 
 import org.lwjgl.opengl.ARBShaderObjects;
 
-import com.mrdimka.hammercore.client.GLRenderState;
-import com.mrdimka.hammercore.client.renderer.shader.HCShaderPipeline;
-import com.mrdimka.hammercore.client.renderer.shader.IShaderOperation;
-import com.mrdimka.hammercore.client.renderer.shader.ShaderProgram;
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.render.shader.HCShaderPipeline;
+import com.pengu.hammercore.client.render.shader.IShaderOperation;
+import com.pengu.hammercore.client.render.shader.ShaderProgram;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;

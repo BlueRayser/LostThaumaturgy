@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
 public class AuraAttachments
 {
@@ -19,7 +19,7 @@ public class AuraAttachments
 		attachments = ArrayUtils.add(attachments, attachment);
 	}
 	
-	public static void attach(SIAuraChunk chunk)
+	public static void attach(AtmosphereChunk chunk)
 	{
 		for(int i = 0; i < attachments.length; ++i)
 			attachments[i].handle(chunk);

@@ -1,0 +1,9 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "wgw", "g g", "wgw" ],
+    "key": {
+		"g": { "ore": "paneGlass", "type": "forge:ore_dict" },
+		"w": { "item": "lostthaumaturgy:multi_material", "data": 7 }
+    },
+    "result": { "item": "lostthaumaturgy:vis_tank" }
+}

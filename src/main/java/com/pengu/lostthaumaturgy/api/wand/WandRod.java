@@ -10,14 +10,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.math.MathHelper;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.tile.IMalfunctionable;
-import com.mrdimka.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.math.MathHelper;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.tile.IMalfunctionable;
+import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
@@ -77,7 +77,7 @@ public class WandRod
 			
 			float vis = ItemWand.getVis(wand.getItem());
 			float taint = ItemWand.getTaint(wand.getItem());
-			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(wand.getEntityWorld(), wand.getPosition());
+			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(wand.getEntityWorld(), wand.getPosition());
 			if(vis > taint && si.taint > 0 && taint < ItemWand.getMaxTaint(wand.getItem()))
 			{
 				si.taint -= Math.ceil(ItemWand.addTaint(wand.getItem(), .1F) * 10);
@@ -120,7 +120,7 @@ public class WandRod
 				else
 					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.x, pos.y, pos.z, tpos.x, tpos.y, tpos.z, .9F + rand.nextFloat() * .6F, 5), new TargetPoint(wand.world.provider.getDimension(), wand.posX, wand.posY, wand.posZ, 48));
 				
-				if(wand.world.rand.nextInt(30) == 0)
+				if(wand.world.rand.nextInt(10) == 0)
 				{
 					Iterator<BlockPos> positions = BlockPos.getAllInBox(wand.getPosition(), new BlockPos(pos)).iterator();
 					while(positions.hasNext())
@@ -132,10 +132,10 @@ public class WandRod
 							mal.causeEntityMalfunction(wand);
 							if(mal instanceof TileSyncable)
 								((TileSyncable) mal).sync();
-							HammerCore.particleProxy.spawnZap(wand.world, new Vec3d(next.getX() + .5, next.getY() + .5, next.getZ() + .5), tpos, Color.RED);
+							HammerCore.particleProxy.spawnSlowZap(wand.world, new Vec3d(next.getX() + .5, next.getY() + .5, next.getZ() + .5), tpos, Color.RED.getRGB(), 16, .2F);
 						}
 					}
-					HammerCore.particleProxy.spawnZap(wand.world, pos, tpos, new Color(color));
+					HammerCore.particleProxy.spawnSlowZap(wand.world, pos, tpos, color, 10, .0F);
 				}
 			}
 		}

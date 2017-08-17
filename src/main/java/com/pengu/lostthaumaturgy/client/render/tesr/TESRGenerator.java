@@ -9,10 +9,10 @@ import net.minecraft.util.math.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelGenCore;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
@@ -25,7 +25,7 @@ public class TESRGenerator extends TESR<TileGenerator>
 	public final ResourceLocation texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/thaum_generator.png");
 	
 	@Override
-	public void renderTileEntityAt(TileGenerator te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage)
+	public void renderTileEntityAt(TileGenerator te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
 		renderBase(te, null, x, y, z, destroyStage, partialTicks);
 	}

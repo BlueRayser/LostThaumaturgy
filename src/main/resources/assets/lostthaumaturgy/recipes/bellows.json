@@ -1,0 +1,11 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "ww ", "lvi", "ww " ],
+    "key": {
+		"w": { "item": "lostthaumaturgy:multi_material", "data": 7 },
+		"v": { "ore": "crystalVaporous", "type": "forge:ore_dict" },
+		"l": { "ore": "leather", "type": "forge:ore_dict" },
+		"i": { "ore": "ingotIron", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:bellows" }
+}

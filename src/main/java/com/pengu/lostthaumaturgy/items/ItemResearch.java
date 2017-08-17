@@ -11,12 +11,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.items.ITooltipInjector;
-import com.mrdimka.hammercore.common.items.MultiVariantItem;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.items.ITooltipInjector;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.items.INotCloneable;
@@ -25,20 +25,52 @@ import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
-public class ItemResearch extends MultiVariantItem implements ITooltipInjector, INotCloneable
+public class ItemResearch extends Item implements ITooltipInjector, INotCloneable
 {
+	public final String[] names = { "fragment", "theory", "discovery" };
+	
 	public ItemResearch()
 	{
-		super("discovery", "fragment", "theory", "discovery");
-		insertPrefix(LTInfo.MOD_ID + ":");
+		setUnlocalizedName("discovery");
+		addPropertyOverride(new ResourceLocation("type"), (stack, world, entity) -> stack.getItemDamage());
+		setHasSubtypes(true);
+		setMaxStackSize(1);
+		setMaxDamage(names.length);
 	}
 	
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> l)
+	public String getUnlocalizedName(ItemStack stack)
 	{
-		ResearchRegistry.addAllResearchItems(EnumResearchItemType.DISCOVERY, l);
-		ResearchRegistry.addAllResearchItems(EnumResearchItemType.THEORY, l);
-		ResearchRegistry.addAllResearchItems(EnumResearchItemType.FRAGMENT, l);
+		return "item." + LTInfo.MOD_ID + ":" + (stack.getItemDamage() < 0 || stack.getItemDamage() >= names.length ? "unnamed" : names[stack.getItemDamage()]);
+	}
+	
+	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isRepairable()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isDamageable()
+	{
+		return false;
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> l)
+	{
+		if(isInCreativeTab(tab))
+		{
+			ResearchRegistry.addAllResearchItems(EnumResearchItemType.DISCOVERY, l);
+			ResearchRegistry.addAllResearchItems(EnumResearchItemType.THEORY, l);
+			ResearchRegistry.addAllResearchItems(EnumResearchItemType.FRAGMENT, l);
+		}
 	}
 	
 	@Override

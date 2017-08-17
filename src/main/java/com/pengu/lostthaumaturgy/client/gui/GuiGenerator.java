@@ -1,13 +1,14 @@
 package com.pengu.lostthaumaturgy.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
-import com.mrdimka.hammercore.gui.container.ContainerEmpty;
+import com.pengu.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.gui.container.ContainerEmpty;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.tile.TileGenerator;
@@ -26,6 +27,14 @@ public class GuiGenerator extends GuiContainer
 	}
 	
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
+	}
+	
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		mouseX -= guiLeft;
@@ -37,7 +46,7 @@ public class GuiGenerator extends GuiContainer
 			int y = 47;
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[1]));
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 		
 		if(tile.getUpgrades()[0] >= 0)
@@ -46,7 +55,7 @@ public class GuiGenerator extends GuiContainer
 			int y = 25;
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 	}
 	

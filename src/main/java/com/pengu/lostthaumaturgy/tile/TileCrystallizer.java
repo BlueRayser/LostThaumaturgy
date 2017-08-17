@@ -9,16 +9,16 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.tile.ITileDroppable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
+import com.pengu.hammercore.tile.ITileDroppable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiCrystallizer;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerCrystallizer;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -62,7 +62,7 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 		
 		super.tick();
 		
-		SIAuraChunk ac;
+		AtmosphereChunk ac;
 		
 		float crystalTime = this.crystalTime.get();
 		final float crystalTimeF = crystalTime;
@@ -79,7 +79,7 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 			
 			if(sucked > 0)
 			{
-				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.radiation += .0005F * sucked;
 			}
 		} else

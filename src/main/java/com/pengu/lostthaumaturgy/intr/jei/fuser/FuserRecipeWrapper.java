@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
 
 public class FuserRecipeWrapper implements IRecipeWrapper

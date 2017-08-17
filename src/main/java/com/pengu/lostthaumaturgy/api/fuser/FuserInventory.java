@@ -11,7 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.items.ItemWand;
 

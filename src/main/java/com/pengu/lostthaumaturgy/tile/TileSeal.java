@@ -5,24 +5,28 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.tile.ITileDroppable;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.common.EnumRotation;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.net.utils.NetPropertyItemStack;
 import com.pengu.hammercore.net.utils.NetPropertyString;
+import com.pengu.hammercore.tile.ITileDroppable;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
 import com.pengu.lostthaumaturgy.api.seal.SealCombination;
 import com.pengu.lostthaumaturgy.api.seal.SealInstance;
 import com.pengu.lostthaumaturgy.api.seal.SealManager;
+import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class TileSeal extends TileSyncableTickable implements ITileDroppable
 {
 	public final NetPropertyItemStack stack;
 	private final NetPropertyString[] slots = new NetPropertyString[3];
+	public EnumFacing orientation;
 	public SealCombination combination;
 	public SealInstance instance;
 	public NBTTagCompound optInstNBT;
@@ -56,6 +60,9 @@ public class TileSeal extends TileSyncableTickable implements ITileDroppable
 	@Override
 	public void tick()
 	{
+		if(getLocation().getBlock() == BlocksLT.SEAL)
+			orientation = getLocation().getState().getValue(EnumRotation.EFACING);
+		
 		if(dirty)
 		{
 			SealCombination oldCombo = combination;

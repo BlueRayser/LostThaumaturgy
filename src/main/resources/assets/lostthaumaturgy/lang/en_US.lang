@@ -22,7 +22,7 @@ tile.lostthaumaturgy:vis_valve.name=Vis Valve
 tile.lostthaumaturgy:bellows.name=Arcane Bellows
 tile.lostthaumaturgy:thaumium_bellows.name=Thaumium Reinforced Bellows
 tile.lostthaumaturgy:crystal_ore_vaporous.name=Vaporous Crystal Ore
-tile.lostthaumaturgy:crystal_ore_aqueus.name=Aqueous Crystal Ore
+tile.lostthaumaturgy:crystal_ore_aqueous.name=Aqueous Crystal Ore
 tile.lostthaumaturgy:crystal_ore_earthen.name=Earthen Crystal Ore
 tile.lostthaumaturgy:crystal_ore_fiery.name=Fiery Crystal Ore
 tile.lostthaumaturgy:crystal_ore_vis.name=Vis Crystal Ore
@@ -316,6 +316,20 @@ research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at blocking
 
 research.lostthaumaturgy:repairer.title=Thaumic Restorer
 research.lostthaumaturgy:repairer.desc=Every tool breaks eventually... Your knowledge allow you to channel vis to reconstuct your tools/weapons. The Thaumic Restorer repairs your weapons, tools, armor and power items using liquid vis, which makes it one of the most essential pieces of thaumic machinery.
+
+
+
+advancement.lostthaumaturgy:aura/root=Lost Thaumaturgy: Atmosphere
+advancement.lostthaumaturgy:aura/root.desc=This is where all troubles begin...
+
+advancement.lostthaumaturgy:aura/findTaintedLand=Atmosphere Catastrophe
+advancement.lostthaumaturgy:aura/findTaintedLand.desc=Find or make a tainted area
+
+advancement.lostthaumaturgy:aura/makeVisCondenser=Capturing Vis
+advancement.lostthaumaturgy:aura/makeVisCondenser.desc=Make a Vis Condenser
+
+advancement.lostthaumaturgy:aura/makeVisFilter=Releasing Taint
+advancement.lostthaumaturgy:aura/makeVisFilter.desc=Make a Vis Filter
 
 
 

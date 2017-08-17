@@ -11,11 +11,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.inventory.InventoryNonTile;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.asm.WorldHooks;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.hammercore.net.utils.NetPropertyNumber;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.client.gui.GuiDarkGenerator;
 import com.pengu.lostthaumaturgy.inventory.ContainerDarkGenerator;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -24,7 +24,7 @@ import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
 public class TileDarknessGenerator extends TileSyncableTickable
 {
 	public static final NonNullList<ItemStack> VALID_SEEDS = NonNullList.<ItemStack> create();
-	public Color zapColor = new Color(0x7700C1);
+	public int zapColor = 0x7700C1;
 	public final NetPropertyNumber<Integer> progress;
 	public InventoryNonTile inv = new InventoryNonTile(2);
 	private BlockPos spos = BlockPos.ORIGIN;
@@ -98,7 +98,7 @@ public class TileDarknessGenerator extends TileSyncableTickable
 			int penalty = moon + light;
 			progress.set(progress.get() + (32 - penalty));
 			if(world.rand.nextInt(50 + penalty) == 0)
-				HammerCore.particleProxy.spawnZap(world, new Vec3d(spos.getX() + .5, spos.getY() + .75 + world.rand.nextFloat() * 4, spos.getZ() + 0.5), new Vec3d(pos.getX() + .5, pos.getY() + .75, pos.getZ() + .5), zapColor);
+				HammerCore.particleProxy.spawnSlowZap(world, new Vec3d(spos.getX() + .5, spos.getY() + .75 + world.rand.nextFloat() * 4, spos.getZ() + 0.5), new Vec3d(pos.getX() + .5, pos.getY() + .75, pos.getZ() + .5), zapColor, 25, .3F);
 		} else
 			progress.set(0);
 		if(valid && progress.get() >= 90000 && !inv.getStackInSlot(0).isEmpty() && isValidSeed(inv.getStackInSlot(0)))

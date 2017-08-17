@@ -2,17 +2,16 @@ package com.pengu.lostthaumaturgy.worldgen;
 
 import java.util.HashSet;
 import java.util.Random;
-import java.util.function.Predicate;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
@@ -24,15 +23,7 @@ public class WorldGenCrystals implements IWorldGenerator
 	static
 	{
 		HashSet<BlockOreCrystal> crystals = new HashSet<BlockOreCrystal>(BlockOreCrystal.crystals);
-		crystals.removeIf(new Predicate<BlockOreCrystal>()
-		{
-			@Override
-			public boolean test(BlockOreCrystal t)
-			{
-				return !t.generatesInWorld;
-			}
-		});
-		
+		crystals.removeIf(t -> !t.generatesInWorld);
 		ores = crystals.toArray(new BlockOreCrystal[0]);
 	}
 	

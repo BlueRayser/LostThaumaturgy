@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.mrdimka.hammercore.common.items.MultiVariantItem;
+import com.pengu.hammercore.common.items.MultiVariantItem;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.hammercore.utils.IRegisterListener;
 import com.pengu.lostthaumaturgy.LTInfo;

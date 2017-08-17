@@ -18,8 +18,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
-import com.mrdimka.hammercore.annotations.MCFBus;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.annotations.MCFBus;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientRD;
 

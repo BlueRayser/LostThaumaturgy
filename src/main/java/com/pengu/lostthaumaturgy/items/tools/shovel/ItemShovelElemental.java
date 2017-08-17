@@ -19,8 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.raytracer.RayTracer;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.raytracer.RayTracer;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
@@ -96,7 +96,7 @@ public class ItemShovelElemental extends ItemSpade
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if(ItemDye.applyBonemeal(ItemStack.EMPTY, worldIn, pos, player))
+		if(ItemDye.applyBonemeal(ItemStack.EMPTY, worldIn, pos))
 		{
 			if(!worldIn.isRemote)
 				worldIn.playEvent(2005, pos, 0);

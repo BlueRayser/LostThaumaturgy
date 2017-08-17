@@ -1,0 +1,10 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ " b ", "rpr", "ppp" ],
+    "key": {
+		"b": { "item": "minecraft:book" },
+		"r": { "ore": "gemRezuli", "type": "forge:ore_dict" },
+		"p": { "ore": "plankWood", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:studium_table" }
+}

@@ -23,10 +23,10 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import com.google.common.base.Predicate;
-import com.mrdimka.hammercore.HammerCore;
+import com.pengu.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class EntityThaumSlime extends EntityLiving implements IMob
@@ -90,7 +90,7 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 		
 		boolean facingThaum = false;
 		
-		SIAuraChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
 		
 		if(ac != null && ac.goodVibes > 0)
 		{
@@ -256,7 +256,7 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 	}
 	
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn)
 	{
 		return SoundEvents.ENTITY_SLIME_HURT;
 	}

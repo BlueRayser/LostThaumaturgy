@@ -2,7 +2,7 @@ package com.pengu.lostthaumaturgy.emote;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.net.PacketEmote;
 
 public class EmoteBuilder

@@ -24,16 +24,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.ListUtils;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.event.FillVoidChestEvent;
 import com.pengu.lostthaumaturgy.block.def.BlockRendered;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.net.wisp.PacketAreaWisp;
@@ -50,7 +50,7 @@ public class BlockExtraRoom extends BlockRendered implements ITileBlock<TileExtr
 	}
 	
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 	}
 	
@@ -121,7 +121,7 @@ public class BlockExtraRoom extends BlockRendered implements ITileBlock<TileExtr
 			HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":rumble", pos, 4F, 1F, SoundCategory.BLOCKS);
 			HCNetwork.getManager("particles").sendToAllAround(new PacketAreaWisp(180, new AxisAlignedBB(x1 + .5, y1 + 1.5, z1 + .5, x2 + 1.5, y2 + 1.5, z2 + 1.5), 2F, 5), getSyncPoint(worldIn, pos, 48));
 			
-			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 			if(si != null)
 				si.radiation += .25F;
 		}

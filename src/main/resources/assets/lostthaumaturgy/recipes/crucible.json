@@ -1,0 +1,10 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "v", "c", "f" ],
+    "key": {
+		"v": { "ore": "crystalVis", "type": "forge:ore_dict" },
+		"c": { "item": "minecraft:cauldron" },
+		"f": { "item": "minecraft:furnace" }
+    },
+    "result": { "item": "lostthaumaturgy:crucible" }
+}

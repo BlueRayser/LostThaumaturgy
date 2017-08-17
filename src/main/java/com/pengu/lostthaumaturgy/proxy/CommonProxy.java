@@ -4,14 +4,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.emote.EmoteData;
 import com.pengu.lostthaumaturgy.net.PacketEmote;
 
 public class CommonProxy
 {
-	public void updateClientAuraChunk(SIAuraChunk chunk)
+	public void updateClientAuraChunk(AtmosphereChunk chunk)
 	{
 	}
 	

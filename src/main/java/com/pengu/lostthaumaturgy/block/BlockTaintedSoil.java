@@ -24,15 +24,15 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.BlockSnapshot;
 
-import com.mrdimka.hammercore.api.ITileBlock;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.api.ITileBlock;
+import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.api.blocks.ITaintedBlock;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent;
 import com.pengu.lostthaumaturgy.api.event.TaintedSoilEvent.GetDrops;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
@@ -68,7 +68,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 			BlockSnapshot snapshot = soil.getSnapshot();
 			if(snapshot != null && snapshot.restore(true))
 			{
-				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.taint += 3;
 				si.badVibes++;
 			}
@@ -76,7 +76,7 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 			if(world.getBlockState(pos.up()).getBlock() == BlocksLT.TAINTED_PLANT)
 			{
 				world.setBlockToAir(pos.up());
-				SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.taint += 5 + world.rand.nextInt(20);
 				si.badVibes += 4 + world.rand.nextInt(10);
 			}
@@ -103,12 +103,12 @@ public class BlockTaintedSoil extends Block implements ITileEntityProvider, ITil
 		if(up.getBlock() == BlocksLT.TAINTED_PLANT && BlocksLT.TAINTED_PLANT.getMetaFromState(up) == 1)
 		{
 			worldIn.setBlockState(pos.up(), BlocksLT.TAINTED_PLANT.getDefaultState());
-			SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 			si.taint += 5 + random.nextInt(20);
 			si.badVibes += 4 + random.nextInt(10);
 		}
 		
-		SIAuraChunk a = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
+		AtmosphereChunk a = AuraTicker.getAuraChunkFromBlockCoords(worldIn, pos);
 		if(!AuraTicker.shouldBeTainted(a) || random.nextInt(75) == 0)
 		{
 			cleanSoil(worldIn, pos);

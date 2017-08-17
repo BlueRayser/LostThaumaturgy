@@ -11,16 +11,16 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import com.mrdimka.hammercore.HammerCore;
-import com.mrdimka.hammercore.common.utils.WorldUtil;
-import com.mrdimka.hammercore.net.HCNetwork;
-import com.mrdimka.hammercore.net.pkt.PacketSpawnZap;
-import com.mrdimka.hammercore.tile.IMalfunctionable;
-import com.mrdimka.hammercore.tile.TileSyncable;
-import com.mrdimka.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.hammercore.net.pkt.PacketSpawnSlowZap;
+import com.pengu.hammercore.tile.IMalfunctionable;
+import com.pengu.hammercore.tile.TileSyncable;
+import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
-import com.pengu.lostthaumaturgy.custom.aura.SIAuraChunk;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class TileMonolith extends TileSyncableTickable
@@ -47,7 +47,7 @@ public class TileMonolith extends TileSyncableTickable
 		if(soundDelay > 0)
 			soundDelay--;
 		
-		SIAuraChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		if(si != null && si.monolithVibes < si.monolithVibeCap)
 			si.monolithVibes++;
@@ -62,8 +62,10 @@ public class TileMonolith extends TileSyncableTickable
 			double y2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 3D;
 			double z2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 3D;
 			
-			PacketSpawnZap zap = new PacketSpawnZap();
-			zap.color = new Color(0x310A5E);
+			PacketSpawnSlowZap zap = new PacketSpawnSlowZap();
+			zap.color = 0x310A5E;
+			zap.ampl = .3F;
+			zap.maxTicks = 25;
 			zap.start = new Vec3d(pos).addVector(x + .5, y + .5 + yOff, z + .5);
 			zap.end = new Vec3d(pos).addVector(x2 + .5, y2 + .5 + yOff, z2 + .5);
 			zap.world = world.provider.getDimension();
@@ -82,7 +84,7 @@ public class TileMonolith extends TileSyncableTickable
 			double y2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 5D;
 			double z2 = (world.rand.nextDouble() - world.rand.nextDouble()) * 5D;
 			
-			HCNetwork.getManager("particles").sendToAllAround(new PacketFXWisp2(pos.getX() + .5 + x, pos.getY() + yOff + .5 + y, pos.getZ() + .5 + z, pos.getX() + .5 + x2, pos.getY() + yOff + .5 + y2, pos.getZ() + .5 + z2, 4F, 5), getSyncPoint(48));
+			HCNetwork.manager.sendToAllAround(new PacketFXWisp2(pos.getX() + .5 + x, pos.getY() + yOff + .5 + y, pos.getZ() + .5 + z, pos.getX() + .5 + x2, pos.getY() + yOff + .5 + y2, pos.getZ() + .5 + z2, 4F, 5), getSyncPoint(48));
 		}
 		
 		if(soundDelay == 0 || atTickRate(120))
@@ -114,7 +116,7 @@ public class TileMonolith extends TileSyncableTickable
 								flag = true;
 							}
 							if(flag)
-								HammerCore.particleProxy.spawnZap(world, new Vec3d(pos), new Vec3d(this.pos), new Color(0x310A5E));
+								HammerCore.particleProxy.spawnSlowZap(world, new Vec3d(pos), new Vec3d(this.pos), 0x310A5E, 50, .4F);
 						}
 					}
 		

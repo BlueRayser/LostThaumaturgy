@@ -1,0 +1,10 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [ "wgw", "grg", "wgw" ],
+    "key": {
+		"w": { "ore": "plankWood", "type": "forge:ore_dict" },
+		"g": { "ore": "paneGlass", "type": "forge:ore_dict" },
+		"r": { "ore": "dustRedstone", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "lostthaumaturgy:conduit", "count": 8 }
+}

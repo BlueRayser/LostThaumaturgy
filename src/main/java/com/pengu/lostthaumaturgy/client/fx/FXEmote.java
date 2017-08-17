@@ -3,9 +3,9 @@ package com.pengu.lostthaumaturgy.client.fx;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrdimka.hammercore.client.GLRenderState;
+import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.particle.api.SimpleParticle;
 import com.pengu.lostthaumaturgy.emote.EmoteData;
 import com.pengu.lostthaumaturgy.emote.EmoteManager;
@@ -81,7 +81,7 @@ public class FXEmote extends SimpleParticle
 		/** Bind to the emote texture */
 		Minecraft.getMinecraft().getTextureManager().bindTexture(EmoteManager.getEmoteLocation(data.getId()));
 		
-		VertexBuffer buffer = Tessellator.getInstance().getBuffer();
+		BufferBuilder buffer = Tessellator.getInstance().getBuffer();
 		
 		buffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
 		

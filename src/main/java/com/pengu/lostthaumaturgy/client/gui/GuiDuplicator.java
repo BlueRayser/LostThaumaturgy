@@ -4,14 +4,15 @@ import java.io.IOException;
 
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import com.mrdimka.hammercore.client.utils.RenderUtil;
-import com.mrdimka.hammercore.net.pkt.PacketSetProperty;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
+import com.pengu.hammercore.net.pkt.PacketSetProperty;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.inventory.ContainerDuplicator;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -32,6 +33,14 @@ public class GuiDuplicator extends GuiContainer
 	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_duplicator.png");
 	
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		drawDefaultBackground();
+	    super.drawScreen(mouseX, mouseY, partialTicks);
+	    renderHoveredToolTip(mouseX, mouseY);
+	}
+	
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		mouseX -= guiLeft;
@@ -44,7 +53,7 @@ public class GuiDuplicator extends GuiContainer
 			ItemStack stack = new ItemStack(ItemUpgrade.byId(tile.getUpgrades()[0]));
 			itemRender.renderItemAndEffectIntoGUI(stack, x, y);
 			if(mouseX >= x && mouseX < x + 16 && mouseY >= y && mouseY < y + 16)
-				drawHoveringText(stack.getTooltip(mc.player, false), mouseX, mouseY);
+				drawHoveringText(stack.getTooltip(mc.player, TooltipFlags.NORMAL), mouseX, mouseY);
 		}
 	}
 	
