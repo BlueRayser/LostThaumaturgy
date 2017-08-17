@@ -46,8 +46,8 @@ public class RecipeTypeCrucible implements IRecipeType<CrucibleRecipe>
 	public CrucibleRecipe createRecipe(NBTTagCompound json) throws RecipeParseException
 	{
 		CrucibleRecipe r = new CrucibleRecipe();
-		r.object = json.getString("Item");
-		NBTBase val = json.getTag("Cost");
+		r.object = json.getString("item");
+		NBTBase val = json.getTag("cost");
 		r.value = val instanceof NBTTagFloat ? ((NBTTagFloat) val).getFloat() : val instanceof NBTTagDouble ? ((NBTTagDouble) val).getFloat() : 0;
 		return r;
 	}

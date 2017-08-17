@@ -1,12 +1,15 @@
 package com.pengu.lostthaumaturgy.api;
 
+import java.io.Closeable;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
 import com.pengu.lostthaumaturgy.custom.research.Research;
@@ -71,7 +74,7 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser))
+			if(infuser == null || !conditions.get(entry).test(infuser))
 				return ItemStack.EMPTY;
 			ItemStack res = (ItemStack) resultList.get(entry);
 			if(!darkList.get(entry).booleanValue())
@@ -88,7 +91,7 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser))
+			if(infuser == null || !conditions.get(entry).test(infuser))
 				return ItemStack.EMPTY;
 			ItemStack res = (ItemStack) resultList.get(entry);
 			if(darkList.get(entry) == isdark)
@@ -165,7 +168,7 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser))
+			if(infuser == null || !conditions.get(entry).test(infuser))
 				return 0;
 			int res = (Integer) costList.get(entry);
 			if(darkList.get(entry) == isdark)
@@ -182,7 +185,7 @@ public class RecipesInfuser
 		try
 		{
 			int entry = findEntry(components, infuser);
-			if(infuser == null || !conditions.get(entry).apply(infuser))
+			if(infuser == null || !conditions.get(entry).test(infuser))
 				return 0;
 			int res = (Integer) costList.get(entry);
 			if(!((Boolean) darkList.get(entry)).booleanValue())
@@ -203,7 +206,7 @@ public class RecipesInfuser
 	{
 		block0: for(int a = 0; a < componentList.size(); ++a)
 		{
-			if(infuser == null || !conditions.get(a).apply(infuser))
+			if(infuser == null || !conditions.get(a).test(infuser))
 				continue;
 			
 			ItemStack[] cl = (ItemStack[]) componentList.get(a);
@@ -242,6 +245,12 @@ public class RecipesInfuser
 		return -1;
 	}
 	
+	/** PLEASE CALL {@link InfuserList#close()} WHEN YOU ARE DONE WITH THIS LIST */
+	public static InfuserList listRecipes()
+	{
+		return new InfuserList();
+	}
+	
 	/** Do not use --- this is used ONLY in JEI */
 	public static class InfuserRecipe
 	{
@@ -260,6 +269,27 @@ public class RecipesInfuser
 			predicate = conditions.get(id);
 			components = componentList.get(id);
 			cost = costList.get(id);
+			
+			int dep = 0;
+			for(ItemStack stack : components)
+				if(isCrystal(stack))
+					dep++;
+			depletedShards = dep;
+			
+			if(predicate instanceof ResearchPredicate)
+			{
+				ResearchPredicate pred = (ResearchPredicate) predicate;
+				discoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+			} else
+				discoveries = new ItemStack[0];
+		}
+		
+		public InfuserRecipe(RecipeInfuserDummy dummy)
+		{
+			result = dummy.getResult().copy();
+			predicate = dummy.getCondition();
+			components = dummy.getComponents();
+			cost = dummy.getCost();
 			
 			int dep = 0;
 			for(ItemStack stack : components)
@@ -316,6 +346,21 @@ public class RecipesInfuser
 				discoveries = new ItemStack[0];
 		}
 		
+		public DarkInfuserRecipe(RecipeInfuserDummy dummy)
+		{
+			result = dummy.getResult().copy();
+			predicate = dummy.getCondition();
+			components = dummy.getComponents();
+			cost = dummy.getCost();
+			
+			if(predicate instanceof ResearchPredicate)
+			{
+				ResearchPredicate pred = (ResearchPredicate) predicate;
+				discoveries = pred.getResearchItems(EnumResearchItemType.DISCOVERY);
+			} else
+				discoveries = new ItemStack[0];
+		}
+		
 		public static DarkInfuserRecipe[] present()
 		{
 			List<DarkInfuserRecipe> recipes = new ArrayList<>();
@@ -328,6 +373,184 @@ public class RecipesInfuser
 			}
 			
 			return recipes.toArray(new DarkInfuserRecipe[recipes.size()]);
+		}
+	}
+	
+	public static class RecipeInfuserDummy
+	{
+		private Consumer<RecipeInfuserDummy> acceptor = recipe ->
+		{
+		};
+		
+		private ItemStack result;
+		private ItemStack[] components;
+		private int cost;
+		private boolean dark;
+		private Predicate<IInfuser> condition;
+		
+		public RecipeInfuserDummy(ItemStack result, ItemStack[] components, int cost, boolean dark, Predicate<IInfuser> condition)
+		{
+			this.result = result;
+			this.components = components;
+			this.cost = cost;
+			this.dark = dark;
+			this.condition = condition;
+		}
+		
+		public ItemStack getResult()
+		{
+			return result;
+		}
+		
+		public int getCost()
+		{
+			return cost;
+		}
+		
+		public Predicate<IInfuser> getCondition()
+		{
+			return condition;
+		}
+		
+		public ItemStack[] getComponents()
+		{
+			return components;
+		}
+		
+		public void setResult(ItemStack result)
+		{
+			this.result = result;
+			acceptor.accept(this);
+		}
+		
+		public void setComponents(ItemStack[] components)
+		{
+			this.components = components;
+			acceptor.accept(this);
+		}
+		
+		public void setCondition(Predicate<IInfuser> condition)
+		{
+			this.condition = condition;
+			acceptor.accept(this);
+		}
+		
+		public void setCost(int cost)
+		{
+			this.cost = cost;
+			acceptor.accept(this);
+		}
+		
+		public void setDark(boolean dark)
+		{
+			this.dark = dark;
+			acceptor.accept(this);
+		}
+		
+		public boolean isDark()
+		{
+			return this.dark;
+		}
+		
+		@Override
+		public boolean equals(Object obj)
+		{
+			if(!(obj instanceof RecipeInfuserDummy))
+				return false;
+			RecipeInfuserDummy dummy = (RecipeInfuserDummy) obj;
+			
+			boolean components = dummy.components.length == this.components.length;
+			if(components)
+				for(int i = 0; i < this.components.length; ++i)
+					if(!this.components[i].isItemEqual(dummy.components[i]))
+					{
+						components = false;
+						break;
+					}
+			
+			return components && this.dark == dummy.dark && this.cost == dummy.cost && this.result.isItemEqual(dummy.result);
+		}
+	}
+	
+	public static class InfuserList extends AbstractList<RecipeInfuserDummy> implements Closeable
+	{
+		private ArrayList<RecipeInfuserDummy> $ = new ArrayList<>();
+		
+		private InfuserList()
+		{
+			compose();
+		}
+		
+		private void compose()
+		{
+			$.clear();
+			for(int i = 0; i < resultList.size(); ++i)
+			{
+				RecipeInfuserDummy dummy = new RecipeInfuserDummy(resultList.get(i), componentList.get(i), costList.get(i), darkList.get(i), conditions.get(i));
+				dummy.acceptor = recipe -> decompose();
+				$.add(dummy);
+			}
+		}
+		
+		private void decompose()
+		{
+			resultList.clear();
+			componentList.clear();
+			costList.clear();
+			darkList.clear();
+			conditions.clear();
+			for(RecipeInfuserDummy recipe : $)
+				addInfusing(recipe.result, recipe.cost, recipe.condition, recipe.dark, recipe.components);
+		}
+		
+		@Override
+		public RecipeInfuserDummy get(int index)
+		{
+			compose();
+			return $.get(index);
+		}
+		
+		@Override
+		public void add(int index, RecipeInfuserDummy element)
+		{
+			$.add(index, element);
+			decompose();
+		}
+		
+		@Override
+		public RecipeInfuserDummy remove(int index)
+		{
+			RecipeInfuserDummy d = $.remove(index);
+			decompose();
+			return d;
+		}
+		
+		@Override
+		public RecipeInfuserDummy set(int index, RecipeInfuserDummy element)
+		{
+			RecipeInfuserDummy d = $.set(index, element);
+			decompose();
+			return d;
+		}
+		
+		@Override
+		public void clear()
+		{
+			$.clear();
+			decompose();
+		}
+		
+		@Override
+		public int size()
+		{
+			compose();
+			return $.size();
+		}
+		
+		public void close()
+		{
+			decompose();
+			$ = null;
 		}
 	}
 	

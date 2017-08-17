@@ -12,7 +12,7 @@ public class TaintRegistry
 	
 	static
 	{
-		registerTaintHandler(new TaintHandlerLostThaumaturgy());
+		registerTaintHandler(new TaintHandlerLT());
 	}
 	
 	public static boolean registerTaintHandler(ITaintHandler handler)

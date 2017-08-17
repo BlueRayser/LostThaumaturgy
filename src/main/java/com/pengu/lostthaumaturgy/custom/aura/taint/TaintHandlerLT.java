@@ -19,7 +19,7 @@ import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
-public class TaintHandlerLostThaumaturgy implements ITaintHandler
+public class TaintHandlerLT implements ITaintHandler
 {
 	@Override
 	public boolean canTaintBlock(World world, BlockPos pos)

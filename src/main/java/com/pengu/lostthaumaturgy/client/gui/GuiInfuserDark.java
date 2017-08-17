@@ -3,6 +3,7 @@ package com.pengu.lostthaumaturgy.client.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
@@ -13,7 +14,6 @@ import net.minecraft.util.text.translation.I18n;
 
 import org.lwjgl.opengl.GL11;
 
-import com.google.common.base.Predicate;
 import com.pengu.hammercore.bookAPI.BookCategory;
 import com.pengu.hammercore.bookAPI.BookEntry;
 import com.pengu.hammercore.client.utils.RenderUtil;
