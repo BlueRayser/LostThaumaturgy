@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class WorldGenCinderpearl implements IWorldGenerator
@@ -24,7 +24,7 @@ public class WorldGenCinderpearl implements IWorldGenerator
 			for(int k = 0; k < rand.nextInt(2); ++k)
 			{
 				BlockPos pos = world.getHeight(new BlockPos(chunkX * 16 + rand.nextInt(16), 255, chunkZ * 16 + rand.nextInt(16)));
-				if(AuraTicker.BIOME_FIREFLOWER.contains(world.getBiome(pos)))
+				if(AtmosphereTicker.BIOME_FIREFLOWER.contains(world.getBiome(pos)))
 				{
 					int flowerCount = rand.nextInt(8);
 					

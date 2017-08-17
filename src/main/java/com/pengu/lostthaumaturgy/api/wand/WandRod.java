@@ -17,7 +17,7 @@ import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.tile.IMalfunctionable;
 import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
@@ -80,7 +80,7 @@ public class WandRod
 			
 			float vis = ItemWand.getVis(wand.getItem());
 			float taint = ItemWand.getTaint(wand.getItem());
-			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(wand.getEntityWorld(), wand.getPosition());
+			AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(wand.getEntityWorld(), wand.getPosition());
 			if(vis > taint && si.taint > 0 && taint < ItemWand.getMaxTaint(wand.getItem()))
 			{
 				si.taint -= Math.ceil(ItemWand.addTaint(wand.getItem(), speed) * ratio);

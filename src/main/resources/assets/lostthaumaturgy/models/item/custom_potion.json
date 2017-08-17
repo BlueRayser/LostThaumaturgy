@@ -3,6 +3,7 @@
     "overrides": [
         { "predicate": { "type": 0.0 }, "model": "lostthaumaturgy:item/concentrated_vis" },
 		{ "predicate": { "type": 1.0 }, "model": "lostthaumaturgy:item/concentrated_taint" },
-		{ "predicate": { "type": 2.0 }, "model": "lostthaumaturgy:item/potion_purity" }
+		{ "predicate": { "type": 2.0 }, "model": "lostthaumaturgy:item/potion_purity" },
+		{ "predicate": { "type": 3.0 }, "model": "lostthaumaturgy:item/potion_primordial" }
     ]
 }

@@ -23,7 +23,7 @@ import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiGenerator;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.zap.PacketSpawnGeneratorZap;
@@ -48,7 +48,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 	{
 		super.tick();
 		
-		AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		reversed = hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.INFINITE_SADNESS));
 		
@@ -161,7 +161,7 @@ public class TileGenerator extends TileVisUser implements IEnergyStorage, IPower
 		if(genloop == 0 && emitPower)
 		{
 			HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":elecloop", pos, .1F, 1F, SoundCategory.BLOCKS);
-			AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 			if(ac != null)
 				ac.badVibes++;
 		}

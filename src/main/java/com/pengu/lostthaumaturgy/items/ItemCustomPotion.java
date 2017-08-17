@@ -17,7 +17,7 @@ import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
 
 public class ItemCustomPotion extends Item
 {
-	public final String[] names = { "concentrated_vis", "concentrated_taint", "potion_purity" };
+	public final String[] names = { "concentrated_vis", "concentrated_taint", "potion_purity", "potion_primordial" };
 	
 	public ItemCustomPotion()
 	{
@@ -71,7 +71,7 @@ public class ItemCustomPotion extends Item
 	{
 		if(!worldIn.isRemote)
 		{
-			int type = playerIn.getHeldItem(handIn).getItemDamage() % 3;
+			int type = playerIn.getHeldItem(handIn).getItemDamage() % 4;
 			EntityCustomSplashPotion potion = new EntityCustomSplashPotion(worldIn, playerIn);
 			potion.setType(type);
 			worldIn.spawnEntity(potion);

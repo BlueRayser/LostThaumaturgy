@@ -6,15 +6,15 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
-public class AuraAttachments
+public class AtmosphereAttachments
 {
-	private static IAuraAttachment[] attachments = new IAuraAttachment[0];
+	private static IAtmosphereAttachment[] attachments = new IAtmosphereAttachment[0];
 	
 	{
-		registerAttachment(new AuraAttachmentLT());
+		registerAttachment(new AtmosphereAttachmentLT());
 	}
 	
-	public static void registerAttachment(IAuraAttachment attachment)
+	public static void registerAttachment(IAtmosphereAttachment attachment)
 	{
 		attachments = ArrayUtils.add(attachments, attachment);
 	}

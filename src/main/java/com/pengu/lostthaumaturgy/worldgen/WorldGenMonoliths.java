@@ -13,7 +13,7 @@ import net.minecraft.world.biome.Biome;
 import com.pengu.hammercore.utils.ChunkUtils;
 import com.pengu.hammercore.world.gen.IWorldGenFeature;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 
 public class WorldGenMonoliths implements IWorldGenFeature
 {
@@ -41,11 +41,11 @@ public class WorldGenMonoliths implements IWorldGenFeature
 	public void generate(World world, BlockPos pos, Random rand)
 	{
 		pos = world.getHeight(ChunkUtils.getChunkPos(world.getChunkFromBlockCoords(pos), center)).down();
-		double dist = Math.sqrt(AuraTicker.getDistanceSqToClosestMonolith(pos));
+		double dist = Math.sqrt(AtmosphereTicker.getDistanceSqToClosestMonolith(pos));
 		if(dist < 500 || pos.getY() < 40 || !world.getBlockState(pos).isSideSolid(world, pos, EnumFacing.UP))
 			return;
 		generateSurroundings(world, rand, pos);
-		AuraTicker.addMonolith(pos);
+		AtmosphereTicker.addMonolith(pos);
 		BlockMonolithOpener.buildMonolith(world, pos);
 	}
 	

@@ -30,6 +30,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -491,5 +492,11 @@ public class ClientProxy extends CommonProxy
 				}
 			}
 		}
+	}
+	
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void renderAura(RenderWorldLastEvent e)
+	{
+		
 	}
 }

@@ -19,7 +19,7 @@ import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class TileMonolith extends TileSyncableTickable
@@ -46,7 +46,7 @@ public class TileMonolith extends TileSyncableTickable
 		if(soundDelay > 0)
 			soundDelay--;
 		
-		AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		if(si != null && si.monolithVibes < si.monolithVibeCap)
 			si.monolithVibes++;

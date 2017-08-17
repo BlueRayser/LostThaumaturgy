@@ -22,7 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import com.pengu.hammercore.common.inventory.InventoryNonTile;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.custom.golem.GolemCoreAbstract;
 import com.pengu.lostthaumaturgy.emote.EmoteManager;
 import com.pengu.lostthaumaturgy.entity.ai.LTPathNavigate;
@@ -235,7 +235,7 @@ public class EntityGolemBase extends EntityGolem
 			this.regenTimer = this.regenInterval;
 			if(this.decoration.contains("F"))
 				this.regenTimer /= 2;
-			if(!this.world.isRemote && this.getHealth() < this.getMaxHealth() && AuraTicker.decreaseClosestAura(world, posX, posZ, 2))
+			if(!this.world.isRemote && this.getHealth() < this.getMaxHealth() && AtmosphereTicker.decreaseClosestAura(world, posX, posZ, 2))
 			{
 				this.world.setEntityState(this, (byte) 5);
 				this.heal(1);

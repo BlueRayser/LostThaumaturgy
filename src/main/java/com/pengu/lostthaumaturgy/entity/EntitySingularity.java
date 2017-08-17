@@ -29,7 +29,7 @@ import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_EntitySingularity_doSuckage;
 
 public class EntitySingularity extends EntityThrowable
@@ -314,7 +314,7 @@ public class EntitySingularity extends EntityThrowable
 	
 	public void doAfterExplosion()
 	{
-		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+		AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, getPosition());
 		
 		if(ac != null)
 		{

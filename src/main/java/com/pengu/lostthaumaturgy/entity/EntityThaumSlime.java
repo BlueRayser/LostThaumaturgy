@@ -26,7 +26,7 @@ import com.google.common.base.Predicate;
 import com.pengu.hammercore.HammerCore;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class EntityThaumSlime extends EntityLiving implements IMob
@@ -90,7 +90,7 @@ public class EntityThaumSlime extends EntityLiving implements IMob
 		
 		boolean facingThaum = false;
 		
-		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+		AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, getPosition());
 		
 		if(ac != null && ac.goodVibes > 0)
 		{

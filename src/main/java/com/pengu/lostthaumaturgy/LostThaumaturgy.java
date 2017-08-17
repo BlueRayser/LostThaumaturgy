@@ -36,7 +36,7 @@ import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.creative.CreativeTabLT;
 import com.pengu.lostthaumaturgy.creative.CreativeTabResearches;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.EntitiesLT;
 import com.pengu.lostthaumaturgy.init.FuelHandlerLT;
@@ -213,13 +213,13 @@ public class LostThaumaturgy
 	public void serverStarted(FMLServerStartedEvent evt)
 	{
 		RecipesCrucible.reloadRecipes();
-		AuraTicker.LoadAuraData();
+		AtmosphereTicker.LoadAuraData();
 	}
 	
 	@EventHandler
 	public void serverStop(FMLServerStoppedEvent evt)
 	{
-		AuraTicker.AuraHM.clear();
-		AuraTicker.loadedAuras = false;
+		AtmosphereTicker.AuraHM.clear();
+		AtmosphereTicker.loadedAuras = false;
 	}
 }

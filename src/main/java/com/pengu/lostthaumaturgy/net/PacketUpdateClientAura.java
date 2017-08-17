@@ -10,7 +10,7 @@ import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 
 public class PacketUpdateClientAura implements IPacket, IPacketListener<PacketUpdateClientAura, IPacket>
 {
@@ -22,7 +22,7 @@ public class PacketUpdateClientAura implements IPacket, IPacketListener<PacketUp
 	public PacketUpdateClientAura(AtmosphereChunk chunk, EntityPlayerMP mp)
 	{
 		this.chunk = chunk;
-		monolith = AuraTicker.getClosestMonolithPos(mp.getPosition());
+		monolith = AtmosphereTicker.getClosestMonolithPos(mp.getPosition());
 	}
 	
 	public PacketUpdateClientAura()

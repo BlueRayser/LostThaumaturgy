@@ -12,7 +12,7 @@ import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.api.seal.SealInstance;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.tile.TileSeal;
 
@@ -72,7 +72,7 @@ public class SealWaterHydrate extends SealInstance
 		{
 			WorldLocation l = drps;
 			
-			AtmosphereChunk chunk = AuraTicker.getAuraChunkFromBlockCoords(l);
+			AtmosphereChunk chunk = AtmosphereTicker.getAuraChunkFromBlockCoords(l);
 			
 			if(rand.nextInt(100) < 5)
 				++chunk.badVibes;

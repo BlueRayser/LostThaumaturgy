@@ -18,7 +18,7 @@ import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiCrystallizer;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerCrystallizer;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -79,7 +79,7 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 			
 			if(sucked > 0)
 			{
-				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.radiation += .0005F * sucked;
 			}
 		} else
@@ -93,9 +93,9 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 		
 		if(crystalTime < 0 && !inventory.getStackInSlot(6).isEmpty() && EnumMultiMaterialType.isCrystal(inventory.getStackInSlot(6)))
 		{
-			addCrystal(AuraTicker.getCrystalByBiome(world, pos, hasUpgrade(3) ? 3 : 0));
+			addCrystal(AtmosphereTicker.getCrystalByBiome(world, pos, hasUpgrade(3) ? 3 : 0));
 			crystalTime = 0;
-			ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 			if(ac != null)
 				ac.badVibes = (short) (ac.badVibes + 5);
 		}
@@ -105,7 +105,7 @@ public class TileCrystallizer extends TileVisUser implements IUpgradable, ISided
 		
 		if(boostDelay <= 0 || boostDelay == 10)
 		{
-			ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 			
 			if(ac != null && boost < 10 && ac.boost > 0)
 			{

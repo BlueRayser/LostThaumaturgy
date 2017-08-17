@@ -22,7 +22,7 @@ import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
 import com.pengu.lostthaumaturgy.client.gui.GuiDuplicator;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerDuplicator;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -58,7 +58,7 @@ public class TileDuplicator extends TileVisUser implements IUpgradable
 	public void tick()
 	{
 		forbid = false;
-		AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+		AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 		
 		boolean flag;
 		

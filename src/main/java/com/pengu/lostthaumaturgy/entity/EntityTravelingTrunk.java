@@ -37,7 +37,7 @@ import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerTravelingTrunk;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -266,7 +266,7 @@ public class EntityTravelingTrunk extends EntityAnimal implements IUpgradable
 						showHeartsOrSmokeFX(false);
 						setAttackTarget(null);
 						angerLevel = 0;
-						AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, getPosition());
+						AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(world, getPosition());
 						if(si != null)
 							si.badVibes += 5;
 						break tp;

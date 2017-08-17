@@ -26,7 +26,7 @@ import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IUpgradable;
 import com.pengu.lostthaumaturgy.client.gui.GuiVisCondenser;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerVisCondenser;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
@@ -147,7 +147,7 @@ public class TileVisCondenser extends TileSyncableTickable implements IConnectio
 				progress += speed * moon;
 			if(progress >= (hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.STABILIZED_SINGULARITY)) ? 20 : 25) && currentVis <= maxVis - 1 && currentTaint <= maxVis - 1 && currentType >= 0)
 			{
-				AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 				{
 					if(currentType != 5)

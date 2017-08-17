@@ -15,7 +15,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuserDark;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuserDark;
 import com.pengu.lostthaumaturgy.items.ItemUpgrade;
@@ -73,7 +73,7 @@ public class TileInfuserDark extends TileInfuser
 			{
 				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":dark_infuser", pos, .2F, 1F, SoundCategory.BLOCKS);
 				soundDelay = 62;
-				AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null)
 					ac.badVibes = (short) (ac.badVibes + 2);
 			}
@@ -104,7 +104,7 @@ public class TileInfuserDark extends TileInfuser
 			}
 			if(sucked > 0)
 			{
-				AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 				si.radiation += .0005F * sucked;
 				sync();
 			}

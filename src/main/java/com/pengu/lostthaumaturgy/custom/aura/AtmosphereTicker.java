@@ -49,7 +49,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.event.AuraEvent;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
-import com.pengu.lostthaumaturgy.custom.aura.api.AuraAttachments;
+import com.pengu.lostthaumaturgy.custom.aura.api.AtmosphereAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
@@ -60,7 +60,7 @@ import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_spillTaint;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp_AuraTicker_taintExplosion;
 
 @MCFBus
-public class AuraTicker
+public class AtmosphereTicker
 {
 	public static boolean loadedAuras = false;
 	public static ArrayList<Biome> BIOME_MAGIC = new ArrayList();
@@ -267,17 +267,17 @@ public class AuraTicker
 		int c4 = 1;
 		int c5 = darkAmount;
 		Biome bio = world.getBiome(pos);
-		if(AuraTicker.BIOME_MAGIC.contains(bio))
+		if(AtmosphereTicker.BIOME_MAGIC.contains(bio))
 			++c0;
-		if(AuraTicker.BIOME_AIR.contains(bio))
+		if(AtmosphereTicker.BIOME_AIR.contains(bio))
 			++c1;
-		if(AuraTicker.BIOME_WATER.contains(bio))
+		if(AtmosphereTicker.BIOME_WATER.contains(bio))
 			++c2;
-		if(AuraTicker.BIOME_EARTH.contains(bio))
+		if(AtmosphereTicker.BIOME_EARTH.contains(bio))
 			++c3;
-		if(AuraTicker.BIOME_FIRE.contains(bio))
+		if(AtmosphereTicker.BIOME_FIRE.contains(bio))
 			++c4;
-		if(darkAmount > 0 && AuraTicker.BIOME_TAINT.contains(bio))
+		if(darkAmount > 0 && AtmosphereTicker.BIOME_TAINT.contains(bio))
 			++c5;
 		if((type = world.rand.nextInt(c0 + c1 + c2 + c3 + c4 + c5)) < c0)
 			type = 0;
@@ -336,6 +336,7 @@ public class AuraTicker
 		int counter = AuraHM.size() / 200;
 		for(AtmosphereChunk ac2 : c)
 		{
+			ac2.world = world;
 			if(ac2.updated || ac2.dimension != world.provider.getDimension())
 				continue;
 			
@@ -345,7 +346,7 @@ public class AuraTicker
 			ac2.previousTaint = ac2.taint;
 			ac2.previousRadiation = ac2.radiation;
 			
-			AuraAttachments.attach(ac2);
+			AtmosphereAttachments.attach(ac2);
 			noupdates = false;
 			ac2.updated = true;
 			
@@ -440,6 +441,10 @@ public class AuraTicker
 			ac2.goodVibes = (short) MathHelper.clip(Math.abs(ac2.goodVibes), 0, 100);
 			ac2.badVibes = (short) MathHelper.clip(Math.abs(ac2.badVibes), 0, 100);
 			ac2.radiation = (float) MathHelper.clip(Math.abs(ac2.radiation), 0, LTConfigs.aura_radMax);
+			
+			/** Shrink strength */
+			if(world.rand.nextInt(3) == 0 && ac2.primordialNodeStrength > 0)
+				ac2.primordialNodeStrength *= .75;
 			
 			if(world.isBlockLoaded(ChunkUtils.getChunkPos(ac2.x, ac2.z, 8, 127, 8)))
 			{
@@ -613,8 +618,8 @@ public class AuraTicker
 			HashMap loaded = (HashMap) in.readObject();
 			ArrayList monoliths = (ArrayList) in.readObject();
 			in.close();
-			AuraTicker.AuraHM = loaded;
-			AuraTicker.Monoliths = monoliths;
+			AtmosphereTicker.AuraHM = loaded;
+			AtmosphereTicker.Monoliths = monoliths;
 			LostThaumaturgy.LOG.info("Loaded " + AuraHM.size() + " aura chunks.");
 		} catch(FileNotFoundException e)
 		{
@@ -627,8 +632,8 @@ public class AuraTicker
 				HashMap loaded = (HashMap) in.readObject();
 				ArrayList monoliths = (ArrayList) in.readObject();
 				in.close();
-				AuraTicker.AuraHM = loaded;
-				AuraTicker.Monoliths = monoliths;
+				AtmosphereTicker.AuraHM = loaded;
+				AtmosphereTicker.Monoliths = monoliths;
 				LostThaumaturgy.LOG.info("Converted " + AuraHM.size() + " legacy auras.");
 			} catch(Exception e2)
 			{

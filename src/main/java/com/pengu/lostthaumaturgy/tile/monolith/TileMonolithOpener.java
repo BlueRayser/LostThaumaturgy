@@ -22,7 +22,7 @@ import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.event.FillVoidChestEvent;
 import com.pengu.lostthaumaturgy.block.monolith.BlockMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.net.wisp.PacketMonolithWisp;
 import com.pengu.lostthaumaturgy.tile.TileVoidChest;
@@ -63,7 +63,7 @@ public class TileMonolithOpener extends TileSyncableTickable
 		
 		if(opened)
 		{
-			AtmosphereChunk si = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+			AtmosphereChunk si = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 			if(si != null)
 			{
 				si.badVibes += 105;

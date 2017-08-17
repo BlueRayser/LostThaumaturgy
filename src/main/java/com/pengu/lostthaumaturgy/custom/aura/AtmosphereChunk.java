@@ -7,6 +7,7 @@ import java.util.List;
 import net.minecraft.nbt.NBTTagByteArray;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.common.util.INBTSerializable;
 
@@ -17,6 +18,7 @@ public class AtmosphereChunk implements Serializable, INBTSerializable<NBTTagCom
 {
 	public static final String VAR_DISPERSE = "LT_DisperseAura";
 	
+	public transient World world;
 	public final IndexedMap<String, List<byte[]>> data = new IndexedMap<>();
 	public short vis;
 	public short taint;
@@ -31,8 +33,9 @@ public class AtmosphereChunk implements Serializable, INBTSerializable<NBTTagCom
 	public int dimension;
 	public short monolithVibes;
 	public short monolithVibeCap = 0;
-	public float radiation = 6.001F;
+	public float radiation = 6.000F;
 	public float previousRadiation = radiation;
+	public float primordialNodeStrength = 0;
 	
 	public List<byte[]> getVar(String name)
 	{
@@ -59,6 +62,7 @@ public class AtmosphereChunk implements Serializable, INBTSerializable<NBTTagCom
 		nbt.setInteger("dimension", dimension);
 		nbt.setFloat("radiation", radiation);
 		nbt.setFloat("previousRadiation", previousRadiation);
+		nbt.setFloat("primordialNodeLevel", primordialNodeStrength);
 		
 		NBTTagList list = new NBTTagList();
 		
@@ -94,6 +98,7 @@ public class AtmosphereChunk implements Serializable, INBTSerializable<NBTTagCom
 		dimension = nbt.getInteger("dimension");
 		radiation = nbt.getFloat("radiation");
 		previousRadiation = nbt.getFloat("previousRadiation");
+		primordialNodeStrength = nbt.getFloat("primordialNodeLevel");
 		
 		NBTTagList list = nbt.getTagList("Variables", NBT.TAG_COMPOUND);
 		

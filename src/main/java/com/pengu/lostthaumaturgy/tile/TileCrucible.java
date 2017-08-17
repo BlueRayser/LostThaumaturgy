@@ -25,7 +25,7 @@ import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.IThaumSlimeDrainable;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.aura.AuraTicker;
+import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
@@ -120,7 +120,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 			
 			if(overflowSplit >= 1.0f)
 			{
-				AtmosphereChunk ac = (AtmosphereChunk) AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+				AtmosphereChunk ac = (AtmosphereChunk) AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 				if(ac != null && taintedVis >= 1)
 				{
 					taintedVis -= 1;
@@ -193,7 +193,7 @@ public class TileCrucible extends TileSyncableTickable implements IConnection, I
 						// 0.05f));
 						// }
 						
-						AtmosphereChunk ac = AuraTicker.getAuraChunkFromBlockCoords(world, pos);
+						AtmosphereChunk ac = AtmosphereTicker.getAuraChunkFromBlockCoords(world, pos);
 						if(ac != null)
 						{
 							ac.badVibes = (short) ((float) ac.badVibes + currentItemCookValue / 10F);
