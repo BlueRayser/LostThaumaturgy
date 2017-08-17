@@ -29,6 +29,10 @@ public class TESRCrucibleEyes extends TESR<TileCrucibleEyes>
 	@Override
 	public void renderTileEntityAt(TileCrucibleEyes te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -46,8 +50,6 @@ public class TESRCrucibleEyes extends TESR<TileCrucibleEyes>
 			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
 			TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_inner");
 			TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/eyes/crucible_side_connected_" + sub);
-			
-			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 			
 			for(int i = 0; i < (destroyStage != null && destroyProgress > 0F ? 2 : 1); ++i)
 			{
@@ -157,12 +159,14 @@ public class TESRCrucibleEyes extends TESR<TileCrucibleEyes>
 		{
 			err.printStackTrace();
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override
 	public void renderItem(ItemStack item)
 	{
-		renderTileEntityAt(null, 0, 0, 0, 0, null, 0);
+		renderTileEntityAt(null, 0, 0, 0, 0, null, 1);
 		super.renderItem(item);
 	}
 	

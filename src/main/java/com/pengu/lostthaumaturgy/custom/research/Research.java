@@ -2,12 +2,15 @@ package com.pengu.lostthaumaturgy.custom.research;
 
 import java.security.SecureRandom;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.pengu.hammercore.HammerCore;
+import com.pengu.hammercore.utils.ColorHelper;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal.Getter;
 import com.pengu.lostthaumaturgy.custom.research.client.ResearchPageHandler;
 
@@ -28,6 +31,7 @@ public class Research
 	        CATEGORY_ELDRITCH = "eldritch", //
 	        CATEGORY_FORBIDDEN = "forbidden", //
 	        CATEGORY_TAINTED = "tainted", //
+	        CATEGORY_PRIMORDIAL = "primordial", //
 	        CATEGORY_UNDEFINED = "undefined";
 	
 	public Research(String uid, float failChance)
@@ -58,6 +62,8 @@ public class Research
 	
 	public String sucessToString()
 	{
+		if(failChance <= 5)
+			return "Trivial";
 		if(failChance <= 10)
 			return "Easy";
 		if(failChance <= 30)
@@ -116,5 +122,62 @@ public class Research
 		if(!researchStack.isEmpty() && !baseStack.equals(researchStack))
 			return false;
 		return true;
+	}
+	
+	public static class PrimordialResearch extends Research
+	{
+		public PrimordialResearch(String uid, float failChance, String category)
+		{
+			super(uid, failChance, category);
+		}
+		
+		public PrimordialResearch(String uid, float failChance)
+		{
+			super(uid, failChance);
+		}
+		
+		protected long msPerCycle = 6000L;
+		
+		public PrimordialResearch setSpeed(long msPerCycle)
+		{
+			this.msPerCycle = msPerCycle;
+			return this;
+		}
+		
+		@Override
+		public int getColor()
+		{
+			float r = 1;
+			float g = 1;
+			float b = 1;
+			
+			long time = (Minecraft.getSystemTime() + hashCode()) % msPerCycle;
+			long msPerSector = msPerCycle / 3L;
+			int currentSector = MathHelper.floor((double) time / (double) msPerSector) + 1;
+			long sectorCenter = currentSector * msPerSector;
+			float sectorProgression = (time % msPerSector) / (float) msPerSector;
+			float sectorDepth = sectorProgression * 2F;
+			if(sectorDepth > 1)
+				sectorDepth = 2 - sectorDepth;
+			
+			if(currentSector == 1)
+			{
+				b = 1 - sectorProgression;
+				r = 1;
+				g = sectorProgression;
+			} else if(currentSector == 2)
+			{
+				r = 1 - sectorProgression;
+				g = 1;
+				b = sectorProgression;
+			} else if(currentSector == 3)
+			{
+				g = 1 - sectorProgression;
+				b = 1;
+				r = sectorProgression;
+			}
+			
+			return ColorHelper.packRGB(r, g, b);
+		}
 	}
 }

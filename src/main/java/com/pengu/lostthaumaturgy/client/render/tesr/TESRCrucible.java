@@ -29,6 +29,10 @@ public class TESRCrucible extends TESR<TileCrucible>
 	@Override
 	public void renderTileEntityAt(TileCrucible te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -45,8 +49,6 @@ public class TESRCrucible extends TESR<TileCrucible>
 			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
 			TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_inner");
 			TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/crucible_side_connected");
-			
-			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 			
 			for(int i = 0; i < (destroyStage != null && destroyProgress > 0F ? 2 : 1); ++i)
 			{
@@ -156,6 +158,8 @@ public class TESRCrucible extends TESR<TileCrucible>
 		{
 			err.printStackTrace();
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

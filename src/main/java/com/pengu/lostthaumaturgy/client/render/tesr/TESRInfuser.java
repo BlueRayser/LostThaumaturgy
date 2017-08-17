@@ -46,6 +46,10 @@ public class TESRInfuser extends TESR<TileInfuser>
 	@Override
 	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -69,6 +73,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 		}
 		
 		destroyProgress = 0;
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
@@ -179,5 +184,7 @@ public class TESRInfuser extends TESR<TileInfuser>
 		GL11.glColor4f(1, 1, 1, 1);
 		
 		blend.reset();
+		
+		
 	}
 }

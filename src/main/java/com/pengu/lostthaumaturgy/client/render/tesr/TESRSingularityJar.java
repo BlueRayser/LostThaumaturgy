@@ -26,8 +26,13 @@ public class TESRSingularityJar extends TESR<TileSingularityJar>
 	public static final TESRSingularityJar INSTANCE = new TESRSingularityJar();
 	public final ResourceLocation singularity = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/xp_singularity.png");
 	
-	public void renderBase(TileSingularityJar tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage)
+	@Override
+	public void renderBase(TileSingularityJar tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
 		
 		for(int i = 0; i < (destroyStage != null ? 2 : 1); ++i)
@@ -108,5 +113,7 @@ public class TESRSingularityJar extends TESR<TileSingularityJar>
 			sbr.drawBlock(x, y, z);
 			sbr.end();
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 }

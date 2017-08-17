@@ -50,8 +50,12 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		if(br instanceof BlockSilverwoodConduit)
 			sprite = br.getParticleSprite(getWorld(), null);
 		
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
 		renderConduitBase(te, te, sprite, x, y, z);
 		renderConduitVis(te, x, y, z);
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

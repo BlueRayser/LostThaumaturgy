@@ -31,7 +31,11 @@ public class TESRAuxiliumTable extends TESR<TileAuxiliumTable>
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
 		renderModel(te, x, y, z);
+		rb.renderAlpha = srcAlpha;
 		
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + .5, y + 14 / 16D, z + .5);

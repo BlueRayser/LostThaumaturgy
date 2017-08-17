@@ -46,6 +46,10 @@ public class TESRInfuserDark extends TESR<TileInfuser>
 	@Override
 	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -69,6 +73,7 @@ public class TESRInfuserDark extends TESR<TileInfuser>
 		}
 		
 		destroyProgress = 0;
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/dark_infuser_symbol.png");

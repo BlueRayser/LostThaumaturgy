@@ -83,6 +83,9 @@ public class ItemMultiMaterial extends Item implements IRegisterListener
 		
 		EnumMultiMaterialType.REZULI_CRYSTAL.setHasEffect(true);
 		
+		EnumMultiMaterialType.PRIMORDIAL_CRYSTAL.setHasEffect(true);
+		EnumMultiMaterialType.PRIMORDIAL_INGOT.setHasEffect(true);
+		
 		for(EnumMultiMaterialType type : EnumMultiMaterialType.values())
 			if(type.oredict != null)
 				for(String name : type.oredict)
@@ -217,7 +220,9 @@ public class ItemMultiMaterial extends Item implements IRegisterListener
 		CAP_VOID, // 61
 		ROD_GREATWOOD, // 62
 		ROD_SILVERWOOD, // 63
-		TALLOW // 64
+		TALLOW, // 64
+		PRIMORDIAL_CRYSTAL("crystalVis", "crystalPrimordial"), //65
+		PRIMORDIAL_INGOT("ingotPrimordial") //66
 		;
 		
 		private final String oredict[];

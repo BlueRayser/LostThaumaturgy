@@ -42,12 +42,14 @@ public class TESRVisTank extends TESR<TileVisTank>
 	@Override
 	public void renderTileEntityAt(TileVisTank te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
 		TextureAtlasSprite vis_conduit = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_conduit");
 		
 		setupTextures();
-		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
@@ -163,6 +165,8 @@ public class TESRVisTank extends TESR<TileVisTank>
 				}
 			}
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

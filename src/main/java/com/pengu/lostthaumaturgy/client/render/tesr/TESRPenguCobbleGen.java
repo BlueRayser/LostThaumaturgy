@@ -30,8 +30,11 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 	@Override
 	public void renderBase(TilePenguCobbleGen tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
-		RenderBlocks rb = sbr.rb;
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
+		SimpleBlockRendering sbr = rb.simpleRenderer;
 		
 		sbr.begin();
 		sbr.setBrightness(getBrightnessForRB(tile, sbr.rb));
@@ -131,6 +134,8 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 			
 			GL11.glPopMatrix();
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

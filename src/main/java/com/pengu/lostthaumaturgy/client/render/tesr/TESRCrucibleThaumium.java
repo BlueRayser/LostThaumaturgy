@@ -29,6 +29,10 @@ public class TESRCrucibleThaumium extends TESR<TileCrucibleThaumium>
 	@Override
 	public void renderTileEntityAt(TileCrucibleThaumium te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -46,8 +50,6 @@ public class TESRCrucibleThaumium extends TESR<TileCrucibleThaumium>
 			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
 			TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/thaumium/crucible_inner");
 			TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/thaumium/crucible_side_connected_" + sub);
-			
-			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 			
 			for(int i = 0; i < (destroyStage != null && destroyProgress > 0F ? 2 : 1); ++i)
 			{
@@ -157,6 +159,8 @@ public class TESRCrucibleThaumium extends TESR<TileCrucibleThaumium>
 		{
 			err.printStackTrace();
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

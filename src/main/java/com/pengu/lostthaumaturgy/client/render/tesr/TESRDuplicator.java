@@ -25,6 +25,10 @@ public class TESRDuplicator extends TESR<TileDuplicator>
 	@Override
 	public void renderBase(TileDuplicator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		float dist = .04372F;
 		
 		if(tile != null)
@@ -71,7 +75,7 @@ public class TESRDuplicator extends TESR<TileDuplicator>
 		
 		EnumFacing front = tile != null ? EnumFacing.VALUES[tile.orientation.get()] : EnumFacing.SOUTH;
 		
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = rb.simpleRenderer;
 		
 		sbr.begin();
 		sbr.setBrightness(getBrightnessForRB(tile, sbr.rb));
@@ -86,5 +90,7 @@ public class TESRDuplicator extends TESR<TileDuplicator>
 		sbr.disableFace(front);
 		sbr.drawBlock(x, y, z);
 		sbr.end();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 }

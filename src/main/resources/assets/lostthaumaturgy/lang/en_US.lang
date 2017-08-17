@@ -216,6 +216,15 @@ item.lostthaumaturgy:elemental_sword.name=Sword of the Zephyr
 item.lostthaumaturgy:elemental_shovel.name=Shovel of Renewal
 item.lostthaumaturgy:elemental_hoe.name=Hoe of the Mystic
 item.lostthaumaturgy:tallow.name=Tallow
+item.lostthaumaturgy:primordial_crystal.name=Primordial Crystal
+item.lostthaumaturgy:primordial_ingot.name=Primordial Ingot
+item.lostthaumaturgy:runic_essence_magic.name=Runic Essence: Magic
+item.lostthaumaturgy:runic_essence_air.name=Runic Essence: Air
+item.lostthaumaturgy:runic_essence_water.name=Runic Essence: Water
+item.lostthaumaturgy:runic_essence_earth.name=Runic Essence: Earth
+item.lostthaumaturgy:runic_essence_fire.name=Runic Essence: Fire
+item.lostthaumaturgy:runic_essence_dark.name=Runic Essence: Dark
+item.lostthaumaturgy:runic_essence_depleted.name=Runic Essence: Depleted
 
 
 
@@ -317,6 +326,9 @@ research.lostthaumaturgy:advanced_vis_valve.desc=Vis Valves are good at blocking
 research.lostthaumaturgy:repairer.title=Thaumic Restorer
 research.lostthaumaturgy:repairer.desc=Every tool breaks eventually... Your knowledge allow you to channel vis to reconstuct your tools/weapons. The Thaumic Restorer repairs your weapons, tools, armor and power items using liquid vis, which makes it one of the most essential pieces of thaumic machinery.
 
+research.lostthaumaturgy:primordial_crystal.title=Primordial Crystal
+research.lostthaumaturgy:primordial_crystal.desc=You found a really strange energy... It looks like a pulsating energy, while your machines emit radiation. It does seem like it forged the universe without anything else... You found a way to absorb this energy and fill a few crystals with it.
+
 
 
 advancement.lostthaumaturgy:aura/root=Lost Thaumaturgy: Atmosphere
@@ -339,6 +351,7 @@ bookapi.lostthaumaturgy:thaumonomicon:lost_knowledge=Lost Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:eldritch=Eldritch Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:forbidden=Forbidden Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:tainted=Tainted Knowledge
+bookapi.lostthaumaturgy:thaumonomicon:primordial=Primordial Knowledge
 bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 

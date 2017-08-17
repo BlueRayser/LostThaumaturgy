@@ -36,40 +36,34 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 	{
 		super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage, alpha);
 		
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-		
 		GLRenderState blend = GLRenderState.BLEND;
 		blend.captureState();
 		blend.on();
-		
 		GlStateManager.disableLighting();
-		
 		TextureAtlasSprite sprite = te.setting == 0 ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_off") : te.setting == 2 ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_taint") : ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_vis");
-		
 		Tessellator tess = Tessellator.getInstance();
-		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
-		
 		int bright = getBrightnessForRB(te, rb);
-		
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
-		
 		rb.setRenderBounds(4 / 16D, 4 / 16D, 4 / 16D, 12 / 16D, 12 / 16D, 12 / 16D);
-		
 		rb.renderFaceXNeg(x, y, z, sprite, 1, 1, 1, bright);
 		rb.renderFaceXPos(x, y, z, sprite, 1, 1, 1, bright);
 		rb.renderFaceYNeg(x, y, z, sprite, 1, 1, 1, bright);
 		rb.renderFaceYPos(x, y, z, sprite, 1, 1, 1, bright);
 		rb.renderFaceZNeg(x, y, z, sprite, 1, 1, 1, bright);
 		rb.renderFaceZPos(x, y, z, sprite, 1, 1, 1, bright);
-		
 		tess.draw();
-		
 		blend.reset();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

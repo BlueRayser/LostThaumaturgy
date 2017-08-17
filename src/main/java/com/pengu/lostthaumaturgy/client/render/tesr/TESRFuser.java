@@ -29,15 +29,19 @@ public class TESRFuser extends TESR<TileFuser>
 	@Override
 	public void renderTileEntityAt(TileFuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		TileFuser main = te.gui;
 		if(main == null)
 			return;
 		
 		Vec3i vec = te.getPos().subtract(main.getPos());
 		
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = rb.simpleRenderer;
 		
-		sbr.rb.renderFromInside = false;
+		rb.renderFromInside = false;
 		
 		int index = vec.getX() + vec.getZ() * 2 + 1;
 		EnumFacing face = EnumFacing.getFacingFromVector(vec.getX(), 0, vec.getZ());
@@ -59,14 +63,14 @@ public class TESRFuser extends TESR<TileFuser>
 		Color.glColourRGB(0xFFFFFF);
 		Tessellator tess = Tessellator.getInstance();
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
-		sbr.rb.setRenderBounds(.02, .02, .02, .98, .98, .98);
+		rb.setRenderBounds(.02, .02, .02, .98, .98, .98);
 		int b = getBrightnessForRB(te, sbr.rb);
 		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-		sbr.rb.renderFaceXPos(x, y, z, vis, 1F, 1F, 1F, b);
-		sbr.rb.renderFaceXNeg(x, y, z, vis, 1F, 1F, 1F, b);
-		sbr.rb.renderFaceZPos(x, y, z, vis, 1F, 1F, 1F, b);
-		sbr.rb.renderFaceZNeg(x, y, z, vis, 1F, 1F, 1F, b);
-		sbr.rb.renderFaceYPos(x, y, z, vis, 1F, 1F, 1F, b);
+		rb.renderFaceXPos(x, y, z, vis, 1F, 1F, 1F, b);
+		rb.renderFaceXNeg(x, y, z, vis, 1F, 1F, 1F, b);
+		rb.renderFaceZPos(x, y, z, vis, 1F, 1F, 1F, b);
+		rb.renderFaceZNeg(x, y, z, vis, 1F, 1F, 1F, b);
+		rb.renderFaceYPos(x, y, z, vis, 1F, 1F, 1F, b);
 		LiquidVisRenderer.alpha = 1;
 		LiquidVisRenderer.resolution = 300;
 		LiquidVisRenderer.finishDrawWithShaders(tess, 1);
@@ -179,6 +183,8 @@ public class TESRFuser extends TESR<TileFuser>
 			mc.getRenderItem().renderItem(te.inventory.getStackInSlot(8), TransformType.GROUND);
 			GL11.glPopMatrix();
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

@@ -26,6 +26,10 @@ public class TESRRepairer extends TESR<TileRepairer>
 	@Override
 	public void renderBase(TileRepairer tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		int count = tile != null ? tile.ticksExisted : 0;
 		int angle = 0;
 		if(tile != null && tile.worked)
@@ -112,5 +116,7 @@ public class TESRRepairer extends TESR<TileRepairer>
 			sbr.drawBlock(x, y, z);
 		}
 		sbr.end();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 }

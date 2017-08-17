@@ -65,6 +65,8 @@
 		{ "predicate": { "type": 61.0 }, "model": "lostthaumaturgy:item/cap_void" },
 		{ "predicate": { "type": 62.0 }, "model": "lostthaumaturgy:item/rod_greatwood" },
 		{ "predicate": { "type": 63.0 }, "model": "lostthaumaturgy:item/rod_silverwood" },
-		{ "predicate": { "type": 64.0 }, "model": "lostthaumaturgy:item/tallow" }
+		{ "predicate": { "type": 64.0 }, "model": "lostthaumaturgy:item/tallow" },
+		{ "predicate": { "type": 65.0 }, "model": "lostthaumaturgy:item/primordial_crystal" },
+		{ "predicate": { "type": 66.0 }, "model": "lostthaumaturgy:item/primordial_ingot" }
     ]
 }

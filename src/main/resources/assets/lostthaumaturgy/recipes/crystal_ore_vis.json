@@ -2,7 +2,7 @@
     "type": "forge:ore_shaped",
     "pattern": [ "ccc", "ccc", "ccc" ],
     "key": {
-		"c": { "ore": "crystalVis", "type": "forge:ore_dict" }
+		"c": { "ore": "crystalEnergy", "type": "forge:ore_dict" }
     },
     "result": { "item": "lostthaumaturgy:crystal_ore_vis" }
 }

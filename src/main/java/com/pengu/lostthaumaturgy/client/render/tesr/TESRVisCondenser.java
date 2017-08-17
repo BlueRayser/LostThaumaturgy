@@ -65,22 +65,30 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	@Override
 	public void renderBase(TileVisCondenser tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/condenser");
 		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
+		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/condenser");
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y, z);
 		OpnodeRender.renderOpnodes(rb.simpleRenderer, opnode, getBrightnessForRB(tile, rb), true);
 		GL11.glPopMatrix();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override
 	public void renderTileEntityAt(TileVisCondenser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		this.bob = MathHelper.sin(te.ticksExisted / 10F) * .05F + .05F;
 		
 		if(te.hasUpgrade(ItemUpgrade.idFromItem(ItemsLT.QUICKSILVER_CORE)))
 		{
-			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 			SimpleBlockRendering sbr = rb.simpleRenderer;
 			
 			GL11.glDisable(GL11.GL_BLEND);
@@ -202,5 +210,7 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 				drawDisk(x, y + 1.1749999523162842 + bob * 6, z, 360 - te.angle);
 			}
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 }

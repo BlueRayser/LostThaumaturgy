@@ -27,17 +27,21 @@ public class TESRGenerator extends TESR<TileGenerator>
 	@Override
 	public void renderTileEntityAt(TileGenerator te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		renderBase(te, null, x, y, z, destroyStage, partialTicks);
+		renderBase(te, null, x, y, z, destroyStage, alpha);
 	}
 	
 	@Override
 	public void renderItem(ItemStack item)
 	{
-		renderBase(null, item, 0, 0, 0, null, 0);
+		renderBase(null, item, 0, 0, 0, null, 1);
 	}
 	
 	public void renderBase(TileGenerator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float partialTicks)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = partialTicks;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -90,5 +94,7 @@ public class TESRGenerator extends TESR<TileGenerator>
 			sbr.drawBlock(x, y, z);
 		}
 		sbr.end();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 }

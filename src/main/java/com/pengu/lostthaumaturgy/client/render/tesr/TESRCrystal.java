@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.common.utils.WorldUtil;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
@@ -62,6 +63,10 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 	@Override
 	public void renderTileEntityAt(TileCrystalOre te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		BlockOreCrystal block = WorldUtil.cast(te.getWorld().getBlockState(te.getPos()).getBlock(), BlockOreCrystal.class);
 		if(block == null)
 			return;
@@ -95,6 +100,8 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 				drawCrystal(te.orientation.get(), (float) x, (float) y, (float) z, angle1, angle2, 1, rand, red, green, blue);
 			}
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	private void translateFromOrientation(float x, float y, float z, int orientation)

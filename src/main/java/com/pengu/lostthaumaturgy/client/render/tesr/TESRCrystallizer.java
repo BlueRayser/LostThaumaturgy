@@ -86,6 +86,10 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	@Override
 	public void renderTileEntityAt(TileCrystallizer te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		drawBlock(x, y, z, getBrightnessForRB(te, RenderBlocks.forMod(LTInfo.MOD_ID)));
 		
 		float count = (te.crystalTime.get() / te.maxTime) * 360F;
@@ -127,6 +131,8 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 			Color.glColourRGB(((BlockOreCrystal) BlocksLT.CRYSTAL_ORE_TAINTED).getCrystalColor());
 			drawCrystal(x + .5, y + .25, z + .5, angleS += angleI, 25, .4F - bob);
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	public void drawBlock(double x, double y, double z, int bright)

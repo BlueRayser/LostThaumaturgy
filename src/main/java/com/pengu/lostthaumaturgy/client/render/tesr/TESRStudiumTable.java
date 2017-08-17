@@ -28,6 +28,10 @@ public class TESRStudiumTable extends TESR<TileStudiumTable>
 	@Override
 	public void renderTileEntityAt(TileStudiumTable te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -41,6 +45,8 @@ public class TESRStudiumTable extends TESR<TileStudiumTable>
 		GL11.glRotated(te.researchProgress * -360F, 0, 1, 0);
 		Minecraft.getMinecraft().getRenderItem().renderItem(te.inventory.getStackInSlot(0), TransformType.GROUND);
 		GL11.glPopMatrix();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

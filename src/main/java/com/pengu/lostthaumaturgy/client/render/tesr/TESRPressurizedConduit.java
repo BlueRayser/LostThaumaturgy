@@ -34,6 +34,10 @@ public class TESRPressurizedConduit extends TESRConduit<TilePressurizedConduit>
 	@Override
 	public void renderTileEntityAt(TilePressurizedConduit te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -50,8 +54,6 @@ public class TESRPressurizedConduit extends TESRConduit<TilePressurizedConduit>
 		TextureAtlasSprite sprite = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/pressurized_conduit_" + (te.getSuction(null) > 0F ? "on" : "off"));
 		
 		Tessellator tess = Tessellator.getInstance();
-		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 		
 		int bright = getBrightnessForRB(te, rb);
 		
@@ -70,6 +72,8 @@ public class TESRPressurizedConduit extends TESRConduit<TilePressurizedConduit>
 		tess.draw();
 		
 		blend.reset();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

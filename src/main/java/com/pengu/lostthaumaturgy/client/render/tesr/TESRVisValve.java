@@ -34,6 +34,10 @@ public class TESRVisValve extends TESRConduit<TileVisValve>
 	@Override
 	public void renderTileEntityAt(TileVisValve te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -50,8 +54,6 @@ public class TESRVisValve extends TESRConduit<TileVisValve>
 		TextureAtlasSprite sprite = te.open ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_valve_off") : ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_valve_on");
 		
 		Tessellator tess = Tessellator.getInstance();
-		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
 		
 		int bright = getBrightnessForRB(te, rb);
 		
@@ -70,6 +72,8 @@ public class TESRVisValve extends TESRConduit<TileVisValve>
 		tess.draw();
 		
 		blend.reset();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

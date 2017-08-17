@@ -24,12 +24,18 @@ public class TESRWandConstructor extends TESR<TileWandConstructor>
 	@Override
 	public void renderTileEntityAt(TileWandConstructor te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
 		renderModel(te, x, y, z);
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	@Override

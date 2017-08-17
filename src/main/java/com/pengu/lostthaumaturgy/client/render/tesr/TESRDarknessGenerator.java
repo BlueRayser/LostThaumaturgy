@@ -21,11 +21,16 @@ public class TESRDarknessGenerator extends TESR<TileDarknessGenerator>
 	@Override
 	public void renderBase(TileDarknessGenerator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/darkness_generator");
 		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
+		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/darkness_generator");
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y, z);
 		OpnodeRender.renderOpnodes(rb.simpleRenderer, opnode, getBrightnessForRB(tile, rb), true);
 		GL11.glPopMatrix();
+		
+		rb.renderAlpha = srcAlpha;
 	}
 }

@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
+import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelPump;
 import com.pengu.lostthaumaturgy.tile.TileVisPump;
@@ -23,6 +24,10 @@ public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 	@Override
 	public void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
+		
 		if(te.malfunctionTime > 0)
 			bindTexture(pump_malfunction);
 		else if(te.gettingPower())
@@ -37,6 +42,8 @@ public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 			bindTexture(destroyStage);
 			renderEntityAt(te, x, y, z, te.ticksExisted);
 		}
+		
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	private void translateFromOrientation(double x, double y, double z, int orientation)

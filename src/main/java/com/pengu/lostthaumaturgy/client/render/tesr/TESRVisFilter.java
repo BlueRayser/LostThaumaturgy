@@ -39,8 +39,11 @@ public class TESRVisFilter extends TESR<TileVisFilter>
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-		
+		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		float srcAlpha = rb.renderAlpha;
+		rb.renderAlpha = alpha;
 		render(x, y, z, te);
+		rb.renderAlpha = srcAlpha;
 	}
 	
 	private void render(double x, double y, double z, Predicate<EnumFacing> connections)
