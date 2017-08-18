@@ -125,18 +125,14 @@ public class InfuserLT
 		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.TOTEM_TWILIGHT), 50, RecipesInfuser.createPredicateFromResearches(ResearchesLT.TOTEM_TWILIGHT), EnumMultiMaterialType.ALUMENTUM.stack(), EnumMultiMaterialType.TAINTED_CRYSTAL.stack(), new ItemStack(BlocksLT.TAINTED_LOG));
 		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.CRUCIBLE_VOID), 100, RecipesInfuser.createPredicateFromResearches(ResearchesLT.CRUCIBLE_VOID), new ItemStack(BlocksLT.CRUCIBLE_THAUMIUM), EnumMultiMaterialType.VOID_INGOT.stack(), EnumMultiMaterialType.VOID_INGOT.stack());
 		
-		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.PENGU_COBBLEGEN), 100, new Predicate<IInfuser>()
+		RecipesInfuser.addDarkInfusing(new ItemStack(BlocksLT.PENGU_COBBLEGEN), 100, (input) ->
 		{
-			@Override
-			public boolean apply(IInfuser input)
+			if(input instanceof TileEntity)
 			{
-				if(input instanceof TileEntity)
-				{
-					World w = ((TileEntity) input).getWorld();
-					return w.provider.getMoonPhase(w.getWorldTime()) == 0;
-				}
-				return true;
+				World w = ((TileEntity) input).getWorld();
+				return w.provider.getMoonPhase(w.getWorldTime()) == 0;
 			}
+			return true;
 		}, new ItemStack(Blocks.COBBLESTONE), new ItemStack(Items.IRON_PICKAXE), EnumMultiMaterialType.EXTRACT_COOLEST_WATER.stack(), EnumMultiMaterialType.SOUL_FRAGMENT.stack());
 	}
 }
