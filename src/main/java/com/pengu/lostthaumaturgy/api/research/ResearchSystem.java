@@ -42,7 +42,7 @@ public class ResearchSystem
 		{
 			if(out == null && LostThaumaturgy.proxy.getClientWorld() == null && server != null)
 			{
-				COMPLETED.put(playername, new ArrayList());
+				COMPLETED.put(playername, out = new ArrayList());
 				UUID id = UUID.nameUUIDFromBytes(("OfflinePlayer:" + playername).getBytes(Charsets.UTF_8));
 				EntityPlayerMP entityplayermp = new EntityPlayerMP(server, server.getWorld(0), new GameProfile(id, playername), new PlayerInteractionManager(server.getWorld(0)));
 				if(entityplayermp != null)
@@ -69,8 +69,15 @@ public class ResearchSystem
 	public void playerJoin(PlayerLoggedInEvent evt)
 	{
 		getResearchForPlayer(evt.player.getName());
-		if(evt.player instanceof EntityPlayerMP)
-			HCNetwork.manager.sendTo(getPacketFor(evt.player), (EntityPlayerMP) evt.player);
+		
+		for(int i = 0; i < 32; ++i)
+			try
+			{
+				if(evt.player instanceof EntityPlayerMP)
+					HCNetwork.manager.sendTo(getPacketFor(evt.player), (EntityPlayerMP) evt.player);
+			} catch(Throwable err)
+			{
+			}
 	}
 	
 	@SubscribeEvent

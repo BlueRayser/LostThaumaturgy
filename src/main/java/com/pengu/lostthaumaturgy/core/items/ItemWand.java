@@ -6,10 +6,16 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -17,11 +23,13 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.wand.EnumCapLocation;
 import com.pengu.lostthaumaturgy.api.wand.WandCap;
 import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
+import com.pengu.lostthaumaturgy.core.processes.ProcessMakeThaumonomicon;
 
 public class ItemWand extends Item
 {
@@ -94,6 +102,22 @@ public class ItemWand extends Item
 			c1.onUpdate(stack, EnumCapLocation.UP, c1 == c2);
 		if(c2 != null)
 			c2.onUpdate(stack, EnumCapLocation.DOWN, c1 == c2);
+	}
+	
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if(!worldIn.isRemote)
+		{
+			WorldLocation loc = new WorldLocation(worldIn, pos);
+			
+			if(loc.getBlock() == Blocks.BOOKSHELF && ProcessMakeThaumonomicon.start(loc, facing, hitX, hitY, hitZ))
+			{
+				
+			}
+		}
+		
+		return EnumActionResult.SUCCESS;
 	}
 	
 	@Override

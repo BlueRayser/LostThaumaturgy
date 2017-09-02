@@ -20,8 +20,9 @@ public class PacketUpdateClientRD implements IPacket, IPacketListener<PacketUpda
 	{
 		nbt = new NBTTagCompound();
 		NBTTagList list = new NBTTagList();
-		for(String r : researches)
-			list.appendTag(new NBTTagString(r));
+		if(researches != null)
+			for(String r : researches)
+				list.appendTag(new NBTTagString(r));
 		nbt.setTag("Research", list);
 	}
 	

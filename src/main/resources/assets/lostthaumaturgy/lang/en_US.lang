@@ -337,8 +337,8 @@ lt.research_desc.atmosphere=Thaumosphere (before: Atmosphere) is a magical energ
 
 lt.research_name.researching=Researches
 lt.research_text.researching=How to discover
-lt.research_desc.researching.1=Researching new things requires 3 stages to do.<BR>Stage 1. Studium Table<LINE>First off you need Studium Table (recipe on next page). Place it down, put some rare items that have Crucible Smelting Value and look at the table until it's finished. There is a chance to get Fragments with researches.
-lt.research_desc.researching.2=Stage 2. Auxilium Table<LINE>After you obtained Auxilium Table (recipe on next page), place it adjacent to Vis source. Put some fragments of the same type in the table, and supply it with vis. The more crystals you place around (up to 27) the less fragments would be required to upgrade fragments to theories.<BR>Stage 3. Arcane Crafter<LINE>Put your theory in arcane crafter and put a wand with some vis and taint, and give it your XP (2 lvls per theory).
+lt.research_desc.researching.1=Researching things requires 3 stages<BR>Stage 1. Studium Table<LINE>You need Studium Table (recipe on next page). Put some rare items that have smelting value and look at the table until it's finished. There is a chance to get Fragments with researches.<BR>Stage 2. Auxilium Table<LINE>After you obtained Auxilium Table (recipe on next page), supply it with vis.
+lt.research_desc.researching.2=<LINE>Put some fragments of the same type in the table. The more crystals you place around (up to 27) the less fragments would be required to upgrade fragments to theories.<BR>Stage 3. Arcane Crafter<LINE>Put your theory in arcane crafter and put a wand with some vis and taint, and give it your XP (2 lvls per theory).
 
 
 
@@ -374,6 +374,10 @@ wand.cap.iron=Iron
 wand.cap.gold=Gold
 wand.cap.thaumium=Thaumium
 wand.cap.void=Void Metal
+
+
+
+recipe.type.workbench=Crafting
 
 
 

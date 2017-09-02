@@ -182,9 +182,7 @@ public class TCFontRenderer
 	private ResourceLocation getUnicodePageLocation(int par1)
 	{
 		if(unicodePageLocations[par1] == null)
-		{
 			TCFontRenderer.unicodePageLocations[par1] = new ResourceLocation(String.format("textures/font/unicode_page_%02x.png", par1));
-		}
 		return unicodePageLocations[par1];
 	}
 	
@@ -196,9 +194,7 @@ public class TCFontRenderer
 	private float renderUnicodeChar(char par1, boolean par2)
 	{
 		if(this.glyphWidth[par1] == 0)
-		{
 			return 0.0f;
-		}
 		int i = par1 / 256;
 		this.loadGlyphTexture(i);
 		int j = this.glyphWidth[par1] >>> 4;
@@ -455,17 +451,11 @@ public class TCFontRenderer
 	private int renderString(String par1Str, int par2, int par3, int par4, boolean par5)
 	{
 		if(par1Str == null)
-		{
 			return 0;
-		}
 		if((par4 & -67108864) == 0)
-		{
 			par4 |= -16777216;
-		}
 		if(par5)
-		{
 			par4 = (par4 & 16579836) >> 2 | par4 & -16777216;
-		}
 		this.red = (float) (par4 >> 16 & 255) / 255.0f;
 		this.blue = (float) (par4 >> 8 & 255) / 255.0f;
 		this.green = (float) (par4 & 255) / 255.0f;
@@ -658,9 +648,7 @@ public class TCFontRenderer
 					}
 				}
 			} else
-			{
 				this.renderStringAligned(s1, par2, par3, par4, this.textColor, par5);
-			}
 			par3 += this.FONT_HEIGHT;
 		}
 	}

@@ -213,7 +213,7 @@ public class ClientProxy extends CommonProxy
 			int r = (color >> 16) & 0xFF;
 			int g = (color >> 8) & 0xFF;
 			int b = (color >> 0) & 0xFF;
-			int max = 16;
+			int max = 24;
 			return Color.packARGB((int) MathHelper.clip(r + rand.nextInt(max) - rand.nextInt(max), 0, 255), (int) MathHelper.clip(g + rand.nextInt(max) - rand.nextInt(max), 0, 255), (int) MathHelper.clip(rand.nextInt(max) - rand.nextInt(max), 0, 255), 255);
 		}, BlocksLT.GREATWOOD_LEAVES);
 		

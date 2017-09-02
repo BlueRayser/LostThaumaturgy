@@ -39,6 +39,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import org.lwjgl.opengl.GL11;
 
+import com.pengu.hammercore.common.InterItemStack;
 import com.pengu.lostthaumaturgy.api.LostThaumApi;
 import com.pengu.lostthaumaturgy.api.research.ResearchCategories;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
@@ -129,17 +130,24 @@ public class GuiResearchRecipe extends GuiScreen
 	
 	public void drawScreen(int par1, int par2, float par3)
 	{
-		this.drawDefaultBackground();
-		GlStateManager.enableBlend();
-		this.genResearchBackground(par1, par2, par3);
-		int sw = (this.width - this.paneWidth) / 2;
-		int sh = (this.height - this.paneHeight) / 2;
-		if(!history.isEmpty())
+		try
 		{
-			int mx = par1 - (sw + 118);
-			int my = par2 - (sh + 189);
-			if(mx >= 0 && my >= 0 && mx < 20 && my < 12)
-				fontRenderer.drawStringWithShadow(I18n.format((String) "recipe.return"), par1, par2, 16777215);
+			this.drawDefaultBackground();
+			GlStateManager.enableBlend();
+			this.genResearchBackground(par1, par2, par3);
+			int sw = (this.width - this.paneWidth) / 2;
+			int sh = (this.height - this.paneHeight) / 2;
+			if(!history.isEmpty())
+			{
+				int mx = par1 - (sw + 118);
+				int my = par2 - (sh + 189);
+				if(mx >= 0 && my >= 0 && mx < 20 && my < 12)
+					fontRenderer.drawStringWithShadow(I18n.format((String) "recipe.return"), par1, par2, 16777215);
+			}
+		}
+		catch(Throwable err)
+		{
+			err.printStackTrace();
 		}
 	}
 	
@@ -169,8 +177,11 @@ public class GuiResearchRecipe extends GuiScreen
 			if(++current > this.page + 1)
 				break;
 		}
+		
 		if(this.tooltip != null)
 			UtilsFX.drawCustomTooltip(this, itemRenderer, fontRenderer, (List) this.tooltip[0], (Integer) this.tooltip[1], (Integer) this.tooltip[2], (Integer) this.tooltip[3]);
+		GlStateManager.enableBlend();
+		
 		UtilsFX.bindTexture(this.tex1);
 		int mx1 = par1 - (sw + 261);
 		int my1 = par2 - (sh + 189);
@@ -229,7 +240,8 @@ public class GuiResearchRecipe extends GuiScreen
 			y += 25;
 		}
 		
-		GL11.glAlphaFunc((int) 516, (float) 0.003921569f);
+//		GL11.glAlphaFunc((int) 516, (float) 0.003921569f);
+		GlStateManager.enableBlend();
 		
 		if(pageParm.type == ResearchPage.PageType.TEXT || pageParm.type == ResearchPage.PageType.TEXT_CONCEALED)
 			this.drawTextPage(side, x, y - 10, pageParm.getTranslatedText());
@@ -647,36 +659,32 @@ public class GuiResearchRecipe extends GuiScreen
 				tr = ((Object[]) r)[this.cycle];
 			}
 		} else
-		{
 			tr = r;
-		}
+		
 		if(tr instanceof ShapedRecipes)
-		{
 			recipe = (ShapedRecipes) tr;
-		} else if(tr instanceof ShapelessRecipes)
-		{
+		else if(tr instanceof ShapelessRecipes)
 			recipe = (ShapelessRecipes) tr;
-		} else if(tr instanceof ShapedOreRecipe)
-		{
+		else if(tr instanceof ShapedOreRecipe)
 			recipe = (ShapedOreRecipe) tr;
-		} else if(tr instanceof ShapelessOreRecipe)
-		{
+		else if(tr instanceof ShapelessOreRecipe)
 			recipe = (ShapelessOreRecipe) tr;
-		}
 		if(recipe == null)
-		{
 			return;
-		}
 		GL11.glPushMatrix();
 		int start = side * 152;
-		UtilsFX.bindTexture(this.tex2);
 		GL11.glPushMatrix();
-		GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
 		GL11.glEnable((int) 3042);
 		GL11.glTranslatef((float) (x + start), (float) y, (float) 0.0f);
 		GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
+		GlStateManager.enableAlpha();
+		GlStateManager.enableBlend();
+		UtilsFX.bindTexture(this.tex2);
+		GL11.glColor4f(1, 1, 1, 1);
+		
 		this.drawTexturedModalRect(2, 32, 60, 15, 52, 52);
 		this.drawTexturedModalRect(20, 12, 20, 3, 16, 16);
+		
 		GL11.glPopMatrix();
 		int mposx = mx;
 		int mposy = my;
@@ -720,7 +728,7 @@ public class GuiResearchRecipe extends GuiScreen
 			{
 				for(j = 0; j < rh && j < 3; ++j)
 				{
-					if(items.get(i + j * rw) == null)
+					if(InterItemStack.isStackNull(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw))))
 						continue;
 					GL11.glPushMatrix();
 					GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
@@ -734,11 +742,12 @@ public class GuiResearchRecipe extends GuiScreen
 					GL11.glPopMatrix();
 				}
 			}
+			
 			for(i = 0; i < rw && i < 3; ++i)
 			{
 				for(j = 0; j < rh && j < 3; ++j)
 				{
-					if(items.get(i + j * rw) == null || mposx < x + 16 + start + i * 32 || mposy < y + 76 + j * 32 || mposx >= x + 16 + start + i * 32 + 16 || mposy >= y + 76 + j * 32 + 16)
+					if(InterItemStack.isStackNull(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw))) || mposx < x + 16 + start + i * 32 || mposy < y + 76 + j * 32 || mposx >= x + 16 + start + i * 32 + 16 || mposy >= y + 76 + j * 32 + 16)
 						continue;
 					List addtext = InventoryUtils.cycleItemStack((Object) items.get(i + j * rw)).getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
 					Object[] ref = this.findRecipeReference(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw)));
@@ -751,6 +760,7 @@ public class GuiResearchRecipe extends GuiScreen
 				}
 			}
 		}
+		
 		if(recipe != null && (recipe instanceof ShapelessRecipes || recipe instanceof ShapelessOreRecipe))
 		{
 			int i;

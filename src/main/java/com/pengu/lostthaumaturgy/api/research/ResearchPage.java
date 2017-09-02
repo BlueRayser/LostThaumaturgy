@@ -37,7 +37,7 @@ public class ResearchPage
 	}
 	
 	public Object getRecipe()
-    {
+	{
 		if(type == PageType.NORMAL_CRAFTING)
 		{
 			if(recipe instanceof ItemStack[])
@@ -45,13 +45,13 @@ public class ResearchPage
 				List<IRecipe> rs = new ArrayList<>();
 				for(ItemStack r : (ItemStack[]) recipe)
 					rs.addAll(findRecipesFor(r));
-				return rs.toArray(new ItemStack[0]);
+				return rs.toArray(new IRecipe[0]);
 			} else if(recipe instanceof ItemStack)
-				return findRecipesFor((ItemStack) recipe).toArray(new ItemStack[0]);
+				return findRecipesFor((ItemStack) recipe).toArray(new IRecipe[0]);
 		}
 		
-	    return recipe;
-    }
+		return recipe;
+	}
 	
 	public ResearchPage(String text)
 	{

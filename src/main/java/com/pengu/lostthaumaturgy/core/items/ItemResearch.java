@@ -73,12 +73,9 @@ public class ItemResearch extends Item implements ITooltipInjector, INotCloneabl
 			Collection<ResearchItem> items = new ArrayList<ResearchItem>();
 			ResearchCategories.researchCategories.values().forEach(cl -> items.addAll(cl.research.values()));
 			
-			items.forEach(r ->
-			{
-				l.add(create(r, EnumResearchItemType.DISCOVERY));
-				l.add(create(r, EnumResearchItemType.FRAGMENT));
-				l.add(create(r, EnumResearchItemType.THEORY));
-			});
+			items.stream().filter(r -> !r.isAutoUnlock()).forEach(r -> l.add(create(r, EnumResearchItemType.DISCOVERY)));
+			items.stream().filter(r -> !r.isAutoUnlock()).forEach(r -> l.add(create(r, EnumResearchItemType.FRAGMENT)));
+			items.stream().filter(r -> !r.isAutoUnlock()).forEach(r -> l.add(create(r, EnumResearchItemType.THEORY)));
 		}
 	}
 	

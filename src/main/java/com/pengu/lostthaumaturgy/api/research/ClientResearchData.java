@@ -17,6 +17,12 @@ public class ClientResearchData
 		NBTTagList list = nbt.getTagList("Research", NBT.TAG_STRING);
 		for(int i = 0; i < list.tagCount(); ++i)
 			COMPLETED.add(list.getStringTagAt(i));
+		
+		ResearchCategories.researchCategories.values().forEach(cat -> cat.research.values().stream().filter(res -> res.isAutoUnlock()).forEach(res ->
+		{
+			if(!COMPLETED.contains(res.key))
+				COMPLETED.add(res.key);
+		}));
 	}
 	
 	public static boolean isResearchCompleted(ResearchItem res)
