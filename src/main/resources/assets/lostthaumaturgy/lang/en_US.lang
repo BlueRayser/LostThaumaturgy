@@ -331,6 +331,16 @@ research.lostthaumaturgy:primordial_crystal.title=Primordial Crystal
 research.lostthaumaturgy:primordial_crystal.desc=You found a really strange energy... It looks like a pulsating energy, while your machines emit radiation. It does seem like it forged in the universe without anything else... You found a way to absorb this energy and fill a few crystals with it.
 
 
+lt.research_name.atmosphere=Thaumosphere
+lt.research_text.atmosphere=What surrounds you
+lt.research_desc.atmosphere=Thaumosphere (before: Atmosphere) is a magical energy that is everywhere. Some areas are energy-rich and some are poor. This energy aims to distribute equally around the world. The rare thaumosphere hole is tainted areas, they are hard to fight with and they could get very annoying.<LINE>You are going to interact with this mysterious energy sometime, but for now it doesn't exist for you.
+
+lt.research_name.researching=Researches
+lt.research_text.researching=How to discover
+lt.research_desc.researching.1=Researching new things requires 3 stages to do.<BR>Stage 1. Studium Table<LINE>First off you need Studium Table (recipe on next page). Place it down, put some rare items that have Crucible Smelting Value and look at the table until it's finished. There is a chance to get Fragments with researches.
+lt.research_desc.researching.2=Stage 2. Auxilium Table<LINE>After you obtained Auxilium Table (recipe on next page), place it adjacent to Vis source. Put some fragments of the same type in the table, and supply it with vis. The more crystals you place around (up to 27) the less fragments would be required to upgrade fragments to theories.<BR>Stage 3. Arcane Crafter<LINE>Put your theory in arcane crafter and put a wand with some vis and taint, and give it your XP (2 lvls per theory).
+
+
 
 advancement.lostthaumaturgy:aura/root=Lost Thaumaturgy: Atmosphere
 advancement.lostthaumaturgy:aura/root.desc=This is where all troubles begin...

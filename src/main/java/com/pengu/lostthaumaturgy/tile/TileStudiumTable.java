@@ -20,9 +20,9 @@ import com.pengu.hammercore.math.MathHelper;
 import com.pengu.hammercore.raytracer.RayTracer;
 import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.research.ResearchItem;
+import com.pengu.lostthaumaturgy.api.research.ResearchManager;
 import com.pengu.lostthaumaturgy.client.gui.GuiStudiumTable;
-import com.pengu.lostthaumaturgy.custom.research.Research;
-import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
 import com.pengu.lostthaumaturgy.inventory.ContainerStudiumTable;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
@@ -78,9 +78,9 @@ public class TileStudiumTable extends TileSyncableTickable
 			{
 				researchProgress = 0;
 				
-				Research r = ResearchRegistry.chooseRandomUnresearched(inventory.getStackInSlot(0), player, Math.round(lastBoost) + 1);
+				ResearchItem r = ResearchManager.chooseRandomUnresearched(inventory.getStackInSlot(0), player, Math.round(lastBoost) + 1);
 				
-				if(r != null && r.failChance / val >= world.rand.nextFloat() * 100)
+				if(r != null && r.getComplexity() / val >= world.rand.nextFloat() * 100)
 					r = null;
 				if(world.rand.nextFloat() * Math.sqrt(Math.sqrt(val) * 2) <= 1.9)
 					r = null;
@@ -112,7 +112,7 @@ public class TileStudiumTable extends TileSyncableTickable
 		return false;
 	}
 	
-	public void outputFragment(Research research)
+	public void outputFragment(ResearchItem research)
 	{
 		if(!canOutput() || world.isRemote)
 			return;

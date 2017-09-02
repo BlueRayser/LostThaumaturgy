@@ -24,5 +24,6 @@ public class SoundEventsLT
 	        RUMBLE = new SoundObject(LTInfo.MOD_ID, "rumble"), //
 	        SINGULARITY = new SoundObject(LTInfo.MOD_ID, "singularity"), //
 	        TINKERING = new SoundObject(LTInfo.MOD_ID, "tinkering"), //
-	        SWING = new SoundObject(LTInfo.MOD_ID, "swing");
+	        SWING = new SoundObject(LTInfo.MOD_ID, "swing"),
+	        PAGE = new SoundObject(LTInfo.MOD_ID, "page");
 }

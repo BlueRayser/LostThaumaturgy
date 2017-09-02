@@ -1,12 +1,16 @@
 package com.pengu.lostthaumaturgy.items;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.world.World;
 
-import com.pengu.hammercore.bookAPI.ItemBook;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.LostThaumaturgy;
 
-public class ItemThaumonomicon extends ItemBook
+public class ItemThaumonomicon extends Item
 {
 	public ItemThaumonomicon()
 	{
@@ -15,9 +19,11 @@ public class ItemThaumonomicon extends ItemBook
 	}
 	
 	@Override
-	public String getBookId()
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		return LTInfo.MOD_ID + ":thaumonomicon";
+		if(worldIn.isRemote)
+			LostThaumaturgy.proxy.openThaumonomicon();
+		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 	
 	@Override

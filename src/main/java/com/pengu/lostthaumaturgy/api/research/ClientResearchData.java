@@ -1,16 +1,15 @@
-package com.pengu.lostthaumaturgy.custom.research.client;
+package com.pengu.lostthaumaturgy.api.research;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants.NBT;
 
-import com.pengu.lostthaumaturgy.custom.research.Research;
-
 public class ClientResearchData
 {
-	public static final HashSet<String> COMPLETED = new HashSet<>();
+	public static final ArrayList<String> COMPLETED = new ArrayList<>();
 	
 	public static void fromNBT(NBTTagCompound nbt)
 	{
@@ -20,8 +19,8 @@ public class ClientResearchData
 			COMPLETED.add(list.getStringTagAt(i));
 	}
 	
-	public static boolean isResearchCompleted(Research res)
+	public static boolean isResearchCompleted(ResearchItem res)
 	{
-		return COMPLETED.contains(res.uid);
+		return COMPLETED.contains(res.key);
 	}
 }

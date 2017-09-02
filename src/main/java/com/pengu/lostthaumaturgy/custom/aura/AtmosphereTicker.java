@@ -49,10 +49,10 @@ import com.pengu.lostthaumaturgy.LTConfigs;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.event.AuraEvent;
+import com.pengu.lostthaumaturgy.api.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.custom.aura.api.AtmosphereAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
-import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.net.PacketReloadCR;
 import com.pengu.lostthaumaturgy.net.PacketUpdateClientAura;
@@ -199,7 +199,7 @@ public class AtmosphereTicker
 				updateAura(evt.world);
 				long el = System.currentTimeMillis() - start;
 				if(el > 100L)
-					LostThaumaturgy.LOG.warn("WARNING: Single atmosphere tick too long! (" + el + ", should be at most - 100)");
+					LostThaumaturgy.LOG.warn("WARNING: Single atmosphere tick took too long! (" + el + " ms, should be at most - 100 ms)");
 			} catch(ConcurrentModificationException cme)
 			{
 			}

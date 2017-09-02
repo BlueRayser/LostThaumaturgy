@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Predicates;
+import com.pengu.lostthaumaturgy.api.research.ResearchItem;
+import com.pengu.lostthaumaturgy.api.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
-import com.pengu.lostthaumaturgy.custom.research.Research;
-import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
@@ -46,7 +46,12 @@ public class RecipesInfuser
 		addInfusing(result, cost, craftChecker, true, components);
 	}
 	
-	public static Predicate<IInfuser> createPredicateFromResearches(Research... researches)
+	public static Predicate<IInfuser> createPredicateFromResearches(ResearchItem... researches)
+	{
+		return new ResearchPredicate(researches);
+	}
+	
+	public static Predicate<IInfuser> createPredicateFromResearches(String... researches)
 	{
 		return new ResearchPredicate(researches);
 	}

@@ -1,5 +1,6 @@
 package com.pengu.lostthaumaturgy.proxy;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,5 +39,15 @@ public class CommonProxy
 	public Side getProxySide()
 	{
 		return Side.SERVER;
+	}
+	
+	public World getClientWorld()
+	{
+		return null;
+	}
+	
+	public void openThaumonomicon()
+	{
+		
 	}
 }

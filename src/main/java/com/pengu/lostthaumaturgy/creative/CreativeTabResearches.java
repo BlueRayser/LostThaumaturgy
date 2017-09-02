@@ -4,9 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
 import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.init.ResearchesLT;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
+import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class CreativeTabResearches extends CreativeTabs
 {
@@ -18,7 +16,7 @@ public class CreativeTabResearches extends CreativeTabs
 	@Override
 	public ItemStack getTabIconItem()
 	{
-		return ItemResearch.create(ResearchesLT.REINFORCED_VIS_TANK, EnumResearchItemType.THEORY);
+		return new ItemStack(ItemsLT.DISCOVERY);
 	}
 	
 	@Override

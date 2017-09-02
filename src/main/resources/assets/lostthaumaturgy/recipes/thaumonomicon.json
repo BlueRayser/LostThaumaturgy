@@ -5,5 +5,5 @@
 		"#": { "item": "lostthaumaturgy:discovery", "data": 0 },
 		"B": { "item": "minecraft:book" }
     },
-    "result": { "item": "lostthaumaturgy:void_block" }
+    "result": { "item": "lostthaumaturgy:thaumonomicon" }
 }

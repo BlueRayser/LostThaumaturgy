@@ -14,7 +14,6 @@ import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserList;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.RecipeInfuserDummy;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
-import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
 
 public class RecipeTypeInfuser implements IRecipeType<RecipeInfuserDummy>
 {
@@ -47,7 +46,7 @@ public class RecipeTypeInfuser implements IRecipeType<RecipeInfuserDummy>
 			{
 				NBTTagCompound nbt = conds.getCompoundTagAt(i);
 				if(nbt.getString("type").equals("research"))
-					predicate = predicate.and(RecipesInfuser.createPredicateFromResearches(ResearchRegistry.getById(nbt.getString("value"))));
+					predicate = predicate.and(RecipesInfuser.createPredicateFromResearches(nbt.getString("value")));
 				else
 					throw new RecipeParseException("Unknown condition type \'" + nbt.getString("type") + "\'");
 			}

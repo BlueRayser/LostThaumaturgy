@@ -1,6 +1,6 @@
 package com.pengu.lostthaumaturgy.net;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -10,13 +10,13 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
-import com.pengu.lostthaumaturgy.custom.research.client.ClientResearchData;
+import com.pengu.lostthaumaturgy.api.research.ClientResearchData;
 
 public class PacketUpdateClientRD implements IPacket, IPacketListener<PacketUpdateClientRD, IPacket>
 {
 	public NBTTagCompound nbt;
 	
-	public PacketUpdateClientRD(HashSet<String> researches)
+	public PacketUpdateClientRD(ArrayList<String> researches)
 	{
 		nbt = new NBTTagCompound();
 		NBTTagList list = new NBTTagList();

@@ -22,12 +22,8 @@ import com.pengu.hammercore.gui.book.GuiBookCategory;
 import com.pengu.hammercore.gui.book.GuiBookEntry;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
+import com.pengu.lostthaumaturgy.api.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
-import com.pengu.lostthaumaturgy.custom.research.Research;
-import com.pengu.lostthaumaturgy.custom.research.ResearchPredicate;
-import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
-import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
-import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
@@ -81,7 +77,7 @@ public class GuiInfuser extends GuiContainer
 					
 					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
 					{
-						lastTooltip.add(ItemResearch.getFromStack(currentDiscoveries[i]).getTitle());
+						lastTooltip.add(ItemResearch.getFromStack(currentDiscoveries[i]).getName());
 						lastTooltip.add(I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":click_to_read"));
 					}
 				}
@@ -159,29 +155,29 @@ public class GuiInfuser extends GuiContainer
 			mouseX -= guiLeft;
 			mouseY -= guiTop;
 			
-			if(currentDiscoveries != null)
-			{
-				int xStart = 80 - (currentDiscoveries.length - 1) * 8;
-				
-				for(int i = 0; i < currentDiscoveries.length; ++i)
-					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
-					{
-						Research res = ItemResearch.getFromStack(currentDiscoveries[i]);
-						
-						CategoryThaumonomicon tc = null;
-						EntryThaumonomicon te = null;
-						
-						for(BookCategory cat : BookThaumonomicon.instance.categories)
-							if(cat instanceof CategoryThaumonomicon && cat.categoryId.equals(res.category))
-								tc = (CategoryThaumonomicon) cat;
-						
-						for(BookEntry be : tc.entries)
-							if(be.entryId.equals(res.uid) && be instanceof EntryThaumonomicon)
-								te = (EntryThaumonomicon) be;
-						
-						mc.displayGuiScreen(new GuiBookEntry(new GuiBookCategory(new GuiBook(BookThaumonomicon.instance), tc), te));
-					}
-			}
+//			if(currentDiscoveries != null)
+//			{
+//				int xStart = 80 - (currentDiscoveries.length - 1) * 8;
+//				
+//				for(int i = 0; i < currentDiscoveries.length; ++i)
+//					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
+//					{
+//						Research res = ItemResearch.getFromStack(currentDiscoveries[i]);
+//						
+//						CategoryThaumonomicon tc = null;
+//						EntryThaumonomicon te = null;
+//						
+//						for(BookCategory cat : BookThaumonomicon.instance.categories)
+//							if(cat instanceof CategoryThaumonomicon && cat.categoryId.equals(res.category))
+//								tc = (CategoryThaumonomicon) cat;
+//						
+//						for(BookEntry be : tc.entries)
+//							if(be.entryId.equals(res.uid) && be instanceof EntryThaumonomicon)
+//								te = (EntryThaumonomicon) be;
+//						
+//						mc.displayGuiScreen(new GuiBookEntry(new GuiBookCategory(new GuiBook(BookThaumonomicon.instance), tc), te));
+//					}
+//			}
 		} catch(Throwable err)
 		{
 		}

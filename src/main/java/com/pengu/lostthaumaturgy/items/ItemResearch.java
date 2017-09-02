@@ -1,5 +1,7 @@
 package com.pengu.lostthaumaturgy.items;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,9 +22,10 @@ import com.pengu.hammercore.common.items.ITooltipInjector;
 import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.items.INotCloneable;
-import com.pengu.lostthaumaturgy.custom.research.Research;
-import com.pengu.lostthaumaturgy.custom.research.ResearchRegistry;
-import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
+import com.pengu.lostthaumaturgy.api.research.ResearchCategories;
+import com.pengu.lostthaumaturgy.api.research.ResearchItem;
+import com.pengu.lostthaumaturgy.api.research.ResearchManager;
+import com.pengu.lostthaumaturgy.api.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class ItemResearch extends Item implements ITooltipInjector, INotCloneable
@@ -67,9 +70,15 @@ public class ItemResearch extends Item implements ITooltipInjector, INotCloneabl
 	{
 		if(isInCreativeTab(tab))
 		{
-			ResearchRegistry.addAllResearchItems(EnumResearchItemType.DISCOVERY, l);
-			ResearchRegistry.addAllResearchItems(EnumResearchItemType.THEORY, l);
-			ResearchRegistry.addAllResearchItems(EnumResearchItemType.FRAGMENT, l);
+			Collection<ResearchItem> items = new ArrayList<ResearchItem>();
+			ResearchCategories.researchCategories.values().forEach(cl -> items.addAll(cl.research.values()));
+			
+			items.forEach(r ->
+			{
+				l.add(create(r, EnumResearchItemType.DISCOVERY));
+				l.add(create(r, EnumResearchItemType.FRAGMENT));
+				l.add(create(r, EnumResearchItemType.THEORY));
+			});
 		}
 	}
 	
@@ -91,8 +100,8 @@ public class ItemResearch extends Item implements ITooltipInjector, INotCloneabl
 	{
 		try
 		{
-			Research r = getFromStack(playerIn.getHeldItem(handIn));
-			if(!worldIn.isRemote && r != null && playerIn != null && !r.isCompleted(playerIn) && getType(playerIn.getHeldItem(handIn)) == EnumResearchItemType.DISCOVERY)
+			ResearchItem r = getFromStack(playerIn.getHeldItem(handIn));
+			if(!worldIn.isRemote && r != null && playerIn != null && !ResearchManager.isResearchComplete(playerIn.getName(), r.key) && getType(playerIn.getHeldItem(handIn)) == EnumResearchItemType.DISCOVERY)
 			{
 				ResearchSystem.setResearchCompleted(playerIn, r, true);
 				HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":discover", playerIn.getPosition(), .5F, .8F + playerIn.getRNG().nextFloat() * .4F, SoundCategory.PLAYERS);
@@ -109,32 +118,32 @@ public class ItemResearch extends Item implements ITooltipInjector, INotCloneabl
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		Research res = getFromStack(stack);
-		return super.getItemStackDisplayName(stack) + (res != null ? ": " + res.getTitle() : "");
+		ResearchItem r = getFromStack(stack);
+		return super.getItemStackDisplayName(stack) + (r != null ? ": " + r.getName() : "");
 	}
 	
 	@Override
 	public void injectVariables(ItemStack stack, Map<String, String> vars)
 	{
-		Research r = getFromStack(stack);
-		vars.put("difficulty", r != null ? r.sucessToString() : "Unknown");
+		ResearchItem r = getFromStack(stack);
+		vars.put("difficulty", r != null ? r.getComplexityLabel() : "Unknown");
 	}
 	
-	public static Research getFromStack(ItemStack stack)
+	public static ResearchItem getFromStack(ItemStack stack)
 	{
 		NBTTagCompound nbt = stack.getTagCompound();
 		if(nbt != null && nbt.hasKey("Research"))
-			return ResearchRegistry.getById(nbt.getString("Research"));
+			return ResearchManager.getById(nbt.getString("Research"));
 		return null;
 	}
 	
-	public static ItemStack create(Research res, EnumResearchItemType type)
+	public static ItemStack create(ResearchItem res, EnumResearchItemType type)
 	{
 		ItemStack stack = new ItemStack(ItemsLT.DISCOVERY);
 		if(res != null)
 		{
 			stack.setTagCompound(new NBTTagCompound());
-			stack.getTagCompound().setString("Research", res.uid);
+			stack.getTagCompound().setString("Research", res.key);
 		}
 		stack.setItemDamage(type.ordinal());
 		return stack;

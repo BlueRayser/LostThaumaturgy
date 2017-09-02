@@ -1,4 +1,6 @@
-package com.pengu.lostthaumaturgy.custom.research;
+package com.pengu.lostthaumaturgy.api.research;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,11 +12,23 @@ import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class ResearchPredicate implements Predicate<IInfuser>
 {
-	private final Research[] researches;
+	private ResearchItem[] researches;
 	
-	public ResearchPredicate(Research... researches)
+	public ResearchPredicate(ResearchItem... researches)
 	{
 		this.researches = researches;
+	}
+	
+	public ResearchPredicate(String... researches)
+	{
+		this.researches = new ResearchItem[0];
+		
+		for(String r : researches)
+		{
+			ResearchItem ri = ResearchManager.getById(r);
+			if(ri != null)
+				this.researches = (ResearchItem[]) ArrayUtils.add(researches, ri);
+		}
 	}
 	
 	public ItemStack[] getResearchItems(EnumResearchItemType type)
@@ -33,8 +47,8 @@ public class ResearchPredicate implements Predicate<IInfuser>
 		EntityPlayer player = input.getInitiator();
 		if(player == null)
 			return false;
-		for(Research r : researches)
-			if(!r.isCompleted(player))
+		for(ResearchItem r : researches)
+			if(!ResearchManager.isResearchComplete(player.getName(), r.key))
 				return false;
 		return true;
 	}

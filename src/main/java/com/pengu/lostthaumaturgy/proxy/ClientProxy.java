@@ -28,10 +28,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -42,9 +43,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.pengu.hammercore.HammerCore;
-import com.pengu.hammercore.bookAPI.BookCategory;
-import com.pengu.hammercore.bookAPI.BookEntry;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.GLImageManager;
@@ -63,6 +61,7 @@ import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodLeaves;
 import com.pengu.lostthaumaturgy.client.ClientAtmosphereChunk;
 import com.pengu.lostthaumaturgy.client.HudDetector;
 import com.pengu.lostthaumaturgy.client.fx.FXEmote;
+import com.pengu.lostthaumaturgy.client.gui.GuiThaumonomicon;
 import com.pengu.lostthaumaturgy.client.render.color.ColorBlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.render.color.ColorItemSeal;
 import com.pengu.lostthaumaturgy.client.render.entity.RenderCustomSplashPotion;
@@ -115,10 +114,6 @@ import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolith;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithExtraRoom;
 import com.pengu.lostthaumaturgy.client.render.tesr.monolith.TESRMonolithOpener;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.custom.research.ResearchRegisterEvent;
-import com.pengu.lostthaumaturgy.custom.thaumonomicon.BookThaumonomicon;
-import com.pengu.lostthaumaturgy.custom.thaumonomicon.CategoryThaumonomicon;
-import com.pengu.lostthaumaturgy.custom.thaumonomicon.EntryThaumonomicon;
 import com.pengu.lostthaumaturgy.emote.EmoteData;
 import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
 import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
@@ -273,8 +268,6 @@ public class ClientProxy extends CommonProxy
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND_REVERSAL, new RenderItemWandReversal());
 		ItemRenderingHandler.INSTANCE.bindItemRender(ItemsLT.WAND, new RenderItemWand());
 		
-		HammerCore.bookProxy.registerBookInstance(BookThaumonomicon.instance);
-		
 		penguSkinId = GlStateManager.generateTexture();
 		
 		try
@@ -346,20 +339,6 @@ public class ClientProxy extends CommonProxy
 	}
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void registerResearch(ResearchRegisterEvent.OnClient evt)
-	{
-		BookThaumonomicon tm = BookThaumonomicon.instance;
-		CategoryThaumonomicon tc = null;
-		for(BookCategory cat : tm.categories)
-			if(cat instanceof CategoryThaumonomicon && cat.categoryId.equals(evt.research.category))
-				tc = (CategoryThaumonomicon) cat;
-		if(tc == null)
-			tc = new CategoryThaumonomicon(evt.research.category);
-		new EntryThaumonomicon(tc, evt.research.uid, "research." + evt.research.uid + ".title", evt.research);
-		evt.research.pageHandler.reload();
-	}
-	
-	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void reloadTextrues(TextureStitchEvent evt)
 	{
 		mapSprites.clear();
@@ -393,15 +372,6 @@ public class ClientProxy extends CommonProxy
 		LostThaumaturgy.LOG.info("    -Rods...");
 		WandRegistry.getRods().forEach(rod -> evt.getMap().registerSprite(new ResourceLocation(rod.getRodTexture())));
 		LostThaumaturgy.LOG.info("     +Registered " + WandRegistry.getRods().count() + " Wand Rod Textures");
-		
-		BookThaumonomicon tm = BookThaumonomicon.instance;
-		for(BookCategory cat : tm.categories)
-			for(BookEntry ent : cat.entries)
-				if(ent instanceof EntryThaumonomicon)
-				{
-					EntryThaumonomicon m = (EntryThaumonomicon) ent;
-					m.res.getPageHandler().reload();
-				}
 	}
 	
 	public static boolean dvis, dtaint, drad;
@@ -498,5 +468,17 @@ public class ClientProxy extends CommonProxy
 	public void renderAura(RenderWorldLastEvent e)
 	{
 		
+	}
+	
+	@Override
+	public World getClientWorld()
+	{
+		return Minecraft.getMinecraft().world;
+	}
+	
+	@Override
+	public void openThaumonomicon()
+	{
+		Minecraft.getMinecraft().displayGuiScreen(new GuiThaumonomicon());
 	}
 }

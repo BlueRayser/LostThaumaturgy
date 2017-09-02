@@ -18,5 +18,7 @@
 	"singularity": { "sounds": ["lostthaumaturgy:singularity"] },
 	"tinkering": { "sounds": ["lostthaumaturgy:tinkering"] },
 	"swing": { "sounds": ["lostthaumaturgy:swing1","lostthaumaturgy:swing2"] },
-	"rune_set": { "sounds": ["lostthaumaturgy:rune_set"] }
+	"rune_set": { "sounds": ["lostthaumaturgy:rune_set"] },
+	"cameraclack": { "sounds": ["lostthaumaturgy:cameraclack1","lostthaumaturgy:cameraclack2","lostthaumaturgy:cameraclack3"] },
+	"page": { "sounds": ["lostthaumaturgy:page1","lostthaumaturgy:page2"] }
 }

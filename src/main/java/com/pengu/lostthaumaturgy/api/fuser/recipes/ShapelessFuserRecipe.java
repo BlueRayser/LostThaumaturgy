@@ -19,8 +19,8 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.utils.IGetter;
 import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
-import com.pengu.lostthaumaturgy.custom.research.Research;
-import com.pengu.lostthaumaturgy.custom.research.ResearchSystem;
+import com.pengu.lostthaumaturgy.api.research.ResearchItem;
+import com.pengu.lostthaumaturgy.api.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.items.ItemResearch;
 import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 import com.pengu.lostthaumaturgy.items.ItemWand;
@@ -31,7 +31,7 @@ public class ShapelessFuserRecipe implements IFuserRecipe
 	protected ItemStack output = ItemStack.EMPTY;
 	protected NonNullList<Object> input = NonNullList.create();
 	public float visUsage = 0, taintUsage = 0;
-	public Research research;
+	public ResearchItem research;
 	
 	public ShapelessFuserRecipe(Block result, Object... recipe)
 	{
@@ -50,7 +50,7 @@ public class ShapelessFuserRecipe implements IFuserRecipe
 		return this;
 	}
 	
-	public ShapelessFuserRecipe setResearch(Research research)
+	public ShapelessFuserRecipe setResearch(ResearchItem research)
 	{
 		this.research = research;
 		return this;
