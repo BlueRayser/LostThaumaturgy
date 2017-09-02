@@ -33,6 +33,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
@@ -191,10 +192,14 @@ public class AtmosphereTicker
 	@SubscribeEvent
 	public void worldTick(WorldTickEvent evt)
 	{
-		if(!evt.world.isRemote)
+		if(!evt.world.isRemote && evt.phase == Phase.START)
 			try
 			{
+				long start = System.currentTimeMillis();
 				updateAura(evt.world);
+				long el = System.currentTimeMillis() - start;
+				if(el > 100L)
+					LostThaumaturgy.LOG.warn("WARNING: Single atmosphere tick too long! (" + el + ", should be at most - 100)");
 			} catch(ConcurrentModificationException cme)
 			{
 			}
@@ -333,7 +338,8 @@ public class AtmosphereTicker
 		
 		Collection<AtmosphereChunk> c = AuraHM.values();
 		boolean noupdates = true;
-		int counter = AuraHM.size() / 200;
+		/** Prevent thousands of chunk updates, 4K is the most */
+		int counter = Math.min(AuraHM.size() / 200, 4096);
 		for(AtmosphereChunk ac2 : c)
 		{
 			ac2.world = world;
@@ -748,7 +754,7 @@ public class AtmosphereTicker
 		return false;
 	}
 	
-	public static boolean isNear(World world, int x, int y, int z, int range, IBlockState[] states)
+	public static boolean isNear(World world, int x, int y, int z, int range, IBlockState... states)
 	{
 		for(int a = -range; a <= range; ++a)
 		{
@@ -771,7 +777,7 @@ public class AtmosphereTicker
 	public static boolean increaseTaintedPlants(World world, int x, int y, int z)
 	{
 		// TODO: silverwood and greatwood
-		if(isNear(world, x, y, z, 3, new IBlockState[] { BlocksLT.SILVERWOOD_LOG.getDefaultState() }))
+		if(isNear(world, x, y, z, 3, new IBlockState[] { BlocksLT.SILVERWOOD_LOG.getDefaultState(), BlocksLT.GREATWOOD_LOG.getDefaultState() }))
 			return false;
 		
 		Chunk c = world.getChunkFromBlockCoords(new BlockPos(x, y, z));

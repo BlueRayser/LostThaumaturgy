@@ -1,6 +1,6 @@
 forge_version=1.12-14.21.1.2400
-mod_version=12r
-hammercore_version=1.8.9
+mod_version=14r
+hammercore_version=1.9.4.0
 
 release_type=release
 minecraft_version=1.12.1

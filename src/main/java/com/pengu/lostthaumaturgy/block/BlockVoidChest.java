@@ -27,6 +27,7 @@ public class BlockVoidChest extends Block implements ITileBlock<TileVoidChest>, 
 	public BlockVoidChest()
 	{
 		super(Material.IRON);
+		setHardness(4);
 		setSoundType(SoundType.METAL);
 		setUnlocalizedName("void_chest");
 	}

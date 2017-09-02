@@ -102,7 +102,7 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 			GL11.glTranslated(-.5, -.5, -.5);
 			GL11.glRotated(90, 1, 0, 0);
 			GL11.glScaled(1 / 256D, 1 / 256D, 1 / 256D);
-			bindTexture(textures.get(ore.cName));
+			bindTexture(textures.getOrDefault(ore.cName, texture1));
 			RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 			GL11.glPopMatrix();
 		}

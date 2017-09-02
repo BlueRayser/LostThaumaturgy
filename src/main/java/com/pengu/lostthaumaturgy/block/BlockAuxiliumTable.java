@@ -29,6 +29,7 @@ public class BlockAuxiliumTable extends BlockRendered implements ITileBlock<Tile
 	public BlockAuxiliumTable()
 	{
 		super(Material.IRON);
+		setHardness(2F);
 		setUnlocalizedName("auxilium_table");
 	}
 	

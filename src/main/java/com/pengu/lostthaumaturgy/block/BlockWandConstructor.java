@@ -29,6 +29,7 @@ public class BlockWandConstructor extends BlockRendered implements ITileBlock<Ti
 	public BlockWandConstructor()
 	{
 		super(Material.IRON);
+		setHardness(2F);
 		setUnlocalizedName("wand_constructor");
 	}
 	
