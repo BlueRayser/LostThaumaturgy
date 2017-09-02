@@ -4,9 +4,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import com.pengu.lostthaumaturgy.core.items.ItemResearch;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch.EnumResearchItemType;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class SlotFragment extends Slot
 {

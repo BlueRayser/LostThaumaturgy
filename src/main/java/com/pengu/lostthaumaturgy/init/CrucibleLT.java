@@ -11,12 +11,12 @@ import com.pengu.hammercore.annotations.MCFBus;
 import com.pengu.hammercore.common.utils.IOUtils;
 import com.pengu.hammercore.json.JSONObject;
 import com.pengu.hammercore.json.JSONTokener;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.event.ReloadRegisteredCrucibleRecipesEvent;
 import com.pengu.lostthaumaturgy.api.match.MatcherItemStack;
 import com.pengu.lostthaumaturgy.api.match.MatcherOreDict;
+import com.pengu.lostthaumaturgy.core.Info;
 
 @MCFBus
 public class CrucibleLT
@@ -101,7 +101,7 @@ public class CrucibleLT
 			LostThaumaturgy.LOG.info("Loading Crucible Recipe Jsons...");
 			long start = System.currentTimeMillis();
 			
-			String load = json != null && !json.isEmpty() ? json : new String(IOUtils.pipeOut(LostThaumaturgy.class.getResourceAsStream("/assets/" + LTInfo.MOD_ID + "/crucible.json")));
+			String load = json != null && !json.isEmpty() ? json : new String(IOUtils.pipeOut(LostThaumaturgy.class.getResourceAsStream("/assets/" + Info.MOD_ID + "/crucible.json")));
 			JSONObject obj = (JSONObject) new JSONTokener(load).nextValue();
 			
 			for(String key : obj.keySet())

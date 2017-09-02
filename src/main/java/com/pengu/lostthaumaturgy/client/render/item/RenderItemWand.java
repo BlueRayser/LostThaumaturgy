@@ -9,11 +9,11 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.render.item.IItemRender;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.wand.EnumCapLocation;
 import com.pengu.lostthaumaturgy.api.wand.WandCap;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
-import com.pengu.lostthaumaturgy.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
 public class RenderItemWand implements IItemRender
@@ -21,7 +21,7 @@ public class RenderItemWand implements IItemRender
 	@Override
 	public void renderItem(ItemStack stack)
 	{
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		
 		WandRod wr = ItemWand.getRod(stack);
 		WandCap wc1 = ItemWand.getCap(stack, EnumCapLocation.DOWN);

@@ -45,9 +45,9 @@ import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchManager;
 import com.pengu.lostthaumaturgy.api.research.ResearchPage;
 import com.pengu.lostthaumaturgy.client.TCFontRenderer;
+import com.pengu.lostthaumaturgy.core.utils.InventoryUtils;
+import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
-import com.pengu.lostthaumaturgy.utils.InventoryUtils;
-import com.pengu.lostthaumaturgy.utils.UtilsFX;
 import com.sun.jna.platform.unix.X11.XSizeHints.Aspect;
 
 @SideOnly(value = Side.CLIENT)

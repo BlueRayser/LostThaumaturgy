@@ -16,10 +16,10 @@ import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.fuser.recipes.ShapedFuserRecipe;
 import com.pengu.lostthaumaturgy.api.fuser.recipes.ShapelessFuserRecipe;
 import com.pengu.lostthaumaturgy.api.fuser.recipes.TheoryToDiscovery;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.init.ResearchesLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class RecipesFuser
 {

@@ -15,9 +15,9 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class InfuserRecipeWrapper implements IRecipeWrapper
 {
@@ -28,7 +28,7 @@ public class InfuserRecipeWrapper implements IRecipeWrapper
 		this.recipe = recipe;
 	}
 	
-	private static final ResourceLocation symbol = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
+	private static final ResourceLocation symbol = new ResourceLocation(Info.MOD_ID, "textures/misc/infuser_symbol.png");
 	
 	@Override
 	public void drawInfo(Minecraft mc, int arg1, int arg2, int arg3, int arg4)

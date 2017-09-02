@@ -15,8 +15,8 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.particle.api.SimpleParticle;
-import com.pengu.lostthaumaturgy.emote.EmoteData;
-import com.pengu.lostthaumaturgy.emote.EmoteManager;
+import com.pengu.lostthaumaturgy.core.emote.EmoteData;
+import com.pengu.lostthaumaturgy.core.emote.EmoteManager;
 
 public class FXEmote extends SimpleParticle
 {

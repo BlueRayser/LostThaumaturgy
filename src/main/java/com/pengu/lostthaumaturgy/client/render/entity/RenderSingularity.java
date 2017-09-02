@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-import com.pengu.lostthaumaturgy.entity.EntitySingularity;
+import com.pengu.lostthaumaturgy.core.entity.EntitySingularity;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class RenderSingularity extends RenderSnowball<EntitySingularity>

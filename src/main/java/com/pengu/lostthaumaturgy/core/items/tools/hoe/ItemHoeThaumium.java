@@ -1,0 +1,14 @@
+package com.pengu.lostthaumaturgy.core.items.tools.hoe;
+
+import net.minecraft.item.ItemHoe;
+
+import com.pengu.lostthaumaturgy.init.ItemMaterialsLT;
+
+public class ItemHoeThaumium extends ItemHoe
+{
+	public ItemHoeThaumium()
+	{
+		super(ItemMaterialsLT.tool_thaumium);
+		setUnlocalizedName("thaumium_hoe");
+	}
+}

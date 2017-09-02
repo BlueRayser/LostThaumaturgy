@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.lostthaumaturgy.tile.TileLyingItem;
+import com.pengu.lostthaumaturgy.core.tile.TileLyingItem;
 
 public class TESRLyingItem extends TESR<TileLyingItem>
 {

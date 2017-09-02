@@ -9,8 +9,8 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.common.EnumRotation;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class TESRSeal extends TESR<TileSeal>
 {

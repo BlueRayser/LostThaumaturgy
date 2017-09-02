@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.pengu.lostthaumaturgy.tile.TileSeal;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 
 public abstract class ItemSealSymbol extends Item
 {

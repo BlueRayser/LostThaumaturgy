@@ -4,7 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import com.pengu.lostthaumaturgy.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 
 public class SlotWand extends Slot
 {

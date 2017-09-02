@@ -14,10 +14,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
 import com.pengu.lostthaumaturgy.client.TextureAtlasSpriteFull;
-import com.pengu.lostthaumaturgy.tile.TileSeal;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 
 @SideOnly(Side.CLIENT)
 public class LTSealRenders
@@ -29,7 +29,7 @@ public class LTSealRenders
 		boolean rotates = symb.doesRotate(seal, index);
 		ResourceLocation tex = symb.getTexture(seal, index);
 		GlStateManager.enableTexture2D();
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		sbr.rb.renderFromInside = false;
 		sbr.rb.renderAlpha = 1;
 		sbr.begin();

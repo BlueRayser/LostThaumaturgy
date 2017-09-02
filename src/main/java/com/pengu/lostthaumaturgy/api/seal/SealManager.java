@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.pengu.lostthaumaturgy.tile.TileSeal;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 
 public class SealManager
 {

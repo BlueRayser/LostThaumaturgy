@@ -8,8 +8,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import com.pengu.lostthaumaturgy.core.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
-import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
 public class ContainerInfuser extends Container
 {

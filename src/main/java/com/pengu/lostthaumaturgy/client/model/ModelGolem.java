@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityLiving;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
+import com.pengu.lostthaumaturgy.core.entity.EntityGolemBase;
 
 public class ModelGolem extends ModelBase
 {

@@ -8,15 +8,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.entity.layer.LayerThaumSlimeGel;
-import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.entity.EntityThaumSlime;
 
 public class RenderEntityThaumSlime extends RenderLiving<EntityThaumSlime>
 {
 	public static final Factory FACTORY = new Factory();
-	private static final ResourceLocation TSLIME_TEXTURES = new ResourceLocation(LTInfo.MOD_ID, "textures/entity/thaum_slime.png");
-	private static final ResourceLocation TAINTED_SLIME_TEXTURES = new ResourceLocation(LTInfo.MOD_ID, "textures/entity/tainted_slime.png");
+	private static final ResourceLocation TSLIME_TEXTURES = new ResourceLocation(Info.MOD_ID, "textures/entity/thaum_slime.png");
+	private static final ResourceLocation TAINTED_SLIME_TEXTURES = new ResourceLocation(Info.MOD_ID, "textures/entity/tainted_slime.png");
 	
 	public RenderEntityThaumSlime(RenderManager rendermanagerIn)
 	{

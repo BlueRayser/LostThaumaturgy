@@ -9,9 +9,9 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
 
 import com.pengu.lostthaumaturgy.client.model.ModelTrunk;
-import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 
 public class RenderTravelingTrunk extends RenderLiving<EntityTravelingTrunk>
 {

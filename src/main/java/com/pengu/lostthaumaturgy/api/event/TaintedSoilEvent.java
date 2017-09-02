@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
 
 import com.pengu.hammercore.utils.RoundRobinList;
-import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
+import com.pengu.lostthaumaturgy.core.tile.TileTaintedSoil;
 
 public class TaintedSoilEvent extends BlockEvent
 {

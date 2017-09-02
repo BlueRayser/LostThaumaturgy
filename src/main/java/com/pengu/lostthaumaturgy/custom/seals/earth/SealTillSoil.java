@@ -11,10 +11,10 @@ import net.minecraft.util.math.Vec3d;
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.api.seal.SealInstance;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
-import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class SealTillSoil extends SealInstance
 {

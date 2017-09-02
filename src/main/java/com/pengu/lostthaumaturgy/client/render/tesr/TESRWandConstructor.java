@@ -13,9 +13,9 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileWandConstructor;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileWandConstructor;
 
 public class TESRWandConstructor extends TESR<TileWandConstructor>
 {
@@ -24,7 +24,7 @@ public class TESRWandConstructor extends TESR<TileWandConstructor>
 	@Override
 	public void renderTileEntityAt(TileWandConstructor te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -46,7 +46,7 @@ public class TESRWandConstructor extends TESR<TileWandConstructor>
 	
 	public void renderModel(TileWandConstructor tile, double x, double y, double z)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		int bright = getBrightnessForRB(tile, rb);
 		
 		GlStateManager.disableLighting();
@@ -56,9 +56,9 @@ public class TESRWandConstructor extends TESR<TileWandConstructor>
 		blend.captureState();
 		blend.on();
 		
-		TextureAtlasSprite side = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/wand_constructor/side");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/wand_constructor/bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/wand_constructor/top");
+		TextureAtlasSprite side = ClientProxy.getSprite(Info.MOD_ID + ":blocks/wand_constructor/side");
+		TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/wand_constructor/bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/wand_constructor/top");
 		
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);

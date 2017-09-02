@@ -3,8 +3,8 @@ package com.pengu.lostthaumaturgy.intr.jei.infuser;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
 
 public class InfuserRecipeHandler implements IRecipeHandler<InfuserRecipe>
 {

@@ -4,8 +4,8 @@ import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
 import com.pengu.hammercore.common.InterItemStack;
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
 
 public class FuserRecipeHandler implements IRecipeHandler<IFuserRecipe>
 {

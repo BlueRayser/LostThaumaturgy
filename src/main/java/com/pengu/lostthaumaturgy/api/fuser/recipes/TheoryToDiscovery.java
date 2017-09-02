@@ -9,9 +9,9 @@ import net.minecraft.util.NonNullList;
 
 import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
-import com.pengu.lostthaumaturgy.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch.EnumResearchItemType;
 
 public class TheoryToDiscovery implements IFuserRecipe
 {

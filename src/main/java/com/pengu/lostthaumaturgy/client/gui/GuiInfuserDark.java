@@ -20,21 +20,21 @@ import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.gui.book.GuiBook;
 import com.pengu.hammercore.gui.book.GuiBookCategory;
 import com.pengu.hammercore.gui.book.GuiBookEntry;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch.EnumResearchItemType;
+import com.pengu.lostthaumaturgy.core.tile.TileInfuserDark;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuserDark;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileInfuserDark;
 
 public class GuiInfuserDark extends GuiContainer
 {
 	public final TileInfuserDark tile;
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_dark_infuser.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_dark_infuser.png");
 	
 	public GuiInfuserDark(TileInfuserDark tile, EntityPlayer player)
 	{
@@ -80,7 +80,7 @@ public class GuiInfuserDark extends GuiContainer
 					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
 					{
 						lastTooltip.add(ItemResearch.getFromStack(currentDiscoveries[i]).getName());
-						lastTooltip.add(I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":click_to_read"));
+						lastTooltip.add(I18n.translateToLocal("gui." + Info.MOD_ID + ":click_to_read"));
 					}
 				}
 			}

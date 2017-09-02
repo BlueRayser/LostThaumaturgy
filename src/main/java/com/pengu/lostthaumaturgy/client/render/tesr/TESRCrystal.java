@@ -14,17 +14,17 @@ import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
-import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.core.tile.TileCrystalOre;
 
 public class TESRCrystal extends TESR<TileCrystalOre>
 {
 	public static final TESRCrystal INSTANCE = new TESRCrystal();
 	private ModelCrystal model = new ModelCrystal();
 	private final Random rand = new Random();
-	private final ResourceLocation crystal = new ResourceLocation(LTInfo.MOD_ID, "textures/models/crystal.png");
+	private final ResourceLocation crystal = new ResourceLocation(Info.MOD_ID, "textures/models/crystal.png");
 	
 	@Override
 	public void renderItem(ItemStack item)
@@ -63,7 +63,7 @@ public class TESRCrystal extends TESR<TileCrystalOre>
 	@Override
 	public void renderTileEntityAt(TileCrystalOre te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		

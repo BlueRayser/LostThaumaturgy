@@ -15,11 +15,11 @@ import com.pengu.hammercore.client.render.shader.ShaderProgram;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelTinyPlayer;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TilePenguCobbleGen;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TilePenguCobbleGen;
 
 public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 {
@@ -30,7 +30,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 	@Override
 	public void renderBase(TilePenguCobbleGen tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -39,7 +39,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 		sbr.begin();
 		sbr.setBrightness(getBrightnessForRB(tile, sbr.rb));
 		
-		sbr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/pengu_cobble_gen"));
+		sbr.setSprite(ClientProxy.getSprite(Info.MOD_ID + ":blocks/pengu_cobble_gen"));
 		
 		sbr.setRenderBounds(0, 0, 0, 1, 1 / 8D, 1);
 		sbr.drawBlock(x, y, z);
@@ -106,7 +106,7 @@ public class TESRPenguCobbleGen extends TESR<TilePenguCobbleGen>
 			sbr.setRenderBounds(0, 0, 0, 1, 1, 1);
 			sbr.setBrightness(getBrightnessForRB(tile, rb));
 			rb.renderAlpha = 1 - progress;
-			sbr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis"));
+			sbr.setSprite(ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis"));
 			sbr.drawBlock(0, 0, 0);
 			
 			if(LiquidVisRenderer.useShaders() && LiquidVisRenderer.visShader == null)

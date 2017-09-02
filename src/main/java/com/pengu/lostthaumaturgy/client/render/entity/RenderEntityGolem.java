@@ -10,7 +10,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
 
 import com.pengu.lostthaumaturgy.client.model.ModelGolem;
-import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
+import com.pengu.lostthaumaturgy.core.entity.EntityGolemBase;
 
 public class RenderEntityGolem extends RenderLiving<EntityGolemBase>
 {

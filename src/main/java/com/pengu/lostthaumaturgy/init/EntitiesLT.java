@@ -7,14 +7,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
-import com.pengu.lostthaumaturgy.entity.EntitySingularity;
-import com.pengu.lostthaumaturgy.entity.EntitySmartZombie;
-import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
-import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
-import com.pengu.lostthaumaturgy.entity.EntityWisp;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.entity.EntityCustomSplashPotion;
+import com.pengu.lostthaumaturgy.core.entity.EntitySingularity;
+import com.pengu.lostthaumaturgy.core.entity.EntitySmartZombie;
+import com.pengu.lostthaumaturgy.core.entity.EntityThaumSlime;
+import com.pengu.lostthaumaturgy.core.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.entity.EntityWisp;
 
 public class EntitiesLT
 {
@@ -39,11 +39,11 @@ public class EntitiesLT
 	
 	private static void reg(Class<? extends Entity> entityClass, String name, int eggPrimary, int eggSecondary)
 	{
-		EntityRegistry.registerModEntity(new ResourceLocation(LTInfo.MOD_ID, name), entityClass, LTInfo.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true, eggPrimary, eggSecondary);
+		EntityRegistry.registerModEntity(new ResourceLocation(Info.MOD_ID, name), entityClass, Info.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true, eggPrimary, eggSecondary);
 	}
 	
 	private static void reg(Class<? extends Entity> entityClass, String name)
 	{
-		EntityRegistry.registerModEntity(new ResourceLocation(LTInfo.MOD_ID, name), entityClass, LTInfo.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Info.MOD_ID, name), entityClass, Info.MOD_ID + ":" + name, id++, LostThaumaturgy.instance, 64, 1, true);
 	}
 }

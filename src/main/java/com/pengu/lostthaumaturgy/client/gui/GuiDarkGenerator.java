@@ -5,14 +5,14 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileDarknessGenerator;
 import com.pengu.lostthaumaturgy.inventory.ContainerDarkGenerator;
-import com.pengu.lostthaumaturgy.tile.TileDarknessGenerator;
 
 public class GuiDarkGenerator extends GuiContainer
 {
 	public final TileDarknessGenerator tile;
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_dark_gen.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_dark_gen.png");
 	
 	public GuiDarkGenerator(TileDarknessGenerator tile, InventoryPlayer player)
 	{

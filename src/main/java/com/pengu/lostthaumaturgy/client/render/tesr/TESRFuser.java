@@ -17,10 +17,10 @@ import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileFuser;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileFuser;
 
 public class TESRFuser extends TESR<TileFuser>
 {
@@ -29,7 +29,7 @@ public class TESRFuser extends TESR<TileFuser>
 	@Override
 	public void renderTileEntityAt(TileFuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -65,7 +65,7 @@ public class TESRFuser extends TESR<TileFuser>
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
 		rb.setRenderBounds(.02, .02, .02, .98, .98, .98);
 		int b = getBrightnessForRB(te, sbr.rb);
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 		rb.renderFaceXPos(x, y, z, vis, 1F, 1F, 1F, b);
 		rb.renderFaceXNeg(x, y, z, vis, 1F, 1F, 1F, b);
 		rb.renderFaceZPos(x, y, z, vis, 1F, 1F, 1F, b);
@@ -81,10 +81,10 @@ public class TESRFuser extends TESR<TileFuser>
 			TextureAtlasSprite d = DestroyStageTexture.getAsSprite(destroyProgress);
 			
 			TextureAtlasSprite //
-			s1 = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/side1"), //
-			s2 = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/side2"), //
-			top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/top" + index), //
-			down = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/down" + index);
+			s1 = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/side1"), //
+			s2 = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/side2"), //
+			top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/top" + index), //
+			down = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/down" + index);
 			
 			if(i == 1)
 				s1 = s2 = top = down = d;
@@ -195,7 +195,7 @@ public class TESRFuser extends TESR<TileFuser>
 		for(int x = 0; x < 2; ++x)
 			for(int z = 0; z < 2; ++z)
 			{
-				SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+				SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 				
 				sbr.rb.renderFromInside = false;
 				
@@ -221,7 +221,7 @@ public class TESRFuser extends TESR<TileFuser>
 				tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
 				sbr.rb.setRenderBounds(.02, .02, .02, .98, .98, .98);
 				int b = getBrightnessForRB(null, sbr.rb);
-				TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+				TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 				sbr.rb.renderFaceXPos(x, 0, z, vis, 1F, 1F, 1F, b);
 				sbr.rb.renderFaceXNeg(x, 0, z, vis, 1F, 1F, 1F, b);
 				sbr.rb.renderFaceZPos(x, 0, z, vis, 1F, 1F, 1F, b);
@@ -237,10 +237,10 @@ public class TESRFuser extends TESR<TileFuser>
 					TextureAtlasSprite d = DestroyStageTexture.getAsSprite(destroyProgress);
 					
 					TextureAtlasSprite //
-					s1 = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/side1"), //
-					s2 = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/side2"), //
-					top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/top" + index), //
-					down = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/infuser/down" + index);
+					s1 = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/side1"), //
+					s2 = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/side2"), //
+					top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/top" + index), //
+					down = ClientProxy.getSprite(Info.MOD_ID + ":blocks/infuser/down" + index);
 					
 					if(i == 1)
 						s1 = s2 = top = down = d;

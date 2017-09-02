@@ -11,8 +11,8 @@ import com.pengu.hammercore.client.OpnodeLoader;
 import com.pengu.hammercore.client.model.simple.OpnodeRender;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.tile.TileDarknessGenerator;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileDarknessGenerator;
 
 public class TESRDarknessGenerator extends TESR<TileDarknessGenerator>
 {
@@ -21,11 +21,11 @@ public class TESRDarknessGenerator extends TESR<TileDarknessGenerator>
 	@Override
 	public void renderBase(TileDarknessGenerator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
-		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/darkness_generator");
+		List<int[]> opnode = OpnodeLoader.loadOpnodes(Info.MOD_ID, "tile/darkness_generator");
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y, z);
 		OpnodeRender.renderOpnodes(rb.simpleRenderer, opnode, getBrightnessForRB(tile, rb), true);

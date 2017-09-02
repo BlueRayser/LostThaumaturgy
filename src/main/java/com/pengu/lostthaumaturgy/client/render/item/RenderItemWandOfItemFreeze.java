@@ -10,16 +10,16 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.render.item.IItemRender;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelWandOfItemFreeze;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class RenderItemWandOfItemFreeze implements IItemRender
 {
 	private final ModelWandOfItemFreeze model = new ModelWandOfItemFreeze();
 	private final ResourceLocation//
-	        texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/wand_item_freeze.png"), //
-	        texture1 = new ResourceLocation(LTInfo.MOD_ID, "textures/models/crystal.png");
+	        texture = new ResourceLocation(Info.MOD_ID, "textures/models/wand_item_freeze.png"), //
+	        texture1 = new ResourceLocation(Info.MOD_ID, "textures/models/crystal.png");
 	private final ModelCrystal crystal = new ModelCrystal();
 	
 	@Override

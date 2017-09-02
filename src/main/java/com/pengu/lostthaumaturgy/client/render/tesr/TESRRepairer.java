@@ -12,21 +12,21 @@ import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelGear;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileRepairer;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileRepairer;
 
 public class TESRRepairer extends TESR<TileRepairer>
 {
 	public static final TESRRepairer INSTANCE = new TESRRepairer();
-	public static final ResourceLocation gear = new ResourceLocation(LTInfo.MOD_ID, "textures/models/gear.png");
+	public static final ResourceLocation gear = new ResourceLocation(Info.MOD_ID, "textures/models/gear.png");
 	private ModelGear model = new ModelGear();
 	
 	@Override
 	public void renderBase(TileRepairer tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -75,13 +75,13 @@ public class TESRRepairer extends TESR<TileRepairer>
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		sbr.rb.renderAlpha = 1;
 		
 		sbr.begin();
 		sbr.setBrightness(getBrightnessForRB(tile, sbr.rb));
-		TextureAtlasSprite stex = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/repairer_side");
-		TextureAtlasSprite ttex = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/repairer_top");
+		TextureAtlasSprite stex = ClientProxy.getSprite(Info.MOD_ID + ":blocks/repairer_side");
+		TextureAtlasSprite ttex = ClientProxy.getSprite(Info.MOD_ID + ":blocks/repairer_top");
 		for(int i = 0; i < (destroyProgress > 0 ? 2 : 1); ++i)
 		{
 			if(i == 1)

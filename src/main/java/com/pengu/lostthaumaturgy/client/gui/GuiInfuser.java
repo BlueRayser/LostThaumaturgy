@@ -20,15 +20,15 @@ import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.gui.book.GuiBook;
 import com.pengu.hammercore.gui.book.GuiBookCategory;
 import com.pengu.hammercore.gui.book.GuiBookEntry;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch.EnumResearchItemType;
+import com.pengu.lostthaumaturgy.core.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.inventory.ContainerInfuser;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
 public class GuiInfuser extends GuiContainer
 {
@@ -78,7 +78,7 @@ public class GuiInfuser extends GuiContainer
 					if(mouseX >= xStart + i * 16 && mouseY >= 36 && mouseX < xStart + i * 16 + 16 && mouseY < 36 + 16)
 					{
 						lastTooltip.add(ItemResearch.getFromStack(currentDiscoveries[i]).getName());
-						lastTooltip.add(I18n.translateToLocal("gui." + LTInfo.MOD_ID + ":click_to_read"));
+						lastTooltip.add(I18n.translateToLocal("gui." + Info.MOD_ID + ":click_to_read"));
 					}
 				}
 			}
@@ -103,8 +103,8 @@ public class GuiInfuser extends GuiContainer
 		}
 	}
 	
-	private ResourceLocation gui_infuser = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_infuser.png");
-	private ResourceLocation upgrade_icons = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/upgrade_icons.png");
+	private ResourceLocation gui_infuser = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_infuser.png");
+	private ResourceLocation upgrade_icons = new ResourceLocation(Info.MOD_ID, "textures/misc/upgrade_icons.png");
 	
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{

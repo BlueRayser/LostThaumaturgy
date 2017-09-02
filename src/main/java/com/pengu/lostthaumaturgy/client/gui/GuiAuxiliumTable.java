@@ -11,16 +11,16 @@ import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.math.MathHelper;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.inventory.ContainerAuxiliumTable;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 
 public class GuiAuxiliumTable extends GuiContainer
 {
-	public ResourceLocation tableTexture = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/auxilium_table.png");
+	public ResourceLocation tableTexture = new ResourceLocation(Info.MOD_ID, "textures/gui/auxilium_table.png");
 	
 	public final TileAuxiliumTable table;
 	public final EntityPlayer player;
@@ -78,7 +78,7 @@ public class GuiAuxiliumTable extends GuiContainer
 			LiquidVisRenderer.renderIntoGui(guiLeft + 43, guiTop + 65 - fill, 16, fill, 1);
 		} else
 		{
-			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+			TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 			mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			
 			RenderUtil.drawTexturedModalRect(guiLeft + 43, guiTop + 65 - Math.min(fill, 16), vis, 16, Math.min(fill, 16));

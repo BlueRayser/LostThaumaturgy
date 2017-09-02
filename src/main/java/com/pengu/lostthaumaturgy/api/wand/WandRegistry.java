@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 
 import com.pengu.hammercore.utils.IndexedMap;
-import com.pengu.lostthaumaturgy.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 
 /**
  * Used to register wand rods and cores to the registry.<br>

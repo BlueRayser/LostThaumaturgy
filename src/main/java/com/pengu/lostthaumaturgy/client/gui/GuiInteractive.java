@@ -28,8 +28,8 @@ import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.common.utils.IOUtils;
 import com.pengu.hammercore.gui.GuiCentered;
 import com.pengu.hammercore.math.MathHelper;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class GuiInteractive extends GuiCentered
 {
@@ -44,7 +44,7 @@ public class GuiInteractive extends GuiCentered
 	public GuiTextField lastUploaded;
 	public String[] log;
 	
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_interactive.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_interactive.png");
 	
 	public GuiInteractive(GuiScreen parent)
 	{
@@ -60,7 +60,7 @@ public class GuiInteractive extends GuiCentered
 		
 		try
 		{
-			File f = new File("config", LTInfo.MOD_ID + ".dat");
+			File f = new File("config", Info.MOD_ID + ".dat");
 			DataOutputStream dos = new DataOutputStream(new FileOutputStream(f));
 			dos.writeInt(lastUpload);
 			dos.writeInt(log != null ? log.length : 0);
@@ -89,7 +89,7 @@ public class GuiInteractive extends GuiCentered
 		new ConnectionEstablishTread().start();
 		try
 		{
-			File f = new File("config", LTInfo.MOD_ID + ".dat");
+			File f = new File("config", Info.MOD_ID + ".dat");
 			DataInputStream dis = new DataInputStream(new FileInputStream(f));
 			lastUpload = dis.readInt();
 			log = new String[dis.readInt()];

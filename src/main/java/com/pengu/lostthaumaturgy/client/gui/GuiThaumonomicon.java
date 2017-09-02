@@ -30,15 +30,15 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.research.ClientResearchData;
 import com.pengu.lostthaumaturgy.api.research.ResearchCategories;
 import com.pengu.lostthaumaturgy.api.research.ResearchCategoryList;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchManager;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.utils.InventoryUtils;
+import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
-import com.pengu.lostthaumaturgy.utils.InventoryUtils;
-import com.pengu.lostthaumaturgy.utils.UtilsFX;
 
 public class GuiThaumonomicon extends GuiScreen
 {
@@ -644,7 +644,7 @@ public class GuiThaumonomicon extends GuiScreen
 	
 	private void playButtonClick()
 	{
-		HammerCore.audioProxy.playSoundAt(mc.getRenderViewEntity().world, LTInfo.MOD_ID + ":cameraclack", this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().posY, this.mc.getRenderViewEntity().posZ, 0.4F, 1.0F, SoundCategory.MASTER);
+		HammerCore.audioProxy.playSoundAt(mc.getRenderViewEntity().world, Info.MOD_ID + ":cameraclack", this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().posY, this.mc.getRenderViewEntity().posZ, 0.4F, 1.0F, SoundCategory.MASTER);
 	}
 	
 	private boolean canUnlockResearch(ResearchItem res)

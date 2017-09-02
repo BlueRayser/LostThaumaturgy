@@ -14,9 +14,9 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileAdvancedVisValve;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileAdvancedVisValve;
 
 public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 {
@@ -36,7 +36,7 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 	{
 		super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage, alpha);
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -48,7 +48,7 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 		blend.captureState();
 		blend.on();
 		GlStateManager.disableLighting();
-		TextureAtlasSprite sprite = te.setting == 0 ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_off") : te.setting == 2 ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_taint") : ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_vis");
+		TextureAtlasSprite sprite = te.setting == 0 ? ClientProxy.getSprite(Info.MOD_ID + ":blocks/advanced_vis_valve_off") : te.setting == 2 ? ClientProxy.getSprite(Info.MOD_ID + ":blocks/advanced_vis_valve_taint") : ClientProxy.getSprite(Info.MOD_ID + ":blocks/advanced_vis_valve_vis");
 		Tessellator tess = Tessellator.getInstance();
 		int bright = getBrightnessForRB(te, rb);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -81,11 +81,11 @@ public class TESRAdvancedVisValve extends TESRConduit<TileAdvancedVisValve>
 		
 		GlStateManager.disableLighting();
 		
-		TextureAtlasSprite sprite = open == 0 ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_off") : open == 2 ? ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_taint") : ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/advanced_vis_valve_vis");
+		TextureAtlasSprite sprite = open == 0 ? ClientProxy.getSprite(Info.MOD_ID + ":blocks/advanced_vis_valve_off") : open == 2 ? ClientProxy.getSprite(Info.MOD_ID + ":blocks/advanced_vis_valve_taint") : ClientProxy.getSprite(Info.MOD_ID + ":blocks/advanced_vis_valve_vis");
 		
 		Tessellator tess = Tessellator.getInstance();
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		
 		int bright = rb.setLighting(Minecraft.getMinecraft().world, Minecraft.getMinecraft().player.getPosition());
 		

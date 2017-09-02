@@ -5,7 +5,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.entity.EntityTravelingTrunk;
 
 public class ContainerTravelingTrunk extends Container
 {

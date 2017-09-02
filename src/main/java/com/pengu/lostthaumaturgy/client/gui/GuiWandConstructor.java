@@ -9,14 +9,14 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileWandConstructor;
 import com.pengu.lostthaumaturgy.inventory.ContainerWandConstructor;
-import com.pengu.lostthaumaturgy.tile.TileWandConstructor;
 
 public class GuiWandConstructor extends GuiContainer
 {
 	public final ContainerWandConstructor cont;
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_wand_constructor.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_wand_constructor.png");
 	
 	public GuiWandConstructor(TileWandConstructor tile, InventoryPlayer player)
 	{

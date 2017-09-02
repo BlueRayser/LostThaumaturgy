@@ -17,11 +17,11 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.particle.api.SimpleParticle;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class FXBubble extends SimpleParticle
 {
-	public static final ResourceLocation tex = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/bubble.png");
+	public static final ResourceLocation tex = new ResourceLocation(Info.MOD_ID, "textures/particle/bubble.png");
 	
 	public FXBubble(World world, Vec3d pos)
 	{

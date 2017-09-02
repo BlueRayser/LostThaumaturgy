@@ -6,8 +6,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.pengu.hammercore.net.HCNetwork;
+import com.pengu.lostthaumaturgy.core.emote.EmoteData;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
-import com.pengu.lostthaumaturgy.emote.EmoteData;
 import com.pengu.lostthaumaturgy.net.PacketEmote;
 
 public class CommonProxy

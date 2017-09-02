@@ -7,18 +7,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 import com.pengu.lostthaumaturgy.inventory.ContainerCrystallizer;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 
 public class GuiCrystallizer extends GuiContainer
 {
 	public final ContainerCrystallizer container;
 	public final TileCrystallizer tile;
 	
-	public static final ResourceLocation[] backgrounds = { new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_crystalizer_5.png"), new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_crystalizer_6.png") };
+	public static final ResourceLocation[] backgrounds = { new ResourceLocation(Info.MOD_ID, "textures/gui/gui_crystalizer_5.png"), new ResourceLocation(Info.MOD_ID, "textures/gui/gui_crystalizer_6.png") };
 	
 	public GuiCrystallizer(TileCrystallizer tile, EntityPlayer player)
 	{

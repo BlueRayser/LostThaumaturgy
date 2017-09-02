@@ -22,7 +22,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.particle.api.SimpleParticle;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
 
 @SideOnly(Side.CLIENT)
 public class FXWisp extends SimpleParticle
@@ -142,7 +142,7 @@ public class FXWisp extends SimpleParticle
 		return this;
 	}
 	
-	static final ResourceLocation p_large = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/p_large.png");
+	static final ResourceLocation p_large = new ResourceLocation(Info.MOD_ID, "textures/particle/p_large.png");
 	
 	@Override
 	public void doRenderParticle(double x, double y, double z, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)

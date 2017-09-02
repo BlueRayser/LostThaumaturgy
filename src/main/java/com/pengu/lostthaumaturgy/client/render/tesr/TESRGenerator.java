@@ -13,16 +13,16 @@ import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelGenCore;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileGenerator;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileGenerator;
 
 public class TESRGenerator extends TESR<TileGenerator>
 {
 	public static final TESRGenerator INSTANCE = new TESRGenerator();
 	public final ModelGenCore model = new ModelGenCore();
-	public final ResourceLocation texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/thaum_generator.png");
+	public final ResourceLocation texture = new ResourceLocation(Info.MOD_ID, "textures/models/thaum_generator.png");
 	
 	@Override
 	public void renderTileEntityAt(TileGenerator te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
@@ -38,7 +38,7 @@ public class TESRGenerator extends TESR<TileGenerator>
 	
 	public void renderBase(TileGenerator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float partialTicks)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = partialTicks;
 		
@@ -63,12 +63,12 @@ public class TESRGenerator extends TESR<TileGenerator>
 		}
 		GL11.glPopMatrix();
 		
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		
 		sbr.begin();
 		
-		TextureAtlasSprite warded = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/warded_glass");
-		TextureAtlasSprite generator = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/generator");
+		TextureAtlasSprite warded = ClientProxy.getSprite(Info.MOD_ID + ":blocks/warded_glass");
+		TextureAtlasSprite generator = ClientProxy.getSprite(Info.MOD_ID + ":blocks/generator");
 		
 		for(int i = 0; i < (destroyStage == null ? 1 : 2); ++i)
 		{

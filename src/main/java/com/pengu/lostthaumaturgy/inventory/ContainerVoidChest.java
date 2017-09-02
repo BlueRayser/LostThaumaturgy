@@ -8,8 +8,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 import com.pengu.hammercore.HammerCore;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.tile.TileVoidChest;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileVoidChest;
 
 public class ContainerVoidChest extends Container
 {
@@ -38,7 +38,7 @@ public class ContainerVoidChest extends Container
 		
 		World worldIn = playerIn.world;
 		if(!worldIn.isRemote)
-			HammerCore.audioProxy.playSoundAt(worldIn, LTInfo.MOD_ID + ":void_chest_close", chest.getPos(), .3F, 1F, SoundCategory.BLOCKS);
+			HammerCore.audioProxy.playSoundAt(worldIn, Info.MOD_ID + ":void_chest_close", chest.getPos(), .3F, 1F, SoundCategory.BLOCKS);
 	}
 	
 	@Override

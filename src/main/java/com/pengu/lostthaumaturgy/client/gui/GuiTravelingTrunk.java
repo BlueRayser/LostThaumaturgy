@@ -12,10 +12,10 @@ import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.net.HCNetwork;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.inventory.ContainerTravelingTrunk;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.net.PacketTrunkToggleSit;
 
 public class GuiTravelingTrunk extends GuiContainer
@@ -27,8 +27,8 @@ public class GuiTravelingTrunk extends GuiContainer
 		ySize = 192;
 	}
 	
-	public final ResourceLocation back = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_trunk_base.png");
-	public final ResourceLocation slots = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_trunk_slots.png");
+	public final ResourceLocation back = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_trunk_base.png");
+	public final ResourceLocation slots = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_trunk_slots.png");
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)

@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 
 import com.pengu.lostthaumaturgy.client.render.entity.RenderEntityThaumSlime;
-import com.pengu.lostthaumaturgy.entity.EntityThaumSlime;
+import com.pengu.lostthaumaturgy.core.entity.EntityThaumSlime;
 
 public class LayerThaumSlimeGel implements LayerRenderer<EntityThaumSlime>
 {

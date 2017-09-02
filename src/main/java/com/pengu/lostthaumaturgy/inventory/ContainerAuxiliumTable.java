@@ -5,9 +5,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import com.pengu.lostthaumaturgy.core.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotFragment;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
-import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 
 public class ContainerAuxiliumTable extends Container
 {

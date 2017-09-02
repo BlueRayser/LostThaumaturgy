@@ -11,10 +11,10 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileMonolithOpener;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.monolith.TileMonolithOpener;
 
 public class TESRMonolithOpener extends TESR<TileMonolithOpener>
 {
@@ -29,9 +29,9 @@ public class TESRMonolithOpener extends TESR<TileMonolithOpener>
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
 			if(f == EnumFacing.UP)
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/bottom"));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/bottom"));
 			else
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
 		}
 		sbr.drawBlock(0, 0, 0);
 		sbr.end();
@@ -62,9 +62,9 @@ public class TESRMonolithOpener extends TESR<TileMonolithOpener>
 				sbr.disableFace(f);
 			
 			if(f == EnumFacing.UP)
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/bottom"));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/bottom"));
 			else
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + te.rand.nextInt(6)));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/eldritch_block/" + te.rand.nextInt(6)));
 		}
 		sbr.drawBlock(x, y, z);
 		sbr.end();

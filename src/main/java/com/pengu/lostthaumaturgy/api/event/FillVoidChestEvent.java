@@ -7,9 +7,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
 
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.tile.TileVoidChest;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
-import com.pengu.lostthaumaturgy.tile.TileVoidChest;
 
 public class FillVoidChestEvent extends BlockEvent
 {

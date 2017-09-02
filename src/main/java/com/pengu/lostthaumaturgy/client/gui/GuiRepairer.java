@@ -7,14 +7,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileRepairer;
 import com.pengu.lostthaumaturgy.inventory.ContainerRepairer;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileRepairer;
 
 public class GuiRepairer extends GuiContainer
 {
-	public static final ResourceLocation tex = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_repairer.png");
+	public static final ResourceLocation tex = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_repairer.png");
 	public final TileRepairer tile;
 	
 	public GuiRepairer(TileRepairer tile, EntityPlayer player)

@@ -9,14 +9,14 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.gui.container.ContainerEmpty;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileGenerator;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileGenerator;
 
 public class GuiGenerator extends GuiContainer
 {
 	public final TileGenerator tile;
-	public final ResourceLocation texture = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_generator.png");
+	public final ResourceLocation texture = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_generator.png");
 	
 	public GuiGenerator(TileGenerator tile)
 	{

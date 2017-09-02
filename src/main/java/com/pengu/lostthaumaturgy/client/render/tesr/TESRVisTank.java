@@ -18,10 +18,10 @@ import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileVisTank;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileVisTank;
 
 public class TESRVisTank extends TESR<TileVisTank>
 {
@@ -31,23 +31,23 @@ public class TESRVisTank extends TESR<TileVisTank>
 	
 	protected void setupTextures()
 	{
-		bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_tank/bottom");
-		side = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_tank/side");
-		side_to_bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_tank/side_to_bottom");
-		side_to_top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_tank/side_to_top");
-		side_to_top_bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_tank/side_to_top_bottom");
-		top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_tank/top");
+		bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_tank/bottom");
+		side = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_tank/side");
+		side_to_bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_tank/side_to_bottom");
+		side_to_top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_tank/side_to_top");
+		side_to_top_bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_tank/side_to_top_bottom");
+		top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_tank/top");
 	}
 	
 	@Override
 	public void renderTileEntityAt(TileVisTank te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-		TextureAtlasSprite vis_conduit = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_conduit");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite vis_conduit = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_conduit");
 		
 		setupTextures();
 		
@@ -191,7 +191,7 @@ public class TESRVisTank extends TESR<TileVisTank>
 		
 		GlStateManager.disableLighting();
 		
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 		
 		Tessellator tess = Tessellator.getInstance();
 		

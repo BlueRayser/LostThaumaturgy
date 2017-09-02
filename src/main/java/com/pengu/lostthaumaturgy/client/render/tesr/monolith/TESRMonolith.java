@@ -12,10 +12,10 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileMonolith;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
 
 public class TESRMonolith extends TESR<TileMonolith>
 {
@@ -32,8 +32,8 @@ public class TESRMonolith extends TESR<TileMonolith>
 		boolean up = te.getWorld().getBlockState(te.getPos().up()).getBlock() == BlocksLT.MONOLITH;
 		boolean down = te.getWorld().getBlockState(te.getPos().down()).getBlock() == BlocksLT.MONOLITH;
 		
-		TextureAtlasSprite side = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/side_" + (up && !down ? "u" : !up && down ? "d" : "ud"));
-		TextureAtlasSprite yspr = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/bottom");
+		TextureAtlasSprite side = ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/side_" + (up && !down ? "u" : !up && down ? "d" : "ud"));
+		TextureAtlasSprite yspr = ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/bottom");
 		
 		SimpleBlockRendering sbr = RenderBlocks.getInstance().simpleRenderer;
 		
@@ -78,8 +78,8 @@ public class TESRMonolith extends TESR<TileMonolith>
 	{
 		SimpleBlockRendering sbr = RenderBlocks.getInstance().simpleRenderer;
 		
-		TextureAtlasSprite side = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/side_d");
-		TextureAtlasSprite yspr = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/bottom");
+		TextureAtlasSprite side = ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/side_d");
+		TextureAtlasSprite yspr = ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/bottom");
 		
 		sbr.begin();
 		sbr.setBrightness(getBrightnessForRB(null, sbr.rb));

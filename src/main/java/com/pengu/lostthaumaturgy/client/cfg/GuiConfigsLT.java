@@ -5,14 +5,14 @@ import net.minecraft.client.gui.GuiScreen;
 
 import com.pengu.hammercore.cfg.gui.HCConfigGui;
 import com.pengu.lostthaumaturgy.LTConfigs;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.gui.GuiInteractive;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class GuiConfigsLT extends HCConfigGui
 {
 	public GuiConfigsLT(GuiScreen prev)
 	{
-		super(prev, LTConfigs.cfgs, LTInfo.MOD_ID);
+		super(prev, LTConfigs.cfgs, Info.MOD_ID);
 	}
 	
 	@Override

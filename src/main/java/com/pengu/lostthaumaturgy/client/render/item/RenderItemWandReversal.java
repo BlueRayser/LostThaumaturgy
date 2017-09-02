@@ -10,16 +10,16 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.render.item.IItemRender;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelWandReversal;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class RenderItemWandReversal implements IItemRender
 {
 	private final ModelWandReversal model = new ModelWandReversal();
 	private final ResourceLocation//
-	        texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/wand_reversal.png"), //
-	        texture1 = new ResourceLocation(LTInfo.MOD_ID, "textures/models/crystal.png");
+	        texture = new ResourceLocation(Info.MOD_ID, "textures/models/wand_reversal.png"), //
+	        texture1 = new ResourceLocation(Info.MOD_ID, "textures/models/crystal.png");
 	private final ModelCrystal crystal = new ModelCrystal();
 	
 	@Override

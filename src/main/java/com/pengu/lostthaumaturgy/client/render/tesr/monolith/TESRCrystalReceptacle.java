@@ -17,28 +17,28 @@ import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.core.items.armor.helm.ItemGogglesRevealing;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileCrystalReceptacle;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.items.armor.helm.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
 
 public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 {
 	public static final TESRCrystalReceptacle INSTANCE = new TESRCrystalReceptacle();
 	final ModelCrystal crystal = new ModelCrystal();
-	final ResourceLocation texture1 = new ResourceLocation(LTInfo.MOD_ID, "textures/models/crystal.png");
+	final ResourceLocation texture1 = new ResourceLocation(Info.MOD_ID, "textures/models/crystal.png");
 	final Map<String, ResourceLocation> textures = new HashMap<>();
 	
 	{
-		textures.put("aqueus", new ResourceLocation(LTInfo.MOD_ID, "textures/misc/runes/aqueous.png"));
-		textures.put("earthen", new ResourceLocation(LTInfo.MOD_ID, "textures/misc/runes/earthen.png"));
-		textures.put("fiery", new ResourceLocation(LTInfo.MOD_ID, "textures/misc/runes/fiery.png"));
-		textures.put("tainted", new ResourceLocation(LTInfo.MOD_ID, "textures/misc/runes/tainted.png"));
-		textures.put("vaporous", new ResourceLocation(LTInfo.MOD_ID, "textures/misc/runes/vaporous.png"));
-		textures.put("vis", new ResourceLocation(LTInfo.MOD_ID, "textures/misc/runes/vis.png"));
+		textures.put("aqueus", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/aqueous.png"));
+		textures.put("earthen", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/earthen.png"));
+		textures.put("fiery", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/fiery.png"));
+		textures.put("tainted", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/tainted.png"));
+		textures.put("vaporous", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/vaporous.png"));
+		textures.put("vis", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/vis.png"));
 	}
 	
 	@Override
@@ -83,9 +83,9 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 				sbr.disableFace(f);
 			
 			if(f == EnumFacing.UP)
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/crystal_receptacle"));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/crystal_receptacle"));
 			else
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + te.rand.nextInt(6)));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/eldritch_block/" + te.rand.nextInt(6)));
 		}
 		
 		sbr.drawBlock(x, y, z);
@@ -117,9 +117,9 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
 			if(f == EnumFacing.UP)
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/crystal_receptacle"));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/crystal_receptacle"));
 			else
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
 		}
 		sbr.drawBlock(0, 0, 0);
 		sbr.end();

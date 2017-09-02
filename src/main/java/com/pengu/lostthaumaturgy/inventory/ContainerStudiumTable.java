@@ -5,10 +5,10 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import com.pengu.lostthaumaturgy.core.tile.TileStudiumTable;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotCrucible;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotPaper;
-import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 
 public class ContainerStudiumTable extends Container
 {

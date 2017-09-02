@@ -20,18 +20,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.core.tile.TileCrystalOre;
+import com.pengu.lostthaumaturgy.core.tile.TileLyingItem;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
+import com.pengu.lostthaumaturgy.core.tile.TileSingularityJar;
+import com.pengu.lostthaumaturgy.core.tile.TileTaintedSoil;
+import com.pengu.lostthaumaturgy.core.tile.TileVisPump;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileCrystalReceptacle;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileExtraRoom;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileMonolith;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.tile.TileCrystalOre;
-import com.pengu.lostthaumaturgy.tile.TileLyingItem;
-import com.pengu.lostthaumaturgy.tile.TileSeal;
-import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
-import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
-import com.pengu.lostthaumaturgy.tile.TileVisPump;
-import com.pengu.lostthaumaturgy.tile.monolith.TileCrystalReceptacle;
-import com.pengu.lostthaumaturgy.tile.monolith.TileExtraRoom;
-import com.pengu.lostthaumaturgy.tile.monolith.TileMonolith;
 
 public class WailaLTProvider implements IWailaDataProvider
 {
@@ -41,7 +41,7 @@ public class WailaLTProvider implements IWailaDataProvider
 		
 		for(ResourceLocation r : Block.REGISTRY.getKeys())
 		{
-			if(r.getResourceDomain().equals(LTInfo.MOD_ID))
+			if(r.getResourceDomain().equals(Info.MOD_ID))
 			{
 				Block b = Block.REGISTRY.getObject(r);
 				reg.registerBodyProvider(provider, b.getClass());
@@ -100,7 +100,7 @@ public class WailaLTProvider implements IWailaDataProvider
 	public ItemStack getWailaStack(IWailaDataAccessor acc, IWailaConfigHandler arg1)
 	{
 		Block block = acc.getBlock();
-		if(block != null && block.getRegistryName().getResourceDomain().equals(LTInfo.MOD_ID))
+		if(block != null && block.getRegistryName().getResourceDomain().equals(Info.MOD_ID))
 		{
 			if(block == BlocksLT.VIS_PURIFIER || block == BlocksLT.SILVERWOOD_LEAVES || block == BlocksLT.SILVERWOOD_LOG || block == BlocksLT.SILVERWOOD_STAIRS || block == BlocksLT.GREATWOOD_LOG || block == BlocksLT.GREATWOOD_LEAVES || block == BlocksLT.TAINTED_LEAVES || block == BlocksLT.TAINTED_LOG)
 				return new ItemStack(block);

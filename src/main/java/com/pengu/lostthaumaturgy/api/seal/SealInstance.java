@@ -9,7 +9,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.pengu.lostthaumaturgy.tile.TileSeal;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 
 public class SealInstance
 {

@@ -46,11 +46,11 @@ import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.ChunkUtils;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LTConfigs;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.event.AuraEvent;
 import com.pengu.lostthaumaturgy.api.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
+import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.custom.aura.api.AtmosphereAttachments;
 import com.pengu.lostthaumaturgy.custom.aura.taint.TaintRegistry;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
@@ -831,7 +831,7 @@ public class AtmosphereTicker
 			if(ac != null)
 			{
 				ac.taint += at;
-				HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":fizz", pos, .2F, 2F - world.rand.nextFloat() * .4F, SoundCategory.AMBIENT);
+				HammerCore.audioProxy.playSoundAt(world, Info.MOD_ID + ":fizz", pos, .2F, 2F - world.rand.nextFloat() * .4F, SoundCategory.AMBIENT);
 				for(int a = 0; a < Math.min(at, 50); ++a)
 				{
 					float x = (float) pos.getX() + world.rand.nextFloat();
@@ -846,7 +846,7 @@ public class AtmosphereTicker
 	
 	public static void badSound(World w, float x, float y, float z)
 	{
-		HammerCore.audioProxy.playSoundAt(w, LTInfo.MOD_ID + ":roots", x, y, z, .05F, 1.1F + w.rand.nextFloat() * .2F, SoundCategory.AMBIENT);
+		HammerCore.audioProxy.playSoundAt(w, Info.MOD_ID + ":roots", x, y, z, .05F, 1.1F + w.rand.nextFloat() * .2F, SoundCategory.AMBIENT);
 	}
 	
 	public static boolean isAdjacentToOpenBlock(World world, int x, int y, int z)

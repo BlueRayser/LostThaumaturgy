@@ -17,28 +17,28 @@ import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileSingularityJar;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileSingularityJar;
 
 public class TESRSingularityJar extends TESR<TileSingularityJar>
 {
 	public static final TESRSingularityJar INSTANCE = new TESRSingularityJar();
-	public final ResourceLocation singularity = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/xp_singularity.png");
+	public final ResourceLocation singularity = new ResourceLocation(Info.MOD_ID, "textures/misc/xp_singularity.png");
 	
 	@Override
 	public void renderBase(TileSingularityJar tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		
 		for(int i = 0; i < (destroyStage != null ? 2 : 1); ++i)
 		{
-			TextureAtlasSprite glass = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/warded_glass");
-			TextureAtlasSprite jar = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/jar");
+			TextureAtlasSprite glass = ClientProxy.getSprite(Info.MOD_ID + ":blocks/warded_glass");
+			TextureAtlasSprite jar = ClientProxy.getSprite(Info.MOD_ID + ":blocks/jar");
 			
 			if(i == 1)
 				glass = jar = DestroyStageTexture.getAsSprite(destroyProgress);
@@ -100,8 +100,8 @@ public class TESRSingularityJar extends TESR<TileSingularityJar>
 		
 		for(int i = 0; i < (destroyStage != null ? 2 : 1); ++i)
 		{
-			TextureAtlasSprite glass = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/warded_glass");
-			TextureAtlasSprite jar = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/jar");
+			TextureAtlasSprite glass = ClientProxy.getSprite(Info.MOD_ID + ":blocks/warded_glass");
+			TextureAtlasSprite jar = ClientProxy.getSprite(Info.MOD_ID + ":blocks/jar");
 			
 			if(i == 1)
 				glass = jar = DestroyStageTexture.getAsSprite(destroyProgress);

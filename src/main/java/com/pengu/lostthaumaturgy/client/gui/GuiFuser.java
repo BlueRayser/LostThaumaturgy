@@ -10,15 +10,15 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.tile.TileFuser;
 import com.pengu.lostthaumaturgy.inventory.ContainerFuser;
-import com.pengu.lostthaumaturgy.items.ItemWand;
-import com.pengu.lostthaumaturgy.tile.TileFuser;
 
 public class GuiFuser extends GuiContainer
 {
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_fuser.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_fuser.png");
 	public final TileFuser tile;
 	public final ContainerFuser containerFuser;
 	

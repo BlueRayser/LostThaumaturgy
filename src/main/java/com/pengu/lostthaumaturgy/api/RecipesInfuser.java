@@ -14,9 +14,9 @@ import com.google.common.base.Predicates;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchPredicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch.EnumResearchItemType;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
 
 public class RecipesInfuser
 {

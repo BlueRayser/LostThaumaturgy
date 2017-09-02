@@ -11,20 +11,20 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelPump;
-import com.pengu.lostthaumaturgy.tile.TileVisPump;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileVisPump;
 
 public class TESRVisPump<T extends TileVisPump> extends TESR<T>
 {
 	public static final TESRVisPump INSTANCE = new TESRVisPump();
 	private ModelPump model = new ModelPump();
-	protected ResourceLocation pump = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump.png"), pump_malfunction = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_malfunction.png"), pump_off = new ResourceLocation(LTInfo.MOD_ID, "textures/models/pump_off.png");
+	protected ResourceLocation pump = new ResourceLocation(Info.MOD_ID, "textures/models/pump.png"), pump_malfunction = new ResourceLocation(Info.MOD_ID, "textures/models/pump_malfunction.png"), pump_off = new ResourceLocation(Info.MOD_ID, "textures/models/pump_off.png");
 	
 	@Override
 	public void renderTileEntityAt(T te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		

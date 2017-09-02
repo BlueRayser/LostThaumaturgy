@@ -8,14 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileVisCondenser;
 import com.pengu.lostthaumaturgy.inventory.ContainerVisCondenser;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileVisCondenser;
 
 public class GuiVisCondenser extends GuiContainer
 {
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_condenser.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_condenser.png");
 	public final TileVisCondenser tile;
 	
 	public GuiVisCondenser(EntityPlayer player, TileVisCondenser tile)

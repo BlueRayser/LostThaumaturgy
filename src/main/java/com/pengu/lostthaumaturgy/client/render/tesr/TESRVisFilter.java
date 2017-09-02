@@ -17,9 +17,9 @@ import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileVisFilter;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileVisFilter;
 
 public class TESRVisFilter extends TESR<TileVisFilter>
 {
@@ -39,7 +39,7 @@ public class TESRVisFilter extends TESR<TileVisFilter>
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		render(x, y, z, te);
@@ -48,13 +48,13 @@ public class TESRVisFilter extends TESR<TileVisFilter>
 	
 	private void render(double x, double y, double z, Predicate<EnumFacing> connections)
 	{
-		TextureAtlasSprite vis_conduit = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_conduit");
-		TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_filter_side_connected");
-		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_filter_side_disconnected");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_filter_top");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/vis_filter_bottom");
+		TextureAtlasSprite vis_conduit = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_conduit");
+		TextureAtlasSprite side_connected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_filter_side_connected");
+		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_filter_side_disconnected");
+		TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_filter_top");
+		TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/vis_filter_bottom");
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		
 		GLRenderState blend = GLRenderState.BLEND;
 		for(int i = 0; i < (destroyProgress > 0F ? 2 : 1); ++i)

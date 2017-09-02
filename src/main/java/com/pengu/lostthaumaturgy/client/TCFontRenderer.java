@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.lostthaumaturgy.utils.UtilsFX;
+import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
 
 @SideOnly(value = Side.CLIENT)
 public class TCFontRenderer

@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
-import com.pengu.lostthaumaturgy.emote.EmoteData;
+import com.pengu.lostthaumaturgy.core.emote.EmoteData;
 
 public class PacketEmote implements IPacket, IPacketListener<PacketEmote, IPacket>
 {

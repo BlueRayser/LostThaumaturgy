@@ -12,8 +12,9 @@ import com.pengu.hammercore.cfg.fields.ModConfigPropertyInt;
 import com.pengu.hammercore.cfg.fields.ModConfigPropertyStringList;
 import com.pengu.hammercore.var.IVariable;
 import com.pengu.hammercore.var.types.VariableString;
+import com.pengu.lostthaumaturgy.core.Info;
 
-@HCModConfigurations(modid = LTInfo.MOD_ID)
+@HCModConfigurations(modid = Info.MOD_ID)
 public class LTConfigs implements IConfigReloadListener
 {
 	@ModConfigPropertyBool(category = "Client", name = "Crucible Value Tooltip", defaultValue = true, comment = "Should we add tooltip with smelting value of an item in a crucible?")
@@ -42,7 +43,7 @@ public class LTConfigs implements IConfigReloadListener
 	
 	public static Configuration cfgs;
 	
-	public static final IVariable<String> var_aura_max_str = new VariableString(LTInfo.MOD_ID + ":aura");
+	public static final IVariable<String> var_aura_max_str = new VariableString(Info.MOD_ID + ":aura");
 	public static short sync_aura_max;
 	public static float sync_aura_rad_max;
 	

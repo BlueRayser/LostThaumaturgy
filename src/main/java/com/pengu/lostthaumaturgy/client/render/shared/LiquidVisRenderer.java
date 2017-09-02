@@ -15,7 +15,7 @@ import com.pengu.hammercore.client.render.shader.ShaderProgram;
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.lostthaumaturgy.LTConfigs;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
 public class LiquidVisRenderer
@@ -43,8 +43,8 @@ public class LiquidVisRenderer
 			if(visShader != null)
 				visShader.cleanup();
 			visShader = new ShaderProgram();
-			visShader.attachFrag("/assets/" + LTInfo.MOD_ID + "/shaders/liquid_vis.fsh");
-			visShader.attachVert("/assets/" + LTInfo.MOD_ID + "/shaders/liquid_vis.vsh");
+			visShader.attachFrag("/assets/" + Info.MOD_ID + "/shaders/liquid_vis.fsh");
+			visShader.attachVert("/assets/" + Info.MOD_ID + "/shaders/liquid_vis.vsh");
 			visShader.attachShaderOperation(operation = new LiquidVisOperation(HCShaderPipeline.registerOperation()));
 			visShader.validate();
 		} catch(Throwable err)
@@ -55,7 +55,7 @@ public class LiquidVisRenderer
 	
 	public static void renderIntoGui(double xCoord, double yCoord, double widthIn, double heightIn, float visSaturation)
 	{
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 		
 		if(useShaders() && visShader == null)
 			reloadShader();

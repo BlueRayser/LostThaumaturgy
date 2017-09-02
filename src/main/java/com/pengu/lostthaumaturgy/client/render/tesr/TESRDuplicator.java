@@ -10,22 +10,22 @@ import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.proxy.ParticleProxy_Client;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
 import com.pengu.lostthaumaturgy.client.model.ModelDuplicator;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileDuplicator;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileDuplicator;
 
 public class TESRDuplicator extends TESR<TileDuplicator>
 {
 	public static final TESRDuplicator INSTANCE = new TESRDuplicator();
 	private ModelDuplicator model = new ModelDuplicator();
-	public final ResourceLocation texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/duplicator.png");
+	public final ResourceLocation texture = new ResourceLocation(Info.MOD_ID, "textures/models/duplicator.png");
 	
 	@Override
 	public void renderBase(TileDuplicator tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -79,13 +79,13 @@ public class TESRDuplicator extends TESR<TileDuplicator>
 		
 		sbr.begin();
 		sbr.setBrightness(getBrightnessForRB(tile, sbr.rb));
-		sbr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/duplicator/side"));
-		sbr.setSpriteForSide(front, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/duplicator/front"));
-		sbr.setSpriteForSide(EnumFacing.UP, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/duplicator/y"));
-		sbr.setSpriteForSide(EnumFacing.DOWN, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/duplicator/y"));
+		sbr.setSprite(ClientProxy.getSprite(Info.MOD_ID + ":blocks/duplicator/side"));
+		sbr.setSpriteForSide(front, ClientProxy.getSprite(Info.MOD_ID + ":blocks/duplicator/front"));
+		sbr.setSpriteForSide(EnumFacing.UP, ClientProxy.getSprite(Info.MOD_ID + ":blocks/duplicator/y"));
+		sbr.setSpriteForSide(EnumFacing.DOWN, ClientProxy.getSprite(Info.MOD_ID + ":blocks/duplicator/y"));
 		sbr.drawBlock(x, y, z);
 		sbr.rb.renderFromInside = true;
-		sbr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/duplicator/inner"));
+		sbr.setSprite(ClientProxy.getSprite(Info.MOD_ID + ":blocks/duplicator/inner"));
 		sbr.setRenderBounds(.01, 1 / 8D, .01, .99, 7 / 8D, .99);
 		sbr.disableFace(front);
 		sbr.drawBlock(x, y, z);

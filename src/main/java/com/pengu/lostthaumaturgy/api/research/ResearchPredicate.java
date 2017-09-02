@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Predicate;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
-import com.pengu.lostthaumaturgy.items.ItemResearch.EnumResearchItemType;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch.EnumResearchItemType;
 
 public class ResearchPredicate implements Predicate<IInfuser>
 {

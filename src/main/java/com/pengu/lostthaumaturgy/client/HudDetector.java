@@ -22,8 +22,8 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.lostthaumaturgy.LTConfigs;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
+import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 
 public class HudDetector extends Gui
@@ -32,7 +32,7 @@ public class HudDetector extends Gui
 	
 	private static ItemRenderer itemRenderer = new ItemRenderer(Minecraft.getMinecraft());
 	protected FontRenderer fontRenderer;
-	protected ResourceLocation detector = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_detector.png");
+	protected ResourceLocation detector = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_detector.png");
 	
 	public HudDetector()
 	{

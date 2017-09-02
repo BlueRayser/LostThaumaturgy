@@ -13,8 +13,8 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.hammercore.proxy.ParticleProxy_Client;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class PacketDuplicatorFinish implements IPacket, IPacketListener<PacketDuplicatorFinish, IPacket>
 {
@@ -64,6 +64,6 @@ public class PacketDuplicatorFinish implements IPacket, IPacketListener<PacketDu
 			ParticleProxy_Client.queueParticleSpawn(ef);
 		}
 		
-		HammerCore.audioProxy.playSoundAt(world, LTInfo.MOD_ID + ":stomp", pos, .1F, 1, SoundCategory.BLOCKS);
+		HammerCore.audioProxy.playSoundAt(world, Info.MOD_ID + ":stomp", pos, .1F, 1, SoundCategory.BLOCKS);
 	}
 }

@@ -1,8 +1,8 @@
 package com.pengu.lostthaumaturgy.custom.wand.cap;
 
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.wand.WandCap;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class WandCapGold extends WandCap
 {
@@ -27,6 +27,6 @@ public class WandCapGold extends WandCap
 	@Override
 	public String getCapTexture()
 	{
-		return LTInfo.MOD_ID + ":items/wand/cap_gold_mat";
+		return Info.MOD_ID + ":items/wand/cap_gold_mat";
 	}
 }

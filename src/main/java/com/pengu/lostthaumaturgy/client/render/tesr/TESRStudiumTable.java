@@ -16,19 +16,19 @@ import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileStudiumTable;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 
 public class TESRStudiumTable extends TESR<TileStudiumTable>
 {
 	public static final TESRStudiumTable INSTANCE = new TESRStudiumTable();
-	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/studium_symbol.png");
+	protected ResourceLocation disk = new ResourceLocation(Info.MOD_ID, "textures/misc/studium_symbol.png");
 	
 	@Override
 	public void renderTileEntityAt(TileStudiumTable te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -58,7 +58,7 @@ public class TESRStudiumTable extends TESR<TileStudiumTable>
 	
 	public void renderModel(TileStudiumTable tile, double x, double y, double z)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		int bright = getBrightnessForRB(tile, rb);
 		
 		GlStateManager.disableLighting();
@@ -68,9 +68,9 @@ public class TESRStudiumTable extends TESR<TileStudiumTable>
 		blend.captureState();
 		blend.on();
 		
-		TextureAtlasSprite side = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/studium_table/side");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/studium_table/bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/studium_table/top");
+		TextureAtlasSprite side = ClientProxy.getSprite(Info.MOD_ID + ":blocks/studium_table/side");
+		TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/studium_table/bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/studium_table/top");
 		
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);

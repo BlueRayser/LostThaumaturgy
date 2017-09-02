@@ -6,9 +6,9 @@ import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.seal.SealCombination;
 import com.pengu.lostthaumaturgy.api.seal.SealInstance;
 import com.pengu.lostthaumaturgy.api.seal.SealManager;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 import com.pengu.lostthaumaturgy.custom.seals.earth.SealTillSoil;
 import com.pengu.lostthaumaturgy.custom.seals.water.SealWaterHydrate;
-import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class SealsLT
 {

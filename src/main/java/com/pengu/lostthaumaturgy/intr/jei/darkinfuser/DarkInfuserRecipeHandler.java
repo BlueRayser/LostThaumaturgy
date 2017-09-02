@@ -3,8 +3,8 @@ package com.pengu.lostthaumaturgy.intr.jei.darkinfuser;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.DarkInfuserRecipe;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
 
 public class DarkInfuserRecipeHandler implements IRecipeHandler<DarkInfuserRecipe>
 {

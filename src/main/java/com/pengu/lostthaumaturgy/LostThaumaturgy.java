@@ -30,12 +30,23 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import com.pengu.hammercore.common.blocks.tesseract.TileTesseract;
 import com.pengu.hammercore.common.utils.WrappedLog;
 import com.pengu.hammercore.init.SimpleRegistration;
+import com.pengu.hammercore.world.WorldGenRegistry;
 import com.pengu.hammercore.world.gen.WorldRetroGen;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
 import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
-import com.pengu.lostthaumaturgy.creative.CreativeTabLT;
-import com.pengu.lostthaumaturgy.creative.CreativeTabResearches;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.creative.CreativeTabLT;
+import com.pengu.lostthaumaturgy.core.creative.CreativeTabResearches;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.recipe.RecipePaintSeal;
+import com.pengu.lostthaumaturgy.core.worldgen.WorldGenCinderpearl;
+import com.pengu.lostthaumaturgy.core.worldgen.WorldGenCrystals;
+import com.pengu.lostthaumaturgy.core.worldgen.WorldGenGreatwood;
+import com.pengu.lostthaumaturgy.core.worldgen.WorldGenLostArtifacts;
+import com.pengu.lostthaumaturgy.core.worldgen.WorldGenMonoliths;
+import com.pengu.lostthaumaturgy.core.worldgen.WorldGenSilverwood;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.EntitiesLT;
@@ -47,18 +58,9 @@ import com.pengu.lostthaumaturgy.init.ResearchesLT;
 import com.pengu.lostthaumaturgy.init.SealsLT;
 import com.pengu.lostthaumaturgy.init.SoundEventsLT;
 import com.pengu.lostthaumaturgy.init.WandsLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
-import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.proxy.CommonProxy;
-import com.pengu.lostthaumaturgy.recipe.RecipePaintSeal;
-import com.pengu.lostthaumaturgy.worldgen.WorldGenCinderpearl;
-import com.pengu.lostthaumaturgy.worldgen.WorldGenCrystals;
-import com.pengu.lostthaumaturgy.worldgen.WorldGenGreatwood;
-import com.pengu.lostthaumaturgy.worldgen.WorldGenLostArtifacts;
-import com.pengu.lostthaumaturgy.worldgen.WorldGenMonoliths;
-import com.pengu.lostthaumaturgy.worldgen.WorldGenSilverwood;
 
-@Mod(modid = LTInfo.MOD_ID, name = LTInfo.MOD_NAME, version = LTInfo.MOD_VERSION, dependencies = "required-after:hammercore", guiFactory = "com.pengu.lostthaumaturgy.client.cfg.GuiFactoryLT")
+@Mod(modid = Info.MOD_ID, name = Info.MOD_NAME, version = Info.MOD_VERSION, dependencies = "required-after:hammercore", guiFactory = "com.pengu.lostthaumaturgy.client.cfg.GuiFactoryLT")
 public class LostThaumaturgy
 {
 	@Instance
@@ -66,14 +68,14 @@ public class LostThaumaturgy
 	
 	public static DecimalFormat standartDecimalFormat = new DecimalFormat("#0.00");
 	
-	@SidedProxy(clientSide = LTInfo.CLIENT_PROXY, serverSide = LTInfo.SERVER_PROXY)
+	@SidedProxy(clientSide = Info.CLIENT_PROXY, serverSide = Info.SERVER_PROXY)
 	public static CommonProxy proxy;
 	
 	public static final CreativeTabs //
 	        tab = new CreativeTabLT(),
 	        tab_researches = new CreativeTabResearches();
 	
-	public static final WrappedLog LOG = new WrappedLog(LTInfo.MOD_NAME);
+	public static final WrappedLog LOG = new WrappedLog(Info.MOD_NAME);
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
@@ -89,10 +91,10 @@ public class LostThaumaturgy
 		CapabilityVisConnection.register();
 		
 		nahYaEtoDelayou.step("Registering Blocks");
-		SimpleRegistration.registerFieldBlocksFrom(BlocksLT.class, LTInfo.MOD_ID, tab);
+		SimpleRegistration.registerFieldBlocksFrom(BlocksLT.class, Info.MOD_ID, tab);
 		
 		nahYaEtoDelayou.step("Registering Items");
-		SimpleRegistration.registerFieldItemsFrom(ItemsLT.class, LTInfo.MOD_ID, tab);
+		SimpleRegistration.registerFieldItemsFrom(ItemsLT.class, Info.MOD_ID, tab);
 		
 		nahYaEtoDelayou.step("Adding Sounds");
 		SimpleRegistration.registerFieldSoundsFrom(SoundEventsLT.class);
@@ -101,7 +103,7 @@ public class LostThaumaturgy
 		ResearchesLT.registerResearches();
 		
 		nahYaEtoDelayou.step("Registering Tesseract API");
-		TileTesseract.registerTesseractCapability(CapabilityVisConnection.VIS, LTInfo.MOD_ID + ":vis", EnumMultiMaterialType.VIS_CRYSTAL.stack());
+		TileTesseract.registerTesseractCapability(CapabilityVisConnection.VIS, Info.MOD_ID + ":vis", EnumMultiMaterialType.VIS_CRYSTAL.stack());
 		
 		nahYaEtoDelayou.step("Registering Fuel Handler");
 		GameRegistry.registerFuelHandler(new FuelHandlerLT());
@@ -137,22 +139,22 @@ public class LostThaumaturgy
 		EntitiesLT.registerEntities();
 		
 		bar.step("Registering Crystal WorldGen");
-		WorldRetroGen.addWorldGenerator(new WorldGenCrystals());
+		GameRegistry.registerWorldGenerator(new WorldGenCrystals(), 0);
 		
 		bar.step("Registering Silverwood WorldGen");
-		WorldRetroGen.addWorldGenerator(new WorldGenSilverwood());
+		GameRegistry.registerWorldGenerator(new WorldGenSilverwood(), 0);
 		
 		bar.step("Registering Greatwood WorldGen");
-		WorldRetroGen.addWorldGenerator(new WorldGenGreatwood());
+		GameRegistry.registerWorldGenerator(new WorldGenGreatwood(), 0);
 		
 		bar.step("Registering Cinderpearl WorldGen");
-		WorldRetroGen.addWorldGenerator(new WorldGenCinderpearl());
+		GameRegistry.registerWorldGenerator(new WorldGenCinderpearl(), 0);
 		
 		bar.step("Registering Underground Artifacts WorldGen");
-		WorldRetroGen.addWorldFeature(new WorldGenLostArtifacts());
+		WorldGenRegistry.registerFeature(new WorldGenLostArtifacts());
 		
 		bar.step("Registering Monolith WorldGen");
-		WorldRetroGen.addWorldFeature(new WorldGenMonoliths());
+		WorldGenRegistry.registerFeature(new WorldGenMonoliths());
 		
 		bar.step("Registering Arcane Crafter Recipes...");
 		RecipesFuser.getInstance();
@@ -183,7 +185,7 @@ public class LostThaumaturgy
 	@SubscribeEvent
 	public void addSpecialRecipes(RegistryEvent.Register<IRecipe> reg)
 	{
-		reg.getRegistry().register(SimpleRegistration.parseShapedRecipe(ItemWand.makeWand(WandsLT.ROD_WOOD, WandsLT.CAP_IRON, WandsLT.CAP_IRON), "  c", " s ", "c  ", 'c', EnumMultiMaterialType.CAP_IRON.stack(), 's', "stickWood").setRegistryName(LTInfo.MOD_ID, "wand_casting"));
+		reg.getRegistry().register(SimpleRegistration.parseShapedRecipe(ItemWand.makeWand(WandsLT.ROD_WOOD, WandsLT.CAP_IRON, WandsLT.CAP_IRON), "  c", " s ", "c  ", 'c', EnumMultiMaterialType.CAP_IRON.stack(), 's', "stickWood").setRegistryName(Info.MOD_ID, "wand_casting"));
 		reg.getRegistry().register(new RecipePaintSeal());
 	}
 	

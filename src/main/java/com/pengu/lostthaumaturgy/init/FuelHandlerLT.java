@@ -3,7 +3,7 @@ package com.pengu.lostthaumaturgy.init;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.IFuelHandler;
 
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class FuelHandlerLT implements IFuelHandler
 {

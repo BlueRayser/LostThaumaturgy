@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 import com.pengu.lostthaumaturgy.api.seal.ItemSealSymbol;
 import com.pengu.lostthaumaturgy.api.seal.SealCombination;
 import com.pengu.lostthaumaturgy.api.seal.SealInstance;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.tile.TileSeal;
 
 public class SealPortal extends SealInstance
 {

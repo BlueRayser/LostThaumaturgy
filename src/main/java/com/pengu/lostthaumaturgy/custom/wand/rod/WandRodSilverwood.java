@@ -1,8 +1,8 @@
 package com.pengu.lostthaumaturgy.custom.wand.rod;
 
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class WandRodSilverwood extends WandRod
 {
@@ -27,7 +27,7 @@ public class WandRodSilverwood extends WandRod
 	@Override
 	public String getRodTexture()
 	{
-		return LTInfo.MOD_ID + ":items/wand/rod_silverwood_mat";
+		return Info.MOD_ID + ":items/wand/rod_silverwood_mat";
 	}
 	
 	@Override

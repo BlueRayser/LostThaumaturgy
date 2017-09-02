@@ -13,10 +13,10 @@ import net.minecraft.util.ResourceLocation;
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.hammercore.net.pkt.PacketSetProperty;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileDuplicator;
 import com.pengu.lostthaumaturgy.inventory.ContainerDuplicator;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
-import com.pengu.lostthaumaturgy.tile.TileDuplicator;
 
 public class GuiDuplicator extends GuiContainer
 {
@@ -30,7 +30,7 @@ public class GuiDuplicator extends GuiContainer
 		ySize = 166;
 	}
 	
-	public final ResourceLocation gui = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_duplicator.png");
+	public final ResourceLocation gui = new ResourceLocation(Info.MOD_ID, "textures/gui/gui_duplicator.png");
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)

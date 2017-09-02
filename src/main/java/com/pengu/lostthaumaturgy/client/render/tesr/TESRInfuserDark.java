@@ -17,10 +17,10 @@ import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.fx.FXWisp;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileInfuser;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileInfuser;
 
 public class TESRInfuserDark extends TESR<TileInfuser>
 {
@@ -46,7 +46,7 @@ public class TESRInfuserDark extends TESR<TileInfuser>
 	@Override
 	public void renderTileEntityAt(TileInfuser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -76,11 +76,11 @@ public class TESRInfuserDark extends TESR<TileInfuser>
 		rb.renderAlpha = srcAlpha;
 	}
 	
-	protected ResourceLocation disk = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/dark_infuser_symbol.png");
+	protected ResourceLocation disk = new ResourceLocation(Info.MOD_ID, "textures/misc/dark_infuser_symbol.png");
 	
 	private void renderModel(TileInfuser tile, double x, double y, double z, double angle, boolean active)
 	{
-		SimpleBlockRendering sbr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sbr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		int bright = getBrightnessForRB(tile, sbr.rb);
 		
 		GlStateManager.disableLighting();
@@ -93,10 +93,10 @@ public class TESRInfuserDark extends TESR<TileInfuser>
 		sbr.begin();
 		sbr.setBrightness(bright);
 		
-		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_side_disconnected");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_top");
-		TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/dark_infuser_side_connected");
+		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/dark_infuser_side_disconnected");
+		TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/dark_infuser_bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/dark_infuser_top");
+		TextureAtlasSprite side_connected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/dark_infuser_side_connected");
 		
 		for(int i = 0; i < (destroyProgress > 0 ? 2 : 1); ++i)
 		{

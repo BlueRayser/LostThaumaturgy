@@ -23,15 +23,15 @@ import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.tiles.ConnectionManager;
 import com.pengu.lostthaumaturgy.api.tiles.IConnection;
 import com.pengu.lostthaumaturgy.api.tiles.TileVisUser;
-import com.pengu.lostthaumaturgy.block.def.BlockTraceableRendered;
-import com.pengu.lostthaumaturgy.block.wood.silverwood.BlockSilverwoodConduit;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.block.def.BlockTraceableRendered;
+import com.pengu.lostthaumaturgy.core.block.wood.silverwood.BlockSilverwoodConduit;
+import com.pengu.lostthaumaturgy.core.tile.TileConduit;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileConduit;
 
 public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predicate<EnumFacing>
 {
@@ -46,11 +46,11 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
 		BlockTraceableRendered br = WorldUtil.cast(te.getWorld().getBlockState(te.getPos()).getBlock(), BlockTraceableRendered.class);
-		String sprite = LTInfo.MOD_ID + ":blocks/vis_conduit";
+		String sprite = Info.MOD_ID + ":blocks/vis_conduit";
 		if(br instanceof BlockSilverwoodConduit)
 			sprite = br.getParticleSprite(getWorld(), null);
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		renderConduitBase(te, te, sprite, x, y, z);
@@ -69,7 +69,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 	{
 		ItemBlock ib = WorldUtil.cast(item.getItem(), ItemBlock.class);
 		BlockTraceableRendered br = WorldUtil.cast(ib.getBlock(), BlockTraceableRendered.class);
-		String sprite = LTInfo.MOD_ID + ":blocks/vis_conduit";
+		String sprite = Info.MOD_ID + ":blocks/vis_conduit";
 		if(br instanceof BlockSilverwoodConduit)
 			sprite = br.getParticleSprite(getWorld(), null);
 		
@@ -86,11 +86,11 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		
 		GlStateManager.disableLighting();
 		
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 		
 		Tessellator tess = Tessellator.getInstance();
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		
 		int bright = getBrightnessForRB(null, rb);
 		
@@ -177,7 +177,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 			
 			Tessellator tess = Tessellator.getInstance();
 			
-			RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+			RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 			
 			int bright = te != null ? rb.setLighting(te.getWorld(), te.getPos()) : rb.setLighting(Minecraft.getMinecraft().world, Minecraft.getMinecraft().player.getPosition());
 			
@@ -378,7 +378,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		BlockPos pos = tc.getPos();
 		World world = tc.getWorld();
 		
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
 		
 		GLRenderState blend = GLRenderState.BLEND;
 		blend.captureState();
@@ -388,7 +388,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		
 		Tessellator tess = Tessellator.getInstance();
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		
 		int bright = rb.setLighting(tc.getWorld(), tc.getPos());
 		
@@ -474,7 +474,7 @@ public class TESRConduit<T extends TileConduit> extends TESR<T> implements Predi
 		float w6 = 0.375f;
 		float wq2 = 0.38125f;
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		
 		boolean wasRenderingFromInside = rb.renderFromInside;
 		

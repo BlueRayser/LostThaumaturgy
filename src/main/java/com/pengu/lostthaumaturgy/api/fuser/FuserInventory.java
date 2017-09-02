@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 import com.pengu.hammercore.common.inventory.InventoryNonTile;
 import com.pengu.hammercore.utils.WorldLocation;
-import com.pengu.lostthaumaturgy.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 
 public class FuserInventory implements IInventory
 {

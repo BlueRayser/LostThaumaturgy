@@ -15,8 +15,8 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class DarkInfuserRecipeCategory implements IRecipeCategory<DarkInfuserRecipeWrapper>
@@ -26,9 +26,9 @@ public class DarkInfuserRecipeCategory implements IRecipeCategory<DarkInfuserRec
 	
 	public DarkInfuserRecipeCategory(IGuiHelper helper)
 	{
-		background = helper.createDrawable(new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_dark_infuser_jei.png"), 0, 0, 154, 36);
+		background = helper.createDrawable(new ResourceLocation(Info.MOD_ID, "textures/gui/gui_dark_infuser_jei.png"), 0, 0, 154, 36);
 		
-		ResourceLocation symbol = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/dark_infuser_symbol.png");
+		ResourceLocation symbol = new ResourceLocation(Info.MOD_ID, "textures/misc/dark_infuser_symbol.png");
 		
 		icon = new IDrawable()
 		{
@@ -136,6 +136,6 @@ public class DarkInfuserRecipeCategory implements IRecipeCategory<DarkInfuserRec
 	@Override
 	public String getModName()
 	{
-		return LTInfo.MOD_NAME;
+		return Info.MOD_NAME;
 	}
 }

@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-import com.pengu.lostthaumaturgy.entity.EntityCustomSplashPotion;
+import com.pengu.lostthaumaturgy.core.entity.EntityCustomSplashPotion;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
 
 public class RenderCustomSplashPotion extends RenderSnowball<EntityCustomSplashPotion>

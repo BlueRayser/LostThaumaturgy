@@ -13,7 +13,6 @@ import mezz.jei.api.ingredients.IModIngredientRegistration;
 import net.minecraft.item.ItemStack;
 
 import com.pengu.hammercore.utils.ListUtils;
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.DarkInfuserRecipe;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
@@ -21,6 +20,7 @@ import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
 import com.pengu.lostthaumaturgy.client.gui.GuiFuser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuser;
 import com.pengu.lostthaumaturgy.client.gui.GuiInfuserDark;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.intr.jei.darkinfuser.DarkInfuserRecipeCategory;
 import com.pengu.lostthaumaturgy.intr.jei.darkinfuser.DarkInfuserRecipeHandler;

@@ -10,10 +10,10 @@ import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.monolith.TileExtraRoom;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.monolith.TileExtraRoom;
 
 public class TESRMonolithExtraRoom extends TESR<TileExtraRoom>
 {
@@ -37,9 +37,9 @@ public class TESRMonolithExtraRoom extends TESR<TileExtraRoom>
 				sbr.disableFace(f);
 			
 			if(f.getOpposite().ordinal() == te.orientation.get())
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/extra_room"));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/extra_room"));
 			else
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
 		}
 		sbr.drawBlock(x, y, z);
 		sbr.end();
@@ -54,9 +54,9 @@ public class TESRMonolithExtraRoom extends TESR<TileExtraRoom>
 		for(EnumFacing f : EnumFacing.VALUES)
 		{
 			if(f.getOpposite() == EnumFacing.NORTH)
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/monolith/extra_room"));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/monolith/extra_room"));
 			else
-				sbr.setSpriteForSide(f, ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
+				sbr.setSpriteForSide(f, ClientProxy.getSprite(Info.MOD_ID + ":blocks/eldritch_block/" + f.ordinal()));
 		}
 		sbr.drawBlock(0, 0, 0);
 		sbr.end();

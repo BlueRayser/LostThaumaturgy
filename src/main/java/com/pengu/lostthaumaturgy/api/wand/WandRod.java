@@ -16,9 +16,9 @@ import com.pengu.hammercore.math.MathHelper;
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.tile.IMalfunctionable;
 import com.pengu.hammercore.tile.TileSyncable;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereTicker;
-import com.pengu.lostthaumaturgy.items.ItemWand;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp3;
 

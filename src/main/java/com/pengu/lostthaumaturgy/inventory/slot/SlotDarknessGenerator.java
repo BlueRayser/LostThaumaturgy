@@ -4,7 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import com.pengu.lostthaumaturgy.tile.TileDarknessGenerator;
+import com.pengu.lostthaumaturgy.core.tile.TileDarknessGenerator;
 
 public class SlotDarknessGenerator extends Slot
 {

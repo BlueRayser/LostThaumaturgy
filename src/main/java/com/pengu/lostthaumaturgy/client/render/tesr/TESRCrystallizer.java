@@ -11,21 +11,21 @@ import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.block.BlockCrystallizer;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.block.BlockCrystallizer;
+import com.pengu.lostthaumaturgy.core.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileCrystallizer;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileCrystallizer;
 
 public class TESRCrystallizer extends TESR<TileCrystallizer>
 {
 	public static final TESRCrystallizer INSTANCE = new TESRCrystallizer();
 	private ModelCrystal model = new ModelCrystal();
-	private final ResourceLocation crystal = new ResourceLocation(LTInfo.MOD_ID, "textures/models/crystal.png");
+	private final ResourceLocation crystal = new ResourceLocation(Info.MOD_ID, "textures/models/crystal.png");
 	
 	private void drawCrystal(double x, double y, double z, float a1, float a2, float b)
 	{
@@ -53,7 +53,7 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	{
 		double x = 0, y = 0, z = 0;
 		
-		drawBlock(x, y, z, getBrightnessForRB(null, RenderBlocks.forMod(LTInfo.MOD_ID)));
+		drawBlock(x, y, z, getBrightnessForRB(null, RenderBlocks.forMod(Info.MOD_ID)));
 		
 		float count = item.hashCode() / 360F;
 		float bob = 0;
@@ -86,11 +86,11 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	@Override
 	public void renderTileEntityAt(TileCrystallizer te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
-		drawBlock(x, y, z, getBrightnessForRB(te, RenderBlocks.forMod(LTInfo.MOD_ID)));
+		drawBlock(x, y, z, getBrightnessForRB(te, RenderBlocks.forMod(Info.MOD_ID)));
 		
 		float count = (te.crystalTime.get() / te.maxTime) * 360F;
 		float bob = 0;
@@ -137,16 +137,16 @@ public class TESRCrystallizer extends TESR<TileCrystallizer>
 	
 	public void drawBlock(double x, double y, double z, int bright)
 	{
-		SimpleBlockRendering sr = RenderBlocks.forMod(LTInfo.MOD_ID).simpleRenderer;
+		SimpleBlockRendering sr = RenderBlocks.forMod(Info.MOD_ID).simpleRenderer;
 		
 		sr.begin();
-		sr.setSidedSprites(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/bottom"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/top"), ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/side"));
+		sr.setSidedSprites(ClientProxy.getSprite(Info.MOD_ID + ":blocks/crystallizer/bottom"), ClientProxy.getSprite(Info.MOD_ID + ":blocks/crystallizer/top"), ClientProxy.getSprite(Info.MOD_ID + ":blocks/crystallizer/side"));
 		sr.setBrightness(bright);
 		sr.setRenderBounds(BlockCrystallizer.CRYSTALLIZER_AABB);
 		sr.rb.renderFromInside = false;
 		sr.drawBlock(x, y, z);
 		sr.setRenderBounds(BlockCrystallizer.CRYSTALLIZER_AABB.shrink(.01));
-		sr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crystallizer/inner"));
+		sr.setSprite(ClientProxy.getSprite(Info.MOD_ID + ":blocks/crystallizer/inner"));
 		sr.enableFaces();
 		sr.disableFace(EnumFacing.UP);
 		sr.bounds[1] = .1 / 16;

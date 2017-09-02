@@ -5,9 +5,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import com.pengu.lostthaumaturgy.core.tile.TileRepairer;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotOutput;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotToRepair;
-import com.pengu.lostthaumaturgy.tile.TileRepairer;
 
 public class ContainerRepairer extends Container
 {

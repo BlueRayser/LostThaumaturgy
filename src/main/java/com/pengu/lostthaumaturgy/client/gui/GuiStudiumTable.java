@@ -8,13 +8,13 @@ import net.minecraft.util.ResourceLocation;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.math.MathHelper;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileStudiumTable;
 import com.pengu.lostthaumaturgy.inventory.ContainerStudiumTable;
-import com.pengu.lostthaumaturgy.tile.TileStudiumTable;
 
 public class GuiStudiumTable extends GuiContainer
 {
-	public ResourceLocation tableTexture = new ResourceLocation(LTInfo.MOD_ID, "textures/gui/studium_table.png");
+	public ResourceLocation tableTexture = new ResourceLocation(Info.MOD_ID, "textures/gui/studium_table.png");
 	
 	public final TileStudiumTable table;
 	public final EntityPlayer player;

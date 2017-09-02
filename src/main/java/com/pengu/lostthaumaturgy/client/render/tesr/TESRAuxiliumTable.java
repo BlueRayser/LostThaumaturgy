@@ -15,9 +15,9 @@ import org.lwjgl.opengl.GL11;
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileAuxiliumTable;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileAuxiliumTable;
 
 public class TESRAuxiliumTable extends TESR<TileAuxiliumTable>
 {
@@ -31,7 +31,7 @@ public class TESRAuxiliumTable extends TESR<TileAuxiliumTable>
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		renderModel(te, x, y, z);
@@ -52,7 +52,7 @@ public class TESRAuxiliumTable extends TESR<TileAuxiliumTable>
 	
 	public void renderModel(TileAuxiliumTable tile, double x, double y, double z)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		int bright = getBrightnessForRB(tile, rb);
 		
 		GlStateManager.disableLighting();
@@ -62,9 +62,9 @@ public class TESRAuxiliumTable extends TESR<TileAuxiliumTable>
 		blend.captureState();
 		blend.on();
 		
-		TextureAtlasSprite side = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/auxilium_table/side");
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/auxilium_table/bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/auxilium_table/top");
+		TextureAtlasSprite side = ClientProxy.getSprite(Info.MOD_ID + ":blocks/auxilium_table/side");
+		TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/auxilium_table/bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/auxilium_table/top");
 		
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		tess.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);

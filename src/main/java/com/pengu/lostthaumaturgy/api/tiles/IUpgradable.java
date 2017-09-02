@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
 
 public interface IUpgradable
 {

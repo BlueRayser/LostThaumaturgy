@@ -9,9 +9,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import com.pengu.lostthaumaturgy.core.tile.TileFuser;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotFuserOutput;
 import com.pengu.lostthaumaturgy.inventory.slot.SlotWand;
-import com.pengu.lostthaumaturgy.tile.TileFuser;
 
 public class ContainerFuser extends Container implements IContainerListener
 {

@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
 import com.pengu.lostthaumaturgy.client.gui.GuiTravelingTrunk;
-import com.pengu.lostthaumaturgy.entity.EntityTravelingTrunk;
+import com.pengu.lostthaumaturgy.core.entity.EntityTravelingTrunk;
 
 public class PacketSyncTrunk implements IPacket, IPacketListener<PacketSyncTrunk, IPacket>
 {

@@ -10,8 +10,8 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import org.lwjgl.opengl.GL11;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.entity.EntityWisp;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.entity.EntityWisp;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
 public class RenderEntityWisp extends Render<EntityWisp>
@@ -21,8 +21,8 @@ public class RenderEntityWisp extends Render<EntityWisp>
 	int particleAge = 0;
 	int moteHalfLife = 10;
 	
-	private static final ResourceLocation p_large = new ResourceLocation(LTInfo.MOD_ID, "textures/particle/p_large.png");
-	private static final ResourceLocation wisp = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/wisp.png");
+	private static final ResourceLocation p_large = new ResourceLocation(Info.MOD_ID, "textures/particle/p_large.png");
+	private static final ResourceLocation wisp = new ResourceLocation(Info.MOD_ID, "textures/misc/wisp.png");
 	
 	public RenderEntityWisp(RenderManager renderManagerIn)
 	{

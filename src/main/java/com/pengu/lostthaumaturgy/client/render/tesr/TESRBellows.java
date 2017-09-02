@@ -7,15 +7,15 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelBellows;
-import com.pengu.lostthaumaturgy.tile.TileBellows;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileBellows;
 
 public class TESRBellows extends TESR<TileBellows>
 {
 	public static final TESRBellows INSTANCE = new TESRBellows();
 	private ModelBellows model = new ModelBellows();
-	protected ResourceLocation bellow_texture = new ResourceLocation(LTInfo.MOD_ID, "textures/models/bellows.png");
+	protected ResourceLocation bellow_texture = new ResourceLocation(Info.MOD_ID, "textures/models/bellows.png");
 	private ResourceLocation curr_texture = bellow_texture;
 	
 	@Override

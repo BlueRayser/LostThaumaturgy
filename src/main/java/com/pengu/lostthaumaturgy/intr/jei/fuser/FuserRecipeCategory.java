@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 
 public class FuserRecipeCategory implements IRecipeCategory<FuserRecipeWrapper>
@@ -25,8 +25,8 @@ public class FuserRecipeCategory implements IRecipeCategory<FuserRecipeWrapper>
 	
 	public FuserRecipeCategory(IGuiHelper helper)
 	{
-		background = helper.createDrawable(new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_fuser_jei.png"), 0, 0, 152, 90);
-		icon = helper.createDrawable(new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_fuser_jei.png"), 240, 0, 16, 16);
+		background = helper.createDrawable(new ResourceLocation(Info.MOD_ID, "textures/gui/gui_fuser_jei.png"), 0, 0, 152, 90);
+		icon = helper.createDrawable(new ResourceLocation(Info.MOD_ID, "textures/gui/gui_fuser_jei.png"), 240, 0, 16, 16);
 		
 	}
 	
@@ -79,6 +79,6 @@ public class FuserRecipeCategory implements IRecipeCategory<FuserRecipeWrapper>
 	@Override
 	public String getModName()
 	{
-		return LTInfo.MOD_NAME;
+		return Info.MOD_NAME;
 	}
 }

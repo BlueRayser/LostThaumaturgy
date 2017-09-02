@@ -9,11 +9,11 @@ import net.minecraftforge.common.util.Constants.NBT;
 
 import com.google.common.base.Predicates;
 import com.pengu.hammercore.recipeAPI.IRecipeType;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserList;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.RecipeInfuserDummy;
 import com.pengu.lostthaumaturgy.api.tiles.IInfuser;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class RecipeTypeInfuser implements IRecipeType<RecipeInfuserDummy>
 {
@@ -27,7 +27,7 @@ public class RecipeTypeInfuser implements IRecipeType<RecipeInfuserDummy>
 	@Override
 	public String getTypeId()
 	{
-		return LTInfo.MOD_ID + ":infuser";
+		return Info.MOD_ID + ":infuser";
 	}
 	
 	@Override

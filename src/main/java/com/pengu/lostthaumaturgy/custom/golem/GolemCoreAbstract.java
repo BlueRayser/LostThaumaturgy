@@ -2,8 +2,8 @@ package com.pengu.lostthaumaturgy.custom.golem;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.pengu.lostthaumaturgy.emote.EmoteManager.DefaultEmotes;
-import com.pengu.lostthaumaturgy.entity.EntityGolemBase;
+import com.pengu.lostthaumaturgy.core.emote.EmoteManager.DefaultEmotes;
+import com.pengu.lostthaumaturgy.core.entity.EntityGolemBase;
 
 public abstract class GolemCoreAbstract
 {

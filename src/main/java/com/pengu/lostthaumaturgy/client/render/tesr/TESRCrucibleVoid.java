@@ -17,10 +17,10 @@ import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.GLRenderState;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.render.shared.LiquidVisRenderer;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.tile.TileCrucibleVoid;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileCrucibleVoid;
 
 public class TESRCrucibleVoid extends TESR<TileCrucibleVoid>
 {
@@ -29,7 +29,7 @@ public class TESRCrucibleVoid extends TESR<TileCrucibleVoid>
 	@Override
 	public void renderTileEntityAt(TileCrucibleVoid te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -43,13 +43,13 @@ public class TESRCrucibleVoid extends TESR<TileCrucibleVoid>
 			GLRenderState blend = GLRenderState.BLEND;
 			
 			String sub = te != null && te.emitsPower() ? "on" : "off";
-			TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_side_disconnected_" + sub);
-			TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_bottom");
-			TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_top");
-			TextureAtlasSprite spill = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucible_spill");
-			TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-			TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_inner");
-			TextureAtlasSprite side_connected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_side_connected_" + sub);
+			TextureAtlasSprite side_disconnected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_side_disconnected_" + sub);
+			TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_bottom");
+			TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_top");
+			TextureAtlasSprite spill = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucible_spill");
+			TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
+			TextureAtlasSprite base = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_inner");
+			TextureAtlasSprite side_connected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_side_connected_" + sub);
 			
 			for(int i = 0; i < (destroyStage != null && destroyProgress > 0F ? 2 : 1); ++i)
 			{
@@ -189,12 +189,12 @@ public class TESRCrucibleVoid extends TESR<TileCrucibleVoid>
 		float taintedVis = nbt.getFloat("TaintedVis");
 		float maxVis = nbt.getFloat("MaxVis");
 		
-		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_side_disconnected_" + ((pureVis + taintedVis) >= maxVis * .9F ? "on" : "off"));
-		TextureAtlasSprite bottom = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_bottom");
-		TextureAtlasSprite top = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_top");
-		TextureAtlasSprite spill = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucible_spill");
-		TextureAtlasSprite vis = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/fluid_vis");
-		TextureAtlasSprite base = ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/crucibles/void/crucible_inner");
+		TextureAtlasSprite side_disconnected = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_side_disconnected_" + ((pureVis + taintedVis) >= maxVis * .9F ? "on" : "off"));
+		TextureAtlasSprite bottom = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_bottom");
+		TextureAtlasSprite top = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_top");
+		TextureAtlasSprite spill = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucible_spill");
+		TextureAtlasSprite vis = ClientProxy.getSprite(Info.MOD_ID + ":blocks/fluid_vis");
+		TextureAtlasSprite base = ClientProxy.getSprite(Info.MOD_ID + ":blocks/crucibles/void/crucible_inner");
 		
 		Tessellator tess = Tessellator.getInstance();
 		

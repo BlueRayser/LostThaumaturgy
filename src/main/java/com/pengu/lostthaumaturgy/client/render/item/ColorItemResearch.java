@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
-import com.pengu.lostthaumaturgy.items.ItemResearch;
+import com.pengu.lostthaumaturgy.core.items.ItemResearch;
 
 public class ColorItemResearch implements IItemColor
 {

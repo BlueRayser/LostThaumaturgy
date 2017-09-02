@@ -1,6 +1,6 @@
 package com.pengu.lostthaumaturgy.api.seal;
 
-import com.pengu.lostthaumaturgy.tile.TileSeal;
+import com.pengu.lostthaumaturgy.core.tile.TileSeal;
 
 public class SealCombination
 {

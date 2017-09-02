@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.lostthaumaturgy.tile.TileVoidChest;
+import com.pengu.lostthaumaturgy.core.tile.TileVoidChest;
 
 public class TESRVoidChest extends TESR<TileVoidChest>
 {

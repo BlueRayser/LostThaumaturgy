@@ -13,11 +13,11 @@ import net.minecraft.world.World;
 
 import com.pengu.hammercore.tile.TileSyncable;
 import com.pengu.hammercore.utils.WorldLocation;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.block.BlockOreCrystal;
-import com.pengu.lostthaumaturgy.block.BlockTaintedSoil;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.block.BlockOreCrystal;
+import com.pengu.lostthaumaturgy.core.block.BlockTaintedSoil;
+import com.pengu.lostthaumaturgy.core.tile.TileTaintedSoil;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.tile.TileTaintedSoil;
 
 public class TaintHandlerLT implements ITaintHandler
 {
@@ -146,6 +146,6 @@ public class TaintHandlerLT implements ITaintHandler
 	@Override
 	public String handlerId()
 	{
-		return LTInfo.MOD_ID;
+		return Info.MOD_ID;
 	}
 }

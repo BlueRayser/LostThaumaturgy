@@ -6,15 +6,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
 
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
+import com.pengu.lostthaumaturgy.core.Info;
 
 public class GuiFactoryLT implements IModGuiFactory
 {
 	@Override
 	public void initialize(Minecraft minecraftInstance)
 	{
-		LostThaumaturgy.LOG.info("Created " + LTInfo.MOD_NAME + " Gui Config Factory!");
+		LostThaumaturgy.LOG.info("Created " + Info.MOD_NAME + " Gui Config Factory!");
 	}
 	
 	@Override

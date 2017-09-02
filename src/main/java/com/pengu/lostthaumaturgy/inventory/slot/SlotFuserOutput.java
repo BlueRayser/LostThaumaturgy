@@ -10,7 +10,7 @@ import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.api.fuser.FuserInventory;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
-import com.pengu.lostthaumaturgy.items.ItemWand;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
 
 public class SlotFuserOutput extends SlotOutput

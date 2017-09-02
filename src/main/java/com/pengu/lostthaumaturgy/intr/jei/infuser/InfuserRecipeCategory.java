@@ -15,10 +15,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
-import com.pengu.lostthaumaturgy.LTInfo;
-import com.pengu.lostthaumaturgy.LTInfo.JEIConstans;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.Info.JEIConstans;
+import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
-import com.pengu.lostthaumaturgy.items.ItemMultiMaterial.EnumMultiMaterialType;
 
 public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapper>
 {
@@ -27,9 +27,9 @@ public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapp
 	
 	public InfuserRecipeCategory(IGuiHelper helper)
 	{
-		background = helper.createDrawable(new ResourceLocation(LTInfo.MOD_ID, "textures/gui/gui_infuser_jei.png"), 0, 0, 174, 36);
+		background = helper.createDrawable(new ResourceLocation(Info.MOD_ID, "textures/gui/gui_infuser_jei.png"), 0, 0, 174, 36);
 		
-		ResourceLocation symbol = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/infuser_symbol.png");
+		ResourceLocation symbol = new ResourceLocation(Info.MOD_ID, "textures/misc/infuser_symbol.png");
 		
 		icon = new IDrawable()
 		{
@@ -142,6 +142,6 @@ public class InfuserRecipeCategory implements IRecipeCategory<InfuserRecipeWrapp
 	@Override
 	public String getModName()
 	{
-		return LTInfo.MOD_NAME;
+		return Info.MOD_NAME;
 	}
 }

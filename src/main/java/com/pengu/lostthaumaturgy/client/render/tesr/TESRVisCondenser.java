@@ -16,12 +16,12 @@ import com.pengu.hammercore.client.model.simple.OpnodeRender;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
-import com.pengu.lostthaumaturgy.LTInfo;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
+import com.pengu.lostthaumaturgy.core.Info;
+import com.pengu.lostthaumaturgy.core.items.ItemUpgrade;
+import com.pengu.lostthaumaturgy.core.tile.TileVisCondenser;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
-import com.pengu.lostthaumaturgy.items.ItemUpgrade;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
-import com.pengu.lostthaumaturgy.tile.TileVisCondenser;
 
 public class TESRVisCondenser extends TESR<TileVisCondenser>
 {
@@ -29,8 +29,8 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	
 	private ModelCrystal model = new ModelCrystal();
 	private float bob = 0;
-	public final ResourceLocation portal2 = new ResourceLocation(LTInfo.MOD_ID, "textures/misc/portal2.png");
-	public final ResourceLocation crystal = new ResourceLocation(LTInfo.MOD_ID, "textures/models/crystal.png");
+	public final ResourceLocation portal2 = new ResourceLocation(Info.MOD_ID, "textures/misc/portal2.png");
+	public final ResourceLocation crystal = new ResourceLocation(Info.MOD_ID, "textures/models/crystal.png");
 	
 	private void drawDisk(double x, double y, double z, float angle)
 	{
@@ -65,11 +65,11 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	@Override
 	public void renderBase(TileVisCondenser tile, ItemStack stack, double x, double y, double z, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
-		List<int[]> opnode = OpnodeLoader.loadOpnodes(LTInfo.MOD_ID, "tile/condenser");
+		List<int[]> opnode = OpnodeLoader.loadOpnodes(Info.MOD_ID, "tile/condenser");
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y, z);
 		OpnodeRender.renderOpnodes(rb.simpleRenderer, opnode, getBrightnessForRB(tile, rb), true);
@@ -81,7 +81,7 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 	@Override
 	public void renderTileEntityAt(TileVisCondenser te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
-		RenderBlocks rb = RenderBlocks.forMod(LTInfo.MOD_ID);
+		RenderBlocks rb = RenderBlocks.forMod(Info.MOD_ID);
 		float srcAlpha = rb.renderAlpha;
 		rb.renderAlpha = alpha;
 		
@@ -94,7 +94,7 @@ public class TESRVisCondenser extends TESR<TileVisCondenser>
 			GL11.glDisable(GL11.GL_BLEND);
 			sbr.begin();
 			sbr.setRenderBounds(4 / 16D, 4 / 16D, 4 / 16D, 12 / 16D, 12 / 16D, 12 / 16D);
-			sbr.setSprite(ClientProxy.getSprite(LTInfo.MOD_ID + ":blocks/quicksilver_core"));
+			sbr.setSprite(ClientProxy.getSprite(Info.MOD_ID + ":blocks/quicksilver_core"));
 			sbr.drawBlock(x, y, z);
 			sbr.end();
 			GL11.glEnable(GL11.GL_BLEND);
