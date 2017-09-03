@@ -35,6 +35,7 @@ import com.pengu.lostthaumaturgy.api.research.ResearchCategoryList;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchManager;
 import com.pengu.lostthaumaturgy.api.research.client.ClientResearchData;
+import com.pengu.lostthaumaturgy.client.ThaumonomiconScale;
 import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.core.utils.InventoryUtils;
 import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
@@ -174,28 +175,23 @@ public class GuiThaumonomicon extends GuiScreen
 	
 	protected void genResearchBackground(int par1, int par2, float par3)
 	{
+		float scale = MathHelper.clamp(ThaumonomiconScale.get(), .3F, 1.5F);
+		int sz = (int) (24 * scale);
+		
 		long t = System.nanoTime() / 50000000L;
 		int var4 = MathHelper.floor(this.field_74117_m + (this.guiMapX - this.field_74117_m) * (double) par3);
 		int var5 = MathHelper.floor(this.field_74115_n + (this.guiMapY - this.field_74115_n) * (double) par3);
 		if(var4 < guiMapTop)
-		{
 			var4 = guiMapTop;
-		}
 		
 		if(var5 < guiMapLeft)
-		{
 			var5 = guiMapLeft;
-		}
 		
-		if(var4 >= guiMapBottom)
-		{
-			var4 = guiMapBottom - 1;
-		}
+		if(var4 > guiMapBottom)
+			var4 = guiMapBottom;
 		
-		if(var5 >= guiMapRight)
-		{
-			var5 = guiMapRight - 1;
-		}
+		if(var5 > guiMapRight)
+			var5 = guiMapRight;
 		
 		int var8 = (this.width - this.paneWidth) / 2;
 		int var9 = (this.height - this.paneHeight) / 2;
@@ -226,6 +222,8 @@ public class GuiThaumonomicon extends GuiScreen
 		int var27;
 		int var42;
 		
+		GL11.glPushMatrix();
+		
 		if(completedResearch.get(player) != null)
 		{
 			for(int var22 = 0; var22 < research.size(); ++var22)
@@ -244,10 +242,11 @@ public class GuiThaumonomicon extends GuiScreen
 							var41 = ResearchCategories.getResearch(itemRenderer.parents[var42]);
 							if(!var41.isVirtual())
 							{
-								var24 = itemRenderer.displayColumn * 24 - var4 + 11 + var10;
-								var25 = itemRenderer.displayRow * 24 - var5 + 11 + var11;
-								var26 = var41.displayColumn * 24 - var4 + 11 + var10;
-								var27 = var41.displayRow * 24 - var5 + 11 + var11;
+								var24 = itemRenderer.displayColumn * sz - var4 + sz / 2 + var10;
+								var25 = itemRenderer.displayRow * sz - var5 + sz / 2 + var11;
+								var26 = var41.displayColumn * sz - var4 + sz / 2 + var10;
+								var27 = var41.displayRow * sz - var5 + sz / 2 + var11;
+								
 								cats = ClientResearchData.isResearchCompleted(itemRenderer);
 								count = ClientResearchData.isResearchCompleted(var41);
 								boolean var30 = Math.sin((double) (Minecraft.getSystemTime() % 600L) / 600.0D * 3.141592653589793D * 2.0D) > 0.6D ? true : true;
@@ -274,10 +273,10 @@ public class GuiThaumonomicon extends GuiScreen
 							var41 = ResearchCategories.getResearch(itemRenderer.siblings[var42]);
 							if(!var41.isVirtual() && (var41.parents == null || var41.parents != null && !Arrays.asList(var41.parents).contains(itemRenderer.key)))
 							{
-								var24 = itemRenderer.displayColumn * 24 - var4 + 11 + var10;
-								var25 = itemRenderer.displayRow * 24 - var5 + 11 + var11;
-								var26 = var41.displayColumn * 24 - var4 + 11 + var10;
-								var27 = var41.displayRow * 24 - var5 + 11 + var11;
+								var24 = itemRenderer.displayColumn * sz - var4 + sz / 2 + var10;
+								var25 = itemRenderer.displayRow * sz - var5 + sz / 2 + var11;
+								var26 = var41.displayColumn * sz - var4 + sz / 2 + var10;
+								var27 = var41.displayRow * sz - var5 + sz / 2 + var11;
 								cats = ClientResearchData.isResearchCompleted(itemRenderer);
 								count = ClientResearchData.isResearchCompleted(var41);
 								if(cats)
@@ -302,14 +301,15 @@ public class GuiThaumonomicon extends GuiScreen
 		GL11.glEnable(2903);
 		boolean renderWithColor = true;
 		int var44;
+		
 		if(completedResearch.get(this.player) != null)
 		{
 			for(var24 = 0; var24 < this.research.size(); ++var24)
 			{
 				ResearchItem var45 = (ResearchItem) this.research.get(var24);
-				var26 = var45.displayColumn * 24 - var4;
-				var27 = var45.displayRow * 24 - var5;
-				if(!var45.isVirtual() && var26 >= -24 && var27 >= -24 && var26 <= 224 && var27 <= 196)
+				var26 = var45.displayColumn * sz - var4;
+				var27 = var45.displayRow * sz - var5;
+				if(!var45.isVirtual() && var26 >= -24 * sz && var27 >= -24 * sz && var26 <= 224 && var27 <= 196)
 				{
 					var42 = var10 + var26;
 					var44 = var11 + var27;
@@ -338,21 +338,30 @@ public class GuiThaumonomicon extends GuiScreen
 					GL11.glEnable(2884);
 					GL11.glEnable(3042);
 					GL11.glBlendFunc(770, 771);
+					
+					GL11.glPushMatrix();
+					
+					GL11.glTranslated(var42 - 1.5, var44 - 1.5, .5);
+					GL11.glScaled(scale, scale, 1);
+					GL11.glTranslated(-.5, -.5, -.5);
+					
 					if(var45.isRound())
-						this.drawTexturedModalRect(var42 - 2, var44 - 2, 54, 230, 26, 26);
+						this.drawTexturedModalRect(0, 0, 54, 230, 26, 26);
 					else if(var45.isHidden())
 					{
 						if(!var45.isSecondary())
-							drawTexturedModalRect(var42 - 2, var44 - 2, 86, 230, 26, 26);
+							drawTexturedModalRect(0, 0, 86, 230, 26, 26);
 						else
-							drawTexturedModalRect(var42 - 2, var44 - 2, 230, 230, 26, 26);
+							drawTexturedModalRect(0, 0, 230, 230, 26, 26);
 					} else if(!var45.isSecondary())
-						this.drawTexturedModalRect(var42 - 2, var44 - 2, 0, 230, 26, 26);
+						this.drawTexturedModalRect(0, 0, 0, 230, 26, 26);
 					else
-						this.drawTexturedModalRect(var42 - 2, var44 - 2, 110, 230, 26, 26);
+						this.drawTexturedModalRect(0, 0, 110, 230, 26, 26);
 					
 					if(var45.isSpecial())
-						this.drawTexturedModalRect(var42 - 2, var44 - 2, 26, 230, 26, 26);
+						this.drawTexturedModalRect(0, 0, 26, 230, 26, 26);
+					
+					GL11.glPopMatrix();
 					
 					if(!canUnlockResearch(var45))
 					{
@@ -378,6 +387,12 @@ public class GuiThaumonomicon extends GuiScreen
 					if(var45.icon_item != null)
 					{
 						GL11.glPushMatrix();
+						
+						GL11.glTranslated(var42 - 1.5, var44 - 1.5, .5);
+						GL11.glScaled(scale, scale, 1);
+						GL11.glTranslated(-.5, -.5, -.5);
+						GL11.glTranslated(5, 5, 0);
+						
 						GL11.glEnable(3042);
 						GL11.glBlendFunc(770, 771);
 						RenderHelper.enableGUIStandardItemLighting();
@@ -385,7 +400,7 @@ public class GuiThaumonomicon extends GuiScreen
 						GL11.glEnable('\u803a');
 						GL11.glEnable(2903);
 						GL11.glEnable(2896);
-						var43.renderItemAndEffectIntoGUI(InventoryUtils.cycleItemStack(var45.icon_item), var42 + 3, var44 + 3);
+						var43.renderItemAndEffectIntoGUI(InventoryUtils.cycleItemStack(var45.icon_item), 0, 0);
 						GL11.glDisable(2896);
 						GL11.glDepthMask(true);
 						GL11.glEnable(2929);
@@ -394,19 +409,25 @@ public class GuiThaumonomicon extends GuiScreen
 					} else if(var45.icon_resource != null)
 					{
 						GL11.glPushMatrix();
+						
+						GL11.glTranslated(var42 - 1.5, var44 - 1.5, .5);
+						GL11.glScaled(scale, scale, 1);
+						GL11.glTranslated(-.5, -.5, -.5);
+						GL11.glTranslated(5, 5, 0);
+						
 						GL11.glEnable(3042);
 						GL11.glBlendFunc(770, 771);
 						mc.renderEngine.bindTexture(var45.icon_resource);
 						if(!renderWithColor)
 							GL11.glColor4f(0.2F, 0.2F, 0.2F, 1.0F);
-						UtilsFX.drawTexturedQuadFull(var42 + 3, var44 + 3, (double) this.zLevel);
+						UtilsFX.drawTexturedQuadFull(0, 0, (double) this.zLevel);
 						GL11.glPopMatrix();
 					}
 					
 					if(!canUnlockResearch(var45))
 						renderWithColor = true;
 					
-					if(par1 >= var10 && par2 >= var11 && par1 < var10 + 224 && par2 < var11 + 196 && par1 >= var42 && par1 <= var42 + 22 && par2 >= var44 && par2 <= var44 + 22)
+					if(par1 >= var10 && par2 >= var11 && par1 < var10 + 224 && par2 < var11 + 196 && par1 >= var42 && par1 <= var42 + sz && par2 >= var44 && par2 <= var44 + sz)
 						this.currentHighlight = var45;
 					
 					GlStateManager.color(1, 1, 1, 1);
@@ -415,6 +436,7 @@ public class GuiThaumonomicon extends GuiScreen
 			}
 		}
 		
+		GL11.glPopMatrix();
 		GL11.glDisable(2929);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, 771);
@@ -429,7 +451,7 @@ public class GuiThaumonomicon extends GuiScreen
 		{
 			Object var99 = var34.next();
 			ResearchCategoryList fr = ResearchCategories.getResearchList((String) var99);
-			if(!((String) var99).equals("ELDRITCH") || ResearchManager.isResearchComplete(this.player, "ELDRITCHMINOR"))
+			if(!((String) var99).equals("eldritch") || ResearchManager.isResearchComplete(this.player, "eldritch_minor"))
 			{
 				GL11.glPushMatrix();
 				if(var49 == 9)
@@ -507,9 +529,7 @@ public class GuiThaumonomicon extends GuiScreen
 			int var52 = 0;
 			FontRenderer var53 = this.fontRenderer;
 			if(!ClientResearchData.isResearchCompleted(currentHighlight) && !canUnlockResearch(this.currentHighlight))
-			{
 				var53 = this.galFontRenderer;
-			}
 			
 			if(canUnlockResearch(this.currentHighlight))
 			{
@@ -521,37 +541,6 @@ public class GuiThaumonomicon extends GuiScreen
 				GL11.glTranslatef((float) var26, (float) (var27 + var44 - 1), 0.0F);
 				GL11.glScalef(0.5F, 0.5F, 0.5F);
 				this.fontRenderer.drawStringWithShadow(this.currentHighlight.getText(), 0, 0, -7302913);
-				GL11.glPopMatrix();
-				
-				GL11.glPushMatrix();
-				// if(var56)
-				// {
-				// GL11.glPushMatrix();
-				// GL11.glTranslatef((float) var26, (float) (var27 + var44 + 8),
-				// 0.0F);
-				// GL11.glScalef(0.5F, 0.5F, 0.5F);
-				//
-				// // if(ResearchManager.getResearchSlot(this.mc.thePlayer,
-				// // this.currentHighlight.key) >= 0)
-				// // {
-				// //
-				// this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("tc.research.hasnote"),
-				// // 0, 0, 16753920);
-				// // } else if(this.hasScribestuff)
-				// // {
-				// //
-				// this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("tc.research.getprim"),
-				// // 0, 0, 8900331);
-				// // } else
-				// // {
-				// //
-				// this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("tc.research.shortprim"),
-				// // 0, 0, 14423100);
-				// // }
-				//
-				// GL11.glPopMatrix();
-				// }
-				
 				GL11.glPopMatrix();
 			} else
 			{
@@ -601,7 +590,7 @@ public class GuiThaumonomicon extends GuiScreen
 			{
 				Object obj = i$.next();
 				ResearchCategoryList rcl = ResearchCategories.getResearchList((String) obj);
-				if(!((String) obj).equals("ELDRITCH") || ResearchManager.isResearchComplete(this.player, "ELDRITCHMINOR"))
+				if(!((String) obj).equals("eldritch") || ResearchManager.isResearchComplete(this.player, "eldritch_minor"))
 				{
 					if(count == 9)
 					{
@@ -616,6 +605,7 @@ public class GuiThaumonomicon extends GuiScreen
 						selectedCategory = (String) obj;
 						this.updateResearch();
 						this.playButtonClick();
+						ThaumonomiconScale.set(1);
 						break;
 					}
 					
@@ -703,13 +693,11 @@ public class GuiThaumonomicon extends GuiScreen
 		int inc = (int) (dist / 2.0F);
 		float dx = (float) (d3 / (double) inc);
 		float dy = (float) (d4 / (double) inc);
+		
 		if(Math.abs(d3) > Math.abs(d4))
-		{
 			dx *= 2.0F;
-		} else
-		{
+		else
 			dy *= 2.0F;
-		}
 		
 		GL11.glLineWidth(3.0F);
 		GL11.glEnable(2848);
@@ -757,6 +745,8 @@ public class GuiThaumonomicon extends GuiScreen
 	
 	public void drawScreen(int mx, int my, float par3)
 	{
+		float scale = MathHelper.clamp(ThaumonomiconScale.get(), .3F, 1.5F);
+		
 		int var4 = (this.width - this.paneWidth) / 2;
 		int var5 = (this.height - this.paneHeight) / 2;
 		if(Mouse.isButtonDown(0))
@@ -766,12 +756,11 @@ public class GuiThaumonomicon extends GuiScreen
 			if((this.isMouseButtonDown == 0 || this.isMouseButtonDown == 1) && mx >= var6 && mx < var6 + 224 && my >= var7 && my < var7 + 196)
 			{
 				if(this.isMouseButtonDown == 0)
-				{
 					this.isMouseButtonDown = 1;
-				} else
+				else
 				{
-					this.guiMapX -= (double) (mx - this.mouseX);
-					this.guiMapY -= (double) (my - this.mouseY);
+					this.guiMapX -= (double) (mx - this.mouseX) * scale;
+					this.guiMapY -= (double) (my - this.mouseY) * scale;
 					this.field_74124_q = this.field_74117_m = this.guiMapX;
 					this.field_74123_r = this.field_74115_n = this.guiMapY;
 				}
@@ -779,24 +768,22 @@ public class GuiThaumonomicon extends GuiScreen
 				this.mouseY = my;
 			}
 			if(this.field_74124_q < (double) guiMapTop)
-			{
 				this.field_74124_q = guiMapTop;
-			}
 			if(this.field_74123_r < (double) guiMapLeft)
-			{
 				this.field_74123_r = guiMapLeft;
-			}
-			if(this.field_74124_q >= (double) guiMapBottom)
-			{
-				this.field_74124_q = guiMapBottom - 1;
-			}
-			if(this.field_74123_r >= (double) guiMapRight)
-			{
-				this.field_74123_r = guiMapRight - 1;
-			}
+			if(this.field_74124_q > (double) guiMapBottom)
+				this.field_74124_q = guiMapBottom;
+			if(this.field_74123_r > (double) guiMapRight)
+				this.field_74123_r = guiMapRight;
 		} else
-		{
 			this.isMouseButtonDown = 0;
+		
+		int dw = Mouse.getDWheel();
+		
+		if(dw != 0)
+		{
+			float ns = scale + dw / 720F;
+			ThaumonomiconScale.set(MathHelper.clamp(ns, .3F, 1.5F));
 		}
 		
 		drawDefaultBackground();
@@ -824,7 +811,7 @@ public class GuiThaumonomicon extends GuiScreen
 				swop = true;
 			}
 			ResearchCategoryList rcl = ResearchCategories.getResearchList(obj);
-			if(obj.equals("ELDRITCH") && !ResearchManager.isResearchComplete(this.player, "ELDRITCHMINOR"))
+			if(obj.equals("eldritch") && !ResearchManager.isResearchComplete(this.player, "eldritch_minor"))
 				continue;
 			int mposx = mx - (var4 - 24 + (swop ? 280 : 0));
 			int mposy = my - (var5 + count * 24);

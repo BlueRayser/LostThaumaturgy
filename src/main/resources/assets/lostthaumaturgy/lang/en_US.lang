@@ -309,7 +309,7 @@ research.lostthaumaturgy:primordial_crystal.desc=You found a really strange ener
 
 lt.research_name.atmosphere=Thaumosphere
 lt.research_text.atmosphere=What surrounds you
-lt.research_desc.atmosphere=Thaumosphere (before: Atmosphere) is a magical energy that is everywhere. Some areas are energy-rich and some are poor. This energy aims to distribute equally around the world. The rare thaumosphere hole is tainted areas, they are hard to fight with and they could get very annoying.<LINE>You are going to interact with this mysterious energy sometime, but for now it doesn't exist for you.
+lt.research_desc.atmosphere=Thaumosphere is a magical field of energy that is everywhere. Some areas are energy-rich and some are poor. This energy aims to distribute equally around the world. The rare thaumosphere hole is tainted areas, they are hard to fight with and they could get very annoying.<LINE>You are going to interact with this mysterious energy sometime, but for now it doesn't exist for you.
 
 lt.research_name.researching=Researches
 lt.research_text.researching=How to discover
