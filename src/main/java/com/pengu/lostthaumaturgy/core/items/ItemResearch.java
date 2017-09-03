@@ -124,6 +124,7 @@ public class ItemResearch extends Item implements ITooltipInjector, INotCloneabl
 	{
 		ResearchItem r = getFromStack(stack);
 		vars.put("difficulty", r != null ? r.getComplexityLabel() : "Unknown");
+		vars.put("text", r != null ? r.getText() : "No Text");
 	}
 	
 	public static ResearchItem getFromStack(ItemStack stack)

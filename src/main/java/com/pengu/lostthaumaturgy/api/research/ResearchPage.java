@@ -9,10 +9,14 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.pengu.lostthaumaturgy.api.RecipesInfuser;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.DarkInfuserRecipe;
 import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
 import com.pengu.lostthaumaturgy.api.fuser.IFuserRecipe;
+import com.pengu.lostthaumaturgy.api.research.client.IRenderExtension;
 
 public class ResearchPage
 {
@@ -50,8 +54,21 @@ public class ResearchPage
 				return findRecipesFor((ItemStack) recipe).toArray(new IRecipe[0]);
 		}
 		
+		if(type == PageType.INFUSION_CRAFTING)
+		{
+			if(recipe == null || (recipe instanceof Object[] && ((Object[]) recipe).length == 0))
+				recipe = InfuserRecipe.asRecipes(RecipesInfuser.listRecipes().findRecipes(recipeOutput, false));
+		}
+		
 		return recipe;
 	}
+	
+	/** For adding custom recipe support */
+	public ResearchPage(Object recipe, PageType page)
+    {
+		type = page;
+		this.recipe = recipe;
+    }
 	
 	public ResearchPage(String text)
 	{
@@ -156,16 +173,15 @@ public class ResearchPage
 		this.recipeOutput = FurnaceRecipes.instance().getSmeltingResult(input).copy();
 	}
 	
-	public ResearchPage(InfuserRecipe recipe)
+	public ResearchPage(InfuserRecipe recipe, ItemStack output)
 	{
 		this.text = null;
 		this.research = null;
 		this.image = null;
-		this.recipe = null;
 		this.recipeOutput = null;
 		this.type = ResearchPage.PageType.INFUSION_CRAFTING;
-		this.recipe = recipe;
-		recipeOutput = recipe.result.copy();
+		this.recipe = null;
+		recipeOutput = output;
 	}
 	
 	public ResearchPage(DarkInfuserRecipe recipe)
@@ -173,8 +189,7 @@ public class ResearchPage
 		this.text = null;
 		this.research = null;
 		this.image = null;
-		this.recipe = null;
-		this.recipeOutput = null;
+		this.recipeOutput = recipe.result.copy();
 		this.type = ResearchPage.PageType.DARK_INFUSION_CRAFTING;
 		this.recipe = recipe;
 	}
@@ -205,25 +220,32 @@ public class ResearchPage
 		return ret;
 	}
 	
-	public static enum PageType
+	public static class PageType
 	{
-		TEXT("TEXT", 0), //
-		TEXT_CONCEALED("TEXT_CONCEALED", 1), //
-		IMAGE("IMAGE", 2), //
-		ARCANE_CRAFTING("ARCANE_CRAFTING", 4), //
-		NORMAL_CRAFTING("NORMAL_CRAFTING", 6), //
-		INFUSION_CRAFTING("INFUSION_CRAFTING", 7), //
-		COMPOUND_CRAFTING("COMPOUND_CRAFTING", 8), //
-		DARK_INFUSION_CRAFTING("INFUSION_ENCHANTMENT", 9), //
-		SMELTING("SMELTING", 10);
+		public static final PageType //
+		        TEXT = new PageType("TEXT"), //
+		        TEXT_CONCEALED = new PageType("TEXT_CONCEALED"), //
+		        IMAGE = new PageType("IMAGE"), //
+		        ARCANE_CRAFTING = new PageType("ARCANE_CRAFTING"), //
+		        NORMAL_CRAFTING = new PageType("NORMAL_CRAFTING"), //
+		        INFUSION_CRAFTING = new PageType("INFUSION_CRAFTING"), //
+		        COMPOUND_CRAFTING = new PageType("COMPOUND_CRAFTING"), //
+		        DARK_INFUSION_CRAFTING = new PageType("INFUSION_ENCHANTMENT"), //
+		        SMELTING = new PageType("SMELTING");
 		
 		private final String v1;
-		private final int v2;
+		private Object render;
+		private final String renderClass;
 		
-		private PageType(String var1, int var2)
+		private PageType(String var1)
+		{
+			this(var1, null);
+		}
+		
+		private PageType(String var1, String renderClass)
 		{
 			v1 = var1;
-			v2 = var2;
+			this.renderClass = renderClass;
 		}
 		
 		public String getV1()
@@ -231,9 +253,23 @@ public class ResearchPage
 			return v1;
 		}
 		
-		public int getV2()
+		@SideOnly(Side.CLIENT)
+		public IRenderExtension getRender()
 		{
-			return v2;
+			if(renderClass == null || renderClass.isEmpty())
+				return null;
+			
+			if(render == null)
+			{
+				try
+				{
+					render = (IRenderExtension) Class.forName(renderClass).newInstance();
+				} catch(Throwable err)
+				{
+				}
+			}
+			
+			return (IRenderExtension) render;
 		}
 	}
 }

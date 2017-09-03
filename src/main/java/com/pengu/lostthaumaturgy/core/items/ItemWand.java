@@ -15,14 +15,17 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.hammercore.utils.WorldLocation;
 import com.pengu.lostthaumaturgy.LostThaumaturgy;
 import com.pengu.lostthaumaturgy.api.wand.EnumCapLocation;
@@ -30,6 +33,8 @@ import com.pengu.lostthaumaturgy.api.wand.WandCap;
 import com.pengu.lostthaumaturgy.api.wand.WandRegistry;
 import com.pengu.lostthaumaturgy.api.wand.WandRod;
 import com.pengu.lostthaumaturgy.core.processes.ProcessMakeThaumonomicon;
+import com.pengu.lostthaumaturgy.net.wisp.PacketFXWisp2;
+import com.sun.jna.platform.win32.WinDef.WPARAM;
 
 public class ItemWand extends Item
 {
@@ -113,7 +118,21 @@ public class ItemWand extends Item
 			
 			if(loc.getBlock() == Blocks.BOOKSHELF && ProcessMakeThaumonomicon.start(loc, facing, hitX, hitY, hitZ))
 			{
+				TargetPoint tp = new WorldLocation(worldIn, pos).getPointWithRad(64);
+				AxisAlignedBB a = player.getEntityBoundingBox();
 				
+				for(int i = 0; i < 128; ++i)
+				{
+					double x = a.minX + (a.maxX - a.minX) * worldIn.rand.nextDouble();
+					double y = a.maxY - .1 - worldIn.rand.nextDouble() * .3;
+					double z = a.minZ + (a.maxZ - a.minZ) * worldIn.rand.nextDouble();
+					
+					double tx = pos.getX() + worldIn.rand.nextDouble();
+					double ty = pos.getY() + worldIn.rand.nextDouble();
+					double tz = pos.getZ() + worldIn.rand.nextDouble();
+					
+					HCNetwork.manager.sendToAllAround(new PacketFXWisp2(x, y, z, tx, ty, tz, .3F, 0), tp);
+				}
 			}
 		}
 		

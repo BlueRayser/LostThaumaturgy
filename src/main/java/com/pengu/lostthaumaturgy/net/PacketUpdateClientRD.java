@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import com.pengu.hammercore.net.packetAPI.IPacket;
 import com.pengu.hammercore.net.packetAPI.IPacketListener;
-import com.pengu.lostthaumaturgy.api.research.ClientResearchData;
+import com.pengu.lostthaumaturgy.api.research.client.ClientResearchData;
 
 public class PacketUpdateClientRD implements IPacket, IPacketListener<PacketUpdateClientRD, IPacket>
 {

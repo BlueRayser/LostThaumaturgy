@@ -1,4 +1,4 @@
-package com.pengu.lostthaumaturgy.api;
+package com.pengu.lostthaumaturgy.api.research.client;
 
 import java.util.HashMap;
 
@@ -12,13 +12,12 @@ import com.pengu.lostthaumaturgy.api.research.ResearchCategoryList;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchManager;
 import com.pengu.lostthaumaturgy.api.research.ResearchPage;
-import com.pengu.lostthaumaturgy.intr.hc.rts.RecipeTypeCrucible.CrucibleRecipe;
 
-public class LostThaumApi
+public class ClientResearchHelper
 {
 	private static HashMap<int[], Object[]> keyCache = new HashMap();
 	
-	public static Object[] getCraftingRecipeKey(EntityPlayer player, ItemStack stack)
+	public static Object[] getCraftingRecipeKey(ItemStack stack)
 	{
 		int[] key = new int[] { Item.getIdFromItem((Item) stack.getItem()), stack.getMetadata() };
 		
@@ -26,7 +25,7 @@ public class LostThaumApi
 		{
 			if(keyCache.get(key) == null)
 				return null;
-			if(ResearchManager.isResearchComplete(player.getName(), (String) keyCache.get(key)[0]))
+			if(ClientResearchData.COMPLETED.contains((String) keyCache.get(key)[0]))
 				return keyCache.get(key);
 			return null;
 		}
@@ -48,7 +47,7 @@ public class LostThaumApi
 					Object[] c = new Object[] { ri.key, a };
 					keyCache.put(key, c);
 					
-					if(ResearchManager.isResearchComplete(player.getName(), ri.key))
+					if(ClientResearchData.isResearchCompleted(ri))
 						return c;
 					
 					return null;

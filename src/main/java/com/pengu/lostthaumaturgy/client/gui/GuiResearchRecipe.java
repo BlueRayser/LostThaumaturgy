@@ -39,12 +39,15 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import org.lwjgl.opengl.GL11;
 
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.common.InterItemStack;
-import com.pengu.lostthaumaturgy.api.LostThaumApi;
+import com.pengu.lostthaumaturgy.api.RecipesInfuser.DarkInfuserRecipe;
+import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
 import com.pengu.lostthaumaturgy.api.research.ResearchCategories;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchManager;
 import com.pengu.lostthaumaturgy.api.research.ResearchPage;
+import com.pengu.lostthaumaturgy.api.research.client.ClientResearchHelper;
 import com.pengu.lostthaumaturgy.client.TCFontRenderer;
 import com.pengu.lostthaumaturgy.core.utils.InventoryUtils;
 import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
@@ -72,6 +75,7 @@ public class GuiResearchRecipe extends GuiScreen
 	public static ConcurrentHashMap<Integer, ItemStack> cache = new ConcurrentHashMap();
 	String tex1 = "textures/gui/gui_researchbook.png";
 	String tex2 = "textures/gui/gui_researchbook_overlay.png";
+	String tex3 = "textures/misc/infuser_symbol.png";
 	private Object[] tooltip = null;
 	private long lastCycle = 0;
 	ArrayList<List> reference = new ArrayList();
@@ -142,10 +146,9 @@ public class GuiResearchRecipe extends GuiScreen
 				int mx = par1 - (sw + 118);
 				int my = par2 - (sh + 189);
 				if(mx >= 0 && my >= 0 && mx < 20 && my < 12)
-					fontRenderer.drawStringWithShadow(I18n.format((String) "recipe.return"), par1, par2, 16777215);
+					fontRenderer.drawStringWithShadow(I18n.format((String) "recipe.return"), par1 + 6, par2 - 4, 16777215);
 			}
-		}
-		catch(Throwable err)
+		} catch(Throwable err)
 		{
 			err.printStackTrace();
 		}
@@ -240,7 +243,7 @@ public class GuiResearchRecipe extends GuiScreen
 			y += 25;
 		}
 		
-//		GL11.glAlphaFunc((int) 516, (float) 0.003921569f);
+		// GL11.glAlphaFunc((int) 516, (float) 0.003921569f);
 		GlStateManager.enableBlend();
 		
 		if(pageParm.type == ResearchPage.PageType.TEXT || pageParm.type == ResearchPage.PageType.TEXT_CONCEALED)
@@ -249,6 +252,12 @@ public class GuiResearchRecipe extends GuiScreen
 			this.drawCraftingPage(side, x - 4, y - 8, mx, my, pageParm);
 		else if(pageParm.type == ResearchPage.PageType.SMELTING)
 			this.drawSmeltingPage(side, x - 4, y - 8, mx, my, pageParm);
+		else if(pageParm.type == ResearchPage.PageType.INFUSION_CRAFTING)
+			drawInfusionPage(side, x - 4, y - 8, mx, my, pageParm);
+		else if(pageParm.type == ResearchPage.PageType.COMPOUND_CRAFTING)
+			drawCompoundCraftingPage(side, x - 4, y - 8, mx, my, pageParm);
+		else if(pageParm.type.getRender() != null)
+			pageParm.type.getRender().render(pageParm, side, x, y, mx, my);
 		
 		// else if(pageParm.type ==
 		// ResearchPage.PageType.DARK_INFUSION_CRAFTING)
@@ -259,13 +268,13 @@ public class GuiResearchRecipe extends GuiScreen
 		// this.drawCraftingPage(side, x - 4, y - 8, mx, my, pageParm);
 		// } else if(pageParm.type == ResearchPage.PageType.ARCANE_CRAFTING)
 		// {
-		// this.drawArcaneCraftingPage(side, x - 4, y - 8, mx, my, pageParm);
-		// } else if(pageParm.type == ResearchPage.PageType.COMPOUND_CRAFTING)
+		// this.drawArcaneCraftingPage(side, x - 4, y - 8, mx, my,
+		// pageParm);
+		// } else if(pageParm.type ==
+		// ResearchPage.PageType.COMPOUND_CRAFTING)
 		// {
-		// this.drawCompoundCraftingPage(side, x - 4, y - 8, mx, my, pageParm);
-		// } else if(pageParm.type == ResearchPage.PageType.INFUSION_CRAFTING)
-		// {
-		// this.drawInfusionPage(side, x - 4, y - 8, mx, my, pageParm);
+		// this.drawCompoundCraftingPage(side, x - 4, y - 8, mx, my,
+		// pageParm);
 		// } else if(pageParm.type ==
 		// ResearchPage.PageType.INFUSION_ENCHANTMENT)
 		// {
@@ -279,163 +288,114 @@ public class GuiResearchRecipe extends GuiScreen
 		GL11.glPopAttrib();
 	}
 	
-	// private void drawCompoundCraftingPage(int side, int x, int y, int mx, int
-	// my, ResearchPage page)
-	// {
-	// List r = (List) page.recipe;
-	// if(r != null)
-	// {
-	// int j;
-	// int px;
-	// int k;
-	// int py;
-	// AspectList aspects = (AspectList) r.get(0);
-	// int dx = (Integer) r.get(1);
-	// int dy = (Integer) r.get(2);
-	// int dz = (Integer) r.get(3);
-	// int xoff = 64 - (dx * 16 + dz * 16) / 2;
-	// int yoff = (-dy) * 25;
-	// List items = (List) r.get(4);
-	// GL11.glPushMatrix();
-	// int start = side * 152;
-	// String text = StatCollector.translateToLocal((String)
-	// "recipe.type.construct");
-	// int offset = this.fontRenderer.getStringWidth(text);
-	// this.fontRenderer.drawString(text, x + start + 56 - offset / 2, y,
-	// 5263440);
-	// int mposx = mx;
-	// int mposy = my;
-	// if(aspects != null && aspects.size() > 0)
-	// {
-	// int count = 0;
-	// for(Aspect tag : aspects.getAspectsSortedAmount())
-	// {
-	// UtilsFX.drawTag(x + start + 14 + 18 * count + (5 - aspects.size()) * 8, y
-	// + 182, tag, (float) aspects.getAmount(tag), 0, 0.0, 771, 1.0f, false);
-	// ++count;
-	// }
-	// count = 0;
-	// for(Aspect tag : aspects.getAspectsSortedAmount())
-	// {
-	// int tx = x + start + 14 + 18 * count + (5 - aspects.size()) * 8;
-	// int ty = y + 182;
-	// if(mposx >= tx && mposy >= ty && mposx < tx + 16 && mposy < ty + 16)
-	// {
-	// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer,
-	// Arrays.asList(tag.getName(), tag.getLocalizedDescription()), mx, my - 8,
-	// 11);
-	// }
-	// ++count;
-	// }
-	// }
-	// UtilsFX.bindTexture(this.tex2);
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
-	// RenderHelper.enableGUIStandardItemLighting();
-	// GL11.glDisable((int) 2896);
-	// if(aspects != null && aspects.size() > 0)
-	// {
-	// GL11.glPushMatrix();
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 0.4f);
-	// GL11.glEnable((int) 3042);
-	// GL11.glTranslatef((float) (x + start), (float) (y + 174), (float) 0.0f);
-	// GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
-	// this.drawTexturedModalRect(0, 0, 68, 76, 12, 12);
-	// GL11.glPopMatrix();
-	// }
-	// GL11.glPushMatrix();
-	// float sz = 0.0f;
-	// if(dy > 3)
-	// {
-	// sz = (float) (dy - 3) * 0.2f;
-	// GL11.glTranslatef((float) ((float) (x + start) + (float) xoff * (1.0f +
-	// sz)), (float) ((float) (y + 108) + (float) yoff * (1.0f - sz)), (float)
-	// 0.0f);
-	// GL11.glScalef((float) (1.0f - sz), (float) (1.0f - sz), (float) (1.0f -
-	// sz));
-	// } else
-	// {
-	// GL11.glTranslatef((float) (x + start + xoff), (float) (y + 108 + yoff),
-	// (float) 0.0f);
-	// }
-	// GL11.glPushMatrix();
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 0.5f);
-	// GL11.glEnable((int) 3042);
-	// GL11.glTranslatef((float) (-8 - xoff), (float) (-119 + Math.max(3 - dx, 3
-	// - dz) * 8 + dx * 4 + dz * 4 + dy * 50), (float) 0.0f);
-	// GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
-	// this.drawTexturedModalRect(0, 0, 0, 72, 64, 44);
-	// GL11.glPopMatrix();
-	// int count = 0;
-	// for(j = 0; j < dy; ++j)
-	// {
-	// for(k = dz - 1; k >= 0; --k)
-	// {
-	// for(int i = dx - 1; i >= 0; --i)
-	// {
-	// px = i * 16 + k * 16;
-	// py = (-i) * 8 + k * 8 + j * 50;
-	// GL11.glPushMatrix();
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
-	// RenderHelper.enableGUIStandardItemLighting();
-	// GL11.glEnable((int) 2884);
-	// GL11.glTranslatef((float) 0.0f, (float) 0.0f, (float) (60 - j * 10));
-	// if(items.get(count) != null)
-	// {
-	// itemRenderer.renderItemAndEffectIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, InventoryUtils.cycleItemStack(items.get(count)),
-	// px, py);
-	// itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine,
-	// InventoryUtils.cycleItemStack(items.get(count)).copy().splitStack(1), px,
-	// py);
-	// }
-	// RenderHelper.disableStandardItemLighting();
-	// GL11.glPopMatrix();
-	// ++count;
-	// }
-	// }
-	// }
-	// GL11.glEnable((int) 2896);
-	// GL11.glPopMatrix();
-	// count = 0;
-	// for(j = 0; j < dy; ++j)
-	// {
-	// for(k = dz - 1; k >= 0; --k)
-	// {
-	// for(int i = dx - 1; i >= 0; --i)
-	// {
-	// px = (int) ((float) (x + start) + (float) xoff * (1.0f + sz) + (float) (i
-	// * 16) * (1.0f - sz) + (float) (k * 16) * (1.0f - sz));
-	// py = (int) ((float) (y + 108) + (float) yoff * (1.0f - sz) - (float) (i *
-	// 8) * (1.0f - sz) + (float) (k * 8) * (1.0f - sz) + (float) (j * 50) *
-	// (1.0f - sz));
-	// if(items.get(count) != null && mposx >= px && mposy >= py && (float)
-	// mposx < (float) px + 16.0f * (1.0f - sz) && (float) mposy < (float) py +
-	// 16.0f * (1.0f - sz))
-	// {
-	// List addtext =
-	// InventoryUtils.cycleItemStack(items.get(count)).getTooltip((EntityPlayer)
-	// this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
-	// Object[] ref =
-	// this.findRecipeReference(InventoryUtils.cycleItemStack(items.get(count)));
-	// if(ref != null && !((String) ref[0]).equals(this.research.key))
-	// {
-	// addtext.add("\u00a78\u00a7o" + StatCollector.translateToLocal((String)
-	// "recipe.clickthrough"));
-	// this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer)
-	// ref[1]));
-	// }
-	// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, addtext,
-	// mx, my, 11);
-	// }
-	// ++count;
-	// }
-	// }
-	// }
-	// GL11.glPopMatrix();
-	// }
-	// }
-	//
+	private void drawCompoundCraftingPage(int side, int x, int y, int mx, int my, ResearchPage page)
+	{
+		List r = (List) page.getRecipe();
+		if(r != null)
+		{
+			int j;
+			int px;
+			int k;
+			int py;
+			boolean needsWand = (Boolean) r.get(0);
+			int dx = (Integer) r.get(1);
+			int dy = (Integer) r.get(2);
+			int dz = (Integer) r.get(3);
+			int xoff = 64 - (dx * 16 + dz * 16) / 2;
+			int yoff = (-dy) * 25;
+			List items = (List) r.get(4);
+			GL11.glPushMatrix();
+			int start = side * 152;
+			String text = I18n.format("recipe.type.construct");
+			int offset = this.fontRenderer.getStringWidth(text);
+			this.fontRenderer.drawString(text, x + start + 56 - offset / 2, y, 5263440);
+			int mposx = mx;
+			int mposy = my;
+			UtilsFX.bindTexture(this.tex2);
+			GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+			RenderHelper.enableGUIStandardItemLighting();
+			GL11.glDisable((int) 2896);
+			if(needsWand)
+			{
+				GL11.glPushMatrix();
+				GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 0.4f);
+				GL11.glEnable((int) 3042);
+				GL11.glTranslatef((float) (x + start), (float) (y + 174), (float) 0.0f);
+				GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
+				this.drawTexturedModalRect(0, 0, 68, 76, 12, 12);
+				GL11.glPopMatrix();
+			}
+			GL11.glPushMatrix();
+			float sz = 0.0f;
+			if(dy > 3)
+			{
+				sz = (float) (dy - 3) * 0.2f;
+				GL11.glTranslatef((float) ((float) (x + start) + (float) xoff * (1.0f + sz)), (float) ((float) (y + 108) + (float) yoff * (1.0f - sz)), (float) 0.0f);
+				GL11.glScalef((float) (1.0f - sz), (float) (1.0f - sz), (float) (1.0f - sz));
+			} else
+				GL11.glTranslatef((float) (x + start + xoff), (float) (y + 108 + yoff), (float) 0.0f);
+			GL11.glPushMatrix();
+			GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 0.5f);
+			GL11.glEnable((int) 3042);
+			GL11.glTranslatef((float) (-8 - xoff), (float) (-119 + Math.max(3 - dx, 3 - dz) * 8 + dx * 4 + dz * 4 + dy * 50), (float) 0.0f);
+			GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
+			this.drawTexturedModalRect(0, 0, 0, 72, 64, 44);
+			GL11.glPopMatrix();
+			int count = 0;
+			for(j = 0; j < dy; ++j)
+			{
+				for(k = dz - 1; k >= 0; --k)
+				{
+					for(int i = dx - 1; i >= 0; --i)
+					{
+						px = i * 16 + k * 16;
+						py = (-i) * 8 + k * 8 + j * 50;
+						GL11.glPushMatrix();
+						GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+						RenderHelper.enableGUIStandardItemLighting();
+						GL11.glEnable((int) 2884);
+						GL11.glTranslatef((float) 0.0f, (float) 0.0f, (float) (60 - j * 10));
+						if(items.get(count) != null)
+						{
+							itemRenderer.renderItemAndEffectIntoGUI(InventoryUtils.cycleItemStack(items.get(count)), px, py);
+							itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, InventoryUtils.cycleItemStack(items.get(count)).copy().splitStack(1), px, py, null);
+						}
+						RenderHelper.disableStandardItemLighting();
+						GL11.glPopMatrix();
+						++count;
+					}
+				}
+			}
+			GL11.glEnable((int) 2896);
+			GL11.glPopMatrix();
+			count = 0;
+			for(j = 0; j < dy; ++j)
+			{
+				for(k = dz - 1; k >= 0; --k)
+				{
+					for(int i = dx - 1; i >= 0; --i)
+					{
+						px = (int) ((float) (x + start) + (float) xoff * (1.0f + sz) + (float) (i * 16) * (1.0f - sz) + (float) (k * 16) * (1.0f - sz));
+						py = (int) ((float) (y + 108) + (float) yoff * (1.0f - sz) - (float) (i * 8) * (1.0f - sz) + (float) (k * 8) * (1.0f - sz) + (float) (j * 50) * (1.0f - sz));
+						if(items.get(count) != null && mposx >= px && mposy >= py && (float) mposx < (float) px + 16.0f * (1.0f - sz) && (float) mposy < (float) py + 16.0f * (1.0f - sz))
+						{
+							List addtext = InventoryUtils.cycleItemStack(items.get(count)).getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
+							Object[] ref = this.findRecipeReference(InventoryUtils.cycleItemStack(items.get(count)));
+							if(ref != null && (!research.key.equals(ref[0]) || (side % 2 == 0 && ((Integer) ref[1]) != this.page) || (side % 2 == 1 && ((Integer) ref[1]) != this.page)))
+							{
+								addtext.add("\u00a78\u00a7o" + I18n.format("recipe.clickthrough"));
+								this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer) ref[1]));
+							}
+							this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, addtext, mx, my, 11);
+						}
+						++count;
+					}
+				}
+			}
+			GL11.glPopMatrix();
+		}
+	}
+	
 	// private void drawArcaneCraftingPage(int side, int x, int y, int mx, int
 	// my, ResearchPage pageParm)
 	// {
@@ -728,15 +688,16 @@ public class GuiResearchRecipe extends GuiScreen
 			{
 				for(j = 0; j < rh && j < 3; ++j)
 				{
-					if(InterItemStack.isStackNull(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw))))
+					ItemStack stack = InventoryUtils.cycleItemStack((Object) items.get(i + j * rw));
+					if(InterItemStack.isStackNull(stack))
 						continue;
 					GL11.glPushMatrix();
 					GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
 					RenderHelper.enableGUIStandardItemLighting();
 					GL11.glEnable((int) 2884);
 					GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
-					itemRenderer.renderItemAndEffectIntoGUI(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw)), x + start + 16 + i * 32, y + 76 + j * 32);
-					itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, InventoryUtils.cycleItemStack((Object) items.get(i + j * rw)).copy().splitStack(1), x + start + 16 + i * 32, y + 76 + j * 32, null);
+					itemRenderer.renderItemAndEffectIntoGUI(stack, x + start + 16 + i * 32, y + 76 + j * 32);
+					itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, stack.copy().splitStack(1), x + start + 16 + i * 32, y + 76 + j * 32, null);
 					RenderHelper.disableStandardItemLighting();
 					GL11.glEnable((int) 2896);
 					GL11.glPopMatrix();
@@ -747,15 +708,19 @@ public class GuiResearchRecipe extends GuiScreen
 			{
 				for(j = 0; j < rh && j < 3; ++j)
 				{
-					if(InterItemStack.isStackNull(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw))) || mposx < x + 16 + start + i * 32 || mposy < y + 76 + j * 32 || mposx >= x + 16 + start + i * 32 + 16 || mposy >= y + 76 + j * 32 + 16)
+					ItemStack item = InventoryUtils.cycleItemStack((Object) items.get(i + j * rw));
+					
+					if(InterItemStack.isStackNull(item) || mposx < x + 16 + start + i * 32 || mposy < y + 76 + j * 32 || mposx >= x + 16 + start + i * 32 + 16 || mposy >= y + 76 + j * 32 + 16)
 						continue;
-					List addtext = InventoryUtils.cycleItemStack((Object) items.get(i + j * rw)).getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
-					Object[] ref = this.findRecipeReference(InventoryUtils.cycleItemStack((Object) items.get(i + j * rw)));
-					if(ref != null && !((String) ref[0]).equals(this.research.key))
+					
+					List addtext = item.getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
+					Object[] ref = this.findRecipeReference(item);
+					if(ref != null && (!research.key.equals(ref[0]) || (side % 2 == 0 && ((Integer) ref[1]) != page) || (side % 2 == 1 && ((Integer) ref[1]) != page)))
 					{
 						addtext.add("\u00a78\u00a7o" + I18n.format((String) "recipe.clickthrough"));
 						this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer) ref[1]));
 					}
+					
 					this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, addtext, mx, my, 11);
 				}
 			}
@@ -782,13 +747,15 @@ public class GuiResearchRecipe extends GuiScreen
 				GL11.glEnable((int) 2896);
 				GL11.glPopMatrix();
 			}
+			
 			for(i = 0; i < items.size() && i < 9; ++i)
 			{
 				if(items.get(i) == null || mposx < x + 16 + start + i % 3 * 32 || mposy < y + 76 + i / 3 * 32 || mposx >= x + 16 + start + i % 3 * 32 + 16 || mposy >= y + 76 + i / 3 * 32 + 16)
 					continue;
+				
 				List addtext = InventoryUtils.cycleItemStack(items.get(i)).getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
 				Object[] ref = this.findRecipeReference(InventoryUtils.cycleItemStack(items.get(i)));
-				if(ref != null && !((String) ref[0]).equals(this.research.key))
+				if(ref != null && (!research.key.equals(ref[0]) || (side % 2 == 0 && ((Integer) ref[1]) != page) || (side % 2 == 1 && ((Integer) ref[1]) != page)))
 				{
 					addtext.add("\u00a78\u00a7o" + I18n.format((String) "recipe.clickthrough"));
 					this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer) ref[1]));
@@ -804,9 +771,7 @@ public class GuiResearchRecipe extends GuiScreen
 		ItemStack in = (ItemStack) pageParm.getRecipe();
 		ItemStack out = null;
 		if(in != null)
-		{
 			out = FurnaceRecipes.instance().getSmeltingResult(in);
-		}
 		if(in != null && out != null)
 		{
 			GL11.glPushMatrix();
@@ -848,7 +813,7 @@ public class GuiResearchRecipe extends GuiScreen
 			{
 				List addtext = in.getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
 				Object[] ref = this.findRecipeReference(in);
-				if(ref != null && !((String) ref[0]).equals(this.research.key))
+				if(ref != null && (!research.key.equals(ref[0]) || (side % 2 == 0 && ((Integer) ref[1]) != page) || (side % 2 == 1 && ((Integer) ref[1]) != page)))
 				{
 					addtext.add("\u00a78\u00a7o" + I18n.format((String) "recipe.clickthrough"));
 					this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer) ref[1]));
@@ -863,227 +828,163 @@ public class GuiResearchRecipe extends GuiScreen
 		}
 	}
 	
-	// private void drawInfusionPage(int side, int x, int y, int mx, int my,
-	// ResearchPage pageParm)
-	// {
-	// InfusionRecipe ri;
-	// Object tr = null;
-	// if(pageParm.recipe instanceof Object[])
-	// {
-	// try
-	// {
-	// tr = ((Object[]) pageParm.recipe)[this.cycle];
-	// } catch(Exception e)
-	// {
-	// this.cycle = 0;
-	// tr = ((Object[]) pageParm.recipe)[this.cycle];
-	// }
-	// } else
-	// {
-	// tr = pageParm.recipe;
-	// }
-	// if((ri = (InfusionRecipe) tr) != null)
-	// {
-	// int vy;
-	// int vx;
-	// GL11.glPushMatrix();
-	// int start = side * 152;
-	// String text = StatCollector.translateToLocal((String)
-	// "recipe.type.infusion");
-	// int offset = this.fontRenderer.getStringWidth(text);
-	// this.fontRenderer.drawString(text, x + start + 56 - offset / 2, y,
-	// 5263440);
-	// int inst = Math.min(5, ri.getInstability() / 2);
-	// text = StatCollector.translateToLocal((String) "tc.inst") + " " +
-	// StatCollector.translateToLocal((String) new
-	// StringBuilder().append("tc.inst.").append(inst).toString());
-	// offset = this.fontRenderer.getStringWidth(text);
-	// this.fontRenderer.drawString(text, x + start + 56 - offset / 2, y + 194,
-	// 5263440);
-	// UtilsFX.bindTexture(this.tex2);
-	// GL11.glPushMatrix();
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
-	// GL11.glEnable((int) 3042);
-	// GL11.glTranslatef((float) (x + start), (float) (y + 20), (float) 0.0f);
-	// GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
-	// this.drawTexturedModalRect(0, 0, 0, 3, 56, 17);
-	// GL11.glTranslatef((float) 0.0f, (float) 19.0f, (float) 0.0f);
-	// this.drawTexturedModalRect(0, 0, 200, 77, 60, 44);
-	// GL11.glPopMatrix();
-	// int mposx = mx;
-	// int mposy = my;
-	// int total = 0;
-	// int rows = (ri.getAspects().size() - 1) / 5;
-	// int shift = (5 - ri.getAspects().size() % 5) * 10;
-	// int sx = x + start + 8;
-	// int sy = y + 164 - 10 * rows;
-	// for(Aspect tag : ri.getAspects().getAspectsSorted())
-	// {
-	// int m = 0;
-	// if(total / 5 >= rows && (rows > 1 || ri.getAspects().size() < 5))
-	// {
-	// m = 1;
-	// }
-	// int vx2 = sx + total % 5 * 20 + shift * m;
-	// int vy2 = sy + total / 5 * 20;
-	// UtilsFX.drawTag(vx2, vy2, tag, ri.getAspects().getAmount(tag), 0,
-	// this.zLevel);
-	// ++total;
-	// }
-	// ItemStack idisp = null;
-	// if(ri.getRecipeOutput() instanceof ItemStack)
-	// {
-	// idisp = InventoryUtils.cycleItemStack((Object) ((ItemStack)
-	// ri.getRecipeOutput()));
-	// } else
-	// {
-	// idisp = InventoryUtils.cycleItemStack((Object)
-	// ri.getRecipeInput()).copy();
-	// Object[] obj = (Object[]) ri.getRecipeOutput();
-	// NBTBase tag = (NBTBase) obj[1];
-	// idisp.setTagInfo((String) obj[0], tag);
-	// }
-	// GL11.glPushMatrix();
-	// GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
-	// RenderHelper.enableGUIStandardItemLighting();
-	// GL11.glEnable((int) 2884);
-	// itemRenderer.renderItemAndEffectIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, idisp, x + 48 + start, y + 28);
-	// itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, idisp, x + 48 + start, y + 28);
-	// RenderHelper.disableStandardItemLighting();
-	// GL11.glEnable((int) 2896);
-	// GL11.glPopMatrix();
-	// GL11.glPushMatrix();
-	// GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
-	// RenderHelper.enableGUIStandardItemLighting();
-	// GL11.glEnable((int) 2884);
-	// itemRenderer.renderItemAndEffectIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, InventoryUtils.cycleItemStack((Object)
-	// ri.getRecipeInput()), x + 48 + start, y + 94);
-	// itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, InventoryUtils.cycleItemStack((Object)
-	// ri.getRecipeInput()).copy().splitStack(1), x + 48 + start, y + 94);
-	// RenderHelper.disableStandardItemLighting();
-	// GL11.glEnable((int) 2896);
-	// GL11.glPopMatrix();
-	// GL11.glPushMatrix();
-	// GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
-	// GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
-	// RenderHelper.enableGUIStandardItemLighting();
-	// GL11.glDisable((int) 2896);
-	// GL11.glEnable((int) 2884);
-	// int le = ri.getComponents().length;
-	// ArrayList<Coord2D> coords = new ArrayList<Coord2D>();
-	// float pieSlice = 360 / le;
-	// float currentRot = -90.0f;
-	// for(int a = 0; a < le; ++a)
-	// {
-	// int xx = (int) (MathHelper.cos((float) (currentRot / 180.0f *
-	// 3.1415927f)) * 40.0f) - 8;
-	// int yy = (int) (MathHelper.sin((float) (currentRot / 180.0f *
-	// 3.1415927f)) * 40.0f) - 8;
-	// currentRot += pieSlice;
-	// coords.add(new Coord2D(xx, yy));
-	// }
-	// total = 0;
-	// sx = x + 56 + start;
-	// sy = y + 102;
-	// for(ItemStack ingredient : ri.getComponents())
-	// {
-	// RenderHelper.enableGUIStandardItemLighting();
-	// vx = sx + ((Coord2D) coords.get((int) total)).x;
-	// vy = sy + ((Coord2D) coords.get((int) total)).y;
-	// itemRenderer.renderItemAndEffectIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, InventoryUtils.cycleItemStack((Object) ingredient),
-	// vx, vy);
-	// itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer,
-	// this.mc.renderEngine, InventoryUtils.cycleItemStack((Object)
-	// ingredient).copy().splitStack(1), vx, vy);
-	// RenderHelper.disableStandardItemLighting();
-	// ++total;
-	// }
-	// GL11.glEnable((int) 2896);
-	// GL11.glPopMatrix();
-	// if(mposx >= x + 48 + start && mposy >= y + 28 && mposx < x + 48 + start +
-	// 16 && mposy < y + 28 + 16)
-	// {
-	// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer,
-	// idisp.getTooltip((EntityPlayer) this.mc.thePlayer,
-	// this.mc.gameSettings.advancedItemTooltips), mx, my, 11);
-	// }
-	// if(mposx >= x + 48 + start && mposy >= y + 94 && mposx < x + 48 + start +
-	// 16 && mposy < y + 94 + 16)
-	// {
-	// List addtext = InventoryUtils.cycleItemStack((Object)
-	// ri.getRecipeInput()).getTooltip((EntityPlayer) this.mc.thePlayer,
-	// this.mc.gameSettings.advancedItemTooltips);
-	// Object[] ref =
-	// this.findRecipeReference(InventoryUtils.cycleItemStack((Object)
-	// ri.getRecipeInput()));
-	// if(ref != null && !((String) ref[0]).equals(this.research.key))
-	// {
-	// addtext.add("\u00a78\u00a7o" + StatCollector.translateToLocal((String)
-	// "recipe.clickthrough"));
-	// this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer)
-	// ref[1]));
-	// }
-	// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, addtext,
-	// mx, my, 11);
-	// }
-	// total = 0;
-	// sx = x + 56 + start;
-	// sy = y + 102;
-	// for(ItemStack ingredient : ri.getComponents())
-	// {
-	// vx = sx + ((Coord2D) coords.get((int) total)).x;
-	// vy = sy + ((Coord2D) coords.get((int) total)).y;
-	// if(mposx >= vx && mposy >= vy && mposx < vx + 16 && mposy < vy + 16)
-	// {
-	// List addtext = InventoryUtils.cycleItemStack((Object)
-	// ingredient).getTooltip((EntityPlayer) this.mc.thePlayer,
-	// this.mc.gameSettings.advancedItemTooltips);
-	// Object[] ref =
-	// this.findRecipeReference(InventoryUtils.cycleItemStack((Object)
-	// ingredient));
-	// if(ref != null && !((String) ref[0]).equals(this.research.key))
-	// {
-	// addtext.add("\u00a78\u00a7o" + StatCollector.translateToLocal((String)
-	// "recipe.clickthrough"));
-	// this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer)
-	// ref[1]));
-	// }
-	// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, addtext,
-	// mx, my, 11);
-	// }
-	// ++total;
-	// }
-	// total = 0;
-	// rows = (ri.getAspects().size() - 1) / 5;
-	// shift = (5 - ri.getAspects().size() % 5) * 10;
-	// sx = x + start + 8;
-	// sy = y + 164 - 10 * rows;
-	// for(ItemStack tag : ri.getAspects().getAspectsSorted())
-	// {
-	// int m = 0;
-	// if(total / 5 >= rows && (rows > 1 || ri.getAspects().size() < 5))
-	// {
-	// m = 1;
-	// }
-	// int vx3 = sx + total % 5 * 20 + shift * m;
-	// int vy3 = sy + total / 5 * 20;
-	// if(mposx >= vx3 && mposy >= vy3 && mposx < vx3 + 16 && mposy < vy3 + 16)
-	// {
-	// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer,
-	// Arrays.asList(tag.getName(), tag.getLocalizedDescription()), mx, my, 11);
-	// }
-	// ++total;
-	// }
-	// GL11.glPopMatrix();
-	// }
-	// }
+	private void drawInfusionPage(int side, int x, int y, int mx, int my, ResearchPage pageParm)
+	{
+		InfuserRecipe ri;
+		Object tr = null;
+		if(pageParm.getRecipe() instanceof Object[])
+		{
+			try
+			{
+				tr = ((Object[]) pageParm.getRecipe())[this.cycle];
+			} catch(Exception e)
+			{
+				this.cycle = 0;
+				tr = ((Object[]) pageParm.getRecipe())[this.cycle];
+			}
+		} else
+			tr = pageParm.getRecipe();
+		
+		if((ri = (InfuserRecipe) tr) != null)
+		{
+			int vy;
+			int vx;
+			GL11.glPushMatrix();
+			int start = side * 152;
+			String text = I18n.format((String) "recipe.type.infusion" + (ri instanceof DarkInfuserRecipe ? ".dark" : ""));
+			int offset = this.fontRenderer.getStringWidth(text);
+			this.fontRenderer.drawString(text, x + start + 56 - offset / 2, y, 5263440);
+			
+			if(ri instanceof DarkInfuserRecipe)
+				text = Math.round(ri.cost * .6666667F) + " V, " + Math.round(ri.cost * .33333334F) + " T";
+			else
+				text = ri.cost + " V";
+			
+			offset = this.fontRenderer.getStringWidth(text);
+			this.fontRenderer.drawString(text, x + start + 56 - offset / 2, y + 194, 5263440);
+			
+			UtilsFX.bindTexture(this.tex2);
+			GL11.glPushMatrix();
+			GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+			GL11.glEnable((int) 3042);
+			GL11.glTranslatef((float) (x + start), (float) (y + 20), (float) 0.0f);
+			GL11.glScalef((float) 2.0f, (float) 2.0f, (float) 1.0f);
+			this.drawTexturedModalRect(0, 0, 0, 3, 56, 17);
+			
+			UtilsFX.bindTexture(ri instanceof DarkInfuserRecipe ? "textures/misc/dark_infuser_symbol.png" : this.tex3);
+			GL11.glTranslatef((float) -6.25f, (float) 13.0f, (float) 0.0f);
+			GlStateManager.enableBlend();
+			GlStateManager.enableAlpha();
+			GL11.glPushMatrix();
+			GL11.glScaled(72 / 256D, 72 / 256D, 1);
+			GL11.glColor4f(0, 0, 0, .231372549F);
+			GlStateManager.blendFunc(770, 771);
+			RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+			GL11.glColor4f(1, 1, 1, 1);
+			GL11.glPopMatrix();
+			
+			GL11.glPopMatrix();
+			int mposx = mx;
+			int mposy = my;
+			int total = 0;
+			int sx = x + start + 8;
+			int sy = y + 164;
+			ItemStack idisp = InventoryUtils.cycleItemStack(ri.result);
+			GL11.glPushMatrix();
+			GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
+			GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+			RenderHelper.enableGUIStandardItemLighting();
+			GL11.glEnable((int) 2884);
+			itemRenderer.renderItemAndEffectIntoGUI(idisp, x + 48 + start, y + 28);
+			itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, idisp, x + 48 + start, y + 28, null);
+			RenderHelper.disableStandardItemLighting();
+			GL11.glEnable((int) 2896);
+			GL11.glPopMatrix();
+			GL11.glPushMatrix();
+			GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
+			GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+			GL11.glEnable((int) 2884);
+			GL11.glEnable((int) 2896);
+			GL11.glPopMatrix();
+			GL11.glPushMatrix();
+			GL11.glTranslated((double) 0.0, (double) 0.0, (double) 100.0);
+			GL11.glColor4f((float) 1.0f, (float) 1.0f, (float) 1.0f, (float) 1.0f);
+			RenderHelper.enableGUIStandardItemLighting();
+			GL11.glDisable((int) 2896);
+			GL11.glEnable((int) 2884);
+			int le = ri.components.length;
+			ArrayList<Coord2D> coords = new ArrayList<Coord2D>();
+			float pieSlice = 360 / le;
+			float currentRot = -90.0f;
+			for(int a = 0; a < le; ++a)
+			{
+				int xx = (int) (MathHelper.cos((float) (currentRot / 180.0f * 3.1415927f)) * 50.0f) - 8;
+				int yy = (int) (MathHelper.sin((float) (currentRot / 180.0f * 3.1415927f)) * 50.0f) - 8;
+				currentRot += pieSlice;
+				coords.add(new Coord2D(xx + 4, yy + 17));
+			}
+			total = 0;
+			sx = x + 56 + start;
+			sy = y + 102;
+			for(ItemStack ingredient : ri.components)
+			{
+				RenderHelper.enableGUIStandardItemLighting();
+				vx = sx + coords.get(total).x;
+				vy = sy + coords.get(total).y;
+				itemRenderer.renderItemAndEffectIntoGUI(InventoryUtils.cycleItemStack((Object) ingredient), vx, vy);
+				itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, InventoryUtils.cycleItemStack((Object) ingredient).copy().splitStack(1), vx, vy, null);
+				RenderHelper.disableStandardItemLighting();
+				++total;
+			}
+			GL11.glEnable((int) 2896);
+			GL11.glPopMatrix();
+			if(mposx >= x + 48 + start && mposy >= y + 28 && mposx < x + 48 + start + 16 && mposy < y + 28 + 16)
+				this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, idisp.getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL), mx, my, 11);
+			
+			// if(mposx >= x + 48 + start && mposy >= y + 94 && mposx < x + 48 +
+			// start + 16 && mposy < y + 94 + 16)
+			// {
+			// List addtext = InventoryUtils.cycleItemStack((Object)
+			// ri.getRecipeInput()).getTooltip((EntityPlayer) this.mc.player,
+			// this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED
+			// : TooltipFlags.NORMAL);
+			// Object[] ref =
+			// this.findRecipeReference(InventoryUtils.cycleItemStack((Object)
+			// ri.getRecipeInput()));
+			// if(ref != null && !((String) ref[0]).equals(this.research.key))
+			// {
+			// addtext.add("\u00a78\u00a7o" + I18n.format((String)
+			// "recipe.clickthrough"));
+			// this.reference.add(Arrays.asList(mx, my, (String) ref[0],
+			// (Integer) ref[1]));
+			// }
+			// this.drawCustomTooltip(this, itemRenderer, this.fontRenderer,
+			// addtext, mx, my, 11);
+			// }
+			
+			total = 0;
+			sx = x + 56 + start;
+			sy = y + 102;
+			for(ItemStack ingredient : ri.components)
+			{
+				vx = sx + ((Coord2D) coords.get((int) total)).x;
+				vy = sy + ((Coord2D) coords.get((int) total)).y;
+				if(mposx >= vx && mposy >= vy && mposx < vx + 16 && mposy < vy + 16)
+				{
+					List addtext = InventoryUtils.cycleItemStack((Object) ingredient).getTooltip((EntityPlayer) this.mc.player, this.mc.gameSettings.advancedItemTooltips ? TooltipFlags.ADVANCED : TooltipFlags.NORMAL);
+					Object[] ref = this.findRecipeReference(InventoryUtils.cycleItemStack((Object) ingredient));
+					if(ref != null && (!research.key.equals(ref[0]) || (side % 2 == 0 && ((Integer) ref[1]) != page) || (side % 2 == 1 && ((Integer) ref[1]) != page)))
+					{
+						addtext.add("\u00a78\u00a7o" + I18n.format((String) "recipe.clickthrough"));
+						this.reference.add(Arrays.asList(mx, my, (String) ref[0], (Integer) ref[1]));
+					}
+					this.drawCustomTooltip(this, itemRenderer, this.fontRenderer, addtext, mx, my, 11);
+				}
+				++total;
+			}
+			GL11.glPopMatrix();
+		}
+	}
 	
 	private void drawTextPage(int side, int x, int y, String text)
 	{
@@ -1148,7 +1049,7 @@ public class GuiResearchRecipe extends GuiScreen
 	
 	public Object[] findRecipeReference(ItemStack item)
 	{
-		return LostThaumApi.getCraftingRecipeKey((EntityPlayer) this.mc.player, item);
+		return ClientResearchHelper.getCraftingRecipeKey(item);
 	}
 	
 	public void drawTexturedModalRectScaled(int par1, int par2, int par3, int par4, int par5, int par6, float scale)

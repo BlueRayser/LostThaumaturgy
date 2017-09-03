@@ -1,12 +1,15 @@
 package com.pengu.lostthaumaturgy;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
@@ -27,19 +30,26 @@ import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import com.google.common.base.Predicates;
 import com.pengu.hammercore.common.blocks.tesseract.TileTesseract;
 import com.pengu.hammercore.common.utils.WrappedLog;
 import com.pengu.hammercore.init.SimpleRegistration;
 import com.pengu.hammercore.world.WorldGenRegistry;
-import com.pengu.hammercore.world.gen.WorldRetroGen;
 import com.pengu.lostthaumaturgy.api.RecipesCrucible;
+import com.pengu.lostthaumaturgy.api.RecipesInfuser;
+import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserList;
+import com.pengu.lostthaumaturgy.api.RecipesInfuser.InfuserRecipe;
 import com.pengu.lostthaumaturgy.api.fuser.RecipesFuser;
+import com.pengu.lostthaumaturgy.api.research.ResearchItem;
+import com.pengu.lostthaumaturgy.api.research.ResearchPage;
+import com.pengu.lostthaumaturgy.api.research.ResearchPredicate;
+import com.pengu.lostthaumaturgy.api.research.ResearchSystem;
 import com.pengu.lostthaumaturgy.api.tiles.CapabilityVisConnection;
 import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.core.creative.CreativeTabLT;
 import com.pengu.lostthaumaturgy.core.creative.CreativeTabResearches;
-import com.pengu.lostthaumaturgy.core.items.ItemWand;
 import com.pengu.lostthaumaturgy.core.items.ItemMultiMaterial.EnumMultiMaterialType;
+import com.pengu.lostthaumaturgy.core.items.ItemWand;
 import com.pengu.lostthaumaturgy.core.recipe.RecipePaintSeal;
 import com.pengu.lostthaumaturgy.core.worldgen.WorldGenCinderpearl;
 import com.pengu.lostthaumaturgy.core.worldgen.WorldGenCrystals;
@@ -180,6 +190,28 @@ public class LostThaumaturgy
 		// makeSpawn(EntityZombie.class, EntityWisp.class, 1, 1, 1);
 		
 		ProgressManager.pop(bar);
+		
+		List<ResearchPage> pages = new ArrayList<>();
+		pages.add(new ResearchPage("lt.research_desc.infuser"));
+		pages.add(new ResearchPage(new ItemStack(BlocksLT.INFUSER), true));
+		
+		List<Predicate<ItemStack>> stacks = new ArrayList<>();
+		stacks.add(Predicates.alwaysFalse());
+		InfuserList list = RecipesInfuser.listRecipes();
+		list.stream().filter(dummy -> !dummy.isDark() && !(dummy.getCondition() instanceof ResearchPredicate)).forEach(dummy -> 
+		{
+			if(!stacks.get(0).test(dummy.getResult()))
+			{
+				pages.add(new ResearchPage(new InfuserRecipe(dummy), dummy.getResult()));
+				stacks.set(0, stacks.get(0).or(it -> it.isItemEqual(dummy.getResult())));
+			}
+		});
+		list.close();
+		
+		ResearchPage[] psa = new ResearchPage[pages.size()];
+		for(int i = 0; i < psa.length; ++i)
+			psa[i] = pages.get(i);
+		new ResearchItem("infuser", "basics", 3, 2, 0, new ItemStack(BlocksLT.INFUSER)).setPages(psa).setParents("crucible").setAutoUnlock().setRound().registerResearch();
 	}
 	
 	@SubscribeEvent
@@ -223,5 +255,6 @@ public class LostThaumaturgy
 	{
 		AtmosphereTicker.AuraHM.clear();
 		AtmosphereTicker.loadedAuras = false;
+		ResearchSystem.COMPLETED.clear();
 	}
 }

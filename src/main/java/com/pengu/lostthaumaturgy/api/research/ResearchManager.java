@@ -168,7 +168,7 @@ public class ResearchManager
 		ResearchCategories.researchCategories.values().forEach(cl -> items.addAll(cl.research.values()));
 		
 		ArrayList<ResearchItem> newResearches = new ArrayList<>(items);
-		newResearches.removeIf(t -> isResearchComplete(initiator.getName(), t.key) || t.isAutoUnlock());
+		newResearches.removeIf(t -> isResearchComplete(initiator.getName(), t.key) || t.isAutoUnlock() || !canUnlockResearch(initiator.getName(), t));
 		
 		if(!newResearches.isEmpty())
 			do

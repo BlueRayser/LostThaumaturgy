@@ -1,6 +1,9 @@
-package com.pengu.lostthaumaturgy.api.research;
+package com.pengu.lostthaumaturgy.api.research.client;
 
 import java.util.ArrayList;
+
+import com.pengu.lostthaumaturgy.api.research.ResearchCategories;
+import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;

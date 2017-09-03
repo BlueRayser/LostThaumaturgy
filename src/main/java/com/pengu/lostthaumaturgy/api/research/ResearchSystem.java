@@ -75,8 +75,10 @@ public class ResearchSystem
 			{
 				if(evt.player instanceof EntityPlayerMP)
 					HCNetwork.manager.sendTo(getPacketFor(evt.player), (EntityPlayerMP) evt.player);
+				break;
 			} catch(Throwable err)
 			{
+				err.printStackTrace();
 			}
 	}
 	

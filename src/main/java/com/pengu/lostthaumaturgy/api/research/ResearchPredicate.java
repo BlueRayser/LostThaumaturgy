@@ -1,6 +1,7 @@
 package com.pengu.lostthaumaturgy.api.research;
 
-import org.apache.commons.lang3.ArrayUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,14 +22,17 @@ public class ResearchPredicate implements Predicate<IInfuser>
 	
 	public ResearchPredicate(String... researches)
 	{
-		this.researches = new ResearchItem[0];
-		
+		List<ResearchItem> ris = new ArrayList<>();
 		for(String r : researches)
 		{
 			ResearchItem ri = ResearchManager.getById(r);
 			if(ri != null)
-				this.researches = (ResearchItem[]) ArrayUtils.add(researches, ri);
+				ris.add(ri);
 		}
+		
+		this.researches = new ResearchItem[ris.size()];
+		for(int i = 0; i < this.researches.length; ++i)
+			this.researches[i] = ris.get(i);
 	}
 	
 	public ItemStack[] getResearchItems(EnumResearchItemType type)

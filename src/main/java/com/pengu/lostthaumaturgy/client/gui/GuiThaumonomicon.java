@@ -30,11 +30,11 @@ import org.lwjgl.opengl.GL11;
 
 import com.pengu.hammercore.HammerCore;
 import com.pengu.hammercore.client.utils.RenderUtil;
-import com.pengu.lostthaumaturgy.api.research.ClientResearchData;
 import com.pengu.lostthaumaturgy.api.research.ResearchCategories;
 import com.pengu.lostthaumaturgy.api.research.ResearchCategoryList;
 import com.pengu.lostthaumaturgy.api.research.ResearchItem;
 import com.pengu.lostthaumaturgy.api.research.ResearchManager;
+import com.pengu.lostthaumaturgy.api.research.client.ClientResearchData;
 import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.core.utils.InventoryUtils;
 import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
@@ -352,9 +352,7 @@ public class GuiThaumonomicon extends GuiScreen
 						this.drawTexturedModalRect(var42 - 2, var44 - 2, 110, 230, 26, 26);
 					
 					if(var45.isSpecial())
-					{
 						this.drawTexturedModalRect(var42 - 2, var44 - 2, 26, 230, 26, 26);
-					}
 					
 					if(!canUnlockResearch(var45))
 					{
@@ -411,7 +409,8 @@ public class GuiThaumonomicon extends GuiScreen
 					if(par1 >= var10 && par2 >= var11 && par1 < var10 + 224 && par2 < var11 + 196 && par1 >= var42 && par1 <= var42 + 22 && par2 >= var44 && par2 <= var44 + 22)
 						this.currentHighlight = var45;
 					
-					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+					GlStateManager.color(1, 1, 1, 1);
+					RenderHelper.enableGUIStandardItemLighting();
 				}
 			}
 		}

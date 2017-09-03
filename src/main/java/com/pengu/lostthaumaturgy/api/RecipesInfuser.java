@@ -259,17 +259,15 @@ public class RecipesInfuser
 	/** Do not use --- this is used ONLY in JEI */
 	public static class InfuserRecipe
 	{
-		public final ItemStack result;
-		public final ItemStack[] components;
-		public final ItemStack[] discoveries;
-		public final Predicate<IInfuser> predicate;
-		public final int cost;
-		public final int depletedShards;
+		public ItemStack result;
+		public ItemStack[] components;
+		public ItemStack[] discoveries;
+		public Predicate<IInfuser> predicate;
+		public int cost;
+		public int depletedShards;
 		
 		public InfuserRecipe(int id)
 		{
-			if(darkList.get(id) == Boolean.TRUE)
-				throw new RuntimeException("Unable to compile dark infuser recipe!");
 			result = resultList.get(id);
 			predicate = conditions.get(id);
 			components = componentList.get(id);
@@ -323,19 +321,25 @@ public class RecipesInfuser
 			
 			return recipes.toArray(new InfuserRecipe[recipes.size()]);
 		}
+		
+		public static InfuserRecipe[] asRecipes(List<RecipeInfuserDummy> r)
+		{
+			InfuserRecipe[] rs = new InfuserRecipe[r.size()];
+			for(int i = 0; i < r.size(); ++i)
+				if(r.get(i).isDark())
+					rs[i] = new DarkInfuserRecipe(r.get(i));
+				else
+					rs[i] = new InfuserRecipe(r.get(i));
+			return rs;
+		}
 	}
 	
 	/** Do not use --- this is used ONLY in JEI */
-	public static class DarkInfuserRecipe
+	public static class DarkInfuserRecipe extends InfuserRecipe
 	{
-		public final ItemStack result;
-		public final ItemStack[] components;
-		public final ItemStack[] discoveries;
-		public final Predicate<IInfuser> predicate;
-		public final int cost;
-		
 		public DarkInfuserRecipe(int id)
 		{
+			super(id);
 			if(darkList.get(id) == Boolean.FALSE)
 				throw new RuntimeException("Unable to compile normal infuser recipe!");
 			result = resultList.get(id).copy();
@@ -353,6 +357,7 @@ public class RecipesInfuser
 		
 		public DarkInfuserRecipe(RecipeInfuserDummy dummy)
 		{
+			super(dummy);
 			result = dummy.getResult().copy();
 			predicate = dummy.getCondition();
 			components = dummy.getComponents();
@@ -506,6 +511,13 @@ public class RecipesInfuser
 			conditions.clear();
 			for(RecipeInfuserDummy recipe : $)
 				addInfusing(recipe.result, recipe.cost, recipe.condition, recipe.dark, recipe.components);
+		}
+		
+		public List<RecipeInfuserDummy> findRecipes(ItemStack out, boolean dark)
+		{
+			List<RecipeInfuserDummy> recipes = new ArrayList<>();
+			stream().filter(r -> r.getResult().isItemEqual(out)).forEach(r -> recipes.add(r));
+			return recipes;
 		}
 		
 		@Override
