@@ -12,6 +12,8 @@ import java.util.Scanner;
 import javax.annotation.Nonnull;
 import javax.imageio.ImageIO;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -46,6 +48,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import com.pengu.hammercore.client.render.item.ItemRenderingHandler;
 import com.pengu.hammercore.client.render.tesr.TESR;
 import com.pengu.hammercore.client.utils.GLImageManager;
+import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
 import com.pengu.hammercore.math.MathHelper;
 import com.pengu.hammercore.proxy.ParticleProxy_Client;
@@ -163,6 +166,7 @@ import com.pengu.lostthaumaturgy.core.tile.monolith.TileCrystalReceptacle;
 import com.pengu.lostthaumaturgy.core.tile.monolith.TileExtraRoom;
 import com.pengu.lostthaumaturgy.core.tile.monolith.TileMonolith;
 import com.pengu.lostthaumaturgy.core.tile.monolith.TileMonolithOpener;
+import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
 import com.pengu.lostthaumaturgy.custom.aura.AtmosphereChunk;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.init.ItemsLT;
@@ -467,7 +471,19 @@ public class ClientProxy extends CommonProxy
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void renderAura(RenderWorldLastEvent e)
 	{
+		GlStateManager.enableBlend();
 		
+		GL11.glPushMatrix();
+		GL11.glTranslated(-.5, .01, -.5);
+		GL11.glRotated(90, 1, 0, 0);
+		GL11.glScaled(1 / 128D, 1 / 128D, 1 / 128D);
+//		int frame = 1 + (int) (Minecraft.getMinecraft().player.ticksExisted % 15);
+//		UtilsFX.bindTexture("textures/models/ripple/ripple" + frame + ".png");
+//		RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+		
+		GL11.glPopMatrix();
+		
+		GlStateManager.disableBlend();
 	}
 	
 	@Override

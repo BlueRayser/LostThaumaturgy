@@ -17,6 +17,9 @@ public class TileCrystalReceptacle extends TileSyncable
 	public final NetPropertyBool INSERTED;
 	public final Random rand = new Random(0L);
 	
+	public long msSinceChange = 0L;
+	public boolean lastInserted = false;
+	
 	{
 		EXPECTED_CRYSTAL = new NetPropertyNumber<Integer>(this, new SecureRandom().nextInt(6));
 		INSERTED = new NetPropertyBool(this, false);

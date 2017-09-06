@@ -5,9 +5,12 @@ import java.util.Map;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
@@ -17,11 +20,13 @@ import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.hammercore.client.utils.RenderUtil;
 import com.pengu.hammercore.color.Color;
+import com.pengu.lostthaumaturgy.client.TextureAtlasSpriteFull;
 import com.pengu.lostthaumaturgy.client.model.ModelCrystal;
 import com.pengu.lostthaumaturgy.core.Info;
 import com.pengu.lostthaumaturgy.core.block.BlockOreCrystal;
 import com.pengu.lostthaumaturgy.core.items.armor.helm.ItemGogglesRevealing;
 import com.pengu.lostthaumaturgy.core.tile.monolith.TileCrystalReceptacle;
+import com.pengu.lostthaumaturgy.core.utils.UtilsFX;
 import com.pengu.lostthaumaturgy.init.BlocksLT;
 import com.pengu.lostthaumaturgy.proxy.ClientProxy;
 
@@ -33,7 +38,7 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 	final Map<String, ResourceLocation> textures = new HashMap<>();
 	
 	{
-		textures.put("aqueus", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/aqueous.png"));
+		textures.put("aqueous", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/aqueous.png"));
 		textures.put("earthen", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/earthen.png"));
 		textures.put("fiery", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/fiery.png"));
 		textures.put("tainted", new ResourceLocation(Info.MOD_ID, "textures/misc/runes/tainted.png"));
@@ -44,6 +49,12 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 	@Override
 	public void renderTileEntityAt(TileCrystalReceptacle te, double x, double y, double z, float partialTicks, ResourceLocation destroyStage, float alpha)
 	{
+		if(te.INSERTED.get() != te.lastInserted)
+		{
+			te.lastInserted = te.INSERTED.get();
+			te.msSinceChange = System.currentTimeMillis();
+		}
+		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableNormalize();
 		GlStateManager.enableBlend();
@@ -89,8 +100,20 @@ public class TESRCrystalReceptacle extends TESR<TileCrystalReceptacle>
 		}
 		
 		sbr.drawBlock(x, y, z);
-		
 		sbr.end();
+		
+		long time = 15 * 50L;
+		if(te.lastInserted && System.currentTimeMillis() - te.msSinceChange < time)
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslated(x - .5, y + 1.01, z - .5);
+			GL11.glRotated(90, 1, 0, 0);
+			GL11.glScaled(1 / 128D, 1 / 128D, 1 / 128D);
+			int frame = MathHelper.ceil(((((System.currentTimeMillis() - te.msSinceChange) % time) + 1L) / (double) time) * 15D);
+			UtilsFX.bindTexture("textures/models/ripple/ripple" + frame + ".png");
+			RenderUtil.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+			GL11.glPopMatrix();
+		}
 		
 		if(goggles && ore != null && !te.INSERTED.get())
 		{

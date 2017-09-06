@@ -449,7 +449,7 @@ public class AtmosphereTicker
 			ac2.radiation = (float) MathHelper.clip(Math.abs(ac2.radiation), 0, LTConfigs.aura_radMax);
 			
 			/** Shrink strength */
-			if(world.rand.nextInt(3) == 0 && ac2.primordialNodeStrength > 0)
+			if(ac2.primordialNodeStrength > 0 && world.rand.nextInt(3) == 0)
 				ac2.primordialNodeStrength *= .75;
 			
 			if(world.isBlockLoaded(ChunkUtils.getChunkPos(ac2.x, ac2.z, 8, 127, 8)))
@@ -529,10 +529,12 @@ public class AtmosphereTicker
 		{
 			if(a.radiation > b.radiation)
 			{
+				a.primordialNodeStrength += .25;
 				a.radiation -= maxShare;
 				b.radiation += maxShare;
 			} else if(b.radiation > a.radiation)
 			{
+				b.primordialNodeStrength += .25;
 				b.radiation -= maxShare;
 				a.radiation += maxShare;
 			}

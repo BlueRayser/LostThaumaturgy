@@ -19,7 +19,7 @@ public class ThaumonomiconScale
 	
 	public static void set(float scale)
 	{
-		prev = target;
+		prev = get();
 		target = scale;
 		start = System.currentTimeMillis();
 	}
