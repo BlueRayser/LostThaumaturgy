@@ -57,16 +57,16 @@ tile.lostthaumaturgy:totem_twilight.name=Тотем сумерек
 tile.lostthaumaturgy:seal.name=Тайная печать
 tile.lostthaumaturgy:seal.desc=Цвет: $col
 tile.lostthaumaturgy:vis_condenser.name=Вис-конденсатор
-tile.lostthaumaturgy:void_block.name=Block of Void Metal
-tile.lostthaumaturgy:thaumium_block.name=Block of Thaumium Metal
-tile.lostthaumaturgy:infuser_base.name=Arcane Stone Block
-tile.lostthaumaturgy:fuser.name=Arcane Crafter
+tile.lostthaumaturgy:void_block.name=Блок пустотного металла
+tile.lostthaumaturgy:thaumium_block.name=Блок таум металла
+tile.lostthaumaturgy:infuser_base.name=Магический каменный блок
+tile.lostthaumaturgy:fuser.name=Магический создатель
 tile.lostthaumaturgy:wand_constructor.name=Wand Constructor
-tile.lostthaumaturgy:greatwood_leaves.name=Greatwood Leaves
-tile.lostthaumaturgy:greatwood_log.name=Greatwood Log
-tile.lostthaumaturgy:greatwood_sapling.name=Greatwood Sapling
-tile.lostthaumaturgy:darkness_generator.name=Darkness Generator
-tile.lostthaumaturgy:tainted_leaves.name=Tainted Leaves
+tile.lostthaumaturgy:greatwood_leaves.name=Листва великого дерева
+tile.lostthaumaturgy:greatwood_log.name=Древесина великого дерева
+tile.lostthaumaturgy:greatwood_sapling.name=Саженец великого дерева
+tile.lostthaumaturgy:darkness_generator.name=Генератор темноты
+tile.lostthaumaturgy:tainted_leaves.name=Заражённая листва
 
 
 
@@ -107,10 +107,10 @@ item.lostthaumaturgy:fragment.tooltip0=Сложность: &difficulty
 item.lostthaumaturgy:theory.name=Теория
 item.lostthaumaturgy:theory.tooltip0=Сложность: &difficulty
 item.lostthaumaturgy:discovery.name=Открытие
-item.lostthaumaturgy:thaumium_helmet.name=Шлем из таум-металла
-item.lostthaumaturgy:thaumium_chestplate.name=Кираса из таум-металла
-item.lostthaumaturgy:thaumium_leggings.name=Поножи из таум-металла
-item.lostthaumaturgy:thaumium_boots.name=Ботинки из таум-металла
+item.lostthaumaturgy:thaumium_helmet.name=Таумиевый шлем
+item.lostthaumaturgy:thaumium_chestplate.name=Таумиевая кираса
+item.lostthaumaturgy:thaumium_leggings.name=Таумиевые поножи
+item.lostthaumaturgy:thaumium_boots.name=Таумиевые ботинки
 item.lostthaumaturgy:wand_item_freeze.name=Палочка заморозки
 item.lostthaumaturgy:upgrades/quicksilver_core.name=Ртутное ядро
 item.lostthaumaturgy:upgrades/quicksilver_core.tooltip0=Повышает скорость.
@@ -197,24 +197,24 @@ item.lostthaumaturgy:mithrillium_ingot.name=§3Мифрилловый слито
 item.lostthaumaturgy:adaminite_ingot.name=§cАдаминитовый слиток
 item.lostthaumaturgy:elemental_pickaxe.name=Кирка Огня
 item.lostthaumaturgy:void_compass.name=Пустотный компас
-item.lostthaumaturgy:thaumium_axe.name=Thaumium Axe
-item.lostthaumaturgy:thaumium_hoe.name=Thaumium Hoe
-item.lostthaumaturgy:thaumium_pickaxe.name=Thaumium Pickaxe
-item.lostthaumaturgy:thaumium_shovel.name=Thaumium Shovel
-item.lostthaumaturgy:thaumium_sword.name=Thaumium Sword
-item.lostthaumaturgy:wand.name=Wand
-item.lostthaumaturgy:cap_iron.name=Iron Cap
-item.lostthaumaturgy:cap_gold.name=Gold Cap
-item.lostthaumaturgy:cap_thaumium.name=Thaumium Cap
-item.lostthaumaturgy:cap_void.name=Void Cap
-item.lostthaumaturgy:rod_silverwood.name=Silverwood Rod
-item.lostthaumaturgy:boots_striding.name=Boots of Striding
-item.lostthaumaturgy:rod_greatwood.name=Greatwood Rod
-item.lostthaumaturgy:elemental_axe.name=Axe of the Stream
-item.lostthaumaturgy:elemental_sword.name=Sword of the Zephyr
-item.lostthaumaturgy:elemental_shovel.name=Shovel of Renewal
-item.lostthaumaturgy:elemental_hoe.name=Hoe of the Mystic
-item.lostthaumaturgy:tallow.name=Tallow
+item.lostthaumaturgy:thaumium_axe.name=Таумиевый топор
+item.lostthaumaturgy:thaumium_hoe.name=Таумиевая мотыга
+item.lostthaumaturgy:thaumium_pickaxe.name=Таумиевая кирка
+item.lostthaumaturgy:thaumium_shovel.name=Таумиевая лопата
+item.lostthaumaturgy:thaumium_sword.name=Таумиевый меч
+item.lostthaumaturgy:wand.name=Палочка
+item.lostthaumaturgy:cap_iron.name=Железный наконечник
+item.lostthaumaturgy:cap_gold.name=Золотой наконечник
+item.lostthaumaturgy:cap_thaumium.name=Таумиевый наконечник
+item.lostthaumaturgy:cap_void.name=Пустотный наконечник
+item.lostthaumaturgy:rod_silverwood.name=Стержень из серебряного дерева
+item.lostthaumaturgy:boots_striding.name=Сапоги шагания
+item.lostthaumaturgy:rod_greatwood.name=Стержень из великого дерева
+item.lostthaumaturgy:elemental_axe.name=Топор Потока
+item.lostthaumaturgy:elemental_sword.name=Меч Бури
+item.lostthaumaturgy:elemental_shovel.name=Лопата Возобновления
+item.lostthaumaturgy:elemental_hoe.name=Мотыга Мистики
+item.lostthaumaturgy:tallow.name=Жир
 
 
 
@@ -263,7 +263,7 @@ research.lostthaumaturgy:concentrated_taint.title=Концентрированн
 research.lostthaumaturgy:concentrated_taint.desc=Думая об инфекции и способах получить его вручную Вы обнаружили, что есть очень опасный путь к получению упомянутого заражения. Вы должны получить сгусток заражения и наполнить стеклянную бутылку им. Однако, не должны делать это на стандартном наполнителе.
 
 research.lostthaumaturgy:potion_purity.title=Зелье очищения
-research.lostthaumaturgy:potion_purity.desc=Изучая связанную с заражением природу Вы столкнулись с очень ужасающим фактом: от заражения действительно сложно избавиться. Но Вы не остановились на этом и изобрели новое вещество, упакованное в бутылку. Избавление от заражения по-прежнему является болью, но по крайней мере Вы можете временно избавиться от нее.
+research.lostthaumaturgy:potion_purity.desc=Изучая связанную с заражением природу Вы столкнулись с очень ужасающим фактом: от заражения действительно сложно избавиться. Но Вы не остановились на этом и изобрели новое вещество, упакованное в бутылку. Избавиться от заражения по-прежнему сложно, но по крайней мере Вы можете временно избавиться от нее.
 
 research.lostthaumaturgy:concentrated_evil.title=Концентрированное зло
 research.lostthaumaturgy:concentrated_evil.desc=Сумасшедшие тауматурги любят заражение, но так и не могли получить испорченный кристалл, обработав его в кристаллизаторе. До этого момента! Вы обнаружили очень хорошую модернизацию, которая сможет решить эту и еще множество проблем. Вставка этой модернизации в кристаллизатор добавит дополнительный слот к нему - для испорченных кристаллов. Теперь Вы можете получить Ваши желаемые кристаллы еще легче!
@@ -272,7 +272,7 @@ research.lostthaumaturgy:eldritch_keystone_tlhutlh.title=Древний ключ
 research.lostthaumaturgy:eldritch_keystone_tlhutlh.desc=Грабя один из монолитов древних Вы нашли мистическое отверстие для своего рода ключа... Исследование свойств механизмов древних, Вы сделали неактивный ключ, но замок просто отклоняет его. После большего количества исследований Вы пришли к простому решению: наполнить неактивный ключ экстрактом чистейшей магии. Вы надеетесь, что это будет работать...
 
 research.lostthaumaturgy:void_ingot.title=Пустотный слиток
-research.lostthaumaturgy:void_ingot.desc=Семя Темноты является странным предметом для семени. У этого есть сильная способность - возвращать форму после деформации. Вы смешали это странное семя с ртутью, и результаты были довольно удивительны: Вы сделали самовосстанавливающее вещество. Единственный недостаток к нему - то, что это испаряется действительно быстро. Вы старались изо всех сил смешать его с обычным таумиевым слитком. Пустотный слиток - очень крепкий металл, который может восстановить себя, но не слишком быстро. Единственный недостаток к этому металлу - то, что он использует некоторое количество вис из атмосферы, чтобы восстановиться.
+research.lostthaumaturgy:void_ingot.desc=Семя Темноты является странным предметом для семени. У этого есть сильная способность - возвращать форму после деформации. Вы смешали это странное семя с ртутью, и результаты были довольно удивительны: Вы сделали самовосстанавливающее вещество. Единственный недостаток к нему - то, что оно испаряется действительно быстро. Вы старались изо всех сил смешать его с обычным таумиевым слитком. Пустотный слиток - очень крепкий металл, который может восстановить себя, но не слишком быстро. Единственный недостаток к этому металлу - то, что он использует некоторое количество вис из атмосферы, чтобы восстановиться.
 
 research.lostthaumaturgy:totem_dawn.title=Тотем рассвета
 research.lostthaumaturgy:totem_dawn.desc=Природа предоставляет таинственные серебряные деревья, которые поддерживают атмосферу поблизости в чистоте. Но прежде сделать это быстрее и эффективнее было невозможно. Вы нашли способ очистить атмосферу, разместив Тотем Рассвета.
@@ -325,13 +325,13 @@ bookapi.lostthaumaturgy:thaumonomicon:undefined=???
 
 
 
-wand.rod.wood=Wood
-wand.rod.greatwood=Greatwood
-wand.rod.silverwood=Silverwood
-wand.cap.iron=Iron
-wand.cap.gold=Gold
-wand.cap.thaumium=Thaumium
-wand.cap.void=Void Metal
+wand.rod.wood=Дерево
+wand.rod.greatwood=Великое дерево
+wand.rod.silverwood=Серебряное дерево
+wand.cap.iron=Железо
+wand.cap.gold=Золото
+wand.cap.thaumium=Таумий
+wand.cap.void=Пустотный металл
 
 
 
